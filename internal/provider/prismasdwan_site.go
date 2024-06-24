@@ -197,6 +197,20 @@ func (r *sdwanSiteResource) Schema(_ context.Context, _ resource.SchemaRequest, 
 	}
 }
 
+// getConfigData reads the config data either from a file or raw JSON
+func getConfigData(configFilePathOrData string) ([]byte, error) {
+	// Check if the input is a file path
+	if strings.HasPrefix(configFilePathOrData, "/") {
+		data, err := os.ReadFile(configFilePathOrData)
+		if err != nil {
+			return nil, fmt.Errorf("unable to read config file: %w", err)
+		}
+		return data, nil
+	}
+	// Assume the input is raw JSON data
+	return []byte(configFilePathOrData), nil
+}
+
 func (r *sdwanSiteResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
@@ -218,9 +232,9 @@ func (r *sdwanSiteResource) Create(ctx context.Context, req resource.CreateReque
 		"config":                      state.Config.ValueString(),
 	})
 
-	json, err := os.ReadFile(state.Config.ValueString())
+	json, err := getConfigData(state.Config.ValueString())
 	if err != nil {
-		resp.Diagnostics.AddError("Error reading site JSON file", err.Error())
+		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
 
@@ -267,18 +281,18 @@ func (r *sdwanSiteResource) Read(ctx context.Context, req resource.ReadRequest, 
 		resp.Diagnostics.AddError("Invalid tfid", "Expected 2 tokens")
 		return
 	}
-	uuid, filename := tokens[0], tokens[1]
+	uuid, config := tokens[0], tokens[1]
 
 	tflog.Info(ctx, "performing resource read", map[string]any{
 		"terraform_provider_function": "Read",
 		"resource_name":               "prismasdwan_site",
 		"uuid":                        uuid,
-		"filename":                    filename,
+		"config":                      config,
 	})
 
-	json, err := os.ReadFile(filename)
+	json, err := getConfigData(config)
 	if err != nil {
-		resp.Diagnostics.AddError("Error reading site JSON file", err.Error())
+		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
 
@@ -312,7 +326,7 @@ func (r *sdwanSiteResource) Read(ctx context.Context, req resource.ReadRequest, 
 
 	state.Tfid = savestate.Tfid
 	state.Timeout = savestate.Timeout
-	state.Config = types.StringValue(filename)
+	state.Config = types.StringValue(config)
 	state.IsDeployed = types.BoolValue(ans.IsDeployed)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
@@ -338,12 +352,12 @@ func (r *sdwanSiteResource) Update(ctx context.Context, req resource.UpdateReque
 		"terraform_provider_function": "Update",
 		"resource_name":               "prismasdwan_site",
 		"uuid":                        uuid,
-		"filename":                    plan.Config.ValueString(),
+		"config":                    plan.Config.ValueString(),
 	})
 
-	json, err := os.ReadFile(plan.Config.ValueString())
+	json, err := getConfigData(plan.Config.ValueString())
 	if err != nil {
-		resp.Diagnostics.AddError("Error reading site JSON file", err.Error())
+		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
 
@@ -404,9 +418,9 @@ func (r *sdwanSiteResource) Delete(ctx context.Context, req resource.DeleteReque
 		"uuid":                        uuid,
 	})
 
-	json, err := os.ReadFile(state.Config.ValueString())
+	json, err := getConfigData(state.Config.ValueString())
 	if err != nil {
-		resp.Diagnostics.AddError("Error reading site JSON file", err.Error())
+		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
 
