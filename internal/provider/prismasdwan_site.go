@@ -2,6 +2,8 @@ package provider
 
 import (
 	"context"
+	"crypto/sha512"
+	"encoding/hex"
 	"fmt"
 	"net/http"
 	"os"
@@ -55,6 +57,12 @@ type sdwanSiteDsModel struct {
 
 	// Output.
 	Config types.String `tfsdk:"config"`
+}
+
+func GenerateIdFromConfig(config string) string {
+	hashMaker := sha512.New()
+	hashMaker.Write([]byte(config))
+	return hex.EncodeToString(hashMaker.Sum(nil))
 }
 
 func (d *sdwanSiteDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -164,6 +172,7 @@ type sdwanSiteModel struct {
 	Config     types.String `tfsdk:"config"`
 	Timeout    types.String `tfsdk:"timeout"`
 	IsDeployed types.Bool   `tfsdk:"is_deployed"`
+	Id         types.String `tfsdk:"id"`
 }
 
 func (r *sdwanSiteResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -191,6 +200,10 @@ func (r *sdwanSiteResource) Schema(_ context.Context, _ resource.SchemaRequest, 
 			// Output.
 			"tfid": rsschema.StringAttribute{
 				Description: "The Terraform ID for this resource.",
+				Computed:    true,
+			},
+			"id": rsschema.StringAttribute{
+				Description: "Unique identifier for this resource.",
 				Computed:    true,
 			},
 		},
@@ -264,7 +277,7 @@ func (r *sdwanSiteResource) Create(ctx context.Context, req resource.CreateReque
 
 	state.Tfid = types.StringValue(fmt.Sprintf("%s:%s", ans.Uuid, state.Config.ValueString()))
 	state.IsDeployed = types.BoolValue(ans.IsDeployed)
-
+	state.Id = types.StringValue(GenerateIdFromConfig(string(json)))
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 
@@ -283,18 +296,19 @@ func (r *sdwanSiteResource) Read(ctx context.Context, req resource.ReadRequest, 
 	}
 	uuid, config := tokens[0], tokens[1]
 
-	tflog.Info(ctx, "performing resource read", map[string]any{
-		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_site",
-		"uuid":                        uuid,
-		"config":                      config,
-	})
-
 	json, err := getConfigData(config)
 	if err != nil {
 		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
+
+	tflog.Info(ctx, "performing resource read", map[string]any{
+		"terraform_provider_function": "Read",
+		"resource_name":               "prismasdwan_site",
+		"uuid":                        uuid,
+		"id":                          GenerateIdFromConfig(string(json)),
+		"config":                      config,
+	})
 
 	path := fmt.Sprintf("/v1.0/api/sdwan/config/do_site/%s", uuid)
 	input := SdwanDoSiteRequest{
@@ -327,6 +341,7 @@ func (r *sdwanSiteResource) Read(ctx context.Context, req resource.ReadRequest, 
 	state.Tfid = savestate.Tfid
 	state.Timeout = savestate.Timeout
 	state.Config = types.StringValue(config)
+	state.Id = types.StringValue(GenerateIdFromConfig(string(json)))
 	state.IsDeployed = types.BoolValue(ans.IsDeployed)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
@@ -348,18 +363,19 @@ func (r *sdwanSiteResource) Update(ctx context.Context, req resource.UpdateReque
 	}
 	uuid := tokens[0]
 
-	tflog.Info(ctx, "performing resource update", map[string]any{
-		"terraform_provider_function": "Update",
-		"resource_name":               "prismasdwan_site",
-		"uuid":                        uuid,
-		"config":                    plan.Config.ValueString(),
-	})
-
 	json, err := getConfigData(plan.Config.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
+
+	tflog.Info(ctx, "performing resource update", map[string]any{
+		"terraform_provider_function": "Update",
+		"resource_name":               "prismasdwan_site",
+		"uuid":                        uuid,
+		"config":                      plan.Config.ValueString(),
+		"id":                          GenerateIdFromConfig(plan.Config.ValueString()),
+	})
 
 	path := fmt.Sprintf("/v1.0/api/sdwan/config/do_site/%s", uuid)
 	input := SdwanDoSiteRequest{
@@ -392,6 +408,7 @@ func (r *sdwanSiteResource) Update(ctx context.Context, req resource.UpdateReque
 	}
 	state.Timeout = plan.Timeout
 	state.Config = plan.Config
+	state.Id = types.StringValue(GenerateIdFromConfig(state.Config.ValueString()))
 	state.IsDeployed = types.BoolValue(ans.IsDeployed)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
@@ -412,17 +429,18 @@ func (r *sdwanSiteResource) Delete(ctx context.Context, req resource.DeleteReque
 	}
 	uuid := tokens[0]
 
-	tflog.Info(ctx, "performing resource delete", map[string]any{
-		"terraform_provider_function": "Delete",
-		"resource_name":               "prismasdwan_site",
-		"uuid":                        uuid,
-	})
-
 	json, err := getConfigData(state.Config.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Error reading site JSON file/data", err.Error())
 		return
 	}
+
+	tflog.Info(ctx, "performing resource delete", map[string]any{
+		"terraform_provider_function": "Delete",
+		"resource_name":               "prismasdwan_site",
+		"uuid":                        uuid,
+		"id":                          GenerateIdFromConfig(string(json)),
+	})
 
 	path := fmt.Sprintf("/v1.0/api/sdwan/config/do_site/%s", uuid)
 	input := SdwanDoSiteRequest{

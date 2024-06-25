@@ -145,6 +145,10 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 		return
 	}
 
+	if config.Host.ValueString() == "" {
+		config.Host = types.StringValue("pa-us01.api.prismaaccess.com")
+	}
+
 	// Configure the client.
 	con := &sdk.Client{
 		Host:             config.Host.ValueString(),
