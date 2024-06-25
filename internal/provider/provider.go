@@ -52,7 +52,7 @@ func (p *SdwanProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp
 			"host": schema.StringAttribute{
 				Description: ProviderParamDescription(
 					"The hostname of Strata Cloud Manager API.",
-					"api.sase.paloaltonetworks.com",
+					"pa-us01.api.prismaaccess.com",
 					"SCM_HOST",
 					"host",
 				),
