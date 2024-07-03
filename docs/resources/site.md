@@ -14,7 +14,7 @@ Manages a Prisma SD-WAN site.
 
 ```terraform
 resource "prismasdwan_site" "example" {
-  config = "/Users/jdoe/sdwan_configs/site1.yaml"
+  config = "/Users/jdoe/sdwan_configs/site1.json"
 }
 ```
 
@@ -32,4 +32,5 @@ resource "prismasdwan_site" "example" {
 
 ### Read-Only
 
+- `id` (String) Unique identifier for this resource.
 - `tfid` (String) The Terraform ID for this resource.

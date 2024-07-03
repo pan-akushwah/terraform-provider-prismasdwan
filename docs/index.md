@@ -16,7 +16,6 @@ This provider covers the following aspects of Strata Cloud Manager:
 
 ```terraform
 provider "prismasdwan" {
-  host          = "api.strata.paloaltonetworks.com"
   client_id     = "your-id@12345"
   client_secret = "secret"
   scope         = "tsg_id:12345"
@@ -51,7 +50,7 @@ There are multiple ways to specify the provider's parameters.  If overlapping va
 - `auth_url` (String) The URL to send auth credentials to which will return a JWT. Default: `https://auth.apps.paloaltonetworks.com/auth/v1/oauth2/access_token`. Environment variable: `SCM_AUTH_URL`. JSON config file variable: `auth_url`.
 - `client_id` (String) The client ID for the connection. Environment variable: `SCM_CLIENT_ID`. JSON config file variable: `client_id`.
 - `client_secret` (String, Sensitive) The client secret for the connection. Environment variable: `SCM_CLIENT_SECRET`. JSON config file variable: `client_secret`.
-- `host` (String) The hostname of Strata Cloud Manager API. Default: `api.sase.paloaltonetworks.com`. Environment variable: `SCM_HOST`. JSON config file variable: `host`.
+- `host` (String) The hostname of Strata Cloud Manager API. Default: `pa-us01.api.prismaaccess.com`. Environment variable: `SCM_HOST`. JSON config file variable: `host`.
 - `logging` (String) The logging level of the provider and the underlying communication. Default: `quiet`. Environment variable: `SCM_LOGGING`. JSON config file variable: `logging`.
 - `port` (Number) The port number for API operations, if non-standard for the given protocol. Environment variable: `SCM_PORT`. JSON config file variable: `port`.
 - `protocol` (String) The protocol (https or http). Default: `https`. Environment variable: `SCM_PROTOCOL`. JSON config file variable: `protocol`.
