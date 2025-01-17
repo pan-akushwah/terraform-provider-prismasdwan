@@ -205,62 +205,12 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 
 // DataSources defines the data sources for this provider.
 func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewBulkConfigCreateDataSource,
-		NewBulkConfigPushDataSource,
-		NewBulkConfigStatusDataSource,
-		NewDhcpServerDataSource,
-		NewDhcpServerListDataSource,
-		NewElementDataSource,
-		NewElementListDataSource,
-		NewElementNtpDataSource,
-		NewElementNtpListDataSource,
-		NewElementSecurityZoneDataSource,
-		NewElementSecurityZoneListDataSource,
-		NewInterfaceDataSource,
-		NewInterfaceListDataSource,
-		NewLanNetworkDataSource,
-		NewLanNetworkListDataSource,
-		NewSiteDataSource,
-		NewSiteListDataSource,
-		NewSiteSecurityZonesDataSource,
-		NewSiteSecurityZonesListDataSource,
-		NewSnmpAgentDataSource,
-		NewSnmpAgentListDataSource,
-		NewSnmpTrapDataSource,
-		NewSnmpTrapListDataSource,
-		NewStaticRouteDataSource,
-		NewStaticRouteListDataSource,
-		NewSyslogServerDataSource,
-		NewSyslogServerListDataSource,
-		NewWanInterfaceDataSource,
-		NewWanInterfaceLabelDataSource,
-		NewWanInterfaceLabelListDataSource,
-		NewWanInterfaceListDataSource,
-		NewWanNetworkDataSource,
-		NewWanNetworkListDataSource,
-	}
+	return []func() datasource.DataSource{}
 }
 
 // Resources defines the data sources for this provider.
 func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewDhcpServerResource,
-		NewElementNtpResource,
-		NewElementResource,
-		NewElementSecurityZoneResource,
-		NewInterfaceResource,
-		NewLanNetworkResource,
-		NewSiteResource,
-		NewSiteSecurityZonesResource,
-		NewSnmpAgentResource,
-		NewSnmpTrapResource,
-		NewStaticRouteResource,
-		NewSyslogServerResource,
-		NewWanInterfaceLabelResource,
-		NewWanInterfaceResource,
-		NewWanNetworkResource,
-	}
+	return []func() resource.Resource{}
 }
 
 // New is a helper function to get the provider implementation.
