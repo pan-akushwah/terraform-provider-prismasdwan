@@ -342,7 +342,7 @@ func TestDoUnmarshalsResponse(t *testing.T) {
 	}
 
 	var ans Person
-	_, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, &ans)
+	_, _, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, &ans)
 
 	if err != nil {
 		t.Fatalf("Do returned an error: %s", err)
@@ -373,7 +373,7 @@ func TestDoNoUnmarshalOnErrorResponse(t *testing.T) {
 	}
 
 	var ans Person
-	_, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, &ans)
+	_, _, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, &ans)
 
 	if err == nil {
 		t.Errorf("nil error was returned")
@@ -423,7 +423,7 @@ func TestDoCanRefreshTheJwt(t *testing.T) {
 		},
 	}
 
-	_, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
+	_, _, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
 
 	if err != nil {
 		t.Errorf("error was returned")
@@ -474,7 +474,7 @@ func TestDoWithMultipleUnauthorizedFailures(t *testing.T) {
 		},
 	}
 
-	_, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
+	_, _, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
 
 	if err == nil {
 		t.Fatalf("nil error was returned")
@@ -519,7 +519,7 @@ func TestDoWith5xxRetryLogic(t *testing.T) {
 		},
 	}
 
-	_, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
+	_, _, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
 
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
@@ -543,7 +543,7 @@ func TestDoWith400Response(t *testing.T) {
 		}},
 	}
 
-	_, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
+	_, _, err := c.Do(ctx, http.MethodGet, "/one/two", nil, nil, nil)
 
 	if err == nil {
 		t.Fatalf("Do returned no error")
