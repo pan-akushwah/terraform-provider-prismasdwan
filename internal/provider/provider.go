@@ -205,12 +205,18 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 
 // DataSources defines the data sources for this provider.
 func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{}
+	return []func() datasource.DataSource{
+		// -- append next datasource above -- //
+
+	}
 }
 
 // Resources defines the data sources for this provider.
 func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource {
-	return []func() resource.Resource{}
+	return []func() resource.Resource{
+		// -- append next resource above -- //
+
+	}
 }
 
 // New is a helper function to get the provider implementation.

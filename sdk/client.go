@@ -376,25 +376,17 @@ that may have been present.  If this function got all the way to invoking the
 API and getting a response, then the error passed back will be a `api.ErrorResponse`
 if an error was detected.
 */
-func (c *Client) Do(ctx context.Context, method string, path string, queryParams url.Values, input, output interface{}, retry ...error) ([]byte, error) {
+func (c *Client) Do(ctx context.Context, method string, path string, queryParams url.Values, input *string, output interface{}, retry ...error) ([]byte, int, error) {
 	if c.apiPrefix == "" {
-		return nil, fmt.Errorf("Setup() has not been invoked yet")
+		return nil, 0, fmt.Errorf("Setup() has not been invoked yet")
 	} else if len(retry) > 5 {
-		return nil, retry[len(retry)-1]
+		return nil, 0, retry[len(retry)-1]
 	}
 
 	var err error
-	var body, data []byte
+	var body []byte
 	var resp *http.Response
 	var qp string
-
-	// Convert input into JSON.
-	if input != nil {
-		data, err = json.Marshal(input)
-		if err != nil {
-			return nil, err
-		}
-	}
 
 	if len(queryParams) > 0 {
 		qp = fmt.Sprintf("?%s", queryParams.Encode())
@@ -412,9 +404,9 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 		resp = c.testData[c.testIndex%len(c.testData)]
 		c.testIndex++
 	} else {
-		req, err := http.NewRequestWithContext(ctx, method, uri, strings.NewReader(string(data)))
+		req, err := http.NewRequestWithContext(ctx, method, uri, strings.NewReader(*input))
 		if err != nil {
-			return nil, err
+			return nil, 0, err
 		}
 
 		// Configure headers.
@@ -430,14 +422,14 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 			sdwanUri := fmt.Sprintf("%s%s%s", c.apiPrefix, "/sdwan/v2.1/api/profile", qp)
 			sdwanReq, err := http.NewRequestWithContext(ctx, http.MethodGet, sdwanUri, nil)
 			if err != nil {
-				return nil, err
+				return nil, 0, err
 			}
 
 			sdwanReq.Header = req.Header.Clone()
 
 			sdwanResp, err := c.HttpClient.Do(sdwanReq)
 			if err != nil {
-				return nil, err
+				return nil, 0, err
 			}
 			defer sdwanResp.Body.Close()
 		}
@@ -446,16 +438,16 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 	}
 
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	} else if resp == nil {
-		return nil, fmt.Errorf("no response received")
+		return nil, 0, fmt.Errorf("no response received")
 	}
 
 	// Read the body content.
 	defer resp.Body.Close()
 	body, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 
 	// Discover if an error occurred.
@@ -481,19 +473,19 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 	switch resp.StatusCode {
 	case http.StatusOK, http.StatusCreated, http.StatusAccepted:
 	case http.StatusNotFound:
-		return body, api.ObjectNotFoundError
+		return body, resp.StatusCode, api.ObjectNotFoundError
 	case http.StatusUnauthorized:
 		if len(retry) > 0 {
 			lastErr, ok := retry[len(retry)-1].(api.Response)
 			if ok && lastErr.StatusCode == http.StatusUnauthorized {
 				// Getting 401s back-to-back, so just stop.
-				return body, stat
+				return body, resp.StatusCode, stat
 			}
 		}
 
 		// First auth failure, so refresh the JWT then retry the operation.
 		if err = c.RefreshJwt(ctx); err != nil {
-			return nil, err
+			return nil, resp.StatusCode, err
 		}
 		return c.Do(ctx, method, path, queryParams, input, output, append(retry, stat)...)
 	case http.StatusTooManyRequests, http.StatusInternalServerError, http.StatusBadGateway, http.StatusServiceUnavailable, http.StatusGatewayTimeout:
@@ -507,18 +499,18 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 		}
 		return c.Do(ctx, method, path, queryParams, input, output, append(retry, stat)...)
 	default:
-		return body, stat
+		return body, resp.StatusCode, stat
 	}
 
 	// Optional: unmarshal the output.
 	if output != nil {
 		if err = json.Unmarshal(body, output); err != nil {
-			return body, err
+			return body, resp.StatusCode, err
 		}
 	}
 
 	// Done.
-	return body, nil
+	return body, resp.StatusCode, nil
 }
 
 // GetHost returns the Host property.
