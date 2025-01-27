@@ -29,3 +29,5 @@ terraform.tfstate*
 # Others
 .DS_Store
 *.swp
+
+examples/*.tf
