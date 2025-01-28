@@ -140,7 +140,10 @@ func ListInt64ValueOrNil(ctx context.Context, v types.List) []int64 {
 }
 
 func ListStringValueOrNil(ctx context.Context, v types.List) []string {
-	if v.IsNull() || v.IsUnknown() {
+	if v.IsNull() {
+		return nil
+	}
+	if v.IsUnknown() {
 		return []string{}
 	}
 	var result []string
