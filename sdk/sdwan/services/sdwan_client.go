@@ -33,6 +33,7 @@ func NewClient(client api.Client) *Client {
 // request & response struct
 type SdwanClientRequestResponse struct {
 	Path               string
+	FinalPath          *string
 	PathParameters     *(map[string]*string)
 	Method             string
 	RequestBody        *string
@@ -43,6 +44,7 @@ type SdwanClientRequestResponse struct {
 }
 
 // executes a http function using sdwan client implementation
+// the request and response data is captured in the same request object for ease of debugging and logging.
 func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRequestResponse) {
 	// Variables.
 	path := request.Path
@@ -58,6 +60,8 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 	if prefix != "" {
 		path = prefix + path
 	}
+	// set path
+	request.FinalPath = &path
 
 	// check for nil
 	request_body := ""

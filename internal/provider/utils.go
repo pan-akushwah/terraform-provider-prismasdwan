@@ -2,6 +2,7 @@ package provider
 
 import (
 	"context"
+	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -148,5 +149,20 @@ func ListStringValueOrNil(ctx context.Context, v types.List) []string {
 	}
 	var result []string
 	v.ElementsAs(ctx, &result, false)
+	return result
+}
+
+func MapStringValueOrNil(ctx context.Context, v types.Map) map[string]*string {
+	if v.IsNull() {
+		return map[string]*string{}
+	}
+	if v.IsUnknown() {
+		return map[string]*string{}
+	}
+	result := make(map[string]*string)
+	for k, v := range v.Elements() {
+		string_value := strings.Replace(v.String(), "\"", "", 2)
+		result[k] = &string_value
+	}
 	return result
 }
