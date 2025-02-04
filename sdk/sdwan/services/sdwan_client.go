@@ -5,6 +5,7 @@ package services
 
 import (
 	"context"
+	"encoding/json"
 	"strings"
 
 	"github.com/bhmj/jsonslice"
@@ -41,6 +42,14 @@ type SdwanClientRequestResponse struct {
 	ResponseErr        *error
 	ResponseErrorCode  *string
 	ResponseStatusCode int
+}
+
+func (r *SdwanClientRequestResponse) ToString() string {
+	json_body, err := json.Marshal(r)
+	if err != nil {
+		return "json_marhsall_error:" + err.Error()
+	}
+	return string(json_body)
 }
 
 // executes a http function using sdwan client implementation
