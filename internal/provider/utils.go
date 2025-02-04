@@ -140,7 +140,28 @@ func ListInt64ValueOrNil(ctx context.Context, v types.List) []int64 {
 	return result
 }
 
+func SetInt64ValueOrNil(ctx context.Context, v types.Set) []int64 {
+	if v.IsNull() || v.IsUnknown() {
+		return []int64{}
+	}
+	var result []int64
+	v.ElementsAs(ctx, &result, false)
+	return result
+}
+
 func ListStringValueOrNil(ctx context.Context, v types.List) []string {
+	if v.IsNull() {
+		return nil
+	}
+	if v.IsUnknown() {
+		return []string{}
+	}
+	var result []string
+	v.ElementsAs(ctx, &result, false)
+	return result
+}
+
+func SetStringValueOrNil(ctx context.Context, v types.Set) []string {
 	if v.IsNull() {
 		return nil
 	}
