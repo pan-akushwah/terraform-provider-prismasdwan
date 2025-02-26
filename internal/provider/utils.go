@@ -2,6 +2,12 @@ package provider
 
 import (
 	"context"
+	"crypto/aes"
+	"crypto/cipher"
+	"crypto/rand"
+	"encoding/hex"
+	"fmt"
+	"io"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -186,4 +192,61 @@ func MapStringValueOrNil(ctx context.Context, v types.Map) map[string]*string {
 		result[k] = &string_value
 	}
 	return result
+}
+
+// generates a random string of a given length in HEX format
+func GenerateRandomString(length int) string {
+	bytes := make([]byte, length/2)
+	if _, err := rand.Read(bytes); err != nil {
+		return err.Error()
+	}
+	return hex.EncodeToString(bytes)
+}
+
+// encrypts a byte array and returns a hex encoded string
+func Encrypt(text []byte) (string, error) {
+	key := make([]byte, 16)
+	if _, err := rand.Read(key); err != nil {
+		return "", err
+	}
+
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return "", err
+	}
+	ciphertext := make([]byte, aes.BlockSize+len(text))
+	iv := ciphertext[:aes.BlockSize]
+	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+		return "", err
+	}
+	cfb := cipher.NewCFBEncrypter(block, iv)
+	cfb.XORKeyStream(ciphertext[aes.BlockSize:], text)
+	// text would be <key>.<string>
+	return hex.EncodeToString(key) + "." + hex.EncodeToString(ciphertext), nil
+}
+
+func Decrypt(cryptoText string) (string, error) {
+	// split on .
+	parts := strings.Split(cryptoText, ".")
+	// decode
+	key, err := hex.DecodeString(parts[0])
+	if err != nil {
+		return "", err
+	}
+	ciphertext, err := hex.DecodeString(parts[1])
+	if err != nil {
+		return "", err
+	}
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return "", err
+	}
+	if len(ciphertext) < aes.BlockSize {
+		return "", fmt.Errorf("ciphertext too short")
+	}
+	iv := ciphertext[:aes.BlockSize]
+	ciphertext = ciphertext[aes.BlockSize:]
+	cfb := cipher.NewCFBDecrypter(block, iv)
+	cfb.XORKeyStream(ciphertext, ciphertext)
+	return string(ciphertext), nil
 }
