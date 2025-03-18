@@ -19,11 +19,10 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=9)
+// | Schema Map Summary (size=goLangStructMap=8)
 // | Computed Resource Name=ipsecprofiles
 // +-----------------------------------------------------------------
 // | IKEV1Params HasID=false
-// | X509Objects HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | Proposals HasID=false
 // | IKEGroup HasID=false
@@ -231,15 +230,9 @@ func (d *ipsecprofilesDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=pa_master_key_id, type=STRING macro=rss_schema
-					"pa_master_key_id_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=pa_master_key_id, type=STRING macro=rss_schema
 					// property: name=passphrase, type=STRING macro=rss_schema
 					"passphrase": dsschema.StringAttribute{
 						Required:  false,
@@ -277,29 +270,17 @@ func (d *ipsecprofilesDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
-					"private_key_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
 					// property: name=private_key_encrypted, type=STRING macro=rss_schema
 					"private_key_encrypted": dsschema.StringAttribute{
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=private_key_encrypted, type=STRING macro=rss_schema
-					"private_key_encrypted_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=private_key_encrypted, type=STRING macro=rss_schema
 					// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 					"remote_ca_certificate": dsschema.StringAttribute{
 						Required:  false,
@@ -363,15 +344,9 @@ func (d *ipsecprofilesDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
-					"strict_validation_peer_extended_key_use_internal_key_name": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 					// property: name=type, type=STRING macro=rss_schema
 					"type": dsschema.StringAttribute{
 						Required:  false,
@@ -380,127 +355,9 @@ func (d *ipsecprofilesDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=type, type=STRING macro=rss_schema
-					// property: name=x509Objects, type=REFERENCE macro=rss_schema
-					"x509Objects": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=certHolder, type=OBJECT macro=rss_schema
-							"certHolder": dsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=certHolder, type=OBJECT macro=rss_schema
-							// property: name=certificate, type=STRING macro=rss_schema
-							"certificate": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=certificate, type=STRING macro=rss_schema
-							// property: name=is_local_ca_cert_set, type=BOOLEAN macro=rss_schema
-							"is_local_ca_cert_set": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=is_local_ca_cert_set, type=BOOLEAN macro=rss_schema
-							// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=rss_schema
-							"is_remote_ca_cert_set": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=is_remote_ca_cert_set, type=BOOLEAN macro=rss_schema
-							// property: name=keyPair, type=OBJECT macro=rss_schema
-							"keyPair": dsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: true,
-							},
-							// key name holder for attribute: name=keyPair, type=OBJECT macro=rss_schema
-							"keyPair_internal_key_name": dsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// property: name=local_ca_certificate, type=STRING macro=rss_schema
-							"local_ca_certificate": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=local_ca_certificate, type=STRING macro=rss_schema
-							// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-							"local_ca_certs_set": dsschema.ListNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-							// property: name=passphrase, type=STRING macro=rss_schema
-							"passphrase": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=passphrase, type=STRING macro=rss_schema
-							// property: name=pkcs12_certificate, type=STRING macro=rss_schema
-							"pkcs12_certificate": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=pkcs12_certificate, type=STRING macro=rss_schema
-							// property: name=private_key, type=STRING macro=rss_schema
-							"private_key": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: true,
-							},
-							// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
-							"private_key_internal_key_name": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// property: name=remote_ca_certificate, type=STRING macro=rss_schema
-							"remote_ca_certificate": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
-							// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-							"remote_ca_certs_set": dsschema.ListNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
+			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": dsschema.StringAttribute{
 				Required:  false,
@@ -718,15 +575,9 @@ func (d *ipsecprofilesDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=key_exchange, type=STRING macro=rss_schema
-					"key_exchange_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=key_exchange, type=STRING macro=rss_schema
 					// property: name=lifetime, type=INTEGER macro=rss_schema
 					"lifetime": dsschema.Int64Attribute{
 						Required:  false,
@@ -917,7 +768,7 @@ func (d *ipsecprofilesDataSource) Read(ctx context.Context, req datasource.ReadR
 		state.Authentication = nil
 	} else {
 		state.Authentication = &dsModelIPSECAuthenticationV1{}
-		// copy_to_state: state=state.Authentication prefix=dsModel ans=ans.Authentication properties=23
+		// copy_to_state: state=state.Authentication prefix=dsModel ans=ans.Authentication properties=22
 		// property: name=certificate, type=STRING macro=copy_to_state
 		state.Authentication.Certificate = types.StringPointerValue(ans.Authentication.Certificate)
 		// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -977,33 +828,6 @@ func (d *ipsecprofilesDataSource) Read(ctx context.Context, req datasource.ReadR
 		state.Authentication.StrictValidationPeerExtendedKeyUse = types.BoolPointerValue(ans.Authentication.StrictValidationPeerExtendedKeyUse)
 		// property: name=type, type=STRING macro=copy_to_state
 		state.Authentication.Type = types.StringPointerValue(ans.Authentication.Type)
-		// property: name=x509Objects, type=REFERENCE macro=copy_to_state
-		if ans.Authentication.X509objects == nil {
-			state.Authentication.X509objects = nil
-		} else {
-			state.Authentication.X509objects = &dsModelX509Objects{}
-			// copy_to_state: state=state.Authentication.X509objects prefix=dsModel ans=ans.Authentication.X509objects properties=12
-			// property: name=certHolder, type=OBJECT macro=copy_to_state
-			// property: name=certificate, type=STRING macro=copy_to_state
-			state.Authentication.X509objects.Certificate = types.StringPointerValue(ans.Authentication.X509objects.Certificate)
-			// property: name=is_local_ca_cert_set, type=BOOLEAN macro=copy_to_state
-			state.Authentication.X509objects.IsLocalCaCertSet = types.BoolPointerValue(ans.Authentication.X509objects.IsLocalCaCertSet)
-			// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=copy_to_state
-			state.Authentication.X509objects.IsRemoteCaCertSet = types.BoolPointerValue(ans.Authentication.X509objects.IsRemoteCaCertSet)
-			// property: name=keyPair, type=OBJECT macro=copy_to_state
-			// property: name=local_ca_certificate, type=STRING macro=copy_to_state
-			state.Authentication.X509objects.LocalCaCertificate = types.StringPointerValue(ans.Authentication.X509objects.LocalCaCertificate)
-			// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-			// property: name=passphrase, type=STRING macro=copy_to_state
-			state.Authentication.X509objects.Passphrase = types.StringPointerValue(ans.Authentication.X509objects.Passphrase)
-			// property: name=pkcs12_certificate, type=STRING macro=copy_to_state
-			state.Authentication.X509objects.Pkcs12Certificate = types.StringPointerValue(ans.Authentication.X509objects.Pkcs12Certificate)
-			// property: name=private_key, type=STRING macro=copy_to_state
-			state.Authentication.X509objects.PrivateKey = types.StringPointerValue(ans.Authentication.X509objects.PrivateKey)
-			// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
-			state.Authentication.X509objects.RemoteCaCertificate = types.StringPointerValue(ans.Authentication.X509objects.RemoteCaCertificate)
-			// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-		}
 	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)

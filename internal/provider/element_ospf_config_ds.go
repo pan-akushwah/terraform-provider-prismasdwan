@@ -194,15 +194,9 @@ func (d *elementOspfConfigDataSource) Schema(_ context.Context, _ datasource.Sch
 									Required:  false,
 									Computed:  false,
 									Optional:  true,
-									Sensitive: true,
-								},
-								// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
-								"md5_key_id_internal_key_name": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
 									Sensitive: false,
 								},
+								// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
 								// property: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret": dsschema.StringAttribute{
 									Required:  false,

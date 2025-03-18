@@ -687,15 +687,9 @@ func (d *operatorsDataSource) Schema(_ context.Context, _ datasource.SchemaReque
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=provider_key, type=STRING macro=rss_schema
-						"provider_key_internal_key_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=provider_key, type=STRING macro=rss_schema
 						// property: name=provider_value, type=STRING macro=rss_schema
 						"provider_value": dsschema.StringAttribute{
 							Required:  false,

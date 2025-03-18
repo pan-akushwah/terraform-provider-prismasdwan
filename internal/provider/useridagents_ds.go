@@ -144,15 +144,9 @@ func (d *useridagentsDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=local_private_key, type=STRING macro=rss_schema
-					"local_private_key_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=local_private_key, type=STRING macro=rss_schema
 					// property: name=passphrase, type=STRING macro=rss_schema
 					"passphrase": dsschema.StringAttribute{
 						Required:  false,

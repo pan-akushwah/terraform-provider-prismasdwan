@@ -100,15 +100,9 @@ func (d *vfflicensesTokensDataSource) Schema(_ context.Context, _ datasource.Sch
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
-				Sensitive: true,
-			},
-			// key name holder for attribute: name=ion_key, type=STRING macro=rss_schema
-			"ion_key_internal_key_name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=ion_key, type=STRING macro=rss_schema
 			// property: name=is_expired, type=BOOLEAN macro=rss_schema
 			"is_expired": dsschema.BoolAttribute{
 				Required:  false,

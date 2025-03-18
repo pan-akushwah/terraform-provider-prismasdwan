@@ -695,15 +695,9 @@ func (r *operatorsResource) Schema(_ context.Context, _ resource.SchemaRequest, 
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=provider_key, type=STRING macro=rss_schema
-						"provider_key_internal_key_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=provider_key, type=STRING macro=rss_schema
 						// property: name=provider_value, type=STRING macro=rss_schema
 						"provider_value": rsschema.StringAttribute{
 							Required:  false,
@@ -1506,14 +1500,7 @@ func (r *operatorsResource) doPost(ctx context.Context, plan *rsModelOperatorV2N
 			// property: name=inactive_reason, type=STRING macro=copy_to_state
 			state.LinkedAccounts[varLoopLinkedAccountsIndex].InactiveReason = types.StringPointerValue(varLoopLinkedAccounts.InactiveReason)
 			// property: name=provider_key, type=STRING macro=copy_to_state
-			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey = types.StringPointerValue(plan.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey.ValueStringPointer())
-			// this property is sensitive and will be stored in the state's internal key name
-			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-			// store value if needed
-			if !state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey.IsNull() {
-				encryptedProviderKey, _ := Encrypt([]byte(state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey.String()))
-				resp.Private.SetKey(ctx, state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKeyInternalKeyName.String(), []byte(encryptedProviderKey))
-			}
+			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey = types.StringPointerValue(varLoopLinkedAccounts.ProviderKey)
 			// property: name=provider_value, type=STRING macro=copy_to_state
 			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderValue = types.StringPointerValue(varLoopLinkedAccounts.ProviderValue)
 			// property: name=provider_value_updated_on, type=INTEGER macro=copy_to_state
@@ -1898,12 +1885,7 @@ func (r *operatorsResource) doGet(ctx context.Context, state *rsModelOperatorV2N
 			// property: name=inactive_reason, type=STRING macro=copy_to_state
 			state.LinkedAccounts[varLoopLinkedAccountsIndex].InactiveReason = types.StringPointerValue(varLoopLinkedAccounts.InactiveReason)
 			// property: name=provider_key, type=STRING macro=copy_to_state
-			encryptedProviderKeyKeyName := state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKeyInternalKeyName.String()
-			encryptedProviderKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedProviderKeyKeyName)
-			if encryptedProviderKeyValueBytes != nil {
-				decryptedProviderKey, _ := Decrypt(string(encryptedProviderKeyValueBytes))
-				state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey = types.StringValue(decryptedProviderKey)
-			}
+			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey = types.StringPointerValue(varLoopLinkedAccounts.ProviderKey)
 			// property: name=provider_value, type=STRING macro=copy_to_state
 			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderValue = types.StringPointerValue(varLoopLinkedAccounts.ProviderValue)
 			// property: name=provider_value_updated_on, type=INTEGER macro=copy_to_state
@@ -2745,14 +2727,7 @@ func (r *operatorsResource) doPut(ctx context.Context, plan *rsModelOperatorV2N2
 			// property: name=inactive_reason, type=STRING macro=copy_to_state
 			state.LinkedAccounts[varLoopLinkedAccountsIndex].InactiveReason = types.StringPointerValue(varLoopLinkedAccounts.InactiveReason)
 			// property: name=provider_key, type=STRING macro=copy_to_state
-			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey = types.StringPointerValue(plan.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey.ValueStringPointer())
-			// this property is sensitive and will be stored in the state's internal key name
-			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-			// store value if needed
-			if !state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey.IsNull() {
-				encryptedProviderKey, _ := Encrypt([]byte(state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey.String()))
-				resp.Private.SetKey(ctx, state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKeyInternalKeyName.String(), []byte(encryptedProviderKey))
-			}
+			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderKey = types.StringPointerValue(varLoopLinkedAccounts.ProviderKey)
 			// property: name=provider_value, type=STRING macro=copy_to_state
 			state.LinkedAccounts[varLoopLinkedAccountsIndex].ProviderValue = types.StringPointerValue(varLoopLinkedAccounts.ProviderValue)
 			// property: name=provider_value_updated_on, type=INTEGER macro=copy_to_state

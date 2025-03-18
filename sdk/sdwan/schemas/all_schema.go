@@ -58,7 +58,6 @@ package schemas
 // | ClientPermissions HasID=true
 // | ListResponseClientPermissions HasID=false
 // | IKEV1Params HasID=false
-// | X509Objects HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | Proposals HasID=false
 // | IKEGroup HasID=false
@@ -1137,6 +1136,7 @@ package schemas
 // | BulkResponseNTPTemplate HasID=false
 // | IPSECProfile HasID=true
 // | SecurityPolicyGlobalPrefixV2N1 HasID=true
+// | X509Objects HasID=false
 // | ListResponseElementUser HasID=false
 // | ElementQueryFilterV2N7 HasID=true
 // | SyslogServer HasID=true
@@ -2320,24 +2320,6 @@ type IKEV1Params struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `X509Objects`
-// +-----------------------------------------------------------------
-type X509Objects struct {
-	Certholder          *map[string]interface{}  `json:"certHolder"`            // propertyName=certHolder type=OBJECT
-	Certificate         *string                  `json:"certificate"`           // propertyName=certificate type=STRING
-	IsLocalCaCertSet    *bool                    `json:"is_local_ca_cert_set"`  // propertyName=is_local_ca_cert_set type=BOOLEAN
-	IsRemoteCaCertSet   *bool                    `json:"is_remote_ca_cert_set"` // propertyName=is_remote_ca_cert_set type=BOOLEAN
-	Keypair             *map[string]interface{}  `json:"keyPair"`               // propertyName=keyPair type=OBJECT
-	LocalCaCertificate  *string                  `json:"local_ca_certificate"`  // propertyName=local_ca_certificate type=STRING
-	LocalCaCertsSet     []map[string]interface{} `json:"local_ca_certs_set"`    // propertyName=local_ca_certs_set type=ARRAY_SCHEMA
-	Passphrase          *string                  `json:"passphrase"`            // propertyName=passphrase type=STRING
-	Pkcs12Certificate   *string                  `json:"pkcs12_certificate"`    // propertyName=pkcs12_certificate type=STRING
-	PrivateKey          *string                  `json:"private_key"`           // propertyName=private_key type=STRING
-	RemoteCaCertificate *string                  `json:"remote_ca_certificate"` // propertyName=remote_ca_certificate type=STRING
-	RemoteCaCertsSet    []map[string]interface{} `json:"remote_ca_certs_set"`   // propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IPSECAuthenticationV1`
 // +-----------------------------------------------------------------
 type IPSECAuthenticationV1 struct {
@@ -2363,7 +2345,6 @@ type IPSECAuthenticationV1 struct {
 	SecretHash                         *string      `json:"secret_hash"`                             // propertyName=secret_hash type=STRING
 	StrictValidationPeerExtendedKeyUse *bool        `json:"strict_validation_peer_extended_key_use"` // propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	Type                               *string      `json:"type"`                                    // propertyName=type type=STRING
-	X509objects                        *X509Objects `json:"x509Objects"`                             // propertyName=x509Objects type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -2925,7 +2906,6 @@ type IPSECAuthentication struct {
 	SecretHash                         *string      `json:"secret_hash"`                             // propertyName=secret_hash type=STRING
 	StrictValidationPeerExtendedKeyUse *bool        `json:"strict_validation_peer_extended_key_use"` // propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	Type                               *string      `json:"type"`                                    // propertyName=type type=STRING
-	X509objects                        *X509Objects `json:"x509Objects"`                             // propertyName=x509Objects type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -5047,7 +5027,6 @@ type EventCorrelationPolicySetQueryFilter struct {
 type ListQueryResponseEventCorrelationPolicySetQueryFilter struct {
 	Etag         *int64                                 `json:"_etag"`         // propertyName=_etag type=INTEGER
 	Schema       *int64                                 `json:"_schema"`       // propertyName=_schema type=INTEGER
-	Count        *int64                                 `json:"count"`         // propertyName=count type=INTEGER
 	DeletedCount *int64                                 `json:"deleted_count"` // propertyName=deleted_count type=INTEGER
 	DeletedIds   []string                               `json:"deleted_ids"`   // propertyName=deleted_ids type=ARRAY_PRIMITIVE
 	Id           *string                                `json:"id"`            // propertyName=id type=STRING
@@ -19021,6 +19000,24 @@ type SecurityPolicyGlobalPrefixV2N1 struct {
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
 	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `X509Objects`
+// +-----------------------------------------------------------------
+type X509Objects struct {
+	Certholder          *map[string]interface{}  `json:"certHolder"`            // propertyName=certHolder type=OBJECT
+	Certificate         *string                  `json:"certificate"`           // propertyName=certificate type=STRING
+	IsLocalCaCertSet    *bool                    `json:"is_local_ca_cert_set"`  // propertyName=is_local_ca_cert_set type=BOOLEAN
+	IsRemoteCaCertSet   *bool                    `json:"is_remote_ca_cert_set"` // propertyName=is_remote_ca_cert_set type=BOOLEAN
+	Keypair             *map[string]interface{}  `json:"keyPair"`               // propertyName=keyPair type=OBJECT
+	LocalCaCertificate  *string                  `json:"local_ca_certificate"`  // propertyName=local_ca_certificate type=STRING
+	LocalCaCertsSet     []map[string]interface{} `json:"local_ca_certs_set"`    // propertyName=local_ca_certs_set type=ARRAY_SCHEMA
+	Passphrase          *string                  `json:"passphrase"`            // propertyName=passphrase type=STRING
+	Pkcs12Certificate   *string                  `json:"pkcs12_certificate"`    // propertyName=pkcs12_certificate type=STRING
+	PrivateKey          *string                  `json:"private_key"`           // propertyName=private_key type=STRING
+	RemoteCaCertificate *string                  `json:"remote_ca_certificate"` // propertyName=remote_ca_certificate type=STRING
+	RemoteCaCertsSet    []map[string]interface{} `json:"remote_ca_certs_set"`   // propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
 }
 
 // +-----------------------------------------------------------------

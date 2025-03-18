@@ -133,29 +133,17 @@ func (d *elementsNtpDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=authentication_key, type=STRING macro=rss_schema
-						"authentication_key_internal_key_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=authentication_key, type=STRING macro=rss_schema
 						// property: name=authentication_key_id, type=INTEGER macro=rss_schema
 						"authentication_key_id": dsschema.Int64Attribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=authentication_key_id, type=INTEGER macro=rss_schema
-						"authentication_key_id_internal_key_name": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=authentication_key_id, type=INTEGER macro=rss_schema
 						// property: name=host, type=STRING macro=rss_schema
 						"host": dsschema.StringAttribute{
 							Required:  false,

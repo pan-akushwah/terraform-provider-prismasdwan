@@ -202,15 +202,9 @@ func (d *siteDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, r
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=key, type=STRING macro=rss_schema
-						"key_internal_key_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=key, type=STRING macro=rss_schema
 						// property: name=value, type=STRING macro=rss_schema
 						"value": dsschema.StringAttribute{
 							Required:  false,

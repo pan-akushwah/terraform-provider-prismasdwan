@@ -61,7 +61,6 @@ import (
 // | ClientPermissions HasID=true
 // | ListResponseClientPermissions HasID=false
 // | IKEV1Params HasID=false
-// | X509Objects HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | Proposals HasID=false
 // | IKEGroup HasID=false
@@ -1140,6 +1139,7 @@ import (
 // | BulkResponseNTPTemplate HasID=false
 // | IPSECProfile HasID=true
 // | SecurityPolicyGlobalPrefixV2N1 HasID=true
+// | X509Objects HasID=false
 // | ListResponseElementUser HasID=false
 // | ElementQueryFilterV2N7 HasID=true
 // | SyslogServer HasID=true
@@ -2564,8 +2564,6 @@ type rsModelSDWANAppParameter struct {
 	HelpText types.String `tfsdk:"help_text"`
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
-	// password placeholder: propertyName=key type=STRING
-	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=list_values type=ARRAY_REFERENCE
 	ListValues []rsModelSDWANAppParameterListValue `tfsdk:"list_values"`
 	// propertyName=max_length type=INTEGER
@@ -2749,40 +2747,6 @@ type rsModelIKEV1Params struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `X509Objects`
-// +-----------------------------------------------------------------
-type rsModelX509Objects struct {
-	// propertyName=certHolder type=OBJECT
-	Certholder types.Map `tfsdk:"certHolder"`
-	// propertyName=certificate type=STRING
-	Certificate types.String `tfsdk:"certificate"`
-	// propertyName=is_local_ca_cert_set type=BOOLEAN
-	IsLocalCaCertSet types.Bool `tfsdk:"is_local_ca_cert_set"`
-	// propertyName=is_remote_ca_cert_set type=BOOLEAN
-	IsRemoteCaCertSet types.Bool `tfsdk:"is_remote_ca_cert_set"`
-	// propertyName=keyPair type=OBJECT
-	Keypair types.Map `tfsdk:"keyPair"`
-	// password placeholder: propertyName=keyPair type=OBJECT
-	KeypairInternalKeyName types.Map `tfsdk:"keyPair_internal_key_name"`
-	// propertyName=local_ca_certificate type=STRING
-	LocalCaCertificate types.String `tfsdk:"local_ca_certificate"`
-	// propertyName=local_ca_certs_set type=ARRAY_SCHEMA
-	LocalCaCertsSet []types.Map `tfsdk:"local_ca_certs_set"`
-	// propertyName=passphrase type=STRING
-	Passphrase types.String `tfsdk:"passphrase"`
-	// propertyName=pkcs12_certificate type=STRING
-	Pkcs12Certificate types.String `tfsdk:"pkcs12_certificate"`
-	// propertyName=private_key type=STRING
-	PrivateKey types.String `tfsdk:"private_key"`
-	// password placeholder: propertyName=private_key type=STRING
-	PrivateKeyInternalKeyName types.String `tfsdk:"private_key_internal_key_name"`
-	// propertyName=remote_ca_certificate type=STRING
-	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
-	// propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
-	RemoteCaCertsSet []types.Map `tfsdk:"remote_ca_certs_set"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IPSECAuthenticationV1`
 // +-----------------------------------------------------------------
 type rsModelIPSECAuthenticationV1 struct {
@@ -2804,8 +2768,6 @@ type rsModelIPSECAuthenticationV1 struct {
 	LocalPaCertificateId types.String `tfsdk:"local_pa_certificate_id"`
 	// propertyName=pa_master_key_id type=STRING
 	PaMasterKeyId types.String `tfsdk:"pa_master_key_id"`
-	// password placeholder: propertyName=pa_master_key_id type=STRING
-	PaMasterKeyIdInternalKeyName types.String `tfsdk:"pa_master_key_id_internal_key_name"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=passphrase_encrypted type=STRING
@@ -2816,12 +2778,8 @@ type rsModelIPSECAuthenticationV1 struct {
 	PermitPeerIdMismatch types.Bool `tfsdk:"permit_peer_id_mismatch"`
 	// propertyName=private_key type=STRING
 	PrivateKey types.String `tfsdk:"private_key"`
-	// password placeholder: propertyName=private_key type=STRING
-	PrivateKeyInternalKeyName types.String `tfsdk:"private_key_internal_key_name"`
 	// propertyName=private_key_encrypted type=STRING
 	PrivateKeyEncrypted types.String `tfsdk:"private_key_encrypted"`
-	// password placeholder: propertyName=private_key_encrypted type=STRING
-	PrivateKeyEncryptedInternalKeyName types.String `tfsdk:"private_key_encrypted_internal_key_name"`
 	// propertyName=remote_ca_certificate type=STRING
 	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
 	// propertyName=remote_id type=STRING
@@ -2840,12 +2798,8 @@ type rsModelIPSECAuthenticationV1 struct {
 	SecretHashInternalKeyName types.String `tfsdk:"secret_hash_internal_key_name"`
 	// propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	StrictValidationPeerExtendedKeyUse types.Bool `tfsdk:"strict_validation_peer_extended_key_use"`
-	// password placeholder: propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
-	StrictValidationPeerExtendedKeyUseInternalKeyName types.Bool `tfsdk:"strict_validation_peer_extended_key_use_internal_key_name"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
-	// propertyName=x509Objects type=REFERENCE
-	X509objects *rsModelX509Objects `tfsdk:"x509Objects"`
 }
 
 // +-----------------------------------------------------------------
@@ -2872,8 +2826,6 @@ type rsModelIKEGroup struct {
 	AuthenticationMultiple types.Int64 `tfsdk:"authentication_multiple"`
 	// propertyName=key_exchange type=STRING
 	KeyExchange types.String `tfsdk:"key_exchange"`
-	// password placeholder: propertyName=key_exchange type=STRING
-	KeyExchangeInternalKeyName types.String `tfsdk:"key_exchange_internal_key_name"`
 	// propertyName=lifetime type=INTEGER
 	Lifetime types.Int64 `tfsdk:"lifetime"`
 	// propertyName=lifetime_units type=STRING
@@ -3744,8 +3696,6 @@ type rsModelIPSECAuthentication struct {
 	LocalPaCertificateId types.String `tfsdk:"local_pa_certificate_id"`
 	// propertyName=pa_master_key_id type=STRING
 	PaMasterKeyId types.String `tfsdk:"pa_master_key_id"`
-	// password placeholder: propertyName=pa_master_key_id type=STRING
-	PaMasterKeyIdInternalKeyName types.String `tfsdk:"pa_master_key_id_internal_key_name"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=passphrase_encrypted type=STRING
@@ -3756,12 +3706,8 @@ type rsModelIPSECAuthentication struct {
 	PermitPeerIdMismatch types.Bool `tfsdk:"permit_peer_id_mismatch"`
 	// propertyName=private_key type=STRING
 	PrivateKey types.String `tfsdk:"private_key"`
-	// password placeholder: propertyName=private_key type=STRING
-	PrivateKeyInternalKeyName types.String `tfsdk:"private_key_internal_key_name"`
 	// propertyName=private_key_encrypted type=STRING
 	PrivateKeyEncrypted types.String `tfsdk:"private_key_encrypted"`
-	// password placeholder: propertyName=private_key_encrypted type=STRING
-	PrivateKeyEncryptedInternalKeyName types.String `tfsdk:"private_key_encrypted_internal_key_name"`
 	// propertyName=remote_ca_certificate type=STRING
 	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
 	// propertyName=remote_id type=STRING
@@ -3780,12 +3726,8 @@ type rsModelIPSECAuthentication struct {
 	SecretHashInternalKeyName types.String `tfsdk:"secret_hash_internal_key_name"`
 	// propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	StrictValidationPeerExtendedKeyUse types.Bool `tfsdk:"strict_validation_peer_extended_key_use"`
-	// password placeholder: propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
-	StrictValidationPeerExtendedKeyUseInternalKeyName types.Bool `tfsdk:"strict_validation_peer_extended_key_use_internal_key_name"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
-	// propertyName=x509Objects type=REFERENCE
-	X509objects *rsModelX509Objects `tfsdk:"x509Objects"`
 }
 
 // +-----------------------------------------------------------------
@@ -5100,8 +5042,6 @@ type rsModelMulticastRouteTableQueryFilter struct {
 type rsModelExtendedTag struct {
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
-	// password placeholder: propertyName=key type=STRING
-	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=value type=STRING
 	Value types.String `tfsdk:"value"`
 	// propertyName=value_type type=STRING
@@ -5802,8 +5742,6 @@ type rsModelPortChannelMemberStateS struct {
 	InterfaceId types.String `tfsdk:"interface_id"`
 	// propertyName=partner_key type=INTEGER
 	PartnerKey types.Int64 `tfsdk:"partner_key"`
-	// password placeholder: propertyName=partner_key type=INTEGER
-	PartnerKeyInternalKeyName types.Int64 `tfsdk:"partner_key_internal_key_name"`
 	// propertyName=partner_mode type=STRING
 	PartnerMode types.String `tfsdk:"partner_mode"`
 	// propertyName=partner_priority type=INTEGER
@@ -5814,8 +5752,6 @@ type rsModelPortChannelMemberStateS struct {
 	PartnerState types.String `tfsdk:"partner_state"`
 	// propertyName=port_key type=INTEGER
 	PortKey types.Int64 `tfsdk:"port_key"`
-	// password placeholder: propertyName=port_key type=INTEGER
-	PortKeyInternalKeyName types.Int64 `tfsdk:"port_key_internal_key_name"`
 	// propertyName=port_mode type=STRING
 	PortMode types.String `tfsdk:"port_mode"`
 	// propertyName=port_priority type=INTEGER
@@ -7528,8 +7464,6 @@ type rsModelListQueryResponseEventCorrelationPolicySetQueryFilter struct {
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
 	Schema types.Int64 `tfsdk:"x_schema"`
-	// propertyName=count type=INTEGER
-	Count types.Int64 `tfsdk:"count"`
 	// propertyName=deleted_count type=INTEGER
 	DeletedCount types.Int64 `tfsdk:"deleted_count"`
 	// propertyName=deleted_ids type=ARRAY_PRIMITIVE
@@ -7776,8 +7710,6 @@ type rsModelAuthTokenV2N1 struct {
 	Roles []rsModelAuthRole `tfsdk:"roles"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
-	// password placeholder: propertyName=session_key_c type=STRING
-	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=x_auth_token type=STRING
 	XAuthToken types.String `tfsdk:"x_auth_token"`
 }
@@ -9674,8 +9606,6 @@ type rsModelLinkedAccount struct {
 	InactiveReason types.String `tfsdk:"inactive_reason"`
 	// propertyName=provider_key type=STRING
 	ProviderKey types.String `tfsdk:"provider_key"`
-	// password placeholder: propertyName=provider_key type=STRING
-	ProviderKeyInternalKeyName types.String `tfsdk:"provider_key_internal_key_name"`
 	// propertyName=provider_value type=STRING
 	ProviderValue types.String `tfsdk:"provider_value"`
 	// propertyName=provider_value_updated_on type=INTEGER
@@ -10134,8 +10064,6 @@ type rsModelCertificatePUTScreen struct {
 	IssuerHash types.String `tfsdk:"issuer_hash"`
 	// propertyName=key_file type=STRING
 	KeyFile types.String `tfsdk:"key_file"`
-	// password placeholder: propertyName=key_file type=STRING
-	KeyFileInternalKeyName types.String `tfsdk:"key_file_internal_key_name"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=not_valid_after type=STRING
@@ -10700,8 +10628,6 @@ type rsModelOspfGlobalConfig struct {
 	HelloInterval types.Int64 `tfsdk:"hello_interval"`
 	// propertyName=md5_key_id type=INTEGER
 	Md5KeyId types.Int64 `tfsdk:"md5_key_id"`
-	// password placeholder: propertyName=md5_key_id type=INTEGER
-	Md5KeyIdInternalKeyName types.Int64 `tfsdk:"md5_key_id_internal_key_name"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
 	// password placeholder: propertyName=md5_secret type=STRING
@@ -10884,8 +10810,6 @@ type rsModelIPSecTunnelConfigs struct {
 	EnableGreEncapsulation types.Bool `tfsdk:"enable_gre_encapsulation"`
 	// propertyName=ike_key_exchange type=STRING
 	IkeKeyExchange types.String `tfsdk:"ike_key_exchange"`
-	// password placeholder: propertyName=ike_key_exchange type=STRING
-	IkeKeyExchangeInternalKeyName types.String `tfsdk:"ike_key_exchange_internal_key_name"`
 	// propertyName=prismaaccess_ike_crypto_profile_id type=STRING
 	PrismaaccessIkeCryptoProfileId types.String `tfsdk:"prismaaccess_ike_crypto_profile_id"`
 	// propertyName=prismaaccess_ipsec_profile_id type=STRING
@@ -13290,8 +13214,6 @@ type rsModelKeyDigest struct {
 	DigestType types.Int64 `tfsdk:"digest_type"`
 	// propertyName=key_tag type=INTEGER
 	KeyTag types.Int64 `tfsdk:"key_tag"`
-	// password placeholder: propertyName=key_tag type=INTEGER
-	KeyTagInternalKeyName types.Int64 `tfsdk:"key_tag_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -13584,8 +13506,6 @@ type rsModelVffTokenQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ion_key type=STRING
 	IonKey types.String `tfsdk:"ion_key"`
-	// password placeholder: propertyName=ion_key type=STRING
-	IonKeyInternalKeyName types.String `tfsdk:"ion_key_internal_key_name"`
 	// propertyName=is_expired type=BOOLEAN
 	IsExpired types.Bool `tfsdk:"is_expired"`
 	// propertyName=is_multiuse type=BOOLEAN
@@ -15064,8 +14984,6 @@ type rsModelUserIDAgentAuthentication struct {
 	LocalCertificate types.String `tfsdk:"local_certificate"`
 	// propertyName=local_private_key type=STRING
 	LocalPrivateKey types.String `tfsdk:"local_private_key"`
-	// password placeholder: propertyName=local_private_key type=STRING
-	LocalPrivateKeyInternalKeyName types.String `tfsdk:"local_private_key_internal_key_name"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=remote_ca_certificate type=STRING
@@ -15560,8 +15478,6 @@ type rsModelPassage struct {
 	TimeLeft types.Int64 `tfsdk:"time_left"`
 	// propertyName=tunnel_pub_key type=STRING
 	TunnelPubKey types.String `tfsdk:"tunnel_pub_key"`
-	// password placeholder: propertyName=tunnel_pub_key type=STRING
-	TunnelPubKeyInternalKeyName types.String `tfsdk:"tunnel_pub_key_internal_key_name"`
 	// propertyName=user_name type=STRING
 	UserName types.String `tfsdk:"user_name"`
 }
@@ -16138,14 +16054,10 @@ type rsModelSite struct {
 type rsModelLacpStateS struct {
 	// propertyName=key type=INTEGER
 	Key types.Int64 `tfsdk:"key"`
-	// password placeholder: propertyName=key type=INTEGER
-	KeyInternalKeyName types.Int64 `tfsdk:"key_internal_key_name"`
 	// propertyName=mac_address type=STRING
 	MacAddress types.String `tfsdk:"mac_address"`
 	// propertyName=partner_key type=INTEGER
 	PartnerKey types.Int64 `tfsdk:"partner_key"`
-	// password placeholder: propertyName=partner_key type=INTEGER
-	PartnerKeyInternalKeyName types.Int64 `tfsdk:"partner_key_internal_key_name"`
 	// propertyName=partner_mac_address type=STRING
 	PartnerMacAddress types.String `tfsdk:"partner_mac_address"`
 	// propertyName=partner_system_priority type=INTEGER
@@ -16240,12 +16152,8 @@ type rsModelInterfaceState struct {
 	IkeAlgo types.String `tfsdk:"ike_algo"`
 	// propertyName=ike_last_rekeyed type=INTEGER
 	IkeLastRekeyed types.Int64 `tfsdk:"ike_last_rekeyed"`
-	// password placeholder: propertyName=ike_last_rekeyed type=INTEGER
-	IkeLastRekeyedInternalKeyName types.Int64 `tfsdk:"ike_last_rekeyed_internal_key_name"`
 	// propertyName=ike_next_rekey type=INTEGER
 	IkeNextRekey types.Int64 `tfsdk:"ike_next_rekey"`
-	// password placeholder: propertyName=ike_next_rekey type=INTEGER
-	IkeNextRekeyInternalKeyName types.Int64 `tfsdk:"ike_next_rekey_internal_key_name"`
 	// propertyName=inactive type=BOOLEAN
 	Inactive types.Bool `tfsdk:"inactive"`
 	// propertyName=inactive_reason type=STRING
@@ -16258,12 +16166,8 @@ type rsModelInterfaceState struct {
 	IpsecAlgo types.String `tfsdk:"ipsec_algo"`
 	// propertyName=ipsec_last_rekeyed type=INTEGER
 	IpsecLastRekeyed types.Int64 `tfsdk:"ipsec_last_rekeyed"`
-	// password placeholder: propertyName=ipsec_last_rekeyed type=INTEGER
-	IpsecLastRekeyedInternalKeyName types.Int64 `tfsdk:"ipsec_last_rekeyed_internal_key_name"`
 	// propertyName=ipsec_next_rekey type=INTEGER
 	IpsecNextRekey types.Int64 `tfsdk:"ipsec_next_rekey"`
-	// password placeholder: propertyName=ipsec_next_rekey type=INTEGER
-	IpsecNextRekeyInternalKeyName types.Int64 `tfsdk:"ipsec_next_rekey_internal_key_name"`
 	// propertyName=ipv4_addresses type=ARRAY_PRIMITIVE
 	Ipv4Addresses types.List `tfsdk:"ipv4_addresses"`
 	// propertyName=ipv4_addresses_changed type=BOOLEAN
@@ -16980,8 +16884,6 @@ type rsModelElementAccessState struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
-	// password placeholder: propertyName=otpkey_version type=INTEGER
-	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -18006,12 +17908,8 @@ type rsModelNTPServer struct {
 	Algorithm types.String `tfsdk:"algorithm"`
 	// propertyName=authentication_key type=STRING
 	AuthenticationKey types.String `tfsdk:"authentication_key"`
-	// password placeholder: propertyName=authentication_key type=STRING
-	AuthenticationKeyInternalKeyName types.String `tfsdk:"authentication_key_internal_key_name"`
 	// propertyName=authentication_key_id type=INTEGER
 	AuthenticationKeyId types.Int64 `tfsdk:"authentication_key_id"`
-	// password placeholder: propertyName=authentication_key_id type=INTEGER
-	AuthenticationKeyIdInternalKeyName types.Int64 `tfsdk:"authentication_key_id_internal_key_name"`
 	// propertyName=host type=STRING
 	Host types.String `tfsdk:"host"`
 	// propertyName=max_poll type=INTEGER
@@ -20550,8 +20448,6 @@ type rsModelSession struct {
 	OperatorId types.String `tfsdk:"operator_id"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
-	// password placeholder: propertyName=session_key_c type=STRING
-	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=user_agent type=REFERENCE
@@ -20972,8 +20868,6 @@ type rsModelTrustAnchor struct {
 	Domain types.String `tfsdk:"domain"`
 	// propertyName=key_digest type=REFERENCE
 	KeyDigest *rsModelKeyDigest `tfsdk:"key_digest"`
-	// password placeholder: propertyName=key_digest type=REFERENCE
-	KeyDigestInternalKeyName *rsModelKeyDigest `tfsdk:"key_digest_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -21374,8 +21268,6 @@ type rsModelVffToken struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ion_key type=STRING
 	IonKey types.String `tfsdk:"ion_key"`
-	// password placeholder: propertyName=ion_key type=STRING
-	IonKeyInternalKeyName types.String `tfsdk:"ion_key_internal_key_name"`
 	// propertyName=is_expired type=BOOLEAN
 	IsExpired types.Bool `tfsdk:"is_expired"`
 	// propertyName=is_multiuse type=BOOLEAN
@@ -23492,8 +23384,6 @@ type rsModelElementAccessConfigScreen struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
-	// password placeholder: propertyName=otpkey_version type=INTEGER
-	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -24532,8 +24422,6 @@ type rsModelVffTokenScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ion_key type=STRING
 	IonKey types.String `tfsdk:"ion_key"`
-	// password placeholder: propertyName=ion_key type=STRING
-	IonKeyInternalKeyName types.String `tfsdk:"ion_key_internal_key_name"`
 	// propertyName=is_expired type=BOOLEAN
 	IsExpired types.Bool `tfsdk:"is_expired"`
 	// propertyName=is_multiuse type=BOOLEAN
@@ -24602,8 +24490,6 @@ type rsModelAuditLogV2N1 struct {
 	ResourceId types.String `tfsdk:"resource_id"`
 	// propertyName=resource_key type=STRING
 	ResourceKey types.String `tfsdk:"resource_key"`
-	// password placeholder: propertyName=resource_key type=STRING
-	ResourceKeyInternalKeyName types.String `tfsdk:"resource_key_internal_key_name"`
 	// propertyName=resource_version type=STRING
 	ResourceVersion types.String `tfsdk:"resource_version"`
 	// propertyName=response_body type=STRING
@@ -24618,8 +24504,6 @@ type rsModelAuditLogV2N1 struct {
 	SdwanappId types.String `tfsdk:"sdwanapp_id"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
-	// password placeholder: propertyName=session_key_c type=STRING
-	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=source_ip type=STRING
 	SourceIp types.String `tfsdk:"source_ip"`
 	// propertyName=time_ms type=INTEGER
@@ -26028,8 +25912,6 @@ type rsModelSDWANAppParameterResponse struct {
 	HelpText types.String `tfsdk:"help_text"`
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
-	// password placeholder: propertyName=key type=STRING
-	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=list_values type=ARRAY_REFERENCE
 	ListValues []rsModelParameterListValueResponse `tfsdk:"list_values"`
 	// propertyName=max_length type=INTEGER
@@ -26424,8 +26306,6 @@ type rsModelCertificate struct {
 	Format types.String `tfsdk:"format"`
 	// propertyName=has_key_file type=BOOLEAN
 	HasKeyFile types.Bool `tfsdk:"has_key_file"`
-	// password placeholder: propertyName=has_key_file type=BOOLEAN
-	HasKeyFileInternalKeyName types.Bool `tfsdk:"has_key_file_internal_key_name"`
 	// propertyName=has_passphrase type=BOOLEAN
 	HasPassphrase types.Bool `tfsdk:"has_passphrase"`
 	// propertyName=id type=STRING
@@ -26442,8 +26322,6 @@ type rsModelCertificate struct {
 	IssuerId types.String `tfsdk:"issuer_id"`
 	// propertyName=key_file type=STRING
 	KeyFile types.String `tfsdk:"key_file"`
-	// password placeholder: propertyName=key_file type=STRING
-	KeyFileInternalKeyName types.String `tfsdk:"key_file_internal_key_name"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=not_after type=INTEGER
@@ -26458,8 +26336,6 @@ type rsModelCertificate struct {
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=public_key type=STRING
 	PublicKey types.String `tfsdk:"public_key"`
-	// password placeholder: propertyName=public_key type=STRING
-	PublicKeyInternalKeyName types.String `tfsdk:"public_key_internal_key_name"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
 	// propertyName=revocation_date type=INTEGER
@@ -27310,8 +27186,6 @@ type rsModelAuditLog struct {
 	ResourceId types.String `tfsdk:"resource_id"`
 	// propertyName=resource_key type=STRING
 	ResourceKey types.String `tfsdk:"resource_key"`
-	// password placeholder: propertyName=resource_key type=STRING
-	ResourceKeyInternalKeyName types.String `tfsdk:"resource_key_internal_key_name"`
 	// propertyName=resource_version type=STRING
 	ResourceVersion types.String `tfsdk:"resource_version"`
 	// propertyName=response_body type=STRING
@@ -27324,8 +27198,6 @@ type rsModelAuditLog struct {
 	ResponseTs types.Int64 `tfsdk:"response_ts"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
-	// password placeholder: propertyName=session_key_c type=STRING
-	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=source_ip type=STRING
 	SourceIp types.String `tfsdk:"source_ip"`
 	// propertyName=time_ms type=INTEGER
@@ -27718,8 +27590,6 @@ type rsModelOSPFGlobalConfig struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=md5_key_id type=INTEGER
 	Md5KeyId types.Int64 `tfsdk:"md5_key_id"`
-	// password placeholder: propertyName=md5_key_id type=INTEGER
-	Md5KeyIdInternalKeyName types.Int64 `tfsdk:"md5_key_id_internal_key_name"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
 	// password placeholder: propertyName=md5_secret type=STRING
@@ -30598,8 +30468,6 @@ type rsModelOSPFGlobalConfigScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=md5_key_id type=INTEGER
 	Md5KeyId types.Int64 `tfsdk:"md5_key_id"`
-	// password placeholder: propertyName=md5_key_id type=INTEGER
-	Md5KeyIdInternalKeyName types.Int64 `tfsdk:"md5_key_id_internal_key_name"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
 	// password placeholder: propertyName=md5_secret type=STRING
@@ -31946,8 +31814,6 @@ type rsModelParameter struct {
 	HelpText types.String `tfsdk:"help_text"`
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
-	// password placeholder: propertyName=key type=STRING
-	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=max_length type=INTEGER
 	MaxLength types.Int64 `tfsdk:"max_length"`
 	// propertyName=max_value type=OBJECT
@@ -32444,6 +32310,36 @@ type rsModelSecurityPolicyGlobalPrefixV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `X509Objects`
+// +-----------------------------------------------------------------
+type rsModelX509Objects struct {
+	// propertyName=certHolder type=OBJECT
+	Certholder types.Map `tfsdk:"certHolder"`
+	// propertyName=certificate type=STRING
+	Certificate types.String `tfsdk:"certificate"`
+	// propertyName=is_local_ca_cert_set type=BOOLEAN
+	IsLocalCaCertSet types.Bool `tfsdk:"is_local_ca_cert_set"`
+	// propertyName=is_remote_ca_cert_set type=BOOLEAN
+	IsRemoteCaCertSet types.Bool `tfsdk:"is_remote_ca_cert_set"`
+	// propertyName=keyPair type=OBJECT
+	Keypair types.Map `tfsdk:"keyPair"`
+	// propertyName=local_ca_certificate type=STRING
+	LocalCaCertificate types.String `tfsdk:"local_ca_certificate"`
+	// propertyName=local_ca_certs_set type=ARRAY_SCHEMA
+	LocalCaCertsSet []types.Map `tfsdk:"local_ca_certs_set"`
+	// propertyName=passphrase type=STRING
+	Passphrase types.String `tfsdk:"passphrase"`
+	// propertyName=pkcs12_certificate type=STRING
+	Pkcs12Certificate types.String `tfsdk:"pkcs12_certificate"`
+	// propertyName=private_key type=STRING
+	PrivateKey types.String `tfsdk:"private_key"`
+	// propertyName=remote_ca_certificate type=STRING
+	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
+	// propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
+	RemoteCaCertsSet []types.Map `tfsdk:"remote_ca_certs_set"`
 }
 
 // +-----------------------------------------------------------------
@@ -33866,8 +33762,6 @@ type rsModelAuthToken struct {
 	Roles []rsModelAuthRole `tfsdk:"roles"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
-	// password placeholder: propertyName=session_key_c type=STRING
-	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=x_auth_token type=STRING
 	XAuthToken types.String `tfsdk:"x_auth_token"`
 }
@@ -36310,8 +36204,6 @@ type rsModelCertificatePOSTScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=key_file type=STRING
 	KeyFile types.String `tfsdk:"key_file"`
-	// password placeholder: propertyName=key_file type=STRING
-	KeyFileInternalKeyName types.String `tfsdk:"key_file_internal_key_name"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=passphrase type=STRING
@@ -46848,8 +46740,6 @@ type rsModelElementAccessConfig struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
-	// password placeholder: propertyName=otpkey_version type=INTEGER
-	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -47926,8 +47816,6 @@ type rsModelElementAccessConfigScreenV2N2 struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
-	// password placeholder: propertyName=otpkey_version type=INTEGER
-	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -48596,8 +48484,6 @@ type rsModelElementAccessConfigV2N2 struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
-	// password placeholder: propertyName=otpkey_version type=INTEGER
-	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN

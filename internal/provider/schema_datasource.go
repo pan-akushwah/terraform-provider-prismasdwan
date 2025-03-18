@@ -61,7 +61,6 @@ import (
 // | ClientPermissions HasID=true
 // | ListResponseClientPermissions HasID=false
 // | IKEV1Params HasID=false
-// | X509Objects HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | Proposals HasID=false
 // | IKEGroup HasID=false
@@ -1140,6 +1139,7 @@ import (
 // | BulkResponseNTPTemplate HasID=false
 // | IPSECProfile HasID=true
 // | SecurityPolicyGlobalPrefixV2N1 HasID=true
+// | X509Objects HasID=false
 // | ListResponseElementUser HasID=false
 // | ElementQueryFilterV2N7 HasID=true
 // | SyslogServer HasID=true
@@ -2368,24 +2368,6 @@ type dsModelIKEV1Params struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `X509Objects`
-// +-----------------------------------------------------------------
-type dsModelX509Objects struct {
-	Certholder          types.Map    `tfsdk:"certHolder"`            // propertyName=certHolder type=OBJECT
-	Certificate         types.String `tfsdk:"certificate"`           // propertyName=certificate type=STRING
-	IsLocalCaCertSet    types.Bool   `tfsdk:"is_local_ca_cert_set"`  // propertyName=is_local_ca_cert_set type=BOOLEAN
-	IsRemoteCaCertSet   types.Bool   `tfsdk:"is_remote_ca_cert_set"` // propertyName=is_remote_ca_cert_set type=BOOLEAN
-	Keypair             types.Map    `tfsdk:"keyPair"`               // propertyName=keyPair type=OBJECT
-	LocalCaCertificate  types.String `tfsdk:"local_ca_certificate"`  // propertyName=local_ca_certificate type=STRING
-	LocalCaCertsSet     []types.Map  `tfsdk:"local_ca_certs_set"`    // propertyName=local_ca_certs_set type=ARRAY_SCHEMA
-	Passphrase          types.String `tfsdk:"passphrase"`            // propertyName=passphrase type=STRING
-	Pkcs12Certificate   types.String `tfsdk:"pkcs12_certificate"`    // propertyName=pkcs12_certificate type=STRING
-	PrivateKey          types.String `tfsdk:"private_key"`           // propertyName=private_key type=STRING
-	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"` // propertyName=remote_ca_certificate type=STRING
-	RemoteCaCertsSet    []types.Map  `tfsdk:"remote_ca_certs_set"`   // propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IPSECAuthenticationV1`
 // +-----------------------------------------------------------------
 type dsModelIPSECAuthenticationV1 struct {
@@ -2411,7 +2393,6 @@ type dsModelIPSECAuthenticationV1 struct {
 	SecretHash                         types.String        `tfsdk:"secret_hash"`                             // propertyName=secret_hash type=STRING
 	StrictValidationPeerExtendedKeyUse types.Bool          `tfsdk:"strict_validation_peer_extended_key_use"` // propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	Type                               types.String        `tfsdk:"type"`                                    // propertyName=type type=STRING
-	X509objects                        *dsModelX509Objects `tfsdk:"x509Objects"`                             // propertyName=x509Objects type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -3005,7 +2986,6 @@ type dsModelIPSECAuthentication struct {
 	SecretHash                         types.String        `tfsdk:"secret_hash"`                             // propertyName=secret_hash type=STRING
 	StrictValidationPeerExtendedKeyUse types.Bool          `tfsdk:"strict_validation_peer_extended_key_use"` // propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	Type                               types.String        `tfsdk:"type"`                                    // propertyName=type type=STRING
-	X509objects                        *dsModelX509Objects `tfsdk:"x509Objects"`                             // propertyName=x509Objects type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -5285,7 +5265,6 @@ type dsModelListQueryResponseEventCorrelationPolicySetQueryFilter struct {
 	Tfid         types.String                                  `tfsdk:"tfid"`
 	Etag         types.Int64                                   `tfsdk:"_etag"`         // propertyName=_etag type=INTEGER
 	Schema       types.Int64                                   `tfsdk:"_schema"`       // propertyName=_schema type=INTEGER
-	Count        types.Int64                                   `tfsdk:"count"`         // propertyName=count type=INTEGER
 	DeletedCount types.Int64                                   `tfsdk:"deleted_count"` // propertyName=deleted_count type=INTEGER
 	DeletedIds   types.List                                    `tfsdk:"deleted_ids"`   // propertyName=deleted_ids type=ARRAY_PRIMITIVE
 	Id           types.String                                  `tfsdk:"id"`            // propertyName=id type=STRING
@@ -20349,6 +20328,24 @@ type dsModelSecurityPolicyGlobalPrefixV2N1 struct {
 	Ipv6Prefixes types.List   `tfsdk:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         types.String `tfsdk:"name"`          // propertyName=name type=STRING
 	Tags         types.Set    `tfsdk:"tags"`          // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `X509Objects`
+// +-----------------------------------------------------------------
+type dsModelX509Objects struct {
+	Certholder          types.Map    `tfsdk:"certHolder"`            // propertyName=certHolder type=OBJECT
+	Certificate         types.String `tfsdk:"certificate"`           // propertyName=certificate type=STRING
+	IsLocalCaCertSet    types.Bool   `tfsdk:"is_local_ca_cert_set"`  // propertyName=is_local_ca_cert_set type=BOOLEAN
+	IsRemoteCaCertSet   types.Bool   `tfsdk:"is_remote_ca_cert_set"` // propertyName=is_remote_ca_cert_set type=BOOLEAN
+	Keypair             types.Map    `tfsdk:"keyPair"`               // propertyName=keyPair type=OBJECT
+	LocalCaCertificate  types.String `tfsdk:"local_ca_certificate"`  // propertyName=local_ca_certificate type=STRING
+	LocalCaCertsSet     []types.Map  `tfsdk:"local_ca_certs_set"`    // propertyName=local_ca_certs_set type=ARRAY_SCHEMA
+	Passphrase          types.String `tfsdk:"passphrase"`            // propertyName=passphrase type=STRING
+	Pkcs12Certificate   types.String `tfsdk:"pkcs12_certificate"`    // propertyName=pkcs12_certificate type=STRING
+	PrivateKey          types.String `tfsdk:"private_key"`           // propertyName=private_key type=STRING
+	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"` // propertyName=remote_ca_certificate type=STRING
+	RemoteCaCertsSet    []types.Map  `tfsdk:"remote_ca_certs_set"`   // propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
 }
 
 // +-----------------------------------------------------------------

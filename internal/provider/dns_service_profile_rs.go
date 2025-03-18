@@ -1178,7 +1178,7 @@ func (r *dnsServiceProfileResource) Schema(_ context.Context, _ resource.SchemaR
 									Required:  false,
 									Computed:  false,
 									Optional:  true,
-									Sensitive: true,
+									Sensitive: false,
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=algorithm, type=INTEGER macro=rss_schema
 										"algorithm": rsschema.Int64Attribute{
@@ -1209,43 +1209,19 @@ func (r *dnsServiceProfileResource) Schema(_ context.Context, _ resource.SchemaR
 											Required:  false,
 											Computed:  false,
 											Optional:  true,
-											Sensitive: true,
-										},
-										// key name holder for attribute: name=key_tag, type=INTEGER macro=rss_schema
-										"key_tag_internal_key_name": rsschema.Int64Attribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
 											Sensitive: false,
 										},
+										// key name holder for attribute: name=key_tag, type=INTEGER macro=rss_schema
 									},
 								},
 								// key name holder for attribute: name=key_tag, type=INTEGER macro=rss_schema
-								"key_tag_internal_key_name": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 							},
 						},
 					},
 					// key name holder for attribute: name=key_tag, type=INTEGER macro=rss_schema
-					"key_tag_internal_key_name": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
 				},
 			},
 			// key name holder for attribute: name=key_tag, type=INTEGER macro=rss_schema
-			"key_tag_internal_key_name": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
 			// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=rss_schema
 			"domains_to_addresses": rsschema.ListNestedAttribute{
 				Required:  false,

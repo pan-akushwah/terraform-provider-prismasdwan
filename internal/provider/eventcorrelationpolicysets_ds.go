@@ -89,14 +89,6 @@ func (d *eventcorrelationpolicysetsDataSource) Schema(_ context.Context, _ datas
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=count, type=INTEGER macro=rss_schema
-			"count": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=count, type=INTEGER macro=rss_schema
 			// property: name=deleted_count, type=INTEGER macro=rss_schema
 			"deleted_count": dsschema.Int64Attribute{
 				Required:  false,
@@ -335,13 +327,11 @@ func (d *eventcorrelationpolicysetsDataSource) Read(ctx context.Context, req dat
 	}
 
 	// lets copy all items into state schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=count, type=INTEGER macro=copy_to_state
-	state.Count = types.Int64PointerValue(ans.Count)
 	// property: name=deleted_count, type=INTEGER macro=copy_to_state
 	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
 	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state

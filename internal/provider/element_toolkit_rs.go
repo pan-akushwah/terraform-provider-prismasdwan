@@ -124,15 +124,9 @@ func (r *elementToolkitResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
-				Sensitive: true,
-			},
-			// key name holder for attribute: name=otpkey_version, type=INTEGER macro=rss_schema
-			"otpkey_version_internal_key_name": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=otpkey_version, type=INTEGER macro=rss_schema
 			// property: name=retry_login_count, type=INTEGER macro=rss_schema
 			"retry_login_count": rsschema.Int64Attribute{
 				Required:  false,

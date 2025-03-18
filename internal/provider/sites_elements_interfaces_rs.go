@@ -24,7 +24,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=37)
 // | Computed Resource Name=sites_elements_interfaces
 // +-----------------------------------------------------------------
 // | APNConfig HasID=false
@@ -32,7 +32,6 @@ import (
 // | PortChannelConfig HasID=false
 // | PassiveMode HasID=false
 // | IKEV1Params HasID=false
-// | X509Objects HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | IPSECConfigV1 HasID=false
 // | GREConfig HasID=false
@@ -1465,15 +1464,9 @@ func (r *sitesElementsInterfacesResource) Schema(_ context.Context, _ resource.S
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
-										Sensitive: true,
-									},
-									// key name holder for attribute: name=pa_master_key_id, type=STRING macro=rss_schema
-									"pa_master_key_id_internal_key_name": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
 										Sensitive: false,
 									},
+									// key name holder for attribute: name=pa_master_key_id, type=STRING macro=rss_schema
 									// property: name=passphrase, type=STRING macro=rss_schema
 									"passphrase": rsschema.StringAttribute{
 										Required:  false,
@@ -1511,29 +1504,17 @@ func (r *sitesElementsInterfacesResource) Schema(_ context.Context, _ resource.S
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
-										Sensitive: true,
-									},
-									// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
-									"private_key_internal_key_name": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
 										Sensitive: false,
 									},
+									// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
 									// property: name=private_key_encrypted, type=STRING macro=rss_schema
 									"private_key_encrypted": rsschema.StringAttribute{
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
-										Sensitive: true,
-									},
-									// key name holder for attribute: name=private_key_encrypted, type=STRING macro=rss_schema
-									"private_key_encrypted_internal_key_name": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
 										Sensitive: false,
 									},
+									// key name holder for attribute: name=private_key_encrypted, type=STRING macro=rss_schema
 									// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 									"remote_ca_certificate": rsschema.StringAttribute{
 										Required:  false,
@@ -1597,15 +1578,9 @@ func (r *sitesElementsInterfacesResource) Schema(_ context.Context, _ resource.S
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
-										Sensitive: true,
-									},
-									// key name holder for attribute: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
-									"strict_validation_peer_extended_key_use_internal_key_name": rsschema.BoolAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
 										Sensitive: false,
 									},
+									// key name holder for attribute: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 									// property: name=type, type=STRING macro=rss_schema
 									"type": rsschema.StringAttribute{
 										Required:  false,
@@ -1614,127 +1589,9 @@ func (r *sitesElementsInterfacesResource) Schema(_ context.Context, _ resource.S
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=type, type=STRING macro=rss_schema
-									// property: name=x509Objects, type=REFERENCE macro=rss_schema
-									"x509Objects": rsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-										Attributes: map[string]rsschema.Attribute{
-											// property: name=certHolder, type=OBJECT macro=rss_schema
-											"certHolder": rsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=certHolder, type=OBJECT macro=rss_schema
-											// property: name=certificate, type=STRING macro=rss_schema
-											"certificate": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=certificate, type=STRING macro=rss_schema
-											// property: name=is_local_ca_cert_set, type=BOOLEAN macro=rss_schema
-											"is_local_ca_cert_set": rsschema.BoolAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=is_local_ca_cert_set, type=BOOLEAN macro=rss_schema
-											// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=rss_schema
-											"is_remote_ca_cert_set": rsschema.BoolAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=is_remote_ca_cert_set, type=BOOLEAN macro=rss_schema
-											// property: name=keyPair, type=OBJECT macro=rss_schema
-											"keyPair": rsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: true,
-											},
-											// key name holder for attribute: name=keyPair, type=OBJECT macro=rss_schema
-											"keyPair_internal_key_name": rsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  true,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// property: name=local_ca_certificate, type=STRING macro=rss_schema
-											"local_ca_certificate": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=local_ca_certificate, type=STRING macro=rss_schema
-											// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-											"local_ca_certs_set": rsschema.ListNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-											// property: name=passphrase, type=STRING macro=rss_schema
-											"passphrase": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=passphrase, type=STRING macro=rss_schema
-											// property: name=pkcs12_certificate, type=STRING macro=rss_schema
-											"pkcs12_certificate": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=pkcs12_certificate, type=STRING macro=rss_schema
-											// property: name=private_key, type=STRING macro=rss_schema
-											"private_key": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: true,
-											},
-											// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
-											"private_key_internal_key_name": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  true,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// property: name=remote_ca_certificate, type=STRING macro=rss_schema
-											"remote_ca_certificate": rsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
-											// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-											"remote_ca_certs_set": rsschema.ListNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
-										},
-									},
-									// key name holder for attribute: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
 								},
 							},
-							// key name holder for attribute: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=rss_schema
+							// key name holder for attribute: name=type, type=STRING macro=rss_schema
 							// property: name=ipsec_profile_id, type=STRING macro=rss_schema
 							"ipsec_profile_id": rsschema.StringAttribute{
 								Required:  false,
@@ -2562,7 +2419,7 @@ func (r *sitesElementsInterfacesResource) doPost(ctx context.Context, plan *rsMo
 			// property: name=authentication, type=REFERENCE macro=copy_from_plan
 			if plan.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
-				// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=23
+				// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=22
 				// property: name=certificate, type=STRING macro=copy_from_plan
 				body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_from_plan
@@ -2620,31 +2477,6 @@ func (r *sitesElementsInterfacesResource) doPost(ctx context.Context, plan *rsMo
 				body.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse)
 				// property: name=type, type=STRING macro=copy_from_plan
 				body.ServiceLinkConfig.IpsecConfig.Authentication.Type = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Type)
-				// property: name=x509Objects, type=REFERENCE macro=copy_from_plan
-				if plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = &sdwan_schema.X509Objects{}
-					// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects properties=12
-					// property: name=certHolder, type=OBJECT macro=copy_from_plan
-					// property: name=certificate, type=STRING macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate)
-					// property: name=is_local_ca_cert_set, type=BOOLEAN macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet)
-					// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet)
-					// property: name=keyPair, type=OBJECT macro=copy_from_plan
-					// property: name=local_ca_certificate, type=STRING macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate)
-					// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=copy_from_plan
-					// property: name=passphrase, type=STRING macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase)
-					// property: name=pkcs12_certificate, type=STRING macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate)
-					// property: name=private_key, type=STRING macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey)
-					// property: name=remote_ca_certificate, type=STRING macro=copy_from_plan
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate)
-					// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=copy_from_plan
-				}
 			}
 			// property: name=ipsec_profile_id, type=STRING macro=copy_from_plan
 			body.ServiceLinkConfig.IpsecConfig.IpsecProfileId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.IpsecProfileId)
@@ -3330,7 +3162,7 @@ func (r *sitesElementsInterfacesResource) doPost(ctx context.Context, plan *rsMo
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
-				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
+				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -3384,14 +3216,7 @@ func (r *sitesElementsInterfacesResource) doPost(ctx context.Context, plan *rsMo
 				// property: name=local_pa_certificate_id, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId)
 				// property: name=pa_master_key_id, type=STRING macro=copy_to_state
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId.ValueStringPointer())
-				// this property is sensitive and will be stored in the state's internal key name
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyIdInternalKeyName = types.StringValue(GenerateRandomString(16))
-				// store value if needed
-				if !state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId.IsNull() {
-					encryptedPaMasterKeyId, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId.String()))
-					resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyIdInternalKeyName.String(), []byte(encryptedPaMasterKeyId))
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId)
 				// property: name=passphrase, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase)
 				// property: name=passphrase_encrypted, type=STRING macro=copy_to_state
@@ -3401,23 +3226,9 @@ func (r *sitesElementsInterfacesResource) doPost(ctx context.Context, plan *rsMo
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
 				// property: name=private_key, type=STRING macro=copy_to_state
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey.ValueStringPointer())
-				// this property is sensitive and will be stored in the state's internal key name
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-				// store value if needed
-				if !state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey.IsNull() {
-					encryptedPrivateKey, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey.String()))
-					resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyInternalKeyName.String(), []byte(encryptedPrivateKey))
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_to_state
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted.ValueStringPointer())
-				// this property is sensitive and will be stored in the state's internal key name
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
-				// store value if needed
-				if !state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted.IsNull() {
-					encryptedPrivateKeyEncrypted, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted.String()))
-					resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncryptedInternalKeyName.String(), []byte(encryptedPrivateKeyEncrypted))
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted)
 				// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate)
 				// property: name=remote_id, type=STRING macro=copy_to_state
@@ -3453,40 +3264,6 @@ func (r *sitesElementsInterfacesResource) doPost(ctx context.Context, plan *rsMo
 				state.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse)
 				// property: name=type, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Type = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Type)
-				// property: name=x509Objects, type=REFERENCE macro=copy_to_state
-				if ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects == nil {
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = nil
-				} else {
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = &rsModelX509Objects{}
-					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects properties=12
-					// property: name=certHolder, type=OBJECT macro=copy_to_state
-					// property: name=certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate)
-					// property: name=is_local_ca_cert_set, type=BOOLEAN macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet)
-					// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet)
-					// property: name=keyPair, type=OBJECT macro=copy_to_state
-					// property: name=local_ca_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate)
-					// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-					// property: name=passphrase, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase)
-					// property: name=pkcs12_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate)
-					// property: name=private_key, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey.ValueStringPointer())
-					// this property is sensitive and will be stored in the state's internal key name
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-					// store value if needed
-					if !state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey.IsNull() {
-						encryptedPrivateKey, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey.String()))
-						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKeyInternalKeyName.String(), []byte(encryptedPrivateKey))
-					}
-					// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate)
-					// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-				}
 			}
 			// property: name=ipsec_profile_id, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.IpsecConfig.IpsecProfileId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.IpsecProfileId)
@@ -4193,7 +3970,7 @@ func (r *sitesElementsInterfacesResource) doGet(ctx context.Context, state *rsMo
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
-				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
+				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -4241,12 +4018,7 @@ func (r *sitesElementsInterfacesResource) doGet(ctx context.Context, state *rsMo
 				// property: name=local_pa_certificate_id, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId)
 				// property: name=pa_master_key_id, type=STRING macro=copy_to_state
-				encryptedPaMasterKeyIdKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyIdInternalKeyName.String()
-				encryptedPaMasterKeyIdValueBytes, _ := resp.Private.GetKey(ctx, encryptedPaMasterKeyIdKeyName)
-				if encryptedPaMasterKeyIdValueBytes != nil {
-					decryptedPaMasterKeyId, _ := Decrypt(string(encryptedPaMasterKeyIdValueBytes))
-					state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = types.StringValue(decryptedPaMasterKeyId)
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId)
 				// property: name=passphrase, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase)
 				// property: name=passphrase_encrypted, type=STRING macro=copy_to_state
@@ -4256,19 +4028,9 @@ func (r *sitesElementsInterfacesResource) doGet(ctx context.Context, state *rsMo
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
 				// property: name=private_key, type=STRING macro=copy_to_state
-				encryptedPrivateKeyKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyInternalKeyName.String()
-				encryptedPrivateKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedPrivateKeyKeyName)
-				if encryptedPrivateKeyValueBytes != nil {
-					decryptedPrivateKey, _ := Decrypt(string(encryptedPrivateKeyValueBytes))
-					state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringValue(decryptedPrivateKey)
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_to_state
-				encryptedPrivateKeyEncryptedKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncryptedInternalKeyName.String()
-				encryptedPrivateKeyEncryptedValueBytes, _ := resp.Private.GetKey(ctx, encryptedPrivateKeyEncryptedKeyName)
-				if encryptedPrivateKeyEncryptedValueBytes != nil {
-					decryptedPrivateKeyEncrypted, _ := Decrypt(string(encryptedPrivateKeyEncryptedValueBytes))
-					state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = types.StringValue(decryptedPrivateKeyEncrypted)
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted)
 				// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate)
 				// property: name=remote_id, type=STRING macro=copy_to_state
@@ -4298,38 +4060,6 @@ func (r *sitesElementsInterfacesResource) doGet(ctx context.Context, state *rsMo
 				state.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse)
 				// property: name=type, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Type = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Type)
-				// property: name=x509Objects, type=REFERENCE macro=copy_to_state
-				if ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects == nil {
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = nil
-				} else {
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = &rsModelX509Objects{}
-					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects properties=12
-					// property: name=certHolder, type=OBJECT macro=copy_to_state
-					// property: name=certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate)
-					// property: name=is_local_ca_cert_set, type=BOOLEAN macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet)
-					// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet)
-					// property: name=keyPair, type=OBJECT macro=copy_to_state
-					// property: name=local_ca_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate)
-					// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-					// property: name=passphrase, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase)
-					// property: name=pkcs12_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate)
-					// property: name=private_key, type=STRING macro=copy_to_state
-					encryptedPrivateKeyKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKeyInternalKeyName.String()
-					encryptedPrivateKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedPrivateKeyKeyName)
-					if encryptedPrivateKeyValueBytes != nil {
-						decryptedPrivateKey, _ := Decrypt(string(encryptedPrivateKeyValueBytes))
-						state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey = types.StringValue(decryptedPrivateKey)
-					}
-					// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate)
-					// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-				}
 			}
 			// property: name=ipsec_profile_id, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.IpsecConfig.IpsecProfileId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.IpsecProfileId)
@@ -5377,7 +5107,7 @@ func (r *sitesElementsInterfacesResource) doPut(ctx context.Context, plan *rsMod
 				body.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
-				// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=23
+				// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=22
 				// property: name=certificate, type=STRING macro=copy_from_plan_or_state
 				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate, state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -5540,65 +5270,6 @@ func (r *sitesElementsInterfacesResource) doPut(ctx context.Context, plan *rsMod
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Type = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Type, state.ServiceLinkConfig.IpsecConfig.Authentication.Type)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Type = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Type)
-				}
-				// property: name=x509Objects, type=REFERENCE macro=copy_from_plan_or_state
-				if plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects == nil {
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = nil
-				} else {
-					body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = &sdwan_schema.X509Objects{}
-					// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects properties=12
-					// property: name=certHolder, type=OBJECT macro=copy_from_plan_or_state
-					// property: name=certificate, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate)
-					}
-					// property: name=is_local_ca_cert_set, type=BOOLEAN macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet)
-					}
-					// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet)
-					}
-					// property: name=keyPair, type=OBJECT macro=copy_from_plan_or_state
-					// property: name=local_ca_certificate, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate)
-					}
-					// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=copy_from_plan_or_state
-					// property: name=passphrase, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase)
-					}
-					// property: name=pkcs12_certificate, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate)
-					}
-					// property: name=private_key, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey)
-					}
-					// property: name=remote_ca_certificate, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects != nil {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate)
-					} else {
-						body.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate)
-					}
-					// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=copy_from_plan_or_state
 				}
 			}
 			// property: name=ipsec_profile_id, type=STRING macro=copy_from_plan_or_state
@@ -6399,7 +6070,7 @@ func (r *sitesElementsInterfacesResource) doPut(ctx context.Context, plan *rsMod
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
-				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
+				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -6453,14 +6124,7 @@ func (r *sitesElementsInterfacesResource) doPut(ctx context.Context, plan *rsMod
 				// property: name=local_pa_certificate_id, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId)
 				// property: name=pa_master_key_id, type=STRING macro=copy_to_state
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId.ValueStringPointer())
-				// this property is sensitive and will be stored in the state's internal key name
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyIdInternalKeyName = types.StringValue(GenerateRandomString(16))
-				// store value if needed
-				if !state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId.IsNull() {
-					encryptedPaMasterKeyId, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId.String()))
-					resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyIdInternalKeyName.String(), []byte(encryptedPaMasterKeyId))
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId)
 				// property: name=passphrase, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase)
 				// property: name=passphrase_encrypted, type=STRING macro=copy_to_state
@@ -6470,23 +6134,9 @@ func (r *sitesElementsInterfacesResource) doPut(ctx context.Context, plan *rsMod
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
 				// property: name=private_key, type=STRING macro=copy_to_state
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey.ValueStringPointer())
-				// this property is sensitive and will be stored in the state's internal key name
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-				// store value if needed
-				if !state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey.IsNull() {
-					encryptedPrivateKey, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey.String()))
-					resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyInternalKeyName.String(), []byte(encryptedPrivateKey))
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_to_state
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted.ValueStringPointer())
-				// this property is sensitive and will be stored in the state's internal key name
-				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
-				// store value if needed
-				if !state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted.IsNull() {
-					encryptedPrivateKeyEncrypted, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted.String()))
-					resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncryptedInternalKeyName.String(), []byte(encryptedPrivateKeyEncrypted))
-				}
+				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted)
 				// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate)
 				// property: name=remote_id, type=STRING macro=copy_to_state
@@ -6522,40 +6172,6 @@ func (r *sitesElementsInterfacesResource) doPut(ctx context.Context, plan *rsMod
 				state.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse)
 				// property: name=type, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Type = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Type)
-				// property: name=x509Objects, type=REFERENCE macro=copy_to_state
-				if ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects == nil {
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = nil
-				} else {
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects = &rsModelX509Objects{}
-					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects properties=12
-					// property: name=certHolder, type=OBJECT macro=copy_to_state
-					// property: name=certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Certificate)
-					// property: name=is_local_ca_cert_set, type=BOOLEAN macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsLocalCaCertSet)
-					// property: name=is_remote_ca_cert_set, type=BOOLEAN macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.IsRemoteCaCertSet)
-					// property: name=keyPair, type=OBJECT macro=copy_to_state
-					// property: name=local_ca_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.LocalCaCertificate)
-					// property: name=local_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-					// property: name=passphrase, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Passphrase)
-					// property: name=pkcs12_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.Pkcs12Certificate)
-					// property: name=private_key, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey.ValueStringPointer())
-					// this property is sensitive and will be stored in the state's internal key name
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-					// store value if needed
-					if !state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey.IsNull() {
-						encryptedPrivateKey, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKey.String()))
-						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.PrivateKeyInternalKeyName.String(), []byte(encryptedPrivateKey))
-					}
-					// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
-					state.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.X509objects.RemoteCaCertificate)
-					// property: name=remote_ca_certs_set, type=ARRAY_SCHEMA macro=copy_to_state
-				}
 			}
 			// property: name=ipsec_profile_id, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.IpsecConfig.IpsecProfileId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.IpsecProfileId)

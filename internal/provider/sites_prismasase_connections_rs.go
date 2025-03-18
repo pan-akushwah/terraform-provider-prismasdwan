@@ -154,15 +154,9 @@ func (r *sitesPrismasaseConnectionsResource) Schema(_ context.Context, _ resourc
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=ike_key_exchange, type=STRING macro=rss_schema
-					"ike_key_exchange_internal_key_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=ike_key_exchange, type=STRING macro=rss_schema
 					// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=rss_schema
 					"prismaaccess_ike_crypto_profile_id": rsschema.StringAttribute{
 						Required:  false,
@@ -729,14 +723,7 @@ func (r *sitesPrismasaseConnectionsResource) doPost(ctx context.Context, plan *r
 		// property: name=enable_gre_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.EnableGreEncapsulation = types.BoolPointerValue(ans.IpsecTunnelConfigs.EnableGreEncapsulation)
 		// property: name=ike_key_exchange, type=STRING macro=copy_to_state
-		state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(plan.IpsecTunnelConfigs.IkeKeyExchange.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.IpsecTunnelConfigs.IkeKeyExchangeInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.IpsecTunnelConfigs.IkeKeyExchange.IsNull() {
-			encryptedIkeKeyExchange, _ := Encrypt([]byte(state.IpsecTunnelConfigs.IkeKeyExchange.String()))
-			resp.Private.SetKey(ctx, state.IpsecTunnelConfigs.IkeKeyExchangeInternalKeyName.String(), []byte(encryptedIkeKeyExchange))
-		}
+		state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(ans.IpsecTunnelConfigs.IkeKeyExchange)
 		// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=copy_to_state
 		state.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
 		// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=copy_to_state
@@ -968,12 +955,7 @@ func (r *sitesPrismasaseConnectionsResource) doGet(ctx context.Context, state *r
 		// property: name=enable_gre_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.EnableGreEncapsulation = types.BoolPointerValue(ans.IpsecTunnelConfigs.EnableGreEncapsulation)
 		// property: name=ike_key_exchange, type=STRING macro=copy_to_state
-		encryptedIkeKeyExchangeKeyName := state.IpsecTunnelConfigs.IkeKeyExchangeInternalKeyName.String()
-		encryptedIkeKeyExchangeValueBytes, _ := resp.Private.GetKey(ctx, encryptedIkeKeyExchangeKeyName)
-		if encryptedIkeKeyExchangeValueBytes != nil {
-			decryptedIkeKeyExchange, _ := Decrypt(string(encryptedIkeKeyExchangeValueBytes))
-			state.IpsecTunnelConfigs.IkeKeyExchange = types.StringValue(decryptedIkeKeyExchange)
-		}
+		state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(ans.IpsecTunnelConfigs.IkeKeyExchange)
 		// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=copy_to_state
 		state.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
 		// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=copy_to_state
@@ -1433,14 +1415,7 @@ func (r *sitesPrismasaseConnectionsResource) doPut(ctx context.Context, plan *rs
 		// property: name=enable_gre_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.EnableGreEncapsulation = types.BoolPointerValue(ans.IpsecTunnelConfigs.EnableGreEncapsulation)
 		// property: name=ike_key_exchange, type=STRING macro=copy_to_state
-		state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(plan.IpsecTunnelConfigs.IkeKeyExchange.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.IpsecTunnelConfigs.IkeKeyExchangeInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.IpsecTunnelConfigs.IkeKeyExchange.IsNull() {
-			encryptedIkeKeyExchange, _ := Encrypt([]byte(state.IpsecTunnelConfigs.IkeKeyExchange.String()))
-			resp.Private.SetKey(ctx, state.IpsecTunnelConfigs.IkeKeyExchangeInternalKeyName.String(), []byte(encryptedIkeKeyExchange))
-		}
+		state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(ans.IpsecTunnelConfigs.IkeKeyExchange)
 		// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=copy_to_state
 		state.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
 		// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=copy_to_state

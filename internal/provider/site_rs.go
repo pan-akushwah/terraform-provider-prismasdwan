@@ -210,15 +210,9 @@ func (r *siteResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=key, type=STRING macro=rss_schema
-						"key_internal_key_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=key, type=STRING macro=rss_schema
 						// property: name=value, type=STRING macro=rss_schema
 						"value": rsschema.StringAttribute{
 							Required:  false,
@@ -680,14 +674,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 			state.ExtendedTags = append(state.ExtendedTags, rsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags properties=3
 			// property: name=key, type=STRING macro=copy_to_state
-			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(plan.ExtendedTags[varLoopExtendedTagsIndex].Key.ValueStringPointer())
-			// this property is sensitive and will be stored in the state's internal key name
-			state.ExtendedTags[varLoopExtendedTagsIndex].KeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-			// store value if needed
-			if !state.ExtendedTags[varLoopExtendedTagsIndex].Key.IsNull() {
-				encryptedKey, _ := Encrypt([]byte(state.ExtendedTags[varLoopExtendedTagsIndex].Key.String()))
-				resp.Private.SetKey(ctx, state.ExtendedTags[varLoopExtendedTagsIndex].KeyInternalKeyName.String(), []byte(encryptedKey))
-			}
+			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Value = types.StringPointerValue(varLoopExtendedTags.Value)
 			// property: name=value_type, type=STRING macro=copy_to_state
@@ -874,12 +861,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 			state.ExtendedTags = append(state.ExtendedTags, rsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags properties=3
 			// property: name=key, type=STRING macro=copy_to_state
-			encryptedKeyKeyName := state.ExtendedTags[varLoopExtendedTagsIndex].KeyInternalKeyName.String()
-			encryptedKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedKeyKeyName)
-			if encryptedKeyValueBytes != nil {
-				decryptedKey, _ := Decrypt(string(encryptedKeyValueBytes))
-				state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringValue(decryptedKey)
-			}
+			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Value = types.StringPointerValue(varLoopExtendedTags.Value)
 			// property: name=value_type, type=STRING macro=copy_to_state
@@ -1325,14 +1307,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 			state.ExtendedTags = append(state.ExtendedTags, rsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags properties=3
 			// property: name=key, type=STRING macro=copy_to_state
-			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(plan.ExtendedTags[varLoopExtendedTagsIndex].Key.ValueStringPointer())
-			// this property is sensitive and will be stored in the state's internal key name
-			state.ExtendedTags[varLoopExtendedTagsIndex].KeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-			// store value if needed
-			if !state.ExtendedTags[varLoopExtendedTagsIndex].Key.IsNull() {
-				encryptedKey, _ := Encrypt([]byte(state.ExtendedTags[varLoopExtendedTagsIndex].Key.String()))
-				resp.Private.SetKey(ctx, state.ExtendedTags[varLoopExtendedTagsIndex].KeyInternalKeyName.String(), []byte(encryptedKey))
-			}
+			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Value = types.StringPointerValue(varLoopExtendedTags.Value)
 			// property: name=value_type, type=STRING macro=copy_to_state

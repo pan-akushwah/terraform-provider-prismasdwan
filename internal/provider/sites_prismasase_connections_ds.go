@@ -146,15 +146,9 @@ func (d *sitesPrismasaseConnectionsDataSource) Schema(_ context.Context, _ datas
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=ike_key_exchange, type=STRING macro=rss_schema
-					"ike_key_exchange_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=ike_key_exchange, type=STRING macro=rss_schema
 					// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=rss_schema
 					"prismaaccess_ike_crypto_profile_id": dsschema.StringAttribute{
 						Required:  false,

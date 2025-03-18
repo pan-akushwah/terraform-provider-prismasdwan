@@ -152,15 +152,9 @@ func (r *useridagentsResource) Schema(_ context.Context, _ resource.SchemaReques
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=local_private_key, type=STRING macro=rss_schema
-					"local_private_key_internal_key_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=local_private_key, type=STRING macro=rss_schema
 					// property: name=passphrase, type=STRING macro=rss_schema
 					"passphrase": rsschema.StringAttribute{
 						Required:  false,
@@ -462,14 +456,7 @@ func (r *useridagentsResource) doPost(ctx context.Context, plan *rsModelUserIDAg
 		// property: name=local_certificate, type=STRING macro=copy_to_state
 		state.Authentication.LocalCertificate = types.StringPointerValue(ans.Authentication.LocalCertificate)
 		// property: name=local_private_key, type=STRING macro=copy_to_state
-		state.Authentication.LocalPrivateKey = types.StringPointerValue(plan.Authentication.LocalPrivateKey.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.Authentication.LocalPrivateKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.Authentication.LocalPrivateKey.IsNull() {
-			encryptedLocalPrivateKey, _ := Encrypt([]byte(state.Authentication.LocalPrivateKey.String()))
-			resp.Private.SetKey(ctx, state.Authentication.LocalPrivateKeyInternalKeyName.String(), []byte(encryptedLocalPrivateKey))
-		}
+		state.Authentication.LocalPrivateKey = types.StringPointerValue(ans.Authentication.LocalPrivateKey)
 		// property: name=passphrase, type=STRING macro=copy_to_state
 		state.Authentication.Passphrase = types.StringPointerValue(ans.Authentication.Passphrase)
 		// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
@@ -607,12 +594,7 @@ func (r *useridagentsResource) doGet(ctx context.Context, state *rsModelUserIDAg
 		// property: name=local_certificate, type=STRING macro=copy_to_state
 		state.Authentication.LocalCertificate = types.StringPointerValue(ans.Authentication.LocalCertificate)
 		// property: name=local_private_key, type=STRING macro=copy_to_state
-		encryptedLocalPrivateKeyKeyName := state.Authentication.LocalPrivateKeyInternalKeyName.String()
-		encryptedLocalPrivateKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedLocalPrivateKeyKeyName)
-		if encryptedLocalPrivateKeyValueBytes != nil {
-			decryptedLocalPrivateKey, _ := Decrypt(string(encryptedLocalPrivateKeyValueBytes))
-			state.Authentication.LocalPrivateKey = types.StringValue(decryptedLocalPrivateKey)
-		}
+		state.Authentication.LocalPrivateKey = types.StringPointerValue(ans.Authentication.LocalPrivateKey)
 		// property: name=passphrase, type=STRING macro=copy_to_state
 		state.Authentication.Passphrase = types.StringPointerValue(ans.Authentication.Passphrase)
 		// property: name=remote_ca_certificate, type=STRING macro=copy_to_state
@@ -897,14 +879,7 @@ func (r *useridagentsResource) doPut(ctx context.Context, plan *rsModelUserIDAge
 		// property: name=local_certificate, type=STRING macro=copy_to_state
 		state.Authentication.LocalCertificate = types.StringPointerValue(ans.Authentication.LocalCertificate)
 		// property: name=local_private_key, type=STRING macro=copy_to_state
-		state.Authentication.LocalPrivateKey = types.StringPointerValue(plan.Authentication.LocalPrivateKey.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.Authentication.LocalPrivateKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.Authentication.LocalPrivateKey.IsNull() {
-			encryptedLocalPrivateKey, _ := Encrypt([]byte(state.Authentication.LocalPrivateKey.String()))
-			resp.Private.SetKey(ctx, state.Authentication.LocalPrivateKeyInternalKeyName.String(), []byte(encryptedLocalPrivateKey))
-		}
+		state.Authentication.LocalPrivateKey = types.StringPointerValue(ans.Authentication.LocalPrivateKey)
 		// property: name=passphrase, type=STRING macro=copy_to_state
 		state.Authentication.Passphrase = types.StringPointerValue(ans.Authentication.Passphrase)
 		// property: name=remote_ca_certificate, type=STRING macro=copy_to_state

@@ -97,14 +97,6 @@ func (r *eventcorrelationpolicysetsResource) Schema(_ context.Context, _ resourc
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=count, type=INTEGER macro=rss_schema
-			"count": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=count, type=INTEGER macro=rss_schema
 			// property: name=deleted_count, type=INTEGER macro=rss_schema
 			"deleted_count": rsschema.Int64Attribute{
 				Required:  false,
@@ -317,13 +309,11 @@ func (r *eventcorrelationpolicysetsResource) doPost(ctx context.Context, plan *r
 	var body = &sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=9
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
 	body.Schema = Int64ValueOrNil(plan.Schema)
-	// property: name=count, type=INTEGER macro=copy_from_plan
-	body.Count = Int64ValueOrNil(plan.Count)
 	// property: name=deleted_count, type=INTEGER macro=copy_from_plan
 	body.DeletedCount = Int64ValueOrNil(plan.DeletedCount)
 	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -454,13 +444,11 @@ func (r *eventcorrelationpolicysetsResource) doPost(ctx context.Context, plan *r
 	tflog.Info(ctx, "created prismasdwan_eventcorrelationpolicysets with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=count, type=INTEGER macro=copy_to_state
-	state.Count = types.Int64PointerValue(ans.Count)
 	// property: name=deleted_count, type=INTEGER macro=copy_to_state
 	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
 	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -604,13 +592,11 @@ func (r *eventcorrelationpolicysetsResource) doGet(ctx context.Context, state *r
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=count, type=INTEGER macro=copy_to_state
-	state.Count = types.Int64PointerValue(ans.Count)
 	// property: name=deleted_count, type=INTEGER macro=copy_to_state
 	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
 	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -725,7 +711,7 @@ func (r *eventcorrelationpolicysetsResource) doPut(ctx context.Context, plan *rs
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=9
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -737,12 +723,6 @@ func (r *eventcorrelationpolicysetsResource) doPut(ctx context.Context, plan *rs
 		body.Schema = ValueInt64PointerFromPlanOrState(plan.Schema, state.Schema)
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
-	}
-	// property: name=count, type=INTEGER macro=copy_from_plan_or_state
-	if state != nil {
-		body.Count = ValueInt64PointerFromPlanOrState(plan.Count, state.Count)
-	} else {
-		body.Count = Int64ValueOrNil(plan.Count)
 	}
 	// property: name=deleted_count, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -872,13 +852,11 @@ func (r *eventcorrelationpolicysetsResource) doPut(ctx context.Context, plan *rs
 	}
 
 	// Store the answer to state. schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=count, type=INTEGER macro=copy_to_state
-	state.Count = types.Int64PointerValue(ans.Count)
 	// property: name=deleted_count, type=INTEGER macro=copy_to_state
 	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
 	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state

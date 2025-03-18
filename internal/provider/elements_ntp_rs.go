@@ -141,29 +141,17 @@ func (r *elementsNtpResource) Schema(_ context.Context, _ resource.SchemaRequest
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=authentication_key, type=STRING macro=rss_schema
-						"authentication_key_internal_key_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=authentication_key, type=STRING macro=rss_schema
 						// property: name=authentication_key_id, type=INTEGER macro=rss_schema
 						"authentication_key_id": rsschema.Int64Attribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
-							Sensitive: true,
-						},
-						// key name holder for attribute: name=authentication_key_id, type=INTEGER macro=rss_schema
-						"authentication_key_id_internal_key_name": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
 							Sensitive: false,
 						},
+						// key name holder for attribute: name=authentication_key_id, type=INTEGER macro=rss_schema
 						// property: name=host, type=STRING macro=rss_schema
 						"host": rsschema.StringAttribute{
 							Required:  false,
@@ -346,12 +334,7 @@ func (r *elementsNtpResource) doGet(ctx context.Context, state *rsModelElementNT
 			// property: name=algorithm, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Algorithm = types.StringPointerValue(varLoopNtpServers.Algorithm)
 			// property: name=authentication_key, type=STRING macro=copy_to_state
-			encryptedAuthenticationKeyKeyName := state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyInternalKeyName.String()
-			encryptedAuthenticationKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedAuthenticationKeyKeyName)
-			if encryptedAuthenticationKeyValueBytes != nil {
-				decryptedAuthenticationKey, _ := Decrypt(string(encryptedAuthenticationKeyValueBytes))
-				state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringValue(decryptedAuthenticationKey)
-			}
+			state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringPointerValue(varLoopNtpServers.AuthenticationKey)
 			// property: name=authentication_key_id, type=INTEGER macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyId = types.Int64PointerValue(varLoopNtpServers.AuthenticationKeyId)
 			// property: name=host, type=STRING macro=copy_to_state
@@ -569,14 +552,7 @@ func (r *elementsNtpResource) doPut(ctx context.Context, plan *rsModelElementNTP
 			// property: name=algorithm, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Algorithm = types.StringPointerValue(varLoopNtpServers.Algorithm)
 			// property: name=authentication_key, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringPointerValue(plan.NtpServers[varLoopNtpServersIndex].AuthenticationKey.ValueStringPointer())
-			// this property is sensitive and will be stored in the state's internal key name
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-			// store value if needed
-			if !state.NtpServers[varLoopNtpServersIndex].AuthenticationKey.IsNull() {
-				encryptedAuthenticationKey, _ := Encrypt([]byte(state.NtpServers[varLoopNtpServersIndex].AuthenticationKey.String()))
-				resp.Private.SetKey(ctx, state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyInternalKeyName.String(), []byte(encryptedAuthenticationKey))
-			}
+			state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringPointerValue(varLoopNtpServers.AuthenticationKey)
 			// property: name=authentication_key_id, type=INTEGER macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyId = types.Int64PointerValue(varLoopNtpServers.AuthenticationKeyId)
 			// property: name=host, type=STRING macro=copy_to_state

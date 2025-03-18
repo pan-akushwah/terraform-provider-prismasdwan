@@ -108,15 +108,9 @@ func (r *vfflicensesTokensResource) Schema(_ context.Context, _ resource.SchemaR
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
-				Sensitive: true,
-			},
-			// key name holder for attribute: name=ion_key, type=STRING macro=rss_schema
-			"ion_key_internal_key_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=ion_key, type=STRING macro=rss_schema
 			// property: name=is_expired, type=BOOLEAN macro=rss_schema
 			"is_expired": rsschema.BoolAttribute{
 				Required:  false,
@@ -333,14 +327,7 @@ func (r *vfflicensesTokensResource) doPost(ctx context.Context, plan *rsModelVff
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ion_key, type=STRING macro=copy_to_state
-	state.IonKey = types.StringPointerValue(plan.IonKey.ValueStringPointer())
-	// this property is sensitive and will be stored in the state's internal key name
-	state.IonKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-	// store value if needed
-	if !state.IonKey.IsNull() {
-		encryptedIonKey, _ := Encrypt([]byte(state.IonKey.String()))
-		resp.Private.SetKey(ctx, state.IonKeyInternalKeyName.String(), []byte(encryptedIonKey))
-	}
+	state.IonKey = types.StringPointerValue(ans.IonKey)
 	// property: name=is_expired, type=BOOLEAN macro=copy_to_state
 	state.IsExpired = types.BoolPointerValue(ans.IsExpired)
 	// property: name=is_multiuse, type=BOOLEAN macro=copy_to_state
@@ -450,12 +437,7 @@ func (r *vfflicensesTokensResource) doGet(ctx context.Context, state *rsModelVff
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ion_key, type=STRING macro=copy_to_state
-	encryptedIonKeyKeyName := state.IonKeyInternalKeyName.String()
-	encryptedIonKeyValueBytes, _ := resp.Private.GetKey(ctx, encryptedIonKeyKeyName)
-	if encryptedIonKeyValueBytes != nil {
-		decryptedIonKey, _ := Decrypt(string(encryptedIonKeyValueBytes))
-		state.IonKey = types.StringValue(decryptedIonKey)
-	}
+	state.IonKey = types.StringPointerValue(ans.IonKey)
 	// property: name=is_expired, type=BOOLEAN macro=copy_to_state
 	state.IsExpired = types.BoolPointerValue(ans.IsExpired)
 	// property: name=is_multiuse, type=BOOLEAN macro=copy_to_state
@@ -655,14 +637,7 @@ func (r *vfflicensesTokensResource) doPut(ctx context.Context, plan *rsModelVffT
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ion_key, type=STRING macro=copy_to_state
-	state.IonKey = types.StringPointerValue(plan.IonKey.ValueStringPointer())
-	// this property is sensitive and will be stored in the state's internal key name
-	state.IonKeyInternalKeyName = types.StringValue(GenerateRandomString(16))
-	// store value if needed
-	if !state.IonKey.IsNull() {
-		encryptedIonKey, _ := Encrypt([]byte(state.IonKey.String()))
-		resp.Private.SetKey(ctx, state.IonKeyInternalKeyName.String(), []byte(encryptedIonKey))
-	}
+	state.IonKey = types.StringPointerValue(ans.IonKey)
 	// property: name=is_expired, type=BOOLEAN macro=copy_to_state
 	state.IsExpired = types.BoolPointerValue(ans.IsExpired)
 	// property: name=is_multiuse, type=BOOLEAN macro=copy_to_state
