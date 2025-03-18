@@ -5,7 +5,7 @@ package schemas
 //
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=1,678)
+// | Schema Map Summary (size=goLangStructMap=1,677)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -773,7 +773,6 @@ package schemas
 // | SecurityPolicyV2Rule HasID=true
 // | RoutingPrefixFilter HasID=false
 // | WANInterfaceScreenV2N9 HasID=true
-// | BulkResponseSiteCipher HasID=false
 // | WANInterfaceScreenV2N3 HasID=true
 // | WANInterfaceScreenV2N4 HasID=true
 // | ExtensionQueryFilter HasID=true
@@ -1779,7 +1778,7 @@ type ElementQueryFilterV3 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -1792,7 +1791,7 @@ type PriorityPolicyLocalPrefix struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -1955,7 +1954,7 @@ type TacacsPlusServerScreen struct {
 	SourceInterfaceId      *string                  `json:"source_interface_id"`     // propertyName=source_interface_id type=STRING
 	TacacsPlusProfileId    *string                  `json:"tacacs_plus_profile_id"`  // propertyName=tacacs_plus_profile_id type=STRING
 	TacacsPlusServers      []TacacsPlusServerConfig `json:"tacacs_plus_servers"`     // propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
-	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -1970,7 +1969,7 @@ type PerfMgmtPolicySetStack struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2007,7 +2006,7 @@ type BulkDeleteStartNode struct {
 	Ipv4Address  *string                `json:"ipv4_address"`  // propertyName=ipv4_address type=STRING
 	Name         *string                `json:"name"`          // propertyName=name type=STRING
 	Scope        []StartNodeScopeConfig `json:"scope"`         // propertyName=scope type=ARRAY_REFERENCE
-	Tags         []string               `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string               `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2082,8 +2081,8 @@ type ListQueryResponsePolicyRuleQueryFilter struct {
 // | Auto Generated for Schema `Port`
 // +-----------------------------------------------------------------
 type Port struct {
-	End   *string `json:"end"`   // propertyName=end type=STRING
-	Start *string `json:"start"` // propertyName=start type=STRING
+	End   *int64 `json:"end"`   // propertyName=end type=INTEGER
+	Start *int64 `json:"start"` // propertyName=start type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -2436,7 +2435,7 @@ type IPSECProfileQueryFilter struct {
 	Id             *string                `json:"id"`             // propertyName=id type=STRING
 	IkeGroup       *IKEGroup              `json:"ike_group"`      // propertyName=ike_group type=REFERENCE
 	Name           *string                `json:"name"`           // propertyName=name type=STRING
-	Tags           []string               `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string               `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2580,7 +2579,7 @@ type RoutingAccessListQueryFilterV2N1 struct {
 	Description     *string       `json:"description"`        // propertyName=description type=STRING
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
-	Tags            []string      `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2625,8 +2624,8 @@ type DnsForwardConfigV2 struct {
 // | Auto Generated for Schema `BusinessPriorityNameMapper`
 // +-----------------------------------------------------------------
 type BusinessPriorityNameMapper struct {
-	PriorityName *string `json:"priority_name"` // propertyName=priority_name type=STRING
-	PriorityNum  *int64  `json:"priority_num"`  // propertyName=priority_num type=INTEGER
+	PriorityName   *string `json:"priority_name"`   // propertyName=priority_name type=STRING
+	PriorityNumber *int64  `json:"priority_number"` // propertyName=priority_number type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -2692,7 +2691,7 @@ type TacacsPlusServer struct {
 	SourceInterfaceId      *string                  `json:"source_interface_id"`     // propertyName=source_interface_id type=STRING
 	TacacsPlusProfileId    *string                  `json:"tacacs_plus_profile_id"`  // propertyName=tacacs_plus_profile_id type=STRING
 	TacacsPlusServers      []TacacsPlusServerConfig `json:"tacacs_plus_servers"`     // propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
-	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2712,7 +2711,7 @@ type NetworkPolicyRule struct {
 	PathsAllowed          *PathsAllowed   `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string         `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string        `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string        `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2734,7 +2733,7 @@ type NetworkPolicySet struct {
 	PolicyRules          []NetworkPolicyRule `json:"policy_rules"`          // propertyName=policy_rules type=ARRAY_REFERENCE
 	Region               *string             `json:"region"`                // propertyName=region type=STRING
 	SendToElement        *bool               `json:"send_to_element"`       // propertyName=send_to_element type=BOOLEAN
-	Tags                 []string            `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string            `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2752,7 +2751,7 @@ type BasePolicyRule struct {
 	Name           *string  `json:"name"`            // propertyName=name type=STRING
 	PolicysetId    *string  `json:"policyset_id"`    // propertyName=policyset_id type=STRING
 	Region         *string  `json:"region"`          // propertyName=region type=STRING
-	Tags           []string `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2772,7 +2771,7 @@ type BasePolicySet struct {
 	PolicyRules    []BasePolicyRule `json:"policy_rules"`    // propertyName=policy_rules type=ARRAY_REFERENCE
 	Region         *string          `json:"region"`          // propertyName=region type=STRING
 	SendToElement  *bool            `json:"send_to_element"` // propertyName=send_to_element type=BOOLEAN
-	Tags           []string         `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string         `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2796,7 +2795,7 @@ type NetworkPolicySetStack struct {
 	PolicysetIdsUpdate     *bool             `json:"policyset_ids_update"`     // propertyName=policyset_ids_update type=BOOLEAN
 	Policysets             []BasePolicySet   `json:"policysets"`               // propertyName=policysets type=ARRAY_REFERENCE
 	Region                 *string           `json:"region"`                   // propertyName=region type=STRING
-	Tags                   []string          `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string          `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2828,7 +2827,7 @@ type MSTPInstance struct {
 	InstanceNumber   *int64   `json:"instance_number"`   // propertyName=instance_number type=INTEGER
 	InstancePriority *int64   `json:"instance_priority"` // propertyName=instance_priority type=INTEGER
 	Name             *string  `json:"name"`              // propertyName=name type=STRING
-	Tags             []string `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -2977,8 +2976,8 @@ type ServiceLink struct {
 // | Auto Generated for Schema `Group`
 // +-----------------------------------------------------------------
 type Group struct {
-	Ipv4Prefix *string `json:"ipv4_prefix"`  // propertyName=ipv4_prefix type=STRING
-	IsActiveRp *bool   `json:"is_active_rp"` // propertyName=is_active_rp type=BOOLEAN
+	Ipv4Prefix *string `json:"ipv4_prefix"` // propertyName=ipv4_prefix type=STRING
+	Name       *string `json:"name"`        // propertyName=name type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -2992,7 +2991,7 @@ type MulticastRPConfig struct {
 	Id          *string  `json:"id"`           // propertyName=id type=STRING
 	Ipv4Address *string  `json:"ipv4_address"` // propertyName=ipv4_address type=STRING
 	Name        *string  `json:"name"`         // propertyName=name type=STRING
-	Tags        []string `json:"tags"`         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`         // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3014,7 +3013,7 @@ type SyslogServerScreenV2N2 struct {
 	SeverityLevel       *string  `json:"severity_level"`        // propertyName=severity_level type=STRING
 	SourceInterface     *string  `json:"source_interface"`      // propertyName=source_interface type=STRING
 	SyslogProfileId     *string  `json:"syslog_profile_id"`     // propertyName=syslog_profile_id type=STRING
-	Tags                []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3053,7 +3052,7 @@ type SecurityPolicyV2RuleV2N2 struct {
 	SourcePrefixIds      []string   `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string   `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds         []string   `json:"src_device_ids"`         // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                 []string   `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string   `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup          *UserGroup `json:"user_or_group"`          // propertyName=user_or_group type=REFERENCE
 }
 
@@ -3074,7 +3073,7 @@ type SecurityPolicyV2RuleV2N1 struct {
 	Services             []Service  `json:"services"`               // propertyName=services type=ARRAY_REFERENCE
 	SourcePrefixIds      []string   `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string   `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
-	Tags                 []string   `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string   `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup          *UserGroup `json:"user_or_group"`          // propertyName=user_or_group type=REFERENCE
 }
 
@@ -3099,7 +3098,7 @@ type APNProfileScreen struct {
 	Id             *string  `json:"id"`             // propertyName=id type=STRING
 	Name           *string  `json:"name"`           // propertyName=name type=STRING
 	Password       *string  `json:"password"`       // propertyName=password type=STRING
-	Tags           []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UserName       *string  `json:"user_name"`      // propertyName=user_name type=STRING
 }
 
@@ -3186,7 +3185,7 @@ type SimSecurityScreen struct {
 	Pin         *string  `json:"pin"`         // propertyName=pin type=STRING
 	RemovePin   *bool    `json:"remove_pin"`  // propertyName=remove_pin type=BOOLEAN
 	SlotNumber  *int64   `json:"slot_number"` // propertyName=slot_number type=INTEGER
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3229,7 +3228,7 @@ type SpokeClusterQueryFilterResponse struct {
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	Preempt               *bool    `json:"preempt"`                // propertyName=preempt type=BOOLEAN
 	SiteId                *string  `json:"site_id"`                // propertyName=site_id type=STRING
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3422,7 +3421,7 @@ type DHCPServer struct {
 	NetworkContextId *string                 `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMapping         `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string                 `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string                `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string                `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3490,7 +3489,7 @@ type SiteSecurityPolicyV2PrefixAssociationScreen struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3520,7 +3519,7 @@ type ProbeConfigQueryFilter struct {
 	Endpoints   []ProbeEndpoint `json:"endpoints"`   // propertyName=endpoints type=ARRAY_REFERENCE
 	Id          *string         `json:"id"`          // propertyName=id type=STRING
 	Name        *string         `json:"name"`        // propertyName=name type=STRING
-	Tags        []string        `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string        `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3555,7 +3554,7 @@ type ServiceLabelV2N1 struct {
 	Id             *string                     `json:"id"`              // propertyName=id type=STRING
 	Name           *string                     `json:"name"`            // propertyName=name type=STRING
 	SaseProperties *SaseServiceLabelProperties `json:"sase_properties"` // propertyName=sase_properties type=REFERENCE
-	Tags           []string                    `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string                    `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 	Type           *string                     `json:"type"`            // propertyName=type type=STRING
 }
 
@@ -3593,7 +3592,7 @@ type Anynetlink struct {
 	Name                    *string               `json:"name"`                      // propertyName=name type=STRING
 	Region                  *string               `json:"region"`                    // propertyName=region type=STRING
 	SiteId                  *string               `json:"site_id"`                   // propertyName=site_id type=STRING
-	Tags                    []string              `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string              `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 	TargetServiceendpointId *string               `json:"target_serviceendpoint_id"` // propertyName=target_serviceendpoint_id type=STRING
 	Type                    *string               `json:"type"`                      // propertyName=type type=STRING
 	VpnlinkConfiguration    *VPNLinkConfiguration `json:"vpnlink_configuration"`     // propertyName=vpnlink_configuration type=REFERENCE
@@ -3741,7 +3740,7 @@ type SiteV4N9 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId      *string       `json:"vrf_context_profile_id"`     // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -3796,7 +3795,7 @@ type SiteV4N4 struct {
 	PriorityPolicysetstackId *string   `json:"priority_policysetstack_id"` // propertyName=priority_policysetstack_id type=STRING
 	SecurityPolicysetId      *string   `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	ServiceBinding           *string   `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3838,7 +3837,7 @@ type SiteV4N3 struct {
 	PriorityPolicysetstackId *string   `json:"priority_policysetstack_id"` // propertyName=priority_policysetstack_id type=STRING
 	SecurityPolicysetId      *string   `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	ServiceBinding           *string   `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3899,7 +3898,7 @@ type AppdefOverrideScreen struct {
 	OverridesDisable        *bool       `json:"overrides_disable"`          // propertyName=overrides_disable type=BOOLEAN
 	PathAffinity            *string     `json:"path_affinity"`              // propertyName=path_affinity type=STRING
 	SessionTimeout          *int64      `json:"session_timeout"`            // propertyName=session_timeout type=INTEGER
-	Tags                    []string    `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string    `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                []TcpRuleV1 `json:"tcp_rules"`                  // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType            *string     `json:"transfer_type"`              // propertyName=transfer_type type=STRING
 	UdpRules                []UdpRuleV1 `json:"udp_rules"`                  // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -3926,7 +3925,7 @@ type SiteV4N6 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3949,7 +3948,7 @@ type SiteV4N5 struct {
 	PriorityPolicysetstackId *string       `json:"priority_policysetstack_id"` // propertyName=priority_policysetstack_id type=STRING
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -3974,7 +3973,7 @@ type SiteV4N8 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId      *string       `json:"vrf_context_profile_id"`     // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -4000,7 +3999,7 @@ type SiteV4N7 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4027,7 +4026,7 @@ type IPFixTemplate struct {
 	Name                  *string  `json:"name"`                    // propertyName=name type=STRING
 	OptionExportTimeout   *int64   `json:"option_export_timeout"`   // propertyName=option_export_timeout type=INTEGER
 	Options               []string `json:"options"`                 // propertyName=options type=ARRAY_PRIMITIVE
-	Tags                  []string `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	TemplateExportTimeout *int64   `json:"template_export_timeout"` // propertyName=template_export_timeout type=INTEGER
 }
 
@@ -4132,7 +4131,7 @@ type PriorityPolicySet struct {
 	Description                *string                       `json:"description"`                  // propertyName=description type=STRING
 	Id                         *string                       `json:"id"`                           // propertyName=id type=STRING
 	Name                       *string                       `json:"name"`                         // propertyName=name type=STRING
-	Tags                       []string                      `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                      `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Template                   *bool                         `json:"template"`                     // propertyName=template type=BOOLEAN
 }
 
@@ -4159,7 +4158,7 @@ type RoutingPrefixListV2N1 struct {
 	Id               *string                   `json:"id"`                 // propertyName=id type=STRING
 	Name             *string                   `json:"name"`               // propertyName=name type=STRING
 	PrefixFilterList []RoutingPrefixFilterV2N1 `json:"prefix_filter_list"` // propertyName=prefix_filter_list type=ARRAY_REFERENCE
-	Tags             []string                  `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string                  `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4216,7 +4215,7 @@ type PriorityPolicyRuleV2N2 struct {
 	PriorityNumber        *int64     `json:"priority_number"`         // propertyName=priority_number type=INTEGER
 	SourcePrefixesId      *string    `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SrcDeviceIds          []string   `json:"src_device_ids"`          // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -4237,7 +4236,7 @@ type PriorityPolicyRuleV2N1 struct {
 	OrderNumber           *int64     `json:"order_number"`            // propertyName=order_number type=INTEGER
 	PriorityNumber        *int64     `json:"priority_number"`         // propertyName=priority_number type=INTEGER
 	SourcePrefixesId      *string    `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -4291,7 +4290,7 @@ type PriorityPolicyRuleQueryFilter struct {
 	PolicysetId           *string  `json:"policyset_id"`            // propertyName=policyset_id type=STRING
 	PriorityNumber        *int64   `json:"priority_number"`         // propertyName=priority_number type=INTEGER
 	SourcePrefixesId      *string  `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4365,8 +4364,8 @@ type VRFContextProfileScreen struct {
 	Description              *string                   `json:"description"`                  // propertyName=description type=STRING
 	Id                       *string                   `json:"id"`                           // propertyName=id type=STRING
 	Name                     *string                   `json:"name"`                         // propertyName=name type=STRING
-	Tags                     []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
-	VrfContextIds            []string                  `json:"vrf_context_ids"`              // propertyName=vrf_context_ids type=ARRAY_PRIMITIVE
+	Tags                     []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
+	VrfContextIds            []string                  `json:"vrf_context_ids"`              // propertyName=vrf_context_ids type=SET_PRIMITIVE
 	VrfContextRouteLeakRules []VRFContextRouteLeakRule `json:"vrf_context_route_leak_rules"` // propertyName=vrf_context_route_leak_rules type=ARRAY_REFERENCE
 }
 
@@ -4442,7 +4441,7 @@ type AppDefScreenV2N1 struct {
 	PathAffinity        *string                  `json:"path_affinity"`         // propertyName=path_affinity type=STRING
 	SessionTimeout      *int64                   `json:"session_timeout"`       // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden *bool                    `json:"system_app_overridden"` // propertyName=system_app_overridden type=BOOLEAN
-	Tags                []string                 `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string                 `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	TcpRules            []string                 `json:"tcp_rules"`             // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType        *string                  `json:"transfer_type"`         // propertyName=transfer_type type=STRING
 	UdpRules            []map[string]interface{} `json:"udp_rules"`             // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -4468,7 +4467,7 @@ type DHCPServerScreen struct {
 	NetworkContextId *string                 `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMapping         `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string                 `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string                `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string                `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4519,7 +4518,7 @@ type PriorityPolicySetStack struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4564,7 +4563,7 @@ type ServiceEndpointV2N4 struct {
 	SaseProperties              *SaseServiceEndpointProperties `json:"sase_properties"`               // propertyName=sase_properties type=REFERENCE
 	ServiceLinkPeers            *ServiceLinkPeers              `json:"service_link_peers"`            // propertyName=service_link_peers type=REFERENCE
 	SiteId                      *string                        `json:"site_id"`                       // propertyName=site_id type=STRING
-	Tags                        []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                        []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                        *string                        `json:"type"`                          // propertyName=type type=STRING
 }
 
@@ -4624,7 +4623,7 @@ type AppDefScreenV2N2 struct {
 	PathAffinity               *string                  `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -4657,7 +4656,7 @@ type AppDefScreenV2N3 struct {
 	PathAffinity               *string                  `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -4701,7 +4700,7 @@ type AppDefScreenV2N4 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -4738,7 +4737,7 @@ type AppDefScreenV2N5 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -4841,7 +4840,7 @@ type SecurityPolicyV2N2RuleQueryFilter struct {
 	SourcePrefixIds      []string   `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string   `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds         []string   `json:"src_device_ids"`         // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                 []string   `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string   `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup          *UserGroup `json:"user_or_group"`          // propertyName=user_or_group type=REFERENCE
 }
 
@@ -4863,7 +4862,7 @@ type NetworkPolicyLocalPrefix struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4905,7 +4904,7 @@ type ElementQueryFilterV3N1 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -4971,7 +4970,7 @@ type RoutingPrefixListScreenV2N1 struct {
 	Id               *string                   `json:"id"`                 // propertyName=id type=STRING
 	Name             *string                   `json:"name"`               // propertyName=name type=STRING
 	PrefixFilterList []RoutingPrefixFilterV2N1 `json:"prefix_filter_list"` // propertyName=prefix_filter_list type=ARRAY_REFERENCE
-	Tags             []string                  `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string                  `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4984,7 +4983,7 @@ type SecurityPolicyGlobalPrefix struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -5039,7 +5038,7 @@ type EventCorrelationPolicySetQueryFilter struct {
 	Name                    *string                   `json:"name"`                      // propertyName=name type=STRING
 	PolicyruleOrder         []string                  `json:"policyrule_order"`          // propertyName=policyrule_order type=ARRAY_PRIMITIVE
 	SeverityPriorityMapping []SeverityPriorityMapping `json:"severity_priority_mapping"` // propertyName=severity_priority_mapping type=ARRAY_REFERENCE
-	Tags                    []string                  `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string                  `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -5097,7 +5096,7 @@ type DHCPServerV2N2 struct {
 	NetworkContextId *string             `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMappingV2   `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string             `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string            `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string            `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -5165,7 +5164,7 @@ type DHCPServerV2N3 struct {
 	NetworkContextId *string             `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMappingV2   `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string             `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string            `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string            `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId     *string             `json:"vrf_context_id"`     // propertyName=vrf_context_id type=STRING
 }
 
@@ -5339,7 +5338,7 @@ type ElementQueryFilterV3N2 struct {
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string           `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string          `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -5522,7 +5521,7 @@ type AnynetLinkQueryFilterV4 struct {
 	Forced               *bool                 `json:"forced"`                // propertyName=forced type=BOOLEAN
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -5574,7 +5573,7 @@ type RoutingAccessListQueryFilter struct {
 	Description     *string       `json:"description"`        // propertyName=description type=STRING
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
-	Tags            []string      `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -5662,7 +5661,7 @@ type WANInterfaceQueryFilterV2N4 struct {
 	LqmEnabled   *bool      `json:"lqm_enabled"`    // propertyName=lqm_enabled type=BOOLEAN
 	Name         *string    `json:"name"`           // propertyName=name type=STRING
 	NetworkId    *string    `json:"network_id"`     // propertyName=network_id type=STRING
-	Tags         []string   `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string   `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -5684,7 +5683,7 @@ type WANInterfaceQueryFilterV2N5 struct {
 	LqmEnabled           *bool                 `json:"lqm_enabled"`           // propertyName=lqm_enabled type=BOOLEAN
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
 	NetworkId            *string               `json:"network_id"`            // propertyName=network_id type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -5750,7 +5749,7 @@ type IPFixConfigQueryFilter struct {
 	Name               *string           `json:"name"`                 // propertyName=name type=STRING
 	Sampler            *IPFixSampler     `json:"sampler"`              // propertyName=sampler type=REFERENCE
 	SiteId             *string           `json:"site_id"`              // propertyName=site_id type=STRING
-	Tags               []string          `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string          `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -5843,7 +5842,7 @@ type WANInterfaceQueryFilterV2N8 struct {
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
 	SiteId                              *string               `json:"site_id"`                                 // propertyName=site_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -5871,7 +5870,7 @@ type WANInterfaceQueryFilterV2N7 struct {
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	SiteId                              *string               `json:"site_id"`                                 // propertyName=site_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -5920,7 +5919,7 @@ type WANInterfaceQueryFilterV2N9 struct {
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
 	SiteId                              *string               `json:"site_id"`                                 // propertyName=site_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -5938,7 +5937,7 @@ type WANNetworkV2N1 struct {
 	Id                *string  `json:"id"`                  // propertyName=id type=STRING
 	Name              *string  `json:"name"`                // propertyName=name type=STRING
 	ProviderAsNumbers []int64  `json:"provider_as_numbers"` // propertyName=provider_as_numbers type=ARRAY_PRIMITIVE
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	Type              *string  `json:"type"`                // propertyName=type type=STRING
 }
 
@@ -6037,7 +6036,7 @@ type EventCorrelationPolicySet struct {
 	Name                    *string                   `json:"name"`                      // propertyName=name type=STRING
 	PolicyruleOrder         []string                  `json:"policyrule_order"`          // propertyName=policyrule_order type=ARRAY_PRIMITIVE
 	SeverityPriorityMapping []SeverityPriorityMapping `json:"severity_priority_mapping"` // propertyName=severity_priority_mapping type=ARRAY_REFERENCE
-	Tags                    []string                  `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string                  `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -6090,7 +6089,7 @@ type NATPolicyZoneQueryFilter struct {
 	Description                *string  `json:"description"`                   // propertyName=description type=STRING
 	Id                         *string  `json:"id"`                            // propertyName=id type=STRING
 	Name                       *string  `json:"name"`                          // propertyName=name type=STRING
-	Tags                       []string `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -6129,7 +6128,7 @@ type LANNetworkScreenV3N3 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId     *string               `json:"vrf_context_id"`     // propertyName=vrf_context_id type=STRING
 }
 
@@ -6146,7 +6145,7 @@ type LANNetworkScreenV3N2 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -6161,7 +6160,7 @@ type LANNetworkScreenV3N1 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -6442,7 +6441,7 @@ type PriorityPolicySetQueryFilter struct {
 	Description                *string                       `json:"description"`                  // propertyName=description type=STRING
 	Id                         *string                       `json:"id"`                           // propertyName=id type=STRING
 	Name                       *string                       `json:"name"`                         // propertyName=name type=STRING
-	Tags                       []string                      `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                      `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Template                   *bool                         `json:"template"`                     // propertyName=template type=BOOLEAN
 }
 
@@ -6480,7 +6479,7 @@ type ServiceEndpointV3 struct {
 	SaseProperties              *SaseServiceEndpointProperties `json:"sase_properties"`               // propertyName=sase_properties type=REFERENCE
 	ServiceLinkPeers            *ServiceLinkPeers              `json:"service_link_peers"`            // propertyName=service_link_peers type=REFERENCE
 	SiteId                      *string                        `json:"site_id"`                       // propertyName=site_id type=STRING
-	Tags                        []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                        []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                        *string                        `json:"type"`                          // propertyName=type type=STRING
 }
 
@@ -6570,7 +6569,7 @@ type ElementShellQueryFilter struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -6713,7 +6712,7 @@ type AppDefQueryFilterTransformed struct {
 	PathAffinity        *string                  `json:"path_affinity"`         // propertyName=path_affinity type=STRING
 	SessionTimeout      *int64                   `json:"session_timeout"`       // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden *bool                    `json:"system_app_overridden"` // propertyName=system_app_overridden type=BOOLEAN
-	Tags                []string                 `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string                 `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	TcpRules            []string                 `json:"tcp_rules"`             // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType        *string                  `json:"transfer_type"`         // propertyName=transfer_type type=STRING
 	UdpRules            []map[string]interface{} `json:"udp_rules"`             // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -6905,7 +6904,7 @@ type OspfConfigQueryFilter struct {
 	RouterId               *string               `json:"router_id"`                 // propertyName=router_id type=STRING
 	Scope                  *string               `json:"scope"`                     // propertyName=scope type=STRING
 	Shutdown               *bool                 `json:"shutdown"`                  // propertyName=shutdown type=BOOLEAN
-	Tags                   []string              `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string              `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId           *string               `json:"vrf_context_id"`            // propertyName=vrf_context_id type=STRING
 }
 
@@ -7101,7 +7100,7 @@ type NetworkPolicyRuleQueryFilterV2N3 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -7140,7 +7139,7 @@ type NetworkPolicyRuleQueryFilterV2N4 struct {
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SrcDeviceIds          []string          `json:"src_device_ids"`          // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -7175,7 +7174,7 @@ type SyslogServerProfile struct {
 	ServerIp            *string  `json:"server_ip"`             // propertyName=server_ip type=STRING
 	ServerPort          *int64   `json:"server_port"`           // propertyName=server_port type=INTEGER
 	SeverityLevel       *string  `json:"severity_level"`        // propertyName=severity_level type=STRING
-	Tags                []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -7474,7 +7473,7 @@ type InterfaceV4N20 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -7512,7 +7511,7 @@ type PerfMgmtPolicyRuleV2N2 struct {
 	NetworkContextIds  []string             `json:"network_context_ids"` // propertyName=network_context_ids type=ARRAY_PRIMITIVE
 	PathFilters        []PathFilter         `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string             `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string             `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string             `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string              `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string              `json:"type"`                // propertyName=type type=STRING
 }
@@ -7539,7 +7538,7 @@ type PerfMgmtPolicyRuleV2N1 struct {
 	Name               *string              `json:"name"`                // propertyName=name type=STRING
 	PathFilters        []PathFilter         `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string             `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string             `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string             `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string              `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string              `json:"type"`                // propertyName=type type=STRING
 }
@@ -7579,7 +7578,7 @@ type ElementCopyConfigurations struct {
 	Name                    *string                 `json:"name"`                     // propertyName=name type=STRING
 	SiteId                  *string                 `json:"site_id"`                  // propertyName=site_id type=STRING
 	SourceElementId         *string                 `json:"source_element_id"`        // propertyName=source_element_id type=STRING
-	Tags                    []string                `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string                `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -7645,7 +7644,7 @@ type BGPPeerConfig struct {
 	RemoteAsNum   *string    `json:"remote_as_num"`    // propertyName=remote_as_num type=STRING
 	RouteMapInId  *string    `json:"route_map_in_id"`  // propertyName=route_map_in_id type=STRING
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 }
 
@@ -7658,7 +7657,7 @@ type SiteSecurityPolicyV2PrefixAssociation struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -7680,7 +7679,7 @@ type EventCorrelationPolicyRule struct {
 	StartTime       *int64          `json:"start_time"`        // propertyName=start_time type=INTEGER
 	SubResourceType *string         `json:"sub_resource_type"` // propertyName=sub_resource_type type=STRING
 	Suppress        *string         `json:"suppress"`          // propertyName=suppress type=STRING
-	Tags            []string        `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string        `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -7867,7 +7866,7 @@ type RoutingPrefixListQueryFilterV2N1 struct {
 	Id               *string                   `json:"id"`                 // propertyName=id type=STRING
 	Name             *string                   `json:"name"`               // propertyName=name type=STRING
 	PrefixFilterList []RoutingPrefixFilterV2N1 `json:"prefix_filter_list"` // propertyName=prefix_filter_list type=ARRAY_REFERENCE
-	Tags             []string                  `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string                  `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -7895,7 +7894,7 @@ type VRFContextQueryFilter struct {
 	Description       *string  `json:"description"`         // propertyName=description type=STRING
 	Id                *string  `json:"id"`                  // propertyName=id type=STRING
 	Name              *string  `json:"name"`                // propertyName=name type=STRING
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -7937,7 +7936,7 @@ type ElementV3N1 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -8024,7 +8023,7 @@ type ElementV3N2 struct {
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string           `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string          `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -8055,7 +8054,7 @@ type InterfaceScreenV4N6 struct {
 	ServiceLinkConfig   *ServiceLinkV1          `json:"service_link_config"`    // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds []string                `json:"site_wan_interface_ids"` // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface        *SubInterface           `json:"sub_interface"`          // propertyName=sub_interface type=REFERENCE
-	Tags                []string                `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string                `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	Type                *string                 `json:"type"`                   // propertyName=type type=STRING
 	UsedFor             *string                 `json:"used_for"`               // propertyName=used_for type=STRING
 }
@@ -8088,7 +8087,7 @@ type PathPrefixDistributionFilters struct {
 	Id                   *string                `json:"id"`                      // propertyName=id type=STRING
 	Name                 *string                `json:"name"`                    // propertyName=name type=STRING
 	PathPrefixFilterList []PathPrefixFilterList `json:"path_prefix_filter_list"` // propertyName=path_prefix_filter_list type=ARRAY_REFERENCE
-	Tags                 []string               `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string               `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8196,7 +8195,7 @@ type InterfaceScreenV4N9 struct {
 	ServiceLinkConfig          *ServiceLinkV3          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -8231,7 +8230,7 @@ type InterfaceScreenV4N7 struct {
 	ServiceLinkConfig          *ServiceLinkV1          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -8246,7 +8245,7 @@ type DeviceIdElementConfig struct {
 	Id                             *string  `json:"id"`                                 // propertyName=id type=STRING
 	Name                           *string  `json:"name"`                               // propertyName=name type=STRING
 	SnmpDiscoverySourceInterfaceId *string  `json:"snmp_discovery_source_interface_id"` // propertyName=snmp_discovery_source_interface_id type=STRING
-	Tags                           []string `json:"tags"`                               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                           []string `json:"tags"`                               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8287,7 +8286,7 @@ type InterfaceScreenV4N8 struct {
 	ServiceLinkConfig          *ServiceLinkV3          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -8387,7 +8386,7 @@ type SitePriorityPrefixAssociation struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8499,7 +8498,7 @@ type EventCorrelationPolicyRuleScreen struct {
 	StartTime       *int64          `json:"start_time"`        // propertyName=start_time type=INTEGER
 	SubResourceType *string         `json:"sub_resource_type"` // propertyName=sub_resource_type type=STRING
 	Suppress        *string         `json:"suppress"`          // propertyName=suppress type=STRING
-	Tags            []string        `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string        `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8534,7 +8533,7 @@ type EventCorrelationPolicyRuleScreenV2N1 struct {
 	StartTime         *int64          `json:"start_time"`         // propertyName=start_time type=INTEGER
 	SubResourceType   *string         `json:"sub_resource_type"`  // propertyName=sub_resource_type type=STRING
 	Suppress          *string         `json:"suppress"`           // propertyName=suppress type=STRING
-	Tags              []string        `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string        `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8590,7 +8589,7 @@ type ElementV3 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -8665,7 +8664,7 @@ type DirectoryUserQueryFilter struct {
 	Id           *string  `json:"id"`             // propertyName=id type=STRING
 	Name         *string  `json:"name"`           // propertyName=name type=STRING
 	Stale        *bool    `json:"stale"`          // propertyName=stale type=BOOLEAN
-	Tags         []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UserGroupIds []string `json:"user_group_ids"` // propertyName=user_group_ids type=ARRAY_PRIMITIVE
 }
 
@@ -8682,7 +8681,7 @@ type APNProfile struct {
 	Id             *string  `json:"id"`             // propertyName=id type=STRING
 	Name           *string  `json:"name"`           // propertyName=name type=STRING
 	Password       *string  `json:"password"`       // propertyName=password type=STRING
-	Tags           []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UserName       *string  `json:"user_name"`      // propertyName=user_name type=STRING
 }
 
@@ -8792,7 +8791,7 @@ type NATPolicyPoolQueryFilter struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8804,7 +8803,7 @@ type IPFixLocalPrefixScreen struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8829,7 +8828,7 @@ type GlobalPrefixQueryFilterV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8905,7 +8904,7 @@ type SiteIPFixPrefixAssociationScreen struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -8987,7 +8986,7 @@ type SiteIPFixPrefixAssociation struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9009,7 +9008,7 @@ type RoutingAccessListV2N1 struct {
 	Description     *string       `json:"description"`        // propertyName=description type=STRING
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
-	Tags            []string      `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9038,7 +9037,7 @@ type SiteV4N11 struct {
 	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -9085,7 +9084,7 @@ type SiteV4N12 struct {
 	SecurityPolicysetstackId            *string                         `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string                         `json:"service_binding"`                           // propertyName=service_binding type=STRING
 	SgiConfig                           *SecurityGroupInformationConfig `json:"sgi_config"`                                // propertyName=sgi_config type=REFERENCE
-	Tags                                []string                        `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string                        `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string                         `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -9149,7 +9148,7 @@ type SecurityPolicyV2LocalPrefixScreen struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9214,7 +9213,7 @@ type HubClusterQueryFilterV4 struct {
 	PeerSites               []string            `json:"peer_sites"`                 // propertyName=peer_sites type=ARRAY_PRIMITIVE
 	SiteCountAlarmThreshold *int64              `json:"site_count_alarm_threshold"` // propertyName=site_count_alarm_threshold type=INTEGER
 	SiteId                  *string             `json:"site_id"`                    // propertyName=site_id type=STRING
-	Tags                    []string            `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string            `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9269,7 +9268,7 @@ type InterfaceV4N8 struct {
 	ServiceLinkConfig          *ServiceLinkV3          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -9304,7 +9303,7 @@ type InterfaceV4N7 struct {
 	ServiceLinkConfig          *ServiceLinkV1          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -9359,7 +9358,7 @@ type InterfaceV4N9 struct {
 	ServiceLinkConfig          *ServiceLinkV3          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -9393,7 +9392,7 @@ type UserIDAgent struct {
 	ServerIp        *string                    `json:"server_ip"`        // propertyName=server_ip type=STRING
 	SiteId          *string                    `json:"site_id"`          // propertyName=site_id type=STRING
 	SourceInterface *string                    `json:"source_interface"` // propertyName=source_interface type=STRING
-	Tags            []string                   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9429,7 +9428,7 @@ type NATPolicySetStackQueryFilter struct {
 	Id                    *string  `json:"id"`                     // propertyName=id type=STRING
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	PolicysetIds          []string `json:"policyset_ids"`          // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9449,7 +9448,7 @@ type DirectoryUserGroupQueryFilter struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	Stale       *bool    `json:"stale"`       // propertyName=stale type=BOOLEAN
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9485,7 +9484,7 @@ type SecurityPolicyV2N1RuleQueryFilter struct {
 	Services             []Service  `json:"services"`               // propertyName=services type=ARRAY_REFERENCE
 	SourcePrefixIds      []string   `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string   `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
-	Tags                 []string   `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string   `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup          *UserGroup `json:"user_or_group"`          // propertyName=user_or_group type=REFERENCE
 }
 
@@ -9551,7 +9550,7 @@ type SiteNATPrefixAssociation struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9574,7 +9573,7 @@ type EventCorrelationPolicyRuleV2N1 struct {
 	StartTime         *int64          `json:"start_time"`         // propertyName=start_time type=INTEGER
 	SubResourceType   *string         `json:"sub_resource_type"`  // propertyName=sub_resource_type type=STRING
 	Suppress          *string         `json:"suppress"`           // propertyName=suppress type=STRING
-	Tags              []string        `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string        `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9620,7 +9619,7 @@ type PriorityPolicyRule struct {
 	OrderNumber           *int64   `json:"order_number"`            // propertyName=order_number type=INTEGER
 	PriorityNumber        *int64   `json:"priority_number"`         // propertyName=priority_number type=INTEGER
 	SourcePrefixesId      *string  `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9679,7 +9678,7 @@ type NetworkPolicyGlobalPrefixV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9703,7 +9702,7 @@ type AppdefOverride struct {
 	OverridesDisable        *bool       `json:"overrides_disable"`          // propertyName=overrides_disable type=BOOLEAN
 	PathAffinity            *string     `json:"path_affinity"`              // propertyName=path_affinity type=STRING
 	SessionTimeout          *int64      `json:"session_timeout"`            // propertyName=session_timeout type=INTEGER
-	Tags                    []string    `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string    `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                []TcpRuleV1 `json:"tcp_rules"`                  // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType            *string     `json:"transfer_type"`              // propertyName=transfer_type type=STRING
 	UdpRules                []UdpRuleV1 `json:"udp_rules"`                  // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -9739,7 +9738,7 @@ type IPFixGlobalPrefixScreen struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -9900,7 +9899,7 @@ type InterfaceV4N6 struct {
 	ServiceLinkConfig   *ServiceLinkV1          `json:"service_link_config"`    // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds []string                `json:"site_wan_interface_ids"` // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface        *SubInterface           `json:"sub_interface"`          // propertyName=sub_interface type=REFERENCE
-	Tags                []string                `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string                `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	Type                *string                 `json:"type"`                   // propertyName=type type=STRING
 	UsedFor             *string                 `json:"used_for"`               // propertyName=used_for type=STRING
 }
@@ -10137,7 +10136,7 @@ type RoutingRouteMapQueryFilterV2N3 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N3 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 	UsedFor         *string                    `json:"used_for"`          // propertyName=used_for type=STRING
 }
 
@@ -10198,7 +10197,7 @@ type RoutingRouteMapQueryFilterV2N2 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N2 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10223,7 +10222,7 @@ type RoutingRouteMapQueryFilterV2N1 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N1 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10263,7 +10262,7 @@ type ServiceEndpointScreen struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	SiteId      *string  `json:"site_id"`     // propertyName=site_id type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 	Type        *string  `json:"type"`        // propertyName=type type=STRING
 }
 
@@ -10348,7 +10347,7 @@ type VRFContext struct {
 	Description       *string  `json:"description"`         // propertyName=description type=STRING
 	Id                *string  `json:"id"`                  // propertyName=id type=STRING
 	Name              *string  `json:"name"`                // propertyName=name type=STRING
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10377,7 +10376,7 @@ type SitePrefixAssociationQueryFilterV2N1 struct {
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
 	SiteId       *string  `json:"site_id"`       // propertyName=site_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10415,7 +10414,7 @@ type EventCorrelationPolicyRuleQueryFilter struct {
 	StartTime       *int64          `json:"start_time"`        // propertyName=start_time type=INTEGER
 	SubResourceType *string         `json:"sub_resource_type"` // propertyName=sub_resource_type type=STRING
 	Suppress        *string         `json:"suppress"`          // propertyName=suppress type=STRING
-	Tags            []string        `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string        `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10534,7 +10533,7 @@ type PerfMgmtPolicyRuleScreen struct {
 	Name               *string            `json:"name"`                // propertyName=name type=STRING
 	PathFilters        []PathFilter       `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string           `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string           `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string           `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string            `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string            `json:"type"`                // propertyName=type type=STRING
 }
@@ -10550,7 +10549,7 @@ type RoutingAccessListScreen struct {
 	Description     *string       `json:"description"`        // propertyName=description type=STRING
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
-	Tags            []string      `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10635,7 +10634,7 @@ type PrefixDistributionSpokeList struct {
 	Id           *string  `json:"id"`             // propertyName=id type=STRING
 	Name         *string  `json:"name"`           // propertyName=name type=STRING
 	SpokeSiteIds []string `json:"spoke_site_ids"` // propertyName=spoke_site_ids type=ARRAY_PRIMITIVE
-	Tags         []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10701,7 +10700,7 @@ type NATPolicySetQueryFilter struct {
 	Id                             *string  `json:"id"`                                // propertyName=id type=STRING
 	Name                           *string  `json:"name"`                              // propertyName=name type=STRING
 	SourceZonePolicyruleOrder      []string `json:"source_zone_policyrule_order"`      // propertyName=source_zone_policyrule_order type=ARRAY_PRIMITIVE
-	Tags                           []string `json:"tags"`                              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                           []string `json:"tags"`                              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10717,7 +10716,7 @@ type LANNetworkQueryFilterResponse struct {
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
 	SiteId           *string               `json:"site_id"`            // propertyName=site_id type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10738,7 +10737,7 @@ type PriorityPolicyRuleQueryFilterV2N1 struct {
 	PolicysetId           *string    `json:"policyset_id"`            // propertyName=policyset_id type=STRING
 	PriorityNumber        *int64     `json:"priority_number"`         // propertyName=priority_number type=INTEGER
 	SourcePrefixesId      *string    `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -10792,7 +10791,7 @@ type PriorityPolicyRuleQueryFilterV2N2 struct {
 	PriorityNumber        *int64     `json:"priority_number"`         // propertyName=priority_number type=INTEGER
 	SourcePrefixesId      *string    `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SrcDeviceIds          []string   `json:"src_device_ids"`          // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -10852,7 +10851,7 @@ type MulticastRPConfigQueryFilter struct {
 	Id          *string  `json:"id"`           // propertyName=id type=STRING
 	Ipv4Address *string  `json:"ipv4_address"` // propertyName=ipv4_address type=STRING
 	Name        *string  `json:"name"`         // propertyName=name type=STRING
-	Tags        []string `json:"tags"`         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`         // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10919,7 +10918,7 @@ type PerfMgmtPolicyRuleQueryFilterV2N1 struct {
 	Name               *string              `json:"name"`                // propertyName=name type=STRING
 	PathFilters        []PathFilter         `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string             `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string             `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string             `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string              `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string              `json:"type"`                // propertyName=type type=STRING
 }
@@ -10935,7 +10934,7 @@ type ServiceEndpointQueryFilter struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	SiteId      *string  `json:"site_id"`     // propertyName=site_id type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 	Type        *string  `json:"type"`        // propertyName=type type=STRING
 }
 
@@ -10953,7 +10952,7 @@ type IPFixProfile struct {
 	IpfixtemplateId    *string           `json:"ipfixtemplate_id"`     // propertyName=ipfixtemplate_id type=STRING
 	Name               *string           `json:"name"`                 // propertyName=name type=STRING
 	Sampler            *IPFixSampler     `json:"sampler"`              // propertyName=sampler type=REFERENCE
-	Tags               []string          `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string          `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -10983,7 +10982,7 @@ type SiteQueryFilterV4N12 struct {
 	SecurityPolicysetstackId            *string                         `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string                         `json:"service_binding"`                           // propertyName=service_binding type=STRING
 	SgiConfig                           *SecurityGroupInformationConfig `json:"sgi_config"`                                // propertyName=sgi_config type=REFERENCE
-	Tags                                []string                        `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string                        `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string                         `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -11040,7 +11039,7 @@ type ElementNTP struct {
 	Name               *string     `json:"name"`                 // propertyName=name type=STRING
 	NtpServers         []NTPServer `json:"ntp_servers"`          // propertyName=ntp_servers type=ARRAY_REFERENCE
 	SourceInterfaceIds []string    `json:"source_interface_ids"` // propertyName=source_interface_ids type=ARRAY_PRIMITIVE
-	Tags               []string    `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string    `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -11068,7 +11067,7 @@ type SiteQueryFilterV4N10 struct {
 	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -11119,7 +11118,7 @@ type SiteQueryFilterV4N11 struct {
 	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -11171,7 +11170,7 @@ type InterfaceV4N10 struct {
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig       `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -11234,7 +11233,7 @@ type InterfaceV4N11 struct {
 	SiteWanInterfaceIds        []string                  `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig         `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface             `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                   `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                   `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -11286,7 +11285,7 @@ type InterfaceV4N18 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -11341,7 +11340,7 @@ type InterfaceV4N19 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -11431,7 +11430,7 @@ type InterfaceV4N16 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -11485,7 +11484,7 @@ type InterfaceV4N17 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -11557,7 +11556,7 @@ type InterfaceV4N14 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`           // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                     // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                  // propertyName=vlan_config type=REFERENCE
@@ -11610,7 +11609,7 @@ type InterfaceV4N15 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -11671,7 +11670,7 @@ type InterfaceV4N12 struct {
 	SiteWanInterfaceIds        []string                  `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig         `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface             `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                   `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                   `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -11722,7 +11721,7 @@ type InterfaceV4N13 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`           // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                     // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                  // propertyName=vlan_config type=REFERENCE
@@ -11775,7 +11774,7 @@ type NetworkLinkV3N5 struct {
 	SourceWanNwId             *string               `json:"source_wan_nw_id"`            // propertyName=source_wan_nw_id type=STRING
 	Status                    *string               `json:"status"`                      // propertyName=status type=STRING
 	SubType                   *string               `json:"sub_type"`                    // propertyName=sub_type type=STRING
-	Tags                      []string              `json:"tags"`                        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                      []string              `json:"tags"`                        // propertyName=tags type=SET_PRIMITIVE
 	TargetCircuitName         *string               `json:"target_circuit_name"`         // propertyName=target_circuit_name type=STRING
 	TargetElemIfId            *string               `json:"target_elem_if_id"`           // propertyName=target_elem_if_id type=STRING
 	TargetNodeId              *string               `json:"target_node_id"`              // propertyName=target_node_id type=STRING
@@ -11841,7 +11840,7 @@ type NetworkLinkV3N6 struct {
 	SourceWanNwId             *string               `json:"source_wan_nw_id"`            // propertyName=source_wan_nw_id type=STRING
 	Status                    *string               `json:"status"`                      // propertyName=status type=STRING
 	SubType                   *string               `json:"sub_type"`                    // propertyName=sub_type type=STRING
-	Tags                      []string              `json:"tags"`                        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                      []string              `json:"tags"`                        // propertyName=tags type=SET_PRIMITIVE
 	TargetCircuitName         *string               `json:"target_circuit_name"`         // propertyName=target_circuit_name type=STRING
 	TargetElemIfId            *string               `json:"target_elem_if_id"`           // propertyName=target_elem_if_id type=STRING
 	TargetHubClusterId        *string               `json:"target_hub_cluster_id"`       // propertyName=target_hub_cluster_id type=STRING
@@ -11889,7 +11888,7 @@ type NetworkLinkV3N3 struct {
 	SourceWanNwId        *string               `json:"source_wan_nw_id"`      // propertyName=source_wan_nw_id type=STRING
 	Status               *string               `json:"status"`                // propertyName=status type=STRING
 	SubType              *string               `json:"sub_type"`              // propertyName=sub_type type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	TargetCircuitName    *string               `json:"target_circuit_name"`   // propertyName=target_circuit_name type=STRING
 	TargetElemIfId       *string               `json:"target_elem_if_id"`     // propertyName=target_elem_if_id type=STRING
 	TargetNodeId         *string               `json:"target_node_id"`        // propertyName=target_node_id type=STRING
@@ -11933,7 +11932,7 @@ type NetworkLinkV3N4 struct {
 	SourceWanNwId             *string               `json:"source_wan_nw_id"`            // propertyName=source_wan_nw_id type=STRING
 	Status                    *string               `json:"status"`                      // propertyName=status type=STRING
 	SubType                   *string               `json:"sub_type"`                    // propertyName=sub_type type=STRING
-	Tags                      []string              `json:"tags"`                        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                      []string              `json:"tags"`                        // propertyName=tags type=SET_PRIMITIVE
 	TargetCircuitName         *string               `json:"target_circuit_name"`         // propertyName=target_circuit_name type=STRING
 	TargetElemIfId            *string               `json:"target_elem_if_id"`           // propertyName=target_elem_if_id type=STRING
 	TargetNodeId              *string               `json:"target_node_id"`              // propertyName=target_node_id type=STRING
@@ -11976,7 +11975,7 @@ type NetworkLinkV3N1 struct {
 	SourceWanNwId     *string  `json:"source_wan_nw_id"`    // propertyName=source_wan_nw_id type=STRING
 	Status            *string  `json:"status"`              // propertyName=status type=STRING
 	SubType           *string  `json:"sub_type"`            // propertyName=sub_type type=STRING
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	TargetCircuitName *string  `json:"target_circuit_name"` // propertyName=target_circuit_name type=STRING
 	TargetNodeId      *string  `json:"target_node_id"`      // propertyName=target_node_id type=STRING
 	TargetSiteName    *string  `json:"target_site_name"`    // propertyName=target_site_name type=STRING
@@ -12016,7 +12015,7 @@ type NetworkLinkV3N2 struct {
 	SourceWanNwId        *string               `json:"source_wan_nw_id"`      // propertyName=source_wan_nw_id type=STRING
 	Status               *string               `json:"status"`                // propertyName=status type=STRING
 	SubType              *string               `json:"sub_type"`              // propertyName=sub_type type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	TargetCircuitName    *string               `json:"target_circuit_name"`   // propertyName=target_circuit_name type=STRING
 	TargetElemIfId       *string               `json:"target_elem_if_id"`     // propertyName=target_elem_if_id type=STRING
 	TargetNodeId         *string               `json:"target_node_id"`        // propertyName=target_node_id type=STRING
@@ -12042,7 +12041,7 @@ type WANNetworkScreenV2N1 struct {
 	Id                *string  `json:"id"`                  // propertyName=id type=STRING
 	Name              *string  `json:"name"`                // propertyName=name type=STRING
 	ProviderAsNumbers []int64  `json:"provider_as_numbers"` // propertyName=provider_as_numbers type=ARRAY_PRIMITIVE
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	Type              *string  `json:"type"`                // propertyName=type type=STRING
 }
 
@@ -12143,7 +12142,7 @@ type PerfMgmtPolicyRuleScreenV2N1 struct {
 	Name               *string              `json:"name"`                // propertyName=name type=STRING
 	PathFilters        []PathFilter         `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string             `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string             `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string             `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string              `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string              `json:"type"`                // propertyName=type type=STRING
 }
@@ -12163,7 +12162,7 @@ type NATPolicyZone struct {
 	InactiveReason             *string  `json:"inactive_reason"`               // propertyName=inactive_reason type=STRING
 	Name                       *string  `json:"name"`                          // propertyName=name type=STRING
 	Region                     *string  `json:"region"`                        // propertyName=region type=STRING
-	Tags                       []string `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12175,7 +12174,7 @@ type NATPolicyPool struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12189,7 +12188,7 @@ type BasePolicyPrefixS struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12231,7 +12230,7 @@ type NATPolicyRule struct {
 	SourcePrefixesId      *string            `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SourceZone            *NATPolicyZone     `json:"source_zone"`             // propertyName=source_zone type=REFERENCE
 	SourceZoneId          *string            `json:"source_zone_id"`          // propertyName=source_zone_id type=STRING
-	Tags                  []string           `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string           `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12278,7 +12277,7 @@ type PerfMgmtPolicyRuleScreenV2N2 struct {
 	NetworkContextIds  []string             `json:"network_context_ids"` // propertyName=network_context_ids type=ARRAY_PRIMITIVE
 	PathFilters        []PathFilter         `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string             `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string             `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string             `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string              `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string              `json:"type"`                // propertyName=type type=STRING
 }
@@ -12294,7 +12293,7 @@ type RoutingRouteMapV2N1 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N1 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12308,7 +12307,7 @@ type RoutingRouteMapV2N2 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N2 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12336,7 +12335,7 @@ type RoutingRouteMapV2N3 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N3 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 	UsedFor         *string                    `json:"used_for"`          // propertyName=used_for type=STRING
 }
 
@@ -12390,7 +12389,7 @@ type ServiceBindingMapV2N1 struct {
 	IsDefault       *bool            `json:"is_default"`       // propertyName=is_default type=BOOLEAN
 	Name            *string          `json:"name"`             // propertyName=name type=STRING
 	ServiceBindings []ServiceBinding `json:"service_bindings"` // propertyName=service_bindings type=ARRAY_REFERENCE
-	Tags            []string         `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string         `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12421,7 +12420,7 @@ type LANNetworkV3N3 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId     *string               `json:"vrf_context_id"`     // propertyName=vrf_context_id type=STRING
 }
 
@@ -12438,7 +12437,7 @@ type LANNetworkV3N2 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12453,7 +12452,7 @@ type LANNetworkV3N1 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12469,7 +12468,7 @@ type APNProfileQueryFilter struct {
 	Id             *string  `json:"id"`             // propertyName=id type=STRING
 	Name           *string  `json:"name"`           // propertyName=name type=STRING
 	Password       *string  `json:"password"`       // propertyName=password type=STRING
-	Tags           []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UserName       *string  `json:"user_name"`      // propertyName=user_name type=STRING
 }
 
@@ -12671,7 +12670,7 @@ type DnsServiceProfileV2N1 struct {
 	ListenDnsserviceroleId *string               `json:"listen_dnsservicerole_id"`  // propertyName=listen_dnsservicerole_id type=STRING
 	ListenPort             *int64                `json:"listen_port"`               // propertyName=listen_port type=INTEGER
 	Name                   *string               `json:"name"`                      // propertyName=name type=STRING
-	Tags                   []string              `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string              `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12782,7 +12781,7 @@ type ElementScreenV2N5 struct {
 	SiteId                       *string          `json:"site_id"`                          // propertyName=site_id type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -12817,7 +12816,7 @@ type ElementScreenV2N4 struct {
 	SiteId                       *string          `json:"site_id"`                          // propertyName=site_id type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -12875,7 +12874,7 @@ type ElementScreenV2N3 struct {
 	SiteId                       *string          `json:"site_id"`                          // propertyName=site_id type=STRING
 	SpokeHaConfig                *SpokeHAConfigV1 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -12897,7 +12896,7 @@ type ElementScreenV2N2 struct {
 	SiteId                       *string          `json:"site_id"`                          // propertyName=site_id type=STRING
 	SpokeHaConfig                *SpokeHAConfigV1 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -12915,7 +12914,7 @@ type IPSECProfileScreenV2N2 struct {
 	Id             *string                `json:"id"`             // propertyName=id type=STRING
 	IkeGroup       *IKEGroup              `json:"ike_group"`      // propertyName=ike_group type=REFERENCE
 	Name           *string                `json:"name"`           // propertyName=name type=STRING
-	Tags           []string               `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string               `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UsedFor        *string                `json:"used_for"`       // propertyName=used_for type=STRING
 }
 
@@ -12942,7 +12941,7 @@ type ElementScreenV2N7 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -12981,7 +12980,7 @@ type ElementScreenV2N6 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -12996,7 +12995,7 @@ type RoutingAccessList struct {
 	Description     *string       `json:"description"`        // propertyName=description type=STRING
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
-	Tags            []string      `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13044,7 +13043,7 @@ type SiteNetworkPrefixAssociationV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13159,7 +13158,7 @@ type CellularModuleQueryFilter struct {
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	PrimarySim  *int64   `json:"primary_sim"` // propertyName=primary_sim type=INTEGER
 	RadioOn     *bool    `json:"radio_on"`    // propertyName=radio_on type=BOOLEAN
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13264,7 +13263,7 @@ type DnsServiceRole struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13284,7 +13283,7 @@ type MulticastPeerGroupScreen struct {
 	Id          *string             `json:"id"`          // propertyName=id type=STRING
 	Name        *string             `json:"name"`        // propertyName=name type=STRING
 	PeerSites   []MulticastPeerSite `json:"peer_sites"`  // propertyName=peer_sites type=ARRAY_REFERENCE
-	Tags        []string            `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string            `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13298,7 +13297,7 @@ type ServiceBindingMapScreenV2N1 struct {
 	IsDefault       *bool            `json:"is_default"`       // propertyName=is_default type=BOOLEAN
 	Name            *string          `json:"name"`             // propertyName=name type=STRING
 	ServiceBindings []ServiceBinding `json:"service_bindings"` // propertyName=service_bindings type=ARRAY_REFERENCE
-	Tags            []string         `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string         `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13318,7 +13317,7 @@ type SecurityPolicyV2Rule struct {
 	Services             []Service `json:"services"`               // propertyName=services type=ARRAY_REFERENCE
 	SourcePrefixIds      []string  `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string  `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
-	Tags                 []string  `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string  `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13354,20 +13353,12 @@ type WANInterfaceScreenV2N9 struct {
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
 	VpnlinkConfiguration                *VPNLinkConfiguration `json:"vpnlink_configuration"`                   // propertyName=vpnlink_configuration type=REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `BulkResponseSiteCipher`
-// +-----------------------------------------------------------------
-type BulkResponseSiteCipher struct {
-	Count *int64       `json:"count"` // propertyName=count type=INTEGER
-	Items []SiteCipher `json:"items"` // propertyName=items type=ARRAY_REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -13388,7 +13379,7 @@ type WANInterfaceScreenV2N3 struct {
 	LqmEnabled   *bool    `json:"lqm_enabled"`    // propertyName=lqm_enabled type=BOOLEAN
 	Name         *string  `json:"name"`           // propertyName=name type=STRING
 	NetworkId    *string  `json:"network_id"`     // propertyName=network_id type=STRING
-	Tags         []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13410,7 +13401,7 @@ type WANInterfaceScreenV2N4 struct {
 	LqmEnabled   *bool      `json:"lqm_enabled"`    // propertyName=lqm_enabled type=BOOLEAN
 	Name         *string    `json:"name"`           // propertyName=name type=STRING
 	NetworkId    *string    `json:"network_id"`     // propertyName=network_id type=STRING
-	Tags         []string   `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string   `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13451,7 +13442,7 @@ type SitePriorityPrefixAssociationV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13493,7 +13484,7 @@ type ApplicationProbe struct {
 	Id                *string  `json:"id"`                  // propertyName=id type=STRING
 	Name              *string  `json:"name"`                // propertyName=name type=STRING
 	SourceInterfaceId *string  `json:"source_interface_id"` // propertyName=source_interface_id type=STRING
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13515,7 +13506,7 @@ type WANInterfaceScreenV2N7 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -13544,7 +13535,7 @@ type WANInterfaceScreenV2N8 struct {
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -13562,7 +13553,7 @@ type ProbeProfileQueryFilter struct {
 	Id             *string  `json:"id"`               // propertyName=id type=STRING
 	Name           *string  `json:"name"`             // propertyName=name type=STRING
 	ProbeConfigIds []string `json:"probe_config_ids"` // propertyName=probe_config_ids type=ARRAY_PRIMITIVE
-	Tags           []string `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13584,7 +13575,7 @@ type WANInterfaceScreenV2N5 struct {
 	LqmEnabled           *bool                 `json:"lqm_enabled"`           // propertyName=lqm_enabled type=BOOLEAN
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
 	NetworkId            *string               `json:"network_id"`            // propertyName=network_id type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -13608,7 +13599,7 @@ type WANInterfaceScreenV2N6 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -13626,7 +13617,7 @@ type DeviceIdStartNode struct {
 	Ipv4Address *string                `json:"ipv4_address"` // propertyName=ipv4_address type=STRING
 	Name        *string                `json:"name"`         // propertyName=name type=STRING
 	Scope       []StartNodeScopeConfig `json:"scope"`        // propertyName=scope type=ARRAY_REFERENCE
-	Tags        []string               `json:"tags"`         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string               `json:"tags"`         // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13698,7 +13689,7 @@ type WANInterfaceLabelV2N3 struct {
 	Id                                  *string               `json:"id"`                                      // propertyName=id type=STRING
 	Label                               *string               `json:"label"`                                   // propertyName=label type=STRING
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	VpnlinkConfiguration                *VPNLinkConfiguration `json:"vpnlink_configuration"`                   // propertyName=vpnlink_configuration type=REFERENCE
@@ -13716,7 +13707,7 @@ type SecurityPolicyV2SetScreen struct {
 	Id                   *string  `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string  `json:"name"`                  // propertyName=name type=STRING
 	PolicyruleOrder      []string `json:"policyrule_order"`      // propertyName=policyrule_order type=ARRAY_PRIMITIVE
-	Tags                 []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13731,7 +13722,7 @@ type WANInterfaceLabelV2N4 struct {
 	Label                               *string               `json:"label"`                                   // propertyName=label type=STRING
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
@@ -13764,7 +13755,7 @@ type WANInterfaceLabelV2N5 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
@@ -13830,7 +13821,7 @@ type AnynetLinkBulkCreateV4 struct {
 	Forced               *bool                 `json:"forced"`                // propertyName=forced type=BOOLEAN
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -13859,7 +13850,7 @@ type ServiceLabel struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 	Type        *string  `json:"type"`        // propertyName=type type=STRING
 }
 
@@ -13924,7 +13915,7 @@ type MulticastPeerGroupV2N1 struct {
 	IsSourceSiteReceiver *bool               `json:"is_source_site_receiver"` // propertyName=is_source_site_receiver type=BOOLEAN
 	Name                 *string             `json:"name"`                    // propertyName=name type=STRING
 	PeerSites            []MulticastPeerSite `json:"peer_sites"`              // propertyName=peer_sites type=ARRAY_REFERENCE
-	Tags                 []string            `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string            `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -13946,7 +13937,7 @@ type RoutingPrefixList struct {
 	Id               *string               `json:"id"`                 // propertyName=id type=STRING
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	PrefixFilterList []RoutingPrefixFilter `json:"prefix_filter_list"` // propertyName=prefix_filter_list type=ARRAY_REFERENCE
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14024,7 +14015,7 @@ type WANInterfaceLabelV2N1 struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Label       *string  `json:"label"`       // propertyName=label type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14037,7 +14028,7 @@ type WANInterfaceLabelV2N2 struct {
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Label                *string               `json:"label"`                 // propertyName=label type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
 
@@ -14111,7 +14102,7 @@ type GlobalPrefixQueryFilter struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14136,7 +14127,7 @@ type BGPPeerQueryFilterV2N5 struct {
 	RouterId              *string    `json:"router_id"`               // propertyName=router_id type=STRING
 	Scope                 *string    `json:"scope"`                   // propertyName=scope type=STRING
 	Shutdown              *bool      `json:"shutdown"`                // propertyName=shutdown type=BOOLEAN
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource          *string    `json:"update_source"`           // propertyName=update_source type=STRING
 	UpdateSourceV6        *string    `json:"update_source_v6"`        // propertyName=update_source_v6 type=STRING
 	VrfContextId          *string    `json:"vrf_context_id"`          // propertyName=vrf_context_id type=STRING
@@ -14183,7 +14174,7 @@ type BGPPeerQueryFilterV2N6 struct {
 	RouterId              *string           `json:"router_id"`               // propertyName=router_id type=STRING
 	Scope                 *string           `json:"scope"`                   // propertyName=scope type=STRING
 	Shutdown              *bool             `json:"shutdown"`                // propertyName=shutdown type=BOOLEAN
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource          *string           `json:"update_source"`           // propertyName=update_source type=STRING
 	UpdateSourceV6        *string           `json:"update_source_v6"`        // propertyName=update_source_v6 type=STRING
 	VrfContextId          *string           `json:"vrf_context_id"`          // propertyName=vrf_context_id type=STRING
@@ -14207,7 +14198,7 @@ type BGPPeerQueryFilterV2N3 struct {
 	RouterId      *string    `json:"router_id"`        // propertyName=router_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 	VrfContextId  *string    `json:"vrf_context_id"`   // propertyName=vrf_context_id type=STRING
 }
@@ -14233,7 +14224,7 @@ type BGPPeerQueryFilterV2N4 struct {
 	RouterId        *string    `json:"router_id"`         // propertyName=router_id type=STRING
 	Scope           *string    `json:"scope"`             // propertyName=scope type=STRING
 	Shutdown        *bool      `json:"shutdown"`          // propertyName=shutdown type=BOOLEAN
-	Tags            []string   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource    *string    `json:"update_source"`     // propertyName=update_source type=STRING
 	UpdateSourceV6  *string    `json:"update_source_v6"`  // propertyName=update_source_v6 type=STRING
 	VrfContextId    *string    `json:"vrf_context_id"`    // propertyName=vrf_context_id type=STRING
@@ -14256,7 +14247,7 @@ type BGPPeerQueryFilterV2N1 struct {
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 }
 
@@ -14277,7 +14268,7 @@ type BGPPeerQueryFilterV2N2 struct {
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 }
 
@@ -14313,7 +14304,7 @@ type SecurityPolicyGlobalPrefixScreenV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14326,7 +14317,7 @@ type NATGlobalPrefix struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14375,7 +14366,7 @@ type DnsServiceProfile struct {
 	ListenPort             *int64                `json:"listen_port"`               // propertyName=listen_port type=INTEGER
 	Name                   *string               `json:"name"`                      // propertyName=name type=STRING
 	Region                 *string               `json:"region"`                    // propertyName=region type=STRING
-	Tags                   []string              `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string              `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14451,7 +14442,7 @@ type PerfMgmtThresholdProfile struct {
 	SoftLimitAppMetrics                 *StaticAppMetricConfig              `json:"soft_limit_app_metrics"`                 // propertyName=soft_limit_app_metrics type=REFERENCE
 	SyntheticProbeThresholds            *SyntheticProbeThresholds           `json:"synthetic_probe_thresholds"`             // propertyName=synthetic_probe_thresholds type=REFERENCE
 	SystemHealthMetricsThresholds       *SystemHealthMetricThresholds       `json:"system_health_metrics_thresholds"`       // propertyName=system_health_metrics_thresholds type=REFERENCE
-	Tags                                []string                            `json:"tags"`                                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string                            `json:"tags"`                                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14464,7 +14455,7 @@ type SiteSecurityPolicyV2N1PrefixAssociationScreen struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14602,7 +14593,7 @@ type ElementShellV2N1 struct {
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string           `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string          `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -14673,7 +14664,7 @@ type TacacsPlusProfile struct {
 	Id                     *string                  `json:"id"`                      // propertyName=id type=STRING
 	Name                   *string                  `json:"name"`                    // propertyName=name type=STRING
 	TacacsPlusServers      []TacacsPlusServerConfig `json:"tacacs_plus_servers"`     // propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
-	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14696,7 +14687,7 @@ type NATPolicySet struct {
 	Region                         *string         `json:"region"`                            // propertyName=region type=STRING
 	SendToElement                  *bool           `json:"send_to_element"`                   // propertyName=send_to_element type=BOOLEAN
 	SourceZonePolicyruleOrder      []string        `json:"source_zone_policyrule_order"`      // propertyName=source_zone_policyrule_order type=ARRAY_PRIMITIVE
-	Tags                           []string        `json:"tags"`                              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                           []string        `json:"tags"`                              // propertyName=tags type=SET_PRIMITIVE
 	UpdateOrder                    *bool           `json:"update_order"`                      // propertyName=update_order type=BOOLEAN
 }
 
@@ -14722,7 +14713,7 @@ type WANInterfaceLabelScreenV2N5 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
@@ -14739,7 +14730,7 @@ type WANInterfaceLabelScreenV2N3 struct {
 	Id                                  *string               `json:"id"`                                      // propertyName=id type=STRING
 	Label                               *string               `json:"label"`                                   // propertyName=label type=STRING
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	VpnlinkConfiguration                *VPNLinkConfiguration `json:"vpnlink_configuration"`                   // propertyName=vpnlink_configuration type=REFERENCE
@@ -14793,7 +14784,7 @@ type WANInterfaceLabelScreenV2N4 struct {
 	Label                               *string               `json:"label"`                                   // propertyName=label type=STRING
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
@@ -14836,7 +14827,7 @@ type WANInterfaceLabelScreenV2N1 struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Label       *string  `json:"label"`       // propertyName=label type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14849,7 +14840,7 @@ type WANInterfaceLabelScreenV2N2 struct {
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Label                *string               `json:"label"`                 // propertyName=label type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
 
@@ -14871,7 +14862,7 @@ type OspfConfig struct {
 	RouterId               *string               `json:"router_id"`                 // propertyName=router_id type=STRING
 	Scope                  *string               `json:"scope"`                     // propertyName=scope type=STRING
 	Shutdown               *bool                 `json:"shutdown"`                  // propertyName=shutdown type=BOOLEAN
-	Tags                   []string              `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string              `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId           *string               `json:"vrf_context_id"`            // propertyName=vrf_context_id type=STRING
 }
 
@@ -14899,7 +14890,7 @@ type UserIDAgentScreen struct {
 	ServerIp        *string                    `json:"server_ip"`        // propertyName=server_ip type=STRING
 	SiteId          *string                    `json:"site_id"`          // propertyName=site_id type=STRING
 	SourceInterface *string                    `json:"source_interface"` // propertyName=source_interface type=STRING
-	Tags            []string                   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -14921,7 +14912,7 @@ type DirectoryService struct {
 	GroupAttributes   *DirectoryGroupAttribute `json:"group_attributes"`    // propertyName=group_attributes type=REFERENCE
 	Id                *string                  `json:"id"`                  // propertyName=id type=STRING
 	Region            *string                  `json:"region"`              // propertyName=region type=STRING
-	Tags              []string                 `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string                 `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	UserAttributes    *DirectoryUserAttribute  `json:"user_attributes"`     // propertyName=user_attributes type=REFERENCE
 }
 
@@ -15003,7 +14994,7 @@ type NetworkPolicyRuleScreen struct {
 	PathsAllowed          *PathsAllowed   `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string         `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string        `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string        `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15163,7 +15154,7 @@ type SNMPTrap struct {
 	Id              *string           `json:"id"`               // propertyName=id type=STRING
 	ServerIp        *string           `json:"server_ip"`        // propertyName=server_ip type=STRING
 	SourceInterface *string           `json:"source_interface"` // propertyName=source_interface type=STRING
-	Tags            []string          `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string          `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	V2Config        *SNMPTrapV2Config `json:"v2_config"`        // propertyName=v2_config type=REFERENCE
 	V3Config        *SNMPTrapV3Config `json:"v3_config"`        // propertyName=v3_config type=REFERENCE
 	Version         *string           `json:"version"`          // propertyName=version type=STRING
@@ -15186,7 +15177,7 @@ type AnynetLinkV4 struct {
 	Forced               *bool                 `json:"forced"`                // propertyName=forced type=BOOLEAN
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -15294,7 +15285,7 @@ type RoutingCommunityListScreen struct {
 	Description   *string              `json:"description"`    // propertyName=description type=STRING
 	Id            *string              `json:"id"`             // propertyName=id type=STRING
 	Name          *string              `json:"name"`           // propertyName=name type=STRING
-	Tags          []string             `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string             `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15329,7 +15320,7 @@ type ElementShellQueryFilterV2N1 struct {
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string           `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string          `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -15412,7 +15403,7 @@ type NetworkPolicySetQueryFilter struct {
 	Description          *string  `json:"description"`           // propertyName=description type=STRING
 	Id                   *string  `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string  `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15435,7 +15426,7 @@ type VRFContextProfile struct {
 	Description              *string                   `json:"description"`                  // propertyName=description type=STRING
 	Id                       *string                   `json:"id"`                           // propertyName=id type=STRING
 	Name                     *string                   `json:"name"`                         // propertyName=name type=STRING
-	Tags                     []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	VrfContextIds            []string                  `json:"vrf_context_ids"`              // propertyName=vrf_context_ids type=ARRAY_PRIMITIVE
 	VrfContextRouteLeakRules []VRFContextRouteLeakRule `json:"vrf_context_route_leak_rules"` // propertyName=vrf_context_route_leak_rules type=ARRAY_REFERENCE
 }
@@ -15499,7 +15490,7 @@ type NTPTemplate struct {
 	Id              *string     `json:"id"`               // propertyName=id type=STRING
 	Name            *string     `json:"name"`             // propertyName=name type=STRING
 	NtpServers      []NTPServer `json:"ntp_servers"`      // propertyName=ntp_servers type=ARRAY_REFERENCE
-	Tags            []string    `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string    `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15513,7 +15504,7 @@ type NATPolicySetStackScreen struct {
 	Id                    *string  `json:"id"`                     // propertyName=id type=STRING
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	PolicysetIds          []string `json:"policyset_ids"`          // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15586,7 +15577,7 @@ type ElementShellScreen struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -15646,7 +15637,7 @@ type ServiceConnection struct {
 	SecurityServiceEpId *string                `json:"security_service_ep_id"` // propertyName=security_service_ep_id type=STRING
 	ServiceEndpointId   *string                `json:"service_endpoint_id"`    // propertyName=service_endpoint_id type=STRING
 	SiteId              *string                `json:"site_id"`                // propertyName=site_id type=STRING
-	Tags                []string               `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string               `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	Type                *ServiceConnectionType `json:"type"`                   // propertyName=type type=REFERENCE
 }
 
@@ -15817,7 +15808,7 @@ type SecurityPolicyV2SetStackQueryFilter struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15859,7 +15850,7 @@ type RoutingPrefixListScreen struct {
 	Id               *string               `json:"id"`                 // propertyName=id type=STRING
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	PrefixFilterList []RoutingPrefixFilter `json:"prefix_filter_list"` // propertyName=prefix_filter_list type=ARRAY_REFERENCE
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15878,7 +15869,7 @@ type UserIDAgentQueryFilter struct {
 	ServerIp        *string                    `json:"server_ip"`        // propertyName=server_ip type=STRING
 	SiteId          *string                    `json:"site_id"`          // propertyName=site_id type=STRING
 	SourceInterface *string                    `json:"source_interface"` // propertyName=source_interface type=STRING
-	Tags            []string                   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15914,7 +15905,7 @@ type ElementAggregateQueryFilterV2N5 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -15943,7 +15934,7 @@ type MulticastPeerGroup struct {
 	Id          *string             `json:"id"`          // propertyName=id type=STRING
 	Name        *string             `json:"name"`        // propertyName=name type=STRING
 	PeerSites   []MulticastPeerSite `json:"peer_sites"`  // propertyName=peer_sites type=ARRAY_REFERENCE
-	Tags        []string            `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string            `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -15987,7 +15978,7 @@ type SecurityPolicyV2RuleQueryFilter struct {
 	Services             []Service `json:"services"`               // propertyName=services type=ARRAY_REFERENCE
 	SourcePrefixIds      []string  `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string  `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
-	Tags                 []string  `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string  `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -16011,7 +16002,7 @@ type SiteSecurityPolicyV2N1PrefixAssociation struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -16095,7 +16086,7 @@ type ElementShell struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -16231,7 +16222,7 @@ type SiteScreenV4N10 struct {
 	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -16261,7 +16252,7 @@ type SiteScreenV4N11 struct {
 	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -16292,7 +16283,7 @@ type SiteScreenV4N12 struct {
 	SecurityPolicysetstackId            *string                         `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string                         `json:"service_binding"`                           // propertyName=service_binding type=STRING
 	SgiConfig                           *SecurityGroupInformationConfig `json:"sgi_config"`                                // propertyName=sgi_config type=REFERENCE
-	Tags                                []string                        `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string                        `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string                         `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -16315,7 +16306,7 @@ type SecurityPolicyV2N2RuleScreen struct {
 	SourcePrefixIds      []string   `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string   `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds         []string   `json:"src_device_ids"`         // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                 []string   `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string   `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup          *UserGroup `json:"user_or_group"`          // propertyName=user_or_group type=REFERENCE
 }
 
@@ -16413,7 +16404,7 @@ type WANInterfaceLabelQueryFilterV2N5 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
@@ -16453,7 +16444,7 @@ type WANInterfaceLabelQueryFilterV2N4 struct {
 	Label                               *string               `json:"label"`                                   // propertyName=label type=STRING
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
 	UseLqmForNonHubPaths                *bool                 `json:"use_lqm_for_non_hub_paths"`               // propertyName=use_lqm_for_non_hub_paths type=BOOLEAN
@@ -16558,7 +16549,7 @@ type ServiceEndpointV2N1 struct {
 	Name                   *string             `json:"name"`                     // propertyName=name type=STRING
 	ServiceLinkPeers       *ServiceLinkPeers   `json:"service_link_peers"`       // propertyName=service_link_peers type=REFERENCE
 	SiteId                 *string             `json:"site_id"`                  // propertyName=site_id type=STRING
-	Tags                   []string            `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string            `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 	Type                   *string             `json:"type"`                     // propertyName=type type=STRING
 }
 
@@ -16606,7 +16597,7 @@ type AnynetLinkV3N3 struct {
 	Forced               *bool                 `json:"forced"`                // propertyName=forced type=BOOLEAN
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -16635,7 +16626,7 @@ type AnynetLinkV3N2 struct {
 	Forced               *bool                 `json:"forced"`                // propertyName=forced type=BOOLEAN
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -16657,7 +16648,7 @@ type ServiceEndpointV2N3 struct {
 	SaseProperties         *SaseServiceEndpointProperties `json:"sase_properties"`          // propertyName=sase_properties type=REFERENCE
 	ServiceLinkPeers       *ServiceLinkPeers              `json:"service_link_peers"`       // propertyName=service_link_peers type=REFERENCE
 	SiteId                 *string                        `json:"site_id"`                  // propertyName=site_id type=STRING
-	Tags                   []string                       `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string                       `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 	Type                   *string                        `json:"type"`                     // propertyName=type type=STRING
 }
 
@@ -16677,7 +16668,7 @@ type ServiceEndpointV2N2 struct {
 	Name                   *string                 `json:"name"`                     // propertyName=name type=STRING
 	ServiceLinkPeers       *ServiceLinkPeers       `json:"service_link_peers"`       // propertyName=service_link_peers type=REFERENCE
 	SiteId                 *string                 `json:"site_id"`                  // propertyName=site_id type=STRING
-	Tags                   []string                `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string                `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 	Type                   *string                 `json:"type"`                     // propertyName=type type=STRING
 }
 
@@ -16703,7 +16694,7 @@ type RoutingRouteMapScreen struct {
 	Id              *string                `json:"id"`                // propertyName=id type=STRING
 	Name            *string                `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntry `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string               `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string               `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -16730,7 +16721,7 @@ type AnynetLinkV3N4 struct {
 	Forced               *bool                 `json:"forced"`                // propertyName=forced type=BOOLEAN
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -16750,7 +16741,7 @@ type AnynetLinkV3N1 struct {
 	Forced      *bool    `json:"forced"`        // propertyName=forced type=BOOLEAN
 	Id          *string  `json:"id"`            // propertyName=id type=STRING
 	Name        *string  `json:"name"`          // propertyName=name type=STRING
-	Tags        []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 	Type        *string  `json:"type"`          // propertyName=type type=STRING
 }
 
@@ -16919,7 +16910,7 @@ type IPSECProfileV2N2 struct {
 	Id             *string                `json:"id"`             // propertyName=id type=STRING
 	IkeGroup       *IKEGroup              `json:"ike_group"`      // propertyName=ike_group type=REFERENCE
 	Name           *string                `json:"name"`           // propertyName=name type=STRING
-	Tags           []string               `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string               `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UsedFor        *string                `json:"used_for"`       // propertyName=used_for type=STRING
 }
 
@@ -16997,7 +16988,7 @@ type AppDefQueryFilterTransformedV2N4 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -17030,7 +17021,7 @@ type AppDefQueryFilterTransformedV2N3 struct {
 	PathAffinity               *string                  `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -17067,7 +17058,7 @@ type AppDefQueryFilterTransformedV2N6 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -17163,7 +17154,7 @@ type SNMPAgent struct {
 	Schema      *int64        `json:"_schema"`     // propertyName=_schema type=INTEGER
 	Description *string       `json:"description"` // propertyName=description type=STRING
 	Id          *string       `json:"id"`          // propertyName=id type=STRING
-	Tags        []string      `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string      `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 	V2Config    *SNMPV2Config `json:"v2_config"`   // propertyName=v2_config type=REFERENCE
 	V3Config    *SNMPV3Config `json:"v3_config"`   // propertyName=v3_config type=REFERENCE
 }
@@ -17185,7 +17176,7 @@ type SecurityPolicyV2LocalPrefix struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17203,7 +17194,7 @@ type IPSECProfileQueryFilterV2N2 struct {
 	Id             *string                `json:"id"`             // propertyName=id type=STRING
 	IkeGroup       *IKEGroup              `json:"ike_group"`      // propertyName=ike_group type=REFERENCE
 	Name           *string                `json:"name"`           // propertyName=name type=STRING
-	Tags           []string               `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string               `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UsedFor        *string                `json:"used_for"`       // propertyName=used_for type=STRING
 }
 
@@ -17239,7 +17230,7 @@ type RoutingPrefixListQueryFilter struct {
 	Id               *string               `json:"id"`                 // propertyName=id type=STRING
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	PrefixFilterList []RoutingPrefixFilter `json:"prefix_filter_list"` // propertyName=prefix_filter_list type=ARRAY_REFERENCE
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17268,7 +17259,7 @@ type NATPolicySetStack struct {
 	Id                    *string  `json:"id"`                     // propertyName=id type=STRING
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	PolicysetIds          []string `json:"policyset_ids"`          // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17450,7 +17441,7 @@ type StaticRoute struct {
 	NetworkContextId  *string   `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Nexthops          []NextHop `json:"nexthops"`           // propertyName=nexthops type=ARRAY_REFERENCE
 	Scope             *string   `json:"scope"`              // propertyName=scope type=STRING
-	Tags              []string  `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string  `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17511,7 +17502,7 @@ type InterfaceScreenV4N17 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -17565,7 +17556,7 @@ type PerfMgmtPolicyRuleQueryFilter struct {
 	Name               *string            `json:"name"`                // propertyName=name type=STRING
 	PathFilters        []PathFilter       `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string           `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string           `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string           `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string            `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string            `json:"type"`                // propertyName=type type=STRING
 }
@@ -17754,7 +17745,7 @@ type RoutingCommunityList struct {
 	Description   *string              `json:"description"`    // propertyName=description type=STRING
 	Id            *string              `json:"id"`             // propertyName=id type=STRING
 	Name          *string              `json:"name"`           // propertyName=name type=STRING
-	Tags          []string             `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string             `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17811,7 +17802,7 @@ type PathPrefixDistributionAssociationFilter struct {
 	PathPrefixDistributionFilterId *string  `json:"path_prefix_distribution_filter_id"` // propertyName=path_prefix_distribution_filter_id type=STRING
 	PeerSiteIds                    []string `json:"peer_site_ids"`                      // propertyName=peer_site_ids type=ARRAY_PRIMITIVE
 	SiteId                         *string  `json:"site_id"`                            // propertyName=site_id type=STRING
-	Tags                           []string `json:"tags"`                               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                           []string `json:"tags"`                               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17868,7 +17859,7 @@ type DirectoryUserGroup struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	Stale       *bool    `json:"stale"`       // propertyName=stale type=BOOLEAN
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -17940,7 +17931,7 @@ type DirectoryServiceScreen struct {
 	GroupAttributes   *DirectoryGroupAttribute `json:"group_attributes"`    // propertyName=group_attributes type=REFERENCE
 	Id                *string                  `json:"id"`                  // propertyName=id type=STRING
 	Region            *string                  `json:"region"`              // propertyName=region type=STRING
-	Tags              []string                 `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string                 `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	UserAttributes    *DirectoryUserAttribute  `json:"user_attributes"`     // propertyName=user_attributes type=REFERENCE
 }
 
@@ -17969,7 +17960,7 @@ type PathPrefixDistributionFiltersAssociation struct {
 	Name                           *string  `json:"name"`                               // propertyName=name type=STRING
 	PathPrefixDistributionFilterId *string  `json:"path_prefix_distribution_filter_id"` // propertyName=path_prefix_distribution_filter_id type=STRING
 	PeerSiteIds                    []string `json:"peer_site_ids"`                      // propertyName=peer_site_ids type=ARRAY_PRIMITIVE
-	Tags                           []string `json:"tags"`                               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                           []string `json:"tags"`                               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18033,7 +18024,7 @@ type LANNetworkQueryFilterV3N3 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId     *string               `json:"vrf_context_id"`     // propertyName=vrf_context_id type=STRING
 }
 
@@ -18080,7 +18071,7 @@ type LANNetworkQueryFilterV3N2 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18196,7 +18187,7 @@ type MulticastPeerGroupScreenV2N1 struct {
 	IsSourceSiteReceiver *bool               `json:"is_source_site_receiver"` // propertyName=is_source_site_receiver type=BOOLEAN
 	Name                 *string             `json:"name"`                    // propertyName=name type=STRING
 	PeerSites            []MulticastPeerSite `json:"peer_sites"`              // propertyName=peer_sites type=ARRAY_REFERENCE
-	Tags                 []string            `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string            `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18377,7 +18368,7 @@ type ProbeProfile struct {
 	Id             *string  `json:"id"`               // propertyName=id type=STRING
 	Name           *string  `json:"name"`             // propertyName=name type=STRING
 	ProbeConfigIds []string `json:"probe_config_ids"` // propertyName=probe_config_ids type=ARRAY_PRIMITIVE
-	Tags           []string `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18418,7 +18409,7 @@ type ElementNTPState struct {
 	NtpServers         []NTPServerState `json:"ntp_servers"`          // propertyName=ntp_servers type=ARRAY_REFERENCE
 	Region             *string          `json:"region"`               // propertyName=region type=STRING
 	SourceInterfaceIds []string         `json:"source_interface_ids"` // propertyName=source_interface_ids type=ARRAY_PRIMITIVE
-	Tags               []string         `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string         `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18432,7 +18423,7 @@ type NATPolicySetStackPOSTScreen struct {
 	Id                    *string  `json:"id"`                     // propertyName=id type=STRING
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	PolicysetIds          []string `json:"policyset_ids"`          // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18504,7 +18495,7 @@ type AnynetLinkCreateBulkOperation struct {
 	Id          *string                  `json:"id"`          // propertyName=id type=STRING
 	Items       []AnynetLinkBulkCreateV4 `json:"items"`       // propertyName=items type=ARRAY_REFERENCE
 	Name        *string                  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string                 `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string                 `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18519,7 +18510,7 @@ type SecurityPolicyV2SetQueryFilter struct {
 	Id                   *string  `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string  `json:"name"`                  // propertyName=name type=STRING
 	PolicyruleOrder      []string `json:"policyrule_order"`      // propertyName=policyrule_order type=ARRAY_PRIMITIVE
-	Tags                 []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18627,7 +18618,7 @@ type DeviceIdStartNodeScreen struct {
 	Ipv4Address *string                `json:"ipv4_address"` // propertyName=ipv4_address type=STRING
 	Name        *string                `json:"name"`         // propertyName=name type=STRING
 	Scope       []StartNodeScopeConfig `json:"scope"`        // propertyName=scope type=ARRAY_REFERENCE
-	Tags        []string               `json:"tags"`         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string               `json:"tags"`         // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18642,7 +18633,7 @@ type SecurityPolicyV2Set struct {
 	Id                   *string  `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string  `json:"name"`                  // propertyName=name type=STRING
 	PolicyruleOrder      []string `json:"policyrule_order"`      // propertyName=policyrule_order type=ARRAY_PRIMITIVE
-	Tags                 []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18694,7 +18685,7 @@ type ServiceBindingMap struct {
 	Id              *string          `json:"id"`               // propertyName=id type=STRING
 	Name            *string          `json:"name"`             // propertyName=name type=STRING
 	ServiceBindings []ServiceBinding `json:"service_bindings"` // propertyName=service_bindings type=ARRAY_REFERENCE
-	Tags            []string         `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string         `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18763,7 +18754,7 @@ type SDWANAppReleaseInfo struct {
 	ReleaseDate    *int64      `json:"release_date"`    // propertyName=release_date type=INTEGER
 	ReleaseNotes   *string     `json:"release_notes"`   // propertyName=release_notes type=STRING
 	State          *string     `json:"state"`           // propertyName=state type=STRING
-	Tags           []string    `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string    `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 	Version        *string     `json:"version"`         // propertyName=version type=STRING
 }
 
@@ -18778,7 +18769,7 @@ type SDWANAppReleaseInfoResponse struct {
 	Id          *string               `json:"id"`          // propertyName=id type=STRING
 	Name        *string               `json:"name"`        // propertyName=name type=STRING
 	Releases    []SDWANAppReleaseInfo `json:"releases"`    // propertyName=releases type=ARRAY_REFERENCE
-	Tags        []string              `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string              `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -18813,7 +18804,7 @@ type SDWANAppRelease struct {
 	ReleaseDate    *int64              `json:"release_date"`    // propertyName=release_date type=INTEGER
 	ReleaseNotes   *string             `json:"release_notes"`   // propertyName=release_notes type=STRING
 	State          *string             `json:"state"`           // propertyName=state type=STRING
-	Tags           []string            `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string            `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 	Version        *string             `json:"version"`         // propertyName=version type=STRING
 }
 
@@ -18891,7 +18882,7 @@ type ElementScreenV3N2 struct {
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software         `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string          `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -18935,7 +18926,7 @@ type ElementScreenV3N1 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -18954,7 +18945,7 @@ type StaticRouteV2N3 struct {
 	NexthopReachabilityProbe *bool     `json:"nexthop_reachability_probe"` // propertyName=nexthop_reachability_probe type=BOOLEAN
 	Nexthops                 []NextHop `json:"nexthops"`                   // propertyName=nexthops type=ARRAY_REFERENCE
 	Scope                    *string   `json:"scope"`                      // propertyName=scope type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId             *string   `json:"vrf_context_id"`             // propertyName=vrf_context_id type=STRING
 }
 
@@ -18981,7 +18972,7 @@ type StaticRouteV2N2 struct {
 	NexthopReachabilityProbe *bool     `json:"nexthop_reachability_probe"` // propertyName=nexthop_reachability_probe type=BOOLEAN
 	Nexthops                 []NextHop `json:"nexthops"`                   // propertyName=nexthops type=ARRAY_REFERENCE
 	Scope                    *string   `json:"scope"`                      // propertyName=scope type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19015,7 +19006,7 @@ type IPSECProfile struct {
 	Id             *string                `json:"id"`             // propertyName=id type=STRING
 	IkeGroup       *IKEGroup              `json:"ike_group"`      // propertyName=ike_group type=REFERENCE
 	Name           *string                `json:"name"`           // propertyName=name type=STRING
-	Tags           []string               `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string               `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19029,7 +19020,7 @@ type SecurityPolicyGlobalPrefixV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19077,7 +19068,7 @@ type ElementQueryFilterV2N7 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -19096,7 +19087,7 @@ type SyslogServer struct {
 	ServerPort      *int64   `json:"server_port"`      // propertyName=server_port type=INTEGER
 	SeverityLevel   *string  `json:"severity_level"`   // propertyName=severity_level type=STRING
 	SourceInterface *string  `json:"source_interface"` // propertyName=source_interface type=STRING
-	Tags            []string `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19135,7 +19126,7 @@ type ElementQueryFilterV2N6 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -19199,7 +19190,7 @@ type ElementQueryFilterV2N5 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -19232,7 +19223,7 @@ type ElementQueryFilterV2N4 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -19265,7 +19256,7 @@ type ElementQueryFilterV2N3 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV1 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -19296,7 +19287,7 @@ type ElementQueryFilterV2N2 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV1 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19320,7 +19311,7 @@ type SecurityPolicyGlobalPrefixScreen struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19374,7 +19365,7 @@ type AppdefOverrideV2N2 struct {
 	OverridesDisable           *bool       `json:"overrides_disable"`            // propertyName=overrides_disable type=BOOLEAN
 	PathAffinity               *string     `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64      `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
-	Tags                       []string    `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string    `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []TcpRuleV2 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType               *string     `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []UdpRuleV2 `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -19404,7 +19395,7 @@ type AppdefOverrideV2N3 struct {
 	PCategory                  *string     `json:"p_category"`                   // propertyName=p_category type=STRING
 	PathAffinity               *string     `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64      `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
-	Tags                       []string    `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string    `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []TcpRuleV2 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType               *string     `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []UdpRuleV2 `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -19516,7 +19507,7 @@ type AppdefOverrideV2N1 struct {
 	OverridesDisable           *bool       `json:"overrides_disable"`            // propertyName=overrides_disable type=BOOLEAN
 	PathAffinity               *string     `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64      `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
-	Tags                       []string    `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string    `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []TcpRuleV1 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType               *string     `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []UdpRuleV1 `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -19600,7 +19591,7 @@ type ApplicationProbeScreen struct {
 	Id                *string  `json:"id"`                  // propertyName=id type=STRING
 	Name              *string  `json:"name"`                // propertyName=name type=STRING
 	SourceInterfaceId *string  `json:"source_interface_id"` // propertyName=source_interface_id type=STRING
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19724,7 +19715,7 @@ type BGPPeerQueryFilter struct {
 	RemoteAsNum   *string    `json:"remote_as_num"`    // propertyName=remote_as_num type=STRING
 	RouteMapInId  *string    `json:"route_map_in_id"`  // propertyName=route_map_in_id type=STRING
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 }
 
@@ -19763,7 +19754,7 @@ type NetworkPolicyPrefixS struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19776,7 +19767,7 @@ type DeviceIdElementConfigScreen struct {
 	Id                             *string  `json:"id"`                                 // propertyName=id type=STRING
 	Name                           *string  `json:"name"`                               // propertyName=name type=STRING
 	SnmpDiscoverySourceInterfaceId *string  `json:"snmp_discovery_source_interface_id"` // propertyName=snmp_discovery_source_interface_id type=STRING
-	Tags                           []string `json:"tags"`                               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                           []string `json:"tags"`                               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19804,7 +19795,7 @@ type RoutingAccessListScreenV2N1 struct {
 	Description     *string       `json:"description"`        // propertyName=description type=STRING
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
-	Tags            []string      `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19816,7 +19807,7 @@ type IPFixLocalPrefix struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -19956,7 +19947,7 @@ type IPFixTemplateScreen struct {
 	Name                  *string  `json:"name"`                    // propertyName=name type=STRING
 	OptionExportTimeout   *int64   `json:"option_export_timeout"`   // propertyName=option_export_timeout type=INTEGER
 	Options               []string `json:"options"`                 // propertyName=options type=ARRAY_PRIMITIVE
-	Tags                  []string `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	TemplateExportTimeout *int64   `json:"template_export_timeout"` // propertyName=template_export_timeout type=INTEGER
 }
 
@@ -19993,7 +19984,7 @@ type PerfMgmtPolicyRule struct {
 	Name               *string            `json:"name"`                // propertyName=name type=STRING
 	PathFilters        []PathFilter       `json:"path_filters"`        // propertyName=path_filters type=ARRAY_REFERENCE
 	ServiceLabelIds    []string           `json:"service_label_ids"`   // propertyName=service_label_ids type=ARRAY_PRIMITIVE
-	Tags               []string           `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string           `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 	ThresholdprofileId *string            `json:"thresholdprofile_id"` // propertyName=thresholdprofile_id type=STRING
 	Type               *string            `json:"type"`                // propertyName=type type=STRING
 }
@@ -20034,7 +20025,7 @@ type RoutingRouteMapScreenV2N2 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N2 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20056,7 +20047,7 @@ type RoutingRouteMapScreenV2N3 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N3 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 	UsedFor         *string                    `json:"used_for"`          // propertyName=used_for type=STRING
 }
 
@@ -20104,7 +20095,7 @@ type SecurityPolicyV2SetStack struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20123,7 +20114,7 @@ type SyslogServerV2N1 struct {
 	ServerPort        *int64   `json:"server_port"`         // propertyName=server_port type=INTEGER
 	SeverityLevel     *string  `json:"severity_level"`      // propertyName=severity_level type=STRING
 	SourceInterface   *string  `json:"source_interface"`    // propertyName=source_interface type=STRING
-	Tags              []string `json:"tags"`                // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string `json:"tags"`                // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20160,7 +20151,7 @@ type RoutingRouteMapScreenV2N1 struct {
 	Id              *string                    `json:"id"`                // propertyName=id type=STRING
 	Name            *string                    `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntryV2N1 `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string                   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string                   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20220,7 +20211,7 @@ type ElementRadiusScreen struct {
 	RadiusConfiguration []RadiusConfiguration `json:"radius_configuration"` // propertyName=radius_configuration type=ARRAY_REFERENCE
 	RadiusProfileId     *string               `json:"radius_profile_id"`    // propertyName=radius_profile_id type=STRING
 	SourceInterfaceId   *string               `json:"source_interface_id"`  // propertyName=source_interface_id type=STRING
-	Tags                []string              `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string              `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20248,7 +20239,7 @@ type NetworkPolicyGlobalPrefix struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20303,7 +20294,7 @@ type VRFContextProfileQueryFilter struct {
 	Description              *string                   `json:"description"`                  // propertyName=description type=STRING
 	Id                       *string                   `json:"id"`                           // propertyName=id type=STRING
 	Name                     *string                   `json:"name"`                         // propertyName=name type=STRING
-	Tags                     []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	VrfContextIds            []string                  `json:"vrf_context_ids"`              // propertyName=vrf_context_ids type=ARRAY_PRIMITIVE
 	VrfContextRouteLeakRules []VRFContextRouteLeakRule `json:"vrf_context_route_leak_rules"` // propertyName=vrf_context_route_leak_rules type=ARRAY_REFERENCE
 }
@@ -20387,7 +20378,7 @@ type RoutingRouteMapQueryFilter struct {
 	Id              *string                `json:"id"`                // propertyName=id type=STRING
 	Name            *string                `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntry `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string               `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string               `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20594,7 +20585,7 @@ type PerfMgmtPolicySet struct {
 	PolicyRules               []BasePolicyRule     `json:"policy_rules"`                 // propertyName=policy_rules type=ARRAY_REFERENCE
 	Region                    *string              `json:"region"`                       // propertyName=region type=STRING
 	SendToElement             *bool                `json:"send_to_element"`              // propertyName=send_to_element type=BOOLEAN
-	Tags                      []string             `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                      []string             `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20674,7 +20665,7 @@ type PriorityPolicySetStackQueryFilter struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20718,7 +20709,7 @@ type ElementNTPV2N1 struct {
 	Name               *string     `json:"name"`                 // propertyName=name type=STRING
 	NtpServers         []NTPServer `json:"ntp_servers"`          // propertyName=ntp_servers type=ARRAY_REFERENCE
 	SourceInterfaceIds []string    `json:"source_interface_ids"` // propertyName=source_interface_ids type=ARRAY_PRIMITIVE
-	Tags               []string    `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string    `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20761,7 +20752,7 @@ type DnsService struct {
 	Name                    *string                  `json:"name"`                       // propertyName=name type=STRING
 	Region                  *string                  `json:"region"`                     // propertyName=region type=STRING
 	SiteId                  *string                  `json:"site_id"`                    // propertyName=site_id type=STRING
-	Tags                    []string                 `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string                 `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	Uppercasename           *string                  `json:"upperCaseName"`              // propertyName=upperCaseName type=STRING
 }
 
@@ -20856,7 +20847,7 @@ type NATPolicyRuleQueryFilter struct {
 	SourcePorts           []PortRange `json:"source_ports"`            // propertyName=source_ports type=ARRAY_REFERENCE
 	SourcePrefixesId      *string     `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SourceZoneId          *string     `json:"source_zone_id"`          // propertyName=source_zone_id type=STRING
-	Tags                  []string    `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string    `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21163,7 +21154,7 @@ type PriorityPolicyGlobalPrefixV2N1 struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21412,7 +21403,7 @@ type StaticRouteV2N1 struct {
 	NexthopReachabilityProbe *bool     `json:"nexthop_reachability_probe"` // propertyName=nexthop_reachability_probe type=BOOLEAN
 	Nexthops                 []NextHop `json:"nexthops"`                   // propertyName=nexthops type=ARRAY_REFERENCE
 	Scope                    *string   `json:"scope"`                      // propertyName=scope type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21469,7 +21460,7 @@ type ProbeConfigScreen struct {
 	Endpoints   []ProbeEndpoint `json:"endpoints"`   // propertyName=endpoints type=ARRAY_REFERENCE
 	Id          *string         `json:"id"`          // propertyName=id type=STRING
 	Name        *string         `json:"name"`        // propertyName=name type=STRING
-	Tags        []string        `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string        `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21709,7 +21700,7 @@ type SitePrefixAssociationQueryFilter struct {
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
 	SiteId       *string  `json:"site_id"`       // propertyName=site_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21753,7 +21744,7 @@ type SDWANAppReleaseInfoV2N1 struct {
 	ReleaseDate    *int64                      `json:"release_date"`    // propertyName=release_date type=INTEGER
 	ReleaseNotes   *string                     `json:"release_notes"`   // propertyName=release_notes type=STRING
 	State          *string                     `json:"state"`           // propertyName=state type=STRING
-	Tags           []string                    `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string                    `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 	Version        *string                     `json:"version"`         // propertyName=version type=STRING
 }
 
@@ -21770,7 +21761,7 @@ type SDWANAppReleaseInfoV2N2 struct {
 	ReleaseDate    *int64                      `json:"release_date"`    // propertyName=release_date type=INTEGER
 	ReleaseNotes   *string                     `json:"release_notes"`   // propertyName=release_notes type=STRING
 	State          *string                     `json:"state"`           // propertyName=state type=STRING
-	Tags           []string                    `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string                    `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 	Version        *string                     `json:"version"`         // propertyName=version type=STRING
 }
 
@@ -21833,7 +21824,7 @@ type TacacsPlusProfileScreen struct {
 	Id                     *string                  `json:"id"`                      // propertyName=id type=STRING
 	Name                   *string                  `json:"name"`                    // propertyName=name type=STRING
 	TacacsPlusServers      []TacacsPlusServerConfig `json:"tacacs_plus_servers"`     // propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
-	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21894,7 +21885,7 @@ type EventCorrelationPolicyRuleQueryFilterV2N1 struct {
 	StartTime         *int64          `json:"start_time"`         // propertyName=start_time type=INTEGER
 	SubResourceType   *string         `json:"sub_resource_type"`  // propertyName=sub_resource_type type=STRING
 	Suppress          *string         `json:"suppress"`           // propertyName=suppress type=STRING
-	Tags              []string        `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags              []string        `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -21927,7 +21918,7 @@ type SiteNetworkPrefixAssociation struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	PrefixId     *string  `json:"prefix_id"`     // propertyName=prefix_id type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22016,7 +22007,7 @@ type InterfaceScreenV4N20 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -22041,7 +22032,7 @@ type NetworkPolicyRuleQueryFilterV2N1 struct {
 	PolicysetId           *string           `json:"policyset_id"`            // propertyName=policyset_id type=STRING
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22087,7 +22078,7 @@ type NetworkPolicyRuleScreenV2N3 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -22108,7 +22099,7 @@ type NetworkPolicyRuleScreenV2N2 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -22122,7 +22113,7 @@ type ServiceBindingMapScreen struct {
 	Id              *string          `json:"id"`               // propertyName=id type=STRING
 	Name            *string          `json:"name"`             // propertyName=name type=STRING
 	ServiceBindings []ServiceBinding `json:"service_bindings"` // propertyName=service_bindings type=ARRAY_REFERENCE
-	Tags            []string         `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string         `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22158,7 +22149,7 @@ type NetworkPolicyRuleQueryFilterV2N2 struct {
 	PolicysetId           *string           `json:"policyset_id"`            // propertyName=policyset_id type=STRING
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -22182,7 +22173,7 @@ type NetworkPolicyRuleScreenV2N4 struct {
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SrcDeviceIds          []string          `json:"src_device_ids"`          // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -22203,7 +22194,7 @@ type NetworkPolicyRuleScreenV2N1 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22243,7 +22234,7 @@ type InterfaceScreenV4N11 struct {
 	SiteWanInterfaceIds        []string                  `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig         `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface             `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                   `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                   `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -22283,7 +22274,7 @@ type InterfaceScreenV4N10 struct {
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig       `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -22345,7 +22336,7 @@ type InterfaceScreenV4N15 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -22397,7 +22388,7 @@ type InterfaceScreenV4N14 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`           // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                     // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                  // propertyName=vlan_config type=REFERENCE
@@ -22449,7 +22440,7 @@ type InterfaceScreenV4N13 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`           // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                     // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                  // propertyName=vlan_config type=REFERENCE
@@ -22495,7 +22486,7 @@ type InterfaceScreenV4N12 struct {
 	SiteWanInterfaceIds        []string                  `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig         `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface             `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                  `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                   `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                   `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -22548,7 +22539,7 @@ type InterfaceScreenV4N19 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -22602,7 +22593,7 @@ type InterfaceScreenV4N18 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -22676,7 +22667,7 @@ type InterfaceScreenV4N16 struct {
 	StaticArpConfigs           []StaticARPConfig              `json:"static_arp_configs"`            // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface                  `json:"sub_interface"`                 // propertyName=sub_interface type=REFERENCE
 	SwitchPortConfig           *SwitchPortConfig              `json:"switch_port_config"`            // propertyName=switch_port_config type=REFERENCE
-	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                       `json:"tags"`                          // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                        `json:"type"`                          // propertyName=type type=STRING
 	UsedFor                    *string                        `json:"used_for"`                      // propertyName=used_for type=STRING
 	VlanConfig                 *VlanConfig                    `json:"vlan_config"`                   // propertyName=vlan_config type=REFERENCE
@@ -22701,7 +22692,7 @@ type SiteQueryFilterV4N3 struct {
 	PriorityPolicysetstackId *string   `json:"priority_policysetstack_id"` // propertyName=priority_policysetstack_id type=STRING
 	SecurityPolicysetId      *string   `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	ServiceBinding           *string   `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22723,7 +22714,7 @@ type SiteQueryFilterV4N4 struct {
 	PriorityPolicysetstackId *string   `json:"priority_policysetstack_id"` // propertyName=priority_policysetstack_id type=STRING
 	SecurityPolicysetId      *string   `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	ServiceBinding           *string   `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string  `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string  `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22746,7 +22737,7 @@ type SiteQueryFilterV4N5 struct {
 	PriorityPolicysetstackId *string       `json:"priority_policysetstack_id"` // propertyName=priority_policysetstack_id type=STRING
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22770,7 +22761,7 @@ type SiteQueryFilterV4N6 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22877,7 +22868,7 @@ type SiteQueryFilterV4N7 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22917,7 +22908,7 @@ type SiteQueryFilterV4N8 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId      *string       `json:"vrf_context_profile_id"`     // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -22934,7 +22925,7 @@ type HubClusterV4 struct {
 	Name                    *string             `json:"name"`                       // propertyName=name type=STRING
 	PeerSites               []string            `json:"peer_sites"`                 // propertyName=peer_sites type=ARRAY_PRIMITIVE
 	SiteCountAlarmThreshold *int64              `json:"site_count_alarm_threshold"` // propertyName=site_count_alarm_threshold type=INTEGER
-	Tags                    []string            `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string            `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22960,7 +22951,7 @@ type SiteQueryFilterV4N9 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId      *string       `json:"vrf_context_profile_id"`     // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -22984,7 +22975,7 @@ type DHCPServerScreenV2N1 struct {
 	NetworkContextId *string             `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMapping     `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string             `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string            `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string            `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23017,7 +23008,7 @@ type AppDefV2N6 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -23062,7 +23053,7 @@ type AppDefV2N5 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -23151,7 +23142,7 @@ type MSTPInstanceScreen struct {
 	InstanceNumber   *int64   `json:"instance_number"`   // propertyName=instance_number type=INTEGER
 	InstancePriority *int64   `json:"instance_priority"` // propertyName=instance_priority type=INTEGER
 	Name             *string  `json:"name"`              // propertyName=name type=STRING
-	Tags             []string `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23174,7 +23165,7 @@ type LANNetworkQueryFilterV3N1 struct {
 	Name             *string               `json:"name"`               // propertyName=name type=STRING
 	NetworkContextId *string               `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	Scope            *string               `json:"scope"`              // propertyName=scope type=STRING
-	Tags             []string              `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string              `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23198,7 +23189,7 @@ type DHCPServerScreenV2N3 struct {
 	NetworkContextId *string             `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMappingV2   `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string             `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string            `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string            `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId     *string             `json:"vrf_context_id"`     // propertyName=vrf_context_id type=STRING
 }
 
@@ -23223,7 +23214,7 @@ type DHCPServerScreenV2N2 struct {
 	NetworkContextId *string             `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMappingV2   `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string             `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string            `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string            `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23425,7 +23416,7 @@ type IPFixProfileScreen struct {
 	IpfixtemplateId    *string           `json:"ipfixtemplate_id"`     // propertyName=ipfixtemplate_id type=STRING
 	Name               *string           `json:"name"`                 // propertyName=name type=STRING
 	Sampler            *IPFixSampler     `json:"sampler"`              // propertyName=sampler type=REFERENCE
-	Tags               []string          `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string          `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23649,7 +23640,7 @@ type SecurityPolicyV2SetStackScreen struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23689,7 +23680,7 @@ type SpokeCluster struct {
 	Id                    *string  `json:"id"`                     // propertyName=id type=STRING
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	Preempt               *bool    `json:"preempt"`                // propertyName=preempt type=BOOLEAN
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23708,7 +23699,7 @@ type SyslogServerProfileScreen struct {
 	ServerIp            *string  `json:"server_ip"`             // propertyName=server_ip type=STRING
 	ServerPort          *int64   `json:"server_port"`           // propertyName=server_port type=INTEGER
 	SeverityLevel       *string  `json:"severity_level"`        // propertyName=severity_level type=STRING
-	Tags                []string `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -23813,7 +23804,7 @@ type InterfaceQueryResponseV4N7 struct {
 	ServiceLinkConfig          *ServiceLinkV1          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -23849,7 +23840,7 @@ type InterfaceQueryResponseV4N9 struct {
 	ServiceLinkConfig          *ServiceLinkV3          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -23914,7 +23905,7 @@ type InterfaceQueryResponseV4N8 struct {
 	ServiceLinkConfig          *ServiceLinkV3          `json:"service_link_config"`          // propertyName=service_link_config type=REFERENCE
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -23928,7 +23919,7 @@ type NATLocalPrefix struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24271,7 +24262,7 @@ type PerfMgmtThresholdProfileScreenV2N1 struct {
 	SoftLimitAppMetrics                 *StaticAppMetricConfigV2N1          `json:"soft_limit_app_metrics"`                 // propertyName=soft_limit_app_metrics type=REFERENCE
 	SyntheticProbeThresholds            *SyntheticProbeThresholds           `json:"synthetic_probe_thresholds"`             // propertyName=synthetic_probe_thresholds type=REFERENCE
 	SystemHealthMetricsThresholds       *SystemHealthMetricsThresholds      `json:"system_health_metrics_thresholds"`       // propertyName=system_health_metrics_thresholds type=REFERENCE
-	Tags                                []string                            `json:"tags"`                                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string                            `json:"tags"`                                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24285,7 +24276,7 @@ type RoutingRouteMap struct {
 	Id              *string                `json:"id"`                // propertyName=id type=STRING
 	Name            *string                `json:"name"`              // propertyName=name type=STRING
 	RouteMapEntries []RoutingRouteMapEntry `json:"route_map_entries"` // propertyName=route_map_entries type=ARRAY_REFERENCE
-	Tags            []string               `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string               `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24317,7 +24308,7 @@ type SpokeClusterQueryFilter struct {
 	Id                    *string  `json:"id"`                     // propertyName=id type=STRING
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	Preempt               *bool    `json:"preempt"`                // propertyName=preempt type=BOOLEAN
-	Tags                  []string `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24356,7 +24347,7 @@ type PerfMgmtThresholdProfileV2N1 struct {
 	SoftLimitAppMetrics                 *StaticAppMetricConfigV2N1          `json:"soft_limit_app_metrics"`                 // propertyName=soft_limit_app_metrics type=REFERENCE
 	SyntheticProbeThresholds            *SyntheticProbeThresholds           `json:"synthetic_probe_thresholds"`             // propertyName=synthetic_probe_thresholds type=REFERENCE
 	SystemHealthMetricsThresholds       *SystemHealthMetricsThresholds      `json:"system_health_metrics_thresholds"`       // propertyName=system_health_metrics_thresholds type=REFERENCE
-	Tags                                []string                            `json:"tags"`                                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string                            `json:"tags"`                                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24395,7 +24386,7 @@ type WANInterfaceV2N9 struct {
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -24432,7 +24423,7 @@ type WANInterfaceV2N8 struct {
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
 	ProbeProfileId                      *string               `json:"probe_profile_id"`                        // propertyName=probe_profile_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -24544,7 +24535,7 @@ type IPSECProfileScreen struct {
 	Id             *string                `json:"id"`             // propertyName=id type=STRING
 	IkeGroup       *IKEGroup              `json:"ike_group"`      // propertyName=ike_group type=REFERENCE
 	Name           *string                `json:"name"`           // propertyName=name type=STRING
-	Tags           []string               `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string               `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24572,7 +24563,7 @@ type SNMPAgentV2N1 struct {
 	Id             *string       `json:"id"`              // propertyName=id type=STRING
 	SystemContact  *string       `json:"system_contact"`  // propertyName=system_contact type=STRING
 	SystemLocation *string       `json:"system_location"` // propertyName=system_location type=STRING
-	Tags           []string      `json:"tags"`            // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string      `json:"tags"`            // propertyName=tags type=SET_PRIMITIVE
 	V2Config       *SNMPV2Config `json:"v2_config"`       // propertyName=v2_config type=REFERENCE
 	V3Config       *SNMPV3Config `json:"v3_config"`       // propertyName=v3_config type=REFERENCE
 }
@@ -24672,7 +24663,7 @@ type ProbeProfileScreen struct {
 	Id             *string  `json:"id"`               // propertyName=id type=STRING
 	Name           *string  `json:"name"`             // propertyName=name type=STRING
 	ProbeConfigIds []string `json:"probe_config_ids"` // propertyName=probe_config_ids type=ARRAY_PRIMITIVE
-	Tags           []string `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags           []string `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24685,7 +24676,7 @@ type DirectoryUser struct {
 	Id           *string  `json:"id"`             // propertyName=id type=STRING
 	Name         *string  `json:"name"`           // propertyName=name type=STRING
 	Stale        *bool    `json:"stale"`          // propertyName=stale type=BOOLEAN
-	Tags         []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 	UserGroupIds []string `json:"user_group_ids"` // propertyName=user_group_ids type=ARRAY_PRIMITIVE
 }
 
@@ -24709,7 +24700,7 @@ type PathPrefixes struct {
 	Id                     *string            `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string            `json:"name"`                     // propertyName=name type=STRING
 	PeerSiteId             *string            `json:"peer_site_id"`             // propertyName=peer_site_id type=STRING
-	Tags                   []string           `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string           `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24723,7 +24714,7 @@ type PathPrefixDistributionQueryFilter struct {
 	Name                 *string                `json:"name"`                    // propertyName=name type=STRING
 	PathPrefixFilterList []PathPrefixFilterList `json:"path_prefix_filter_list"` // propertyName=path_prefix_filter_list type=ARRAY_REFERENCE
 	SiteId               *string                `json:"site_id"`                 // propertyName=site_id type=STRING
-	Tags                 []string               `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string               `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24867,7 +24858,7 @@ type IPFixConfig struct {
 	IpfixtemplateId    *string           `json:"ipfixtemplate_id"`     // propertyName=ipfixtemplate_id type=STRING
 	Name               *string           `json:"name"`                 // propertyName=name type=STRING
 	Sampler            *IPFixSampler     `json:"sampler"`              // propertyName=sampler type=REFERENCE
-	Tags               []string          `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string          `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -24912,7 +24903,7 @@ type WANInterfaceV2N6 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -24938,7 +24929,7 @@ type WANInterfaceV2N5 struct {
 	LqmEnabled           *bool                 `json:"lqm_enabled"`           // propertyName=lqm_enabled type=BOOLEAN
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
 	NetworkId            *string               `json:"network_id"`            // propertyName=network_id type=STRING
-	Tags                 []string              `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }
@@ -24985,7 +24976,7 @@ type WANInterfaceV2N7 struct {
 	LqmEnabled                          *bool                 `json:"lqm_enabled"`                             // propertyName=lqm_enabled type=BOOLEAN
 	Name                                *string               `json:"name"`                                    // propertyName=name type=STRING
 	NetworkId                           *string               `json:"network_id"`                              // propertyName=network_id type=STRING
-	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string              `json:"tags"`                                    // propertyName=tags type=SET_PRIMITIVE
 	Type                                *string               `json:"type"`                                    // propertyName=type type=STRING
 	UseForApplicationReachabilityProbes *bool                 `json:"use_for_application_reachability_probes"` // propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForControllerConnections         *bool                 `json:"use_for_controller_connections"`          // propertyName=use_for_controller_connections type=BOOLEAN
@@ -25032,7 +25023,7 @@ type WANInterfaceV2N4 struct {
 	LqmEnabled   *bool      `json:"lqm_enabled"`    // propertyName=lqm_enabled type=BOOLEAN
 	Name         *string    `json:"name"`           // propertyName=name type=STRING
 	NetworkId    *string    `json:"network_id"`     // propertyName=network_id type=STRING
-	Tags         []string   `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string   `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25053,7 +25044,7 @@ type WANInterfaceV2N3 struct {
 	LqmEnabled   *bool    `json:"lqm_enabled"`    // propertyName=lqm_enabled type=BOOLEAN
 	Name         *string  `json:"name"`           // propertyName=name type=STRING
 	NetworkId    *string  `json:"network_id"`     // propertyName=network_id type=STRING
-	Tags         []string `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25099,7 +25090,7 @@ type SimSecurity struct {
 	Pin         *string  `json:"pin"`         // propertyName=pin type=STRING
 	RemovePin   *bool    `json:"remove_pin"`  // propertyName=remove_pin type=BOOLEAN
 	SlotNumber  *int64   `json:"slot_number"` // propertyName=slot_number type=INTEGER
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25144,7 +25135,7 @@ type BasePolicySetStack struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
 	PolicysetIds []string `json:"policyset_ids"` // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25164,7 +25155,7 @@ type SecurityPolicyV2N1RuleScreen struct {
 	Services             []Service  `json:"services"`               // propertyName=services type=ARRAY_REFERENCE
 	SourcePrefixIds      []string   `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string   `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
-	Tags                 []string   `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string   `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup          *UserGroup `json:"user_or_group"`          // propertyName=user_or_group type=REFERENCE
 }
 
@@ -25307,7 +25298,7 @@ type IPFixConfigScreen struct {
 	IpfixtemplateId    *string           `json:"ipfixtemplate_id"`     // propertyName=ipfixtemplate_id type=STRING
 	Name               *string           `json:"name"`                 // propertyName=name type=STRING
 	Sampler            *IPFixSampler     `json:"sampler"`              // propertyName=sampler type=REFERENCE
-	Tags               []string          `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags               []string          `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25412,7 +25403,7 @@ type InterfaceQueryResponseV4N10 struct {
 	SiteWanInterfaceIds        []string                `json:"site_wan_interface_ids"`       // propertyName=site_wan_interface_ids type=ARRAY_PRIMITIVE
 	StaticArpConfigs           []StaticARPConfig       `json:"static_arp_configs"`           // propertyName=static_arp_configs type=ARRAY_REFERENCE
 	SubInterface               *SubInterface           `json:"sub_interface"`                // propertyName=sub_interface type=REFERENCE
-	Tags                       []string                `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	Type                       *string                 `json:"type"`                         // propertyName=type type=STRING
 	UsedFor                    *string                 `json:"used_for"`                     // propertyName=used_for type=STRING
 }
@@ -25465,7 +25456,7 @@ type BGPPeerConfigScreenV2N6 struct {
 	RouterId              *string           `json:"router_id"`               // propertyName=router_id type=STRING
 	Scope                 *string           `json:"scope"`                   // propertyName=scope type=STRING
 	Shutdown              *bool             `json:"shutdown"`                // propertyName=shutdown type=BOOLEAN
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource          *string           `json:"update_source"`           // propertyName=update_source type=STRING
 	UpdateSourceV6        *string           `json:"update_source_v6"`        // propertyName=update_source_v6 type=STRING
 	VrfContextId          *string           `json:"vrf_context_id"`          // propertyName=vrf_context_id type=STRING
@@ -25493,7 +25484,7 @@ type BGPPeerConfigScreenV2N5 struct {
 	RouterId              *string    `json:"router_id"`               // propertyName=router_id type=STRING
 	Scope                 *string    `json:"scope"`                   // propertyName=scope type=STRING
 	Shutdown              *bool      `json:"shutdown"`                // propertyName=shutdown type=BOOLEAN
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource          *string    `json:"update_source"`           // propertyName=update_source type=STRING
 	UpdateSourceV6        *string    `json:"update_source_v6"`        // propertyName=update_source_v6 type=STRING
 	VrfContextId          *string    `json:"vrf_context_id"`          // propertyName=vrf_context_id type=STRING
@@ -25520,7 +25511,7 @@ type BGPPeerConfigScreenV2N4 struct {
 	RouterId        *string    `json:"router_id"`         // propertyName=router_id type=STRING
 	Scope           *string    `json:"scope"`             // propertyName=scope type=STRING
 	Shutdown        *bool      `json:"shutdown"`          // propertyName=shutdown type=BOOLEAN
-	Tags            []string   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource    *string    `json:"update_source"`     // propertyName=update_source type=STRING
 	UpdateSourceV6  *string    `json:"update_source_v6"`  // propertyName=update_source_v6 type=STRING
 	VrfContextId    *string    `json:"vrf_context_id"`    // propertyName=vrf_context_id type=STRING
@@ -25544,7 +25535,7 @@ type BGPPeerConfigScreenV2N3 struct {
 	RouterId      *string    `json:"router_id"`        // propertyName=router_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 	VrfContextId  *string    `json:"vrf_context_id"`   // propertyName=vrf_context_id type=STRING
 }
@@ -25571,7 +25562,7 @@ type ElementScreenV3 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	SwObj                        *Software        `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -25638,7 +25629,7 @@ type EventCorrelationPolicySetScreen struct {
 	Name                    *string                   `json:"name"`                      // propertyName=name type=STRING
 	PolicyruleOrder         []string                  `json:"policyrule_order"`          // propertyName=policyrule_order type=ARRAY_PRIMITIVE
 	SeverityPriorityMapping []SeverityPriorityMapping `json:"severity_priority_mapping"` // propertyName=severity_priority_mapping type=ARRAY_REFERENCE
-	Tags                    []string                  `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                    []string                  `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25720,7 +25711,7 @@ type DHCPServerV2N1 struct {
 	NetworkContextId *string             `json:"network_context_id"` // propertyName=network_context_id type=STRING
 	StaticMappings   []StaticMapping     `json:"static_mappings"`    // propertyName=static_mappings type=ARRAY_REFERENCE
 	Subnet           *string             `json:"subnet"`             // propertyName=subnet type=STRING
-	Tags             []string            `json:"tags"`               // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string            `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25757,7 +25748,7 @@ type ElementRadius struct {
 	RadiusConfiguration []RadiusConfiguration `json:"radius_configuration"` // propertyName=radius_configuration type=ARRAY_REFERENCE
 	RadiusProfileId     *string               `json:"radius_profile_id"`    // propertyName=radius_profile_id type=STRING
 	SourceInterfaceId   *string               `json:"source_interface_id"`  // propertyName=source_interface_id type=STRING
-	Tags                []string              `json:"tags"`                 // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string              `json:"tags"`                 // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25844,7 +25835,7 @@ type ElementV2N2 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV1 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -25876,7 +25867,7 @@ type ElementV2N3 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV1 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -25909,7 +25900,7 @@ type ElementV2N4 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -25945,7 +25936,7 @@ type ElementV2N5 struct {
 	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -26081,7 +26072,7 @@ type BGPPeerConfigV2N6 struct {
 	RouterId              *string           `json:"router_id"`               // propertyName=router_id type=STRING
 	Scope                 *string           `json:"scope"`                   // propertyName=scope type=STRING
 	Shutdown              *bool             `json:"shutdown"`                // propertyName=shutdown type=BOOLEAN
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource          *string           `json:"update_source"`           // propertyName=update_source type=STRING
 	UpdateSourceV6        *string           `json:"update_source_v6"`        // propertyName=update_source_v6 type=STRING
 	VrfContextId          *string           `json:"vrf_context_id"`          // propertyName=vrf_context_id type=STRING
@@ -26117,7 +26108,7 @@ type BGPPeerConfigV2N5 struct {
 	RouterId              *string    `json:"router_id"`               // propertyName=router_id type=STRING
 	Scope                 *string    `json:"scope"`                   // propertyName=scope type=STRING
 	Shutdown              *bool      `json:"shutdown"`                // propertyName=shutdown type=BOOLEAN
-	Tags                  []string   `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string   `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource          *string    `json:"update_source"`           // propertyName=update_source type=STRING
 	UpdateSourceV6        *string    `json:"update_source_v6"`        // propertyName=update_source_v6 type=STRING
 	VrfContextId          *string    `json:"vrf_context_id"`          // propertyName=vrf_context_id type=STRING
@@ -26194,7 +26185,7 @@ type ElementV2N6 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -26210,7 +26201,7 @@ type CellularModule struct {
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	PrimarySim  *int64   `json:"primary_sim"` // propertyName=primary_sim type=INTEGER
 	RadioOn     *bool    `json:"radio_on"`    // propertyName=radio_on type=BOOLEAN
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26250,7 +26241,7 @@ type ElementV2N7 struct {
 	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
 	State                        *string          `json:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -26281,7 +26272,7 @@ type CellularModuleScreen struct {
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	PrimarySim  *int64   `json:"primary_sim"` // propertyName=primary_sim type=INTEGER
 	RadioOn     *bool    `json:"radio_on"`    // propertyName=radio_on type=BOOLEAN
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26341,7 +26332,7 @@ type SDWANAppReleaseInfoResponseV2N1 struct {
 	Id          *string                   `json:"id"`          // propertyName=id type=STRING
 	Name        *string                   `json:"name"`        // propertyName=name type=STRING
 	Releases    []SDWANAppReleaseInfoV2N1 `json:"releases"`    // propertyName=releases type=ARRAY_REFERENCE
-	Tags        []string                  `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string                  `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26355,7 +26346,7 @@ type MulticastRPConfigScreen struct {
 	Id          *string  `json:"id"`           // propertyName=id type=STRING
 	Ipv4Address *string  `json:"ipv4_address"` // propertyName=ipv4_address type=STRING
 	Name        *string  `json:"name"`         // propertyName=name type=STRING
-	Tags        []string `json:"tags"`         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`         // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26389,7 +26380,7 @@ type NetworkPolicyRuleQueryFilter struct {
 	PolicysetId           *string         `json:"policyset_id"`            // propertyName=policyset_id type=STRING
 	ServiceContext        *ServiceContext `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string         `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string        `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string        `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26424,7 +26415,7 @@ type SDWANAppReleaseInfoResponseV2N2 struct {
 	Id          *string                   `json:"id"`          // propertyName=id type=STRING
 	Name        *string                   `json:"name"`        // propertyName=name type=STRING
 	Releases    []SDWANAppReleaseInfoV2N2 `json:"releases"`    // propertyName=releases type=ARRAY_REFERENCE
-	Tags        []string                  `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string                  `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26495,7 +26486,7 @@ type VRFContextScreen struct {
 	Description *string  `json:"description"` // propertyName=description type=STRING
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26542,7 +26533,7 @@ type OspfConfigScreen struct {
 	RouterId               *string               `json:"router_id"`                 // propertyName=router_id type=STRING
 	Scope                  *string               `json:"scope"`                     // propertyName=scope type=STRING
 	Shutdown               *bool                 `json:"shutdown"`                  // propertyName=shutdown type=BOOLEAN
-	Tags                   []string              `json:"tags"`                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string              `json:"tags"`                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextId           *string               `json:"vrf_context_id"`            // propertyName=vrf_context_id type=STRING
 }
 
@@ -26577,7 +26568,7 @@ type PerfMgmtThresholdProfileScreen struct {
 	LqmThresholds       *LQMThresholdConfig    `json:"lqm_thresholds"`         // propertyName=lqm_thresholds type=REFERENCE
 	Name                *string                `json:"name"`                   // propertyName=name type=STRING
 	SoftLimitAppMetrics *StaticAppMetricConfig `json:"soft_limit_app_metrics"` // propertyName=soft_limit_app_metrics type=REFERENCE
-	Tags                []string               `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string               `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26690,7 +26681,7 @@ type BGPPeerConfigV2N2 struct {
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 }
 
@@ -26711,7 +26702,7 @@ type BGPPeerConfigV2N1 struct {
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 }
 
@@ -26736,7 +26727,7 @@ type BGPPeerConfigV2N4 struct {
 	RouterId        *string    `json:"router_id"`         // propertyName=router_id type=STRING
 	Scope           *string    `json:"scope"`             // propertyName=scope type=STRING
 	Shutdown        *bool      `json:"shutdown"`          // propertyName=shutdown type=BOOLEAN
-	Tags            []string   `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags            []string   `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource    *string    `json:"update_source"`     // propertyName=update_source type=STRING
 	UpdateSourceV6  *string    `json:"update_source_v6"`  // propertyName=update_source_v6 type=STRING
 	VrfContextId    *string    `json:"vrf_context_id"`    // propertyName=vrf_context_id type=STRING
@@ -26760,7 +26751,7 @@ type BGPPeerConfigV2N3 struct {
 	RouterId      *string    `json:"router_id"`        // propertyName=router_id type=STRING
 	Scope         *string    `json:"scope"`            // propertyName=scope type=STRING
 	Shutdown      *bool      `json:"shutdown"`         // propertyName=shutdown type=BOOLEAN
-	Tags          []string   `json:"tags"`             // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
 	VrfContextId  *string    `json:"vrf_context_id"`   // propertyName=vrf_context_id type=STRING
 }
@@ -26828,7 +26819,7 @@ type IPFixGlobalPrefix struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -26893,7 +26884,7 @@ type SecurityPolicyV2RuleScreen struct {
 	Services             []Service `json:"services"`               // propertyName=services type=ARRAY_REFERENCE
 	SourcePrefixIds      []string  `json:"source_prefix_ids"`      // propertyName=source_prefix_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds        []string  `json:"source_zone_ids"`        // propertyName=source_zone_ids type=ARRAY_PRIMITIVE
-	Tags                 []string  `json:"tags"`                   // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                 []string  `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -27014,7 +27005,7 @@ type DeviceIdProfile struct {
 	SnmpDiscoveryNetworkRefreshFrequency *int64                `json:"snmp_discovery_network_refresh_frequency"` // propertyName=snmp_discovery_network_refresh_frequency type=INTEGER
 	SnmpDiscoveryUseLocalNeighbours      *bool                 `json:"snmp_discovery_use_local_neighbours"`      // propertyName=snmp_discovery_use_local_neighbours type=BOOLEAN
 	SnmpVersion                          *string               `json:"snmp_version"`                             // propertyName=snmp_version type=STRING
-	Tags                                 []string              `json:"tags"`                                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                 []string              `json:"tags"`                                     // propertyName=tags type=SET_PRIMITIVE
 	V2Config                             *DeviceIdSNMPV2Config `json:"v2_config"`                                // propertyName=v2_config type=REFERENCE
 	V3Config                             *DeviceIdSNMPV3Config `json:"v3_config"`                                // propertyName=v3_config type=REFERENCE
 }
@@ -27103,7 +27094,7 @@ type AppdefOverrideScreenV2N1 struct {
 	OverridesDisable           *bool       `json:"overrides_disable"`            // propertyName=overrides_disable type=BOOLEAN
 	PathAffinity               *string     `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64      `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
-	Tags                       []string    `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string    `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []TcpRuleV1 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType               *string     `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []UdpRuleV1 `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -27154,7 +27145,7 @@ type AppdefOverrideScreenV2N3 struct {
 	PCategory                  *string     `json:"p_category"`                   // propertyName=p_category type=STRING
 	PathAffinity               *string     `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64      `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
-	Tags                       []string    `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string    `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []TcpRuleV2 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType               *string     `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []UdpRuleV2 `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -27183,7 +27174,7 @@ type AppdefOverrideScreenV2N2 struct {
 	OverridesDisable           *bool       `json:"overrides_disable"`            // propertyName=overrides_disable type=BOOLEAN
 	PathAffinity               *string     `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64      `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
-	Tags                       []string    `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string    `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []TcpRuleV2 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType               *string     `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []UdpRuleV2 `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_REFERENCE
@@ -27202,7 +27193,7 @@ type NetworkPolicySetStackQueryFilter struct {
 	Id                     *string  `json:"id"`                       // propertyName=id type=STRING
 	Name                   *string  `json:"name"`                     // propertyName=name type=STRING
 	PolicysetIds           []string `json:"policyset_ids"`            // propertyName=policyset_ids type=ARRAY_PRIMITIVE
-	Tags                   []string `json:"tags"`                     // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                   []string `json:"tags"`                     // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -27227,7 +27218,7 @@ type SiteScreenV4N8 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId      *string       `json:"vrf_context_profile_id"`     // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -27264,7 +27255,7 @@ type SiteScreenV4N9 struct {
 	SecurityPolicysetId      *string       `json:"security_policyset_id"`      // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId *string       `json:"security_policysetstack_id"` // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding           *string       `json:"service_binding"`            // propertyName=service_binding type=STRING
-	Tags                     []string      `json:"tags"`                       // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                     []string      `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId      *string       `json:"vrf_context_profile_id"`     // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -27400,7 +27391,7 @@ type MSTPInstanceQueryFilter struct {
 	InstanceNumber   *int64   `json:"instance_number"`   // propertyName=instance_number type=INTEGER
 	InstancePriority *int64   `json:"instance_priority"` // propertyName=instance_priority type=INTEGER
 	Name             *string  `json:"name"`              // propertyName=name type=STRING
-	Tags             []string `json:"tags"`              // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags             []string `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -27476,7 +27467,7 @@ type PriorityPolicyGlobalPrefix struct {
 	Id           *string  `json:"id"`            // propertyName=id type=STRING
 	Ipv4Prefixes []string `json:"ipv4_prefixes"` // propertyName=ipv4_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
-	Tags         []string `json:"tags"`          // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -27549,7 +27540,7 @@ type ServiceEndpoint struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	SiteId      *string  `json:"site_id"`     // propertyName=site_id type=STRING
-	Tags        []string `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 	Type        *string  `json:"type"`        // propertyName=type type=STRING
 }
 
@@ -27954,7 +27945,7 @@ type ProbeConfig struct {
 	Endpoints   []ProbeEndpoint `json:"endpoints"`   // propertyName=endpoints type=ARRAY_REFERENCE
 	Id          *string         `json:"id"`          // propertyName=id type=STRING
 	Name        *string         `json:"name"`        // propertyName=name type=STRING
-	Tags        []string        `json:"tags"`        // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags        []string        `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -28013,7 +28004,7 @@ type SiteV4N10 struct {
 	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
 	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
 	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
 	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
@@ -28479,7 +28470,7 @@ type AppDefV2N1 struct {
 	PathAffinity        *string                  `json:"path_affinity"`         // propertyName=path_affinity type=STRING
 	SessionTimeout      *int64                   `json:"session_timeout"`       // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden *bool                    `json:"system_app_overridden"` // propertyName=system_app_overridden type=BOOLEAN
-	Tags                []string                 `json:"tags"`                  // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                []string                 `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
 	TcpRules            []string                 `json:"tcp_rules"`             // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType        *string                  `json:"transfer_type"`         // propertyName=transfer_type type=STRING
 	UdpRules            []map[string]interface{} `json:"udp_rules"`             // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -28521,7 +28512,7 @@ type AppDefV2N2 struct {
 	PathAffinity               *string                  `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -28554,7 +28545,7 @@ type AppDefV2N3 struct {
 	PathAffinity               *string                  `json:"path_affinity"`                // propertyName=path_affinity type=STRING
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -28591,7 +28582,7 @@ type AppDefV2N4 struct {
 	SessionTimeout             *int64                   `json:"session_timeout"`              // propertyName=session_timeout type=INTEGER
 	SupportedEngines           *string                  `json:"supported_engines"`            // propertyName=supported_engines type=STRING
 	SystemAppOverridden        *bool                    `json:"system_app_overridden"`        // propertyName=system_app_overridden type=BOOLEAN
-	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                       []string                 `json:"tags"`                         // propertyName=tags type=SET_PRIMITIVE
 	TcpRules                   []string                 `json:"tcp_rules"`                    // propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TransferType               *string                  `json:"transfer_type"`                // propertyName=transfer_type type=STRING
 	UdpRules                   []map[string]interface{} `json:"udp_rules"`                    // propertyName=udp_rules type=ARRAY_SCHEMA
@@ -28609,7 +28600,7 @@ type RoutingCommunityListQueryFilter struct {
 	Description   *string              `json:"description"`    // propertyName=description type=STRING
 	Id            *string              `json:"id"`             // propertyName=id type=STRING
 	Name          *string              `json:"name"`           // propertyName=name type=STRING
-	Tags          []string             `json:"tags"`           // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags          []string             `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -28653,7 +28644,7 @@ type NetworkPolicyRuleV2N1 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -28676,7 +28667,7 @@ type NetworkPolicyRuleV2N4 struct {
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
 	SrcDeviceIds          []string          `json:"src_device_ids"`          // propertyName=src_device_ids type=ARRAY_PRIMITIVE
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -28698,7 +28689,7 @@ type NetworkPolicyRuleV2N3 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 
@@ -28734,7 +28725,7 @@ type NetworkPolicyRuleV2N2 struct {
 	PathsAllowed          *PathsAllowedV2N1 `json:"paths_allowed"`           // propertyName=paths_allowed type=REFERENCE
 	ServiceContext        *ServiceContext   `json:"service_context"`         // propertyName=service_context type=REFERENCE
 	SourcePrefixesId      *string           `json:"source_prefixes_id"`      // propertyName=source_prefixes_id type=STRING
-	Tags                  []string          `json:"tags"`                    // propertyName=tags type=ARRAY_PRIMITIVE
+	Tags                  []string          `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
 	UserOrGroup           *UserGroup        `json:"user_or_group"`           // propertyName=user_or_group type=REFERENCE
 }
 

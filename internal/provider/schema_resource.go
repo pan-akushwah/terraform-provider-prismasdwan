@@ -8,7 +8,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | All Schema Map Summary (size=allGoLangStructMap=1,678)
+// | All Schema Map Summary (size=allGoLangStructMap=1,677)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -776,7 +776,6 @@ import (
 // | SecurityPolicyV2Rule HasID=true
 // | RoutingPrefixFilter HasID=false
 // | WANInterfaceScreenV2N9 HasID=true
-// | BulkResponseSiteCipher HasID=false
 // | WANInterfaceScreenV2N3 HasID=true
 // | WANInterfaceScreenV2N4 HasID=true
 // | ExtensionQueryFilter HasID=true
@@ -1690,7 +1689,7 @@ import (
 // | ListQueryResponseSecurityPolicyV2SetStack HasID=true
 // +-----------------------------------------------------------------
 
-// template=schema.resource.model.tpl allGoLangStructMap=1,678
+// template=schema.resource.model.tpl allGoLangStructMap=1,677
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `LedConfig`
 // +-----------------------------------------------------------------
@@ -1773,6 +1772,8 @@ type rsModelSpokeHAConfigV2 struct {
 type rsModelElementQueryFilterV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -1837,8 +1838,8 @@ type rsModelElementQueryFilterV3 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -1849,6 +1850,8 @@ type rsModelElementQueryFilterV3 struct {
 type rsModelPriorityPolicyLocalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -1859,8 +1862,8 @@ type rsModelPriorityPolicyLocalPrefix struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -1879,6 +1882,8 @@ type rsModelDiscoveredNeighbor struct {
 type rsModelSDWANAppConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -1888,7 +1893,7 @@ type rsModelSDWANAppConfig struct {
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
 	// propertyName=user_config type=OBJECT
-	UserConfig *map[string]interface{} `tfsdk:"user_config"`
+	UserConfig types.Map `tfsdk:"user_config"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -1935,6 +1940,8 @@ type rsModelSuppressedInfo struct {
 type rsModelVPNEndpointEventState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -1973,6 +1980,8 @@ type rsModelVPNEndpointEventState struct {
 type rsModelAnynetlinkEventState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2005,6 +2014,8 @@ type rsModelAnynetlinkEventState struct {
 type rsModelAnynetlinkEvent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2049,6 +2060,8 @@ type rsModelAggregate struct {
 type rsModelMulticastIgmpMembershipQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2068,15 +2081,15 @@ type rsModelMulticastIgmpMembershipQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -2087,6 +2100,8 @@ type rsModelMulticastIgmpMembershipQuery struct {
 type rsModelTacacsPlusServerConfig struct {
 	// propertyName=secret type=STRING
 	Secret types.String `tfsdk:"secret"`
+	// password placeholder: propertyName=secret type=STRING
+	SecretInternalKeyName types.String `tfsdk:"secret_internal_key_name"`
 	// propertyName=server_fqdn type=STRING
 	ServerFqdn types.String `tfsdk:"server_fqdn"`
 	// propertyName=server_ip type=STRING
@@ -2105,6 +2120,8 @@ type rsModelTacacsPlusServerConfig struct {
 type rsModelTacacsPlusServerScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2125,8 +2142,8 @@ type rsModelTacacsPlusServerScreen struct {
 	TacacsPlusProfileId types.String `tfsdk:"tacacs_plus_profile_id"`
 	// propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
 	TacacsPlusServers []rsModelTacacsPlusServerConfig `tfsdk:"tacacs_plus_servers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -2135,6 +2152,8 @@ type rsModelTacacsPlusServerScreen struct {
 type rsModelPerfMgmtPolicySetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2151,8 +2170,8 @@ type rsModelPerfMgmtPolicySetStack struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -2161,6 +2180,8 @@ type rsModelPerfMgmtPolicySetStack struct {
 type rsModelListQueryResponsePerfMgmtPolicySetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2176,7 +2197,7 @@ type rsModelListQueryResponsePerfMgmtPolicySetStack struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPerfMgmtPolicySetStack `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -2195,6 +2216,8 @@ type rsModelStartNodeScopeConfig struct {
 type rsModelBulkDeleteStartNode struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2211,8 +2234,8 @@ type rsModelBulkDeleteStartNode struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=scope type=ARRAY_REFERENCE
 	Scope []rsModelStartNodeScopeConfig `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -2269,6 +2292,8 @@ type rsModelPathsAllowed struct {
 type rsModelPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2299,6 +2324,8 @@ type rsModelPolicyRuleQueryFilter struct {
 type rsModelListQueryResponsePolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2314,7 +2341,7 @@ type rsModelListQueryResponsePolicyRuleQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPolicyRuleQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -2323,10 +2350,10 @@ type rsModelListQueryResponsePolicyRuleQueryFilter struct {
 // | Auto Generated for Schema `Port`
 // +-----------------------------------------------------------------
 type rsModelPort struct {
-	// propertyName=end type=STRING
-	End types.String `tfsdk:"end"`
-	// propertyName=start type=STRING
-	Start types.String `tfsdk:"start"`
+	// propertyName=end type=INTEGER
+	End types.Int64 `tfsdk:"end"`
+	// propertyName=start type=INTEGER
+	Start types.Int64 `tfsdk:"start"`
 }
 
 // +-----------------------------------------------------------------
@@ -2359,6 +2386,8 @@ type rsModelTcpRule struct {
 type rsModelAppDefV2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2395,6 +2424,8 @@ type rsModelAppDefV2 struct {
 type rsModelMulticastGlobalConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2421,6 +2452,8 @@ type rsModelListResponseMulticastGlobalConfig struct {
 type rsModelSecurityPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2441,6 +2474,8 @@ type rsModelSecurityPolicySetQueryFilter struct {
 type rsModelListQueryResponseSecurityPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2456,7 +2491,7 @@ type rsModelListQueryResponseSecurityPolicySetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicySetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -2475,6 +2510,8 @@ type rsModelQueryParam struct {
 type rsModelSecurityZoneQueryScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2491,6 +2528,8 @@ type rsModelSecurityZoneQueryScreen struct {
 type rsModelVPLOperations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2525,6 +2564,8 @@ type rsModelSDWANAppParameter struct {
 	HelpText types.String `tfsdk:"help_text"`
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
+	// password placeholder: propertyName=key type=STRING
+	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=list_values type=ARRAY_REFERENCE
 	ListValues []rsModelSDWANAppParameterListValue `tfsdk:"list_values"`
 	// propertyName=max_length type=INTEGER
@@ -2549,6 +2590,8 @@ type rsModelSDWANAppParameter struct {
 type rsModelCustomPermission struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2597,6 +2640,8 @@ type rsModelAuthRole struct {
 type rsModelCustomRole struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2633,6 +2678,8 @@ type rsModelIPv4Address struct {
 type rsModelClientPermissions struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2687,10 +2734,16 @@ type rsModelIKEV1Params struct {
 	XauthId types.String `tfsdk:"xauth_id"`
 	// propertyName=xauth_secret type=STRING
 	XauthSecret types.String `tfsdk:"xauth_secret"`
+	// password placeholder: propertyName=xauth_secret type=STRING
+	XauthSecretInternalKeyName types.String `tfsdk:"xauth_secret_internal_key_name"`
 	// propertyName=xauth_secret_encrypted type=STRING
 	XauthSecretEncrypted types.String `tfsdk:"xauth_secret_encrypted"`
+	// password placeholder: propertyName=xauth_secret_encrypted type=STRING
+	XauthSecretEncryptedInternalKeyName types.String `tfsdk:"xauth_secret_encrypted_internal_key_name"`
 	// propertyName=xauth_secret_hash type=STRING
 	XauthSecretHash types.String `tfsdk:"xauth_secret_hash"`
+	// password placeholder: propertyName=xauth_secret_hash type=STRING
+	XauthSecretHashInternalKeyName types.String `tfsdk:"xauth_secret_hash_internal_key_name"`
 	// propertyName=xauth_type type=STRING
 	XauthType types.String `tfsdk:"xauth_type"`
 }
@@ -2700,7 +2753,7 @@ type rsModelIKEV1Params struct {
 // +-----------------------------------------------------------------
 type rsModelX509Objects struct {
 	// propertyName=certHolder type=OBJECT
-	Certholder *map[string]interface{} `tfsdk:"certHolder"`
+	Certholder types.Map `tfsdk:"certHolder"`
 	// propertyName=certificate type=STRING
 	Certificate types.String `tfsdk:"certificate"`
 	// propertyName=is_local_ca_cert_set type=BOOLEAN
@@ -2708,21 +2761,25 @@ type rsModelX509Objects struct {
 	// propertyName=is_remote_ca_cert_set type=BOOLEAN
 	IsRemoteCaCertSet types.Bool `tfsdk:"is_remote_ca_cert_set"`
 	// propertyName=keyPair type=OBJECT
-	Keypair *map[string]interface{} `tfsdk:"keyPair"`
+	Keypair types.Map `tfsdk:"keyPair"`
+	// password placeholder: propertyName=keyPair type=OBJECT
+	KeypairInternalKeyName types.Map `tfsdk:"keyPair_internal_key_name"`
 	// propertyName=local_ca_certificate type=STRING
 	LocalCaCertificate types.String `tfsdk:"local_ca_certificate"`
 	// propertyName=local_ca_certs_set type=ARRAY_SCHEMA
-	LocalCaCertsSet []*map[string]interface{} `tfsdk:"local_ca_certs_set"`
+	LocalCaCertsSet []types.Map `tfsdk:"local_ca_certs_set"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=pkcs12_certificate type=STRING
 	Pkcs12Certificate types.String `tfsdk:"pkcs12_certificate"`
 	// propertyName=private_key type=STRING
 	PrivateKey types.String `tfsdk:"private_key"`
+	// password placeholder: propertyName=private_key type=STRING
+	PrivateKeyInternalKeyName types.String `tfsdk:"private_key_internal_key_name"`
 	// propertyName=remote_ca_certificate type=STRING
 	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
 	// propertyName=remote_ca_certs_set type=ARRAY_SCHEMA
-	RemoteCaCertsSet []*map[string]interface{} `tfsdk:"remote_ca_certs_set"`
+	RemoteCaCertsSet []types.Map `tfsdk:"remote_ca_certs_set"`
 }
 
 // +-----------------------------------------------------------------
@@ -2747,6 +2804,8 @@ type rsModelIPSECAuthenticationV1 struct {
 	LocalPaCertificateId types.String `tfsdk:"local_pa_certificate_id"`
 	// propertyName=pa_master_key_id type=STRING
 	PaMasterKeyId types.String `tfsdk:"pa_master_key_id"`
+	// password placeholder: propertyName=pa_master_key_id type=STRING
+	PaMasterKeyIdInternalKeyName types.String `tfsdk:"pa_master_key_id_internal_key_name"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=passphrase_encrypted type=STRING
@@ -2757,20 +2816,32 @@ type rsModelIPSECAuthenticationV1 struct {
 	PermitPeerIdMismatch types.Bool `tfsdk:"permit_peer_id_mismatch"`
 	// propertyName=private_key type=STRING
 	PrivateKey types.String `tfsdk:"private_key"`
+	// password placeholder: propertyName=private_key type=STRING
+	PrivateKeyInternalKeyName types.String `tfsdk:"private_key_internal_key_name"`
 	// propertyName=private_key_encrypted type=STRING
 	PrivateKeyEncrypted types.String `tfsdk:"private_key_encrypted"`
+	// password placeholder: propertyName=private_key_encrypted type=STRING
+	PrivateKeyEncryptedInternalKeyName types.String `tfsdk:"private_key_encrypted_internal_key_name"`
 	// propertyName=remote_ca_certificate type=STRING
 	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
 	// propertyName=remote_id type=STRING
 	RemoteId types.String `tfsdk:"remote_id"`
 	// propertyName=secret type=STRING
 	Secret types.String `tfsdk:"secret"`
+	// password placeholder: propertyName=secret type=STRING
+	SecretInternalKeyName types.String `tfsdk:"secret_internal_key_name"`
 	// propertyName=secret_encrypted type=STRING
 	SecretEncrypted types.String `tfsdk:"secret_encrypted"`
+	// password placeholder: propertyName=secret_encrypted type=STRING
+	SecretEncryptedInternalKeyName types.String `tfsdk:"secret_encrypted_internal_key_name"`
 	// propertyName=secret_hash type=STRING
 	SecretHash types.String `tfsdk:"secret_hash"`
+	// password placeholder: propertyName=secret_hash type=STRING
+	SecretHashInternalKeyName types.String `tfsdk:"secret_hash_internal_key_name"`
 	// propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	StrictValidationPeerExtendedKeyUse types.Bool `tfsdk:"strict_validation_peer_extended_key_use"`
+	// password placeholder: propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
+	StrictValidationPeerExtendedKeyUseInternalKeyName types.Bool `tfsdk:"strict_validation_peer_extended_key_use_internal_key_name"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=x509Objects type=REFERENCE
@@ -2801,6 +2872,8 @@ type rsModelIKEGroup struct {
 	AuthenticationMultiple types.Int64 `tfsdk:"authentication_multiple"`
 	// propertyName=key_exchange type=STRING
 	KeyExchange types.String `tfsdk:"key_exchange"`
+	// password placeholder: propertyName=key_exchange type=STRING
+	KeyExchangeInternalKeyName types.String `tfsdk:"key_exchange_internal_key_name"`
 	// propertyName=lifetime type=INTEGER
 	Lifetime types.Int64 `tfsdk:"lifetime"`
 	// propertyName=lifetime_units type=STRING
@@ -2861,6 +2934,8 @@ type rsModelESPGroup struct {
 type rsModelIPSECProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2883,8 +2958,8 @@ type rsModelIPSECProfileQueryFilter struct {
 	IkeGroup *rsModelIKEGroup `tfsdk:"ike_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -2893,6 +2968,8 @@ type rsModelIPSECProfileQueryFilter struct {
 type rsModelWANInterfaceLabelQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2912,15 +2989,15 @@ type rsModelWANInterfaceLabelQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -2931,6 +3008,8 @@ type rsModelWANInterfaceLabelQuery struct {
 type rsModelHubCluster struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -2979,6 +3058,8 @@ type rsModelMulticastPimProtocolConfig struct {
 type rsModelMulticastGlobalConfigV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3033,6 +3114,8 @@ type rsModelApplicationFilter struct {
 type rsModelRecoveryTokenScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3059,6 +3142,8 @@ type rsModelSiteContext struct {
 type rsModelSiteSecurityZoneNetworkAssociationQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3091,6 +3176,8 @@ type rsModelASPathRegex struct {
 type rsModelRoutingAccessListQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3105,8 +3192,8 @@ type rsModelRoutingAccessListQueryFilterV2N1 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3115,6 +3202,8 @@ type rsModelRoutingAccessListQueryFilterV2N1 struct {
 type rsModelListQueryResponseRoutingAccessListQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3130,7 +3219,7 @@ type rsModelListQueryResponseRoutingAccessListQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingAccessListQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -3175,8 +3264,8 @@ type rsModelDnsForwardConfigV2 struct {
 type rsModelBusinessPriorityNameMapper struct {
 	// propertyName=priority_name type=STRING
 	PriorityName types.String `tfsdk:"priority_name"`
-	// propertyName=priority_num type=INTEGER
-	PriorityNum types.Int64 `tfsdk:"priority_num"`
+	// propertyName=priority_number type=INTEGER
+	PriorityNumber types.Int64 `tfsdk:"priority_number"`
 }
 
 // +-----------------------------------------------------------------
@@ -3231,6 +3320,8 @@ type rsModelBandwidthAllocationScheme struct {
 type rsModelPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3255,6 +3346,8 @@ type rsModelPolicySet struct {
 type rsModelTacacsPlusServer struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3275,8 +3368,8 @@ type rsModelTacacsPlusServer struct {
 	TacacsPlusProfileId types.String `tfsdk:"tacacs_plus_profile_id"`
 	// propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
 	TacacsPlusServers []rsModelTacacsPlusServerConfig `tfsdk:"tacacs_plus_servers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3285,6 +3378,8 @@ type rsModelTacacsPlusServer struct {
 type rsModelNetworkPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3311,8 +3406,8 @@ type rsModelNetworkPolicyRule struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3321,6 +3416,8 @@ type rsModelNetworkPolicyRule struct {
 type rsModelNetworkPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3351,8 +3448,8 @@ type rsModelNetworkPolicySet struct {
 	Region types.String `tfsdk:"region"`
 	// propertyName=send_to_element type=BOOLEAN
 	SendToElement types.Bool `tfsdk:"send_to_element"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3361,6 +3458,8 @@ type rsModelNetworkPolicySet struct {
 type rsModelBasePolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3383,8 +3482,8 @@ type rsModelBasePolicyRule struct {
 	PolicysetId types.String `tfsdk:"policyset_id"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3393,6 +3492,8 @@ type rsModelBasePolicyRule struct {
 type rsModelBasePolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3419,8 +3520,8 @@ type rsModelBasePolicySet struct {
 	Region types.String `tfsdk:"region"`
 	// propertyName=send_to_element type=BOOLEAN
 	SendToElement types.Bool `tfsdk:"send_to_element"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3429,6 +3530,8 @@ type rsModelBasePolicySet struct {
 type rsModelNetworkPolicySetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3463,8 +3566,8 @@ type rsModelNetworkPolicySetStack struct {
 	Policysets []rsModelBasePolicySet `tfsdk:"policysets"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3497,6 +3600,8 @@ type rsModelIPSecProfile struct {
 type rsModelMSTPInstance struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3511,8 +3616,8 @@ type rsModelMSTPInstance struct {
 	InstancePriority types.Int64 `tfsdk:"instance_priority"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3639,6 +3744,8 @@ type rsModelIPSECAuthentication struct {
 	LocalPaCertificateId types.String `tfsdk:"local_pa_certificate_id"`
 	// propertyName=pa_master_key_id type=STRING
 	PaMasterKeyId types.String `tfsdk:"pa_master_key_id"`
+	// password placeholder: propertyName=pa_master_key_id type=STRING
+	PaMasterKeyIdInternalKeyName types.String `tfsdk:"pa_master_key_id_internal_key_name"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=passphrase_encrypted type=STRING
@@ -3649,20 +3756,32 @@ type rsModelIPSECAuthentication struct {
 	PermitPeerIdMismatch types.Bool `tfsdk:"permit_peer_id_mismatch"`
 	// propertyName=private_key type=STRING
 	PrivateKey types.String `tfsdk:"private_key"`
+	// password placeholder: propertyName=private_key type=STRING
+	PrivateKeyInternalKeyName types.String `tfsdk:"private_key_internal_key_name"`
 	// propertyName=private_key_encrypted type=STRING
 	PrivateKeyEncrypted types.String `tfsdk:"private_key_encrypted"`
+	// password placeholder: propertyName=private_key_encrypted type=STRING
+	PrivateKeyEncryptedInternalKeyName types.String `tfsdk:"private_key_encrypted_internal_key_name"`
 	// propertyName=remote_ca_certificate type=STRING
 	RemoteCaCertificate types.String `tfsdk:"remote_ca_certificate"`
 	// propertyName=remote_id type=STRING
 	RemoteId types.String `tfsdk:"remote_id"`
 	// propertyName=secret type=STRING
 	Secret types.String `tfsdk:"secret"`
+	// password placeholder: propertyName=secret type=STRING
+	SecretInternalKeyName types.String `tfsdk:"secret_internal_key_name"`
 	// propertyName=secret_encrypted type=STRING
 	SecretEncrypted types.String `tfsdk:"secret_encrypted"`
+	// password placeholder: propertyName=secret_encrypted type=STRING
+	SecretEncryptedInternalKeyName types.String `tfsdk:"secret_encrypted_internal_key_name"`
 	// propertyName=secret_hash type=STRING
 	SecretHash types.String `tfsdk:"secret_hash"`
+	// password placeholder: propertyName=secret_hash type=STRING
+	SecretHashInternalKeyName types.String `tfsdk:"secret_hash_internal_key_name"`
 	// propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
 	StrictValidationPeerExtendedKeyUse types.Bool `tfsdk:"strict_validation_peer_extended_key_use"`
+	// password placeholder: propertyName=strict_validation_peer_extended_key_use type=BOOLEAN
+	StrictValidationPeerExtendedKeyUseInternalKeyName types.Bool `tfsdk:"strict_validation_peer_extended_key_use_internal_key_name"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=x509Objects type=REFERENCE
@@ -3745,8 +3864,8 @@ type rsModelServiceLink struct {
 type rsModelGroup struct {
 	// propertyName=ipv4_prefix type=STRING
 	Ipv4Prefix types.String `tfsdk:"ipv4_prefix"`
-	// propertyName=is_active_rp type=BOOLEAN
-	IsActiveRp types.Bool `tfsdk:"is_active_rp"`
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
 }
 
 // +-----------------------------------------------------------------
@@ -3755,6 +3874,8 @@ type rsModelGroup struct {
 type rsModelMulticastRPConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3769,8 +3890,8 @@ type rsModelMulticastRPConfig struct {
 	Ipv4Address types.String `tfsdk:"ipv4_address"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3779,6 +3900,8 @@ type rsModelMulticastRPConfig struct {
 type rsModelSyslogServerScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3809,8 +3932,8 @@ type rsModelSyslogServerScreenV2N2 struct {
 	SourceInterface types.String `tfsdk:"source_interface"`
 	// propertyName=syslog_profile_id type=STRING
 	SyslogProfileId types.String `tfsdk:"syslog_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -3841,6 +3964,8 @@ type rsModelService struct {
 type rsModelSecurityPolicyV2RuleV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3871,8 +3996,8 @@ type rsModelSecurityPolicyV2RuleV2N2 struct {
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -3883,6 +4008,8 @@ type rsModelSecurityPolicyV2RuleV2N2 struct {
 type rsModelSecurityPolicyV2RuleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3909,8 +4036,8 @@ type rsModelSecurityPolicyV2RuleV2N1 struct {
 	SourcePrefixIds types.List `tfsdk:"source_prefix_ids"`
 	// propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -3931,6 +4058,8 @@ type rsModelEventsSummaryBodyV2_0Query struct {
 type rsModelAPNProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3941,6 +4070,8 @@ type rsModelAPNProfileScreen struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
+	// password placeholder: propertyName=clear_password type=BOOLEAN
+	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
@@ -3949,8 +4080,10 @@ type rsModelAPNProfileScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_name type=STRING
 	UserName types.String `tfsdk:"user_name"`
 }
@@ -3961,6 +4094,8 @@ type rsModelAPNProfileScreen struct {
 type rsModelOspfConfigQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -3980,15 +4115,15 @@ type rsModelOspfConfigQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4019,6 +4154,8 @@ type rsModelClientDetails struct {
 type rsModelInterfaceAuthenticationState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4047,6 +4184,8 @@ type rsModelInterfaceAuthenticationState struct {
 type rsModelDemSiteConfigQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4066,15 +4205,15 @@ type rsModelDemSiteConfigQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4085,6 +4224,8 @@ type rsModelDemSiteConfigQuery struct {
 type rsModelSimSecurityScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4101,8 +4242,8 @@ type rsModelSimSecurityScreen struct {
 	RemovePin types.Bool `tfsdk:"remove_pin"`
 	// propertyName=slot_number type=INTEGER
 	SlotNumber types.Int64 `tfsdk:"slot_number"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -4119,6 +4260,8 @@ type rsModelSuppressedInfoOtherReason struct {
 type rsModelPathPrefixDistributionFiltersQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4138,15 +4281,15 @@ type rsModelPathPrefixDistributionFiltersQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4157,6 +4300,8 @@ type rsModelPathPrefixDistributionFiltersQuery struct {
 type rsModelSpokeClusterQueryFilterResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4173,8 +4318,8 @@ type rsModelSpokeClusterQueryFilterResponse struct {
 	Preempt types.Bool `tfsdk:"preempt"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -4183,6 +4328,8 @@ type rsModelSpokeClusterQueryFilterResponse struct {
 type rsModelListQueryResponseSpokeClusterQueryFilterResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4198,7 +4345,7 @@ type rsModelListQueryResponseSpokeClusterQueryFilterResponse struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSpokeClusterQueryFilterResponse `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4209,6 +4356,8 @@ type rsModelListQueryResponseSpokeClusterQueryFilterResponse struct {
 type rsModelVRFContextProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4228,15 +4377,15 @@ type rsModelVRFContextProfileQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4259,6 +4408,8 @@ type rsModelMulticastWanNeighbor struct {
 type rsModelMulticastWanStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4299,6 +4450,8 @@ type rsModelCellularState struct {
 type rsModelPathGroup struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4371,6 +4524,8 @@ type rsModelSwitchPortConfig struct {
 type rsModelSecurityPolicySetPOSTScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4393,6 +4548,8 @@ type rsModelSecurityPolicySetPOSTScreen struct {
 type rsModelSecurityPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4445,6 +4602,8 @@ type rsModelIPRange struct {
 type rsModelDHCPServer struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4477,8 +4636,8 @@ type rsModelDHCPServer struct {
 	StaticMappings []rsModelStaticMapping `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -4529,6 +4688,8 @@ type rsModelLanNetworkIPv4Config struct {
 type rsModelLANNetwork struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4553,6 +4714,8 @@ type rsModelLANNetwork struct {
 type rsModelElementStateQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4573,6 +4736,8 @@ type rsModelElementStateQueryFilter struct {
 type rsModelSiteSecurityPolicyV2PrefixAssociationScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4583,8 +4748,8 @@ type rsModelSiteSecurityPolicyV2PrefixAssociationScreen struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -4619,6 +4784,8 @@ type rsModelProbeEndpoint struct {
 type rsModelProbeConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4633,8 +4800,8 @@ type rsModelProbeConfigQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -4643,6 +4810,8 @@ type rsModelProbeConfigQueryFilter struct {
 type rsModelListQueryResponseProbeConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4658,7 +4827,7 @@ type rsModelListQueryResponseProbeConfigQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelProbeConfigQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4677,6 +4846,8 @@ type rsModelSaseServiceLabelProperties struct {
 type rsModelServiceLabelV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4689,8 +4860,8 @@ type rsModelServiceLabelV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=sase_properties type=REFERENCE
 	SaseProperties *rsModelSaseServiceLabelProperties `tfsdk:"sase_properties"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -4711,6 +4882,8 @@ type rsModelVPNLinkConfiguration struct {
 type rsModelAnynetlink struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4755,8 +4928,8 @@ type rsModelAnynetlink struct {
 	Region types.String `tfsdk:"region"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_serviceendpoint_id type=STRING
 	TargetServiceendpointId types.String `tfsdk:"target_serviceendpoint_id"`
 	// propertyName=type type=STRING
@@ -4777,6 +4950,8 @@ type rsModelPppoE struct {
 	Parent types.String `tfsdk:"parent"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=reconnection_delay type=INTEGER
 	ReconnectionDelay types.Int64 `tfsdk:"reconnection_delay"`
 	// propertyName=service_name type=STRING
@@ -4799,12 +4974,18 @@ type rsModelRadiusConfiguration struct {
 	Priority types.Int64 `tfsdk:"priority"`
 	// propertyName=retain_shared_secret type=BOOLEAN
 	RetainSharedSecret types.Bool `tfsdk:"retain_shared_secret"`
+	// password placeholder: propertyName=retain_shared_secret type=BOOLEAN
+	RetainSharedSecretInternalKeyName types.Bool `tfsdk:"retain_shared_secret_internal_key_name"`
 	// propertyName=server_ip_address type=STRING
 	ServerIpAddress types.String `tfsdk:"server_ip_address"`
 	// propertyName=shared_secret type=STRING
 	SharedSecret types.String `tfsdk:"shared_secret"`
+	// password placeholder: propertyName=shared_secret type=STRING
+	SharedSecretInternalKeyName types.String `tfsdk:"shared_secret_internal_key_name"`
 	// propertyName=shared_secret_encrypted type=STRING
 	SharedSecretEncrypted types.String `tfsdk:"shared_secret_encrypted"`
+	// password placeholder: propertyName=shared_secret_encrypted type=STRING
+	SharedSecretEncryptedInternalKeyName types.String `tfsdk:"shared_secret_encrypted_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -4829,6 +5010,8 @@ type rsModelRemoteNetwork struct {
 type rsModelPrismaAccessConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4847,6 +5030,8 @@ type rsModelPrismaAccessConfig struct {
 type rsModelListQueryResponsePrismaAccessConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4862,7 +5047,7 @@ type rsModelListQueryResponsePrismaAccessConfig struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPrismaAccessConfig `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -4893,6 +5078,8 @@ type rsModelMulticastRoute struct {
 type rsModelMulticastRouteTableQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4913,6 +5100,8 @@ type rsModelMulticastRouteTableQueryFilter struct {
 type rsModelExtendedTag struct {
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
+	// password placeholder: propertyName=key type=STRING
+	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=value type=STRING
 	Value types.String `tfsdk:"value"`
 	// propertyName=value_type type=STRING
@@ -4955,6 +5144,8 @@ type rsModelAddress struct {
 type rsModelSiteV4N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -4993,8 +5184,8 @@ type rsModelSiteV4N9 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -5009,10 +5200,16 @@ type rsModelAPNConfig struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
+	// password placeholder: propertyName=clear_password type=BOOLEAN
+	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=password_encrypted type=STRING
 	PasswordEncrypted types.String `tfsdk:"password_encrypted"`
+	// password placeholder: propertyName=password_encrypted type=STRING
+	PasswordEncryptedInternalKeyName types.String `tfsdk:"password_encrypted_internal_key_name"`
 	// propertyName=user_name type=STRING
 	UserName types.String `tfsdk:"user_name"`
 }
@@ -5023,6 +5220,8 @@ type rsModelAPNConfig struct {
 type rsModelSiteV4N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5059,6 +5258,8 @@ type rsModelSiteV4N2 struct {
 type rsModelSiteV4N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5089,8 +5290,8 @@ type rsModelSiteV4N4 struct {
 	SecurityPolicysetId types.String `tfsdk:"security_policyset_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5099,6 +5300,8 @@ type rsModelSiteV4N4 struct {
 type rsModelCellularModuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5118,15 +5321,15 @@ type rsModelCellularModuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -5137,6 +5340,8 @@ type rsModelCellularModuleQuery struct {
 type rsModelSiteV4N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5165,8 +5370,8 @@ type rsModelSiteV4N3 struct {
 	SecurityPolicysetId types.String `tfsdk:"security_policyset_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5225,6 +5430,8 @@ type rsModelTcpRuleV1 struct {
 type rsModelAppdefOverrideScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5259,8 +5466,8 @@ type rsModelAppdefOverrideScreen struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV1 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -5275,6 +5482,8 @@ type rsModelAppdefOverrideScreen struct {
 type rsModelSiteV4N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5309,8 +5518,8 @@ type rsModelSiteV4N6 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5319,6 +5528,8 @@ type rsModelSiteV4N6 struct {
 type rsModelSiteV4N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5351,8 +5562,8 @@ type rsModelSiteV4N5 struct {
 	SecurityPolicysetId types.String `tfsdk:"security_policyset_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5361,6 +5572,8 @@ type rsModelSiteV4N5 struct {
 type rsModelSiteV4N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5397,8 +5610,8 @@ type rsModelSiteV4N8 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -5409,6 +5622,8 @@ type rsModelSiteV4N8 struct {
 type rsModelSiteV4N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5445,8 +5660,8 @@ type rsModelSiteV4N7 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5455,6 +5670,8 @@ type rsModelSiteV4N7 struct {
 type rsModelNetworkPolicySetState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5473,6 +5690,8 @@ type rsModelNetworkPolicySetState struct {
 type rsModelIPFixTemplate struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5491,8 +5710,8 @@ type rsModelIPFixTemplate struct {
 	OptionExportTimeout types.Int64 `tfsdk:"option_export_timeout"`
 	// propertyName=options type=ARRAY_PRIMITIVE
 	Options types.List `tfsdk:"options"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=template_export_timeout type=INTEGER
 	TemplateExportTimeout types.Int64 `tfsdk:"template_export_timeout"`
 }
@@ -5503,6 +5722,8 @@ type rsModelIPFixTemplate struct {
 type rsModelTenantCacheQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5529,6 +5750,8 @@ type rsModelTenantCacheQueryFilter struct {
 type rsModelEventCorrelationPolicyRuleQueryV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5548,15 +5771,15 @@ type rsModelEventCorrelationPolicyRuleQueryV2N1 struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -5579,6 +5802,8 @@ type rsModelPortChannelMemberStateS struct {
 	InterfaceId types.String `tfsdk:"interface_id"`
 	// propertyName=partner_key type=INTEGER
 	PartnerKey types.Int64 `tfsdk:"partner_key"`
+	// password placeholder: propertyName=partner_key type=INTEGER
+	PartnerKeyInternalKeyName types.Int64 `tfsdk:"partner_key_internal_key_name"`
 	// propertyName=partner_mode type=STRING
 	PartnerMode types.String `tfsdk:"partner_mode"`
 	// propertyName=partner_priority type=INTEGER
@@ -5589,6 +5814,8 @@ type rsModelPortChannelMemberStateS struct {
 	PartnerState types.String `tfsdk:"partner_state"`
 	// propertyName=port_key type=INTEGER
 	PortKey types.Int64 `tfsdk:"port_key"`
+	// password placeholder: propertyName=port_key type=INTEGER
+	PortKeyInternalKeyName types.Int64 `tfsdk:"port_key_internal_key_name"`
 	// propertyName=port_mode type=STRING
 	PortMode types.String `tfsdk:"port_mode"`
 	// propertyName=port_priority type=INTEGER
@@ -5639,6 +5866,8 @@ type rsModelBandwidthAllocationSchemeV2 struct {
 type rsModelPriorityPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5659,8 +5888,8 @@ type rsModelPriorityPolicySet struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=template type=BOOLEAN
 	Template types.Bool `tfsdk:"template"`
 }
@@ -5689,6 +5918,8 @@ type rsModelRoutingPrefixFilterV2N1 struct {
 type rsModelRoutingPrefixListV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5703,8 +5934,8 @@ type rsModelRoutingPrefixListV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=prefix_filter_list type=ARRAY_REFERENCE
 	PrefixFilterList []rsModelRoutingPrefixFilterV2N1 `tfsdk:"prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5743,6 +5974,8 @@ type rsModelSourceSideRp struct {
 type rsModelMulticastSourceSideRpQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5761,6 +5994,8 @@ type rsModelMulticastSourceSideRpQueryFilter struct {
 type rsModelPriorityPolicyRuleV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5791,8 +6026,8 @@ type rsModelPriorityPolicyRuleV2N2 struct {
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -5803,6 +6038,8 @@ type rsModelPriorityPolicyRuleV2N2 struct {
 type rsModelPriorityPolicyRuleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5829,8 +6066,8 @@ type rsModelPriorityPolicyRuleV2N1 struct {
 	PriorityNumber types.Int64 `tfsdk:"priority_number"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -5887,6 +6124,8 @@ type rsModelIntraClusterTunnel struct {
 type rsModelPriorityPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -5915,8 +6154,8 @@ type rsModelPriorityPolicyRuleQueryFilter struct {
 	PriorityNumber types.Int64 `tfsdk:"priority_number"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -5971,6 +6210,8 @@ type rsModelSEPLivelinessProbeV2N2 struct {
 type rsModelCellularModuleImage struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6013,6 +6254,8 @@ type rsModelListResponseCellularModuleImage struct {
 type rsModelVRFContextProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6025,10 +6268,10 @@ type rsModelVRFContextProfileScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
-	// propertyName=vrf_context_ids type=ARRAY_PRIMITIVE
-	VrfContextIds types.List `tfsdk:"vrf_context_ids"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
+	// propertyName=vrf_context_ids type=SET_PRIMITIVE
+	VrfContextIds types.Set `tfsdk:"vrf_context_ids"`
 	// propertyName=vrf_context_route_leak_rules type=ARRAY_REFERENCE
 	VrfContextRouteLeakRules []rsModelVRFContextRouteLeakRule `tfsdk:"vrf_context_route_leak_rules"`
 }
@@ -6039,10 +6282,14 @@ type rsModelVRFContextProfileScreen struct {
 type rsModelSNMPTrapUserAccess struct {
 	// propertyName=auth_phrase type=STRING
 	AuthPhrase types.String `tfsdk:"auth_phrase"`
+	// password placeholder: propertyName=auth_phrase type=STRING
+	AuthPhraseInternalKeyName types.String `tfsdk:"auth_phrase_internal_key_name"`
 	// propertyName=auth_type type=STRING
 	AuthType types.String `tfsdk:"auth_type"`
 	// propertyName=enc_phrase type=STRING
 	EncPhrase types.String `tfsdk:"enc_phrase"`
+	// password placeholder: propertyName=enc_phrase type=STRING
+	EncPhraseInternalKeyName types.String `tfsdk:"enc_phrase_internal_key_name"`
 	// propertyName=enc_type type=STRING
 	EncType types.String `tfsdk:"enc_type"`
 	// propertyName=engine_id type=STRING
@@ -6059,6 +6306,8 @@ type rsModelSNMPTrapUserAccess struct {
 type rsModelIdpV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6094,7 +6343,7 @@ type rsModelIdpV3N3 struct {
 	// propertyName=match_email_domain type=BOOLEAN
 	MatchEmailDomain types.Bool `tfsdk:"match_email_domain"`
 	// propertyName=role_map type=OBJECT
-	RoleMap *map[string]interface{} `tfsdk:"role_map"`
+	RoleMap types.Map `tfsdk:"role_map"`
 	// propertyName=session_timeout_s type=INTEGER
 	SessionTimeoutS types.Int64 `tfsdk:"session_timeout_s"`
 	// propertyName=sign_redirect_binding type=BOOLEAN
@@ -6123,6 +6372,8 @@ type rsModelListResponseIdpV3N3 struct {
 type rsModelAppDefScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6148,7 +6399,7 @@ type rsModelAppDefScreenV2N1 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=order_number type=INTEGER
 	OrderNumber types.Int64 `tfsdk:"order_number"`
 	// propertyName=overrides_allowed type=BOOLEAN
@@ -6159,14 +6410,14 @@ type rsModelAppDefScreenV2N1 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 }
 
 // +-----------------------------------------------------------------
@@ -6175,6 +6426,8 @@ type rsModelAppDefScreenV2N1 struct {
 type rsModelDHCPServerScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6207,8 +6460,8 @@ type rsModelDHCPServerScreen struct {
 	StaticMappings []rsModelStaticMapping `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -6217,6 +6470,8 @@ type rsModelDHCPServerScreen struct {
 type rsModelIdpV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6250,7 +6505,7 @@ type rsModelIdpV3N2 struct {
 	// propertyName=is_hob type=BOOLEAN
 	IsHob types.Bool `tfsdk:"is_hob"`
 	// propertyName=role_map type=OBJECT
-	RoleMap *map[string]interface{} `tfsdk:"role_map"`
+	RoleMap types.Map `tfsdk:"role_map"`
 	// propertyName=session_timeout_s type=INTEGER
 	SessionTimeoutS types.Int64 `tfsdk:"session_timeout_s"`
 	// propertyName=sign_redirect_binding type=BOOLEAN
@@ -6279,6 +6534,8 @@ type rsModelListResponseIdpV3N2 struct {
 type rsModelPriorityPolicySetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6295,8 +6552,8 @@ type rsModelPriorityPolicySetStack struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -6335,6 +6592,8 @@ type rsModelServiceLinkPeers struct {
 type rsModelServiceEndpointV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6363,8 +6622,8 @@ type rsModelServiceEndpointV2N4 struct {
 	ServiceLinkPeers *rsModelServiceLinkPeers `tfsdk:"service_link_peers"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -6375,6 +6634,8 @@ type rsModelServiceEndpointV2N4 struct {
 type rsModelListQueryResponseServiceEndpointV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6390,7 +6651,7 @@ type rsModelListQueryResponseServiceEndpointV2N4 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelServiceEndpointV2N4 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -6401,6 +6662,8 @@ type rsModelListQueryResponseServiceEndpointV2N4 struct {
 type rsModelListQueryResponseMulticastRouteTableQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6416,7 +6679,7 @@ type rsModelListQueryResponseMulticastRouteTableQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastRouteTableQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -6427,6 +6690,8 @@ type rsModelListQueryResponseMulticastRouteTableQueryFilter struct {
 type rsModelAppDefScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6454,7 +6719,7 @@ type rsModelAppDefScreenV2N2 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -6471,14 +6736,14 @@ type rsModelAppDefScreenV2N2 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -6489,6 +6754,8 @@ type rsModelAppDefScreenV2N2 struct {
 type rsModelAppDefScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6516,7 +6783,7 @@ type rsModelAppDefScreenV2N3 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -6533,14 +6800,14 @@ type rsModelAppDefScreenV2N3 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -6559,6 +6826,8 @@ type rsModelElemCacheConfig struct {
 type rsModelAppDefScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6586,7 +6855,7 @@ type rsModelAppDefScreenV2N4 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -6611,14 +6880,14 @@ type rsModelAppDefScreenV2N4 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -6629,6 +6898,8 @@ type rsModelAppDefScreenV2N4 struct {
 type rsModelAppDefScreenV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6656,7 +6927,7 @@ type rsModelAppDefScreenV2N5 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -6681,14 +6952,14 @@ type rsModelAppDefScreenV2N5 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -6699,6 +6970,8 @@ type rsModelAppDefScreenV2N5 struct {
 type rsModelSecurityZoneV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6719,6 +6992,8 @@ type rsModelSecurityZoneV2N1 struct {
 type rsModelExtensionQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6738,15 +7013,15 @@ type rsModelExtensionQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -6757,6 +7032,8 @@ type rsModelExtensionQuery struct {
 type rsModelCustomRoleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6795,6 +7072,8 @@ type rsModelCustomRoleV2N1 struct {
 type rsModelSecurityZoneQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6813,6 +7092,8 @@ type rsModelSecurityZoneQueryFilter struct {
 type rsModelTenantPassageConf struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6823,6 +7104,8 @@ type rsModelTenantPassageConf struct {
 	PassageAllowed types.Bool `tfsdk:"passage_allowed"`
 	// propertyName=passage_password type=STRING
 	PassagePassword types.String `tfsdk:"passage_password"`
+	// password placeholder: propertyName=passage_password type=STRING
+	PassagePasswordInternalKeyName types.String `tfsdk:"passage_password_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -6831,6 +7114,8 @@ type rsModelTenantPassageConf struct {
 type rsModelSecurityPolicyV2N2RuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6863,8 +7148,8 @@ type rsModelSecurityPolicyV2N2RuleQueryFilter struct {
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -6887,6 +7172,8 @@ type rsModelDnsResourceRecords struct {
 type rsModelNetworkPolicyLocalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6897,8 +7184,8 @@ type rsModelNetworkPolicyLocalPrefix struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -6907,6 +7194,8 @@ type rsModelNetworkPolicyLocalPrefix struct {
 type rsModelElementQueryFilterV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -6977,8 +7266,8 @@ type rsModelElementQueryFilterV3N1 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -6989,6 +7278,8 @@ type rsModelElementQueryFilterV3N1 struct {
 type rsModelListQueryResponseElementQueryFilterV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7004,7 +7295,7 @@ type rsModelListQueryResponseElementQueryFilterV3N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementQueryFilterV3N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7015,6 +7306,8 @@ type rsModelListQueryResponseElementQueryFilterV3N1 struct {
 type rsModelMachineSoftwareQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7034,15 +7327,15 @@ type rsModelMachineSoftwareQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7053,6 +7346,8 @@ type rsModelMachineSoftwareQuery struct {
 type rsModelListQueryResponseMachineSoftwareQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7068,7 +7363,7 @@ type rsModelListQueryResponseMachineSoftwareQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMachineSoftwareQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7079,6 +7374,8 @@ type rsModelListQueryResponseMachineSoftwareQuery struct {
 type rsModelRoutingPrefixListScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7093,8 +7390,8 @@ type rsModelRoutingPrefixListScreenV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=prefix_filter_list type=ARRAY_REFERENCE
 	PrefixFilterList []rsModelRoutingPrefixFilterV2N1 `tfsdk:"prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -7103,6 +7400,8 @@ type rsModelRoutingPrefixListScreenV2N1 struct {
 type rsModelSecurityPolicyGlobalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7115,8 +7414,8 @@ type rsModelSecurityPolicyGlobalPrefix struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -7125,6 +7424,8 @@ type rsModelSecurityPolicyGlobalPrefix struct {
 type rsModelBaseEventState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7153,6 +7454,8 @@ type rsModelBaseEventState struct {
 type rsModelSiteEvent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7189,6 +7492,8 @@ type rsModelSeverityPriorityMapping struct {
 type rsModelEventCorrelationPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7207,8 +7512,8 @@ type rsModelEventCorrelationPolicySetQueryFilter struct {
 	PolicyruleOrder types.List `tfsdk:"policyrule_order"`
 	// propertyName=severity_priority_mapping type=ARRAY_REFERENCE
 	SeverityPriorityMapping []rsModelSeverityPriorityMapping `tfsdk:"severity_priority_mapping"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -7217,6 +7522,8 @@ type rsModelEventCorrelationPolicySetQueryFilter struct {
 type rsModelListQueryResponseEventCorrelationPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7232,7 +7539,7 @@ type rsModelListQueryResponseEventCorrelationPolicySetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelEventCorrelationPolicySetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7269,6 +7576,8 @@ type rsModelCustomDHCPOptions struct {
 type rsModelDHCPServerV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7303,8 +7612,8 @@ type rsModelDHCPServerV2N2 struct {
 	StaticMappings []rsModelStaticMappingV2 `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -7323,6 +7632,8 @@ type rsModelListResponseDHCPServerV2N2 struct {
 type rsModelDnsServiceRoleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7342,15 +7653,15 @@ type rsModelDnsServiceRoleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7361,6 +7672,8 @@ type rsModelDnsServiceRoleQuery struct {
 type rsModelListQueryResponseDnsServiceRoleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7376,7 +7689,7 @@ type rsModelListQueryResponseDnsServiceRoleQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDnsServiceRoleQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7387,6 +7700,8 @@ type rsModelListQueryResponseDnsServiceRoleQuery struct {
 type rsModelDHCPServerV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7421,8 +7736,8 @@ type rsModelDHCPServerV2N3 struct {
 	StaticMappings []rsModelStaticMappingV2 `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -7443,6 +7758,8 @@ type rsModelListResponseDHCPServerV2N3 struct {
 type rsModelAuthTokenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7459,6 +7776,8 @@ type rsModelAuthTokenV2N1 struct {
 	Roles []rsModelAuthRole `tfsdk:"roles"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
+	// password placeholder: propertyName=session_key_c type=STRING
+	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=x_auth_token type=STRING
 	XAuthToken types.String `tfsdk:"x_auth_token"`
 }
@@ -7489,6 +7808,8 @@ type rsModelListResponseAuthRole struct {
 type rsModelSiteQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7523,6 +7844,8 @@ type rsModelSiteQueryFilter struct {
 type rsModelListQueryResponseSiteQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7538,7 +7861,7 @@ type rsModelListQueryResponseSiteQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7549,6 +7872,8 @@ type rsModelListQueryResponseSiteQueryFilter struct {
 type rsModelDirectoryUserGroupQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7568,15 +7893,15 @@ type rsModelDirectoryUserGroupQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7587,6 +7912,8 @@ type rsModelDirectoryUserGroupQuery struct {
 type rsModelSiteCipher struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7637,6 +7964,8 @@ type rsModelHubClusterConfig struct {
 type rsModelElementQueryFilterV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7709,8 +8038,8 @@ type rsModelElementQueryFilterV3N2 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -7721,6 +8050,8 @@ type rsModelElementQueryFilterV3N2 struct {
 type rsModelListQueryResponseElementQueryFilterV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7736,7 +8067,7 @@ type rsModelListQueryResponseElementQueryFilterV3N2 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementQueryFilterV3N2 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7835,6 +8166,8 @@ type rsModelNextHop struct {
 type rsModelAppDefQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7854,15 +8187,15 @@ type rsModelAppDefQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7873,6 +8206,8 @@ type rsModelAppDefQuery struct {
 type rsModelLANNetworkScreenV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7895,6 +8230,8 @@ type rsModelLANNetworkScreenV3 struct {
 type rsModelBGPPeerQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7914,15 +8251,15 @@ type rsModelBGPPeerQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -7949,6 +8286,8 @@ type rsModelMulticastNeighbor struct {
 type rsModelMulticastStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -7977,6 +8316,8 @@ type rsModelMulticastStatusQueryFilter struct {
 type rsModelAnynetLinkQueryFilterV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8003,8 +8344,8 @@ type rsModelAnynetLinkQueryFilterV4 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -8017,6 +8358,8 @@ type rsModelAnynetLinkQueryFilterV4 struct {
 type rsModelListQueryResponseAnynetLinkQueryFilterV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8032,7 +8375,7 @@ type rsModelListQueryResponseAnynetLinkQueryFilterV4 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAnynetLinkQueryFilterV4 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8043,6 +8386,8 @@ type rsModelListQueryResponseAnynetLinkQueryFilterV4 struct {
 type rsModelBulkConfigCreateQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8062,15 +8407,15 @@ type rsModelBulkConfigCreateQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8081,6 +8426,8 @@ type rsModelBulkConfigCreateQuery struct {
 type rsModelRoutingAccessListQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8095,8 +8442,8 @@ type rsModelRoutingAccessListQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -8105,12 +8452,14 @@ type rsModelRoutingAccessListQueryFilter struct {
 type rsModelApiVersions struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
 	Schema types.Int64 `tfsdk:"x_schema"`
 	// propertyName=api_versions type=OBJECT
-	ApiVersions *map[string]interface{} `tfsdk:"api_versions"`
+	ApiVersions types.Map `tfsdk:"api_versions"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 }
@@ -8149,6 +8498,8 @@ type rsModelLoadFactor struct {
 type rsModelHubClusterMemberScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8205,6 +8556,8 @@ type rsModelLQMConfig struct {
 type rsModelWANInterfaceQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8235,8 +8588,8 @@ type rsModelWANInterfaceQueryFilterV2N4 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -8245,6 +8598,8 @@ type rsModelWANInterfaceQueryFilterV2N4 struct {
 type rsModelWANInterfaceQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8275,8 +8630,8 @@ type rsModelWANInterfaceQueryFilterV2N5 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -8353,6 +8708,8 @@ type rsModelCollectorConfig struct {
 type rsModelIPFixConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8379,8 +8736,8 @@ type rsModelIPFixConfigQueryFilter struct {
 	Sampler *rsModelIPFixSampler `tfsdk:"sampler"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -8389,6 +8746,8 @@ type rsModelIPFixConfigQueryFilter struct {
 type rsModelListQueryResponseExtensionQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8404,7 +8763,7 @@ type rsModelListQueryResponseExtensionQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelExtensionQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8415,6 +8774,8 @@ type rsModelListQueryResponseExtensionQuery struct {
 type rsModelMulticastSourceSideRp struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8433,6 +8794,8 @@ type rsModelMulticastSourceSideRp struct {
 type rsModelInterfaceQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8467,6 +8830,8 @@ type rsModelInterfaceQueryFilter struct {
 type rsModelListQueryResponseInterfaceQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8482,7 +8847,7 @@ type rsModelListQueryResponseInterfaceQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelInterfaceQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8503,6 +8868,8 @@ type rsModelWANL3Reachability struct {
 type rsModelWANInterfaceQueryFilterV2N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8539,8 +8906,8 @@ type rsModelWANInterfaceQueryFilterV2N8 struct {
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -8559,6 +8926,8 @@ type rsModelWANInterfaceQueryFilterV2N8 struct {
 type rsModelWANInterfaceQueryFilterV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8591,8 +8960,8 @@ type rsModelWANInterfaceQueryFilterV2N7 struct {
 	NetworkId types.String `tfsdk:"network_id"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -8637,6 +9006,8 @@ type rsModelElementChassis struct {
 type rsModelWANInterfaceQueryFilterV2N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8673,8 +9044,8 @@ type rsModelWANInterfaceQueryFilterV2N9 struct {
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -8693,6 +9064,8 @@ type rsModelWANInterfaceQueryFilterV2N9 struct {
 type rsModelWANNetworkV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8705,8 +9078,8 @@ type rsModelWANNetworkV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=provider_as_numbers type=ARRAY_PRIMITIVE
 	ProviderAsNumbers types.List `tfsdk:"provider_as_numbers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -8727,6 +9100,8 @@ type rsModelBulkResponseWANNetworkV2N1 struct {
 type rsModelSaseConnectionGlobalConfigV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8751,6 +9126,8 @@ type rsModelSaseConnectionGlobalConfigV3 struct {
 type rsModelActiveUserIPQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8789,6 +9166,8 @@ type rsModelActiveUserIPQueryFilter struct {
 type rsModelListQueryResponseActiveUserIPQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8804,7 +9183,7 @@ type rsModelListQueryResponseActiveUserIPQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelActiveUserIPQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8845,6 +9224,8 @@ type rsModelEscalationRule struct {
 type rsModelEventCorrelationPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8863,8 +9244,8 @@ type rsModelEventCorrelationPolicySet struct {
 	PolicyruleOrder types.List `tfsdk:"policyrule_order"`
 	// propertyName=severity_priority_mapping type=ARRAY_REFERENCE
 	SeverityPriorityMapping []rsModelSeverityPriorityMapping `tfsdk:"severity_priority_mapping"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -8883,6 +9264,8 @@ type rsModelListResponseEventCorrelationPolicySet struct {
 type rsModelSaseConnectionGlobalConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8901,6 +9284,8 @@ type rsModelSaseConnectionGlobalConfigScreen struct {
 type rsModelSpokeClusterQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8920,15 +9305,15 @@ type rsModelSpokeClusterQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8939,6 +9324,8 @@ type rsModelSpokeClusterQuery struct {
 type rsModelNATPolicyZoneQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8951,8 +9338,8 @@ type rsModelNATPolicyZoneQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -8961,6 +9348,8 @@ type rsModelNATPolicyZoneQueryFilter struct {
 type rsModelListQueryResponseNATPolicyZoneQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -8976,7 +9365,7 @@ type rsModelListQueryResponseNATPolicyZoneQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNATPolicyZoneQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -8997,6 +9386,8 @@ type rsModelLanNetworkIPv6Config struct {
 type rsModelLANNetworkScreenV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9015,8 +9406,8 @@ type rsModelLANNetworkScreenV3N3 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -9027,6 +9418,8 @@ type rsModelLANNetworkScreenV3N3 struct {
 type rsModelLANNetworkScreenV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9045,8 +9438,8 @@ type rsModelLANNetworkScreenV3N2 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -9055,6 +9448,8 @@ type rsModelLANNetworkScreenV3N2 struct {
 type rsModelLANNetworkScreenV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9071,8 +9466,8 @@ type rsModelLANNetworkScreenV3N1 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -9081,6 +9476,8 @@ type rsModelLANNetworkScreenV3N1 struct {
 type rsModelMachineStateV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9119,6 +9516,8 @@ type rsModelCertificateIssuer struct {
 type rsModelCertificateCa struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9162,7 +9561,7 @@ type rsModelProtocol struct {
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=map_external_group type=OBJECT
-	MapExternalGroup *map[string]interface{} `tfsdk:"map_external_group"`
+	MapExternalGroup types.Map `tfsdk:"map_external_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=protocol type=STRING
@@ -9177,6 +9576,8 @@ type rsModelProtocol struct {
 type rsModelProvider struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9196,7 +9597,7 @@ type rsModelProvider struct {
 	// propertyName=inactive_reason type=STRING
 	InactiveReason types.String `tfsdk:"inactive_reason"`
 	// propertyName=map_external_group type=OBJECT
-	MapExternalGroup *map[string]interface{} `tfsdk:"map_external_group"`
+	MapExternalGroup types.Map `tfsdk:"map_external_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=protocol type=REFERENCE
@@ -9215,6 +9616,8 @@ type rsModelProviderData struct {
 	Certificate *rsModelCertificateCa `tfsdk:"certificate"`
 	// propertyName=password_hash type=STRING
 	PasswordHash types.String `tfsdk:"password_hash"`
+	// password placeholder: propertyName=password_hash type=STRING
+	PasswordHashInternalKeyName types.String `tfsdk:"password_hash_internal_key_name"`
 	// propertyName=provider type=REFERENCE
 	Provider *rsModelProvider `tfsdk:"provider"`
 	// propertyName=salt type=STRING
@@ -9251,6 +9654,8 @@ type rsModelPhoneNumber struct {
 type rsModelLinkedAccount struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9269,6 +9674,8 @@ type rsModelLinkedAccount struct {
 	InactiveReason types.String `tfsdk:"inactive_reason"`
 	// propertyName=provider_key type=STRING
 	ProviderKey types.String `tfsdk:"provider_key"`
+	// password placeholder: propertyName=provider_key type=STRING
+	ProviderKeyInternalKeyName types.String `tfsdk:"provider_key_internal_key_name"`
 	// propertyName=provider_value type=STRING
 	ProviderValue types.String `tfsdk:"provider_value"`
 	// propertyName=provider_value_updated_on type=INTEGER
@@ -9291,6 +9698,8 @@ type rsModelEmail struct {
 type rsModelOperator struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9365,14 +9774,24 @@ type rsModelPasswordPolicy struct {
 	EnableFailedLoginTimeDelay types.Bool `tfsdk:"enable_failed_login_time_delay"`
 	// propertyName=enable_maximum_password_length type=BOOLEAN
 	EnableMaximumPasswordLength types.Bool `tfsdk:"enable_maximum_password_length"`
+	// password placeholder: propertyName=enable_maximum_password_length type=BOOLEAN
+	EnableMaximumPasswordLengthInternalKeyName types.Bool `tfsdk:"enable_maximum_password_length_internal_key_name"`
 	// propertyName=enable_minimum_password_length type=BOOLEAN
 	EnableMinimumPasswordLength types.Bool `tfsdk:"enable_minimum_password_length"`
+	// password placeholder: propertyName=enable_minimum_password_length type=BOOLEAN
+	EnableMinimumPasswordLengthInternalKeyName types.Bool `tfsdk:"enable_minimum_password_length_internal_key_name"`
 	// propertyName=enable_password_aging type=BOOLEAN
 	EnablePasswordAging types.Bool `tfsdk:"enable_password_aging"`
+	// password placeholder: propertyName=enable_password_aging type=BOOLEAN
+	EnablePasswordAgingInternalKeyName types.Bool `tfsdk:"enable_password_aging_internal_key_name"`
 	// propertyName=enable_password_identity_difference type=BOOLEAN
 	EnablePasswordIdentityDifference types.Bool `tfsdk:"enable_password_identity_difference"`
+	// password placeholder: propertyName=enable_password_identity_difference type=BOOLEAN
+	EnablePasswordIdentityDifferenceInternalKeyName types.Bool `tfsdk:"enable_password_identity_difference_internal_key_name"`
 	// propertyName=enable_password_no_reuse_count type=BOOLEAN
 	EnablePasswordNoReuseCount types.Bool `tfsdk:"enable_password_no_reuse_count"`
+	// password placeholder: propertyName=enable_password_no_reuse_count type=BOOLEAN
+	EnablePasswordNoReuseCountInternalKeyName types.Bool `tfsdk:"enable_password_no_reuse_count_internal_key_name"`
 	// propertyName=enable_session_ip_lock type=BOOLEAN
 	EnableSessionIpLock types.Bool `tfsdk:"enable_session_ip_lock"`
 	// propertyName=enable_two_lower_case_letters type=BOOLEAN
@@ -9387,14 +9806,24 @@ type rsModelPasswordPolicy struct {
 	FailedLoginAttempts types.Int64 `tfsdk:"failed_login_attempts"`
 	// propertyName=maximum_password_length type=INTEGER
 	MaximumPasswordLength types.Int64 `tfsdk:"maximum_password_length"`
+	// password placeholder: propertyName=maximum_password_length type=INTEGER
+	MaximumPasswordLengthInternalKeyName types.Int64 `tfsdk:"maximum_password_length_internal_key_name"`
 	// propertyName=minimum_password_length type=INTEGER
 	MinimumPasswordLength types.Int64 `tfsdk:"minimum_password_length"`
+	// password placeholder: propertyName=minimum_password_length type=INTEGER
+	MinimumPasswordLengthInternalKeyName types.Int64 `tfsdk:"minimum_password_length_internal_key_name"`
 	// propertyName=password_aging_days type=INTEGER
 	PasswordAgingDays types.Int64 `tfsdk:"password_aging_days"`
+	// password placeholder: propertyName=password_aging_days type=INTEGER
+	PasswordAgingDaysInternalKeyName types.Int64 `tfsdk:"password_aging_days_internal_key_name"`
 	// propertyName=password_aging_notification type=INTEGER
 	PasswordAgingNotification types.Int64 `tfsdk:"password_aging_notification"`
+	// password placeholder: propertyName=password_aging_notification type=INTEGER
+	PasswordAgingNotificationInternalKeyName types.Int64 `tfsdk:"password_aging_notification_internal_key_name"`
 	// propertyName=password_no_reuse_count type=INTEGER
 	PasswordNoReuseCount types.Int64 `tfsdk:"password_no_reuse_count"`
+	// password placeholder: propertyName=password_no_reuse_count type=INTEGER
+	PasswordNoReuseCountInternalKeyName types.Int64 `tfsdk:"password_no_reuse_count_internal_key_name"`
 	// propertyName=special_characters type=STRING
 	SpecialCharacters types.String `tfsdk:"special_characters"`
 	// propertyName=special_characters_regex type=STRING
@@ -9407,6 +9836,8 @@ type rsModelPasswordPolicy struct {
 type rsModelTenant struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9441,6 +9872,8 @@ type rsModelTenant struct {
 	Operator *rsModelOperator `tfsdk:"operator"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=provider_data type=ARRAY_REFERENCE
@@ -9457,12 +9890,14 @@ type rsModelTenant struct {
 type rsModelExtensionScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
 	Schema types.Int64 `tfsdk:"x_schema"`
 	// propertyName=conf type=OBJECT
-	Conf *map[string]interface{} `tfsdk:"conf"`
+	Conf types.Map `tfsdk:"conf"`
 	// propertyName=disabled type=BOOLEAN
 	Disabled types.Bool `tfsdk:"disabled"`
 	// propertyName=entity_id type=STRING
@@ -9491,6 +9926,8 @@ type rsModelEventsOperationsRequestBodyBulkAcknowledge struct {
 type rsModelPassageQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9510,15 +9947,15 @@ type rsModelPassageQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -9529,6 +9966,8 @@ type rsModelPassageQuery struct {
 type rsModelPriorityPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9549,8 +9988,8 @@ type rsModelPriorityPolicySetQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=template type=BOOLEAN
 	Template types.Bool `tfsdk:"template"`
 }
@@ -9561,6 +10000,8 @@ type rsModelPriorityPolicySetQueryFilter struct {
 type rsModelListQueryResponsePriorityPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9576,7 +10017,7 @@ type rsModelListQueryResponsePriorityPolicySetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPriorityPolicySetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -9587,6 +10028,8 @@ type rsModelListQueryResponsePriorityPolicySetQueryFilter struct {
 type rsModelServiceEndpointV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9617,8 +10060,8 @@ type rsModelServiceEndpointV3 struct {
 	ServiceLinkPeers *rsModelServiceLinkPeers `tfsdk:"service_link_peers"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -9629,6 +10072,8 @@ type rsModelServiceEndpointV3 struct {
 type rsModelIPFixContextQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9648,15 +10093,15 @@ type rsModelIPFixContextQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -9667,6 +10112,8 @@ type rsModelIPFixContextQuery struct {
 type rsModelCertificatePUTScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9687,6 +10134,8 @@ type rsModelCertificatePUTScreen struct {
 	IssuerHash types.String `tfsdk:"issuer_hash"`
 	// propertyName=key_file type=STRING
 	KeyFile types.String `tfsdk:"key_file"`
+	// password placeholder: propertyName=key_file type=STRING
+	KeyFileInternalKeyName types.String `tfsdk:"key_file_internal_key_name"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=not_valid_after type=STRING
@@ -9709,6 +10158,8 @@ type rsModelCertificatePUTScreen struct {
 type rsModelElementState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9727,6 +10178,8 @@ type rsModelElementState struct {
 type rsModelElementShellQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9781,8 +10234,8 @@ type rsModelElementShellQueryFilter struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -9793,6 +10246,8 @@ type rsModelElementShellQueryFilter struct {
 type rsModelListQueryResponseElementShellQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9808,7 +10263,7 @@ type rsModelListQueryResponseElementShellQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementShellQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -9851,6 +10306,8 @@ type rsModelEventQueryResponseV3_5ItemItemsPolicyInfo struct {
 type rsModelEventQueryResponseV3_5ItemItems struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_created_on_utc type=STRING
 	CreatedOnUtc types.String `tfsdk:"x_created_on_utc"`
 	// propertyName=_etag type=INTEGER
@@ -9876,7 +10333,7 @@ type rsModelEventQueryResponseV3_5ItemItems struct {
 	// propertyName=ident type=STRING
 	Ident types.String `tfsdk:"ident"`
 	// propertyName=info type=OBJECT
-	Info *map[string]interface{} `tfsdk:"info"`
+	Info types.Map `tfsdk:"info"`
 	// propertyName=policy_info type=REFERENCE
 	PolicyInfo *rsModelEventQueryResponseV3_5ItemItemsPolicyInfo `tfsdk:"policy_info"`
 	// propertyName=priority type=STRING
@@ -9901,6 +10358,8 @@ type rsModelEventQueryResponseV3_5ItemItems struct {
 type rsModelInterfaceEvent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9951,6 +10410,8 @@ type rsModelMulticastIgmpGroupMember struct {
 type rsModelMulticastIgmpMembership struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -9981,6 +10442,8 @@ type rsModelSecurityPolicy struct {
 type rsModelAppDefQueryFilterTransformed struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10006,7 +10469,7 @@ type rsModelAppDefQueryFilterTransformed struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=order_number type=INTEGER
 	OrderNumber types.Int64 `tfsdk:"order_number"`
 	// propertyName=overrides_allowed type=BOOLEAN
@@ -10017,14 +10480,14 @@ type rsModelAppDefQueryFilterTransformed struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 }
 
 // +-----------------------------------------------------------------
@@ -10237,8 +10700,12 @@ type rsModelOspfGlobalConfig struct {
 	HelloInterval types.Int64 `tfsdk:"hello_interval"`
 	// propertyName=md5_key_id type=INTEGER
 	Md5KeyId types.Int64 `tfsdk:"md5_key_id"`
+	// password placeholder: propertyName=md5_key_id type=INTEGER
+	Md5KeyIdInternalKeyName types.Int64 `tfsdk:"md5_key_id_internal_key_name"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=retransmit_interval type=INTEGER
 	RetransmitInterval types.Int64 `tfsdk:"retransmit_interval"`
 	// propertyName=transmit_delay type=INTEGER
@@ -10273,6 +10740,8 @@ type rsModelArea struct {
 type rsModelOspfConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10301,8 +10770,8 @@ type rsModelOspfConfigQueryFilter struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -10313,6 +10782,8 @@ type rsModelOspfConfigQueryFilter struct {
 type rsModelListQueryResponseOspfConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10328,7 +10799,7 @@ type rsModelListQueryResponseOspfConfigQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelOspfConfigQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -10341,6 +10812,8 @@ type rsModelRoutingConfigs struct {
 	AdvertiseDefaultRoute types.Bool `tfsdk:"advertise_default_route"`
 	// propertyName=bgp_secret type=STRING
 	BgpSecret types.String `tfsdk:"bgp_secret"`
+	// password placeholder: propertyName=bgp_secret type=STRING
+	BgpSecretInternalKeyName types.String `tfsdk:"bgp_secret_internal_key_name"`
 	// propertyName=export_routes type=BOOLEAN
 	ExportRoutes types.Bool `tfsdk:"export_routes"`
 	// propertyName=summarize_mobile_routes_before_advertise type=BOOLEAN
@@ -10411,6 +10884,8 @@ type rsModelIPSecTunnelConfigs struct {
 	EnableGreEncapsulation types.Bool `tfsdk:"enable_gre_encapsulation"`
 	// propertyName=ike_key_exchange type=STRING
 	IkeKeyExchange types.String `tfsdk:"ike_key_exchange"`
+	// password placeholder: propertyName=ike_key_exchange type=STRING
+	IkeKeyExchangeInternalKeyName types.String `tfsdk:"ike_key_exchange_internal_key_name"`
 	// propertyName=prismaaccess_ike_crypto_profile_id type=STRING
 	PrismaaccessIkeCryptoProfileId types.String `tfsdk:"prismaaccess_ike_crypto_profile_id"`
 	// propertyName=prismaaccess_ipsec_profile_id type=STRING
@@ -10425,6 +10900,8 @@ type rsModelIPSecTunnelConfigs struct {
 type rsModelSaseConnectionScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10503,6 +10980,8 @@ type rsModelDnsQueriesMetadata struct {
 type rsModelDnsServiceQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10522,15 +11001,15 @@ type rsModelDnsServiceQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -10541,6 +11020,8 @@ type rsModelDnsServiceQuery struct {
 type rsModelListQueryResponseDnsServiceQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10556,7 +11037,7 @@ type rsModelListQueryResponseDnsServiceQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDnsServiceQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -10579,6 +11060,8 @@ type rsModelPathsAllowedV2N1 struct {
 type rsModelNetworkPolicyRuleQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10607,8 +11090,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N3 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -10619,6 +11102,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N3 struct {
 type rsModelListQueryResponseNetworkPolicyRuleQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10634,7 +11119,7 @@ type rsModelListQueryResponseNetworkPolicyRuleQueryFilterV2N3 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNetworkPolicyRuleQueryFilterV2N3 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -10645,6 +11130,8 @@ type rsModelListQueryResponseNetworkPolicyRuleQueryFilterV2N3 struct {
 type rsModelNetworkPolicyRuleQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10677,8 +11164,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N4 struct {
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -10689,6 +11176,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N4 struct {
 type rsModelListQueryResponseNetworkPolicyRuleQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10704,7 +11193,7 @@ type rsModelListQueryResponseNetworkPolicyRuleQueryFilterV2N4 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNetworkPolicyRuleQueryFilterV2N4 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -10715,6 +11204,8 @@ type rsModelListQueryResponseNetworkPolicyRuleQueryFilterV2N4 struct {
 type rsModelSyslogServerProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -10739,8 +11230,8 @@ type rsModelSyslogServerProfile struct {
 	ServerPort types.Int64 `tfsdk:"server_port"`
 	// propertyName=severity_level type=STRING
 	SeverityLevel types.String `tfsdk:"severity_level"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -10891,6 +11382,8 @@ type rsModelPppoEInterfaceConfig struct {
 	IpAddressType types.String `tfsdk:"ip_address_type"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=reconnection_delay type=INTEGER
 	ReconnectionDelay types.Int64 `tfsdk:"reconnection_delay"`
 	// propertyName=service_name type=STRING
@@ -10977,6 +11470,8 @@ type rsModelSubInterface struct {
 type rsModelEthernet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11089,6 +11584,8 @@ type rsModelLanNetworkVlanMapping struct {
 type rsModelInterfaceV4N20 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11179,8 +11676,8 @@ type rsModelInterfaceV4N20 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -11217,6 +11714,8 @@ type rsModelPathFilter struct {
 type rsModelPerfMgmtPolicyRuleV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11239,8 +11738,8 @@ type rsModelPerfMgmtPolicyRuleV2N2 struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -11263,6 +11762,8 @@ type rsModelListResponsePerfMgmtPolicyRuleV2N2 struct {
 type rsModelPerfMgmtPolicyRuleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11283,8 +11784,8 @@ type rsModelPerfMgmtPolicyRuleV2N1 struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -11323,6 +11824,8 @@ type rsModelElementShellInterface struct {
 type rsModelElementCopyConfigurations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11347,8 +11850,8 @@ type rsModelElementCopyConfigurations struct {
 	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=source_element_id type=STRING
 	SourceElementId types.String `tfsdk:"source_element_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -11369,6 +11872,8 @@ type rsModelDynamicRp struct {
 type rsModelMulticastDynamicRpQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11385,6 +11890,8 @@ type rsModelMulticastDynamicRpQueryFilter struct {
 type rsModelListQueryResponseMulticastDynamicRpQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11400,7 +11907,7 @@ type rsModelListQueryResponseMulticastDynamicRpQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastDynamicRpQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -11419,6 +11926,8 @@ type rsModelBGPConfig struct {
 	LocalAsNum types.String `tfsdk:"local_as_num"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_auth_type type=STRING
@@ -11433,6 +11942,8 @@ type rsModelBGPConfig struct {
 type rsModelBGPPeerConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11455,8 +11966,8 @@ type rsModelBGPPeerConfig struct {
 	RouteMapInId types.String `tfsdk:"route_map_in_id"`
 	// propertyName=route_map_out_id type=STRING
 	RouteMapOutId types.String `tfsdk:"route_map_out_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 }
@@ -11467,6 +11978,8 @@ type rsModelBGPPeerConfig struct {
 type rsModelSiteSecurityPolicyV2PrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11477,8 +11990,8 @@ type rsModelSiteSecurityPolicyV2PrefixAssociation struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -11487,6 +12000,8 @@ type rsModelSiteSecurityPolicyV2PrefixAssociation struct {
 type rsModelEventCorrelationPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11517,8 +12032,8 @@ type rsModelEventCorrelationPolicyRule struct {
 	SubResourceType types.String `tfsdk:"sub_resource_type"`
 	// propertyName=suppress type=STRING
 	Suppress types.String `tfsdk:"suppress"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -11603,6 +12118,8 @@ type rsModelNetworkState struct {
 type rsModelMachineCellularModuleState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11653,6 +12170,8 @@ type rsModelMachineCellularModuleState struct {
 type rsModelIPFixContextQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11671,6 +12190,8 @@ type rsModelIPFixContextQueryFilter struct {
 type rsModelListQueryResponseIPFixContextQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11686,7 +12207,7 @@ type rsModelListQueryResponseIPFixContextQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelIPFixContextQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -11709,6 +12230,8 @@ type rsModelBypassPair struct {
 type rsModelInterfaceScreenV4N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11763,6 +12286,8 @@ type rsModelInterfaceScreenV4N1 struct {
 type rsModelInterfaceScreenV4N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11817,6 +12342,8 @@ type rsModelInterfaceScreenV4N2 struct {
 type rsModelRoutingPrefixListQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11831,8 +12358,8 @@ type rsModelRoutingPrefixListQueryFilterV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=prefix_filter_list type=ARRAY_REFERENCE
 	PrefixFilterList []rsModelRoutingPrefixFilterV2N1 `tfsdk:"prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -11841,6 +12368,8 @@ type rsModelRoutingPrefixListQueryFilterV2N1 struct {
 type rsModelListQueryResponseRoutingPrefixListQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11856,7 +12385,7 @@ type rsModelListQueryResponseRoutingPrefixListQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingPrefixListQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -11867,6 +12396,8 @@ type rsModelListQueryResponseRoutingPrefixListQueryFilterV2N1 struct {
 type rsModelVRFContextQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11879,8 +12410,8 @@ type rsModelVRFContextQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -11889,6 +12420,8 @@ type rsModelVRFContextQueryFilter struct {
 type rsModelElementV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -11959,8 +12492,8 @@ type rsModelElementV3N1 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -11989,6 +12522,8 @@ type rsModelServiceLinkV1 struct {
 type rsModelInterfaceScreenV4N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12047,6 +12582,8 @@ type rsModelInterfaceScreenV4N5 struct {
 type rsModelElementV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12119,8 +12656,8 @@ type rsModelElementV3N2 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -12131,6 +12668,8 @@ type rsModelElementV3N2 struct {
 type rsModelInterfaceScreenV4N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12177,8 +12716,8 @@ type rsModelInterfaceScreenV4N6 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -12215,6 +12754,8 @@ type rsModelPathPrefixFilterList struct {
 type rsModelPathPrefixDistributionFilters struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12227,8 +12768,8 @@ type rsModelPathPrefixDistributionFilters struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=path_prefix_filter_list type=ARRAY_REFERENCE
 	PathPrefixFilterList []rsModelPathPrefixFilterList `tfsdk:"path_prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -12237,6 +12778,8 @@ type rsModelPathPrefixDistributionFilters struct {
 type rsModelInterfaceScreenV4N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12293,6 +12836,8 @@ type rsModelInterfaceScreenV4N3 struct {
 type rsModelInterfaceScreenV4N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12371,6 +12916,8 @@ type rsModelServiceLinkV3 struct {
 type rsModelInterfaceScreenV4N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12425,8 +12972,8 @@ type rsModelInterfaceScreenV4N9 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -12439,6 +12986,8 @@ type rsModelInterfaceScreenV4N9 struct {
 type rsModelInterfaceScreenV4N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12491,8 +13040,8 @@ type rsModelInterfaceScreenV4N7 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -12505,6 +13054,8 @@ type rsModelInterfaceScreenV4N7 struct {
 type rsModelDeviceIdElementConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12517,8 +13068,8 @@ type rsModelDeviceIdElementConfig struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=snmp_discovery_source_interface_id type=STRING
 	SnmpDiscoverySourceInterfaceId types.String `tfsdk:"snmp_discovery_source_interface_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -12537,6 +13088,8 @@ type rsModelListResponseDeviceIdElementConfig struct {
 type rsModelInterfaceScreenV4N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12589,8 +13142,8 @@ type rsModelInterfaceScreenV4N8 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -12645,6 +13198,8 @@ type rsModelInterfaceLldpNeighborsState struct {
 type rsModelLldpNeighborsState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12689,6 +13244,8 @@ type rsModelClusterMember struct {
 type rsModelWANInterfaceLabelScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12709,6 +13266,8 @@ type rsModelWANInterfaceLabelScreen struct {
 type rsModelMulticastDynamicRp struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12731,6 +13290,8 @@ type rsModelKeyDigest struct {
 	DigestType types.Int64 `tfsdk:"digest_type"`
 	// propertyName=key_tag type=INTEGER
 	KeyTag types.Int64 `tfsdk:"key_tag"`
+	// password placeholder: propertyName=key_tag type=INTEGER
+	KeyTagInternalKeyName types.Int64 `tfsdk:"key_tag_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -12739,6 +13300,8 @@ type rsModelKeyDigest struct {
 type rsModelSitePriorityPrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12749,8 +13312,8 @@ type rsModelSitePriorityPrefixAssociation struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -12787,6 +13350,8 @@ type rsModelPeerStatus struct {
 type rsModelBGPPeerStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12808,7 +13373,7 @@ type rsModelBGPPeerStatusQueryFilter struct {
 // +-----------------------------------------------------------------
 type rsModelQueryParams struct {
 	// propertyName=comparator type=OBJECT
-	Comparator *map[string]interface{} `tfsdk:"comparator"`
+	Comparator types.Map `tfsdk:"comparator"`
 }
 
 // +-----------------------------------------------------------------
@@ -12831,6 +13396,8 @@ type rsModelMacAddressEntry struct {
 type rsModelMacAddressState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12849,6 +13416,8 @@ type rsModelMacAddressState struct {
 type rsModelServiceLabelQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12868,15 +13437,15 @@ type rsModelServiceLabelQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -12897,6 +13466,8 @@ type rsModelServiceBinding struct {
 type rsModelEventCorrelationPolicyRuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12927,8 +13498,8 @@ type rsModelEventCorrelationPolicyRuleScreen struct {
 	SubResourceType types.String `tfsdk:"sub_resource_type"`
 	// propertyName=suppress type=STRING
 	Suppress types.String `tfsdk:"suppress"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -12937,6 +13508,8 @@ type rsModelEventCorrelationPolicyRuleScreen struct {
 type rsModelPathGroupQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12957,6 +13530,8 @@ type rsModelPathGroupQueryFilter struct {
 type rsModelEventCorrelationPolicyRuleScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -12989,8 +13564,8 @@ type rsModelEventCorrelationPolicyRuleScreenV2N1 struct {
 	SubResourceType types.String `tfsdk:"sub_resource_type"`
 	// propertyName=suppress type=STRING
 	Suppress types.String `tfsdk:"suppress"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -12999,6 +13574,8 @@ type rsModelEventCorrelationPolicyRuleScreenV2N1 struct {
 type rsModelVffTokenQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13007,6 +13584,8 @@ type rsModelVffTokenQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ion_key type=STRING
 	IonKey types.String `tfsdk:"ion_key"`
+	// password placeholder: propertyName=ion_key type=STRING
+	IonKeyInternalKeyName types.String `tfsdk:"ion_key_internal_key_name"`
 	// propertyName=is_expired type=BOOLEAN
 	IsExpired types.Bool `tfsdk:"is_expired"`
 	// propertyName=is_multiuse type=BOOLEAN
@@ -13017,6 +13596,8 @@ type rsModelVffTokenQueryFilter struct {
 	IsUsed types.Bool `tfsdk:"is_used"`
 	// propertyName=secret_key type=STRING
 	SecretKey types.String `tfsdk:"secret_key"`
+	// password placeholder: propertyName=secret_key type=STRING
+	SecretKeyInternalKeyName types.String `tfsdk:"secret_key_internal_key_name"`
 	// propertyName=valid_till_secs type=INTEGER
 	ValidTillSecs types.Int64 `tfsdk:"valid_till_secs"`
 	// propertyName=vfflicense_id type=STRING
@@ -13029,6 +13610,8 @@ type rsModelVffTokenQueryFilter struct {
 type rsModelElementV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13093,8 +13676,8 @@ type rsModelElementV3 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -13117,6 +13700,8 @@ type rsModelInterfaceConfig struct {
 type rsModelOspfDiscoveredNeighbor struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13169,6 +13754,8 @@ type rsModelPrefixQueryFilterV3N1 struct {
 type rsModelNetworkNode struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13201,6 +13788,8 @@ type rsModelNetworkNode struct {
 type rsModelDirectoryUserQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13213,8 +13802,8 @@ type rsModelDirectoryUserQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=stale type=BOOLEAN
 	Stale types.Bool `tfsdk:"stale"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_group_ids type=ARRAY_PRIMITIVE
 	UserGroupIds types.List `tfsdk:"user_group_ids"`
 }
@@ -13225,6 +13814,8 @@ type rsModelDirectoryUserQueryFilter struct {
 type rsModelAPNProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13235,6 +13826,8 @@ type rsModelAPNProfile struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
+	// password placeholder: propertyName=clear_password type=BOOLEAN
+	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
@@ -13243,8 +13836,10 @@ type rsModelAPNProfile struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_name type=STRING
 	UserName types.String `tfsdk:"user_name"`
 }
@@ -13265,6 +13860,8 @@ type rsModelListResponseAPNProfile struct {
 type rsModelLocalPrefixFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13283,6 +13880,8 @@ type rsModelLocalPrefixFilter struct {
 type rsModelListQueryResponseLocalPrefixFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13298,7 +13897,7 @@ type rsModelListQueryResponseLocalPrefixFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelLocalPrefixFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13309,6 +13908,8 @@ type rsModelListQueryResponseLocalPrefixFilter struct {
 type rsModelPrismaAccessConfigQueryResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13327,6 +13928,8 @@ type rsModelPrismaAccessConfigQueryResponse struct {
 type rsModelListQueryResponsePrismaAccessConfigQueryResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13342,7 +13945,7 @@ type rsModelListQueryResponsePrismaAccessConfigQueryResponse struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPrismaAccessConfigQueryResponse `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13353,6 +13956,8 @@ type rsModelListQueryResponsePrismaAccessConfigQueryResponse struct {
 type rsModelVlanPort struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13375,6 +13980,8 @@ type rsModelVlanPort struct {
 type rsModelSwitchPortVlanPorts struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13397,6 +14004,8 @@ type rsModelSwitchPortVlanPorts struct {
 type rsModelIPFixContext struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13415,6 +14024,8 @@ type rsModelIPFixContext struct {
 type rsModelNATPolicyPoolQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13425,8 +14036,8 @@ type rsModelNATPolicyPoolQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -13435,6 +14046,8 @@ type rsModelNATPolicyPoolQueryFilter struct {
 type rsModelIPFixLocalPrefixScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13445,8 +14058,8 @@ type rsModelIPFixLocalPrefixScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -13455,6 +14068,8 @@ type rsModelIPFixLocalPrefixScreen struct {
 type rsModelEnterprisePrefixSetNV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13473,6 +14088,8 @@ type rsModelEnterprisePrefixSetNV2N1 struct {
 type rsModelGlobalPrefixQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13487,8 +14104,8 @@ type rsModelGlobalPrefixQueryFilterV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -13507,6 +14124,8 @@ type rsModelIPAddressPool struct {
 type rsModelSecurityZoneNetworkAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13525,6 +14144,8 @@ type rsModelSecurityZoneNetworkAssociation struct {
 type rsModelListQueryResponseSecurityZoneNetworkAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13540,7 +14161,7 @@ type rsModelListQueryResponseSecurityZoneNetworkAssociation struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityZoneNetworkAssociation `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13551,6 +14172,8 @@ type rsModelListQueryResponseSecurityZoneNetworkAssociation struct {
 type rsModelListQueryResponseSecurityPolicyV2RuleV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13566,7 +14189,7 @@ type rsModelListQueryResponseSecurityPolicyV2RuleV2N2 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2RuleV2N2 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13577,6 +14200,8 @@ type rsModelListQueryResponseSecurityPolicyV2RuleV2N2 struct {
 type rsModelListQueryResponseSecurityPolicyV2RuleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13592,7 +14217,7 @@ type rsModelListQueryResponseSecurityPolicyV2RuleV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2RuleV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13603,6 +14228,8 @@ type rsModelListQueryResponseSecurityPolicyV2RuleV2N1 struct {
 type rsModelSiteIPFixPrefixAssociationScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13613,8 +14240,8 @@ type rsModelSiteIPFixPrefixAssociationScreen struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -13623,6 +14250,8 @@ type rsModelSiteIPFixPrefixAssociationScreen struct {
 type rsModelSiteOperations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13647,6 +14276,8 @@ type rsModelSiteOperations struct {
 type rsModelSitePrefixAssociationQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13666,15 +14297,15 @@ type rsModelSitePrefixAssociationQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13685,6 +14316,8 @@ type rsModelSitePrefixAssociationQuery struct {
 type rsModelListQueryResponseSitePrefixAssociationQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13700,7 +14333,7 @@ type rsModelListQueryResponseSitePrefixAssociationQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSitePrefixAssociationQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -13711,6 +14344,8 @@ type rsModelListQueryResponseSitePrefixAssociationQuery struct {
 type rsModelAppDefScreenV2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13747,6 +14382,8 @@ type rsModelAppDefScreenV2 struct {
 type rsModelSiteIPFixPrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13757,8 +14394,8 @@ type rsModelSiteIPFixPrefixAssociation struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -13777,6 +14414,8 @@ type rsModelListResponsePriorityPolicySet struct {
 type rsModelRoutingAccessListV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13791,8 +14430,8 @@ type rsModelRoutingAccessListV2N1 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -13801,6 +14440,8 @@ type rsModelRoutingAccessListV2N1 struct {
 type rsModelSiteV4N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13845,8 +14486,8 @@ type rsModelSiteV4N11 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -13877,6 +14518,8 @@ type rsModelSecurityGroupInformationConfig struct {
 type rsModelSiteV4N12 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -13923,8 +14566,8 @@ type rsModelSiteV4N12 struct {
 	ServiceBinding types.String `tfsdk:"service_binding"`
 	// propertyName=sgi_config type=REFERENCE
 	SgiConfig *rsModelSecurityGroupInformationConfig `tfsdk:"sgi_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -13991,6 +14634,8 @@ type rsModelSwitchOverEvent struct {
 type rsModelSpokeClusterStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14009,6 +14654,8 @@ type rsModelSpokeClusterStatus struct {
 type rsModelSecurityPolicyV2LocalPrefixScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14019,8 +14666,8 @@ type rsModelSecurityPolicyV2LocalPrefixScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14065,6 +14712,8 @@ type rsModelListResponseSwitchPortVlanPorts struct {
 type rsModelBGPPeerStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14097,6 +14746,8 @@ type rsModelHubClusterElement struct {
 type rsModelHubClusterQueryFilterV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14117,8 +14768,8 @@ type rsModelHubClusterQueryFilterV4 struct {
 	SiteCountAlarmThreshold types.Int64 `tfsdk:"site_count_alarm_threshold"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14127,6 +14778,8 @@ type rsModelHubClusterQueryFilterV4 struct {
 type rsModelListQueryResponseHubClusterQueryFilterV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14142,7 +14795,7 @@ type rsModelListQueryResponseHubClusterQueryFilterV4 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelHubClusterQueryFilterV4 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -14161,6 +14814,8 @@ type rsModelDirectPathType struct {
 type rsModelInterfaceV4N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14213,8 +14868,8 @@ type rsModelInterfaceV4N8 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -14227,6 +14882,8 @@ type rsModelInterfaceV4N8 struct {
 type rsModelInterfaceV4N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14279,8 +14936,8 @@ type rsModelInterfaceV4N7 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -14302,9 +14959,9 @@ type rsModelIPSecTunnelStatus struct {
 	// propertyName=element_id type=STRING
 	ElementId types.String `tfsdk:"element_id"`
 	// propertyName=error_messages type=OBJECT
-	ErrorMessages *map[string]interface{} `tfsdk:"error_messages"`
+	ErrorMessages types.Map `tfsdk:"error_messages"`
 	// propertyName=info_messages type=OBJECT
-	InfoMessages *map[string]interface{} `tfsdk:"info_messages"`
+	InfoMessages types.Map `tfsdk:"info_messages"`
 	// propertyName=interface_id type=STRING
 	InterfaceId types.String `tfsdk:"interface_id"`
 	// propertyName=name type=STRING
@@ -14325,6 +14982,8 @@ type rsModelIPSecTunnelStatus struct {
 type rsModelInterfaceV4N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14379,8 +15038,8 @@ type rsModelInterfaceV4N9 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -14395,12 +15054,18 @@ type rsModelUserIDAgentAuthentication struct {
 	CollectorName types.String `tfsdk:"collector_name"`
 	// propertyName=collector_secret type=STRING
 	CollectorSecret types.String `tfsdk:"collector_secret"`
+	// password placeholder: propertyName=collector_secret type=STRING
+	CollectorSecretInternalKeyName types.String `tfsdk:"collector_secret_internal_key_name"`
 	// propertyName=collector_secret_encrypted type=STRING
 	CollectorSecretEncrypted types.String `tfsdk:"collector_secret_encrypted"`
+	// password placeholder: propertyName=collector_secret_encrypted type=STRING
+	CollectorSecretEncryptedInternalKeyName types.String `tfsdk:"collector_secret_encrypted_internal_key_name"`
 	// propertyName=local_certificate type=STRING
 	LocalCertificate types.String `tfsdk:"local_certificate"`
 	// propertyName=local_private_key type=STRING
 	LocalPrivateKey types.String `tfsdk:"local_private_key"`
+	// password placeholder: propertyName=local_private_key type=STRING
+	LocalPrivateKeyInternalKeyName types.String `tfsdk:"local_private_key_internal_key_name"`
 	// propertyName=passphrase type=STRING
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=remote_ca_certificate type=STRING
@@ -14413,6 +15078,8 @@ type rsModelUserIDAgentAuthentication struct {
 type rsModelUserIDAgent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14437,8 +15104,8 @@ type rsModelUserIDAgent struct {
 	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=source_interface type=STRING
 	SourceInterface types.String `tfsdk:"source_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14457,6 +15124,8 @@ type rsModelListResponseUserIDAgent struct {
 type rsModelBulkConfigCreateScreenUpdate struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14472,7 +15141,7 @@ type rsModelBulkConfigCreateScreenUpdate struct {
 	// propertyName=template_name type=STRING
 	TemplateName types.String `tfsdk:"template_name"`
 	// propertyName=variable_map type=OBJECT
-	VariableMap *map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -14481,6 +15150,8 @@ type rsModelBulkConfigCreateScreenUpdate struct {
 type rsModelNATPolicySetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14495,8 +15166,8 @@ type rsModelNATPolicySetStackQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14513,6 +15184,8 @@ type rsModelSNMPTrapV3Config struct {
 type rsModelDirectoryUserGroupQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14525,8 +15198,8 @@ type rsModelDirectoryUserGroupQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=stale type=BOOLEAN
 	Stale types.Bool `tfsdk:"stale"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14535,6 +15208,8 @@ type rsModelDirectoryUserGroupQueryFilter struct {
 type rsModelListQueryResponseDirectoryUserGroupQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14550,7 +15225,7 @@ type rsModelListQueryResponseDirectoryUserGroupQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDirectoryUserGroupQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -14561,6 +15236,8 @@ type rsModelListQueryResponseDirectoryUserGroupQueryFilter struct {
 type rsModelSecurityPolicyV2N1RuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14589,8 +15266,8 @@ type rsModelSecurityPolicyV2N1RuleQueryFilter struct {
 	SourcePrefixIds types.List `tfsdk:"source_prefix_ids"`
 	// propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -14601,6 +15278,8 @@ type rsModelSecurityPolicyV2N1RuleQueryFilter struct {
 type rsModelListQueryResponseSecurityPolicyV2N1RuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14616,7 +15295,7 @@ type rsModelListQueryResponseSecurityPolicyV2N1RuleQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2N1RuleQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -14663,6 +15342,8 @@ type rsModelNetwork struct {
 type rsModelVffLicense struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14681,6 +15362,8 @@ type rsModelVffLicense struct {
 type rsModelSiteNATPrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14691,8 +15374,8 @@ type rsModelSiteNATPrefixAssociation struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14701,6 +15384,8 @@ type rsModelSiteNATPrefixAssociation struct {
 type rsModelEventCorrelationPolicyRuleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14733,8 +15418,8 @@ type rsModelEventCorrelationPolicyRuleV2N1 struct {
 	SubResourceType types.String `tfsdk:"sub_resource_type"`
 	// propertyName=suppress type=STRING
 	Suppress types.String `tfsdk:"suppress"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14753,6 +15438,8 @@ type rsModelListResponseEventCorrelationPolicyRuleV2N1 struct {
 type rsModelSecurityPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14785,6 +15472,8 @@ type rsModelSecurityPolicyRule struct {
 type rsModelPriorityPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14811,8 +15500,8 @@ type rsModelPriorityPolicyRule struct {
 	PriorityNumber types.Int64 `tfsdk:"priority_number"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14821,6 +15510,8 @@ type rsModelPriorityPolicyRule struct {
 type rsModelMachineCellularModuleFirmwareConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14837,6 +15528,8 @@ type rsModelMachineCellularModuleFirmwareConfig struct {
 type rsModelPassage struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14867,6 +15560,8 @@ type rsModelPassage struct {
 	TimeLeft types.Int64 `tfsdk:"time_left"`
 	// propertyName=tunnel_pub_key type=STRING
 	TunnelPubKey types.String `tfsdk:"tunnel_pub_key"`
+	// password placeholder: propertyName=tunnel_pub_key type=STRING
+	TunnelPubKeyInternalKeyName types.String `tfsdk:"tunnel_pub_key_internal_key_name"`
 	// propertyName=user_name type=STRING
 	UserName types.String `tfsdk:"user_name"`
 }
@@ -14877,6 +15572,8 @@ type rsModelPassage struct {
 type rsModelElementEvent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14899,6 +15596,8 @@ type rsModelElementEvent struct {
 type rsModelNetworkPolicyGlobalPrefixV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14913,8 +15612,8 @@ type rsModelNetworkPolicyGlobalPrefixV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -14923,6 +15622,8 @@ type rsModelNetworkPolicyGlobalPrefixV2N1 struct {
 type rsModelAppdefOverride struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -14957,8 +15658,8 @@ type rsModelAppdefOverride struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV1 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -14973,6 +15674,8 @@ type rsModelAppdefOverride struct {
 type rsModelWANNetwork struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15003,6 +15706,8 @@ type rsModelBulkResponseWANNetwork struct {
 type rsModelIPFixGlobalPrefixScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15015,8 +15720,8 @@ type rsModelIPFixGlobalPrefixScreen struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -15025,6 +15730,8 @@ type rsModelIPFixGlobalPrefixScreen struct {
 type rsModelInterfaceV4N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15079,6 +15786,8 @@ type rsModelInterfaceV4N2 struct {
 type rsModelInterfaceV4N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15133,6 +15842,8 @@ type rsModelInterfaceV4N1 struct {
 type rsModelInterfaceV4N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15191,6 +15902,8 @@ type rsModelInterfaceV4N4 struct {
 type rsModelInterfaceV4N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15247,6 +15960,8 @@ type rsModelInterfaceV4N3 struct {
 type rsModelWanOverlay struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15267,6 +15982,8 @@ type rsModelWanOverlay struct {
 type rsModelInterfaceV4N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15313,8 +16030,8 @@ type rsModelInterfaceV4N6 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -15327,6 +16044,8 @@ type rsModelInterfaceV4N6 struct {
 type rsModelInterfaceV4N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15385,6 +16104,8 @@ type rsModelInterfaceV4N5 struct {
 type rsModelSite struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15417,10 +16138,14 @@ type rsModelSite struct {
 type rsModelLacpStateS struct {
 	// propertyName=key type=INTEGER
 	Key types.Int64 `tfsdk:"key"`
+	// password placeholder: propertyName=key type=INTEGER
+	KeyInternalKeyName types.Int64 `tfsdk:"key_internal_key_name"`
 	// propertyName=mac_address type=STRING
 	MacAddress types.String `tfsdk:"mac_address"`
 	// propertyName=partner_key type=INTEGER
 	PartnerKey types.Int64 `tfsdk:"partner_key"`
+	// password placeholder: propertyName=partner_key type=INTEGER
+	PartnerKeyInternalKeyName types.Int64 `tfsdk:"partner_key_internal_key_name"`
 	// propertyName=partner_mac_address type=STRING
 	PartnerMacAddress types.String `tfsdk:"partner_mac_address"`
 	// propertyName=partner_system_priority type=INTEGER
@@ -15485,6 +16210,8 @@ type rsModelPoeStateS struct {
 type rsModelInterfaceState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15513,8 +16240,12 @@ type rsModelInterfaceState struct {
 	IkeAlgo types.String `tfsdk:"ike_algo"`
 	// propertyName=ike_last_rekeyed type=INTEGER
 	IkeLastRekeyed types.Int64 `tfsdk:"ike_last_rekeyed"`
+	// password placeholder: propertyName=ike_last_rekeyed type=INTEGER
+	IkeLastRekeyedInternalKeyName types.Int64 `tfsdk:"ike_last_rekeyed_internal_key_name"`
 	// propertyName=ike_next_rekey type=INTEGER
 	IkeNextRekey types.Int64 `tfsdk:"ike_next_rekey"`
+	// password placeholder: propertyName=ike_next_rekey type=INTEGER
+	IkeNextRekeyInternalKeyName types.Int64 `tfsdk:"ike_next_rekey_internal_key_name"`
 	// propertyName=inactive type=BOOLEAN
 	Inactive types.Bool `tfsdk:"inactive"`
 	// propertyName=inactive_reason type=STRING
@@ -15527,8 +16258,12 @@ type rsModelInterfaceState struct {
 	IpsecAlgo types.String `tfsdk:"ipsec_algo"`
 	// propertyName=ipsec_last_rekeyed type=INTEGER
 	IpsecLastRekeyed types.Int64 `tfsdk:"ipsec_last_rekeyed"`
+	// password placeholder: propertyName=ipsec_last_rekeyed type=INTEGER
+	IpsecLastRekeyedInternalKeyName types.Int64 `tfsdk:"ipsec_last_rekeyed_internal_key_name"`
 	// propertyName=ipsec_next_rekey type=INTEGER
 	IpsecNextRekey types.Int64 `tfsdk:"ipsec_next_rekey"`
+	// password placeholder: propertyName=ipsec_next_rekey type=INTEGER
+	IpsecNextRekeyInternalKeyName types.Int64 `tfsdk:"ipsec_next_rekey_internal_key_name"`
 	// propertyName=ipv4_addresses type=ARRAY_PRIMITIVE
 	Ipv4Addresses types.List `tfsdk:"ipv4_addresses"`
 	// propertyName=ipv4_addresses_changed type=BOOLEAN
@@ -15601,6 +16336,8 @@ type rsModelBulkResponseLocalPrefixFilter struct {
 type rsModelMachineSoftwareState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15699,6 +16436,8 @@ type rsModelRoutingRouteMapEntryV2N3 struct {
 type rsModelRoutingRouteMapQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15713,8 +16452,8 @@ type rsModelRoutingRouteMapQueryFilterV2N3 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N3 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=used_for type=STRING
 	UsedFor types.String `tfsdk:"used_for"`
 }
@@ -15725,6 +16464,8 @@ type rsModelRoutingRouteMapQueryFilterV2N3 struct {
 type rsModelDeviceIdConfigV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15795,6 +16536,8 @@ type rsModelRoutingRouteMapEntryV2N2 struct {
 type rsModelRoutingRouteMapQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15809,8 +16552,8 @@ type rsModelRoutingRouteMapQueryFilterV2N2 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N2 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -15835,6 +16578,8 @@ type rsModelRoutingRouteMapEntryV2N1 struct {
 type rsModelRoutingRouteMapQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15849,8 +16594,8 @@ type rsModelRoutingRouteMapQueryFilterV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N1 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -15893,6 +16638,8 @@ type rsModelPathPrefixesInfo struct {
 type rsModelServiceEndpointScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15907,8 +16654,8 @@ type rsModelServiceEndpointScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -15929,6 +16676,8 @@ type rsModelSEPLivelinessProbe struct {
 type rsModelElementUser struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15963,6 +16712,8 @@ type rsModelDomainsToAddress struct {
 type rsModelListQueryResponseSiteIPFixPrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -15978,7 +16729,7 @@ type rsModelListQueryResponseSiteIPFixPrefixAssociation struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteIPFixPrefixAssociation `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -15989,6 +16740,8 @@ type rsModelListQueryResponseSiteIPFixPrefixAssociation struct {
 type rsModelElementQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16037,6 +16790,8 @@ type rsModelElementQueryFilter struct {
 type rsModelVRFContext struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16049,8 +16804,8 @@ type rsModelVRFContext struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16059,6 +16814,8 @@ type rsModelVRFContext struct {
 type rsModelListQueryResponsePathGroupQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16074,7 +16831,7 @@ type rsModelListQueryResponsePathGroupQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPathGroupQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16085,6 +16842,8 @@ type rsModelListQueryResponsePathGroupQueryFilter struct {
 type rsModelSitePrefixAssociationQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16099,8 +16858,8 @@ type rsModelSitePrefixAssociationQueryFilterV2N1 struct {
 	PrefixId types.String `tfsdk:"prefix_id"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16109,6 +16868,8 @@ type rsModelSitePrefixAssociationQueryFilterV2N1 struct {
 type rsModelListQueryResponseSitePrefixAssociationQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16124,7 +16885,7 @@ type rsModelListQueryResponseSitePrefixAssociationQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSitePrefixAssociationQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16135,6 +16896,8 @@ type rsModelListQueryResponseSitePrefixAssociationQueryFilterV2N1 struct {
 type rsModelEventCorrelationPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16167,8 +16930,8 @@ type rsModelEventCorrelationPolicyRuleQueryFilter struct {
 	SubResourceType types.String `tfsdk:"sub_resource_type"`
 	// propertyName=suppress type=STRING
 	Suppress types.String `tfsdk:"suppress"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16177,6 +16940,8 @@ type rsModelEventCorrelationPolicyRuleQueryFilter struct {
 type rsModelListQueryResponseEventCorrelationPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16192,7 +16957,7 @@ type rsModelListQueryResponseEventCorrelationPolicyRuleQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelEventCorrelationPolicyRuleQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16203,6 +16968,8 @@ type rsModelListQueryResponseEventCorrelationPolicyRuleQueryFilter struct {
 type rsModelElementAccessState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16213,6 +16980,8 @@ type rsModelElementAccessState struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
+	// password placeholder: propertyName=otpkey_version type=INTEGER
+	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -16231,6 +17000,8 @@ type rsModelListResponsePathPrefixDistributionFilters struct {
 type rsModelListQueryResponseVRFContextQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16246,7 +17017,7 @@ type rsModelListQueryResponseVRFContextQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelVRFContextQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16275,6 +17046,8 @@ type rsModelPrefixQueryFilterV3 struct {
 type rsModelBulkConfigPush struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16288,7 +17061,7 @@ type rsModelBulkConfigPush struct {
 	// propertyName=template_id type=STRING
 	TemplateId types.String `tfsdk:"template_id"`
 	// propertyName=variable_map type=OBJECT
-	VariableMap *map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -16297,6 +17070,8 @@ type rsModelBulkConfigPush struct {
 type rsModelListQueryResponseBulkConfigPush struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16312,7 +17087,7 @@ type rsModelListQueryResponseBulkConfigPush struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelBulkConfigPush `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16343,6 +17118,8 @@ type rsModelPerfMgmtAction struct {
 type rsModelPerfMgmtPolicyRuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16363,8 +17140,8 @@ type rsModelPerfMgmtPolicyRuleScreen struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -16377,6 +17154,8 @@ type rsModelPerfMgmtPolicyRuleScreen struct {
 type rsModelRoutingAccessListScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16391,8 +17170,8 @@ type rsModelRoutingAccessListScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16401,6 +17180,8 @@ type rsModelRoutingAccessListScreen struct {
 type rsModelOspfDiscoveredNeighborFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16423,6 +17204,8 @@ type rsModelOspfDiscoveredNeighborFilter struct {
 type rsModelListQueryResponseOspfDiscoveredNeighborFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16438,7 +17221,7 @@ type rsModelListQueryResponseOspfDiscoveredNeighborFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelOspfDiscoveredNeighborFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16449,6 +17232,8 @@ type rsModelListQueryResponseOspfDiscoveredNeighborFilter struct {
 type rsModelFolderScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16479,6 +17264,8 @@ type rsModelModelSoftwareMap struct {
 type rsModelElementImageV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16517,6 +17304,8 @@ type rsModelBulkResponseElementImageV2N3 struct {
 type rsModelPrefixDistributionSpokeList struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16529,8 +17318,8 @@ type rsModelPrefixDistributionSpokeList struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=spoke_site_ids type=ARRAY_PRIMITIVE
 	SpokeSiteIds types.List `tfsdk:"spoke_site_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16539,6 +17328,8 @@ type rsModelPrefixDistributionSpokeList struct {
 type rsModelElementImageV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16585,6 +17376,8 @@ type rsModelHubServiceEndpoint struct {
 type rsModelHubServiceEndpointConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16615,6 +17408,8 @@ type rsModelBulkResponseHubServiceEndpointConfig struct {
 type rsModelNATPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16631,8 +17426,8 @@ type rsModelNATPolicySetQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=source_zone_policyrule_order type=ARRAY_PRIMITIVE
 	SourceZonePolicyruleOrder types.List `tfsdk:"source_zone_policyrule_order"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16641,6 +17436,8 @@ type rsModelNATPolicySetQueryFilter struct {
 type rsModelLANNetworkQueryFilterResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16659,8 +17456,8 @@ type rsModelLANNetworkQueryFilterResponse struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16669,6 +17466,8 @@ type rsModelLANNetworkQueryFilterResponse struct {
 type rsModelPriorityPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16697,8 +17496,8 @@ type rsModelPriorityPolicyRuleQueryFilterV2N1 struct {
 	PriorityNumber types.Int64 `tfsdk:"priority_number"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -16709,6 +17508,8 @@ type rsModelPriorityPolicyRuleQueryFilterV2N1 struct {
 type rsModelListQueryResponseRoutingRouteMapQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16724,7 +17525,7 @@ type rsModelListQueryResponseRoutingRouteMapQueryFilterV2N2 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingRouteMapQueryFilterV2N2 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16735,6 +17536,8 @@ type rsModelListQueryResponseRoutingRouteMapQueryFilterV2N2 struct {
 type rsModelListQueryResponseRoutingRouteMapQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16750,7 +17553,7 @@ type rsModelListQueryResponseRoutingRouteMapQueryFilterV2N3 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingRouteMapQueryFilterV2N3 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16761,6 +17564,8 @@ type rsModelListQueryResponseRoutingRouteMapQueryFilterV2N3 struct {
 type rsModelPriorityPolicyRuleQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16793,8 +17598,8 @@ type rsModelPriorityPolicyRuleQueryFilterV2N2 struct {
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -16805,6 +17610,8 @@ type rsModelPriorityPolicyRuleQueryFilterV2N2 struct {
 type rsModelCellularModuleFirmwareStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16845,6 +17652,8 @@ type rsModelCellularModuleFirmwareStatusQueryFilter struct {
 type rsModelListQueryResponseCellularModuleFirmwareStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16860,7 +17669,7 @@ type rsModelListQueryResponseCellularModuleFirmwareStatusQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelCellularModuleFirmwareStatusQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16881,6 +17690,8 @@ type rsModelListResponsePolicySet struct {
 type rsModelMulticastRPConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16895,8 +17706,8 @@ type rsModelMulticastRPConfigQueryFilter struct {
 	Ipv4Address types.String `tfsdk:"ipv4_address"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -16905,6 +17716,8 @@ type rsModelMulticastRPConfigQueryFilter struct {
 type rsModelListQueryResponseMulticastRPConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16920,7 +17733,7 @@ type rsModelListQueryResponseMulticastRPConfigQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastRPConfigQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -16951,6 +17764,8 @@ type rsModelDnsServiceroleBindings struct {
 type rsModelDemSiteConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16979,6 +17794,8 @@ type rsModelListResponseDemSiteConfig struct {
 type rsModelPerfMgmtPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -16999,8 +17816,8 @@ type rsModelPerfMgmtPolicyRuleQueryFilterV2N1 struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -17013,6 +17830,8 @@ type rsModelPerfMgmtPolicyRuleQueryFilterV2N1 struct {
 type rsModelServiceEndpointQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17027,8 +17846,8 @@ type rsModelServiceEndpointQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -17039,6 +17858,8 @@ type rsModelServiceEndpointQueryFilter struct {
 type rsModelIPFixProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17059,8 +17880,8 @@ type rsModelIPFixProfile struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=sampler type=REFERENCE
 	Sampler *rsModelIPFixSampler `tfsdk:"sampler"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -17069,6 +17890,8 @@ type rsModelIPFixProfile struct {
 type rsModelSiteQueryFilterV4N12 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17115,8 +17938,8 @@ type rsModelSiteQueryFilterV4N12 struct {
 	ServiceBinding types.String `tfsdk:"service_binding"`
 	// propertyName=sgi_config type=REFERENCE
 	SgiConfig *rsModelSecurityGroupInformationConfig `tfsdk:"sgi_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -17127,6 +17950,8 @@ type rsModelSiteQueryFilterV4N12 struct {
 type rsModelPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17151,6 +17976,8 @@ type rsModelPolicySetQueryFilter struct {
 type rsModelElementSoftwareState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17179,8 +18006,12 @@ type rsModelNTPServer struct {
 	Algorithm types.String `tfsdk:"algorithm"`
 	// propertyName=authentication_key type=STRING
 	AuthenticationKey types.String `tfsdk:"authentication_key"`
+	// password placeholder: propertyName=authentication_key type=STRING
+	AuthenticationKeyInternalKeyName types.String `tfsdk:"authentication_key_internal_key_name"`
 	// propertyName=authentication_key_id type=INTEGER
 	AuthenticationKeyId types.Int64 `tfsdk:"authentication_key_id"`
+	// password placeholder: propertyName=authentication_key_id type=INTEGER
+	AuthenticationKeyIdInternalKeyName types.Int64 `tfsdk:"authentication_key_id_internal_key_name"`
 	// propertyName=host type=STRING
 	Host types.String `tfsdk:"host"`
 	// propertyName=max_poll type=INTEGER
@@ -17197,6 +18028,8 @@ type rsModelNTPServer struct {
 type rsModelElementNTP struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17211,8 +18044,8 @@ type rsModelElementNTP struct {
 	NtpServers []rsModelNTPServer `tfsdk:"ntp_servers"`
 	// propertyName=source_interface_ids type=ARRAY_PRIMITIVE
 	SourceInterfaceIds types.List `tfsdk:"source_interface_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -17221,6 +18054,8 @@ type rsModelElementNTP struct {
 type rsModelSiteQueryFilterV4N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17263,8 +18098,8 @@ type rsModelSiteQueryFilterV4N10 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -17275,6 +18110,8 @@ type rsModelSiteQueryFilterV4N10 struct {
 type rsModelServiceLabelQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17294,15 +18131,15 @@ type rsModelServiceLabelQueryFilter struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -17313,6 +18150,8 @@ type rsModelServiceLabelQueryFilter struct {
 type rsModelSiteQueryFilterV4N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17357,8 +18196,8 @@ type rsModelSiteQueryFilterV4N11 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -17369,6 +18208,8 @@ type rsModelSiteQueryFilterV4N11 struct {
 type rsModelWANInterfaceQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17391,6 +18232,8 @@ type rsModelWANInterfaceQueryFilter struct {
 type rsModelInterfaceV4N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17453,8 +18296,8 @@ type rsModelInterfaceV4N10 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -17467,6 +18310,8 @@ type rsModelInterfaceV4N10 struct {
 type rsModelSoftwareDownloadHistoryQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17486,15 +18331,15 @@ type rsModelSoftwareDownloadHistoryQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -17505,6 +18350,8 @@ type rsModelSoftwareDownloadHistoryQuery struct {
 type rsModelInterfaceV4N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17571,8 +18418,8 @@ type rsModelInterfaceV4N11 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -17585,6 +18432,8 @@ type rsModelInterfaceV4N11 struct {
 type rsModelInterfaceV4N18 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17671,8 +18520,8 @@ type rsModelInterfaceV4N18 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -17689,6 +18538,8 @@ type rsModelInterfaceV4N18 struct {
 type rsModelInterfaceV4N19 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17777,8 +18628,8 @@ type rsModelInterfaceV4N19 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -17795,6 +18646,8 @@ type rsModelInterfaceV4N19 struct {
 type rsModelWANInterfaceQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17814,15 +18667,15 @@ type rsModelWANInterfaceQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -17833,6 +18686,8 @@ type rsModelWANInterfaceQuery struct {
 type rsModelListQueryResponseWANInterfaceQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17848,7 +18703,7 @@ type rsModelListQueryResponseWANInterfaceQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANInterfaceQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -17859,6 +18714,8 @@ type rsModelListQueryResponseWANInterfaceQuery struct {
 type rsModelInterfaceV4N16 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -17945,8 +18802,8 @@ type rsModelInterfaceV4N16 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -17963,6 +18820,8 @@ type rsModelInterfaceV4N16 struct {
 type rsModelInterfaceV4N17 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18049,8 +18908,8 @@ type rsModelInterfaceV4N17 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -18093,6 +18952,8 @@ type rsModelIpv6Config struct {
 type rsModelInterfaceV4N14 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18177,8 +19038,8 @@ type rsModelInterfaceV4N14 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -18193,6 +19054,8 @@ type rsModelInterfaceV4N14 struct {
 type rsModelInterfaceV4N15 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18279,8 +19142,8 @@ type rsModelInterfaceV4N15 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -18295,6 +19158,8 @@ type rsModelInterfaceV4N15 struct {
 type rsModelListQueryResponseVffTokenQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18310,7 +19175,7 @@ type rsModelListQueryResponseVffTokenQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelVffTokenQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -18321,6 +19186,8 @@ type rsModelListQueryResponseVffTokenQueryFilter struct {
 type rsModelInterfaceV4N12 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18393,8 +19260,8 @@ type rsModelInterfaceV4N12 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -18407,6 +19274,8 @@ type rsModelInterfaceV4N12 struct {
 type rsModelInterfaceV4N13 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18491,8 +19360,8 @@ type rsModelInterfaceV4N13 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -18507,6 +19376,8 @@ type rsModelInterfaceV4N13 struct {
 type rsModelSamlRequest struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=LoginHint type=STRING
 	Loginhint types.String `tfsdk:"LoginHint"`
 	// propertyName=RelayState type=STRING
@@ -18541,6 +19412,8 @@ type rsModelSamlRequest struct {
 type rsModelNetworkLinkV3N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18589,8 +19462,8 @@ type rsModelNetworkLinkV3N5 struct {
 	Status types.String `tfsdk:"status"`
 	// propertyName=sub_type type=STRING
 	SubType types.String `tfsdk:"sub_type"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_circuit_name type=STRING
 	TargetCircuitName types.String `tfsdk:"target_circuit_name"`
 	// propertyName=target_elem_if_id type=STRING
@@ -18629,6 +19502,8 @@ type rsModelNetworkLinkV3N5 struct {
 type rsModelMulticastRouteTableRequest struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18655,6 +19530,8 @@ type rsModelListResponseMulticastRouteTableRequest struct {
 type rsModelNetworkLinkV3N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18707,8 +19584,8 @@ type rsModelNetworkLinkV3N6 struct {
 	Status types.String `tfsdk:"status"`
 	// propertyName=sub_type type=STRING
 	SubType types.String `tfsdk:"sub_type"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_circuit_name type=STRING
 	TargetCircuitName types.String `tfsdk:"target_circuit_name"`
 	// propertyName=target_elem_if_id type=STRING
@@ -18751,6 +19628,8 @@ type rsModelNetworkLinkV3N6 struct {
 type rsModelNetworkLinkV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18799,8 +19678,8 @@ type rsModelNetworkLinkV3N3 struct {
 	Status types.String `tfsdk:"status"`
 	// propertyName=sub_type type=STRING
 	SubType types.String `tfsdk:"sub_type"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_circuit_name type=STRING
 	TargetCircuitName types.String `tfsdk:"target_circuit_name"`
 	// propertyName=target_elem_if_id type=STRING
@@ -18835,6 +19714,8 @@ type rsModelNetworkLinkV3N3 struct {
 type rsModelNetworkLinkV3N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18883,8 +19764,8 @@ type rsModelNetworkLinkV3N4 struct {
 	Status types.String `tfsdk:"status"`
 	// propertyName=sub_type type=STRING
 	SubType types.String `tfsdk:"sub_type"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_circuit_name type=STRING
 	TargetCircuitName types.String `tfsdk:"target_circuit_name"`
 	// propertyName=target_elem_if_id type=STRING
@@ -18923,6 +19804,8 @@ type rsModelNetworkLinkV3N4 struct {
 type rsModelNetworkLinkV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -18965,8 +19848,8 @@ type rsModelNetworkLinkV3N1 struct {
 	Status types.String `tfsdk:"status"`
 	// propertyName=sub_type type=STRING
 	SubType types.String `tfsdk:"sub_type"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_circuit_name type=STRING
 	TargetCircuitName types.String `tfsdk:"target_circuit_name"`
 	// propertyName=target_node_id type=STRING
@@ -18997,6 +19880,8 @@ type rsModelNetworkLinkV3N1 struct {
 type rsModelNetworkLinkV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19041,8 +19926,8 @@ type rsModelNetworkLinkV3N2 struct {
 	Status types.String `tfsdk:"status"`
 	// propertyName=sub_type type=STRING
 	SubType types.String `tfsdk:"sub_type"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=target_circuit_name type=STRING
 	TargetCircuitName types.String `tfsdk:"target_circuit_name"`
 	// propertyName=target_elem_if_id type=STRING
@@ -19077,6 +19962,8 @@ type rsModelNetworkLinkV3N2 struct {
 type rsModelWANNetworkScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19089,8 +19976,8 @@ type rsModelWANNetworkScreenV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=provider_as_numbers type=ARRAY_PRIMITIVE
 	ProviderAsNumbers types.List `tfsdk:"provider_as_numbers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -19125,6 +20012,8 @@ type rsModelLocalPrefixSet struct {
 type rsModelDeviceIdIpMapping struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19177,6 +20066,8 @@ type rsModelDeviceIdIpMapping struct {
 type rsModelListQueryResponseBGPPeerStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19192,7 +20083,7 @@ type rsModelListQueryResponseBGPPeerStatusQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelBGPPeerStatusQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -19203,6 +20094,8 @@ type rsModelListQueryResponseBGPPeerStatusQueryFilter struct {
 type rsModelDirectoryServiceDomainStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19237,6 +20130,8 @@ type rsModelBulkResponseAppDefV2 struct {
 type rsModelPerfMgmtPolicyRuleScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19257,8 +20152,8 @@ type rsModelPerfMgmtPolicyRuleScreenV2N1 struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -19271,6 +20166,8 @@ type rsModelPerfMgmtPolicyRuleScreenV2N1 struct {
 type rsModelNATPolicyZone struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19293,8 +20190,8 @@ type rsModelNATPolicyZone struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19303,6 +20200,8 @@ type rsModelNATPolicyZone struct {
 type rsModelNATPolicyPool struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19313,8 +20212,8 @@ type rsModelNATPolicyPool struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19323,6 +20222,8 @@ type rsModelNATPolicyPool struct {
 type rsModelBasePolicyPrefixS struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19337,8 +20238,8 @@ type rsModelBasePolicyPrefixS struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19361,6 +20262,8 @@ type rsModelNATAction struct {
 type rsModelNATPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19411,8 +20314,8 @@ type rsModelNATPolicyRule struct {
 	SourceZone *rsModelNATPolicyZone `tfsdk:"source_zone"`
 	// propertyName=source_zone_id type=STRING
 	SourceZoneId types.String `tfsdk:"source_zone_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19421,6 +20324,8 @@ type rsModelNATPolicyRule struct {
 type rsModelSecurityZoneQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19440,15 +20345,15 @@ type rsModelSecurityZoneQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -19469,6 +20374,8 @@ type rsModelListResponseInterfaceV4N19 struct {
 type rsModelPerfMgmtPolicyRuleScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19491,8 +20398,8 @@ type rsModelPerfMgmtPolicyRuleScreenV2N2 struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -19505,6 +20412,8 @@ type rsModelPerfMgmtPolicyRuleScreenV2N2 struct {
 type rsModelRoutingRouteMapV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19519,8 +20428,8 @@ type rsModelRoutingRouteMapV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N1 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19529,6 +20438,8 @@ type rsModelRoutingRouteMapV2N1 struct {
 type rsModelRoutingRouteMapV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19543,8 +20454,8 @@ type rsModelRoutingRouteMapV2N2 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N2 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19553,6 +20464,8 @@ type rsModelRoutingRouteMapV2N2 struct {
 type rsModelMulticastGlobalConfigScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19577,6 +20490,8 @@ type rsModelMulticastGlobalConfigScreenV2N1 struct {
 type rsModelRoutingRouteMapV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19591,8 +20506,8 @@ type rsModelRoutingRouteMapV2N3 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N3 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=used_for type=STRING
 	UsedFor types.String `tfsdk:"used_for"`
 }
@@ -19611,6 +20526,8 @@ type rsModelUserAgent struct {
 type rsModelSession struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19633,6 +20550,8 @@ type rsModelSession struct {
 	OperatorId types.String `tfsdk:"operator_id"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
+	// password placeholder: propertyName=session_key_c type=STRING
+	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=user_agent type=REFERENCE
@@ -19645,6 +20564,8 @@ type rsModelSession struct {
 type rsModelPassageQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19667,6 +20588,8 @@ type rsModelPassageQueryFilter struct {
 type rsModelServiceBindingMapV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19681,8 +20604,8 @@ type rsModelServiceBindingMapV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=service_bindings type=ARRAY_REFERENCE
 	ServiceBindings []rsModelServiceBinding `tfsdk:"service_bindings"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19691,6 +20614,8 @@ type rsModelServiceBindingMapV2N1 struct {
 type rsModelListQueryResponseServiceBindingMapV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19706,7 +20631,7 @@ type rsModelListQueryResponseServiceBindingMapV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelServiceBindingMapV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -19717,6 +20642,8 @@ type rsModelListQueryResponseServiceBindingMapV2N1 struct {
 type rsModelLANNetworkV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19735,8 +20662,8 @@ type rsModelLANNetworkV3N3 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -19747,6 +20674,8 @@ type rsModelLANNetworkV3N3 struct {
 type rsModelLANNetworkV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19765,8 +20694,8 @@ type rsModelLANNetworkV3N2 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19775,6 +20704,8 @@ type rsModelLANNetworkV3N2 struct {
 type rsModelLANNetworkV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19791,8 +20722,8 @@ type rsModelLANNetworkV3N1 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -19801,6 +20732,8 @@ type rsModelLANNetworkV3N1 struct {
 type rsModelAPNProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19811,6 +20744,8 @@ type rsModelAPNProfileQueryFilter struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
+	// password placeholder: propertyName=clear_password type=BOOLEAN
+	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
@@ -19819,8 +20754,10 @@ type rsModelAPNProfileQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_name type=STRING
 	UserName types.String `tfsdk:"user_name"`
 }
@@ -19831,6 +20768,8 @@ type rsModelAPNProfileQueryFilter struct {
 type rsModelListQueryResponseAPNProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19846,7 +20785,7 @@ type rsModelListQueryResponseAPNProfileQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAPNProfileQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -19857,6 +20796,8 @@ type rsModelListQueryResponseAPNProfileQueryFilter struct {
 type rsModelListQueryResponsePrefixQueryFilterV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19872,7 +20813,7 @@ type rsModelListQueryResponsePrefixQueryFilterV3 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPrefixQueryFilterV3 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -19893,6 +20834,8 @@ type rsModelConfiguredPrefixSet struct {
 type rsModelVffLicenseV2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19927,6 +20870,8 @@ type rsModelListResponseVffLicenseV2 struct {
 type rsModelElementSecurityZoneQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19955,6 +20900,8 @@ type rsModelElementSecurityZoneQueryFilter struct {
 type rsModelSwitchPort struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19975,6 +20922,8 @@ type rsModelSwitchPort struct {
 type rsModelVlanPortSwitchPorts struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -19999,6 +20948,8 @@ type rsModelVlanPortSwitchPorts struct {
 type rsModelDemSiteConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20021,6 +20972,8 @@ type rsModelTrustAnchor struct {
 	Domain types.String `tfsdk:"domain"`
 	// propertyName=key_digest type=REFERENCE
 	KeyDigest *rsModelKeyDigest `tfsdk:"key_digest"`
+	// password placeholder: propertyName=key_digest type=REFERENCE
+	KeyDigestInternalKeyName *rsModelKeyDigest `tfsdk:"key_digest_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -20105,6 +21058,8 @@ type rsModelDnsResponseOverrides struct {
 type rsModelDnsServiceProfileV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20143,8 +21098,8 @@ type rsModelDnsServiceProfileV2N1 struct {
 	ListenPort types.Int64 `tfsdk:"listen_port"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -20221,6 +21176,8 @@ type rsModelHubClusterTrackingStatus struct {
 type rsModelSaseConnectionStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20240,15 +21197,15 @@ type rsModelSaseConnectionStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -20259,6 +21216,8 @@ type rsModelSaseConnectionStatusQuery struct {
 type rsModelElementUserCredentials struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20271,6 +21230,8 @@ type rsModelElementUserCredentials struct {
 	LoginId types.String `tfsdk:"login_id"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=role type=STRING
 	Role types.String `tfsdk:"role"`
 	// propertyName=username type=STRING
@@ -20293,6 +21254,8 @@ type rsModelSoftware struct {
 type rsModelElementScreenV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20323,8 +21286,8 @@ type rsModelElementScreenV2N5 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=sw_obj type=REFERENCE
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -20335,6 +21298,8 @@ type rsModelElementScreenV2N5 struct {
 type rsModelSetBulkResponsenull struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20344,7 +21309,7 @@ type rsModelSetBulkResponsenull struct {
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=items type=ARRAY_SCHEMA
-	Items []*map[string]interface{} `tfsdk:"items"`
+	Items []types.Map `tfsdk:"items"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -20355,6 +21320,8 @@ type rsModelSetBulkResponsenull struct {
 type rsModelElementScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20385,8 +21352,8 @@ type rsModelElementScreenV2N4 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=sw_obj type=REFERENCE
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -20397,6 +21364,8 @@ type rsModelElementScreenV2N4 struct {
 type rsModelVffToken struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20405,6 +21374,8 @@ type rsModelVffToken struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ion_key type=STRING
 	IonKey types.String `tfsdk:"ion_key"`
+	// password placeholder: propertyName=ion_key type=STRING
+	IonKeyInternalKeyName types.String `tfsdk:"ion_key_internal_key_name"`
 	// propertyName=is_expired type=BOOLEAN
 	IsExpired types.Bool `tfsdk:"is_expired"`
 	// propertyName=is_multiuse type=BOOLEAN
@@ -20415,6 +21386,8 @@ type rsModelVffToken struct {
 	IsUsed types.Bool `tfsdk:"is_used"`
 	// propertyName=secret_key type=STRING
 	SecretKey types.String `tfsdk:"secret_key"`
+	// password placeholder: propertyName=secret_key type=STRING
+	SecretKeyInternalKeyName types.String `tfsdk:"secret_key_internal_key_name"`
 	// propertyName=valid_till_secs type=INTEGER
 	ValidTillSecs types.Int64 `tfsdk:"valid_till_secs"`
 	// propertyName=vfflicense_id type=STRING
@@ -20451,6 +21424,8 @@ type rsModelSpokeHAConfigV1 struct {
 type rsModelElementScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20481,8 +21456,8 @@ type rsModelElementScreenV2N3 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV1 `tfsdk:"spoke_ha_config"`
 	// propertyName=sw_obj type=REFERENCE
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -20493,6 +21468,8 @@ type rsModelElementScreenV2N3 struct {
 type rsModelElementScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20521,8 +21498,8 @@ type rsModelElementScreenV2N2 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV1 `tfsdk:"spoke_ha_config"`
 	// propertyName=sw_obj type=REFERENCE
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -20531,6 +21508,8 @@ type rsModelElementScreenV2N2 struct {
 type rsModelIPSECProfileScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20553,8 +21532,8 @@ type rsModelIPSECProfileScreenV2N2 struct {
 	IkeGroup *rsModelIKEGroup `tfsdk:"ike_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=used_for type=STRING
 	UsedFor types.String `tfsdk:"used_for"`
 }
@@ -20565,6 +21544,8 @@ type rsModelIPSECProfileScreenV2N2 struct {
 type rsModelElementScreenV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20603,8 +21584,8 @@ type rsModelElementScreenV2N7 struct {
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -20615,6 +21596,8 @@ type rsModelElementScreenV2N7 struct {
 type rsModelLANNetworkV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20637,6 +21620,8 @@ type rsModelLANNetworkV3 struct {
 type rsModelElementScreenV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20673,8 +21658,8 @@ type rsModelElementScreenV2N6 struct {
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -20685,6 +21670,8 @@ type rsModelElementScreenV2N6 struct {
 type rsModelRoutingAccessList struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20699,8 +21686,8 @@ type rsModelRoutingAccessList struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -20719,6 +21706,8 @@ type rsModelListResponseRoutingAccessList struct {
 type rsModelElementScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20763,6 +21752,8 @@ type rsModelRuleOrder struct {
 type rsModelSiteNetworkPrefixAssociationV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20775,8 +21766,8 @@ type rsModelSiteNetworkPrefixAssociationV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -20803,6 +21794,8 @@ type rsModelFilter struct {
 type rsModelSiteBasePrefixAssociationQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20823,6 +21816,8 @@ type rsModelSiteBasePrefixAssociationQueryFilter struct {
 type rsModelListQueryResponseSiteBasePrefixAssociationQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20838,7 +21833,7 @@ type rsModelListQueryResponseSiteBasePrefixAssociationQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteBasePrefixAssociationQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -20849,6 +21844,8 @@ type rsModelListQueryResponseSiteBasePrefixAssociationQueryFilter struct {
 type rsModelDeviceIdConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20865,6 +21862,8 @@ type rsModelDeviceIdConfigScreen struct {
 type rsModelServiceBindingMapQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20884,15 +21883,15 @@ type rsModelServiceBindingMapQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -20903,6 +21902,8 @@ type rsModelServiceBindingMapQuery struct {
 type rsModelEnterprisePrefixSetN struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20939,6 +21940,8 @@ type rsModelBfdUnderlay struct {
 type rsModelCellularModuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20957,8 +21960,8 @@ type rsModelCellularModuleQueryFilter struct {
 	PrimarySim types.Int64 `tfsdk:"primary_sim"`
 	// propertyName=radio_on type=BOOLEAN
 	RadioOn types.Bool `tfsdk:"radio_on"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -20967,6 +21970,8 @@ type rsModelCellularModuleQueryFilter struct {
 type rsModelListQueryResponseCellularModuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -20982,7 +21987,7 @@ type rsModelListQueryResponseCellularModuleQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelCellularModuleQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -21003,6 +22008,8 @@ type rsModelErrorResponse struct {
 type rsModelGlobalPrefixFilterScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21023,6 +22030,8 @@ type rsModelGlobalPrefixFilterScreen struct {
 type rsModelSaseConnectionGlobalConfigV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21051,6 +22060,8 @@ type rsModelSaseConnectionGlobalConfigV3N1 struct {
 type rsModelBulkConfigPushQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21080,7 +22091,7 @@ type rsModelBulkConfigPushQueryFilter struct {
 	// propertyName=updated_by type=STRING
 	UpdatedBy types.String `tfsdk:"updated_by"`
 	// propertyName=variable_map type=OBJECT
-	VariableMap *map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -21089,6 +22100,8 @@ type rsModelBulkConfigPushQueryFilter struct {
 type rsModelUserIDAgentQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21108,15 +22121,15 @@ type rsModelUserIDAgentQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -21127,6 +22140,8 @@ type rsModelUserIDAgentQuery struct {
 type rsModelDnsServiceRole struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21137,8 +22152,8 @@ type rsModelDnsServiceRole struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21155,6 +22170,8 @@ type rsModelMulticastPeerSite struct {
 type rsModelMulticastPeerGroupScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21167,8 +22184,8 @@ type rsModelMulticastPeerGroupScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=peer_sites type=ARRAY_REFERENCE
 	PeerSites []rsModelMulticastPeerSite `tfsdk:"peer_sites"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21177,6 +22194,8 @@ type rsModelMulticastPeerGroupScreen struct {
 type rsModelServiceBindingMapScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21191,8 +22210,8 @@ type rsModelServiceBindingMapScreenV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=service_bindings type=ARRAY_REFERENCE
 	ServiceBindings []rsModelServiceBinding `tfsdk:"service_bindings"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21201,6 +22220,8 @@ type rsModelServiceBindingMapScreenV2N1 struct {
 type rsModelSecurityPolicyV2Rule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21227,8 +22248,8 @@ type rsModelSecurityPolicyV2Rule struct {
 	SourcePrefixIds types.List `tfsdk:"source_prefix_ids"`
 	// propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21255,6 +22276,8 @@ type rsModelRoutingPrefixFilter struct {
 type rsModelWANInterfaceScreenV2N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21289,8 +22312,8 @@ type rsModelWANInterfaceScreenV2N9 struct {
 	NetworkId types.String `tfsdk:"network_id"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -21304,21 +22327,13 @@ type rsModelWANInterfaceScreenV2N9 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `BulkResponseSiteCipher`
-// +-----------------------------------------------------------------
-type rsModelBulkResponseSiteCipher struct {
-	// propertyName=count type=INTEGER
-	Count types.Int64 `tfsdk:"count"`
-	// propertyName=items type=ARRAY_REFERENCE
-	Items []rsModelSiteCipher `tfsdk:"items"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `WANInterfaceScreenV2N3`
 // +-----------------------------------------------------------------
 type rsModelWANInterfaceScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21347,8 +22362,8 @@ type rsModelWANInterfaceScreenV2N3 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21357,6 +22372,8 @@ type rsModelWANInterfaceScreenV2N3 struct {
 type rsModelWANInterfaceScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21387,8 +22404,8 @@ type rsModelWANInterfaceScreenV2N4 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21397,12 +22414,14 @@ type rsModelWANInterfaceScreenV2N4 struct {
 type rsModelExtensionQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
 	Schema types.Int64 `tfsdk:"x_schema"`
 	// propertyName=conf type=OBJECT
-	Conf *map[string]interface{} `tfsdk:"conf"`
+	Conf types.Map `tfsdk:"conf"`
 	// propertyName=disabled type=BOOLEAN
 	Disabled types.Bool `tfsdk:"disabled"`
 	// propertyName=id type=STRING
@@ -21419,6 +22438,8 @@ type rsModelExtensionQueryFilter struct {
 type rsModelListQueryResponseExtensionQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21434,7 +22455,7 @@ type rsModelListQueryResponseExtensionQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelExtensionQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -21445,6 +22466,8 @@ type rsModelListQueryResponseExtensionQueryFilter struct {
 type rsModelSitePriorityPrefixAssociationV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21457,8 +22480,8 @@ type rsModelSitePriorityPrefixAssociationV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21477,6 +22500,8 @@ type rsModelListResponseSitePriorityPrefixAssociationV2N1 struct {
 type rsModelWANInterfaceScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21513,6 +22538,8 @@ type rsModelWANInterfaceScreenV2N2 struct {
 type rsModelApplicationProbe struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21527,8 +22554,8 @@ type rsModelApplicationProbe struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=source_interface_id type=STRING
 	SourceInterfaceId types.String `tfsdk:"source_interface_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21537,6 +22564,8 @@ type rsModelApplicationProbe struct {
 type rsModelWANInterfaceScreenV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21567,8 +22596,8 @@ type rsModelWANInterfaceScreenV2N7 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -21587,6 +22616,8 @@ type rsModelWANInterfaceScreenV2N7 struct {
 type rsModelWANInterfaceScreenV2N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21621,8 +22652,8 @@ type rsModelWANInterfaceScreenV2N8 struct {
 	NetworkId types.String `tfsdk:"network_id"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -21641,6 +22672,8 @@ type rsModelWANInterfaceScreenV2N8 struct {
 type rsModelProbeProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21653,8 +22686,8 @@ type rsModelProbeProfileQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=probe_config_ids type=ARRAY_PRIMITIVE
 	ProbeConfigIds types.List `tfsdk:"probe_config_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21663,6 +22696,8 @@ type rsModelProbeProfileQueryFilter struct {
 type rsModelWANInterfaceScreenV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21693,8 +22728,8 @@ type rsModelWANInterfaceScreenV2N5 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -21707,6 +22742,8 @@ type rsModelWANInterfaceScreenV2N5 struct {
 type rsModelWANInterfaceScreenV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21737,8 +22774,8 @@ type rsModelWANInterfaceScreenV2N6 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -21755,6 +22792,8 @@ type rsModelWANInterfaceScreenV2N6 struct {
 type rsModelDeviceIdStartNode struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21769,8 +22808,8 @@ type rsModelDeviceIdStartNode struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=scope type=ARRAY_REFERENCE
 	Scope []rsModelStartNodeScopeConfig `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21779,6 +22818,8 @@ type rsModelDeviceIdStartNode struct {
 type rsModelBGPPeerOperations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21795,6 +22836,8 @@ type rsModelBGPPeerOperations struct {
 type rsModelListQueryResponsenull struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21808,9 +22851,9 @@ type rsModelListQueryResponsenull struct {
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=items type=ARRAY_SCHEMA
-	Items []*map[string]interface{} `tfsdk:"items"`
+	Items []types.Map `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -21821,6 +22864,8 @@ type rsModelListQueryResponsenull struct {
 type rsModelPerfMgmtPolicySetState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21839,6 +22884,8 @@ type rsModelPerfMgmtPolicySetState struct {
 type rsModelBulkConfigCloneTemplateScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21857,6 +22904,8 @@ type rsModelBulkConfigCloneTemplateScreen struct {
 type rsModelVffLicenseStateV2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21877,6 +22926,8 @@ type rsModelVffLicenseStateV2 struct {
 type rsModelWANInterfaceLabelV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21889,8 +22940,8 @@ type rsModelWANInterfaceLabelV2N3 struct {
 	Label types.String `tfsdk:"label"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -21905,6 +22956,8 @@ type rsModelWANInterfaceLabelV2N3 struct {
 type rsModelSecurityPolicyV2SetScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21921,8 +22974,8 @@ type rsModelSecurityPolicyV2SetScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyrule_order type=ARRAY_PRIMITIVE
 	PolicyruleOrder types.List `tfsdk:"policyrule_order"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -21931,6 +22984,8 @@ type rsModelSecurityPolicyV2SetScreen struct {
 type rsModelWANInterfaceLabelV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -21947,8 +23002,8 @@ type rsModelWANInterfaceLabelV2N4 struct {
 	LqmEnabled types.Bool `tfsdk:"lqm_enabled"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -21983,6 +23038,8 @@ type rsModelDnsServers struct {
 type rsModelWANInterfaceLabelV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22003,8 +23060,8 @@ type rsModelWANInterfaceLabelV2N5 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -22033,6 +23090,8 @@ type rsModelPrefixInfo struct {
 type rsModelBGPPeerDiscoveredPrefixesV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22057,6 +23116,8 @@ type rsModelBGPPeerDiscoveredPrefixesV2N2 struct {
 type rsModelBGPPeerDiscoveredPrefixesV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22087,6 +23148,8 @@ type rsModelBulkResponsePassage struct {
 type rsModelAnynetLinkBulkCreateV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22111,8 +23174,8 @@ type rsModelAnynetLinkBulkCreateV4 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -22125,6 +23188,8 @@ type rsModelAnynetLinkBulkCreateV4 struct {
 type rsModelListQueryResponseDirectoryUserQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22140,7 +23205,7 @@ type rsModelListQueryResponseDirectoryUserQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDirectoryUserQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -22151,6 +23216,8 @@ type rsModelListQueryResponseDirectoryUserQueryFilter struct {
 type rsModelServiceLabel struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22161,8 +23228,8 @@ type rsModelServiceLabel struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -22183,6 +23250,8 @@ type rsModelListResponseServiceLabel struct {
 type rsModelCellularModuleState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22233,6 +23302,8 @@ type rsModelCellularModuleState struct {
 type rsModelListQueryResponseNATPolicyPoolQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22248,7 +23319,7 @@ type rsModelListQueryResponseNATPolicyPoolQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNATPolicyPoolQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -22259,6 +23330,8 @@ type rsModelListQueryResponseNATPolicyPoolQueryFilter struct {
 type rsModelMulticastPeerGroupV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22273,8 +23346,8 @@ type rsModelMulticastPeerGroupV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=peer_sites type=ARRAY_REFERENCE
 	PeerSites []rsModelMulticastPeerSite `tfsdk:"peer_sites"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -22293,6 +23366,8 @@ type rsModelListResponseMulticastPeerGroupV2N1 struct {
 type rsModelRoutingPrefixList struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22307,8 +23382,8 @@ type rsModelRoutingPrefixList struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=prefix_filter_list type=ARRAY_REFERENCE
 	PrefixFilterList []rsModelRoutingPrefixFilter `tfsdk:"prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -22335,6 +23410,8 @@ type rsModelSiteConfig struct {
 type rsModelListQueryResponseSecurityPolicyGlobalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22350,7 +23427,7 @@ type rsModelListQueryResponseSecurityPolicyGlobalPrefix struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyGlobalPrefix `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -22361,6 +23438,8 @@ type rsModelListQueryResponseSecurityPolicyGlobalPrefix struct {
 type rsModelProbeProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22380,15 +23459,15 @@ type rsModelProbeProfileQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -22399,6 +23478,8 @@ type rsModelProbeProfileQuery struct {
 type rsModelElementAccessConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22411,6 +23492,8 @@ type rsModelElementAccessConfigScreen struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
+	// password placeholder: propertyName=otpkey_version type=INTEGER
+	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -22423,6 +23506,8 @@ type rsModelElementAccessConfigScreen struct {
 type rsModelWANInterfaceLabelV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22435,8 +23520,8 @@ type rsModelWANInterfaceLabelV2N1 struct {
 	Label types.String `tfsdk:"label"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -22445,6 +23530,8 @@ type rsModelWANInterfaceLabelV2N1 struct {
 type rsModelWANInterfaceLabelV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22457,8 +23544,8 @@ type rsModelWANInterfaceLabelV2N2 struct {
 	Label types.String `tfsdk:"label"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpnlink_configuration type=REFERENCE
 	VpnlinkConfiguration *rsModelVPNLinkConfiguration `tfsdk:"vpnlink_configuration"`
 }
@@ -22495,6 +23582,8 @@ type rsModelIPv6DNS struct {
 type rsModelElementUserAccess struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22525,6 +23614,8 @@ type rsModelEventQueryRequestV3_6View struct {
 type rsModelPriorityPolicySetQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22544,15 +23635,15 @@ type rsModelPriorityPolicySetQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -22563,6 +23654,8 @@ type rsModelPriorityPolicySetQuery struct {
 type rsModelGlobalPrefixQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22575,8 +23668,8 @@ type rsModelGlobalPrefixQueryFilter struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -22585,6 +23678,8 @@ type rsModelGlobalPrefixQueryFilter struct {
 type rsModelBGPPeerQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22621,8 +23716,8 @@ type rsModelBGPPeerQueryFilterV2N5 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -22661,6 +23756,8 @@ type rsModelRouteAggregation struct {
 type rsModelBGPPeerQueryFilterV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22699,8 +23796,8 @@ type rsModelBGPPeerQueryFilterV2N6 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -22715,6 +23812,8 @@ type rsModelBGPPeerQueryFilterV2N6 struct {
 type rsModelBGPPeerQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22743,8 +23842,8 @@ type rsModelBGPPeerQueryFilterV2N3 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=vrf_context_id type=STRING
@@ -22757,6 +23856,8 @@ type rsModelBGPPeerQueryFilterV2N3 struct {
 type rsModelBGPPeerQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22791,8 +23892,8 @@ type rsModelBGPPeerQueryFilterV2N4 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -22807,6 +23908,8 @@ type rsModelBGPPeerQueryFilterV2N4 struct {
 type rsModelBGPPeerQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22833,8 +23936,8 @@ type rsModelBGPPeerQueryFilterV2N1 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 }
@@ -22845,6 +23948,8 @@ type rsModelBGPPeerQueryFilterV2N1 struct {
 type rsModelBGPPeerQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22871,8 +23976,8 @@ type rsModelBGPPeerQueryFilterV2N2 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 }
@@ -22883,6 +23988,8 @@ type rsModelBGPPeerQueryFilterV2N2 struct {
 type rsModelDeviceIdMappingsQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22902,15 +24009,15 @@ type rsModelDeviceIdMappingsQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -22921,6 +24028,8 @@ type rsModelDeviceIdMappingsQuery struct {
 type rsModelSecurityPolicyGlobalPrefixScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22935,8 +24044,8 @@ type rsModelSecurityPolicyGlobalPrefixScreenV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -22945,6 +24054,8 @@ type rsModelSecurityPolicyGlobalPrefixScreenV2N1 struct {
 type rsModelNATGlobalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -22957,8 +24068,8 @@ type rsModelNATGlobalPrefix struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -22991,6 +24102,8 @@ type rsModelDnsForwardConfig struct {
 type rsModelDnsServiceProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23039,8 +24152,8 @@ type rsModelDnsServiceProfile struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -23115,6 +24228,8 @@ type rsModelLQMThresholdConfig struct {
 type rsModelPerfMgmtThresholdProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23151,8 +24266,8 @@ type rsModelPerfMgmtThresholdProfile struct {
 	SyntheticProbeThresholds *rsModelSyntheticProbeThresholds `tfsdk:"synthetic_probe_thresholds"`
 	// propertyName=system_health_metrics_thresholds type=REFERENCE
 	SystemHealthMetricsThresholds *rsModelSystemHealthMetricThresholds `tfsdk:"system_health_metrics_thresholds"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -23161,6 +24276,8 @@ type rsModelPerfMgmtThresholdProfile struct {
 type rsModelSiteSecurityPolicyV2N1PrefixAssociationScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23173,8 +24290,8 @@ type rsModelSiteSecurityPolicyV2N1PrefixAssociationScreen struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -23335,6 +24452,8 @@ type rsModelEventQueryRequestV3_5 struct {
 type rsModelElementShellV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23391,8 +24510,8 @@ type rsModelElementShellV2N1 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -23403,6 +24522,8 @@ type rsModelElementShellV2N1 struct {
 type rsModelVffTokenScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23411,6 +24532,8 @@ type rsModelVffTokenScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ion_key type=STRING
 	IonKey types.String `tfsdk:"ion_key"`
+	// password placeholder: propertyName=ion_key type=STRING
+	IonKeyInternalKeyName types.String `tfsdk:"ion_key_internal_key_name"`
 	// propertyName=is_expired type=BOOLEAN
 	IsExpired types.Bool `tfsdk:"is_expired"`
 	// propertyName=is_multiuse type=BOOLEAN
@@ -23421,6 +24544,8 @@ type rsModelVffTokenScreen struct {
 	IsUsed types.Bool `tfsdk:"is_used"`
 	// propertyName=secret_key type=STRING
 	SecretKey types.String `tfsdk:"secret_key"`
+	// password placeholder: propertyName=secret_key type=STRING
+	SecretKeyInternalKeyName types.String `tfsdk:"secret_key_internal_key_name"`
 	// propertyName=valid_till_secs type=INTEGER
 	ValidTillSecs types.Int64 `tfsdk:"valid_till_secs"`
 	// propertyName=vfflicense_id type=STRING
@@ -23445,6 +24570,8 @@ type rsModelDiskPartitionStatus struct {
 type rsModelAuditLogV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23475,6 +24602,8 @@ type rsModelAuditLogV2N1 struct {
 	ResourceId types.String `tfsdk:"resource_id"`
 	// propertyName=resource_key type=STRING
 	ResourceKey types.String `tfsdk:"resource_key"`
+	// password placeholder: propertyName=resource_key type=STRING
+	ResourceKeyInternalKeyName types.String `tfsdk:"resource_key_internal_key_name"`
 	// propertyName=resource_version type=STRING
 	ResourceVersion types.String `tfsdk:"resource_version"`
 	// propertyName=response_body type=STRING
@@ -23489,6 +24618,8 @@ type rsModelAuditLogV2N1 struct {
 	SdwanappId types.String `tfsdk:"sdwanapp_id"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
+	// password placeholder: propertyName=session_key_c type=STRING
+	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=source_ip type=STRING
 	SourceIp types.String `tfsdk:"source_ip"`
 	// propertyName=time_ms type=INTEGER
@@ -23501,6 +24632,8 @@ type rsModelAuditLogV2N1 struct {
 type rsModelTacacsPlusProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23515,8 +24648,8 @@ type rsModelTacacsPlusProfile struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
 	TacacsPlusServers []rsModelTacacsPlusServerConfig `tfsdk:"tacacs_plus_servers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -23525,6 +24658,8 @@ type rsModelTacacsPlusProfile struct {
 type rsModelNATPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23557,8 +24692,8 @@ type rsModelNATPolicySet struct {
 	SendToElement types.Bool `tfsdk:"send_to_element"`
 	// propertyName=source_zone_policyrule_order type=ARRAY_PRIMITIVE
 	SourceZonePolicyruleOrder types.List `tfsdk:"source_zone_policyrule_order"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_order type=BOOLEAN
 	UpdateOrder types.Bool `tfsdk:"update_order"`
 }
@@ -23579,6 +24714,8 @@ type rsModelListResponseNATPolicySet struct {
 type rsModelWANInterfaceLabelScreenV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23599,8 +24736,8 @@ type rsModelWANInterfaceLabelScreenV2N5 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -23617,6 +24754,8 @@ type rsModelWANInterfaceLabelScreenV2N5 struct {
 type rsModelWANInterfaceLabelScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23629,8 +24768,8 @@ type rsModelWANInterfaceLabelScreenV2N3 struct {
 	Label types.String `tfsdk:"label"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -23645,6 +24784,8 @@ type rsModelWANInterfaceLabelScreenV2N3 struct {
 type rsModelNetworkLinkV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23713,6 +24854,8 @@ type rsModelNetworkLinkV3 struct {
 type rsModelWANInterfaceLabelScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23729,8 +24872,8 @@ type rsModelWANInterfaceLabelScreenV2N4 struct {
 	LqmEnabled types.Bool `tfsdk:"lqm_enabled"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -23747,6 +24890,8 @@ type rsModelWANInterfaceLabelScreenV2N4 struct {
 type rsModelNetworkLinkV2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23795,6 +24940,8 @@ type rsModelNetworkLinkV2 struct {
 type rsModelWANInterfaceLabelScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23807,8 +24954,8 @@ type rsModelWANInterfaceLabelScreenV2N1 struct {
 	Label types.String `tfsdk:"label"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -23817,6 +24964,8 @@ type rsModelWANInterfaceLabelScreenV2N1 struct {
 type rsModelWANInterfaceLabelScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23829,8 +24978,8 @@ type rsModelWANInterfaceLabelScreenV2N2 struct {
 	Label types.String `tfsdk:"label"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpnlink_configuration type=REFERENCE
 	VpnlinkConfiguration *rsModelVPNLinkConfiguration `tfsdk:"vpnlink_configuration"`
 }
@@ -23841,6 +24990,8 @@ type rsModelWANInterfaceLabelScreenV2N2 struct {
 type rsModelOspfConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23869,8 +25020,8 @@ type rsModelOspfConfig struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -23891,6 +25042,8 @@ type rsModelListResponseOspfConfig struct {
 type rsModelUserIDAgentScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23915,8 +25068,8 @@ type rsModelUserIDAgentScreen struct {
 	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=source_interface type=STRING
 	SourceInterface types.String `tfsdk:"source_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -23935,6 +25088,8 @@ type rsModelDirectoryGroupAttribute struct {
 type rsModelDirectoryService struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -23949,8 +25104,8 @@ type rsModelDirectoryService struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_attributes type=REFERENCE
 	UserAttributes *rsModelDirectoryUserAttribute `tfsdk:"user_attributes"`
 }
@@ -23989,6 +25144,8 @@ type rsModelTaskStatus struct {
 type rsModelRoutingRouteMapQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24008,15 +25165,15 @@ type rsModelRoutingRouteMapQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -24037,6 +25194,8 @@ type rsModelListResponseSession struct {
 type rsModelListQueryResponsePrefixQueryFilterV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24052,7 +25211,7 @@ type rsModelListQueryResponsePrefixQueryFilterV3N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPrefixQueryFilterV3N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -24063,6 +25222,8 @@ type rsModelListQueryResponsePrefixQueryFilterV3N1 struct {
 type rsModelNetworkPolicyRuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24089,8 +25250,8 @@ type rsModelNetworkPolicyRuleScreen struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -24152,7 +25313,7 @@ type rsModelParameterListValueResponse struct {
 	// propertyName=is_default type=BOOLEAN
 	IsDefault types.Bool `tfsdk:"is_default"`
 	// propertyName=value type=OBJECT
-	Value *map[string]interface{} `tfsdk:"value"`
+	Value types.Map `tfsdk:"value"`
 }
 
 // +-----------------------------------------------------------------
@@ -24161,6 +25322,8 @@ type rsModelParameterListValueResponse struct {
 type rsModelAnynetLinkV2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24217,6 +25380,8 @@ type rsModelEventQueryResponseV3_6ItemItemsPolicyInfo struct {
 type rsModelEventQueryResponseV3_6ItemItems struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_created_on_utc type=STRING
 	CreatedOnUtc types.String `tfsdk:"x_created_on_utc"`
 	// propertyName=_etag type=INTEGER
@@ -24244,7 +25409,7 @@ type rsModelEventQueryResponseV3_6ItemItems struct {
 	// propertyName=ident type=STRING
 	Ident types.String `tfsdk:"ident"`
 	// propertyName=info type=OBJECT
-	Info *map[string]interface{} `tfsdk:"info"`
+	Info types.Map `tfsdk:"info"`
 	// propertyName=policy_info type=REFERENCE
 	PolicyInfo *rsModelEventQueryResponseV3_6ItemItemsPolicyInfo `tfsdk:"policy_info"`
 	// propertyName=priority type=STRING
@@ -24311,6 +25476,8 @@ type rsModelSNMPTrapV2Config struct {
 type rsModelSNMPTrap struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24325,8 +25492,8 @@ type rsModelSNMPTrap struct {
 	ServerIp types.String `tfsdk:"server_ip"`
 	// propertyName=source_interface type=STRING
 	SourceInterface types.String `tfsdk:"source_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=v2_config type=REFERENCE
 	V2Config *rsModelSNMPTrapV2Config `tfsdk:"v2_config"`
 	// propertyName=v3_config type=REFERENCE
@@ -24341,6 +25508,8 @@ type rsModelSNMPTrap struct {
 type rsModelAnynetLinkV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24367,8 +25536,8 @@ type rsModelAnynetLinkV4 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -24381,6 +25550,8 @@ type rsModelAnynetLinkV4 struct {
 type rsModelAnynetLinkV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24409,6 +25580,8 @@ type rsModelAnynetLinkV3 struct {
 type rsModelBGPGlobalConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24431,6 +25604,8 @@ type rsModelBGPGlobalConfigScreen struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_retry_time type=INTEGER
@@ -24451,6 +25626,8 @@ type rsModelBGPGlobalConfigScreen struct {
 type rsModelIPFixContextScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24469,6 +25646,8 @@ type rsModelIPFixContextScreen struct {
 type rsModelSDWANAppStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24501,6 +25680,8 @@ type rsModelBulkResponseSDWANAppStatus struct {
 type rsModelEventCorrelationPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24520,15 +25701,15 @@ type rsModelEventCorrelationPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -24539,6 +25720,8 @@ type rsModelEventCorrelationPolicyRuleQuery struct {
 type rsModelRoutingCommunityListScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24553,8 +25736,8 @@ type rsModelRoutingCommunityListScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -24563,6 +25746,8 @@ type rsModelRoutingCommunityListScreen struct {
 type rsModelElementShellQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24619,8 +25804,8 @@ type rsModelElementShellQueryFilterV2N1 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -24631,6 +25816,8 @@ type rsModelElementShellQueryFilterV2N1 struct {
 type rsModelBulkConfigCreateQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24656,7 +25843,7 @@ type rsModelBulkConfigCreateQueryFilter struct {
 	// propertyName=template_name type=STRING
 	TemplateName types.String `tfsdk:"template_name"`
 	// propertyName=variable_map type=OBJECT
-	VariableMap *map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -24665,6 +25852,8 @@ type rsModelBulkConfigCreateQueryFilter struct {
 type rsModelListQueryResponseBulkConfigCreateQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24680,7 +25869,7 @@ type rsModelListQueryResponseBulkConfigCreateQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelBulkConfigCreateQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -24691,6 +25880,8 @@ type rsModelListQueryResponseBulkConfigCreateQueryFilter struct {
 type rsModelAnynetLinkQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24725,6 +25916,8 @@ type rsModelAnynetLinkQueryFilter struct {
 type rsModelListQueryResponseAnynetLinkQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24740,7 +25933,7 @@ type rsModelListQueryResponseAnynetLinkQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAnynetLinkQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -24751,6 +25944,8 @@ type rsModelListQueryResponseAnynetLinkQueryFilter struct {
 type rsModelNetworkPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24765,8 +25960,8 @@ type rsModelNetworkPolicySetQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -24789,6 +25984,8 @@ type rsModelGetEventResponseBodySuppressedInfo struct {
 type rsModelVRFContextProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24801,8 +25998,8 @@ type rsModelVRFContextProfile struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_ids type=ARRAY_PRIMITIVE
 	VrfContextIds types.List `tfsdk:"vrf_context_ids"`
 	// propertyName=vrf_context_route_leak_rules type=ARRAY_REFERENCE
@@ -24824,21 +26021,23 @@ type rsModelListResponseVRFContextProfile struct {
 // +-----------------------------------------------------------------
 type rsModelSDWANAppParameterResponse struct {
 	// propertyName=default_value type=OBJECT
-	DefaultValue *map[string]interface{} `tfsdk:"default_value"`
+	DefaultValue types.Map `tfsdk:"default_value"`
 	// propertyName=display_label type=STRING
 	DisplayLabel types.String `tfsdk:"display_label"`
 	// propertyName=help_text type=STRING
 	HelpText types.String `tfsdk:"help_text"`
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
+	// password placeholder: propertyName=key type=STRING
+	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=list_values type=ARRAY_REFERENCE
 	ListValues []rsModelParameterListValueResponse `tfsdk:"list_values"`
 	// propertyName=max_length type=INTEGER
 	MaxLength types.Int64 `tfsdk:"max_length"`
 	// propertyName=max_value type=OBJECT
-	MaxValue *map[string]interface{} `tfsdk:"max_value"`
+	MaxValue types.Map `tfsdk:"max_value"`
 	// propertyName=min_value type=OBJECT
-	MinValue *map[string]interface{} `tfsdk:"min_value"`
+	MinValue types.Map `tfsdk:"min_value"`
 	// propertyName=regex type=STRING
 	Regex types.String `tfsdk:"regex"`
 	// propertyName=required type=BOOLEAN
@@ -24855,6 +26054,8 @@ type rsModelSDWANAppParameterResponse struct {
 type rsModelElementImageStatusQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24895,6 +26096,8 @@ type rsModelElementImageStatusQueryFilterV2N1 struct {
 type rsModelNTPTemplate struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24909,8 +26112,8 @@ type rsModelNTPTemplate struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=ntp_servers type=ARRAY_REFERENCE
 	NtpServers []rsModelNTPServer `tfsdk:"ntp_servers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -24919,6 +26122,8 @@ type rsModelNTPTemplate struct {
 type rsModelNATPolicySetStackScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -24933,8 +26138,8 @@ type rsModelNATPolicySetStackScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -24943,6 +26148,8 @@ type rsModelNATPolicySetStackScreen struct {
 type rsModelElementStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25017,6 +26224,8 @@ type rsModelElementStatus struct {
 type rsModelElementShellScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25071,8 +26280,8 @@ type rsModelElementShellScreen struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -25101,6 +26310,8 @@ type rsModelSiteLocation struct {
 type rsModelWANInterface struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25143,6 +26354,8 @@ type rsModelServiceConnectionType struct {
 type rsModelServiceConnection struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25165,8 +26378,8 @@ type rsModelServiceConnection struct {
 	ServiceEndpointId types.String `tfsdk:"service_endpoint_id"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=REFERENCE
 	Type *rsModelServiceConnectionType `tfsdk:"type"`
 }
@@ -25187,6 +26400,8 @@ type rsModelBulkResponseServiceConnection struct {
 type rsModelCertificate struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25209,6 +26424,8 @@ type rsModelCertificate struct {
 	Format types.String `tfsdk:"format"`
 	// propertyName=has_key_file type=BOOLEAN
 	HasKeyFile types.Bool `tfsdk:"has_key_file"`
+	// password placeholder: propertyName=has_key_file type=BOOLEAN
+	HasKeyFileInternalKeyName types.Bool `tfsdk:"has_key_file_internal_key_name"`
 	// propertyName=has_passphrase type=BOOLEAN
 	HasPassphrase types.Bool `tfsdk:"has_passphrase"`
 	// propertyName=id type=STRING
@@ -25225,6 +26442,8 @@ type rsModelCertificate struct {
 	IssuerId types.String `tfsdk:"issuer_id"`
 	// propertyName=key_file type=STRING
 	KeyFile types.String `tfsdk:"key_file"`
+	// password placeholder: propertyName=key_file type=STRING
+	KeyFileInternalKeyName types.String `tfsdk:"key_file_internal_key_name"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=not_after type=INTEGER
@@ -25239,6 +26458,8 @@ type rsModelCertificate struct {
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=public_key type=STRING
 	PublicKey types.String `tfsdk:"public_key"`
+	// password placeholder: propertyName=public_key type=STRING
+	PublicKeyInternalKeyName types.String `tfsdk:"public_key_internal_key_name"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
 	// propertyName=revocation_date type=INTEGER
@@ -25281,6 +26502,8 @@ type rsModelListResponseCertificate struct {
 type rsModelDeviceIdActiveProfiles struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25313,6 +26536,8 @@ type rsModelTrack struct {
 type rsModelSpokeClusterOperations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25337,6 +26562,8 @@ type rsModelSiteDetails struct {
 type rsModelDeviceIdProfileOperations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25367,6 +26594,8 @@ type rsModelDeviceIdProfileOperations struct {
 type rsModelEventCorrelationPolicySetQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25386,15 +26615,15 @@ type rsModelEventCorrelationPolicySetQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -25405,6 +26634,8 @@ type rsModelEventCorrelationPolicySetQuery struct {
 type rsModelSDWANAppConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25414,7 +26645,7 @@ type rsModelSDWANAppConfigScreen struct {
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
 	// propertyName=user_config type=OBJECT
-	UserConfig *map[string]interface{} `tfsdk:"user_config"`
+	UserConfig types.Map `tfsdk:"user_config"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -25435,6 +26666,8 @@ type rsModelCAStoreOperation struct {
 type rsModelSecurityPolicyV2SetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25449,8 +26682,8 @@ type rsModelSecurityPolicyV2SetStackQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -25459,6 +26692,8 @@ type rsModelSecurityPolicyV2SetStackQueryFilter struct {
 type rsModelSaseConnection struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25491,6 +26726,8 @@ type rsModelSaseConnection struct {
 type rsModelMachineCellularModuleFirmwareConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25507,6 +26744,8 @@ type rsModelMachineCellularModuleFirmwareConfigScreen struct {
 type rsModelRoutingPrefixListScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25521,8 +26760,8 @@ type rsModelRoutingPrefixListScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=prefix_filter_list type=ARRAY_REFERENCE
 	PrefixFilterList []rsModelRoutingPrefixFilter `tfsdk:"prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -25531,6 +26770,8 @@ type rsModelRoutingPrefixListScreen struct {
 type rsModelUserIDAgentQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25555,8 +26796,8 @@ type rsModelUserIDAgentQueryFilter struct {
 	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=source_interface type=STRING
 	SourceInterface types.String `tfsdk:"source_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -25565,6 +26806,8 @@ type rsModelUserIDAgentQueryFilter struct {
 type rsModelElementAggregateQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25623,8 +26866,8 @@ type rsModelElementAggregateQueryFilterV2N5 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -25635,6 +26878,8 @@ type rsModelElementAggregateQueryFilterV2N5 struct {
 type rsModelMachineSystemStatusV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25661,6 +26906,8 @@ type rsModelMachineSystemStatusV2N1 struct {
 type rsModelMulticastPeerGroup struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25673,8 +26920,8 @@ type rsModelMulticastPeerGroup struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=peer_sites type=ARRAY_REFERENCE
 	PeerSites []rsModelMulticastPeerSite `tfsdk:"peer_sites"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -25693,6 +26940,8 @@ type rsModelListResponseMulticastPeerGroup struct {
 type rsModelCellularModuleFirmwareConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25719,6 +26968,8 @@ type rsModelCellularModuleFirmwareConfig struct {
 type rsModelSecurityPolicyV2RuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25747,8 +26998,8 @@ type rsModelSecurityPolicyV2RuleQueryFilter struct {
 	SourcePrefixIds types.List `tfsdk:"source_prefix_ids"`
 	// propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -25757,6 +27008,8 @@ type rsModelSecurityPolicyV2RuleQueryFilter struct {
 type rsModelDemStatusQueryResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25775,6 +27028,8 @@ type rsModelDemStatusQueryResponse struct {
 type rsModelSiteSecurityPolicyV2N1PrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25787,8 +27042,8 @@ type rsModelSiteSecurityPolicyV2N1PrefixAssociation struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -25797,6 +27052,8 @@ type rsModelSiteSecurityPolicyV2N1PrefixAssociation struct {
 type rsModelAnynetLinkQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25816,15 +27073,15 @@ type rsModelAnynetLinkQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -25835,6 +27092,8 @@ type rsModelAnynetLinkQuery struct {
 type rsModelBaseQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25854,15 +27113,15 @@ type rsModelBaseQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -25883,6 +27142,8 @@ type rsModelBulkResponseBfdUnderlay struct {
 type rsModelElementShell struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25937,8 +27198,8 @@ type rsModelElementShell struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -25949,6 +27210,8 @@ type rsModelElementShell struct {
 type rsModelIPFixProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -25968,15 +27231,15 @@ type rsModelIPFixProfileQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -25987,6 +27250,8 @@ type rsModelIPFixProfileQuery struct {
 type rsModelSpokeClusterElementStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26013,6 +27278,8 @@ type rsModelSpokeClusterElementStatusQueryFilter struct {
 type rsModelAuditLog struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26043,6 +27310,8 @@ type rsModelAuditLog struct {
 	ResourceId types.String `tfsdk:"resource_id"`
 	// propertyName=resource_key type=STRING
 	ResourceKey types.String `tfsdk:"resource_key"`
+	// password placeholder: propertyName=resource_key type=STRING
+	ResourceKeyInternalKeyName types.String `tfsdk:"resource_key_internal_key_name"`
 	// propertyName=resource_version type=STRING
 	ResourceVersion types.String `tfsdk:"resource_version"`
 	// propertyName=response_body type=STRING
@@ -26055,6 +27324,8 @@ type rsModelAuditLog struct {
 	ResponseTs types.Int64 `tfsdk:"response_ts"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
+	// password placeholder: propertyName=session_key_c type=STRING
+	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=source_ip type=STRING
 	SourceIp types.String `tfsdk:"source_ip"`
 	// propertyName=time_ms type=INTEGER
@@ -26121,6 +27392,8 @@ type rsModelListResponseSecurityPolicyRule struct {
 type rsModelSiteScreenV4N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26163,8 +27436,8 @@ type rsModelSiteScreenV4N10 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -26175,6 +27448,8 @@ type rsModelSiteScreenV4N10 struct {
 type rsModelSiteScreenV4N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26219,8 +27494,8 @@ type rsModelSiteScreenV4N11 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -26231,6 +27506,8 @@ type rsModelSiteScreenV4N11 struct {
 type rsModelSiteScreenV4N12 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26277,8 +27554,8 @@ type rsModelSiteScreenV4N12 struct {
 	ServiceBinding types.String `tfsdk:"service_binding"`
 	// propertyName=sgi_config type=REFERENCE
 	SgiConfig *rsModelSecurityGroupInformationConfig `tfsdk:"sgi_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -26289,6 +27566,8 @@ type rsModelSiteScreenV4N12 struct {
 type rsModelSecurityPolicyV2N2RuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26319,8 +27598,8 @@ type rsModelSecurityPolicyV2N2RuleScreen struct {
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -26331,6 +27610,8 @@ type rsModelSecurityPolicyV2N2RuleScreen struct {
 type rsModelListQueryResponseSecurityPolicyV2SetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26346,7 +27627,7 @@ type rsModelListQueryResponseSecurityPolicyV2SetStackQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2SetStackQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -26421,6 +27702,8 @@ type rsModelNetworkTopologyV3N2 struct {
 type rsModelOSPFGlobalConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26435,8 +27718,12 @@ type rsModelOSPFGlobalConfig struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=md5_key_id type=INTEGER
 	Md5KeyId types.Int64 `tfsdk:"md5_key_id"`
+	// password placeholder: propertyName=md5_key_id type=INTEGER
+	Md5KeyIdInternalKeyName types.Int64 `tfsdk:"md5_key_id_internal_key_name"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=prefix_adv_type_to_lan type=STRING
 	PrefixAdvTypeToLan types.String `tfsdk:"prefix_adv_type_to_lan"`
 	// propertyName=retransmit_interval type=INTEGER
@@ -26453,6 +27740,8 @@ type rsModelOSPFGlobalConfig struct {
 type rsModelWANInterfaceLabelQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26473,8 +27762,8 @@ type rsModelWANInterfaceLabelQueryFilterV2N5 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -26491,6 +27780,8 @@ type rsModelWANInterfaceLabelQueryFilterV2N5 struct {
 type rsModelLocalPrefixQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26510,15 +27801,15 @@ type rsModelLocalPrefixQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -26529,6 +27820,8 @@ type rsModelLocalPrefixQuery struct {
 type rsModelWANInterfaceLabelQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26545,8 +27838,8 @@ type rsModelWANInterfaceLabelQueryFilterV2N4 struct {
 	LqmEnabled types.Bool `tfsdk:"lqm_enabled"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
 	UseForApplicationReachabilityProbes types.Bool `tfsdk:"use_for_application_reachability_probes"`
 	// propertyName=use_for_controller_connections type=BOOLEAN
@@ -26573,6 +27866,8 @@ type rsModelSiteWanPath struct {
 type rsModelPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26621,6 +27916,8 @@ type rsModelPolicyRule struct {
 type rsModelPathGroupScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26641,6 +27938,8 @@ type rsModelPathGroupScreen struct {
 type rsModelListQueryResponseAuditLog struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26656,7 +27955,7 @@ type rsModelListQueryResponseAuditLog struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAuditLog `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -26667,6 +27966,8 @@ type rsModelListQueryResponseAuditLog struct {
 type rsModelVRFContextQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26686,15 +27987,15 @@ type rsModelVRFContextQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -26705,6 +28006,8 @@ type rsModelVRFContextQuery struct {
 type rsModelServiceEndpointV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26729,8 +28032,8 @@ type rsModelServiceEndpointV2N1 struct {
 	ServiceLinkPeers *rsModelServiceLinkPeers `tfsdk:"service_link_peers"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -26741,6 +28044,8 @@ type rsModelServiceEndpointV2N1 struct {
 type rsModelNetworkNodeV3N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26789,6 +28094,8 @@ type rsModelNetworkTopologyV3N5 struct {
 type rsModelAnynetLinkV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26811,8 +28118,8 @@ type rsModelAnynetLinkV3N3 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -26837,6 +28144,8 @@ type rsModelNetworkTopologyV3N4 struct {
 type rsModelAnynetLinkV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26859,8 +28168,8 @@ type rsModelAnynetLinkV3N2 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -26873,6 +28182,8 @@ type rsModelAnynetLinkV3N2 struct {
 type rsModelServiceEndpointV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26899,8 +28210,8 @@ type rsModelServiceEndpointV2N3 struct {
 	ServiceLinkPeers *rsModelServiceLinkPeers `tfsdk:"service_link_peers"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -26911,6 +28222,8 @@ type rsModelServiceEndpointV2N3 struct {
 type rsModelServiceEndpointV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26935,8 +28248,8 @@ type rsModelServiceEndpointV2N2 struct {
 	ServiceLinkPeers *rsModelServiceLinkPeers `tfsdk:"service_link_peers"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -26963,6 +28276,8 @@ type rsModelRoutingRouteMapEntry struct {
 type rsModelRoutingRouteMapScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -26977,8 +28292,8 @@ type rsModelRoutingRouteMapScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntry `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -26999,6 +28314,8 @@ type rsModelNetworkTopologyV3N6 struct {
 type rsModelAnynetLinkV3N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27021,8 +28338,8 @@ type rsModelAnynetLinkV3N4 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -27035,6 +28352,8 @@ type rsModelAnynetLinkV3N4 struct {
 type rsModelAnynetLinkV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27057,8 +28376,8 @@ type rsModelAnynetLinkV3N1 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -27069,6 +28388,8 @@ type rsModelAnynetLinkV3N1 struct {
 type rsModelListQueryResponseElementImageStatusQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27084,7 +28405,7 @@ type rsModelListQueryResponseElementImageStatusQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementImageStatusQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -27095,6 +28416,8 @@ type rsModelListQueryResponseElementImageStatusQueryFilterV2N1 struct {
 type rsModelMachineV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27161,6 +28484,8 @@ type rsModelListResponseMachineV2N5 struct {
 type rsModelMachineV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27223,6 +28548,8 @@ type rsModelListResponseMachineV2N3 struct {
 type rsModelRoutingAccessListQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27242,15 +28569,15 @@ type rsModelRoutingAccessListQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -27271,6 +28598,8 @@ type rsModelListResponseVffLicense struct {
 type rsModelElement struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27316,7 +28645,7 @@ type rsModelListResponsenull struct {
 	// propertyName=count type=INTEGER
 	Count types.Int64 `tfsdk:"count"`
 	// propertyName=items type=ARRAY_SCHEMA
-	Items []*map[string]interface{} `tfsdk:"items"`
+	Items []types.Map `tfsdk:"items"`
 }
 
 // +-----------------------------------------------------------------
@@ -27325,6 +28654,8 @@ type rsModelListResponsenull struct {
 type rsModelIPSECProfileV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27347,8 +28678,8 @@ type rsModelIPSECProfileV2N2 struct {
 	IkeGroup *rsModelIKEGroup `tfsdk:"ike_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=used_for type=STRING
 	UsedFor types.String `tfsdk:"used_for"`
 }
@@ -27375,10 +28706,14 @@ type rsModelScepConfig struct {
 	Https types.Bool `tfsdk:"https"`
 	// propertyName=num_challenge_passwords type=INTEGER
 	NumChallengePasswords types.Int64 `tfsdk:"num_challenge_passwords"`
+	// password placeholder: propertyName=num_challenge_passwords type=INTEGER
+	NumChallengePasswordsInternalKeyName types.Int64 `tfsdk:"num_challenge_passwords_internal_key_name"`
 	// propertyName=server_certificate type=STRING
 	ServerCertificate types.String `tfsdk:"server_certificate"`
 	// propertyName=server_password type=STRING
 	ServerPassword types.String `tfsdk:"server_password"`
+	// password placeholder: propertyName=server_password type=STRING
+	ServerPasswordInternalKeyName types.String `tfsdk:"server_password_internal_key_name"`
 	// propertyName=server_primary_address type=STRING
 	ServerPrimaryAddress types.String `tfsdk:"server_primary_address"`
 	// propertyName=server_username type=STRING
@@ -27391,6 +28726,8 @@ type rsModelScepConfig struct {
 type rsModelCertificateAuthorityConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27425,6 +28762,8 @@ type rsModelListResponseMulticastIgmpMembership struct {
 type rsModelAppDefQueryFilterTransformedV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27452,7 +28791,7 @@ type rsModelAppDefQueryFilterTransformedV2N4 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -27477,14 +28816,14 @@ type rsModelAppDefQueryFilterTransformedV2N4 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -27495,6 +28834,8 @@ type rsModelAppDefQueryFilterTransformedV2N4 struct {
 type rsModelAppDefQueryFilterTransformedV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27522,7 +28863,7 @@ type rsModelAppDefQueryFilterTransformedV2N3 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -27539,14 +28880,14 @@ type rsModelAppDefQueryFilterTransformedV2N3 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -27557,6 +28898,8 @@ type rsModelAppDefQueryFilterTransformedV2N3 struct {
 type rsModelAppDefQueryFilterTransformedV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27584,7 +28927,7 @@ type rsModelAppDefQueryFilterTransformedV2N6 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -27609,14 +28952,14 @@ type rsModelAppDefQueryFilterTransformedV2N6 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -27627,6 +28970,8 @@ type rsModelAppDefQueryFilterTransformedV2N6 struct {
 type rsModelMulticastRouteTableQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27646,15 +28991,15 @@ type rsModelMulticastRouteTableQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -27675,6 +29020,8 @@ type rsModelListResponseSyslogServerScreenV2N2 struct {
 type rsModelListQueryResponseNATPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27690,7 +29037,7 @@ type rsModelListQueryResponseNATPolicySetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNATPolicySetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -27711,10 +29058,14 @@ type rsModelListResponseElementUserAccess struct {
 type rsModelSNMPUserAccess struct {
 	// propertyName=auth_phrase type=STRING
 	AuthPhrase types.String `tfsdk:"auth_phrase"`
+	// password placeholder: propertyName=auth_phrase type=STRING
+	AuthPhraseInternalKeyName types.String `tfsdk:"auth_phrase_internal_key_name"`
 	// propertyName=auth_type type=STRING
 	AuthType types.String `tfsdk:"auth_type"`
 	// propertyName=enc_phrase type=STRING
 	EncPhrase types.String `tfsdk:"enc_phrase"`
+	// password placeholder: propertyName=enc_phrase type=STRING
+	EncPhraseInternalKeyName types.String `tfsdk:"enc_phrase_internal_key_name"`
 	// propertyName=enc_type type=STRING
 	EncType types.String `tfsdk:"enc_type"`
 	// propertyName=engine_id type=STRING
@@ -27751,6 +29102,8 @@ type rsModelSNMPV2Config struct {
 type rsModelSNMPAgent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27759,8 +29112,8 @@ type rsModelSNMPAgent struct {
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=v2_config type=REFERENCE
 	V2Config *rsModelSNMPV2Config `tfsdk:"v2_config"`
 	// propertyName=v3_config type=REFERENCE
@@ -27783,6 +29136,8 @@ type rsModelListResponseSNMPAgent struct {
 type rsModelSecurityPolicyV2LocalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27793,8 +29148,8 @@ type rsModelSecurityPolicyV2LocalPrefix struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -27803,6 +29158,8 @@ type rsModelSecurityPolicyV2LocalPrefix struct {
 type rsModelIPSECProfileQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27825,8 +29182,8 @@ type rsModelIPSECProfileQueryFilterV2N2 struct {
 	IkeGroup *rsModelIKEGroup `tfsdk:"ike_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=used_for type=STRING
 	UsedFor types.String `tfsdk:"used_for"`
 }
@@ -27837,6 +29194,8 @@ type rsModelIPSECProfileQueryFilterV2N2 struct {
 type rsModelDeviceIdStartNodeQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27856,15 +29215,15 @@ type rsModelDeviceIdStartNodeQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -27875,6 +29234,8 @@ type rsModelDeviceIdStartNodeQuery struct {
 type rsModelRoutingPrefixListQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27889,8 +29250,8 @@ type rsModelRoutingPrefixListQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=prefix_filter_list type=ARRAY_REFERENCE
 	PrefixFilterList []rsModelRoutingPrefixFilter `tfsdk:"prefix_filter_list"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -27899,6 +29260,8 @@ type rsModelRoutingPrefixListQueryFilter struct {
 type rsModelListQueryResponseRoutingPrefixListQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27914,7 +29277,7 @@ type rsModelListQueryResponseRoutingPrefixListQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingPrefixListQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -27925,6 +29288,8 @@ type rsModelListQueryResponseRoutingPrefixListQueryFilter struct {
 type rsModelNATPolicySetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -27939,8 +29304,8 @@ type rsModelNATPolicySetStack struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -27993,6 +29358,8 @@ type rsModelEventsSummaryBodyV2_0 struct {
 type rsModelSecurityPolicyRuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28025,6 +29392,8 @@ type rsModelSecurityPolicyRuleScreen struct {
 type rsModelListQueryResponseMulticastSourceSideRpQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28040,7 +29409,7 @@ type rsModelListQueryResponseMulticastSourceSideRpQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastSourceSideRpQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28051,6 +29420,8 @@ type rsModelListQueryResponseMulticastSourceSideRpQueryFilter struct {
 type rsModelRoutingCommunityListQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28070,15 +29441,15 @@ type rsModelRoutingCommunityListQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28089,6 +29460,8 @@ type rsModelRoutingCommunityListQuery struct {
 type rsModelVPNLinkQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28108,15 +29481,15 @@ type rsModelVPNLinkQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28137,6 +29510,8 @@ type rsModelSamlResponse struct {
 type rsModelInterfaceStateQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28209,6 +29584,8 @@ type rsModelInterfaceStateQueryFilter struct {
 type rsModelListQueryResponseInterfaceStateQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28224,7 +29601,7 @@ type rsModelListQueryResponseInterfaceStateQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelInterfaceStateQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28235,6 +29612,8 @@ type rsModelListQueryResponseInterfaceStateQueryFilter struct {
 type rsModelStaticRoute struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28251,8 +29630,8 @@ type rsModelStaticRoute struct {
 	Nexthops []rsModelNextHop `tfsdk:"nexthops"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -28277,6 +29656,8 @@ type rsModelIPRuleV2 struct {
 type rsModelInterfaceScreenV4N17 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28363,8 +29744,8 @@ type rsModelInterfaceScreenV4N17 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -28399,6 +29780,8 @@ type rsModelElementShellInterfaceScreen struct {
 type rsModelVffLicenseStateQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28418,15 +29801,15 @@ type rsModelVffLicenseStateQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28437,6 +29820,8 @@ type rsModelVffLicenseStateQuery struct {
 type rsModelPerfMgmtPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28457,8 +29842,8 @@ type rsModelPerfMgmtPolicyRuleQueryFilter struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -28471,6 +29856,8 @@ type rsModelPerfMgmtPolicyRuleQueryFilter struct {
 type rsModelSaseConnectionGlobalConfigScreenV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28495,6 +29882,8 @@ type rsModelSaseConnectionGlobalConfigScreenV3 struct {
 type rsModelSecurityPolicyV2SetQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28514,15 +29903,15 @@ type rsModelSecurityPolicyV2SetQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28543,6 +29932,8 @@ type rsModelTsgInstance struct {
 type rsModelTenantV2N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName= type=STRING
 	types.String `tfsdk:""`
 	// propertyName=_etag type=INTEGER
@@ -28595,6 +29986,8 @@ type rsModelTenantV2N10 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -28619,6 +30012,8 @@ type rsModelTenantV2N10 struct {
 type rsModelTenantV2N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName= type=STRING
 	types.String `tfsdk:""`
 	// propertyName=_etag type=INTEGER
@@ -28673,6 +30068,8 @@ type rsModelTenantV2N11 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -28711,6 +30108,8 @@ type rsModelHubClusterStateElement struct {
 type rsModelListQueryResponseGlobalPrefixQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28726,7 +30125,7 @@ type rsModelListQueryResponseGlobalPrefixQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelGlobalPrefixQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28773,6 +30172,8 @@ type rsModelNtpLastSelected struct {
 type rsModelRoutingCommunityList struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28787,8 +30188,8 @@ type rsModelRoutingCommunityList struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -28807,6 +30208,8 @@ type rsModelListResponseRoutingCommunityList struct {
 type rsModelOspfDiscoveredNeighborQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28826,15 +30229,15 @@ type rsModelOspfDiscoveredNeighborQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28865,6 +30268,8 @@ type rsModelCreateMachineInfoV2N2 struct {
 type rsModelPathPrefixDistributionAssociationFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28881,8 +30286,8 @@ type rsModelPathPrefixDistributionAssociationFilter struct {
 	PeerSiteIds types.List `tfsdk:"peer_site_ids"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -28891,6 +30296,8 @@ type rsModelPathPrefixDistributionAssociationFilter struct {
 type rsModelListQueryResponsePathPrefixDistributionAssociationFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28906,7 +30313,7 @@ type rsModelListQueryResponsePathPrefixDistributionAssociationFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPathPrefixDistributionAssociationFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28917,6 +30324,8 @@ type rsModelListQueryResponsePathPrefixDistributionAssociationFilter struct {
 type rsModelOspfReachablePrefixesFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28941,6 +30350,8 @@ type rsModelOspfReachablePrefixesFilter struct {
 type rsModelListQueryResponseOspfReachablePrefixesFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28956,7 +30367,7 @@ type rsModelListQueryResponseOspfReachablePrefixesFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelOspfReachablePrefixesFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -28967,6 +30378,8 @@ type rsModelListQueryResponseOspfReachablePrefixesFilter struct {
 type rsModelDirectoryUserGroup struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -28979,8 +30392,8 @@ type rsModelDirectoryUserGroup struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=stale type=BOOLEAN
 	Stale types.Bool `tfsdk:"stale"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -28999,6 +30412,8 @@ type rsModelListResponseDirectoryUserGroup struct {
 type rsModelPerfMgmtPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29018,15 +30433,15 @@ type rsModelPerfMgmtPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29037,6 +30452,8 @@ type rsModelPerfMgmtPolicyRuleQuery struct {
 type rsModelMachineSoftwareStateQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29056,15 +30473,15 @@ type rsModelMachineSoftwareStateQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29085,6 +30502,8 @@ type rsModelListResponseTenant struct {
 type rsModelDirectoryServiceScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29099,8 +30518,8 @@ type rsModelDirectoryServiceScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=region type=STRING
 	Region types.String `tfsdk:"region"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_attributes type=REFERENCE
 	UserAttributes *rsModelDirectoryUserAttribute `tfsdk:"user_attributes"`
 }
@@ -29111,6 +30530,8 @@ type rsModelDirectoryServiceScreen struct {
 type rsModelElementImageV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29135,6 +30556,8 @@ type rsModelElementImageV2N1 struct {
 type rsModelPathPrefixDistributionFiltersAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29149,8 +30572,8 @@ type rsModelPathPrefixDistributionFiltersAssociation struct {
 	PathPrefixDistributionFilterId types.String `tfsdk:"path_prefix_distribution_filter_id"`
 	// propertyName=peer_site_ids type=ARRAY_PRIMITIVE
 	PeerSiteIds types.List `tfsdk:"peer_site_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -29159,6 +30582,8 @@ type rsModelPathPrefixDistributionFiltersAssociation struct {
 type rsModelOSPFGlobalConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29173,8 +30598,12 @@ type rsModelOSPFGlobalConfigScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=md5_key_id type=INTEGER
 	Md5KeyId types.Int64 `tfsdk:"md5_key_id"`
+	// password placeholder: propertyName=md5_key_id type=INTEGER
+	Md5KeyIdInternalKeyName types.Int64 `tfsdk:"md5_key_id_internal_key_name"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=prefix_adv_type_to_lan type=STRING
 	PrefixAdvTypeToLan types.String `tfsdk:"prefix_adv_type_to_lan"`
 	// propertyName=retransmit_interval type=INTEGER
@@ -29191,6 +30620,8 @@ type rsModelOSPFGlobalConfigScreen struct {
 type rsModelListQueryResponseWANInterfaceLabelQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29206,7 +30637,7 @@ type rsModelListQueryResponseWANInterfaceLabelQueryFilterV2N4 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANInterfaceLabelQueryFilterV2N4 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29217,6 +30648,8 @@ type rsModelListQueryResponseWANInterfaceLabelQueryFilterV2N4 struct {
 type rsModelListQueryResponseWANInterfaceLabelQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29232,7 +30665,7 @@ type rsModelListQueryResponseWANInterfaceLabelQueryFilterV2N5 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANInterfaceLabelQueryFilterV2N5 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29243,6 +30676,8 @@ type rsModelListQueryResponseWANInterfaceLabelQueryFilterV2N5 struct {
 type rsModelLANNetworkQueryFilterV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29261,8 +30696,8 @@ type rsModelLANNetworkQueryFilterV3N3 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -29273,6 +30708,8 @@ type rsModelLANNetworkQueryFilterV3N3 struct {
 type rsModelListQueryResponseLANNetworkQueryFilterV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29288,7 +30725,7 @@ type rsModelListQueryResponseLANNetworkQueryFilterV3N3 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelLANNetworkQueryFilterV3N3 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29299,6 +30736,8 @@ type rsModelListQueryResponseLANNetworkQueryFilterV3N3 struct {
 type rsModelListQueryResponsePerfMgmtThresholdProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29314,7 +30753,7 @@ type rsModelListQueryResponsePerfMgmtThresholdProfile struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPerfMgmtThresholdProfile `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29325,6 +30764,8 @@ type rsModelListQueryResponsePerfMgmtThresholdProfile struct {
 type rsModelLANNetworkQueryFilterV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29343,8 +30784,8 @@ type rsModelLANNetworkQueryFilterV3N2 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -29353,6 +30794,8 @@ type rsModelLANNetworkQueryFilterV3N2 struct {
 type rsModelListQueryResponseLANNetworkQueryFilterV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29368,7 +30811,7 @@ type rsModelListQueryResponseLANNetworkQueryFilterV3N2 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelLANNetworkQueryFilterV3N2 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29379,6 +30822,8 @@ type rsModelListQueryResponseLANNetworkQueryFilterV3N2 struct {
 type rsModelMulticastDynamicRpQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29398,15 +30843,15 @@ type rsModelMulticastDynamicRpQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29417,6 +30862,8 @@ type rsModelMulticastDynamicRpQuery struct {
 type rsModelDemStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29445,6 +30892,8 @@ type rsModelListResponseDemStatus struct {
 type rsModelElementImageStatusV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29493,6 +30942,8 @@ type rsModelBulkResponseElementImageStatusV2N1 struct {
 type rsModelPrefixFilterQueryScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29519,6 +30970,8 @@ type rsModelMulticastIgmpStaticJoin struct {
 type rsModelMulticastPeerGroupScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29533,8 +30986,8 @@ type rsModelMulticastPeerGroupScreenV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=peer_sites type=ARRAY_REFERENCE
 	PeerSites []rsModelMulticastPeerSite `tfsdk:"peer_sites"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -29543,6 +30996,8 @@ type rsModelMulticastPeerGroupScreenV2N1 struct {
 type rsModelElementOTPAccess struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29561,6 +31016,8 @@ type rsModelElementOTPAccess struct {
 type rsModelPolicySetStackQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29580,15 +31037,15 @@ type rsModelPolicySetStackQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29599,6 +31056,8 @@ type rsModelPolicySetStackQuery struct {
 type rsModelHubClusterQueryV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29618,15 +31077,15 @@ type rsModelHubClusterQueryV4 struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29637,6 +31096,8 @@ type rsModelHubClusterQueryV4 struct {
 type rsModelPolicyRuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29709,6 +31170,8 @@ type rsModelDirectPath struct {
 type rsModelMachineCellularModuleInfo struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29741,6 +31204,8 @@ type rsModelBulkResponseNATPolicyPool struct {
 type rsModelElementShellQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29760,15 +31225,15 @@ type rsModelElementShellQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29779,6 +31244,8 @@ type rsModelElementShellQuery struct {
 type rsModelBGPGlobalConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29801,6 +31268,8 @@ type rsModelBGPGlobalConfig struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_retry_time type=INTEGER
@@ -29821,6 +31290,8 @@ type rsModelBGPGlobalConfig struct {
 type rsModelProbeProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29833,8 +31304,8 @@ type rsModelProbeProfile struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=probe_config_ids type=ARRAY_PRIMITIVE
 	ProbeConfigIds types.List `tfsdk:"probe_config_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -29867,6 +31338,8 @@ type rsModelNTPServerState struct {
 type rsModelElementNTPState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29899,8 +31372,8 @@ type rsModelElementNTPState struct {
 	Region types.String `tfsdk:"region"`
 	// propertyName=source_interface_ids type=ARRAY_PRIMITIVE
 	SourceInterfaceIds types.List `tfsdk:"source_interface_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -29909,6 +31382,8 @@ type rsModelElementNTPState struct {
 type rsModelNATPolicySetStackPOSTScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29923,8 +31398,8 @@ type rsModelNATPolicySetStackPOSTScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -29933,6 +31408,8 @@ type rsModelNATPolicySetStackPOSTScreen struct {
 type rsModelBulkConfigPushQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -29952,15 +31429,15 @@ type rsModelBulkConfigPushQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -29971,6 +31448,8 @@ type rsModelBulkConfigPushQuery struct {
 type rsModelSecurityPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30005,6 +31484,8 @@ type rsModelSecurityPolicyRuleQueryFilter struct {
 type rsModelWANInterfaceScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30039,6 +31520,8 @@ type rsModelWANInterfaceScreen struct {
 type rsModelAnynetLinkCreateBulkOperation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30051,8 +31534,8 @@ type rsModelAnynetLinkCreateBulkOperation struct {
 	Items []rsModelAnynetLinkBulkCreateV4 `tfsdk:"items"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30061,6 +31544,8 @@ type rsModelAnynetLinkCreateBulkOperation struct {
 type rsModelSecurityPolicyV2SetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30077,8 +31562,8 @@ type rsModelSecurityPolicyV2SetQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyrule_order type=ARRAY_PRIMITIVE
 	PolicyruleOrder types.List `tfsdk:"policyrule_order"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30087,6 +31572,8 @@ type rsModelSecurityPolicyV2SetQueryFilter struct {
 type rsModelListQueryResponseSecurityPolicyV2SetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30102,7 +31589,7 @@ type rsModelListQueryResponseSecurityPolicyV2SetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2SetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -30113,6 +31600,8 @@ type rsModelListQueryResponseSecurityPolicyV2SetQueryFilter struct {
 type rsModelMulticastWanStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30147,6 +31636,8 @@ type rsModelEventsOperationsResponseBody struct {
 type rsModelSaseConnectionGlobalConfigV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30207,6 +31698,8 @@ type rsModelCellularModuleFirmwareUpgradeImageState struct {
 type rsModelBulkConfigCreate struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30226,7 +31719,7 @@ type rsModelBulkConfigCreate struct {
 	// propertyName=template_name type=STRING
 	TemplateName types.String `tfsdk:"template_name"`
 	// propertyName=variable_map type=OBJECT
-	VariableMap *map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -30235,6 +31728,8 @@ type rsModelBulkConfigCreate struct {
 type rsModelDeviceIdStartNodeScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30249,8 +31744,8 @@ type rsModelDeviceIdStartNodeScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=scope type=ARRAY_REFERENCE
 	Scope []rsModelStartNodeScopeConfig `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30259,6 +31754,8 @@ type rsModelDeviceIdStartNodeScreen struct {
 type rsModelSecurityPolicyV2Set struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30275,8 +31772,8 @@ type rsModelSecurityPolicyV2Set struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyrule_order type=ARRAY_PRIMITIVE
 	PolicyruleOrder types.List `tfsdk:"policyrule_order"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30285,6 +31782,8 @@ type rsModelSecurityPolicyV2Set struct {
 type rsModelListQueryResponseSecurityPolicyV2Set struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30300,7 +31799,7 @@ type rsModelListQueryResponseSecurityPolicyV2Set struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2Set `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -30311,6 +31810,8 @@ type rsModelListQueryResponseSecurityPolicyV2Set struct {
 type rsModelMachine struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30355,6 +31856,8 @@ type rsModelMachine struct {
 type rsModelServiceBindingMap struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30367,8 +31870,8 @@ type rsModelServiceBindingMap struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=service_bindings type=ARRAY_REFERENCE
 	ServiceBindings []rsModelServiceBinding `tfsdk:"service_bindings"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30397,6 +31900,8 @@ type rsModelSiteEndpoints struct {
 type rsModelIPSECProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30416,15 +31921,15 @@ type rsModelIPSECProfileQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -30434,19 +31939,21 @@ type rsModelIPSECProfileQuery struct {
 // +-----------------------------------------------------------------
 type rsModelParameter struct {
 	// propertyName=default_value type=OBJECT
-	DefaultValue *map[string]interface{} `tfsdk:"default_value"`
+	DefaultValue types.Map `tfsdk:"default_value"`
 	// propertyName=display_label type=STRING
 	DisplayLabel types.String `tfsdk:"display_label"`
 	// propertyName=help_text type=STRING
 	HelpText types.String `tfsdk:"help_text"`
 	// propertyName=key type=STRING
 	Key types.String `tfsdk:"key"`
+	// password placeholder: propertyName=key type=STRING
+	KeyInternalKeyName types.String `tfsdk:"key_internal_key_name"`
 	// propertyName=max_length type=INTEGER
 	MaxLength types.Int64 `tfsdk:"max_length"`
 	// propertyName=max_value type=OBJECT
-	MaxValue *map[string]interface{} `tfsdk:"max_value"`
+	MaxValue types.Map `tfsdk:"max_value"`
 	// propertyName=min_value type=OBJECT
-	MinValue *map[string]interface{} `tfsdk:"min_value"`
+	MinValue types.Map `tfsdk:"min_value"`
 	// propertyName=regex type=STRING
 	Regex types.String `tfsdk:"regex"`
 	// propertyName=required type=BOOLEAN
@@ -30477,8 +31984,8 @@ type rsModelSDWANAppReleaseInfo struct {
 	ReleaseNotes types.String `tfsdk:"release_notes"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -30489,6 +31996,8 @@ type rsModelSDWANAppReleaseInfo struct {
 type rsModelSDWANAppReleaseInfoResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30503,8 +32012,8 @@ type rsModelSDWANAppReleaseInfoResponse struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=releases type=ARRAY_REFERENCE
 	Releases []rsModelSDWANAppReleaseInfo `tfsdk:"releases"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30527,6 +32036,8 @@ type rsModelUdpRuleV2 struct {
 type rsModelSDWANAppRelease struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30563,8 +32074,8 @@ type rsModelSDWANAppRelease struct {
 	ReleaseNotes types.String `tfsdk:"release_notes"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -30585,6 +32096,8 @@ type rsModelBulkResponseSDWANAppRelease struct {
 type rsModelListQueryResponseMachineSoftwareStateQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30600,7 +32113,7 @@ type rsModelListQueryResponseMachineSoftwareStateQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMachineSoftwareStateQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -30649,6 +32162,8 @@ type rsModelListResponseTacacsPlusServer struct {
 type rsModelElementScreenV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30687,8 +32202,8 @@ type rsModelElementScreenV3N2 struct {
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -30709,6 +32224,8 @@ type rsModelStateNextHop struct {
 type rsModelStaticRouteStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30725,6 +32242,8 @@ type rsModelStaticRouteStatus struct {
 type rsModelElementScreenV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30761,8 +32280,8 @@ type rsModelElementScreenV3N1 struct {
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -30773,6 +32292,8 @@ type rsModelElementScreenV3N1 struct {
 type rsModelStaticRouteV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30795,8 +32316,8 @@ type rsModelStaticRouteV2N3 struct {
 	Nexthops []rsModelNextHop `tfsdk:"nexthops"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -30817,6 +32338,8 @@ type rsModelListResponseStaticRouteV2N3 struct {
 type rsModelStaticRouteV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30839,8 +32362,8 @@ type rsModelStaticRouteV2N2 struct {
 	Nexthops []rsModelNextHop `tfsdk:"nexthops"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30869,6 +32392,8 @@ type rsModelBulkResponseNTPTemplate struct {
 type rsModelIPSECProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30891,8 +32416,8 @@ type rsModelIPSECProfile struct {
 	IkeGroup *rsModelIKEGroup `tfsdk:"ike_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30901,6 +32426,8 @@ type rsModelIPSECProfile struct {
 type rsModelSecurityPolicyGlobalPrefixV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -30915,8 +32442,8 @@ type rsModelSecurityPolicyGlobalPrefixV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -30935,6 +32462,8 @@ type rsModelListResponseElementUser struct {
 type rsModelElementQueryFilterV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31001,8 +32530,8 @@ type rsModelElementQueryFilterV2N7 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -31013,6 +32542,8 @@ type rsModelElementQueryFilterV2N7 struct {
 type rsModelSyslogServer struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31035,8 +32566,8 @@ type rsModelSyslogServer struct {
 	SeverityLevel types.String `tfsdk:"severity_level"`
 	// propertyName=source_interface type=STRING
 	SourceInterface types.String `tfsdk:"source_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -31045,6 +32576,8 @@ type rsModelSyslogServer struct {
 type rsModelElementQueryFilterV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31109,8 +32642,8 @@ type rsModelElementQueryFilterV2N6 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -31121,6 +32654,8 @@ type rsModelElementQueryFilterV2N6 struct {
 type rsModelElementQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31173,6 +32708,8 @@ type rsModelElementQueryFilterV2N1 struct {
 type rsModelElementQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31229,8 +32766,8 @@ type rsModelElementQueryFilterV2N5 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -31241,6 +32778,8 @@ type rsModelElementQueryFilterV2N5 struct {
 type rsModelElementQueryFilterV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31291,8 +32830,8 @@ type rsModelElementQueryFilterV2N4 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -31303,6 +32842,8 @@ type rsModelElementQueryFilterV2N4 struct {
 type rsModelElementQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31353,8 +32894,8 @@ type rsModelElementQueryFilterV2N3 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV1 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -31365,6 +32906,8 @@ type rsModelElementQueryFilterV2N3 struct {
 type rsModelElementQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31411,8 +32954,8 @@ type rsModelElementQueryFilterV2N2 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV1 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -31421,6 +32964,8 @@ type rsModelElementQueryFilterV2N2 struct {
 type rsModelNetworkContext struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31439,6 +32984,8 @@ type rsModelNetworkContext struct {
 type rsModelSecurityPolicyGlobalPrefixScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31451,8 +32998,8 @@ type rsModelSecurityPolicyGlobalPrefixScreen struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -31471,6 +33018,8 @@ type rsModelElemCustomerPremisesEquipment struct {
 type rsModelElementStateQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31490,15 +33039,15 @@ type rsModelElementStateQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -31509,6 +33058,8 @@ type rsModelElementStateQuery struct {
 type rsModelAppdefOverrideV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31545,8 +33096,8 @@ type rsModelAppdefOverrideV2N2 struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV2 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -31563,6 +33114,8 @@ type rsModelAppdefOverrideV2N2 struct {
 type rsModelAppdefOverrideV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31601,8 +33154,8 @@ type rsModelAppdefOverrideV2N3 struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV2 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -31619,6 +33172,8 @@ type rsModelAppdefOverrideV2N3 struct {
 type rsModelElementSecurityZone struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31645,6 +33200,8 @@ type rsModelElementSecurityZone struct {
 type rsModelMulticastSourceSideRpQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31664,15 +33221,15 @@ type rsModelMulticastSourceSideRpQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -31683,6 +33240,8 @@ type rsModelMulticastSourceSideRpQuery struct {
 type rsModelLocalPrefixFilterScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31701,6 +33260,8 @@ type rsModelLocalPrefixFilterScreen struct {
 type rsModelVffLicenseQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31720,15 +33281,15 @@ type rsModelVffLicenseQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -31739,6 +33300,8 @@ type rsModelVffLicenseQuery struct {
 type rsModelListQueryResponseSecurityPolicyGlobalPrefixV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31754,7 +33317,7 @@ type rsModelListQueryResponseSecurityPolicyGlobalPrefixV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyGlobalPrefixV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -31765,6 +33328,8 @@ type rsModelListQueryResponseSecurityPolicyGlobalPrefixV2N1 struct {
 type rsModelAppdefOverrideV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31801,8 +33366,8 @@ type rsModelAppdefOverrideV2N1 struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV1 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -31819,6 +33384,8 @@ type rsModelAppdefOverrideV2N1 struct {
 type rsModelPrefixFilterAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31847,6 +33414,8 @@ type rsModelListResponsePrefixFilterAssociation struct {
 type rsModelElementWANInterfaceState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31879,6 +33448,8 @@ type rsModelElementWANInterfaceState struct {
 type rsModelOspfReachablePrefixes struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31903,6 +33474,8 @@ type rsModelOspfReachablePrefixes struct {
 type rsModelListQueryResponsePrefixFilterQueryScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31918,7 +33491,7 @@ type rsModelListQueryResponsePrefixFilterQueryScreen struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPrefixFilterQueryScreen `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -31929,6 +33502,8 @@ type rsModelListQueryResponsePrefixFilterQueryScreen struct {
 type rsModelApplicationProbeScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -31943,8 +33518,8 @@ type rsModelApplicationProbeScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=source_interface_id type=STRING
 	SourceInterfaceId types.String `tfsdk:"source_interface_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -31963,6 +33538,8 @@ type rsModelMulticastStaticIgmpJoin struct {
 type rsModelMachineQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32015,6 +33592,8 @@ type rsModelMachineQueryFilterV2N3 struct {
 type rsModelListQueryResponseMachineQueryFilterV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32030,7 +33609,7 @@ type rsModelListQueryResponseMachineQueryFilterV2N3 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMachineQueryFilterV2N3 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -32041,6 +33620,8 @@ type rsModelListQueryResponseMachineQueryFilterV2N3 struct {
 type rsModelWANInterfaceState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32057,6 +33638,8 @@ type rsModelWANInterfaceState struct {
 type rsModelMachineQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32113,6 +33696,8 @@ type rsModelMachineQueryFilterV2N5 struct {
 type rsModelListQueryResponseMachineQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32128,7 +33713,7 @@ type rsModelListQueryResponseMachineQueryFilterV2N5 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMachineQueryFilterV2N5 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -32139,6 +33724,8 @@ type rsModelListQueryResponseMachineQueryFilterV2N5 struct {
 type rsModelBGPPeerQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32161,8 +33748,8 @@ type rsModelBGPPeerQueryFilter struct {
 	RouteMapInId types.String `tfsdk:"route_map_in_id"`
 	// propertyName=route_map_out_id type=STRING
 	RouteMapOutId types.String `tfsdk:"route_map_out_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 }
@@ -32173,6 +33760,8 @@ type rsModelBGPPeerQueryFilter struct {
 type rsModelMulticastStatusResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32211,6 +33800,8 @@ type rsModelListResponseMulticastStatusResponse struct {
 type rsModelNetworkPolicyPrefixS struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32225,8 +33816,8 @@ type rsModelNetworkPolicyPrefixS struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32235,6 +33826,8 @@ type rsModelNetworkPolicyPrefixS struct {
 type rsModelDeviceIdElementConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32247,8 +33840,8 @@ type rsModelDeviceIdElementConfigScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=snmp_discovery_source_interface_id type=STRING
 	SnmpDiscoverySourceInterfaceId types.String `tfsdk:"snmp_discovery_source_interface_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32257,6 +33850,8 @@ type rsModelDeviceIdElementConfigScreen struct {
 type rsModelAuthToken struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32271,6 +33866,8 @@ type rsModelAuthToken struct {
 	Roles []rsModelAuthRole `tfsdk:"roles"`
 	// propertyName=session_key_c type=STRING
 	SessionKeyC types.String `tfsdk:"session_key_c"`
+	// password placeholder: propertyName=session_key_c type=STRING
+	SessionKeyCInternalKeyName types.String `tfsdk:"session_key_c_internal_key_name"`
 	// propertyName=x_auth_token type=STRING
 	XAuthToken types.String `tfsdk:"x_auth_token"`
 }
@@ -32281,6 +33878,8 @@ type rsModelAuthToken struct {
 type rsModelRoutingAccessListScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32295,8 +33894,8 @@ type rsModelRoutingAccessListScreenV2N1 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32305,6 +33904,8 @@ type rsModelRoutingAccessListScreenV2N1 struct {
 type rsModelIPFixLocalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32315,8 +33916,8 @@ type rsModelIPFixLocalPrefix struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32333,6 +33934,8 @@ type rsModelListResponse struct {
 type rsModelMachineSoftware struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32363,6 +33966,8 @@ type rsModelListResponseMachineSoftware struct {
 type rsModelDeviceIdConfigQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32382,15 +33987,15 @@ type rsModelDeviceIdConfigQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -32401,6 +34006,8 @@ type rsModelDeviceIdConfigQuery struct {
 type rsModelListQueryResponseWANInterfaceQueryFilterV2N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32416,7 +34023,7 @@ type rsModelListQueryResponseWANInterfaceQueryFilterV2N8 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANInterfaceQueryFilterV2N8 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -32427,6 +34034,8 @@ type rsModelListQueryResponseWANInterfaceQueryFilterV2N8 struct {
 type rsModelListQueryResponseWANInterfaceQueryFilterV2N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32442,7 +34051,7 @@ type rsModelListQueryResponseWANInterfaceQueryFilterV2N9 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANInterfaceQueryFilterV2N9 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -32453,6 +34062,8 @@ type rsModelListQueryResponseWANInterfaceQueryFilterV2N9 struct {
 type rsModelHubClusterOperationV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32473,6 +34084,8 @@ type rsModelHubClusterOperationV4 struct {
 type rsModelReportListItem struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32507,6 +34120,8 @@ type rsModelPrefixSet struct {
 type rsModelBGPPeerAdvertisedPrefixesV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32527,6 +34142,8 @@ type rsModelBGPPeerAdvertisedPrefixesV2N1 struct {
 type rsModelIPFixTemplateScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32545,8 +34162,8 @@ type rsModelIPFixTemplateScreen struct {
 	OptionExportTimeout types.Int64 `tfsdk:"option_export_timeout"`
 	// propertyName=options type=ARRAY_PRIMITIVE
 	Options types.List `tfsdk:"options"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=template_export_timeout type=INTEGER
 	TemplateExportTimeout types.Int64 `tfsdk:"template_export_timeout"`
 }
@@ -32583,6 +34200,8 @@ type rsModelEventsSummaryData struct {
 type rsModelPerfMgmtPolicyRule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32603,8 +34222,8 @@ type rsModelPerfMgmtPolicyRule struct {
 	PathFilters []rsModelPathFilter `tfsdk:"path_filters"`
 	// propertyName=service_label_ids type=ARRAY_PRIMITIVE
 	ServiceLabelIds types.List `tfsdk:"service_label_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=thresholdprofile_id type=STRING
 	ThresholdprofileId types.String `tfsdk:"thresholdprofile_id"`
 	// propertyName=type type=STRING
@@ -32617,6 +34236,8 @@ type rsModelPerfMgmtPolicyRule struct {
 type rsModelMulticastSourceSiteConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32633,6 +34254,8 @@ type rsModelMulticastSourceSiteConfigScreen struct {
 type rsModelElementSecurityZoneScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32659,6 +34282,8 @@ type rsModelElementSecurityZoneScreen struct {
 type rsModelRoutingRouteMapScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32673,8 +34298,8 @@ type rsModelRoutingRouteMapScreenV2N2 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N2 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32693,6 +34318,8 @@ type rsModelListResponseRoutingRouteMapScreenV2N2 struct {
 type rsModelRoutingRouteMapScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32707,8 +34334,8 @@ type rsModelRoutingRouteMapScreenV2N3 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N3 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=used_for type=STRING
 	UsedFor types.String `tfsdk:"used_for"`
 }
@@ -32751,6 +34378,8 @@ type rsModelEventCodesDataItemItems struct {
 type rsModelPriorityPolicySetState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32769,6 +34398,8 @@ type rsModelPriorityPolicySetState struct {
 type rsModelSecurityPolicyV2SetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32783,8 +34414,8 @@ type rsModelSecurityPolicyV2SetStack struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32793,6 +34424,8 @@ type rsModelSecurityPolicyV2SetStack struct {
 type rsModelSyslogServerV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32817,8 +34450,8 @@ type rsModelSyslogServerV2N1 struct {
 	SeverityLevel types.String `tfsdk:"severity_level"`
 	// propertyName=source_interface type=STRING
 	SourceInterface types.String `tfsdk:"source_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32837,6 +34470,8 @@ type rsModelListResponseSyslogServerV2N1 struct {
 type rsModelElementScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32863,6 +34498,8 @@ type rsModelElementScreen struct {
 type rsModelRoutingRouteMapScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32877,8 +34514,8 @@ type rsModelRoutingRouteMapScreenV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntryV2N1 `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32887,6 +34524,8 @@ type rsModelRoutingRouteMapScreenV2N1 struct {
 type rsModelWANInterfaceEvent struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32909,6 +34548,8 @@ type rsModelWANInterfaceEvent struct {
 type rsModelMulticastStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32928,15 +34569,15 @@ type rsModelMulticastStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -32961,6 +34602,8 @@ type rsModelMulticastConfig struct {
 type rsModelElementRadiusScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -32979,8 +34622,8 @@ type rsModelElementRadiusScreen struct {
 	RadiusProfileId types.String `tfsdk:"radius_profile_id"`
 	// propertyName=source_interface_id type=STRING
 	SourceInterfaceId types.String `tfsdk:"source_interface_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -32989,6 +34632,8 @@ type rsModelElementRadiusScreen struct {
 type rsModelListQueryResponseIPFixConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33004,7 +34649,7 @@ type rsModelListQueryResponseIPFixConfigQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelIPFixConfigQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33015,6 +34660,8 @@ type rsModelListQueryResponseIPFixConfigQueryFilter struct {
 type rsModelNetworkPolicyGlobalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33027,8 +34674,8 @@ type rsModelNetworkPolicyGlobalPrefix struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -33091,6 +34738,8 @@ type rsModelListResponseElementV3N2 struct {
 type rsModelVRFContextProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33103,8 +34752,8 @@ type rsModelVRFContextProfileQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_ids type=ARRAY_PRIMITIVE
 	VrfContextIds types.List `tfsdk:"vrf_context_ids"`
 	// propertyName=vrf_context_route_leak_rules type=ARRAY_REFERENCE
@@ -33117,6 +34766,8 @@ type rsModelVRFContextProfileQueryFilter struct {
 type rsModelListQueryResponseVRFContextProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33132,7 +34783,7 @@ type rsModelListQueryResponseVRFContextProfileQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelVRFContextProfileQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33153,6 +34804,8 @@ type rsModelListResponseElementV3N1 struct {
 type rsModelListQueryResponseAppDefQueryFilterTransformedV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33168,7 +34821,7 @@ type rsModelListQueryResponseAppDefQueryFilterTransformedV2N6 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAppDefQueryFilterTransformedV2N6 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33179,6 +34832,8 @@ type rsModelListQueryResponseAppDefQueryFilterTransformedV2N6 struct {
 type rsModelListQueryResponseRoutingAccessListQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33194,7 +34849,7 @@ type rsModelListQueryResponseRoutingAccessListQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingAccessListQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33205,6 +34860,8 @@ type rsModelListQueryResponseRoutingAccessListQueryFilter struct {
 type rsModelListQueryResponseAppDefQueryFilterTransformedV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33220,7 +34877,7 @@ type rsModelListQueryResponseAppDefQueryFilterTransformedV2N4 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAppDefQueryFilterTransformedV2N4 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33231,6 +34888,8 @@ type rsModelListQueryResponseAppDefQueryFilterTransformedV2N4 struct {
 type rsModelRoutingRouteMapQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33245,8 +34904,8 @@ type rsModelRoutingRouteMapQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntry `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -33277,6 +34936,8 @@ type rsModelListResponsePrefixDistributionSpokeList struct {
 type rsModelNATPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33296,15 +34957,15 @@ type rsModelNATPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33315,6 +34976,8 @@ type rsModelNATPolicyRuleQuery struct {
 type rsModelBGPGlobalConfigV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33339,6 +35002,8 @@ type rsModelBGPGlobalConfigV2N3 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_auth_type type=STRING
@@ -33363,6 +35028,8 @@ type rsModelBGPGlobalConfigV2N3 struct {
 type rsModelNetworkPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33382,15 +35049,15 @@ type rsModelNetworkPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33401,6 +35068,8 @@ type rsModelNetworkPolicyRuleQuery struct {
 type rsModelBGPGlobalConfigV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33423,6 +35092,8 @@ type rsModelBGPGlobalConfigV2N2 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_auth_type type=STRING
@@ -33457,6 +35128,8 @@ type rsModelOspfRedistribution struct {
 type rsModelBGPGlobalConfigV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33481,6 +35154,8 @@ type rsModelBGPGlobalConfigV2N4 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=ospf_redistribution type=ARRAY_REFERENCE
@@ -33507,6 +35182,8 @@ type rsModelBGPGlobalConfigV2N4 struct {
 type rsModelBGPGlobalConfigV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33529,6 +35206,8 @@ type rsModelBGPGlobalConfigV2N1 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_retry_time type=INTEGER
@@ -33551,6 +35230,8 @@ type rsModelBGPGlobalConfigV2N1 struct {
 type rsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33566,7 +35247,7 @@ type rsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N2 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPriorityPolicyRuleQueryFilterV2N2 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33577,6 +35258,8 @@ type rsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N2 struct {
 type rsModelPerfMgmtPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33609,8 +35292,8 @@ type rsModelPerfMgmtPolicySet struct {
 	Region types.String `tfsdk:"region"`
 	// propertyName=send_to_element type=BOOLEAN
 	SendToElement types.Bool `tfsdk:"send_to_element"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -33619,6 +35302,8 @@ type rsModelPerfMgmtPolicySet struct {
 type rsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33634,7 +35319,7 @@ type rsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPriorityPolicyRuleQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33645,6 +35330,8 @@ type rsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N1 struct {
 type rsModelElementStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33664,15 +35351,15 @@ type rsModelElementStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33683,6 +35370,8 @@ type rsModelElementStatusQuery struct {
 type rsModelPASdwanTenantProvisionStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33707,6 +35396,8 @@ type rsModelPASdwanTenantProvisionStatus struct {
 type rsModelListQueryResponseServiceBindingMap struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33722,7 +35413,7 @@ type rsModelListQueryResponseServiceBindingMap struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelServiceBindingMap `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33733,6 +35424,8 @@ type rsModelListQueryResponseServiceBindingMap struct {
 type rsModelPriorityPolicySetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33749,8 +35442,8 @@ type rsModelPriorityPolicySetStackQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -33759,6 +35452,8 @@ type rsModelPriorityPolicySetStackQueryFilter struct {
 type rsModelListQueryResponsePriorityPolicySetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33774,7 +35469,7 @@ type rsModelListQueryResponsePriorityPolicySetStackQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPriorityPolicySetStackQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33785,6 +35480,8 @@ type rsModelListQueryResponsePriorityPolicySetStackQueryFilter struct {
 type rsModelListQueryResponseMulticastStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33800,7 +35497,7 @@ type rsModelListQueryResponseMulticastStatusQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastStatusQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33811,6 +35508,8 @@ type rsModelListQueryResponseMulticastStatusQueryFilter struct {
 type rsModelElementNTPV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33825,8 +35524,8 @@ type rsModelElementNTPV2N1 struct {
 	NtpServers []rsModelNTPServer `tfsdk:"ntp_servers"`
 	// propertyName=source_interface_ids type=ARRAY_PRIMITIVE
 	SourceInterfaceIds types.List `tfsdk:"source_interface_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -33855,6 +35554,8 @@ type rsModelElemDnsQueriesMetadata struct {
 type rsModelDnsService struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33895,8 +35596,8 @@ type rsModelDnsService struct {
 	Region types.String `tfsdk:"region"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=upperCaseName type=STRING
 	Uppercasename types.String `tfsdk:"upperCaseName"`
 }
@@ -33907,6 +35608,8 @@ type rsModelDnsService struct {
 type rsModelListQueryResponseIPSECProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33922,7 +35625,7 @@ type rsModelListQueryResponseIPSECProfileQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelIPSECProfileQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33933,6 +35636,8 @@ type rsModelListQueryResponseIPSECProfileQueryFilter struct {
 type rsModelPolicySetQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33952,15 +35657,15 @@ type rsModelPolicySetQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -33971,6 +35676,8 @@ type rsModelPolicySetQuery struct {
 type rsModelPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -33990,15 +35697,15 @@ type rsModelPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -34009,6 +35716,8 @@ type rsModelPolicyRuleQuery struct {
 type rsModelListQueryResponseElementStateQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34024,7 +35733,7 @@ type rsModelListQueryResponseElementStateQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementStateQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -34035,6 +35744,8 @@ type rsModelListQueryResponseElementStateQueryFilter struct {
 type rsModelNATPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34065,8 +35776,8 @@ type rsModelNATPolicyRuleQueryFilter struct {
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
 	// propertyName=source_zone_id type=STRING
 	SourceZoneId types.String `tfsdk:"source_zone_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -34075,6 +35786,8 @@ type rsModelNATPolicyRuleQueryFilter struct {
 type rsModelElementPassageConf struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34089,6 +35802,8 @@ type rsModelElementPassageConf struct {
 	PassageAllowed types.Bool `tfsdk:"passage_allowed"`
 	// propertyName=passage_password type=STRING
 	PassagePassword types.String `tfsdk:"passage_password"`
+	// password placeholder: propertyName=passage_password type=STRING
+	PassagePasswordInternalKeyName types.String `tfsdk:"passage_password_internal_key_name"`
 	// propertyName=start_time type=INTEGER
 	StartTime types.Int64 `tfsdk:"start_time"`
 }
@@ -34109,6 +35824,8 @@ type rsModelListResponseElementPassageConf struct {
 type rsModelInterfaceReset struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34125,6 +35842,8 @@ type rsModelInterfaceReset struct {
 type rsModelPolicySetPOSTScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34153,6 +35872,8 @@ type rsModelPolicySetPOSTScreen struct {
 type rsModelPriorityPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34172,15 +35893,15 @@ type rsModelPriorityPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -34191,6 +35912,8 @@ type rsModelPriorityPolicyRuleQuery struct {
 type rsModelHubClusterMember struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34221,6 +35944,8 @@ type rsModelListResponseNATPolicyRule struct {
 type rsModelUserIdentity struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34255,6 +35980,8 @@ type rsModelUserIdentity struct {
 type rsModelElementMetaModel struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34333,6 +36060,8 @@ type rsModelListResponseIPSECProfile struct {
 type rsModelListQueryResponsePassageQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34348,7 +36077,7 @@ type rsModelListQueryResponsePassageQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPassageQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -34359,6 +36088,8 @@ type rsModelListQueryResponsePassageQueryFilter struct {
 type rsModelCellularModuleFirmwareStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34378,15 +36109,15 @@ type rsModelCellularModuleFirmwareStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -34397,14 +36128,22 @@ type rsModelCellularModuleFirmwareStatusQuery struct {
 type rsModelDeviceIdSNMPV3Config struct {
 	// propertyName=snmp_auth_password type=STRING
 	SnmpAuthPassword types.String `tfsdk:"snmp_auth_password"`
+	// password placeholder: propertyName=snmp_auth_password type=STRING
+	SnmpAuthPasswordInternalKeyName types.String `tfsdk:"snmp_auth_password_internal_key_name"`
 	// propertyName=snmp_auth_password_encrypted type=STRING
 	SnmpAuthPasswordEncrypted types.String `tfsdk:"snmp_auth_password_encrypted"`
+	// password placeholder: propertyName=snmp_auth_password_encrypted type=STRING
+	SnmpAuthPasswordEncryptedInternalKeyName types.String `tfsdk:"snmp_auth_password_encrypted_internal_key_name"`
 	// propertyName=snmp_auth_protocol type=STRING
 	SnmpAuthProtocol types.String `tfsdk:"snmp_auth_protocol"`
 	// propertyName=snmp_privacy_password type=STRING
 	SnmpPrivacyPassword types.String `tfsdk:"snmp_privacy_password"`
+	// password placeholder: propertyName=snmp_privacy_password type=STRING
+	SnmpPrivacyPasswordInternalKeyName types.String `tfsdk:"snmp_privacy_password_internal_key_name"`
 	// propertyName=snmp_privacy_password_encrypted type=STRING
 	SnmpPrivacyPasswordEncrypted types.String `tfsdk:"snmp_privacy_password_encrypted"`
+	// password placeholder: propertyName=snmp_privacy_password_encrypted type=STRING
+	SnmpPrivacyPasswordEncryptedInternalKeyName types.String `tfsdk:"snmp_privacy_password_encrypted_internal_key_name"`
 	// propertyName=snmp_privacy_protocol type=STRING
 	SnmpPrivacyProtocol types.String `tfsdk:"snmp_privacy_protocol"`
 	// propertyName=snmp_security_level type=STRING
@@ -34429,6 +36168,8 @@ type rsModelListResponsePriorityPolicyRuleV2N1 struct {
 type rsModelTenantV2N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName= type=STRING
 	types.String `tfsdk:""`
 	// propertyName=_etag type=INTEGER
@@ -34479,6 +36220,8 @@ type rsModelTenantV2N9 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -34513,6 +36256,8 @@ type rsModelListResponsePriorityPolicyRuleV2N2 struct {
 type rsModelServiceEndpointQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34532,15 +36277,15 @@ type rsModelServiceEndpointQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -34551,6 +36296,8 @@ type rsModelServiceEndpointQuery struct {
 type rsModelCertificatePOSTScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34563,6 +36310,8 @@ type rsModelCertificatePOSTScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=key_file type=STRING
 	KeyFile types.String `tfsdk:"key_file"`
+	// password placeholder: propertyName=key_file type=STRING
+	KeyFileInternalKeyName types.String `tfsdk:"key_file_internal_key_name"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=passphrase type=STRING
@@ -34577,6 +36326,8 @@ type rsModelCertificatePOSTScreen struct {
 type rsModelPriorityPolicyGlobalPrefixV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34591,8 +36342,8 @@ type rsModelPriorityPolicyGlobalPrefixV2N1 struct {
 	Ipv6Prefixes types.List `tfsdk:"ipv6_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -34611,6 +36362,8 @@ type rsModelListResponsePriorityPolicyGlobalPrefixV2N1 struct {
 type rsModelTenantV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName= type=STRING
 	types.String `tfsdk:""`
 	// propertyName=_etag type=INTEGER
@@ -34657,6 +36410,8 @@ type rsModelTenantV2N7 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -34681,6 +36436,8 @@ type rsModelTenantV2N7 struct {
 type rsModelTenantV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34721,6 +36478,8 @@ type rsModelTenantV2N4 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -34743,6 +36502,8 @@ type rsModelTenantV2N4 struct {
 type rsModelTenantV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34785,6 +36546,8 @@ type rsModelTenantV2N5 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -34809,6 +36572,8 @@ type rsModelTenantV2N5 struct {
 type rsModelTenantV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34847,6 +36612,8 @@ type rsModelTenantV2N2 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -34865,6 +36632,8 @@ type rsModelTenantV2N2 struct {
 type rsModelTenantV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34905,6 +36674,8 @@ type rsModelTenantV2N3 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=prisma_access_tenant_id type=STRING
@@ -34923,6 +36694,8 @@ type rsModelTenantV2N3 struct {
 type rsModelTenantV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -34961,6 +36734,8 @@ type rsModelTenantV2N1 struct {
 	PanTenantId types.String `tfsdk:"pan_tenant_id"`
 	// propertyName=password_policy type=REFERENCE
 	PasswordPolicy *rsModelPasswordPolicy `tfsdk:"password_policy"`
+	// password placeholder: propertyName=password_policy type=REFERENCE
+	PasswordPolicyInternalKeyName *rsModelPasswordPolicy `tfsdk:"password_policy_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=provider_data type=ARRAY_REFERENCE
@@ -34977,6 +36752,8 @@ type rsModelTenantV2N1 struct {
 type rsModelBGPPeerAdvertisedPrefixes struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35019,6 +36796,8 @@ type rsModelListResponseAuthToken struct {
 type rsModelStaticRouteV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35039,8 +36818,8 @@ type rsModelStaticRouteV2N1 struct {
 	Nexthops []rsModelNextHop `tfsdk:"nexthops"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -35071,6 +36850,8 @@ type rsModelEventBodySuppressedInfo struct {
 type rsModelEventBody struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35119,6 +36900,8 @@ type rsModelEventBody struct {
 type rsModelProbeConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35133,8 +36916,8 @@ type rsModelProbeConfigScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -35143,6 +36926,8 @@ type rsModelProbeConfigScreen struct {
 type rsModelMachineQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35162,15 +36947,15 @@ type rsModelMachineQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35181,6 +36966,8 @@ type rsModelMachineQuery struct {
 type rsModelVffTokenQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35200,15 +36987,15 @@ type rsModelVffTokenQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35219,6 +37006,8 @@ type rsModelVffTokenQuery struct {
 type rsModelCellularModuleFirmwareConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35245,6 +37034,8 @@ type rsModelCellularModuleFirmwareConfigScreen struct {
 type rsModelElementRadiusStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35301,6 +37092,8 @@ type rsModelBestPathConfig struct {
 type rsModelGlobalPrefixQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35320,15 +37113,15 @@ type rsModelGlobalPrefixQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35339,6 +37132,8 @@ type rsModelGlobalPrefixQuery struct {
 type rsModelDnsServiceProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35358,15 +37153,15 @@ type rsModelDnsServiceProfileQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35377,6 +37172,8 @@ type rsModelDnsServiceProfileQuery struct {
 type rsModelListQueryResponseDnsServiceProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35392,7 +37189,7 @@ type rsModelListQueryResponseDnsServiceProfileQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDnsServiceProfileQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35403,6 +37200,8 @@ type rsModelListQueryResponseDnsServiceProfileQuery struct {
 type rsModelListQueryResponseBulkConfigPushQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35418,7 +37217,7 @@ type rsModelListQueryResponseBulkConfigPushQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelBulkConfigPushQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35439,6 +37238,8 @@ type rsModelListResponseSecurityPolicySet struct {
 type rsModelHubClusterScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35461,6 +37262,8 @@ type rsModelHubClusterScreen struct {
 type rsModelBaseQueryDTO struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35480,7 +37283,7 @@ type rsModelBaseQueryDTO struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=REFERENCE
 	QueryParams *rsModelQueryParams `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
@@ -35488,7 +37291,7 @@ type rsModelBaseQueryDTO struct {
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35499,6 +37302,8 @@ type rsModelBaseQueryDTO struct {
 type rsModelWANNetworkScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35519,6 +37324,8 @@ type rsModelWANNetworkScreen struct {
 type rsModelSecurityZone struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35537,6 +37344,8 @@ type rsModelSecurityZone struct {
 type rsModelSitePrefixAssociationQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35549,8 +37358,8 @@ type rsModelSitePrefixAssociationQueryFilter struct {
 	PrefixId types.String `tfsdk:"prefix_id"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -35559,6 +37368,8 @@ type rsModelSitePrefixAssociationQueryFilter struct {
 type rsModelListQueryResponseSitePrefixAssociationQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35574,7 +37385,7 @@ type rsModelListQueryResponseSitePrefixAssociationQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSitePrefixAssociationQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35585,6 +37396,8 @@ type rsModelListQueryResponseSitePrefixAssociationQueryFilter struct {
 type rsModelListQueryResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35598,7 +37411,7 @@ type rsModelListQueryResponse struct {
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35623,8 +37436,8 @@ type rsModelSDWANAppReleaseInfoV2N1 struct {
 	ReleaseNotes types.String `tfsdk:"release_notes"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -35651,8 +37464,8 @@ type rsModelSDWANAppReleaseInfoV2N2 struct {
 	ReleaseNotes types.String `tfsdk:"release_notes"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -35663,6 +37476,8 @@ type rsModelSDWANAppReleaseInfoV2N2 struct {
 type rsModelElementOperations struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35681,6 +37496,8 @@ type rsModelElementOperations struct {
 type rsModelAnynetlinkEventStateV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35713,6 +37530,8 @@ type rsModelAnynetlinkEventStateV2N1 struct {
 type rsModelAnynetLinkQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35747,6 +37566,8 @@ type rsModelAnynetLinkQueryFilterV2N1 struct {
 type rsModelTacacsPlusProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35761,8 +37582,8 @@ type rsModelTacacsPlusProfileScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
 	TacacsPlusServers []rsModelTacacsPlusServerConfig `tfsdk:"tacacs_plus_servers"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -35771,6 +37592,8 @@ type rsModelTacacsPlusProfileScreen struct {
 type rsModelSaseConnectionGlobalConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35799,6 +37622,8 @@ type rsModelCDLConnectionState struct {
 type rsModelBase struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35825,6 +37650,8 @@ type rsModelAuthenticationConfig struct {
 type rsModelEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35859,8 +37686,8 @@ type rsModelEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 	SubResourceType types.String `tfsdk:"sub_resource_type"`
 	// propertyName=suppress type=STRING
 	Suppress types.String `tfsdk:"suppress"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -35869,6 +37696,8 @@ type rsModelEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 type rsModelSecurityPolicySetQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35888,15 +37717,15 @@ type rsModelSecurityPolicySetQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -35907,6 +37736,8 @@ type rsModelSecurityPolicySetQuery struct {
 type rsModelSiteNetworkPrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35917,8 +37748,8 @@ type rsModelSiteNetworkPrefixAssociation struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=prefix_id type=STRING
 	PrefixId types.String `tfsdk:"prefix_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -35927,6 +37758,8 @@ type rsModelSiteNetworkPrefixAssociation struct {
 type rsModelElementImageStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35951,6 +37784,8 @@ type rsModelElementImageStatus struct {
 type rsModelBGPPeerStatusV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -35987,6 +37822,8 @@ type rsModelListResponseBGPPeerStatusV2N2 struct {
 type rsModelInterfaceScreenV4N20 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36077,8 +37914,8 @@ type rsModelInterfaceScreenV4N20 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36095,6 +37932,8 @@ type rsModelInterfaceScreenV4N20 struct {
 type rsModelNetworkPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36123,8 +37962,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N1 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -36133,6 +37972,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N1 struct {
 type rsModelBGPPeerReachablePrefixesV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36173,6 +38014,8 @@ type rsModelListResponseAuditLogV2N1 struct {
 type rsModelNetworkPolicyRuleScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36201,8 +38044,8 @@ type rsModelNetworkPolicyRuleScreenV2N3 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -36213,6 +38056,8 @@ type rsModelNetworkPolicyRuleScreenV2N3 struct {
 type rsModelNetworkPolicyRuleScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36239,8 +38084,8 @@ type rsModelNetworkPolicyRuleScreenV2N2 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -36251,6 +38096,8 @@ type rsModelNetworkPolicyRuleScreenV2N2 struct {
 type rsModelServiceBindingMapScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36263,8 +38110,8 @@ type rsModelServiceBindingMapScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=service_bindings type=ARRAY_REFERENCE
 	ServiceBindings []rsModelServiceBinding `tfsdk:"service_bindings"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -36297,6 +38144,8 @@ type rsModelTopologyQueryV3N1 struct {
 type rsModelNetworkPolicyRuleQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36325,8 +38174,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N2 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -36337,6 +38186,8 @@ type rsModelNetworkPolicyRuleQueryFilterV2N2 struct {
 type rsModelNetworkPolicyRuleScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36369,8 +38220,8 @@ type rsModelNetworkPolicyRuleScreenV2N4 struct {
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -36381,6 +38232,8 @@ type rsModelNetworkPolicyRuleScreenV2N4 struct {
 type rsModelNetworkPolicyRuleScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36407,8 +38260,8 @@ type rsModelNetworkPolicyRuleScreenV2N1 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -36417,6 +38270,8 @@ type rsModelNetworkPolicyRuleScreenV2N1 struct {
 type rsModelInterfaceScreenV4N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36483,8 +38338,8 @@ type rsModelInterfaceScreenV4N11 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36497,6 +38352,8 @@ type rsModelInterfaceScreenV4N11 struct {
 type rsModelInterfaceScreenV4N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36559,8 +38416,8 @@ type rsModelInterfaceScreenV4N10 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36577,6 +38434,8 @@ type rsModelLogin struct {
 	LogoutOthers types.Bool `tfsdk:"logout_others"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=requestId type=STRING
 	Requestid types.String `tfsdk:"requestId"`
 }
@@ -36587,6 +38446,8 @@ type rsModelLogin struct {
 type rsModelInterfaceScreenV4N15 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36673,8 +38534,8 @@ type rsModelInterfaceScreenV4N15 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36689,6 +38550,8 @@ type rsModelInterfaceScreenV4N15 struct {
 type rsModelInterfaceScreenV4N14 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36773,8 +38636,8 @@ type rsModelInterfaceScreenV4N14 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36789,6 +38652,8 @@ type rsModelInterfaceScreenV4N14 struct {
 type rsModelInterfaceScreenV4N13 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36873,8 +38738,8 @@ type rsModelInterfaceScreenV4N13 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36889,6 +38754,8 @@ type rsModelInterfaceScreenV4N13 struct {
 type rsModelInterfaceScreenV4N12 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -36961,8 +38828,8 @@ type rsModelInterfaceScreenV4N12 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -36975,6 +38842,8 @@ type rsModelInterfaceScreenV4N12 struct {
 type rsModelInterfaceScreenV4N19 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37063,8 +38932,8 @@ type rsModelInterfaceScreenV4N19 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -37081,6 +38950,8 @@ type rsModelInterfaceScreenV4N19 struct {
 type rsModelInterfaceScreenV4N18 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37167,8 +39038,8 @@ type rsModelInterfaceScreenV4N18 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -37185,6 +39056,8 @@ type rsModelInterfaceScreenV4N18 struct {
 type rsModelSiteQueryFilterV4N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37221,6 +39094,8 @@ type rsModelSiteQueryFilterV4N2 struct {
 type rsModelInterfaceScreenV4N16 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37307,8 +39182,8 @@ type rsModelInterfaceScreenV4N16 struct {
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
 	// propertyName=switch_port_config type=REFERENCE
 	SwitchPortConfig *rsModelSwitchPortConfig `tfsdk:"switch_port_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -37325,6 +39200,8 @@ type rsModelInterfaceScreenV4N16 struct {
 type rsModelSiteQueryFilterV4N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37353,8 +39230,8 @@ type rsModelSiteQueryFilterV4N3 struct {
 	SecurityPolicysetId types.String `tfsdk:"security_policyset_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37363,6 +39240,8 @@ type rsModelSiteQueryFilterV4N3 struct {
 type rsModelSiteQueryFilterV4N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37393,8 +39272,8 @@ type rsModelSiteQueryFilterV4N4 struct {
 	SecurityPolicysetId types.String `tfsdk:"security_policyset_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37403,6 +39282,8 @@ type rsModelSiteQueryFilterV4N4 struct {
 type rsModelSiteQueryFilterV4N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37435,8 +39316,8 @@ type rsModelSiteQueryFilterV4N5 struct {
 	SecurityPolicysetId types.String `tfsdk:"security_policyset_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37445,6 +39326,8 @@ type rsModelSiteQueryFilterV4N5 struct {
 type rsModelSiteQueryFilterV4N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37479,8 +39362,8 @@ type rsModelSiteQueryFilterV4N6 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37505,6 +39388,8 @@ type rsModelModule struct {
 type rsModelPrefixQueryV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37530,15 +39415,15 @@ type rsModelPrefixQueryV3 struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -37549,6 +39434,8 @@ type rsModelPrefixQueryV3 struct {
 type rsModelSiteQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37568,15 +39455,15 @@ type rsModelSiteQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -37587,6 +39474,8 @@ type rsModelSiteQuery struct {
 type rsModelDemSiteConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37605,6 +39494,8 @@ type rsModelDemSiteConfigQueryFilter struct {
 type rsModelListQueryResponseDemSiteConfigQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37620,7 +39511,7 @@ type rsModelListQueryResponseDemSiteConfigQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDemSiteConfigQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -37631,6 +39522,8 @@ type rsModelListQueryResponseDemSiteConfigQueryFilter struct {
 type rsModelSiteQueryFilterV4N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37667,8 +39560,8 @@ type rsModelSiteQueryFilterV4N7 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37677,6 +39570,8 @@ type rsModelSiteQueryFilterV4N7 struct {
 type rsModelListQueryResponsePerfMgmtPolicySet struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37692,7 +39587,7 @@ type rsModelListQueryResponsePerfMgmtPolicySet struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPerfMgmtPolicySet `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -37703,6 +39598,8 @@ type rsModelListQueryResponsePerfMgmtPolicySet struct {
 type rsModelSiteQueryFilterV4N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37739,8 +39636,8 @@ type rsModelSiteQueryFilterV4N8 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -37751,6 +39648,8 @@ type rsModelSiteQueryFilterV4N8 struct {
 type rsModelHubClusterV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37769,8 +39668,8 @@ type rsModelHubClusterV4 struct {
 	PeerSites types.List `tfsdk:"peer_sites"`
 	// propertyName=site_count_alarm_threshold type=INTEGER
 	SiteCountAlarmThreshold types.Int64 `tfsdk:"site_count_alarm_threshold"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37779,6 +39678,8 @@ type rsModelHubClusterV4 struct {
 type rsModelSiteQueryFilterV4N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37817,8 +39718,8 @@ type rsModelSiteQueryFilterV4N9 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -37829,6 +39730,8 @@ type rsModelSiteQueryFilterV4N9 struct {
 type rsModelDHCPServerScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37861,8 +39764,8 @@ type rsModelDHCPServerScreenV2N1 struct {
 	StaticMappings []rsModelStaticMapping `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -37871,6 +39774,8 @@ type rsModelDHCPServerScreenV2N1 struct {
 type rsModelAppDefV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37898,7 +39803,7 @@ type rsModelAppDefV2N6 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -37923,14 +39828,14 @@ type rsModelAppDefV2N6 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -37951,6 +39856,8 @@ type rsModelBulkResponseAppDefV2N6 struct {
 type rsModelAppDefV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -37978,7 +39885,7 @@ type rsModelAppDefV2N5 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -38003,14 +39910,14 @@ type rsModelAppDefV2N5 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -38031,6 +39938,8 @@ type rsModelBulkResponseAppDefV2N5 struct {
 type rsModelMulticastIgmpMembershipQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38055,6 +39964,8 @@ type rsModelMulticastIgmpMembershipQueryFilter struct {
 type rsModelListQueryResponseMulticastIgmpMembershipQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38070,7 +39981,7 @@ type rsModelListQueryResponseMulticastIgmpMembershipQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastIgmpMembershipQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38091,6 +40002,8 @@ type rsModelListResponseDnsServiceRole struct {
 type rsModelMulticastSourceSiteConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38127,6 +40040,8 @@ type rsModelListResponseDnsService struct {
 type rsModelMSTPInstanceScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38141,8 +40056,8 @@ type rsModelMSTPInstanceScreen struct {
 	InstancePriority types.Int64 `tfsdk:"instance_priority"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -38161,6 +40076,8 @@ type rsModelListResponseDirectoryServiceDomainStatus struct {
 type rsModelLANNetworkQueryFilterV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38177,8 +40094,8 @@ type rsModelLANNetworkQueryFilterV3N1 struct {
 	NetworkContextId types.String `tfsdk:"network_context_id"`
 	// propertyName=scope type=STRING
 	Scope types.String `tfsdk:"scope"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -38187,6 +40104,8 @@ type rsModelLANNetworkQueryFilterV3N1 struct {
 type rsModelDHCPServerScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38221,8 +40140,8 @@ type rsModelDHCPServerScreenV2N3 struct {
 	StaticMappings []rsModelStaticMappingV2 `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -38233,6 +40152,8 @@ type rsModelDHCPServerScreenV2N3 struct {
 type rsModelDHCPServerScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38267,8 +40188,8 @@ type rsModelDHCPServerScreenV2N2 struct {
 	StaticMappings []rsModelStaticMappingV2 `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -38277,6 +40198,8 @@ type rsModelDHCPServerScreenV2N2 struct {
 type rsModelElementPSU struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38313,6 +40236,8 @@ type rsModelElementPSU struct {
 type rsModelPathGroupQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38332,15 +40257,15 @@ type rsModelPathGroupQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38351,6 +40276,8 @@ type rsModelPathGroupQuery struct {
 type rsModelNetworkContextQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38369,6 +40296,8 @@ type rsModelNetworkContextQueryFilter struct {
 type rsModelMachineInfoV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38417,6 +40346,8 @@ type rsModelMachineInfoV2N2 struct {
 type rsModelMachineInfoV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38467,6 +40398,8 @@ type rsModelMachineInfoV2N3 struct {
 type rsModelIdpV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38498,7 +40431,7 @@ type rsModelIdpV3N1 struct {
 	// propertyName=inactive_reason type=STRING
 	InactiveReason types.String `tfsdk:"inactive_reason"`
 	// propertyName=role_map type=OBJECT
-	RoleMap *map[string]interface{} `tfsdk:"role_map"`
+	RoleMap types.Map `tfsdk:"role_map"`
 	// propertyName=session_timeout_s type=INTEGER
 	SessionTimeoutS types.Int64 `tfsdk:"session_timeout_s"`
 	// propertyName=sign_redirect_binding type=BOOLEAN
@@ -38517,6 +40450,8 @@ type rsModelIdpV3N1 struct {
 type rsModelMachineV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38567,6 +40502,8 @@ type rsModelMachineV2N2 struct {
 type rsModelMachineV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38615,6 +40552,8 @@ type rsModelMachineV2N1 struct {
 type rsModelIPFixProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38635,8 +40574,8 @@ type rsModelIPFixProfileScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=sampler type=REFERENCE
 	Sampler *rsModelIPFixSampler `tfsdk:"sampler"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -38645,6 +40584,8 @@ type rsModelIPFixProfileScreen struct {
 type rsModelListQueryResponseSoftwareDownloadHistoryQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38660,7 +40601,7 @@ type rsModelListQueryResponseSoftwareDownloadHistoryQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSoftwareDownloadHistoryQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38679,6 +40620,8 @@ type rsModelGetEventResponseBodyInfo struct {
 type rsModelGetEventResponseBody struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_created_on_utc type=STRING
 	CreatedOnUtc types.String `tfsdk:"x_created_on_utc"`
 	// propertyName=_etag type=INTEGER
@@ -38727,6 +40670,8 @@ type rsModelGetEventResponseBody struct {
 type rsModelListQueryResponseSiteQueryFilterV4N12 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38742,7 +40687,7 @@ type rsModelListQueryResponseSiteQueryFilterV4N12 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteQueryFilterV4N12 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38753,6 +40698,8 @@ type rsModelListQueryResponseSiteQueryFilterV4N12 struct {
 type rsModelListQueryResponseSiteQueryFilterV4N11 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38768,7 +40715,7 @@ type rsModelListQueryResponseSiteQueryFilterV4N11 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteQueryFilterV4N11 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38779,6 +40726,8 @@ type rsModelListQueryResponseSiteQueryFilterV4N11 struct {
 type rsModelPriorityPolicyRuleQueryV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38798,15 +40747,15 @@ type rsModelPriorityPolicyRuleQueryV2N2 struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38817,6 +40766,8 @@ type rsModelPriorityPolicyRuleQueryV2N2 struct {
 type rsModelListQueryResponseSecurityZoneQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38832,7 +40783,7 @@ type rsModelListQueryResponseSecurityZoneQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityZoneQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38843,6 +40794,8 @@ type rsModelListQueryResponseSecurityZoneQueryFilter struct {
 type rsModelDeviceIdConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38859,6 +40812,8 @@ type rsModelDeviceIdConfig struct {
 type rsModelElementCopyConfigurationsScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38879,6 +40834,8 @@ type rsModelElementCopyConfigurationsScreen struct {
 type rsModelPriorityPolicyRuleQueryV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38898,15 +40855,15 @@ type rsModelPriorityPolicyRuleQueryV2N1 struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -38917,6 +40874,8 @@ type rsModelPriorityPolicyRuleQueryV2N1 struct {
 type rsModelPassageCommand struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38983,6 +40942,8 @@ type rsModelBulkResponseElementNTPV2N1 struct {
 type rsModelListQueryResponseNATPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -38998,7 +40959,7 @@ type rsModelListQueryResponseNATPolicyRuleQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNATPolicyRuleQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -39009,6 +40970,8 @@ type rsModelListQueryResponseNATPolicyRuleQueryFilter struct {
 type rsModelSecurityPolicyV2SetStackScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39023,8 +40986,8 @@ type rsModelSecurityPolicyV2SetStackScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -39033,6 +40996,8 @@ type rsModelSecurityPolicyV2SetStackScreen struct {
 type rsModelNetworkContextScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39051,6 +41016,8 @@ type rsModelNetworkContextScreen struct {
 type rsModelRecoveryToken struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39065,6 +41032,8 @@ type rsModelRecoveryToken struct {
 	IsUsed types.Bool `tfsdk:"is_used"`
 	// propertyName=secret_token type=STRING
 	SecretToken types.String `tfsdk:"secret_token"`
+	// password placeholder: propertyName=secret_token type=STRING
+	SecretTokenInternalKeyName types.String `tfsdk:"secret_token_internal_key_name"`
 	// propertyName=token_validity_in_hour type=INTEGER
 	TokenValidityInHour types.Int64 `tfsdk:"token_validity_in_hour"`
 	// propertyName=valid_till_secs type=INTEGER
@@ -39077,6 +41046,8 @@ type rsModelRecoveryToken struct {
 type rsModelSpokeCluster struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39091,8 +41062,8 @@ type rsModelSpokeCluster struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=preempt type=BOOLEAN
 	Preempt types.Bool `tfsdk:"preempt"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -39101,6 +41072,8 @@ type rsModelSpokeCluster struct {
 type rsModelSyslogServerProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39125,8 +41098,8 @@ type rsModelSyslogServerProfileScreen struct {
 	ServerPort types.Int64 `tfsdk:"server_port"`
 	// propertyName=severity_level type=STRING
 	SeverityLevel types.String `tfsdk:"severity_level"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -39135,6 +41108,8 @@ type rsModelSyslogServerProfileScreen struct {
 type rsModelOperatorV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39201,6 +41176,8 @@ type rsModelOperatorV2N1 struct {
 type rsModelOperatorV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39269,6 +41246,8 @@ type rsModelOperatorV2N2 struct {
 type rsModelInterfaceQueryResponseV4N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39323,8 +41302,8 @@ type rsModelInterfaceQueryResponseV4N7 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -39337,6 +41316,8 @@ type rsModelInterfaceQueryResponseV4N7 struct {
 type rsModelInterfaceQueryResponseV4N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39391,8 +41372,8 @@ type rsModelInterfaceQueryResponseV4N9 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -39405,6 +41386,8 @@ type rsModelInterfaceQueryResponseV4N9 struct {
 type rsModelListQueryResponsePolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39420,7 +41403,7 @@ type rsModelListQueryResponsePolicySetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPolicySetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -39431,6 +41414,8 @@ type rsModelListQueryResponsePolicySetQueryFilter struct {
 type rsModelListQueryResponseNATPolicySetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39446,7 +41431,7 @@ type rsModelListQueryResponseNATPolicySetStackQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNATPolicySetStackQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -39457,6 +41442,8 @@ type rsModelListQueryResponseNATPolicySetStackQueryFilter struct {
 type rsModelInterfaceQueryResponseV4N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39509,8 +41496,8 @@ type rsModelInterfaceQueryResponseV4N8 struct {
 	SiteWanInterfaceIds types.List `tfsdk:"site_wan_interface_ids"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -39523,6 +41510,8 @@ type rsModelInterfaceQueryResponseV4N8 struct {
 type rsModelNATLocalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39533,8 +41522,8 @@ type rsModelNATLocalPrefix struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -39543,6 +41532,8 @@ type rsModelNATLocalPrefix struct {
 type rsModelSpokeClusterElementStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39562,15 +41553,15 @@ type rsModelSpokeClusterElementStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -39581,6 +41572,8 @@ type rsModelSpokeClusterElementStatusQuery struct {
 type rsModelInterfaceStateV3N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39631,6 +41624,8 @@ type rsModelInterfaceStateV3N2 struct {
 type rsModelInterfaceStateV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39679,6 +41674,8 @@ type rsModelInterfaceStateV3N1 struct {
 type rsModelInterfaceStateV3N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39735,6 +41732,8 @@ type rsModelInterfaceStateV3N4 struct {
 type rsModelInterfaceStateV3N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39787,6 +41786,8 @@ type rsModelInterfaceStateV3N3 struct {
 type rsModelInterfaceStateV3N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39855,6 +41856,8 @@ type rsModelInterfaceStateV3N6 struct {
 type rsModelInterfaceStateV3N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39921,6 +41924,8 @@ type rsModelInterfaceStateV3N5 struct {
 type rsModelInterfaceStateV3N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -39993,6 +41998,8 @@ type rsModelInterfaceStateV3N8 struct {
 type rsModelInterfaceStateV3N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40095,6 +42102,8 @@ type rsModelListResponseBGPGlobalConfigV2N4 struct {
 type rsModelBGPPeerStatusV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40127,6 +42136,8 @@ type rsModelListResponseBGPPeerStatusV2N1 struct {
 type rsModelPerfMgmtThresholdProfileScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40151,8 +42162,8 @@ type rsModelPerfMgmtThresholdProfileScreenV2N1 struct {
 	SyntheticProbeThresholds *rsModelSyntheticProbeThresholds `tfsdk:"synthetic_probe_thresholds"`
 	// propertyName=system_health_metrics_thresholds type=REFERENCE
 	SystemHealthMetricsThresholds *rsModelSystemHealthMetricsThresholds `tfsdk:"system_health_metrics_thresholds"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40161,6 +42172,8 @@ type rsModelPerfMgmtThresholdProfileScreenV2N1 struct {
 type rsModelRoutingRouteMap struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40175,8 +42188,8 @@ type rsModelRoutingRouteMap struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=route_map_entries type=ARRAY_REFERENCE
 	RouteMapEntries []rsModelRoutingRouteMapEntry `tfsdk:"route_map_entries"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40195,6 +42208,8 @@ type rsModelListResponseNATLocalPrefix struct {
 type rsModelBulkDeviceIdDeleteStartNode struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40211,6 +42226,8 @@ type rsModelBulkDeviceIdDeleteStartNode struct {
 type rsModelSpokeClusterQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40225,8 +42242,8 @@ type rsModelSpokeClusterQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=preempt type=BOOLEAN
 	Preempt types.Bool `tfsdk:"preempt"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40235,6 +42252,8 @@ type rsModelSpokeClusterQueryFilter struct {
 type rsModelVffLicenseState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40253,6 +42272,8 @@ type rsModelPasswordReset struct {
 	Oldpassword types.String `tfsdk:"oldPassword"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=repeatPassword type=STRING
 	Repeatpassword types.String `tfsdk:"repeatPassword"`
 	// propertyName=token type=STRING
@@ -40265,6 +42286,8 @@ type rsModelPasswordReset struct {
 type rsModelPerfMgmtThresholdProfileV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40289,8 +42312,8 @@ type rsModelPerfMgmtThresholdProfileV2N1 struct {
 	SyntheticProbeThresholds *rsModelSyntheticProbeThresholds `tfsdk:"synthetic_probe_thresholds"`
 	// propertyName=system_health_metrics_thresholds type=REFERENCE
 	SystemHealthMetricsThresholds *rsModelSystemHealthMetricsThresholds `tfsdk:"system_health_metrics_thresholds"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40299,6 +42322,8 @@ type rsModelPerfMgmtThresholdProfileV2N1 struct {
 type rsModelListQueryResponsePerfMgmtThresholdProfileV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40314,7 +42339,7 @@ type rsModelListQueryResponsePerfMgmtThresholdProfileV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPerfMgmtThresholdProfileV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40325,6 +42350,8 @@ type rsModelListQueryResponsePerfMgmtThresholdProfileV2N1 struct {
 type rsModelWANInterfaceV2N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40359,8 +42386,8 @@ type rsModelWANInterfaceV2N9 struct {
 	NetworkId types.String `tfsdk:"network_id"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -40389,6 +42416,8 @@ type rsModelBulkResponseWANInterfaceV2N9 struct {
 type rsModelWANInterfaceV2N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40423,8 +42452,8 @@ type rsModelWANInterfaceV2N8 struct {
 	NetworkId types.String `tfsdk:"network_id"`
 	// propertyName=probe_profile_id type=STRING
 	ProbeProfileId types.String `tfsdk:"probe_profile_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -40453,6 +42482,8 @@ type rsModelBulkResponseWANInterfaceV2N8 struct {
 type rsModelDeviceIdConfidence struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40469,6 +42500,8 @@ type rsModelDeviceIdConfidence struct {
 type rsModelListQueryResponseAnynetLinkQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40484,7 +42517,7 @@ type rsModelListQueryResponseAnynetLinkQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelAnynetLinkQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40495,6 +42528,8 @@ type rsModelListQueryResponseAnynetLinkQueryFilterV2N1 struct {
 type rsModelHardwareBypass struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40511,6 +42546,8 @@ type rsModelHardwareBypass struct {
 type rsModelAppDefTenantVersion struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40555,6 +42592,8 @@ type rsModelAppDefTenantVersion struct {
 type rsModelMulticastProtocolParameter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40595,6 +42634,8 @@ type rsModelMulticastProtocolParameter struct {
 type rsModelIPSECProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40617,8 +42658,8 @@ type rsModelIPSECProfileScreen struct {
 	IkeGroup *rsModelIKEGroup `tfsdk:"ike_group"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40627,6 +42668,8 @@ type rsModelIPSECProfileScreen struct {
 type rsModelListQueryResponseProbeProfileQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40642,7 +42685,7 @@ type rsModelListQueryResponseProbeProfileQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelProbeProfileQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40653,6 +42696,8 @@ type rsModelListQueryResponseProbeProfileQueryFilter struct {
 type rsModelSNMPAgentV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40665,8 +42710,8 @@ type rsModelSNMPAgentV2N1 struct {
 	SystemContact types.String `tfsdk:"system_contact"`
 	// propertyName=system_location type=STRING
 	SystemLocation types.String `tfsdk:"system_location"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=v2_config type=REFERENCE
 	V2Config *rsModelSNMPV2Config `tfsdk:"v2_config"`
 	// propertyName=v3_config type=REFERENCE
@@ -40709,6 +42754,8 @@ type rsModelBulkResponseWANInterfaceLabelV2N4 struct {
 type rsModelListQueryResponseSpokeClusterQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40724,7 +42771,7 @@ type rsModelListQueryResponseSpokeClusterQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSpokeClusterQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40735,6 +42782,8 @@ type rsModelListQueryResponseSpokeClusterQueryFilter struct {
 type rsModelProfileV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40751,6 +42800,8 @@ type rsModelProfileV2N1 struct {
 type rsModelWANNetworkQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40770,15 +42821,15 @@ type rsModelWANNetworkQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40789,6 +42840,8 @@ type rsModelWANNetworkQuery struct {
 type rsModelListQueryResponseWANNetworkQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40804,7 +42857,7 @@ type rsModelListQueryResponseWANNetworkQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANNetworkQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40815,6 +42868,8 @@ type rsModelListQueryResponseWANNetworkQuery struct {
 type rsModelProbeProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40827,8 +42882,8 @@ type rsModelProbeProfileScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=probe_config_ids type=ARRAY_PRIMITIVE
 	ProbeConfigIds types.List `tfsdk:"probe_config_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40837,6 +42892,8 @@ type rsModelProbeProfileScreen struct {
 type rsModelDirectoryUser struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40849,8 +42906,8 @@ type rsModelDirectoryUser struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=stale type=BOOLEAN
 	Stale types.Bool `tfsdk:"stale"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_group_ids type=ARRAY_PRIMITIVE
 	UserGroupIds types.List `tfsdk:"user_group_ids"`
 }
@@ -40871,6 +42928,8 @@ type rsModelListResponseDirectoryUser struct {
 type rsModelPathPrefixes struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40887,8 +42946,8 @@ type rsModelPathPrefixes struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=peer_site_id type=STRING
 	PeerSiteId types.String `tfsdk:"peer_site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40897,6 +42956,8 @@ type rsModelPathPrefixes struct {
 type rsModelPathPrefixDistributionQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40911,8 +42972,8 @@ type rsModelPathPrefixDistributionQueryFilter struct {
 	PathPrefixFilterList []rsModelPathPrefixFilterList `tfsdk:"path_prefix_filter_list"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -40921,6 +42982,8 @@ type rsModelPathPrefixDistributionQueryFilter struct {
 type rsModelListQueryResponsePathPrefixDistributionQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40936,7 +42999,7 @@ type rsModelListQueryResponsePathPrefixDistributionQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPathPrefixDistributionQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40947,6 +43010,8 @@ type rsModelListQueryResponsePathPrefixDistributionQueryFilter struct {
 type rsModelListQueryResponseSiteSecurityZoneNetworkAssociationQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -40962,7 +43027,7 @@ type rsModelListQueryResponseSiteSecurityZoneNetworkAssociationQueryFilter struc
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteSecurityZoneNetworkAssociationQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -40973,6 +43038,8 @@ type rsModelListQueryResponseSiteSecurityZoneNetworkAssociationQueryFilter struc
 type rsModelElementSoftwareStateScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41029,6 +43096,8 @@ type rsModelEventCodesData struct {
 type rsModelLANNetworkQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41063,6 +43132,8 @@ type rsModelListResponseUserIdentity struct {
 type rsModelLANNetworkScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41087,6 +43158,8 @@ type rsModelLANNetworkScreen struct {
 type rsModelMSTPInstanceStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41125,6 +43198,8 @@ type rsModelMSTPInstanceStatus struct {
 type rsModelIPFixConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41147,8 +43222,8 @@ type rsModelIPFixConfig struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=sampler type=REFERENCE
 	Sampler *rsModelIPFixSampler `tfsdk:"sampler"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -41157,6 +43232,8 @@ type rsModelIPFixConfig struct {
 type rsModelListQueryResponseElementSecurityZoneQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41172,7 +43249,7 @@ type rsModelListQueryResponseElementSecurityZoneQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementSecurityZoneQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41193,6 +43270,8 @@ type rsModelListResponseNATPolicySetStack struct {
 type rsModelWANInterfaceV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41223,8 +43302,8 @@ type rsModelWANInterfaceV2N6 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -41241,6 +43320,8 @@ type rsModelWANInterfaceV2N6 struct {
 type rsModelWANInterfaceV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41271,8 +43352,8 @@ type rsModelWANInterfaceV2N5 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE
@@ -41285,6 +43366,8 @@ type rsModelWANInterfaceV2N5 struct {
 type rsModelListQueryResponseIPSECProfileQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41300,7 +43383,7 @@ type rsModelListQueryResponseIPSECProfileQueryFilterV2N2 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelIPSECProfileQueryFilterV2N2 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41321,6 +43404,8 @@ type rsModelBulkResponseNetworkContext struct {
 type rsModelWANInterfaceV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41351,8 +43436,8 @@ type rsModelWANInterfaceV2N7 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=use_for_application_reachability_probes type=BOOLEAN
@@ -41371,6 +43456,8 @@ type rsModelWANInterfaceV2N7 struct {
 type rsModelWANInterfaceV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41407,6 +43494,8 @@ type rsModelWANInterfaceV2N2 struct {
 type rsModelWANInterfaceV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41437,8 +43526,8 @@ type rsModelWANInterfaceV2N4 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -41447,6 +43536,8 @@ type rsModelWANInterfaceV2N4 struct {
 type rsModelWANInterfaceV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41475,8 +43566,8 @@ type rsModelWANInterfaceV2N3 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=network_id type=STRING
 	NetworkId types.String `tfsdk:"network_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -41485,6 +43576,8 @@ type rsModelWANInterfaceV2N3 struct {
 type rsModelListQueryResponseWANInterfaceQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41500,7 +43593,7 @@ type rsModelListQueryResponseWANInterfaceQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelWANInterfaceQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41531,6 +43624,8 @@ type rsModelListResponseRoutingAccessListV2N1 struct {
 type rsModelSimSecurity struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41547,8 +43642,8 @@ type rsModelSimSecurity struct {
 	RemovePin types.Bool `tfsdk:"remove_pin"`
 	// propertyName=slot_number type=INTEGER
 	SlotNumber types.Int64 `tfsdk:"slot_number"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -41557,6 +43652,8 @@ type rsModelSimSecurity struct {
 type rsModelBulkConfigStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41575,6 +43672,8 @@ type rsModelBulkConfigStatus struct {
 type rsModelAuthResource struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41582,13 +43681,13 @@ type rsModelAuthResource struct {
 	// propertyName=custom_roles type=ARRAY_REFERENCE
 	CustomRoles []rsModelCustomRole `tfsdk:"custom_roles"`
 	// propertyName=disallowed_permissions type=OBJECT
-	DisallowedPermissions *map[string]interface{} `tfsdk:"disallowed_permissions"`
+	DisallowedPermissions types.Map `tfsdk:"disallowed_permissions"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=operator_id type=STRING
 	OperatorId types.String `tfsdk:"operator_id"`
 	// propertyName=permissions type=OBJECT
-	Permissions *map[string]interface{} `tfsdk:"permissions"`
+	Permissions types.Map `tfsdk:"permissions"`
 	// propertyName=redirect_region type=STRING
 	RedirectRegion types.String `tfsdk:"redirect_region"`
 	// propertyName=redirect_urlpath type=STRING
@@ -41596,13 +43695,13 @@ type rsModelAuthResource struct {
 	// propertyName=redirect_x_auth_token type=STRING
 	RedirectXAuthToken types.String `tfsdk:"redirect_x_auth_token"`
 	// propertyName=resource_role_map type=ARRAY_SCHEMA
-	ResourceRoleMap []*map[string]interface{} `tfsdk:"resource_role_map"`
+	ResourceRoleMap []types.Map `tfsdk:"resource_role_map"`
 	// propertyName=resource_uri_map type=OBJECT
-	ResourceUriMap *map[string]interface{} `tfsdk:"resource_uri_map"`
+	ResourceUriMap types.Map `tfsdk:"resource_uri_map"`
 	// propertyName=resource_version_map type=OBJECT
-	ResourceVersionMap *map[string]interface{} `tfsdk:"resource_version_map"`
+	ResourceVersionMap types.Map `tfsdk:"resource_version_map"`
 	// propertyName=version_exceptions_map type=ARRAY_SCHEMA
-	VersionExceptionsMap []*map[string]interface{} `tfsdk:"version_exceptions_map"`
+	VersionExceptionsMap []types.Map `tfsdk:"version_exceptions_map"`
 	// propertyName=x_auth_token type=STRING
 	XAuthToken types.String `tfsdk:"x_auth_token"`
 }
@@ -41613,6 +43712,8 @@ type rsModelAuthResource struct {
 type rsModelBasePolicySetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41625,8 +43726,8 @@ type rsModelBasePolicySetStack struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -41635,6 +43736,8 @@ type rsModelBasePolicySetStack struct {
 type rsModelSecurityPolicyV2N1RuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41661,8 +43764,8 @@ type rsModelSecurityPolicyV2N1RuleScreen struct {
 	SourcePrefixIds types.List `tfsdk:"source_prefix_ids"`
 	// propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -41673,6 +43776,8 @@ type rsModelSecurityPolicyV2N1RuleScreen struct {
 type rsModelIPFixConfigQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41692,15 +43797,15 @@ type rsModelIPFixConfigQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41711,6 +43816,8 @@ type rsModelIPFixConfigQuery struct {
 type rsModelListQueryResponseLANNetworkQueryFilterResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41726,7 +43833,7 @@ type rsModelListQueryResponseLANNetworkQueryFilterResponse struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelLANNetworkQueryFilterResponse `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41737,6 +43844,8 @@ type rsModelListQueryResponseLANNetworkQueryFilterResponse struct {
 type rsModelListQueryResponseSecurityPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41752,7 +43861,7 @@ type rsModelListQueryResponseSecurityPolicyRuleQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyRuleQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41763,6 +43872,8 @@ type rsModelListQueryResponseSecurityPolicyRuleQueryFilter struct {
 type rsModelSaseConnectionGlobalConfigScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41827,6 +43938,8 @@ type rsModelPrismaConnectionStatus struct {
 type rsModelSaseConnectionStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41853,6 +43966,8 @@ type rsModelSaseConnectionStatus struct {
 type rsModelWANInterfaceLabel struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41873,6 +43988,8 @@ type rsModelWANInterfaceLabel struct {
 type rsModelIPFixConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41895,8 +44012,8 @@ type rsModelIPFixConfigScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=sampler type=REFERENCE
 	Sampler *rsModelIPFixSampler `tfsdk:"sampler"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -41905,6 +44022,8 @@ type rsModelIPFixConfigScreen struct {
 type rsModelPrefixQueryV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41932,15 +44051,15 @@ type rsModelPrefixQueryV3N1 struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41951,6 +44070,8 @@ type rsModelPrefixQueryV3N1 struct {
 type rsModelSiteCipherScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41971,6 +44092,8 @@ type rsModelSiteCipherScreen struct {
 type rsModelListQueryResponseServiceLabelQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -41986,7 +44109,7 @@ type rsModelListQueryResponseServiceLabelQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelServiceLabelQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -41997,6 +44120,8 @@ type rsModelListQueryResponseServiceLabelQueryFilter struct {
 type rsModelListQueryResponseTenantCacheQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42012,7 +44137,7 @@ type rsModelListQueryResponseTenantCacheQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelTenantCacheQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42023,6 +44148,8 @@ type rsModelListQueryResponseTenantCacheQueryFilter struct {
 type rsModelInterfaceQueryResponseV4N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42085,8 +44212,8 @@ type rsModelInterfaceQueryResponseV4N10 struct {
 	StaticArpConfigs []rsModelStaticARPConfig `tfsdk:"static_arp_configs"`
 	// propertyName=sub_interface type=REFERENCE
 	SubInterface *rsModelSubInterface `tfsdk:"sub_interface"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=used_for type=STRING
@@ -42101,6 +44228,8 @@ type rsModelToken struct {
 	Oldpassword types.String `tfsdk:"oldPassword"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=repeatPassword type=STRING
 	Repeatpassword types.String `tfsdk:"repeatPassword"`
 	// propertyName=token type=STRING
@@ -42113,6 +44242,8 @@ type rsModelToken struct {
 type rsModelListQueryResponseSiteSecurityPolicyV2PrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42128,7 +44259,7 @@ type rsModelListQueryResponseSiteSecurityPolicyV2PrefixAssociation struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteSecurityPolicyV2PrefixAssociation `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42139,6 +44270,8 @@ type rsModelListQueryResponseSiteSecurityPolicyV2PrefixAssociation struct {
 type rsModelBGPPeerConfigScreenV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42177,8 +44310,8 @@ type rsModelBGPPeerConfigScreenV2N6 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -42193,6 +44326,8 @@ type rsModelBGPPeerConfigScreenV2N6 struct {
 type rsModelBGPPeerConfigScreenV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42229,8 +44364,8 @@ type rsModelBGPPeerConfigScreenV2N5 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -42245,6 +44380,8 @@ type rsModelBGPPeerConfigScreenV2N5 struct {
 type rsModelBGPPeerConfigScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42279,8 +44416,8 @@ type rsModelBGPPeerConfigScreenV2N4 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -42295,6 +44432,8 @@ type rsModelBGPPeerConfigScreenV2N4 struct {
 type rsModelBGPPeerConfigScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42323,8 +44462,8 @@ type rsModelBGPPeerConfigScreenV2N3 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=vrf_context_id type=STRING
@@ -42337,6 +44476,8 @@ type rsModelBGPPeerConfigScreenV2N3 struct {
 type rsModelElementScreenV3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42373,8 +44514,8 @@ type rsModelElementScreenV3 struct {
 	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -42385,6 +44526,8 @@ type rsModelElementScreenV3 struct {
 type rsModelElementStateScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42423,6 +44566,8 @@ type rsModelBulkResponseSimSecurity struct {
 type rsModelMachineCellularModuleFirmwareImageStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42459,6 +44604,8 @@ type rsModelListResponseAnynetLinkV4 struct {
 type rsModelEventCorrelationPolicySetScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42477,8 +44624,8 @@ type rsModelEventCorrelationPolicySetScreen struct {
 	PolicyruleOrder types.List `tfsdk:"policyrule_order"`
 	// propertyName=severity_priority_mapping type=ARRAY_REFERENCE
 	SeverityPriorityMapping []rsModelSeverityPriorityMapping `tfsdk:"severity_priority_mapping"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -42487,6 +44634,8 @@ type rsModelEventCorrelationPolicySetScreen struct {
 type rsModelVPLOperationsScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42503,6 +44652,8 @@ type rsModelVPLOperationsScreen struct {
 type rsModelListQueryResponseDeviceIdIpMapping struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42518,7 +44669,7 @@ type rsModelListQueryResponseDeviceIdIpMapping struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDeviceIdIpMapping `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42529,6 +44680,8 @@ type rsModelListQueryResponseDeviceIdIpMapping struct {
 type rsModelDeviceIdDictionary struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42551,6 +44704,8 @@ type rsModelDeviceIdDictionary struct {
 type rsModelInterfaceStateQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42570,15 +44725,15 @@ type rsModelInterfaceStateQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42589,6 +44744,8 @@ type rsModelInterfaceStateQuery struct {
 type rsModelDHCPServerV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42621,8 +44778,8 @@ type rsModelDHCPServerV2N1 struct {
 	StaticMappings []rsModelStaticMapping `tfsdk:"static_mappings"`
 	// propertyName=subnet type=STRING
 	Subnet types.String `tfsdk:"subnet"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -42631,6 +44788,8 @@ type rsModelDHCPServerV2N1 struct {
 type rsModelLANNetworkQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42650,15 +44809,15 @@ type rsModelLANNetworkQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42669,6 +44828,8 @@ type rsModelLANNetworkQuery struct {
 type rsModelElementRadius struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42687,8 +44848,8 @@ type rsModelElementRadius struct {
 	RadiusProfileId types.String `tfsdk:"radius_profile_id"`
 	// propertyName=source_interface_id type=STRING
 	SourceInterfaceId types.String `tfsdk:"source_interface_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -42707,6 +44868,8 @@ type rsModelListResponseElementRadius struct {
 type rsModelListQueryResponseMachineQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42722,7 +44885,7 @@ type rsModelListQueryResponseMachineQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMachineQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42749,6 +44912,8 @@ type rsModelSpokeHAConfig struct {
 type rsModelListQueryResponseGlobalPrefixQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42764,7 +44929,7 @@ type rsModelListQueryResponseGlobalPrefixQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelGlobalPrefixQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -42785,6 +44950,8 @@ type rsModelListResponseDnsServiceProfile struct {
 type rsModelElementV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42831,8 +44998,8 @@ type rsModelElementV2N2 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV1 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -42841,6 +45008,8 @@ type rsModelElementV2N2 struct {
 type rsModelElementV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42891,8 +45060,8 @@ type rsModelElementV2N3 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV1 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -42903,6 +45072,8 @@ type rsModelElementV2N3 struct {
 type rsModelElementV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -42953,8 +45124,8 @@ type rsModelElementV2N4 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -42965,6 +45136,8 @@ type rsModelElementV2N4 struct {
 type rsModelElementV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43021,8 +45194,8 @@ type rsModelElementV2N5 struct {
 	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -43043,6 +45216,8 @@ type rsModelListResponseInterfaceAuthenticationState struct {
 type rsModelElementV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43095,6 +45270,8 @@ type rsModelElementV2N1 struct {
 type rsModelElementQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43114,15 +45291,15 @@ type rsModelElementQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43143,6 +45320,8 @@ type rsModelListResponseVRFContext struct {
 type rsModelListQueryResponseBGPPeerQueryFilterV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43158,7 +45337,7 @@ type rsModelListQueryResponseBGPPeerQueryFilterV2N5 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelBGPPeerQueryFilterV2N5 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43169,6 +45348,8 @@ type rsModelListQueryResponseBGPPeerQueryFilterV2N5 struct {
 type rsModelListQueryResponseBGPPeerQueryFilterV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43184,7 +45365,7 @@ type rsModelListQueryResponseBGPPeerQueryFilterV2N6 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelBGPPeerQueryFilterV2N6 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43195,6 +45376,8 @@ type rsModelListQueryResponseBGPPeerQueryFilterV2N6 struct {
 type rsModelPolicySetScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43219,6 +45402,8 @@ type rsModelPolicySetScreen struct {
 type rsModelBGPPeerConfigV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43257,8 +45442,8 @@ type rsModelBGPPeerConfigV2N6 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -43283,6 +45468,8 @@ type rsModelListResponseBGPPeerConfigV2N6 struct {
 type rsModelBGPPeerConfigV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43319,8 +45506,8 @@ type rsModelBGPPeerConfigV2N5 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -43345,6 +45532,8 @@ type rsModelListResponseBGPPeerConfigV2N5 struct {
 type rsModelListQueryResponsePerfMgmtPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43360,7 +45549,7 @@ type rsModelListQueryResponsePerfMgmtPolicyRuleQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelPerfMgmtPolicyRuleQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43371,6 +45560,8 @@ type rsModelListQueryResponsePerfMgmtPolicyRuleQueryFilterV2N1 struct {
 type rsModelSetBulkResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43380,7 +45571,7 @@ type rsModelSetBulkResponse struct {
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=items type=ARRAY_SCHEMA
-	Items []*map[string]interface{} `tfsdk:"items"`
+	Items []types.Map `tfsdk:"items"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43391,6 +45582,8 @@ type rsModelSetBulkResponse struct {
 type rsModelElementV2N6 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43455,8 +45648,8 @@ type rsModelElementV2N6 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -43467,6 +45660,8 @@ type rsModelElementV2N6 struct {
 type rsModelCellularModule struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43483,8 +45678,8 @@ type rsModelCellularModule struct {
 	PrimarySim types.Int64 `tfsdk:"primary_sim"`
 	// propertyName=radio_on type=BOOLEAN
 	RadioOn types.Bool `tfsdk:"radio_on"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43493,6 +45688,8 @@ type rsModelCellularModule struct {
 type rsModelElementV2N7 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43559,8 +45756,8 @@ type rsModelElementV2N7 struct {
 	State types.String `tfsdk:"state"`
 	// propertyName=switch_config type=REFERENCE
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -43571,6 +45768,8 @@ type rsModelElementV2N7 struct {
 type rsModelListQueryResponseNetworkPolicySetQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43586,7 +45785,7 @@ type rsModelListQueryResponseNetworkPolicySetQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNetworkPolicySetQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43597,6 +45796,8 @@ type rsModelListQueryResponseNetworkPolicySetQueryFilter struct {
 type rsModelCellularModuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43613,8 +45814,8 @@ type rsModelCellularModuleScreen struct {
 	PrimarySim types.Int64 `tfsdk:"primary_sim"`
 	// propertyName=radio_on type=BOOLEAN
 	RadioOn types.Bool `tfsdk:"radio_on"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43623,6 +45824,8 @@ type rsModelCellularModuleScreen struct {
 type rsModelElementImage struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43643,6 +45846,8 @@ type rsModelElementImage struct {
 type rsModelSaseConnectionV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43677,6 +45882,8 @@ type rsModelSaseConnectionV2N1 struct {
 type rsModelListQueryResponseElementShellQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43692,7 +45899,7 @@ type rsModelListQueryResponseElementShellQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementShellQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43703,6 +45910,8 @@ type rsModelListQueryResponseElementShellQueryFilterV2N1 struct {
 type rsModelSDWANAppReleaseInfoResponseV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43717,8 +45926,8 @@ type rsModelSDWANAppReleaseInfoResponseV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=releases type=ARRAY_REFERENCE
 	Releases []rsModelSDWANAppReleaseInfoV2N1 `tfsdk:"releases"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43727,6 +45936,8 @@ type rsModelSDWANAppReleaseInfoResponseV2N1 struct {
 type rsModelMulticastRPConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43741,8 +45952,8 @@ type rsModelMulticastRPConfigScreen struct {
 	Ipv4Address types.String `tfsdk:"ipv4_address"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43751,6 +45962,8 @@ type rsModelMulticastRPConfigScreen struct {
 type rsModelBGPPeerReachablePrefixes struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43773,6 +45986,8 @@ type rsModelBGPPeerReachablePrefixes struct {
 type rsModelNetworkPolicyRuleQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43801,8 +46016,8 @@ type rsModelNetworkPolicyRuleQueryFilter struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43811,6 +46026,8 @@ type rsModelNetworkPolicyRuleQueryFilter struct {
 type rsModelElementSecurityZoneQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43830,15 +46047,15 @@ type rsModelElementSecurityZoneQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43849,6 +46066,8 @@ type rsModelElementSecurityZoneQuery struct {
 type rsModelSDWANAppReleaseInfoResponseV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43863,8 +46082,8 @@ type rsModelSDWANAppReleaseInfoResponseV2N2 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=releases type=ARRAY_REFERENCE
 	Releases []rsModelSDWANAppReleaseInfoV2N2 `tfsdk:"releases"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43883,6 +46102,8 @@ type rsModelListResponseCustomRoleV2N1 struct {
 type rsModelListQueryResponseDeviceIdActiveProfiles struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43898,7 +46119,7 @@ type rsModelListQueryResponseDeviceIdActiveProfiles struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDeviceIdActiveProfiles `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43909,6 +46130,8 @@ type rsModelListQueryResponseDeviceIdActiveProfiles struct {
 type rsModelElementImageStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43928,15 +46151,15 @@ type rsModelElementImageStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43947,6 +46170,8 @@ type rsModelElementImageStatusQuery struct {
 type rsModelListQueryResponseVPNLinkQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43962,7 +46187,7 @@ type rsModelListQueryResponseVPNLinkQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelVPNLinkQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -43973,6 +46198,8 @@ type rsModelListQueryResponseVPNLinkQuery struct {
 type rsModelVRFContextScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -43983,8 +46210,8 @@ type rsModelVRFContextScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -43993,6 +46220,8 @@ type rsModelVRFContextScreen struct {
 type rsModelListQueryResponseMulticastWanStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44008,7 +46237,7 @@ type rsModelListQueryResponseMulticastWanStatusQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelMulticastWanStatusQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -44019,6 +46248,8 @@ type rsModelListQueryResponseMulticastWanStatusQueryFilter struct {
 type rsModelPolicySetState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44037,6 +46268,8 @@ type rsModelPolicySetState struct {
 type rsModelOspfConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44065,8 +46298,8 @@ type rsModelOspfConfigScreen struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_id type=STRING
 	VrfContextId types.String `tfsdk:"vrf_context_id"`
 }
@@ -44077,6 +46310,8 @@ type rsModelOspfConfigScreen struct {
 type rsModelBGPPeerDiscoveredPrefixes struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44105,6 +46340,8 @@ type rsModelBulkResponseElementNTP struct {
 type rsModelPerfMgmtThresholdProfileScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44121,8 +46358,8 @@ type rsModelPerfMgmtThresholdProfileScreen struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=soft_limit_app_metrics type=REFERENCE
 	SoftLimitAppMetrics *rsModelStaticAppMetricConfig `tfsdk:"soft_limit_app_metrics"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -44141,6 +46378,8 @@ type rsModelBulkResponseSDWANAppReleaseInfoResponseV2N1 struct {
 type rsModelMulticastRPConfigQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44160,15 +46399,15 @@ type rsModelMulticastRPConfigQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -44179,6 +46418,8 @@ type rsModelMulticastRPConfigQuery struct {
 type rsModelListQueryResponseNetworkContextQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44194,7 +46435,7 @@ type rsModelListQueryResponseNetworkContextQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNetworkContextQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -44215,6 +46456,8 @@ type rsModelListResponseVffToken struct {
 type rsModelBGPPeerConfigEtag struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44229,6 +46472,8 @@ type rsModelBGPPeerConfigEtag struct {
 type rsModelHubClusterStatusV4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44251,6 +46496,8 @@ type rsModelHubClusterStatusV4 struct {
 type rsModelAnynetlinkEventV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44285,6 +46532,8 @@ type rsModelAnynetlinkEventV2N1 struct {
 type rsModelBGPPeerConfigV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44311,8 +46560,8 @@ type rsModelBGPPeerConfigV2N2 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 }
@@ -44323,6 +46572,8 @@ type rsModelBGPPeerConfigV2N2 struct {
 type rsModelBGPPeerConfigV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44349,8 +46600,8 @@ type rsModelBGPPeerConfigV2N1 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 }
@@ -44361,6 +46612,8 @@ type rsModelBGPPeerConfigV2N1 struct {
 type rsModelBGPPeerConfigV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44395,8 +46648,8 @@ type rsModelBGPPeerConfigV2N4 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=update_source_v6 type=STRING
@@ -44411,6 +46664,8 @@ type rsModelBGPPeerConfigV2N4 struct {
 type rsModelBGPPeerConfigV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44439,8 +46694,8 @@ type rsModelBGPPeerConfigV2N3 struct {
 	Scope types.String `tfsdk:"scope"`
 	// propertyName=shutdown type=BOOLEAN
 	Shutdown types.Bool `tfsdk:"shutdown"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
 	// propertyName=vrf_context_id type=STRING
@@ -44453,6 +46708,8 @@ type rsModelBGPPeerConfigV2N3 struct {
 type rsModelMachineQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44501,6 +46758,8 @@ type rsModelMachineQueryFilterV2N1 struct {
 type rsModelMachineQueryFilterV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44551,6 +46810,8 @@ type rsModelMachineQueryFilterV2N2 struct {
 type rsModelIPFixGlobalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44563,8 +46824,8 @@ type rsModelIPFixGlobalPrefix struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -44573,6 +46834,8 @@ type rsModelIPFixGlobalPrefix struct {
 type rsModelElementAccessConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44585,6 +46848,8 @@ type rsModelElementAccessConfig struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
+	// password placeholder: propertyName=otpkey_version type=INTEGER
+	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -44597,6 +46862,8 @@ type rsModelElementAccessConfig struct {
 type rsModelListQueryResponseHubClusterMemberScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44612,7 +46879,7 @@ type rsModelListQueryResponseHubClusterMemberScreen struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelHubClusterMemberScreen `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -44643,6 +46910,8 @@ type rsModelListResponseServiceBindingMapV2N1 struct {
 type rsModelSecurityPolicyV2RuleScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44669,8 +46938,8 @@ type rsModelSecurityPolicyV2RuleScreen struct {
 	SourcePrefixIds types.List `tfsdk:"source_prefix_ids"`
 	// propertyName=source_zone_ids type=ARRAY_PRIMITIVE
 	SourceZoneIds types.List `tfsdk:"source_zone_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -44679,6 +46948,8 @@ type rsModelSecurityPolicyV2RuleScreen struct {
 type rsModelBulkConfigCreateScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44696,7 +46967,7 @@ type rsModelBulkConfigCreateScreen struct {
 	// propertyName=template_name type=STRING
 	TemplateName types.String `tfsdk:"template_name"`
 	// propertyName=variable_map type=OBJECT
-	VariableMap *map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -44725,6 +46996,8 @@ type rsModelListResponseOperatorV2N1 struct {
 type rsModelVPLAdminState struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44743,6 +47016,8 @@ type rsModelVPLAdminState struct {
 type rsModelSaseConnectionScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44785,6 +47060,8 @@ type rsModelListResponseMulticastRPConfig struct {
 type rsModelBulkSiteUpdate struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44805,6 +47082,8 @@ type rsModelBulkSiteUpdate struct {
 type rsModelVPLStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44837,6 +47116,8 @@ type rsModelVPLStatus struct {
 type rsModelDeviceIdProfile struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44869,8 +47150,8 @@ type rsModelDeviceIdProfile struct {
 	SnmpDiscoveryUseLocalNeighbours types.Bool `tfsdk:"snmp_discovery_use_local_neighbours"`
 	// propertyName=snmp_version type=STRING
 	SnmpVersion types.String `tfsdk:"snmp_version"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=v2_config type=REFERENCE
 	V2Config *rsModelDeviceIdSNMPV2Config `tfsdk:"v2_config"`
 	// propertyName=v3_config type=REFERENCE
@@ -44883,6 +47164,8 @@ type rsModelDeviceIdProfile struct {
 type rsModelMSTPInstanceQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44902,15 +47185,15 @@ type rsModelMSTPInstanceQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -44921,6 +47204,8 @@ type rsModelMSTPInstanceQuery struct {
 type rsModelIdp struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44952,7 +47237,7 @@ type rsModelIdp struct {
 	// propertyName=inactive_reason type=STRING
 	InactiveReason types.String `tfsdk:"inactive_reason"`
 	// propertyName=role_map type=OBJECT
-	RoleMap *map[string]interface{} `tfsdk:"role_map"`
+	RoleMap types.Map `tfsdk:"role_map"`
 	// propertyName=session_timeout_s type=INTEGER
 	SessionTimeoutS types.Int64 `tfsdk:"session_timeout_s"`
 	// propertyName=sp_metadata_b64 type=STRING
@@ -44969,6 +47254,8 @@ type rsModelIdp struct {
 type rsModelListQueryResponseSecurityPolicyV2LocalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -44984,7 +47271,7 @@ type rsModelListQueryResponseSecurityPolicyV2LocalPrefix struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2LocalPrefix `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -44995,6 +47282,8 @@ type rsModelListQueryResponseSecurityPolicyV2LocalPrefix struct {
 type rsModelAppdefOverrideScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45031,8 +47320,8 @@ type rsModelAppdefOverrideScreenV2N1 struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV1 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -45067,6 +47356,8 @@ type rsModelSignup struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=phone_numbers type=ARRAY_REFERENCE
 	PhoneNumbers []rsModelPhoneNumber `tfsdk:"phone_numbers"`
 	// propertyName=repeatPassword type=STRING
@@ -45085,6 +47376,8 @@ type rsModelSignup struct {
 type rsModelAppdefOverrideScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45123,8 +47416,8 @@ type rsModelAppdefOverrideScreenV2N3 struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV2 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -45141,6 +47434,8 @@ type rsModelAppdefOverrideScreenV2N3 struct {
 type rsModelAppdefOverrideScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45177,8 +47472,8 @@ type rsModelAppdefOverrideScreenV2N2 struct {
 	PathAffinity types.String `tfsdk:"path_affinity"`
 	// propertyName=session_timeout type=INTEGER
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_REFERENCE
 	TcpRules []rsModelTcpRuleV2 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
@@ -45195,6 +47490,8 @@ type rsModelAppdefOverrideScreenV2N2 struct {
 type rsModelNetworkPolicySetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45211,8 +47508,8 @@ type rsModelNetworkPolicySetStackQueryFilter struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	PolicysetIds types.List `tfsdk:"policyset_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -45221,6 +47518,8 @@ type rsModelNetworkPolicySetStackQueryFilter struct {
 type rsModelSiteScreenV4N8 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45257,8 +47556,8 @@ type rsModelSiteScreenV4N8 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -45269,6 +47568,8 @@ type rsModelSiteScreenV4N8 struct {
 type rsModelMulticastGlobalConfigScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45285,6 +47586,8 @@ type rsModelMulticastGlobalConfigScreen struct {
 type rsModelSiteScreenV4N9 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45323,8 +47626,8 @@ type rsModelSiteScreenV4N9 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -45335,6 +47638,8 @@ type rsModelSiteScreenV4N9 struct {
 type rsModelInterfaceQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45354,15 +47659,15 @@ type rsModelInterfaceQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45383,6 +47688,8 @@ type rsModelListResponseHubCluster struct {
 type rsModelBGPPeerStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45402,15 +47709,15 @@ type rsModelBGPPeerStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45421,6 +47728,8 @@ type rsModelBGPPeerStatusQuery struct {
 type rsModelPathPrefixDistributionAssociationQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45440,15 +47749,15 @@ type rsModelPathPrefixDistributionAssociationQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45459,6 +47768,8 @@ type rsModelPathPrefixDistributionAssociationQuery struct {
 type rsModelActiveUserIPQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45478,15 +47789,15 @@ type rsModelActiveUserIPQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45497,6 +47808,8 @@ type rsModelActiveUserIPQuery struct {
 type rsModelSiteStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45545,6 +47858,8 @@ type rsModelListResponseRoutingPrefixList struct {
 type rsModelMSTPInstanceQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45559,8 +47874,8 @@ type rsModelMSTPInstanceQueryFilter struct {
 	InstancePriority types.Int64 `tfsdk:"instance_priority"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -45569,6 +47884,8 @@ type rsModelMSTPInstanceQueryFilter struct {
 type rsModelListQueryResponseElementStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45584,7 +47901,7 @@ type rsModelListQueryResponseElementStatusQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementStatusQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45595,6 +47912,8 @@ type rsModelListQueryResponseElementStatusQuery struct {
 type rsModelElementAccessConfigScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45607,6 +47926,8 @@ type rsModelElementAccessConfigScreenV2N2 struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
+	// password placeholder: propertyName=otpkey_version type=INTEGER
+	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -45621,6 +47942,8 @@ type rsModelElementAccessConfigScreenV2N2 struct {
 type rsModelSiteAppAccelerationStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45655,6 +47978,8 @@ type rsModelHubClusterElementStatus struct {
 type rsModelOTPAccessConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45673,6 +47998,8 @@ type rsModelOTPAccessConfig struct {
 type rsModelPriorityPolicyGlobalPrefix struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45685,8 +48012,8 @@ type rsModelPriorityPolicyGlobalPrefix struct {
 	Ipv4Prefixes types.List `tfsdk:"ipv4_prefixes"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -45715,12 +48042,14 @@ type rsModelListResponseSyslogServerProfile struct {
 type rsModelExtension struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
 	Schema types.Int64 `tfsdk:"x_schema"`
 	// propertyName=conf type=OBJECT
-	Conf *map[string]interface{} `tfsdk:"conf"`
+	Conf types.Map `tfsdk:"conf"`
 	// propertyName=disabled type=BOOLEAN
 	Disabled types.Bool `tfsdk:"disabled"`
 	// propertyName=entity_id type=STRING
@@ -45741,6 +48070,8 @@ type rsModelPasswordChange struct {
 	Oldpassword types.String `tfsdk:"oldPassword"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
+	// password placeholder: propertyName=password type=STRING
+	PasswordInternalKeyName types.String `tfsdk:"password_internal_key_name"`
 	// propertyName=repeatPassword type=STRING
 	Repeatpassword types.String `tfsdk:"repeatPassword"`
 }
@@ -45751,6 +48082,8 @@ type rsModelPasswordChange struct {
 type rsModelGlobalPrefixFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45781,6 +48114,8 @@ type rsModelListResponseOspfReachablePrefixes struct {
 type rsModelServiceEndpoint struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45795,8 +48130,8 @@ type rsModelServiceEndpoint struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=site_id type=STRING
 	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 }
@@ -45807,6 +48142,8 @@ type rsModelServiceEndpoint struct {
 type rsModelMulticastWanStatusQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45826,15 +48163,15 @@ type rsModelMulticastWanStatusQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45845,6 +48182,8 @@ type rsModelMulticastWanStatusQuery struct {
 type rsModelSecurityPolicyRuleQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45864,15 +48203,15 @@ type rsModelSecurityPolicyRuleQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -45883,6 +48222,8 @@ type rsModelSecurityPolicyRuleQuery struct {
 type rsModelMachineInfo struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45929,6 +48270,8 @@ type rsModelMachineInfo struct {
 type rsModelAppDefTenantVersionV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45967,6 +48310,8 @@ type rsModelListResponseHubClusterV4 struct {
 type rsModelBGPGlobalConfigScreenV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -45989,6 +48334,8 @@ type rsModelBGPGlobalConfigScreenV2N1 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_retry_time type=INTEGER
@@ -46011,6 +48358,8 @@ type rsModelBGPGlobalConfigScreenV2N1 struct {
 type rsModelBGPGlobalConfigScreenV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46035,6 +48384,8 @@ type rsModelBGPGlobalConfigScreenV2N3 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_auth_type type=STRING
@@ -46059,6 +48410,8 @@ type rsModelBGPGlobalConfigScreenV2N3 struct {
 type rsModelBGPGlobalConfigScreenV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46081,6 +48434,8 @@ type rsModelBGPGlobalConfigScreenV2N2 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=peer_auth_type type=STRING
@@ -46115,6 +48470,8 @@ type rsModelListResponseOSPFGlobalConfig struct {
 type rsModelListQueryResponseElementQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46130,7 +48487,7 @@ type rsModelListQueryResponseElementQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelElementQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46141,6 +48498,8 @@ type rsModelListQueryResponseElementQueryFilter struct {
 type rsModelBGPGlobalConfigScreenV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46165,6 +48524,8 @@ type rsModelBGPGlobalConfigScreenV2N4 struct {
 	MaximumPaths types.Int64 `tfsdk:"maximum_paths"`
 	// propertyName=md5_secret type=STRING
 	Md5Secret types.String `tfsdk:"md5_secret"`
+	// password placeholder: propertyName=md5_secret type=STRING
+	Md5SecretInternalKeyName types.String `tfsdk:"md5_secret_internal_key_name"`
 	// propertyName=multi_hop_limit type=INTEGER
 	MultiHopLimit types.Int64 `tfsdk:"multi_hop_limit"`
 	// propertyName=ospf_redistribution type=ARRAY_REFERENCE
@@ -46191,6 +48552,8 @@ type rsModelBGPGlobalConfigScreenV2N4 struct {
 type rsModelSaseConnectionGlobalConfigScreenV3N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46219,6 +48582,8 @@ type rsModelSaseConnectionGlobalConfigScreenV3N1 struct {
 type rsModelElementAccessConfigV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46231,6 +48596,8 @@ type rsModelElementAccessConfigV2N2 struct {
 	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
 	// propertyName=otpkey_version type=INTEGER
 	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
+	// password placeholder: propertyName=otpkey_version type=INTEGER
+	OtpkeyVersionInternalKeyName types.Int64 `tfsdk:"otpkey_version_internal_key_name"`
 	// propertyName=retry_login_count type=INTEGER
 	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
 	// propertyName=ssh_enabled type=BOOLEAN
@@ -46245,6 +48612,8 @@ type rsModelElementAccessConfigV2N2 struct {
 type rsModelListQueryResponseSiteSecurityPolicyV2N1PrefixAssociation struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46260,7 +48629,7 @@ type rsModelListQueryResponseSiteSecurityPolicyV2N1PrefixAssociation struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSiteSecurityPolicyV2N1PrefixAssociation `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46271,6 +48640,8 @@ type rsModelListQueryResponseSiteSecurityPolicyV2N1PrefixAssociation struct {
 type rsModelOspfReachablePrefixesQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46290,15 +48661,15 @@ type rsModelOspfReachablePrefixesQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46309,6 +48680,8 @@ type rsModelOspfReachablePrefixesQuery struct {
 type rsModelDeviceIdDictionaryQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46328,15 +48701,15 @@ type rsModelDeviceIdDictionaryQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46347,6 +48720,8 @@ type rsModelDeviceIdDictionaryQuery struct {
 type rsModelListQueryResponseUserIDAgentQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46362,7 +48737,7 @@ type rsModelListQueryResponseUserIDAgentQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelUserIDAgentQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46393,6 +48768,8 @@ type rsModelTopologyQuery struct {
 type rsModelBulkConfigPushScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46400,7 +48777,7 @@ type rsModelBulkConfigPushScreen struct {
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=variable_map type=ARRAY_SCHEMA
-	VariableMap []*map[string]interface{} `tfsdk:"variable_map"`
+	VariableMap []types.Map `tfsdk:"variable_map"`
 }
 
 // +-----------------------------------------------------------------
@@ -46419,6 +48796,8 @@ type rsModelListResponseBaseQuery struct {
 type rsModelDirectoryUserQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46438,15 +48817,15 @@ type rsModelDirectoryUserQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46477,6 +48856,8 @@ type rsModelBulkResponseLANNetworkV3N2 struct {
 type rsModelProbeConfig struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46491,8 +48872,8 @@ type rsModelProbeConfig struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -46521,6 +48902,8 @@ type rsModelListResponseNATPolicyZone struct {
 type rsModelCellularModuleFirmwareImageStatus struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46547,6 +48930,8 @@ type rsModelCellularModuleFirmwareImageStatus struct {
 type rsModelSiteV4N10 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46589,8 +48974,8 @@ type rsModelSiteV4N10 struct {
 	SecurityPolicysetstackId types.String `tfsdk:"security_policysetstack_id"`
 	// propertyName=service_binding type=STRING
 	ServiceBinding types.String `tfsdk:"service_binding"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=vrf_context_profile_id type=STRING
 	VrfContextProfileId types.String `tfsdk:"vrf_context_profile_id"`
 }
@@ -46601,6 +48986,8 @@ type rsModelSiteV4N10 struct {
 type rsModelSecurityPolicySetRuleOrderScreen struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46617,6 +49004,8 @@ type rsModelSecurityPolicySetRuleOrderScreen struct {
 type rsModelProbeConfigQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46636,15 +49025,15 @@ type rsModelProbeConfigQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46665,6 +49054,8 @@ type rsModelListResponseSpokeCluster struct {
 type rsModelListQueryResponseDeviceIdStartNodeQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46680,7 +49071,7 @@ type rsModelListQueryResponseDeviceIdStartNodeQuery struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDeviceIdStartNodeQuery `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -46691,6 +49082,8 @@ type rsModelListQueryResponseDeviceIdStartNodeQuery struct {
 type rsModelVPLStatusV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46739,6 +49132,8 @@ type rsModelVPLStatusV2N2 struct {
 type rsModelVPLStatusV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46785,6 +49180,8 @@ type rsModelVPLStatusV2N1 struct {
 type rsModelElementStatusV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -46883,6 +49280,8 @@ type rsModelElementStatusV2N4 struct {
 type rsModelElementStatusV2N5 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47001,6 +49400,8 @@ type rsModelListResponseSNMPTrap struct {
 type rsModelElementStatusV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47085,6 +49486,8 @@ type rsModelElementStatusV2N1 struct {
 type rsModelElementStatusV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47175,6 +49578,8 @@ type rsModelElementStatusV2N2 struct {
 type rsModelElementStatusV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47271,6 +49676,8 @@ type rsModelElementStatusV2N3 struct {
 type rsModelStaticRouteStatusV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47287,6 +49694,8 @@ type rsModelStaticRouteStatusV2N2 struct {
 type rsModelListQueryResponseSpokeClusterElementStatusQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47302,7 +49711,7 @@ type rsModelListQueryResponseSpokeClusterElementStatusQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSpokeClusterElementStatusQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -47313,6 +49722,8 @@ type rsModelListQueryResponseSpokeClusterElementStatusQueryFilter struct {
 type rsModelListQueryResponseNetworkPolicySetStackQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47328,7 +49739,7 @@ type rsModelListQueryResponseNetworkPolicySetStackQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelNetworkPolicySetStackQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -47339,6 +49750,8 @@ type rsModelListQueryResponseNetworkPolicySetStackQueryFilter struct {
 type rsModelListQueryResponseDemStatusQueryResponse struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47354,7 +49767,7 @@ type rsModelListQueryResponseDemStatusQueryResponse struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelDemStatusQueryResponse `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -47365,6 +49778,8 @@ type rsModelListQueryResponseDemStatusQueryResponse struct {
 type rsModelAPNProfileQuery struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47384,15 +49799,15 @@ type rsModelAPNProfileQuery struct {
 	// propertyName=limit type=INTEGER
 	Limit types.Int64 `tfsdk:"limit"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=query_params type=OBJECT
-	QueryParams *map[string]interface{} `tfsdk:"query_params"`
+	QueryParams types.Map `tfsdk:"query_params"`
 	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
 	RetrievedFields types.List `tfsdk:"retrieved_fields"`
 	// propertyName=retrieved_fields_mask type=BOOLEAN
 	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
 	// propertyName=sort_params type=OBJECT
-	SortParams *map[string]interface{} `tfsdk:"sort_params"`
+	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -47403,6 +49818,8 @@ type rsModelAPNProfileQuery struct {
 type rsModelAppDefV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47428,7 +49845,7 @@ type rsModelAppDefV2N1 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=order_number type=INTEGER
 	OrderNumber types.Int64 `tfsdk:"order_number"`
 	// propertyName=overrides_allowed type=BOOLEAN
@@ -47439,14 +49856,14 @@ type rsModelAppDefV2N1 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 }
 
 // +-----------------------------------------------------------------
@@ -47469,6 +49886,8 @@ type rsModelEventsSummaryTenantData struct {
 type rsModelAppDefV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47496,7 +49915,7 @@ type rsModelAppDefV2N2 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -47513,14 +49932,14 @@ type rsModelAppDefV2N2 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -47531,6 +49950,8 @@ type rsModelAppDefV2N2 struct {
 type rsModelAppDefV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47558,7 +49979,7 @@ type rsModelAppDefV2N3 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -47575,14 +49996,14 @@ type rsModelAppDefV2N3 struct {
 	SessionTimeout types.Int64 `tfsdk:"session_timeout"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -47593,6 +50014,8 @@ type rsModelAppDefV2N3 struct {
 type rsModelAppDefV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47620,7 +50043,7 @@ type rsModelAppDefV2N4 struct {
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
 	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []*map[string]interface{} `tfsdk:"ip_rules"`
+	IpRules []types.Map `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -47645,14 +50068,14 @@ type rsModelAppDefV2N4 struct {
 	SupportedEngines types.String `tfsdk:"supported_engines"`
 	// propertyName=system_app_overridden type=BOOLEAN
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
 	TcpRules types.List `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []*map[string]interface{} `tfsdk:"udp_rules"`
+	UdpRules []types.Map `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -47663,6 +50086,8 @@ type rsModelAppDefV2N4 struct {
 type rsModelRoutingCommunityListQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47677,8 +50102,8 @@ type rsModelRoutingCommunityListQueryFilter struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -47687,6 +50112,8 @@ type rsModelRoutingCommunityListQueryFilter struct {
 type rsModelListQueryResponseRoutingCommunityListQueryFilter struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47702,7 +50129,7 @@ type rsModelListQueryResponseRoutingCommunityListQueryFilter struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelRoutingCommunityListQueryFilter `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -47725,6 +50152,8 @@ type rsModelNetworkTopologyV3 struct {
 type rsModelNetworkPolicyRuleV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47751,8 +50180,8 @@ type rsModelNetworkPolicyRuleV2N1 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 }
 
 // +-----------------------------------------------------------------
@@ -47761,6 +50190,8 @@ type rsModelNetworkPolicyRuleV2N1 struct {
 type rsModelNetworkPolicyRuleV2N4 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47793,8 +50224,8 @@ type rsModelNetworkPolicyRuleV2N4 struct {
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
 	// propertyName=src_device_ids type=ARRAY_PRIMITIVE
 	SrcDeviceIds types.List `tfsdk:"src_device_ids"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -47805,6 +50236,8 @@ type rsModelNetworkPolicyRuleV2N4 struct {
 type rsModelNetworkPolicyRuleV2N3 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47833,8 +50266,8 @@ type rsModelNetworkPolicyRuleV2N3 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -47845,6 +50278,8 @@ type rsModelNetworkPolicyRuleV2N3 struct {
 type rsModelListQueryResponseEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47860,7 +50295,7 @@ type rsModelListQueryResponseEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelEventCorrelationPolicyRuleQueryFilterV2N1 `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }
@@ -47871,6 +50306,8 @@ type rsModelListQueryResponseEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 type rsModelNetworkPolicyRuleV2N2 struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47897,8 +50334,8 @@ type rsModelNetworkPolicyRuleV2N2 struct {
 	ServiceContext *rsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=source_prefixes_id type=STRING
 	SourcePrefixesId types.String `tfsdk:"source_prefixes_id"`
-	// propertyName=tags type=ARRAY_PRIMITIVE
-	Tags types.List `tfsdk:"tags"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
 	// propertyName=user_or_group type=REFERENCE
 	UserOrGroup *rsModelUserGroup `tfsdk:"user_or_group"`
 }
@@ -47909,6 +50346,8 @@ type rsModelNetworkPolicyRuleV2N2 struct {
 type rsModelListQueryResponseSecurityPolicyV2SetStack struct {
 	// added tfid for bookkeeping
 	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
 	// propertyName=_etag type=INTEGER
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
@@ -47924,7 +50363,7 @@ type rsModelListQueryResponseSecurityPolicyV2SetStack struct {
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelSecurityPolicyV2SetStack `tfsdk:"items"`
 	// propertyName=next_query type=OBJECT
-	NextQuery *map[string]interface{} `tfsdk:"next_query"`
+	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
 }

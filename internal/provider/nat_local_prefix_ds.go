@@ -64,6 +64,13 @@ func (d *natLocalPrefixDataSource) Schema(_ context.Context, _ datasource.Schema
 				Computed: true,
 			},
 			// rest all properties to be read from GET API Schema schema=NATLocalPrefix
+			// generic x_parameters is added to accomodate path parameters
+			"x_parameters": dsschema.MapAttribute{
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				ElementType: types.StringType,
+			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
 				Required:  false,
@@ -71,6 +78,7 @@ func (d *natLocalPrefixDataSource) Schema(_ context.Context, _ datasource.Schema
 				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
 				Required:  false,
@@ -78,6 +86,7 @@ func (d *natLocalPrefixDataSource) Schema(_ context.Context, _ datasource.Schema
 				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": dsschema.StringAttribute{
 				Required:  false,
@@ -85,6 +94,7 @@ func (d *natLocalPrefixDataSource) Schema(_ context.Context, _ datasource.Schema
 				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": dsschema.StringAttribute{
 				Required:  false,
@@ -92,6 +102,7 @@ func (d *natLocalPrefixDataSource) Schema(_ context.Context, _ datasource.Schema
 				Optional:  true,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": dsschema.StringAttribute{
 				Required:  false,
@@ -99,14 +110,16 @@ func (d *natLocalPrefixDataSource) Schema(_ context.Context, _ datasource.Schema
 				Optional:  true,
 				Sensitive: false,
 			},
-			// property: name=tags, type=ARRAY_PRIMITIVE macro=rss_schema
-			"tags": dsschema.ListAttribute{
+			// key name holder for attribute: name=name, type=STRING macro=rss_schema
+			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			"tags": dsschema.SetAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
 			},
+			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 		},
 	}
 }
@@ -126,6 +139,8 @@ func (d *natLocalPrefixDataSource) Read(ctx context.Context, req datasource.Read
 	if resp.Diagnostics.HasError() {
 		return
 	}
+	// pointers
+	diagnostics := &resp.Diagnostics
 
 	// Basic logging.
 	tflog.Info(ctx, "performing datasource read", map[string]any{
@@ -192,11 +207,11 @@ func (d *natLocalPrefixDataSource) Read(ctx context.Context, req datasource.Read
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=tags, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.ListValueFrom(ctx, types.StringType, ans.Tags)
+	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
 
 	// Done.
-	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
