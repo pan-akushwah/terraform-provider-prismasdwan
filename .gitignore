@@ -30,4 +30,6 @@ terraform.tfstate*
 .DS_Store
 *.swp
 
-examples/*.tf
+examples/*/*.tf
+*.tfstate
+.vscode/
