@@ -30,8 +30,8 @@ terraform.tfstate*
 .DS_Store
 *.swp
 
-examples/*/*.tf
 *.tfstate
 .vscode/
 /internal/provider/provider.sources.txt
 /examples/*.tf
+/examples/test*/*.tf

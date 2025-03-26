@@ -1,0 +1,47 @@
+# Copyright Palo Alto Networks Inc. 2025
+#
+# Sample resource example for "path_policy_set"
+#
+# To be able to use this template, first use the Prisma SDWAN provider:
+# terraform {
+#    required_providers {
+#      prismasdwan = {
+#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
+#        version = "a.b.c.d[-beta]"
+#      }
+#    }
+#  }
+#
+#
+# Configure the Provider with appropriate Service Account Credentials
+#
+#  provider "prismasdwan" {
+#    host          = "api.sase.paloaltonetworks.com"
+#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#    scope         = "tsg_id:12345"
+#    auth_url      = "https://auth.appsvc.paloaltonetworks.com/am/oauth2/access_token"
+#  }
+#
+#
+
+resource "prismasdwan_path_policy_set" "corporate_policy_set" {
+  name                  = "corporate_main_policy_set"
+  description           = "Primary path policy set for corporate network"
+  tags                  = ["corporate", "main", "policy"]
+  defaultrule_policyset = false
+}
+
+resource "prismasdwan_path_policy_set" "branch_office_policy_set" {
+  name                  = "branch_office_policy_set"
+  description           = "Path policy set for branch office network"
+  tags                  = ["branch", "office", "policy"]
+  defaultrule_policyset = false
+}
+
+resource "prismasdwan_path_policy_set" "cloud_policy_set" {
+  name                  = "cloud_services_policy_set"
+  description           = "Path policy set for cloud services"
+  tags                  = ["cloud", "services", "policy"]
+  defaultrule_policyset = false
+}
