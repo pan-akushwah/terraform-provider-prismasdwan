@@ -33,3 +33,5 @@ terraform.tfstate*
 examples/*/*.tf
 *.tfstate
 .vscode/
+/internal/provider/provider.sources.txt
+/examples/*.tf

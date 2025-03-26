@@ -1,39 +1,30 @@
-resource "prismasdwan_element_ntp" "example" {
-  element_id  = "123456789"
-  ntp_id      = "123456789"
-  name        = "default"
-  description = "Default NTP template created by super user."
-  ntp_servers = [{
-    host     = "0.xxxx.pool.ntp.org"
-    max_poll = 10
-    min_poll = 9
-    version  = 4
-    },
-    {
-      host     = "1.xxxx.pool.ntp.org"
-      max_poll = 10
-      min_poll = 9
-      version  = 4
-    },
-    {
-      host     = "2.xxxx.pool.ntp.org"
-      max_poll = 10
-      min_poll = 9
-      version  = 4
-    },
-    {
-      host     = "3.xxxx.pool.ntp.org"
-      max_poll = 10
-      min_poll = 9
-      version  = 4
-    },
-    {
-      host     = "time.nist.gov"
-      max_poll = 15
-      min_poll = 13
-      version  = 4
-    }
-  ]
-  source_interface_ids = null
-  tags                 = null
+# Copyright Palo Alto Networks Inc. 2025
+#
+# Sample resource example for "element_ntp"
+#
+# To be able to use this template, first use the Prisma SDWAN provider:
+# terraform {
+#    required_providers {
+#      prismasdwan = {
+#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
+#        version = "a.b.c.d[-beta]"
+#      }
+#    }
+#  }
+#
+#
+# Configure the Provider with appropriate Service Account Credentials
+#
+#  provider "prismasdwan" {
+#    host          = "api.sase.paloaltonetworks.com"
+#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#    scope         = "tsg_id:12345"
+#    auth_url      = "https://auth.appsvc.paloaltonetworks.com/am/oauth2/access_token"
+#  }
+#
+#
+
+resource prismasdwan_element_ntp "example" {
+ // content goes here
 }
