@@ -25,6 +25,58 @@
 #
 #
 
-resource "prismasdwan_nat_policy_rule" "example" {
- // content goes here
+resource "prismasdwan_nat_policy_rule" "test_nat_policy_rule_1" {
+  # This is needed for path parameters
+  x_parameters = {
+    nat_policy_set_id = prismasdwan_nat_policy_set.test_nat_policy_set.id
+  }
+  name = "example_test_nat_rule"
+  description = "Sample description"
+  tags = ["sample", "tags"]
+  source_ports = [
+    {
+      to = 512
+      from = 256
+    },
+    {
+      to = 1024
+      from = 513
+    }
+  ]
+  destination_ports = [
+    {
+      to = 120
+      from = 111
+    },
+    {
+      to = 300
+      from = 200
+    }
+  ]
+  protocol = 6
+  actions = [
+    {
+      type = "source_nat_dynamic"
+      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+    },
+    {
+      type = "destination_nat_dynamic"
+      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+      port = 520
+    },
+    {
+      type = "source_nat_static"
+      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+    },
+    {
+      type = "destination_nat_static"
+      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+      port = 235
+    }
+  ]
+  source_prefixes_id = prismasdwan_nat_local_prefix.test_nat_local_prefix_01.id
+  destination_prefixes_id = prismasdwan_nat_local_prefix.test_nat_local_prefix_02.id
+  source_zone_id = prismasdwan_nat_zone.test_nat_zone.id
+  enabled = true
 }
+

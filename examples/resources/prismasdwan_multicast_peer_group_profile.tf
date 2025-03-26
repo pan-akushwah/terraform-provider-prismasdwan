@@ -25,6 +25,14 @@
 #
 #
 
-resource "prismasdwan_multicast_peer_group_profile" "example" {
- // content goes here
+resource "prismasdwan_multicast_peer_group_profile" "test_multicase_peer_group_profile_1" {
+  name        = "tf managed profile 1"
+  description = "lorem ipsum"
+  tags        = ["ipsum", "lorem"]
+  peer_sites = [
+    {
+      peer_site_id = prismasdwan_site.site_2.id
+    }
+  ]
+  is_source_site_receiver = true
 }

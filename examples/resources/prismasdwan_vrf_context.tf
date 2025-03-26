@@ -25,6 +25,8 @@
 #
 #
 
-resource "prismasdwan_vrf_context" "example" {
- // content goes here
+resource "prismasdwan_vrf_context" "test_vrf_context_1" {
+  name = "example_vrf_context"
+  description = "This is a sample VRF context"
+  tags = ["example", "terraform"]
 }

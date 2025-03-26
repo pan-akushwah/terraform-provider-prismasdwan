@@ -25,6 +25,24 @@
 #
 #
 
-resource "prismasdwan_site_security_zone" "example" {
- // content goes here
+resource "prismasdwan_site_security_zone" "site_security_zone_1" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  zone_id = prismasdwan_security_zone.test_security_zone_1.id
+  networks = [
+    {
+      network_id   = prismasdwan_site_lan_network.site_lan_network_1.id
+      network_type = "lan_network"
+    },
+    {
+      network_id   = prismasdwan_site_wan_interface.site_wan_interface_1.id
+      network_type = "wan_network"
+    },
+    {
+      network_id   = prismasdwan_site_wan_interface.site_wan_interface_2.id
+      network_type = "wan_network"
+    }
+  ]
 }

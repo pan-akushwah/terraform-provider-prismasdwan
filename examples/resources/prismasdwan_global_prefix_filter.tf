@@ -25,6 +25,17 @@
 #
 #
 
-resource "prismasdwan_global_prefix_filter" "example" {
- // content goes here
+resource "prismasdwan_global_prefix_filter" "global_filter_1" {
+  name = "tf managed prefix filter 1"
+
+  filters = [
+    {
+      type = "ipv4",
+      ip_prefixes = [
+        "10.10.10.0/24"
+      ]
+    }
+  ]
+
+  description = "lorem ipsum"
 }

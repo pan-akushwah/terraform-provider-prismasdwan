@@ -25,6 +25,19 @@
 #
 #
 
-resource "prismasdwan_site_lan_network" "example" {
- // content goes here
+resource "prismasdwan_site_lan_network" "site_lan_network_1" {
+  # This is needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  name = "example_lan_network"
+  description = "Sample LAN network configuration"
+  tags = ["example", "network"]
+  ipv4_config = {
+    prefixes = [
+      "31.10.10.0/24"
+    ]
+  }
+  scope = "global"
+  vrf_context_id = prismasdwan_resource_locator.default_vrf_context.result
 }

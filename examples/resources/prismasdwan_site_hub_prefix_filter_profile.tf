@@ -25,6 +25,44 @@
 #
 #
 
-resource "prismasdwan_site_hub_prefix_filter_profile" "example" {
- // content goes here
+resource "prismasdwan_site_hub_prefix_filter_profile" "hub_prefix_filter_profile_1" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_2.id
+  }
+  name = "example profile for hub site"
+  description = "sample description"
+  tags = ["tag1", "tag2"]
+  path_prefix_filter_list = [
+    {
+      vrf_context_id = prismasdwan_vrf_context.test_vrf_context_1.id
+      path_prefix_filters = [
+        {
+          "order" : 1,
+          "permit" : true,
+          "ipv4_prefix" : "10.10.10.0/24"
+        },
+        {
+          "order" : 2,
+          "permit" : false,
+          "ipv4_prefix" : "13.13.13.0/24"
+        }
+      ]
+    },
+    {
+      vrf_context_id = prismasdwan_vrf_context.test_vrf_context_2.id
+      path_prefix_filters = [
+        {
+          "order" : 1,
+          "permit" : true,
+          "ipv4_prefix" : "10.10.10.0/24"
+        },
+        {
+          "order" : 2,
+          "permit" : false,
+          "ipv4_prefix" : "13.13.13.0/24"
+        }
+      ]
+    }
+  ]
 }

@@ -25,6 +25,25 @@
 #
 #
 
-resource "prismasdwan_vrf_context_profile" "example" {
- // content goes here
+resource "prismasdwan_vrf_context_profile" "test_vrf_context_profile_1" {
+  name = "example vrf context profile"
+  description = "sample description"
+  tags = ["tag1", "tag2"]
+  default_vrf_context_profile = false
+  vrf_context_ids = [
+    prismasdwan_vrf_context.default_vrf_context.id,
+    prismasdwan_vrf_context.test_vrf_context_1.id,
+    prismasdwan_vrf_context.test_vrf_context_2.id
+  ]
+  vrf_context_route_leak_rules = [
+    {
+      name = "rule001"
+      description = "sample rule description"
+      src_vrf_context_id = prismasdwan_vrf_context.test_vrf_context_2.id
+      dest_vrf_context_id = prismasdwan_vrf_context.test_vrf_context_1.id
+      ipv4_prefixes = [
+        "10.10.10.0/24"
+      ]
+    }
+  ]
 }

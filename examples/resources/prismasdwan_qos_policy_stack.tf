@@ -25,6 +25,13 @@
 #
 #
 
-resource "prismasdwan_qos_policy_stack" "example" {
- // content goes here
+resource "prismasdwan_qos_policy_stack" "test_qos_policy_stack_1" {
+  name = "example_qos_stack"
+  description = "Sample QoS policy stack"
+  tags = ["example", "qos"]
+  policyset_ids = [
+    prismasdwan_qos_policy_set.example_qos_policy_set.id
+  ]
+  defaultrule_policyset_id = prismasdwan_resource_locator.default_qos_policy_set.result
+  default_policysetstack = false
 }

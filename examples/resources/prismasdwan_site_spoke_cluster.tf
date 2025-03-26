@@ -25,6 +25,14 @@
 #
 #
 
-resource "prismasdwan_site_spoke_cluster" "example" {
- // content goes here
+resource "prismasdwan_site_spoke_cluster" "site_spoke_cluster_1" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  name = "example_cluster_alpha"
+  description = "Sample spoke cluster configuration"
+  tags = ["example", "cluster"]
+  preempt = true
+  advertisement_interval = 0.25
 }

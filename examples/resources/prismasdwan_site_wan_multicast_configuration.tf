@@ -25,6 +25,19 @@
 #
 #
 
-resource "prismasdwan_site_wan_multicast_configuration" "example" {
- // content goes here
+resource "prismasdwan_site_wan_multicast_configuration" "site_1_multicast_config" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  site_configs = [
+    {
+      group_ipv4_prefix   = "235.0.0.0/16"
+      source_ipv4_address = "13.10.10.2"
+    },
+    {
+      group_ipv4_prefix   = "224.5.0.0/16"
+      source_ipv4_address = "13.10.10.3"
+    }
+  ]
 }

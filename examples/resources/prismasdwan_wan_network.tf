@@ -25,6 +25,18 @@
 #
 #
 
-resource "prismasdwan_wan_network" "example" {
- // content goes here
+resource "prismasdwan_wan_network" "test_private_wan_network_1" {
+  name = "example_network"
+  description = "Sample network configuration"
+  tags = ["example", "network"]
+  type = "privatewan"
+  provider_as_numbers = [6575]
+}
+
+resource "prismasdwan_wan_network" "test_public_wan_network_1" {
+  name = "example_network"
+  description = "Sample public WAN network"
+  tags = ["example", "network"]
+  type = "publicwan"
+  provider_as_numbers = [6576]
 }

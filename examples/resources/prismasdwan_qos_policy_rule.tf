@@ -25,6 +25,21 @@
 #
 #
 
-resource "prismasdwan_qos_policy_rule" "example" {
- // content goes here
+resource "prismasdwan_qos_policy_rule" "test_qos_policy_rule_1" {
+  # Needed for path parameters
+  x_parameters = {
+    policy_set_id = prismasdwan_qos_policy_set.test_qos_policy_set_1.id
+  }
+  name = "example qos rule"
+  description = "sample description"
+  tags = ["tag1", "tag2"]
+  network_context_id = prismasdwan_network_context.test_network_context.id
+  order_number = 1024
+  enabled = true
+  source_prefixes_id = prismasdwan_qos_policy_local_prefix.test_qos_local_prefix.id
+  destination_prefixes_id = prismasdwan_qos_policy_global_prefix.test_qos_global_prefix.id
+  dscp = {
+    value = 8
+  }
+  priority_number = 2
 }

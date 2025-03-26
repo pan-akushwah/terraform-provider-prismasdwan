@@ -25,6 +25,37 @@
 #
 #
 
-resource "prismasdwan_site_dhcp_server" "example" {
- // content goes here
+resource "prismasdwan_site_dhcp_server" "site_dhcp_server_1" {
+  # This is needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  disabled = false
+  description = "Example DHCP server configuration"
+  subnet = "10.10.10.0/24"
+  gateway = "10.10.10.253"
+  broadcast_address = "10.10.10.255"
+  domain_name = "example.com"
+  dns_servers = [
+    "10.10.10.2",
+    "10.10.10.3",
+    "10.10.10.4"
+  ]
+  default_lease_time = 43200
+  max_lease_time = 86400
+  ip_ranges = [
+    {
+      start_ip = "10.10.10.1"
+      end_ip = "10.10.10.128"
+    }
+  ]
+  static_mappings = [
+    {
+      name = "example_device"
+      mac = "DB:F9:AF:1B:0D:3E"
+      ip_address = "10.10.10.32"
+    }
+  ]
+  address_family = "ipv4"
+  vrf_context_id = prismasdwan_vrf_context.test_vrf_context_1.id
 }

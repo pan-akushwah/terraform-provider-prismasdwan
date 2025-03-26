@@ -25,6 +25,22 @@
 #
 #
 
-resource "prismasdwan_site_wan_interface" "example" {
- // content goes here
+resource "prismasdwan_site_wan_interface" "site_wan_interface_1" {
+  # This is needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  name = "tf managed site interface#1"
+  description = "example description"
+  tags = ["example", "tag"]
+  type = "privatewan"
+  network_id = prismasdwan_wan_network.test_private_wan_network_1.id
+  link_bw_down = 30
+  link_bw_up = 10
+  bw_config_mode = "manual"
+  label_id = prismasdwan_resource_locator.circuit_category_private_1.result
+  bfd_mode = "aggressive"
+  lqm_enabled = true
+  bwc_enabled = false
+  cost = 128
 }
