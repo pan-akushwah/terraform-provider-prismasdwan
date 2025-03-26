@@ -25,6 +25,9 @@
 #
 #
 
-resource "prismasdwan_ipfix_global_prefix" "example" {
- // content goes here
+resource "prismasdwan_ipfix_global_prefix" "example_ipfix_global" {
+  name = "example_global_prefix"
+  description = "Global prefix created by Terraform"
+  tags = ["example"]
+  ipv4_prefixes = ["192.168.1.0/24"]
 }

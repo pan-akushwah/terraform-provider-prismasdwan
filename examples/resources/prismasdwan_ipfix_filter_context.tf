@@ -25,6 +25,7 @@
 #
 #
 
-resource "prismasdwan_ipfix_filter_context" "example" {
- // content goes here
+resource "prismasdwan_ipfix_filter_context" "example_filter_context" {
+  name = "example_filter_context"
+  description = "Created example_filter_context by Terraform"
 }

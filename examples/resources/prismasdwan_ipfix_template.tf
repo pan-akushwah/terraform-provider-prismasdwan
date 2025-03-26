@@ -25,6 +25,14 @@
 #
 #
 
-resource "prismasdwan_ipfix_template" "example" {
- // content goes here
+resource "prismasdwan_ipfix_template" "example_ipfix_template" {
+  name = "example_template"
+  description = "Sample IPFIX template created by Terraform"
+  tags = ["example"]
+  flow_fields = ["TIME_STAMPS", "DST_IPV4_ADDRESS", "DST_PORT", "SRC_IPV4_ADDRESS", "SRC_PORT", "PROTOCOL", "CONNECTION_UNIFLOW_BYTES", "CONNECTION_UNIFLOW_PACKETS", "DSCP_LAST", "APPLICATION_HOST", "MEDIA_CODEC", "MEDIA_JITTER", "MEDIA_LOSS", "MEDIA_MOS", "RTP_TRANSPORT_TYPE"]
+  generate_biflow = false
+  option_export_timeout = 700
+  options = ["DEVICE_IDENTIFICATION"]
+  template_export_timeout = 750
 }
+

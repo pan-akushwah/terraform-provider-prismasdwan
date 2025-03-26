@@ -25,6 +25,8 @@
 #
 #
 
-resource "prismasdwan_ipfix_local_prefix" "example" {
- // content goes here
+resource "prismasdwan_ipfix_local_prefix" "example_ipfix_local" {
+  name = "sample_ipfix_local"
+  description = "Created sample_ipfix_local by Terraform"
+  tags = ["example_tag"]
 }
