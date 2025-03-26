@@ -180,10 +180,6 @@
       "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
       "type" : "string"
     },
-    "upperCaseName" : {
-      "description" : "UpperCaseName: JsonIgnore(value = true) ",
-      "type" : "string"
-    },
     "name" : {
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"

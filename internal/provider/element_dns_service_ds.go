@@ -420,14 +420,6 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=upperCaseName, type=STRING macro=rss_schema
-			"upperCaseName": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=upperCaseName, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -506,7 +498,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	}
 
 	// lets copy all items into state schema=DnsService
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=22
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=21
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -661,8 +653,6 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=upperCaseName, type=STRING macro=copy_to_state
-	state.Uppercasename = types.StringPointerValue(ans.Uppercasename)
 
 	// Done.
 	diagnostics.Append(resp.State.Set(ctx, &state)...)

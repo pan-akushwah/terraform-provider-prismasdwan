@@ -14652,8 +14652,6 @@ type rsModelBGPPeerStatus struct {
 // | Auto Generated for Schema `HubClusterElement`
 // +-----------------------------------------------------------------
 type rsModelHubClusterElement struct {
-	// propertyName=hubClusterElementNumber type=STRING
-	Hubclusterelementnumber types.String `tfsdk:"hubClusterElementNumber"`
 	// propertyName=hub_element_id type=STRING
 	HubElementId types.String `tfsdk:"hub_element_id"`
 	// propertyName=locked type=BOOLEAN
@@ -29962,8 +29960,6 @@ type rsModelTenantV2N11 struct {
 // | Auto Generated for Schema `HubClusterStateElement`
 // +-----------------------------------------------------------------
 type rsModelHubClusterStateElement struct {
-	// propertyName=hubClusterElementNumber type=STRING
-	Hubclusterelementnumber types.String `tfsdk:"hubClusterElementNumber"`
 	// propertyName=hub_element_id type=STRING
 	HubElementId types.String `tfsdk:"hub_element_id"`
 	// propertyName=locked type=BOOLEAN
@@ -35492,8 +35488,6 @@ type rsModelDnsService struct {
 	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
-	// propertyName=upperCaseName type=STRING
-	Uppercasename types.String `tfsdk:"upperCaseName"`
 }
 
 // +-----------------------------------------------------------------

@@ -128,14 +128,6 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=hub_element_id, type=STRING macro=rss_schema
-						// property: name=hubClusterElementNumber, type=STRING macro=rss_schema
-						"hubClusterElementNumber": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=hubClusterElementNumber, type=STRING macro=rss_schema
 						// property: name=locked, type=BOOLEAN macro=rss_schema
 						"locked": rsschema.BoolAttribute{
 							Required:  false,
@@ -259,11 +251,9 @@ func (r *siteHubClusterResource) doPost(ctx context.Context, plan *rsModelHubClu
 		for varLoopElementsIndex, varLoopElements := range plan.Elements {
 			// add a new item
 			body.Elements = append(body.Elements, sdwan_schema.HubClusterElement{})
-			// copy_from_plan: body=body.Elements[varLoopElementsIndex] prefix=rsModel plan=varLoopElements properties=3
+			// copy_from_plan: body=body.Elements[varLoopElementsIndex] prefix=rsModel plan=varLoopElements properties=2
 			// property: name=hub_element_id, type=STRING macro=copy_from_plan
 			body.Elements[varLoopElementsIndex].HubElementId = StringValueOrNil(varLoopElements.HubElementId)
-			// property: name=hubClusterElementNumber, type=STRING macro=copy_from_plan
-			body.Elements[varLoopElementsIndex].Hubclusterelementnumber = StringValueOrNil(varLoopElements.Hubclusterelementnumber)
 			// property: name=locked, type=BOOLEAN macro=copy_from_plan
 			body.Elements[varLoopElementsIndex].Locked = BoolValueOrNil(varLoopElements.Locked)
 		}
@@ -370,11 +360,9 @@ func (r *siteHubClusterResource) doPost(ctx context.Context, plan *rsModelHubClu
 		for varLoopElementsIndex, varLoopElements := range ans.Elements {
 			// add a new item
 			state.Elements = append(state.Elements, rsModelHubClusterElement{})
-			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=rsModel ans=varLoopElements properties=3
+			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=rsModel ans=varLoopElements properties=2
 			// property: name=hub_element_id, type=STRING macro=copy_to_state
 			state.Elements[varLoopElementsIndex].HubElementId = types.StringPointerValue(varLoopElements.HubElementId)
-			// property: name=hubClusterElementNumber, type=STRING macro=copy_to_state
-			state.Elements[varLoopElementsIndex].Hubclusterelementnumber = types.StringPointerValue(varLoopElements.Hubclusterelementnumber)
 			// property: name=locked, type=BOOLEAN macro=copy_to_state
 			state.Elements[varLoopElementsIndex].Locked = types.BoolPointerValue(varLoopElements.Locked)
 		}
@@ -492,11 +480,9 @@ func (r *siteHubClusterResource) doGet(ctx context.Context, state *rsModelHubClu
 		for varLoopElementsIndex, varLoopElements := range ans.Elements {
 			// add a new item
 			state.Elements = append(state.Elements, rsModelHubClusterElement{})
-			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=rsModel ans=varLoopElements properties=3
+			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=rsModel ans=varLoopElements properties=2
 			// property: name=hub_element_id, type=STRING macro=copy_to_state
 			state.Elements[varLoopElementsIndex].HubElementId = types.StringPointerValue(varLoopElements.HubElementId)
-			// property: name=hubClusterElementNumber, type=STRING macro=copy_to_state
-			state.Elements[varLoopElementsIndex].Hubclusterelementnumber = types.StringPointerValue(varLoopElements.Hubclusterelementnumber)
 			// property: name=locked, type=BOOLEAN macro=copy_to_state
 			state.Elements[varLoopElementsIndex].Locked = types.BoolPointerValue(varLoopElements.Locked)
 		}
@@ -606,11 +592,9 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 			// add a new item
 			body.Elements = append(body.Elements, sdwan_schema.HubClusterElement{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.Elements[varLoopElementsIndex] prefix=rsModel plan=varLoopElements properties=3
+			// copy_from_plan: body=body.Elements[varLoopElementsIndex] prefix=rsModel plan=varLoopElements properties=2
 			// property: name=hub_element_id, type=STRING macro=copy_from_plan
 			body.Elements[varLoopElementsIndex].HubElementId = StringValueOrNil(varLoopElements.HubElementId)
-			// property: name=hubClusterElementNumber, type=STRING macro=copy_from_plan
-			body.Elements[varLoopElementsIndex].Hubclusterelementnumber = StringValueOrNil(varLoopElements.Hubclusterelementnumber)
 			// property: name=locked, type=BOOLEAN macro=copy_from_plan
 			body.Elements[varLoopElementsIndex].Locked = BoolValueOrNil(varLoopElements.Locked)
 		}
@@ -710,11 +694,9 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 		for varLoopElementsIndex, varLoopElements := range ans.Elements {
 			// add a new item
 			state.Elements = append(state.Elements, rsModelHubClusterElement{})
-			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=rsModel ans=varLoopElements properties=3
+			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=rsModel ans=varLoopElements properties=2
 			// property: name=hub_element_id, type=STRING macro=copy_to_state
 			state.Elements[varLoopElementsIndex].HubElementId = types.StringPointerValue(varLoopElements.HubElementId)
-			// property: name=hubClusterElementNumber, type=STRING macro=copy_to_state
-			state.Elements[varLoopElementsIndex].Hubclusterelementnumber = types.StringPointerValue(varLoopElements.Hubclusterelementnumber)
 			// property: name=locked, type=BOOLEAN macro=copy_to_state
 			state.Elements[varLoopElementsIndex].Locked = types.BoolPointerValue(varLoopElements.Locked)
 		}

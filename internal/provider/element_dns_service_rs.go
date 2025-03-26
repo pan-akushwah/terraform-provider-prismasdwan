@@ -428,14 +428,6 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=upperCaseName, type=STRING macro=rss_schema
-			"upperCaseName": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=upperCaseName, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -486,7 +478,7 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	var body = &sdwan_schema.DnsService{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=22
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=21
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -629,8 +621,6 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	body.SiteId = StringValueOrNil(plan.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
-	// property: name=upperCaseName, type=STRING macro=copy_from_plan
-	body.Uppercasename = StringValueOrNil(plan.Uppercasename)
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -704,7 +694,7 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	tflog.Info(ctx, "created prismasdwan_element_dns_service with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=DnsService
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=22
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -859,8 +849,6 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=upperCaseName, type=STRING macro=copy_to_state
-	state.Uppercasename = types.StringPointerValue(ans.Uppercasename)
 	return true
 }
 
@@ -941,7 +929,7 @@ func (r *elementDnsServiceResource) doGet(ctx context.Context, state *rsModelDns
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=22
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1096,8 +1084,6 @@ func (r *elementDnsServiceResource) doGet(ctx context.Context, state *rsModelDns
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=upperCaseName, type=STRING macro=copy_to_state
-	state.Uppercasename = types.StringPointerValue(ans.Uppercasename)
 	return true
 }
 
@@ -1149,7 +1135,7 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=22
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=21
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1390,12 +1376,6 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
-	// property: name=upperCaseName, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.Uppercasename = ValueStringPointerFromPlanOrState(plan.Uppercasename, state.Uppercasename)
-	} else {
-		body.Uppercasename = StringValueOrNil(plan.Uppercasename)
-	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -1450,7 +1430,7 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	}
 
 	// Store the answer to state. schema=DnsService
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=22
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1605,8 +1585,6 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=upperCaseName, type=STRING macro=copy_to_state
-	state.Uppercasename = types.StringPointerValue(ans.Uppercasename)
 	return true
 }
 

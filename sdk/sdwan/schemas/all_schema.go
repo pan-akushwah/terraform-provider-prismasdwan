@@ -9173,9 +9173,8 @@ type BGPPeerStatus struct {
 // | Auto Generated for Schema `HubClusterElement`
 // +-----------------------------------------------------------------
 type HubClusterElement struct {
-	Hubclusterelementnumber *string `json:"hubClusterElementNumber"` // propertyName=hubClusterElementNumber type=STRING
-	HubElementId            *string `json:"hub_element_id"`          // propertyName=hub_element_id type=STRING
-	Locked                  *bool   `json:"locked"`                  // propertyName=locked type=BOOLEAN
+	HubElementId *string `json:"hub_element_id"` // propertyName=hub_element_id type=STRING
+	Locked       *bool   `json:"locked"`         // propertyName=locked type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -17668,10 +17667,9 @@ type TenantV2N11 struct {
 // | Auto Generated for Schema `HubClusterStateElement`
 // +-----------------------------------------------------------------
 type HubClusterStateElement struct {
-	Hubclusterelementnumber *string  `json:"hubClusterElementNumber"` // propertyName=hubClusterElementNumber type=STRING
-	HubElementId            *string  `json:"hub_element_id"`          // propertyName=hub_element_id type=STRING
-	Locked                  *bool    `json:"locked"`                  // propertyName=locked type=BOOLEAN
-	PeerSites               []string `json:"peer_sites"`              // propertyName=peer_sites type=ARRAY_PRIMITIVE
+	HubElementId *string  `json:"hub_element_id"` // propertyName=hub_element_id type=STRING
+	Locked       *bool    `json:"locked"`         // propertyName=locked type=BOOLEAN
+	PeerSites    []string `json:"peer_sites"`     // propertyName=peer_sites type=ARRAY_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -20750,7 +20748,6 @@ type DnsService struct {
 	Region                  *string                  `json:"region"`                     // propertyName=region type=STRING
 	SiteId                  *string                  `json:"site_id"`                    // propertyName=site_id type=STRING
 	Tags                    []string                 `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
-	Uppercasename           *string                  `json:"upperCaseName"`              // propertyName=upperCaseName type=STRING
 }
 
 // +-----------------------------------------------------------------

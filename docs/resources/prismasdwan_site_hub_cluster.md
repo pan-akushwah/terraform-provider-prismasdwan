@@ -21,11 +21,6 @@
       "type" : "array",
       "items" : {
         "properties" : {
-          "hubClusterElementNumber" : {
-            "description" : "HubClusterElementNumber: JsonIgnore(value = true) ",
-            "type" : "string",
-            "enum" : [ "FIRST", "SECOND", "THIRD" ]
-          },
           "hub_element_id" : {
             "description" : "Hub Element Id",
             "type" : "string"

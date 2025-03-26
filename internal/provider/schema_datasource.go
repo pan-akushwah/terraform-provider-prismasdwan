@@ -9701,9 +9701,8 @@ type dsModelBGPPeerStatus struct {
 // | Auto Generated for Schema `HubClusterElement`
 // +-----------------------------------------------------------------
 type dsModelHubClusterElement struct {
-	Hubclusterelementnumber types.String `tfsdk:"hubClusterElementNumber"` // propertyName=hubClusterElementNumber type=STRING
-	HubElementId            types.String `tfsdk:"hub_element_id"`          // propertyName=hub_element_id type=STRING
-	Locked                  types.Bool   `tfsdk:"locked"`                  // propertyName=locked type=BOOLEAN
+	HubElementId types.String `tfsdk:"hub_element_id"` // propertyName=hub_element_id type=STRING
+	Locked       types.Bool   `tfsdk:"locked"`         // propertyName=locked type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -18874,10 +18873,9 @@ type dsModelTenantV2N11 struct {
 // | Auto Generated for Schema `HubClusterStateElement`
 // +-----------------------------------------------------------------
 type dsModelHubClusterStateElement struct {
-	Hubclusterelementnumber types.String `tfsdk:"hubClusterElementNumber"` // propertyName=hubClusterElementNumber type=STRING
-	HubElementId            types.String `tfsdk:"hub_element_id"`          // propertyName=hub_element_id type=STRING
-	Locked                  types.Bool   `tfsdk:"locked"`                  // propertyName=locked type=BOOLEAN
-	PeerSites               types.List   `tfsdk:"peer_sites"`              // propertyName=peer_sites type=ARRAY_PRIMITIVE
+	HubElementId types.String `tfsdk:"hub_element_id"` // propertyName=hub_element_id type=STRING
+	Locked       types.Bool   `tfsdk:"locked"`         // propertyName=locked type=BOOLEAN
+	PeerSites    types.List   `tfsdk:"peer_sites"`     // propertyName=peer_sites type=ARRAY_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22242,7 +22240,6 @@ type dsModelDnsService struct {
 	Region                  types.String                    `tfsdk:"region"`                     // propertyName=region type=STRING
 	SiteId                  types.String                    `tfsdk:"site_id"`                    // propertyName=site_id type=STRING
 	Tags                    types.Set                       `tfsdk:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
-	Uppercasename           types.String                    `tfsdk:"upperCaseName"`              // propertyName=upperCaseName type=STRING
 }
 
 // +-----------------------------------------------------------------

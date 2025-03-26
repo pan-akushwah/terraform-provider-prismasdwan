@@ -120,14 +120,6 @@ func (d *siteHubClusterDataSource) Schema(_ context.Context, _ datasource.Schema
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=hub_element_id, type=STRING macro=rss_schema
-						// property: name=hubClusterElementNumber, type=STRING macro=rss_schema
-						"hubClusterElementNumber": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=hubClusterElementNumber, type=STRING macro=rss_schema
 						// property: name=locked, type=BOOLEAN macro=rss_schema
 						"locked": dsschema.BoolAttribute{
 							Required:  false,
@@ -278,11 +270,9 @@ func (d *siteHubClusterDataSource) Read(ctx context.Context, req datasource.Read
 		for varLoopElementsIndex, varLoopElements := range ans.Elements {
 			// add a new item
 			state.Elements = append(state.Elements, dsModelHubClusterElement{})
-			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=dsModel ans=varLoopElements properties=3
+			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=dsModel ans=varLoopElements properties=2
 			// property: name=hub_element_id, type=STRING macro=copy_to_state
 			state.Elements[varLoopElementsIndex].HubElementId = types.StringPointerValue(varLoopElements.HubElementId)
-			// property: name=hubClusterElementNumber, type=STRING macro=copy_to_state
-			state.Elements[varLoopElementsIndex].Hubclusterelementnumber = types.StringPointerValue(varLoopElements.Hubclusterelementnumber)
 			// property: name=locked, type=BOOLEAN macro=copy_to_state
 			state.Elements[varLoopElementsIndex].Locked = types.BoolPointerValue(varLoopElements.Locked)
 		}
