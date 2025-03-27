@@ -35452,10 +35452,6 @@ type rsModelDnsService struct {
 	CacheConfig *rsModelElemCacheConfig `tfsdk:"cache_config"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
-	// propertyName=disabled type=BOOLEAN
-	Disabled types.Bool `tfsdk:"disabled"`
-	// propertyName=disabled_reason type=STRING
-	DisabledReason types.String `tfsdk:"disabled_reason"`
 	// propertyName=dns_queries_metadata type=REFERENCE
 	DnsQueriesMetadata *rsModelElemDnsQueriesMetadata `tfsdk:"dns_queries_metadata"`
 	// propertyName=dnsservice_profile_id type=STRING
@@ -35472,18 +35468,10 @@ type rsModelDnsService struct {
 	Enabled types.Bool `tfsdk:"enabled"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=inactive type=BOOLEAN
-	Inactive types.Bool `tfsdk:"inactive"`
-	// propertyName=inactive_reason type=STRING
-	InactiveReason types.String `tfsdk:"inactive_reason"`
 	// propertyName=max_concurrent_dns_queries type=INTEGER
 	MaxConcurrentDnsQueries types.Int64 `tfsdk:"max_concurrent_dns_queries"`
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=region type=STRING
-	Region types.String `tfsdk:"region"`
-	// propertyName=site_id type=STRING
-	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
 }

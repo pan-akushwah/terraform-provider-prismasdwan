@@ -22222,8 +22222,6 @@ type dsModelDnsService struct {
 	Schema                  types.Int64                     `tfsdk:"_schema"`                    // propertyName=_schema type=INTEGER
 	CacheConfig             *dsModelElemCacheConfig         `tfsdk:"cache_config"`               // propertyName=cache_config type=REFERENCE
 	Description             types.String                    `tfsdk:"description"`                // propertyName=description type=STRING
-	Disabled                types.Bool                      `tfsdk:"disabled"`                   // propertyName=disabled type=BOOLEAN
-	DisabledReason          types.String                    `tfsdk:"disabled_reason"`            // propertyName=disabled_reason type=STRING
 	DnsQueriesMetadata      *dsModelElemDnsQueriesMetadata  `tfsdk:"dns_queries_metadata"`       // propertyName=dns_queries_metadata type=REFERENCE
 	DnsserviceProfileId     types.String                    `tfsdk:"dnsservice_profile_id"`      // propertyName=dnsservice_profile_id type=STRING
 	DnsserviceroleBindings  []dsModelDnsServiceroleBindings `tfsdk:"dnsservicerole_bindings"`    // propertyName=dnsservicerole_bindings type=ARRAY_REFERENCE
@@ -22232,12 +22230,8 @@ type dsModelDnsService struct {
 	ElementId               types.String                    `tfsdk:"element_id"`                 // propertyName=element_id type=STRING
 	Enabled                 types.Bool                      `tfsdk:"enabled"`                    // propertyName=enabled type=BOOLEAN
 	Id                      types.String                    `tfsdk:"id"`                         // propertyName=id type=STRING
-	Inactive                types.Bool                      `tfsdk:"inactive"`                   // propertyName=inactive type=BOOLEAN
-	InactiveReason          types.String                    `tfsdk:"inactive_reason"`            // propertyName=inactive_reason type=STRING
 	MaxConcurrentDnsQueries types.Int64                     `tfsdk:"max_concurrent_dns_queries"` // propertyName=max_concurrent_dns_queries type=INTEGER
 	Name                    types.String                    `tfsdk:"name"`                       // propertyName=name type=STRING
-	Region                  types.String                    `tfsdk:"region"`                     // propertyName=region type=STRING
-	SiteId                  types.String                    `tfsdk:"site_id"`                    // propertyName=site_id type=STRING
 	Tags                    types.Set                       `tfsdk:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 

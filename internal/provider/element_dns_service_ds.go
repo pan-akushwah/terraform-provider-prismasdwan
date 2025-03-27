@@ -121,22 +121,6 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 			// property: name=dns_queries_metadata, type=REFERENCE macro=rss_schema
 			"dns_queries_metadata": dsschema.SingleNestedAttribute{
 				Required:  false,
@@ -342,7 +326,7 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 			// property: name=element_id, type=STRING macro=rss_schema
 			"element_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -363,22 +347,6 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
 			"max_concurrent_dns_queries": dsschema.Int64Attribute{
 				Required:  false,
@@ -395,22 +363,6 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": dsschema.SetAttribute{
 				Required:    false,
@@ -498,7 +450,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	}
 
 	// lets copy all items into state schema=DnsService
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=15
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -514,10 +466,6 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_to_state
 	if ans.DnsQueriesMetadata == nil {
 		state.DnsQueriesMetadata = nil
@@ -637,18 +585,10 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_to_state
 	state.MaxConcurrentDnsQueries = types.Int64PointerValue(ans.MaxConcurrentDnsQueries)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags

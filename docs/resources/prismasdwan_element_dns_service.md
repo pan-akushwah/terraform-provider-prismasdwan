@@ -159,7 +159,14 @@
     },
     "element_id" : {
       "description" : "Element Id",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "tags" : {
       "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
@@ -183,30 +190,6 @@
     "name" : {
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
-    },
-    "site_id" : {
-      "description" : "Site Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
-      "type" : "string"
-    },
-    "region" : {
-      "description" : "Region: Transient ",
-      "type" : "string"
-    },
-    "disabled_reason" : {
-      "description" : "Disabled Reason: Size(max = 5000, DISABLED_REASON_INVALID_0001, min = 0) ",
-      "type" : "string"
-    },
-    "disabled" : {
-      "description" : "Disabled",
-      "type" : "boolean"
-    },
-    "inactive_reason" : {
-      "description" : "Inactive Reason: Size(max = 5000, INACTIVE_REASON_INVALID_0001, min = 0) ",
-      "type" : "string"
-    },
-    "inactive" : {
-      "description" : "Inactive",
-      "type" : "boolean"
     },
     "id" : {
       "type" : "string",

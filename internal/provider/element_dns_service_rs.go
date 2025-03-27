@@ -129,22 +129,6 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 			// property: name=dns_queries_metadata, type=REFERENCE macro=rss_schema
 			"dns_queries_metadata": rsschema.SingleNestedAttribute{
 				Required:  false,
@@ -350,7 +334,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 			// property: name=element_id, type=STRING macro=rss_schema
 			"element_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -371,22 +355,6 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
 			"max_concurrent_dns_queries": rsschema.Int64Attribute{
 				Required:  false,
@@ -403,22 +371,6 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": rsschema.SetAttribute{
 				Required:    false,
@@ -478,7 +430,7 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	var body = &sdwan_schema.DnsService{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=21
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=15
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -492,10 +444,6 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	}
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-	body.Disabled = BoolValueOrNil(plan.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_from_plan
-	body.DisabledReason = StringValueOrNil(plan.DisabledReason)
 	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_from_plan
 	if plan.DnsQueriesMetadata != nil {
 		body.DnsQueriesMetadata = &sdwan_schema.ElemDnsQueriesMetadata{}
@@ -607,18 +555,10 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	body.Enabled = BoolValueOrNil(plan.Enabled)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-	body.Inactive = BoolValueOrNil(plan.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_from_plan
-	body.InactiveReason = StringValueOrNil(plan.InactiveReason)
 	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_from_plan
 	body.MaxConcurrentDnsQueries = Int64ValueOrNil(plan.MaxConcurrentDnsQueries)
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
-	// property: name=region, type=STRING macro=copy_from_plan
-	body.Region = StringValueOrNil(plan.Region)
-	// property: name=site_id, type=STRING macro=copy_from_plan
-	body.SiteId = StringValueOrNil(plan.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
 
@@ -694,7 +634,7 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	tflog.Info(ctx, "created prismasdwan_element_dns_service with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=DnsService
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -710,10 +650,6 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_to_state
 	if ans.DnsQueriesMetadata == nil {
 		state.DnsQueriesMetadata = nil
@@ -833,18 +769,10 @@ func (r *elementDnsServiceResource) doPost(ctx context.Context, plan *rsModelDns
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_to_state
 	state.MaxConcurrentDnsQueries = types.Int64PointerValue(ans.MaxConcurrentDnsQueries)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -929,7 +857,7 @@ func (r *elementDnsServiceResource) doGet(ctx context.Context, state *rsModelDns
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -945,10 +873,6 @@ func (r *elementDnsServiceResource) doGet(ctx context.Context, state *rsModelDns
 	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_to_state
 	if ans.DnsQueriesMetadata == nil {
 		state.DnsQueriesMetadata = nil
@@ -1068,18 +992,10 @@ func (r *elementDnsServiceResource) doGet(ctx context.Context, state *rsModelDns
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_to_state
 	state.MaxConcurrentDnsQueries = types.Int64PointerValue(ans.MaxConcurrentDnsQueries)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -1135,7 +1051,7 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=21
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=15
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1166,18 +1082,6 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 		body.Description = ValueStringPointerFromPlanOrState(plan.Description, state.Description)
 	} else {
 		body.Description = StringValueOrNil(plan.Description)
-	}
-	// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Disabled = ValueBoolPointerFromPlanOrState(plan.Disabled, state.Disabled)
-	} else {
-		body.Disabled = BoolValueOrNil(plan.Disabled)
-	}
-	// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.DisabledReason = ValueStringPointerFromPlanOrState(plan.DisabledReason, state.DisabledReason)
-	} else {
-		body.DisabledReason = StringValueOrNil(plan.DisabledReason)
 	}
 	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.DnsQueriesMetadata == nil {
@@ -1338,18 +1242,6 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	} else {
 		body.Id = StringValueOrNil(plan.Id)
 	}
-	// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Inactive = ValueBoolPointerFromPlanOrState(plan.Inactive, state.Inactive)
-	} else {
-		body.Inactive = BoolValueOrNil(plan.Inactive)
-	}
-	// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.InactiveReason = ValueStringPointerFromPlanOrState(plan.InactiveReason, state.InactiveReason)
-	} else {
-		body.InactiveReason = StringValueOrNil(plan.InactiveReason)
-	}
 	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.MaxConcurrentDnsQueries = ValueInt64PointerFromPlanOrState(plan.MaxConcurrentDnsQueries, state.MaxConcurrentDnsQueries)
@@ -1361,18 +1253,6 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
 	} else {
 		body.Name = StringValueOrNil(plan.Name)
-	}
-	// property: name=region, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.Region = ValueStringPointerFromPlanOrState(plan.Region, state.Region)
-	} else {
-		body.Region = StringValueOrNil(plan.Region)
-	}
-	// property: name=site_id, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.SiteId = ValueStringPointerFromPlanOrState(plan.SiteId, state.SiteId)
-	} else {
-		body.SiteId = StringValueOrNil(plan.SiteId)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
@@ -1430,7 +1310,7 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	}
 
 	// Store the answer to state. schema=DnsService
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1446,10 +1326,6 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_to_state
 	if ans.DnsQueriesMetadata == nil {
 		state.DnsQueriesMetadata = nil
@@ -1569,18 +1445,10 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_to_state
 	state.MaxConcurrentDnsQueries = types.Int64PointerValue(ans.MaxConcurrentDnsQueries)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags

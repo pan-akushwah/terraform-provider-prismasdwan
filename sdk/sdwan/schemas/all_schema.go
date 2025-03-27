@@ -20730,8 +20730,6 @@ type DnsService struct {
 	Schema                  *int64                   `json:"_schema"`                    // propertyName=_schema type=INTEGER
 	CacheConfig             *ElemCacheConfig         `json:"cache_config"`               // propertyName=cache_config type=REFERENCE
 	Description             *string                  `json:"description"`                // propertyName=description type=STRING
-	Disabled                *bool                    `json:"disabled"`                   // propertyName=disabled type=BOOLEAN
-	DisabledReason          *string                  `json:"disabled_reason"`            // propertyName=disabled_reason type=STRING
 	DnsQueriesMetadata      *ElemDnsQueriesMetadata  `json:"dns_queries_metadata"`       // propertyName=dns_queries_metadata type=REFERENCE
 	DnsserviceProfileId     *string                  `json:"dnsservice_profile_id"`      // propertyName=dnsservice_profile_id type=STRING
 	DnsserviceroleBindings  []DnsServiceroleBindings `json:"dnsservicerole_bindings"`    // propertyName=dnsservicerole_bindings type=ARRAY_REFERENCE
@@ -20740,12 +20738,8 @@ type DnsService struct {
 	ElementId               *string                  `json:"element_id"`                 // propertyName=element_id type=STRING
 	Enabled                 *bool                    `json:"enabled"`                    // propertyName=enabled type=BOOLEAN
 	Id                      *string                  `json:"id"`                         // propertyName=id type=STRING
-	Inactive                *bool                    `json:"inactive"`                   // propertyName=inactive type=BOOLEAN
-	InactiveReason          *string                  `json:"inactive_reason"`            // propertyName=inactive_reason type=STRING
 	MaxConcurrentDnsQueries *int64                   `json:"max_concurrent_dns_queries"` // propertyName=max_concurrent_dns_queries type=INTEGER
 	Name                    *string                  `json:"name"`                       // propertyName=name type=STRING
-	Region                  *string                  `json:"region"`                     // propertyName=region type=STRING
-	SiteId                  *string                  `json:"site_id"`                    // propertyName=site_id type=STRING
 	Tags                    []string                 `json:"tags"`                       // propertyName=tags type=SET_PRIMITIVE
 }
 
