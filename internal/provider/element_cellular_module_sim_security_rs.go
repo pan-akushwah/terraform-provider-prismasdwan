@@ -482,25 +482,24 @@ func (r *elementCellularModuleSimSecurityResource) Create(ctx context.Context, r
 		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_id)
+	idBuilder.WriteString(IdSeparator)
 	cellular_module_id, ok := params["cellular_module_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find cellular_module_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("cellular_module_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*cellular_module_id)
+	idBuilder.WriteString(IdSeparator)
 	sim_security_id, ok := params["sim_security_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find sim_security_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("sim_security_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*sim_security_id)

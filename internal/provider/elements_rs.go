@@ -1715,7 +1715,6 @@ func (r *elementsResource) Create(ctx context.Context, req resource.CreateReques
 		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_id)

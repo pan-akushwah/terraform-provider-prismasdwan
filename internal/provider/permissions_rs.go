@@ -582,7 +582,6 @@ func (r *permissionsResource) Create(ctx context.Context, req resource.CreateReq
 		resp.Diagnostics.AddError("could not find permission_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("permission_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*permission_id)

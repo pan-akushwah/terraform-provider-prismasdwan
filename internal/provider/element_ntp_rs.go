@@ -602,16 +602,15 @@ func (r *elementNtpResource) Create(ctx context.Context, req resource.CreateRequ
 		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_id)
+	idBuilder.WriteString(IdSeparator)
 	ntp_id, ok := params["ntp_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find ntp_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("ntp_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*ntp_id)

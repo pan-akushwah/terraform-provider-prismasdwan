@@ -691,7 +691,6 @@ func (r *wanInterfaceLabelResource) Create(ctx context.Context, req resource.Cre
 		resp.Diagnostics.AddError("could not find wantinterface_label_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("wantinterface_label_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*wantinterface_label_id)

@@ -427,16 +427,15 @@ func (r *machinesSoftwareResource) Create(ctx context.Context, req resource.Crea
 		resp.Diagnostics.AddError("could not find machine_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("machine_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*machine_id)
+	idBuilder.WriteString(IdSeparator)
 	software_id, ok := params["software_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find software_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("software_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*software_id)

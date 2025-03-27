@@ -784,25 +784,24 @@ func (r *elementBgpConfigResource) Create(ctx context.Context, req resource.Crea
 		resp.Diagnostics.AddError("could not find site_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("site_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*site_id)
+	idBuilder.WriteString(IdSeparator)
 	element_id, ok := params["element_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_id)
+	idBuilder.WriteString(IdSeparator)
 	bgp_config_id, ok := params["bgp_config_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find bgp_config_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("bgp_config_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*bgp_config_id)

@@ -553,25 +553,24 @@ func (r *elementOspfGlobalConfigResource) Create(ctx context.Context, req resour
 		resp.Diagnostics.AddError("could not find site_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("site_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*site_id)
+	idBuilder.WriteString(IdSeparator)
 	element_id, ok := params["element_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_id)
+	idBuilder.WriteString(IdSeparator)
 	ospf_config_id, ok := params["ospf_config_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find ospf_config_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("ospf_config_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*ospf_config_id)

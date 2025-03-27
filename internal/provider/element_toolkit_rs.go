@@ -481,16 +481,15 @@ func (r *elementToolkitResource) Create(ctx context.Context, req resource.Create
 		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_id)
+	idBuilder.WriteString(IdSeparator)
 	element_access_id, ok := params["element_access_id"]
 	if !ok {
 		resp.Diagnostics.AddError("could not find element_access_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("element_access_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*element_access_id)

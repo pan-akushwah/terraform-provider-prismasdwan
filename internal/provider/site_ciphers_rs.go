@@ -281,10 +281,8 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	put_request.PathParameters = &params
-	// add last parameter as ObjectID
-	(*put_request.PathParameters)["site_id"] = &tokens[0]
-	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	// put api does not have resource id
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
 		(*put_request.PathParameters)[param[0]] = &param[1]
 	}
@@ -431,7 +429,6 @@ func (r *siteCiphersResource) Create(ctx context.Context, req resource.CreateReq
 		resp.Diagnostics.AddError("could not find site_id in x_parameters", "missing parameter")
 		return
 	}
-	idBuilder.WriteString(IdSeparator)
 	idBuilder.WriteString("site_id")
 	idBuilder.WriteString("=")
 	idBuilder.WriteString(*site_id)
