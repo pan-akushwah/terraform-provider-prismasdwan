@@ -52,10 +52,6 @@
       "description" : "Zone Id: Required(error = ELEMENT_SECURITYZONE_ZONEID_REQUIRED: Security zone id is required for element level association.) Digits(fraction = 0, integer = 30, ELEMENT_SECURITYZONE_INVALID_ZONEID) ",
       "type" : "string"
     },
-    "site_id" : {
-      "description" : "Site Id: Transient Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
-      "type" : "string"
-    },
     "id" : {
       "description" : "Id: Transient Id ",
       "type" : "string",

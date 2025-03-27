@@ -113,14 +113,6 @@ func (d *elementSecurityZoneDataSource) Schema(_ context.Context, _ datasource.S
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			"waninterface_ids": dsschema.ListAttribute{
 				Required:    false,
@@ -225,7 +217,7 @@ func (d *elementSecurityZoneDataSource) Read(ctx context.Context, req datasource
 	}
 
 	// lets copy all items into state schema=ElementSecurityZoneScreen
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -240,8 +232,6 @@ func (d *elementSecurityZoneDataSource) Read(ctx context.Context, req datasource
 	varLannetworkIds, errLannetworkIds := types.ListValueFrom(ctx, types.StringType, ans.LannetworkIds)
 	state.LannetworkIds = varLannetworkIds
 	resp.Diagnostics.Append(errLannetworkIds.Errors()...)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varWaninterfaceIds, errWaninterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.WaninterfaceIds)
 	state.WaninterfaceIds = varWaninterfaceIds

@@ -121,14 +121,6 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			"waninterface_ids": rsschema.ListAttribute{
 				Required:    false,
@@ -205,7 +197,7 @@ func (r *elementSecurityZoneResource) doPost(ctx context.Context, plan *rsModelE
 	var body = &sdwan_schema.ElementSecurityZoneScreen{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=9
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -216,8 +208,6 @@ func (r *elementSecurityZoneResource) doPost(ctx context.Context, plan *rsModelE
 	body.InterfaceIds = ListStringValueOrNil(ctx, plan.InterfaceIds)
 	// property: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.LannetworkIds = ListStringValueOrNil(ctx, plan.LannetworkIds)
-	// property: name=site_id, type=STRING macro=copy_from_plan
-	body.SiteId = StringValueOrNil(plan.SiteId)
 	// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.WaninterfaceIds = ListStringValueOrNil(ctx, plan.WaninterfaceIds)
 	// property: name=wanoverlay_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -297,7 +287,7 @@ func (r *elementSecurityZoneResource) doPost(ctx context.Context, plan *rsModelE
 	tflog.Info(ctx, "created prismasdwan_element_security_zone with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=ElementSecurityZoneScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -312,8 +302,6 @@ func (r *elementSecurityZoneResource) doPost(ctx context.Context, plan *rsModelE
 	varLannetworkIds, errLannetworkIds := types.ListValueFrom(ctx, types.StringType, ans.LannetworkIds)
 	state.LannetworkIds = varLannetworkIds
 	resp.Diagnostics.Append(errLannetworkIds.Errors()...)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varWaninterfaceIds, errWaninterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.WaninterfaceIds)
 	state.WaninterfaceIds = varWaninterfaceIds
@@ -404,7 +392,7 @@ func (r *elementSecurityZoneResource) doGet(ctx context.Context, state *rsModelE
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -419,8 +407,6 @@ func (r *elementSecurityZoneResource) doGet(ctx context.Context, state *rsModelE
 	varLannetworkIds, errLannetworkIds := types.ListValueFrom(ctx, types.StringType, ans.LannetworkIds)
 	state.LannetworkIds = varLannetworkIds
 	resp.Diagnostics.Append(errLannetworkIds.Errors()...)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varWaninterfaceIds, errWaninterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.WaninterfaceIds)
 	state.WaninterfaceIds = varWaninterfaceIds
@@ -482,7 +468,7 @@ func (r *elementSecurityZoneResource) doPut(ctx context.Context, plan *rsModelEl
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=9
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -505,12 +491,6 @@ func (r *elementSecurityZoneResource) doPut(ctx context.Context, plan *rsModelEl
 	body.InterfaceIds = ListStringValueOrNil(ctx, plan.InterfaceIds)
 	// property: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 	body.LannetworkIds = ListStringValueOrNil(ctx, plan.LannetworkIds)
-	// property: name=site_id, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.SiteId = ValueStringPointerFromPlanOrState(plan.SiteId, state.SiteId)
-	} else {
-		body.SiteId = StringValueOrNil(plan.SiteId)
-	}
 	// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 	body.WaninterfaceIds = ListStringValueOrNil(ctx, plan.WaninterfaceIds)
 	// property: name=wanoverlay_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
@@ -575,7 +555,7 @@ func (r *elementSecurityZoneResource) doPut(ctx context.Context, plan *rsModelEl
 	}
 
 	// Store the answer to state. schema=ElementSecurityZoneScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -590,8 +570,6 @@ func (r *elementSecurityZoneResource) doPut(ctx context.Context, plan *rsModelEl
 	varLannetworkIds, errLannetworkIds := types.ListValueFrom(ctx, types.StringType, ans.LannetworkIds)
 	state.LannetworkIds = varLannetworkIds
 	resp.Diagnostics.Append(errLannetworkIds.Errors()...)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varWaninterfaceIds, errWaninterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.WaninterfaceIds)
 	state.WaninterfaceIds = varWaninterfaceIds

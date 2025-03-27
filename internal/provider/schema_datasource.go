@@ -21424,7 +21424,6 @@ type dsModelElementSecurityZoneScreen struct {
 	Id              types.String `tfsdk:"id"`               // propertyName=id type=STRING
 	InterfaceIds    types.List   `tfsdk:"interface_ids"`    // propertyName=interface_ids type=ARRAY_PRIMITIVE
 	LannetworkIds   types.List   `tfsdk:"lannetwork_ids"`   // propertyName=lannetwork_ids type=ARRAY_PRIMITIVE
-	SiteId          types.String `tfsdk:"site_id"`          // propertyName=site_id type=STRING
 	WaninterfaceIds types.List   `tfsdk:"waninterface_ids"` // propertyName=waninterface_ids type=ARRAY_PRIMITIVE
 	WanoverlayIds   types.List   `tfsdk:"wanoverlay_ids"`   // propertyName=wanoverlay_ids type=ARRAY_PRIMITIVE
 	ZoneId          types.String `tfsdk:"zone_id"`          // propertyName=zone_id type=STRING

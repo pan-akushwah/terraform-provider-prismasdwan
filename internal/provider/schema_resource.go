@@ -34154,8 +34154,6 @@ type rsModelElementSecurityZoneScreen struct {
 	InterfaceIds types.List `tfsdk:"interface_ids"`
 	// propertyName=lannetwork_ids type=ARRAY_PRIMITIVE
 	LannetworkIds types.List `tfsdk:"lannetwork_ids"`
-	// propertyName=site_id type=STRING
-	SiteId types.String `tfsdk:"site_id"`
 	// propertyName=waninterface_ids type=ARRAY_PRIMITIVE
 	WaninterfaceIds types.List `tfsdk:"waninterface_ids"`
 	// propertyName=wanoverlay_ids type=ARRAY_PRIMITIVE

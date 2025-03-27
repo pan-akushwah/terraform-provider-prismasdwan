@@ -20002,7 +20002,6 @@ type ElementSecurityZoneScreen struct {
 	Id              *string  `json:"id"`               // propertyName=id type=STRING
 	InterfaceIds    []string `json:"interface_ids"`    // propertyName=interface_ids type=ARRAY_PRIMITIVE
 	LannetworkIds   []string `json:"lannetwork_ids"`   // propertyName=lannetwork_ids type=ARRAY_PRIMITIVE
-	SiteId          *string  `json:"site_id"`          // propertyName=site_id type=STRING
 	WaninterfaceIds []string `json:"waninterface_ids"` // propertyName=waninterface_ids type=ARRAY_PRIMITIVE
 	WanoverlayIds   []string `json:"wanoverlay_ids"`   // propertyName=wanoverlay_ids type=ARRAY_PRIMITIVE
 	ZoneId          *string  `json:"zone_id"`          // propertyName=zone_id type=STRING
