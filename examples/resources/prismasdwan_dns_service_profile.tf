@@ -25,6 +25,37 @@
 #
 #
 
-resource "prismasdwan_dns_service_profile" "example" {
- // content goes here
+resource "prismasdwan_dns_service_profile" "default_dns_service_profile" {
+  authoritative_config = null
+  cache_config         = null
+  description          = "Example profile"
+  dns_forward_config = {
+    dns_servers = [
+      {
+        address_family            = "ipv4"
+        dnsserver_ip              = "127.0.0.1"
+        dnsserver_port            = null
+        domain_names              = null
+        forward_dnsservicerole_id = null
+        ip_prefix                 = null
+        source_port               = null
+      },
+    ]
+    max_source_port         = null
+    min_source_port         = 1024
+    send_to_all_dns_servers = true
+  }
+  dns_queries_metadata      = null
+  dns_rebind_config         = null
+  dns_response_overrides    = null
+  dnssec_config             = null
+  domains_to_addresses      = null
+  edns_packet_max           = 4096
+  enable_dns_loop_detection = false
+  enable_dnssec_proxy       = false
+  enable_strict_domain_name = false
+  listen_dnsservicerole_id  = null
+  listen_port               = 53
+  name                      = "Default DNSServiceProfile"
+  tags                      = null
 }
