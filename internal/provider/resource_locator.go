@@ -7,6 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"strings"
+	"sync"
 
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
@@ -30,6 +31,7 @@ var (
 
 // map to contain url and path
 var resourceTypeToUrlMap map[string]string
+var mtx = sync.RWMutex{}
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
 // as below:
@@ -106,6 +108,11 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 		return
 	}
 	r.client = req.ProviderData.(*sdwan.Client)
+	mtx.Lock()
+	if resourceTypeToUrlMap != nil {
+		mtx.Unlock()
+		return
+	}
 	// inject into map
 	resourceTypeToUrlMap = make(map[string]string)
 	resourceTypeToUrlMap["TEST"] = "SOME"
@@ -241,6 +248,7 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	resourceTypeToUrlMap["prismasdwan_ws_extensions"] = "/sdwan/v2.0/api/ws/extensions/{extension_id}"
 	resourceTypeToUrlMap["prismasdwan_site_ciphers"] = "/sdwan/v2.0/api/sites/{site_id}/siteciphers"
 	resourceTypeToUrlMap["prismasdwan_performance_profile"] = "/sdwan/v2.1/api/perfmgmtthresholdprofiles/{profile_id}"
+	mtx.Unlock()
 }
 
 // in some apis the status code is not consistent and hence we may have to act upon
