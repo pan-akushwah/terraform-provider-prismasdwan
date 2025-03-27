@@ -1,6 +1,6 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "element_vsnmp_trap"
+# Sample resource example for "element_snmp_trap"
 #
 # To be able to use this template, first use the Prisma SDWAN provider:
 # terraform {
@@ -25,6 +25,6 @@
 #
 #
 
-resource "prismasdwan_element_vsnmp_trap" "example" {
+resource "prismasdwan_element_snmp_trap" "example" {
  // content goes here
 }

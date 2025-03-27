@@ -35,9 +35,9 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &elementVsnmpTrapResource{}
-	_ resource.ResourceWithConfigure   = &elementVsnmpTrapResource{}
-	_ resource.ResourceWithImportState = &elementVsnmpTrapResource{}
+	_ resource.Resource                = &elementSnmpTrapResource{}
+	_ resource.ResourceWithConfigure   = &elementSnmpTrapResource{}
+	_ resource.ResourceWithImportState = &elementSnmpTrapResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -46,25 +46,25 @@ var (
 //	func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource {
 //	  	return []func() resource.Resource{
 //	     ... <other existing resources>
-//	     NewElementVsnmpTrapResource,
+//	     NewElementSnmpTrapResource,
 //	     // -- append next resource above -- //
 //	     }
 //	  }
-func NewElementVsnmpTrapResource() resource.Resource {
-	return &elementVsnmpTrapResource{}
+func NewElementSnmpTrapResource() resource.Resource {
+	return &elementSnmpTrapResource{}
 }
 
-type elementVsnmpTrapResource struct {
+type elementSnmpTrapResource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (r *elementVsnmpTrapResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_element_vsnmp_trap"
+func (r *elementSnmpTrapResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_element_snmp_trap"
 }
 
 // Schema defines the schema for this data source.
-func (r *elementVsnmpTrapResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
 		Description: "Retrieves a config item.",
 		Attributes: map[string]rsschema.Attribute{
@@ -266,7 +266,7 @@ func (r *elementVsnmpTrapResource) Schema(_ context.Context, _ resource.SchemaRe
 }
 
 // Configure prepares the struct.
-func (r *elementVsnmpTrapResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *elementSnmpTrapResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -275,7 +275,7 @@ func (r *elementVsnmpTrapResource) Configure(_ context.Context, req resource.Con
 
 // in some apis the status code is not consistent and hence we may have to act upon
 // specific error codes instead
-func (r *elementVsnmpTrapResource) GetHttpStatusCode(request *sdwan_client.SdwanClientRequestResponse) int {
+func (r *elementSnmpTrapResource) GetHttpStatusCode(request *sdwan_client.SdwanClientRequestResponse) int {
 	if request.ResponseErrorCode == nil {
 		return request.ResponseStatusCode
 	}
@@ -287,11 +287,11 @@ func (r *elementVsnmpTrapResource) GetHttpStatusCode(request *sdwan_client.Sdwan
 	}
 }
 
-func (r *elementVsnmpTrapResource) doPost(ctx context.Context, plan *rsModelSNMPTrap, state *rsModelSNMPTrap, resp *resource.CreateResponse) bool {
-	tflog.Info(ctx, "executing http post for prismasdwan_element_vsnmp_trap")
+func (r *elementSnmpTrapResource) doPost(ctx context.Context, plan *rsModelSNMPTrap, state *rsModelSNMPTrap, resp *resource.CreateResponse) bool {
+	tflog.Info(ctx, "executing http post for prismasdwan_element_snmp_trap")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
-		"resource_name":               "prismasdwan_element_vsnmp_trap",
+		"resource_name":               "prismasdwan_element_snmp_trap",
 		"terraform_provider_function": "Create",
 	})
 
@@ -381,18 +381,18 @@ func (r *elementVsnmpTrapResource) doPost(ctx context.Context, plan *rsModelSNMP
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, create_request)
 	if create_request.ResponseErr != nil {
-		tflog.Info(ctx, "create request failed for prismasdwan_element_vsnmp_trap", map[string]any{
+		tflog.Info(ctx, "create request failed for prismasdwan_element_snmp_trap", map[string]any{
 			"terraform_provider_function": "Create",
-			"resource_name":               "prismasdwan_element_vsnmp_trap",
+			"resource_name":               "prismasdwan_element_snmp_trap",
 			"path":                        create_request.FinalPath,
 		})
-		tflog.Debug(ctx, "create request failed for prismasdwan_element_vsnmp_trap", map[string]any{
+		tflog.Debug(ctx, "create request failed for prismasdwan_element_snmp_trap", map[string]any{
 			"terraform_provider_function": "Create",
-			"resource_name":               "prismasdwan_element_vsnmp_trap",
+			"resource_name":               "prismasdwan_element_snmp_trap",
 			"path":                        create_request.FinalPath,
 			"request":                     create_request.ToString(),
 		})
-		resp.Diagnostics.AddError("error creating prismasdwan_element_vsnmp_trap", (*create_request.ResponseErr).Error())
+		resp.Diagnostics.AddError("error creating prismasdwan_element_snmp_trap", (*create_request.ResponseErr).Error())
 		return false
 	}
 
@@ -431,7 +431,7 @@ func (r *elementVsnmpTrapResource) doPost(ctx context.Context, plan *rsModelSNMP
 	// set the tf id for the resource created
 	state.Tfid = types.StringValue(idBuilder.String())
 	state.TfParameters = plan.TfParameters
-	tflog.Info(ctx, "created prismasdwan_element_vsnmp_trap with ID", map[string]any{"tfid": state.Tfid.ValueString()})
+	tflog.Info(ctx, "created prismasdwan_element_snmp_trap with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=SNMPTrap
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
@@ -509,18 +509,18 @@ func (r *elementVsnmpTrapResource) doPost(ctx context.Context, plan *rsModelSNMP
 	return true
 }
 
-func (r *elementVsnmpTrapResource) doGet(ctx context.Context, state *rsModelSNMPTrap, savestate *rsModelSNMPTrap, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementSnmpTrapResource) doGet(ctx context.Context, state *rsModelSNMPTrap, savestate *rsModelSNMPTrap, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_element_vsnmp_trap",
+		"resource_name":               "prismasdwan_element_snmp_trap",
 		"tfid":                        tfid,
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_vsnmp_trap ID format", "Expected 3 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return false
 	}
 
@@ -551,13 +551,13 @@ func (r *elementVsnmpTrapResource) doGet(ctx context.Context, state *rsModelSNMP
 		} else if r.GetHttpStatusCode(read_request) == 404 {
 			State.RemoveResource(ctx)
 		} else {
-			tflog.Info(ctx, "read request failed for prismasdwan_element_vsnmp_trap", map[string]any{
+			tflog.Info(ctx, "read request failed for prismasdwan_element_snmp_trap", map[string]any{
 				"terraform_provider_function": "Read",
-				"resource_name":               "prismasdwan_element_vsnmp_trap",
+				"resource_name":               "prismasdwan_element_snmp_trap",
 				"path":                        read_request.FinalPath,
 				"request":                     read_request.ToString(),
 			})
-			resp.Diagnostics.AddError("error reading prismasdwan_element_vsnmp_trap from sdwan servers", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_snmp_trap from sdwan servers", (*read_request.ResponseErr).Error())
 		}
 		return false
 	}
@@ -657,27 +657,27 @@ func (r *elementVsnmpTrapResource) doGet(ctx context.Context, state *rsModelSNMP
 	return true
 }
 
-func (r *elementVsnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPTrap, state *rsModelSNMPTrap, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementSnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPTrap, state *rsModelSNMPTrap, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
 	tflog.Info(ctx, "performing resource update", map[string]any{
 		"terraform_provider_function": "Update",
-		"resource_name":               "prismasdwan_element_vsnmp_trap",
+		"resource_name":               "prismasdwan_element_snmp_trap",
 		"state_tfid":                  state_tfid,
 		"plan_tfid":                   plan_tfid,
 	})
 
 	// both TFID must be SAME!!!
 	if state_tfid != plan_tfid {
-		resp.Diagnostics.AddError("error updating prismasdwan_element_vsnmp_trap", "state and plan TFID do not match")
+		resp.Diagnostics.AddError("error updating prismasdwan_element_snmp_trap", "state and plan TFID do not match")
 		return false
 	}
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
 	if len(tokens) != 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_vsnmp_trap ID format", "Expected 3 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return false
 	}
 
@@ -846,18 +846,18 @@ func (r *elementVsnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPT
 		} else if r.GetHttpStatusCode(put_request) == 404 {
 			State.RemoveResource(ctx)
 		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_element_vsnmp_trap", map[string]any{
+			tflog.Info(ctx, "update request failed for prismasdwan_element_snmp_trap", map[string]any{
 				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_element_vsnmp_trap",
+				"resource_name":               "prismasdwan_element_snmp_trap",
 				"path":                        put_request.FinalPath,
 			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_element_vsnmp_trap", map[string]any{
+			tflog.Debug(ctx, "update request failed for prismasdwan_element_snmp_trap", map[string]any{
 				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_element_vsnmp_trap",
+				"resource_name":               "prismasdwan_element_snmp_trap",
 				"path":                        put_request.FinalPath,
 				"request":                     put_request.ToString(),
 			})
-			resp.Diagnostics.AddError("error updating prismasdwan_element_vsnmp_trap", (*put_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error updating prismasdwan_element_snmp_trap", (*put_request.ResponseErr).Error())
 		}
 		return false
 	}
@@ -954,20 +954,20 @@ func (r *elementVsnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPT
 	return true
 }
 
-func (r *elementVsnmpTrapResource) doDelete(ctx context.Context, state *rsModelSNMPTrap, resp *resource.DeleteResponse) bool {
+func (r *elementSnmpTrapResource) doDelete(ctx context.Context, state *rsModelSNMPTrap, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
 	tflog.Info(ctx, "performing resource delete", map[string]any{
 		"terraform_provider_function": "Delete",
-		"resource_name":               "prismasdwan_element_vsnmp_trap",
+		"resource_name":               "prismasdwan_element_snmp_trap",
 		"locMap":                      map[string]int{"prefix_id": 0},
 	})
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_vsnmp_trap ID format", "Expected 3 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return false
 	}
 
@@ -994,7 +994,7 @@ func (r *elementVsnmpTrapResource) doDelete(ctx context.Context, state *rsModelS
 	svc.ExecuteSdwanRequest(ctx, delete_request)
 	if delete_request.ResponseErr != nil {
 		if !IsObjectNotFound(*delete_request.ResponseErr) {
-			resp.Diagnostics.AddError("error deleting prismasdwan_element_vsnmp_trap", (*delete_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error deleting prismasdwan_element_snmp_trap", (*delete_request.ResponseErr).Error())
 			return false
 		}
 	}
@@ -1004,8 +1004,8 @@ func (r *elementVsnmpTrapResource) doDelete(ctx context.Context, state *rsModelS
 // Performs the Create(POST) Operation on the Resource
 // TfID is pulled from plan to use in the creation request
 // Path Parameters are encoded into TfID itself
-func (r *elementVsnmpTrapResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	tflog.Info(ctx, "executing resource create for prismasdwan_element_vsnmp_trap")
+func (r *elementSnmpTrapResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	tflog.Info(ctx, "executing resource create for prismasdwan_element_snmp_trap")
 	var plan rsModelSNMPTrap
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
@@ -1022,9 +1022,9 @@ func (r *elementVsnmpTrapResource) Create(ctx context.Context, req resource.Crea
 // Performs the Read(GET) Operation on the Resource
 // TfID is pulled from state to use in the read request
 // Path Parameters are extracted TfID itself
-func (r *elementVsnmpTrapResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *elementSnmpTrapResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
-	tflog.Info(ctx, "executing resource read for prismasdwan_element_vsnmp_trap")
+	tflog.Info(ctx, "executing resource read for prismasdwan_element_snmp_trap")
 	var savestate, state rsModelSNMPTrap
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
@@ -1041,9 +1041,9 @@ func (r *elementVsnmpTrapResource) Read(ctx context.Context, req resource.ReadRe
 // TfID is pulled from state to use in the read request
 // Path Parameters are extracted TfID itself
 // TfID must match in state and plan, else error is thrown
-func (r *elementVsnmpTrapResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+func (r *elementSnmpTrapResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
-	tflog.Info(ctx, "executing resource update for prismasdwan_element_vsnmp_trap")
+	tflog.Info(ctx, "executing resource update for prismasdwan_element_snmp_trap")
 	var plan, state rsModelSNMPTrap
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -1065,9 +1065,9 @@ func (r *elementVsnmpTrapResource) Update(ctx context.Context, req resource.Upda
 // Performs the Delete Operation on the Resource
 // TfID is pulled from state to use in the deletion request
 // Path Parameters are extracted from the TfID itself
-func (r *elementVsnmpTrapResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *elementSnmpTrapResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
-	tflog.Info(ctx, "executing resource delete for prismasdwan_element_vsnmp_trap")
+	tflog.Info(ctx, "executing resource delete for prismasdwan_element_snmp_trap")
 	var state rsModelSNMPTrap
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -1081,6 +1081,6 @@ func (r *elementVsnmpTrapResource) Delete(ctx context.Context, req resource.Dele
 	}
 }
 
-func (r *elementVsnmpTrapResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *elementSnmpTrapResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("tfid"), req, resp)
 }

@@ -1,10 +1,10 @@
-## Documentation for Prisma SDWAN Resource "element_vsnmp_trap"
+## Documentation for Prisma SDWAN Resource "element_snmp_trap"
 
 ### Overview
 
 | Resource Details | |
 | ------------- | ------------- |
-| Resource Name | `element_vsnmp_trap` |
+| Resource Name | `element_snmp_trap` |
 | Get Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}` (`SNMPTrap`) |
 | Post Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps` (`SNMPTrap`) |
 | Put Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}` (`SNMPTrap`) |
@@ -156,7 +156,7 @@
 ### Terraform Import
 ```json
 import {
- to="prismasdwan_element_vsnmp_trap.my_resource_name"
+ to="prismasdwan_element_snmp_trap.my_resource_name"
  id="<resource_id>:site_id=<some_site_id>:element_id=<some_element_id>"
 }
 ```

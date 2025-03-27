@@ -148,7 +148,7 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	resourceTypeToUrlMap["prismasdwan_dns_service_role"] = "/sdwan/v2.0/api/dnsserviceroles/{dnsservice_role_id}"
 	resourceTypeToUrlMap["prismasdwan_performance_policy_stack"] = "/sdwan/v2.0/api/perfmgmtpolicysetstacks/{id}"
 	resourceTypeToUrlMap["prismasdwan_vrf_context_profile"] = "/sdwan/v2.0/api/vrfcontextprofiles/{vrf_context_profile_id}"
-	resourceTypeToUrlMap["prismasdwan_element_vsnmp_trap"] = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
+	resourceTypeToUrlMap["prismasdwan_element_snmp_trap"] = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
 	resourceTypeToUrlMap["prismasdwan_machines_software"] = "/sdwan/v2.0/api/machines/{machine_id}/software/{software_id}"
 	resourceTypeToUrlMap["prismasdwan_service_group"] = "/sdwan/v2.1/api/servicelabels/{service_label_id}"
 	resourceTypeToUrlMap["prismasdwan_securitypolicysets"] = "/sdwan/v2.0/api/securitypolicysets/{policy_set_id}"

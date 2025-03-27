@@ -30,8 +30,8 @@ import (
 
 // Data source.
 var (
-	_ datasource.DataSource              = &elementVsnmpTrapDataSource{}
-	_ datasource.DataSourceWithConfigure = &elementVsnmpTrapDataSource{}
+	_ datasource.DataSource              = &elementSnmpTrapDataSource{}
+	_ datasource.DataSourceWithConfigure = &elementSnmpTrapDataSource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -40,25 +40,25 @@ var (
 //	func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 //	  	return []func() datasource.DataSource{
 //	     ... <other existing data sources>
-//	     NewElementVsnmpTrapDataSource,
+//	     NewElementSnmpTrapDataSource,
 //	     // -- append next datasource above -- //
 //	     }
 //	  }
-func NewElementVsnmpTrapDataSource() datasource.DataSource {
-	return &elementVsnmpTrapDataSource{}
+func NewElementSnmpTrapDataSource() datasource.DataSource {
+	return &elementSnmpTrapDataSource{}
 }
 
-type elementVsnmpTrapDataSource struct {
+type elementSnmpTrapDataSource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (d *elementVsnmpTrapDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_element_vsnmp_trap"
+func (d *elementSnmpTrapDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_element_snmp_trap"
 }
 
 // Schema defines the schema for this data source.
-func (d *elementVsnmpTrapDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
 
@@ -258,7 +258,7 @@ func (d *elementVsnmpTrapDataSource) Schema(_ context.Context, _ datasource.Sche
 }
 
 // Configure prepares the struct.
-func (d *elementVsnmpTrapDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *elementSnmpTrapDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -266,7 +266,7 @@ func (d *elementVsnmpTrapDataSource) Configure(_ context.Context, req datasource
 }
 
 // Read performs Read for the struct.
-func (d *elementVsnmpTrapDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var state dsModelSNMPTrap
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -278,13 +278,13 @@ func (d *elementVsnmpTrapDataSource) Read(ctx context.Context, req datasource.Re
 	// Basic logging.
 	tflog.Info(ctx, "performing datasource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_element_vsnmp_trap",
+		"resource_name":               "prismasdwan_element_snmp_trap",
 	})
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_vsnmp_trap ID format", "Expected 3 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return
 	}
 
@@ -309,7 +309,7 @@ func (d *elementVsnmpTrapDataSource) Read(ctx context.Context, req datasource.Re
 		if IsObjectNotFound(*read_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_vsnmp_trap", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_snmp_trap", (*read_request.ResponseErr).Error())
 		}
 		return
 	}

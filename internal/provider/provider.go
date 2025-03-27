@@ -256,7 +256,7 @@ func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource 
 		NewElementToolkitResource,
 		NewElementUserAccessResource,
 		NewElementUserResource,
-		NewElementVsnmpTrapResource,
+		NewElementSnmpTrapResource,
 		NewElementsResource,
 		NewEventCorrelationPolicyRuleResource,
 		NewEventCorrelationPolicySetResource,
