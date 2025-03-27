@@ -224,6 +224,7 @@ func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource 
 		NewDnsServiceProfileResource,
 		NewDnsServiceRoleResource,
 		NewDomainResource,
+		NewElementApplicationProbeResource,
 		NewElementBgpConfigResource,
 		NewElementBgpPeerResource,
 		NewElementCellularModuleResource,

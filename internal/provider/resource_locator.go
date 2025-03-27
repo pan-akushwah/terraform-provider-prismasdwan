@@ -158,6 +158,7 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	resourceTypeToUrlMap["prismasdwan_user"] = "/sdwan/v2.0/api/users/{user_id}"
 	resourceTypeToUrlMap["prismasdwan_network_context"] = "/sdwan/v2.0/api/networkcontexts/{network_context_id}"
 	resourceTypeToUrlMap["prismasdwan_site_wan_interface"] = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
+	resourceTypeToUrlMap["prismasdwan_element_application_probe"] = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/application_probe"
 	resourceTypeToUrlMap["prismasdwan_site_qos_policy_local_prefix"] = "/sdwan/v2.1/api/sites/{site_id}/prioritypolicylocalprefixes/{prefix_id}"
 	resourceTypeToUrlMap["prismasdwan_element_routing_routemap"] = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps/{config_id}"
 	resourceTypeToUrlMap["prismasdwan_user_id_agent"] = "/sdwan/v2.0/api/useridagents/{id}"
