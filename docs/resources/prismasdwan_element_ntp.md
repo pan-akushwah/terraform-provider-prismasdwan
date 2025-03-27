@@ -27,19 +27,6 @@
       "type" : "array",
       "items" : {
         "properties" : {
-          "authentication_key" : {
-            "description" : "Authentication Key: Size(max = 64, error = NTP_CONFIG_INVALID_AUTHENTICATION_KEY: Invalid Authentication Key Size, min = 1) ",
-            "type" : "string"
-          },
-          "algorithm" : {
-            "description" : "Algorithm",
-            "type" : "string",
-            "enum" : [ "SHA256", "SHA1" ]
-          },
-          "authentication_key_id" : {
-            "description" : "Authentication Key Id: ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_KEY_VALUE: The range for key values is between 1-65535., min = 0) ",
-            "type" : "integer"
-          },
           "max_poll" : {
             "description" : "Max Poll: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_MAXPOLL_VALUE: The range for maximum poll values is between 4-17., min = 0) ",
             "format" : "int32",

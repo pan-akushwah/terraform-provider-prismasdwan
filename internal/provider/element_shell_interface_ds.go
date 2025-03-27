@@ -20,7 +20,7 @@ import (
 
 // +-----------------------------------------------------------------
 // | Schema Map Summary (size=goLangStructMap=38)
-// | Computed Resource Name=sites_elements_interfaces
+// | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
 // | APNConfig HasID=false
 // | CellularInterfaceConfig HasID=false
@@ -64,8 +64,8 @@ import (
 
 // Data source.
 var (
-	_ datasource.DataSource              = &elementInterfaceDataSource{}
-	_ datasource.DataSourceWithConfigure = &elementInterfaceDataSource{}
+	_ datasource.DataSource              = &elementShellInterfaceDataSource{}
+	_ datasource.DataSourceWithConfigure = &elementShellInterfaceDataSource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -74,25 +74,25 @@ var (
 //	func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 //	  	return []func() datasource.DataSource{
 //	     ... <other existing data sources>
-//	     NewElementInterfaceDataSource,
+//	     NewElementShellInterfaceDataSource,
 //	     // -- append next datasource above -- //
 //	     }
 //	  }
-func NewElementInterfaceDataSource() datasource.DataSource {
-	return &elementInterfaceDataSource{}
+func NewElementShellInterfaceDataSource() datasource.DataSource {
+	return &elementShellInterfaceDataSource{}
 }
 
-type elementInterfaceDataSource struct {
+type elementShellInterfaceDataSource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (d *elementInterfaceDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_element_interface"
+func (d *elementShellInterfaceDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_element_shell_interface"
 }
 
 // Schema defines the schema for this data source.
-func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
 
@@ -1988,7 +1988,7 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 }
 
 // Configure prepares the struct.
-func (d *elementInterfaceDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *elementShellInterfaceDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -1996,7 +1996,7 @@ func (d *elementInterfaceDataSource) Configure(_ context.Context, req datasource
 }
 
 // Read performs Read for the struct.
-func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var state dsModelInterfaceScreenV4N20
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -2008,13 +2008,13 @@ func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 	// Basic logging.
 	tflog.Info(ctx, "performing datasource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_element_interface",
+		"resource_name":               "prismasdwan_element_shell_interface",
 	})
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_element_shell_interface ID format", "Expected 3 tokens")
 		return
 	}
 
@@ -2024,13 +2024,13 @@ func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}"
+	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
 	read_request.PathParameters = &params
 	params["site_id"] = &tokens[0]
-	params["element_id"] = &tokens[1]
+	params["element_shell_id"] = &tokens[1]
 	params["interface_id"] = &tokens[2]
 
 	// Perform the operation.
@@ -2039,7 +2039,7 @@ func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 		if IsObjectNotFound(*read_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_interface", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_shell_interface", (*read_request.ResponseErr).Error())
 		}
 		return
 	}

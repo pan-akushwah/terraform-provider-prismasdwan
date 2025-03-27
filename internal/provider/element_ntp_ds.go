@@ -120,30 +120,6 @@ func (d *elementNtpDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 				Sensitive: false,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=algorithm, type=STRING macro=rss_schema
-						"algorithm": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=algorithm, type=STRING macro=rss_schema
-						// property: name=authentication_key, type=STRING macro=rss_schema
-						"authentication_key": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=authentication_key, type=STRING macro=rss_schema
-						// property: name=authentication_key_id, type=INTEGER macro=rss_schema
-						"authentication_key_id": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=authentication_key_id, type=INTEGER macro=rss_schema
 						// property: name=host, type=STRING macro=rss_schema
 						"host": dsschema.StringAttribute{
 							Required:  false,
@@ -296,13 +272,7 @@ func (d *elementNtpDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		for varLoopNtpServersIndex, varLoopNtpServers := range ans.NtpServers {
 			// add a new item
 			state.NtpServers = append(state.NtpServers, dsModelNTPServer{})
-			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=dsModel ans=varLoopNtpServers properties=7
-			// property: name=algorithm, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].Algorithm = types.StringPointerValue(varLoopNtpServers.Algorithm)
-			// property: name=authentication_key, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringPointerValue(varLoopNtpServers.AuthenticationKey)
-			// property: name=authentication_key_id, type=INTEGER macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyId = types.Int64PointerValue(varLoopNtpServers.AuthenticationKeyId)
+			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=dsModel ans=varLoopNtpServers properties=4
 			// property: name=host, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Host = types.StringPointerValue(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_to_state

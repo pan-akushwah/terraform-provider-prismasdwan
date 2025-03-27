@@ -406,6 +406,7 @@ import (
 // | Ipv6Dhcp HasID=false
 // | Ipv6ConfigV1 HasID=false
 // | PppoEInterfaceConfig HasID=false
+// | MulticastIgmpStaticJoin HasID=false
 // | MulticastInterfaceConfig HasID=false
 // | StaticARPConfig HasID=false
 // | SecondaryIPConfig HasID=false
@@ -1078,7 +1079,6 @@ import (
 // | ElementImageStatusV2N1 HasID=true
 // | BulkResponseElementImageStatusV2N1 HasID=false
 // | PrefixFilterQueryScreen HasID=true
-// | MulticastIgmpStaticJoin HasID=false
 // | MulticastPeerGroupScreenV2N1 HasID=true
 // | ElementOTPAccess HasID=true
 // | PolicySetStackQuery HasID=true
@@ -7655,11 +7655,21 @@ type dsModelPppoEInterfaceConfig struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `MulticastIgmpStaticJoin`
+// +-----------------------------------------------------------------
+type dsModelMulticastIgmpStaticJoin struct {
+	IgmpStaticGrpIpv4 types.String `tfsdk:"igmp_static_grp_ipv4"` // propertyName=igmp_static_grp_ipv4 type=STRING
+	IgmpStaticSrcIpv4 types.String `tfsdk:"igmp_static_src_ipv4"` // propertyName=igmp_static_src_ipv4 type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastInterfaceConfig`
 // +-----------------------------------------------------------------
 type dsModelMulticastInterfaceConfig struct {
-	IgmpVersion      types.String `tfsdk:"igmp_version"`      // propertyName=igmp_version type=STRING
-	MulticastEnabled types.Bool   `tfsdk:"multicast_enabled"` // propertyName=multicast_enabled type=BOOLEAN
+	DrPriority       types.Int64                      `tfsdk:"dr_priority"`       // propertyName=dr_priority type=INTEGER
+	IgmpStaticJoins  []dsModelMulticastIgmpStaticJoin `tfsdk:"igmp_static_joins"` // propertyName=igmp_static_joins type=ARRAY_REFERENCE
+	IgmpVersion      types.String                     `tfsdk:"igmp_version"`      // propertyName=igmp_version type=STRING
+	MulticastEnabled types.Bool                       `tfsdk:"multicast_enabled"` // propertyName=multicast_enabled type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -11681,13 +11691,10 @@ type dsModelElementSoftwareState struct {
 // | Auto Generated for Schema `NTPServer`
 // +-----------------------------------------------------------------
 type dsModelNTPServer struct {
-	Algorithm           types.String `tfsdk:"algorithm"`             // propertyName=algorithm type=STRING
-	AuthenticationKey   types.String `tfsdk:"authentication_key"`    // propertyName=authentication_key type=STRING
-	AuthenticationKeyId types.Int64  `tfsdk:"authentication_key_id"` // propertyName=authentication_key_id type=INTEGER
-	Host                types.String `tfsdk:"host"`                  // propertyName=host type=STRING
-	MaxPoll             types.Int64  `tfsdk:"max_poll"`              // propertyName=max_poll type=INTEGER
-	MinPoll             types.Int64  `tfsdk:"min_poll"`              // propertyName=min_poll type=INTEGER
-	Version             types.Int64  `tfsdk:"version"`               // propertyName=version type=INTEGER
+	Host    types.String `tfsdk:"host"`     // propertyName=host type=STRING
+	MaxPoll types.Int64  `tfsdk:"max_poll"` // propertyName=max_poll type=INTEGER
+	MinPoll types.Int64  `tfsdk:"min_poll"` // propertyName=min_poll type=INTEGER
+	Version types.Int64  `tfsdk:"version"`  // propertyName=version type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19399,14 +19406,6 @@ type dsModelPrefixFilterQueryScreen struct {
 	Schema      types.Int64        `tfsdk:"_schema"`      // propertyName=_schema type=INTEGER
 	Id          types.String       `tfsdk:"id"`           // propertyName=id type=STRING
 	QueryParams *dsModelQueryParam `tfsdk:"query_params"` // propertyName=query_params type=REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `MulticastIgmpStaticJoin`
-// +-----------------------------------------------------------------
-type dsModelMulticastIgmpStaticJoin struct {
-	IgmpStaticGrpIpv4 types.String `tfsdk:"igmp_static_grp_ipv4"` // propertyName=igmp_static_grp_ipv4 type=STRING
-	IgmpStaticSrcIpv4 types.String `tfsdk:"igmp_static_src_ipv4"` // propertyName=igmp_static_src_ipv4 type=STRING
 }
 
 // +-----------------------------------------------------------------

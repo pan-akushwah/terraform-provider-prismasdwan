@@ -403,6 +403,7 @@ package schemas
 // | Ipv6Dhcp HasID=false
 // | Ipv6ConfigV1 HasID=false
 // | PppoEInterfaceConfig HasID=false
+// | MulticastIgmpStaticJoin HasID=false
 // | MulticastInterfaceConfig HasID=false
 // | StaticARPConfig HasID=false
 // | SecondaryIPConfig HasID=false
@@ -1075,7 +1076,6 @@ package schemas
 // | ElementImageStatusV2N1 HasID=true
 // | BulkResponseElementImageStatusV2N1 HasID=false
 // | PrefixFilterQueryScreen HasID=true
-// | MulticastIgmpStaticJoin HasID=false
 // | MulticastPeerGroupScreenV2N1 HasID=true
 // | ElementOTPAccess HasID=true
 // | PolicySetStackQuery HasID=true
@@ -7271,11 +7271,21 @@ type PppoEInterfaceConfig struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `MulticastIgmpStaticJoin`
+// +-----------------------------------------------------------------
+type MulticastIgmpStaticJoin struct {
+	IgmpStaticGrpIpv4 *string `json:"igmp_static_grp_ipv4"` // propertyName=igmp_static_grp_ipv4 type=STRING
+	IgmpStaticSrcIpv4 *string `json:"igmp_static_src_ipv4"` // propertyName=igmp_static_src_ipv4 type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastInterfaceConfig`
 // +-----------------------------------------------------------------
 type MulticastInterfaceConfig struct {
-	IgmpVersion      *string `json:"igmp_version"`      // propertyName=igmp_version type=STRING
-	MulticastEnabled *bool   `json:"multicast_enabled"` // propertyName=multicast_enabled type=BOOLEAN
+	DrPriority       *int64                    `json:"dr_priority"`       // propertyName=dr_priority type=INTEGER
+	IgmpStaticJoins  []MulticastIgmpStaticJoin `json:"igmp_static_joins"` // propertyName=igmp_static_joins type=ARRAY_REFERENCE
+	IgmpVersion      *string                   `json:"igmp_version"`      // propertyName=igmp_version type=STRING
+	MulticastEnabled *bool                     `json:"multicast_enabled"` // propertyName=multicast_enabled type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -10997,13 +11007,10 @@ type ElementSoftwareState struct {
 // | Auto Generated for Schema `NTPServer`
 // +-----------------------------------------------------------------
 type NTPServer struct {
-	Algorithm           *string `json:"algorithm"`             // propertyName=algorithm type=STRING
-	AuthenticationKey   *string `json:"authentication_key"`    // propertyName=authentication_key type=STRING
-	AuthenticationKeyId *int64  `json:"authentication_key_id"` // propertyName=authentication_key_id type=INTEGER
-	Host                *string `json:"host"`                  // propertyName=host type=STRING
-	MaxPoll             *int64  `json:"max_poll"`              // propertyName=max_poll type=INTEGER
-	MinPoll             *int64  `json:"min_poll"`              // propertyName=min_poll type=INTEGER
-	Version             *int64  `json:"version"`               // propertyName=version type=INTEGER
+	Host    *string `json:"host"`     // propertyName=host type=STRING
+	MaxPoll *int64  `json:"max_poll"` // propertyName=max_poll type=INTEGER
+	MinPoll *int64  `json:"min_poll"` // propertyName=min_poll type=INTEGER
+	Version *int64  `json:"version"`  // propertyName=version type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18143,14 +18150,6 @@ type PrefixFilterQueryScreen struct {
 	Schema      *int64      `json:"_schema"`      // propertyName=_schema type=INTEGER
 	Id          *string     `json:"id"`           // propertyName=id type=STRING
 	QueryParams *QueryParam `json:"query_params"` // propertyName=query_params type=REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `MulticastIgmpStaticJoin`
-// +-----------------------------------------------------------------
-type MulticastIgmpStaticJoin struct {
-	IgmpStaticGrpIpv4 *string `json:"igmp_static_grp_ipv4"` // propertyName=igmp_static_grp_ipv4 type=STRING
-	IgmpStaticSrcIpv4 *string `json:"igmp_static_src_ipv4"` // propertyName=igmp_static_src_ipv4 type=STRING
 }
 
 // +-----------------------------------------------------------------

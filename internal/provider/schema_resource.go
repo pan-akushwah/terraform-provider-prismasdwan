@@ -406,6 +406,7 @@ import (
 // | Ipv6Dhcp HasID=false
 // | Ipv6ConfigV1 HasID=false
 // | PppoEInterfaceConfig HasID=false
+// | MulticastIgmpStaticJoin HasID=false
 // | MulticastInterfaceConfig HasID=false
 // | StaticARPConfig HasID=false
 // | SecondaryIPConfig HasID=false
@@ -1078,7 +1079,6 @@ import (
 // | ElementImageStatusV2N1 HasID=true
 // | BulkResponseElementImageStatusV2N1 HasID=false
 // | PrefixFilterQueryScreen HasID=true
-// | MulticastIgmpStaticJoin HasID=false
 // | MulticastPeerGroupScreenV2N1 HasID=true
 // | ElementOTPAccess HasID=true
 // | PolicySetStackQuery HasID=true
@@ -11317,9 +11317,23 @@ type rsModelPppoEInterfaceConfig struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `MulticastIgmpStaticJoin`
+// +-----------------------------------------------------------------
+type rsModelMulticastIgmpStaticJoin struct {
+	// propertyName=igmp_static_grp_ipv4 type=STRING
+	IgmpStaticGrpIpv4 types.String `tfsdk:"igmp_static_grp_ipv4"`
+	// propertyName=igmp_static_src_ipv4 type=STRING
+	IgmpStaticSrcIpv4 types.String `tfsdk:"igmp_static_src_ipv4"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastInterfaceConfig`
 // +-----------------------------------------------------------------
 type rsModelMulticastInterfaceConfig struct {
+	// propertyName=dr_priority type=INTEGER
+	DrPriority types.Int64 `tfsdk:"dr_priority"`
+	// propertyName=igmp_static_joins type=ARRAY_REFERENCE
+	IgmpStaticJoins []rsModelMulticastIgmpStaticJoin `tfsdk:"igmp_static_joins"`
 	// propertyName=igmp_version type=STRING
 	IgmpVersion types.String `tfsdk:"igmp_version"`
 	// propertyName=multicast_enabled type=BOOLEAN
@@ -17902,12 +17916,6 @@ type rsModelElementSoftwareState struct {
 // | Auto Generated for Schema `NTPServer`
 // +-----------------------------------------------------------------
 type rsModelNTPServer struct {
-	// propertyName=algorithm type=STRING
-	Algorithm types.String `tfsdk:"algorithm"`
-	// propertyName=authentication_key type=STRING
-	AuthenticationKey types.String `tfsdk:"authentication_key"`
-	// propertyName=authentication_key_id type=INTEGER
-	AuthenticationKeyId types.Int64 `tfsdk:"authentication_key_id"`
 	// propertyName=host type=STRING
 	Host types.String `tfsdk:"host"`
 	// propertyName=max_poll type=INTEGER
@@ -30816,16 +30824,6 @@ type rsModelPrefixFilterQueryScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=query_params type=REFERENCE
 	QueryParams *rsModelQueryParam `tfsdk:"query_params"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `MulticastIgmpStaticJoin`
-// +-----------------------------------------------------------------
-type rsModelMulticastIgmpStaticJoin struct {
-	// propertyName=igmp_static_grp_ipv4 type=STRING
-	IgmpStaticGrpIpv4 types.String `tfsdk:"igmp_static_grp_ipv4"`
-	// propertyName=igmp_static_src_ipv4 type=STRING
-	IgmpStaticSrcIpv4 types.String `tfsdk:"igmp_static_src_ipv4"`
 }
 
 // +-----------------------------------------------------------------

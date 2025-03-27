@@ -128,30 +128,6 @@ func (r *elementNtpResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Sensitive: false,
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
-						// property: name=algorithm, type=STRING macro=rss_schema
-						"algorithm": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=algorithm, type=STRING macro=rss_schema
-						// property: name=authentication_key, type=STRING macro=rss_schema
-						"authentication_key": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=authentication_key, type=STRING macro=rss_schema
-						// property: name=authentication_key_id, type=INTEGER macro=rss_schema
-						"authentication_key_id": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=authentication_key_id, type=INTEGER macro=rss_schema
 						// property: name=host, type=STRING macro=rss_schema
 						"host": rsschema.StringAttribute{
 							Required:  false,
@@ -330,13 +306,7 @@ func (r *elementNtpResource) doGet(ctx context.Context, state *rsModelElementNTP
 		for varLoopNtpServersIndex, varLoopNtpServers := range ans.NtpServers {
 			// add a new item
 			state.NtpServers = append(state.NtpServers, rsModelNTPServer{})
-			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers properties=7
-			// property: name=algorithm, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].Algorithm = types.StringPointerValue(varLoopNtpServers.Algorithm)
-			// property: name=authentication_key, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringPointerValue(varLoopNtpServers.AuthenticationKey)
-			// property: name=authentication_key_id, type=INTEGER macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyId = types.Int64PointerValue(varLoopNtpServers.AuthenticationKeyId)
+			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers properties=4
 			// property: name=host, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Host = types.StringPointerValue(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_to_state
@@ -452,13 +422,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 			// add a new item
 			body.NtpServers = append(body.NtpServers, sdwan_schema.NTPServer{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.NtpServers[varLoopNtpServersIndex] prefix=rsModel plan=varLoopNtpServers properties=7
-			// property: name=algorithm, type=STRING macro=copy_from_plan
-			body.NtpServers[varLoopNtpServersIndex].Algorithm = StringValueOrNil(varLoopNtpServers.Algorithm)
-			// property: name=authentication_key, type=STRING macro=copy_from_plan
-			body.NtpServers[varLoopNtpServersIndex].AuthenticationKey = StringValueOrNil(varLoopNtpServers.AuthenticationKey)
-			// property: name=authentication_key_id, type=INTEGER macro=copy_from_plan
-			body.NtpServers[varLoopNtpServersIndex].AuthenticationKeyId = Int64ValueOrNil(varLoopNtpServers.AuthenticationKeyId)
+			// copy_from_plan: body=body.NtpServers[varLoopNtpServersIndex] prefix=rsModel plan=varLoopNtpServers properties=4
 			// property: name=host, type=STRING macro=copy_from_plan
 			body.NtpServers[varLoopNtpServersIndex].Host = StringValueOrNil(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_from_plan
@@ -483,6 +447,8 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	request_body_string, _ = sjson.Set(request_body_string, "_schema", 1)
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 
@@ -548,13 +514,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 		for varLoopNtpServersIndex, varLoopNtpServers := range ans.NtpServers {
 			// add a new item
 			state.NtpServers = append(state.NtpServers, rsModelNTPServer{})
-			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers properties=7
-			// property: name=algorithm, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].Algorithm = types.StringPointerValue(varLoopNtpServers.Algorithm)
-			// property: name=authentication_key, type=STRING macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKey = types.StringPointerValue(varLoopNtpServers.AuthenticationKey)
-			// property: name=authentication_key_id, type=INTEGER macro=copy_to_state
-			state.NtpServers[varLoopNtpServersIndex].AuthenticationKeyId = types.Int64PointerValue(varLoopNtpServers.AuthenticationKeyId)
+			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers properties=4
 			// property: name=host, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Host = types.StringPointerValue(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_to_state

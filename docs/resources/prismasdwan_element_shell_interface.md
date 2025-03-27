@@ -1,14 +1,14 @@
-## Documentation for Prisma SDWAN Resource "element_interface"
+## Documentation for Prisma SDWAN Resource "element_shell_interface"
 
 ### Overview
 
 | Resource Details | |
 | ------------- | ------------- |
-| Resource Name | `element_interface` |
-| Get Api  | `/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}` (`InterfaceScreenV4N20`) |
-| Post Api  | `/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces` (`InterfaceScreenV4N20`) |
-| Put Api  | `/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}` (`InterfaceScreenV4N20`) |
-| Delete Api  | `/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}` |
+| Resource Name | `element_shell_interface` |
+| Get Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` (`InterfaceScreenV4N20`) |
+| Post Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces` (`InterfaceScreenV4N20`) |
+| Put Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` (`InterfaceScreenV4N20`) |
+| Delete Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` |
 
 
 ### JSON Schema
@@ -1104,8 +1104,8 @@
 ### Terraform Import
 ```json
 import {
- to="prismasdwan_element_interface.my_resource_name"
- id="<resource_id>:site_id=<some_site_id>:element_id=<some_element_id>"
+ to="prismasdwan_element_shell_interface.my_resource_name"
+ id="<resource_id>:site_id=<some_site_id>:element_shell_id=<some_element_shell_id>"
 }
 ```
 
