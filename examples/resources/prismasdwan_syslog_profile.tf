@@ -25,6 +25,28 @@
 #
 #
 
-resource "prismasdwan_syslog_profile" "example" {
- // content goes here
+resource "prismasdwan_syslog_profile" "example_syslog_profile_1" {
+  name        = "example_syslogprofile_1"
+  description = "Created SDWAN Syslog Profile by Terraform"
+  tags        = ["lorem"]
+  protocol = "tcp"
+  enable_flow_logging = true
+  remote_ca_certificate = null
+  server_fqdn = null
+  server_ip = "10.11.13.14"
+  server_port = 514
+  severity_level = "major"
+}
+
+resource "prismasdwan_syslog_profile" "example_syslog_profile_2" {
+  name        = "example_syslogprofile_2"
+  description = "Created SDWAN Syslog Profile by Terraform"
+  tags        = ["lorem"]
+  protocol = "udp"
+  enable_flow_logging = false
+  remote_ca_certificate = null
+  server_fqdn = "google.com"
+  server_ip = null
+  server_port = 123
+  severity_level = "critical"
 }
