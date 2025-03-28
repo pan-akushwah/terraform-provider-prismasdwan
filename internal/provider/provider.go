@@ -217,7 +217,7 @@ func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource 
 		// Resource Locator
 		NewResourceLocatorResource,
 		// -- add content of provider.sources.txt below --
-		NewAnynetlinksResource,
+		NewAnynetLinkResource,
 		NewApnProfileResource,
 		NewAppdefsOverridesResource,
 		NewAppdefsResource,

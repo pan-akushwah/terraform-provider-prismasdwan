@@ -15163,6 +15163,7 @@ type AnynetLinkV4 struct {
 	Id                   *string               `json:"id"`                    // propertyName=id type=STRING
 	Name                 *string               `json:"name"`                  // propertyName=name type=STRING
 	Tags                 []string              `json:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
+	TenantId             *string               `json:"tenant_id"`             // propertyName=tenant_id type=STRING
 	Type                 *string               `json:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *VPNLinkConfiguration `json:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }

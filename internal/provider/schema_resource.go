@@ -25428,6 +25428,8 @@ type rsModelAnynetLinkV4 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+	// propertyName=tenant_id type=STRING
+	TenantId types.String `tfsdk:"tenant_id"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=vpnlink_configuration type=REFERENCE

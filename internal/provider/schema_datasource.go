@@ -16171,6 +16171,7 @@ type dsModelAnynetLinkV4 struct {
 	Id                   types.String                 `tfsdk:"id"`                    // propertyName=id type=STRING
 	Name                 types.String                 `tfsdk:"name"`                  // propertyName=name type=STRING
 	Tags                 types.Set                    `tfsdk:"tags"`                  // propertyName=tags type=SET_PRIMITIVE
+	TenantId             types.String                 `tfsdk:"tenant_id"`             // propertyName=tenant_id type=STRING
 	Type                 types.String                 `tfsdk:"type"`                  // propertyName=type type=STRING
 	VpnlinkConfiguration *dsModelVPNLinkConfiguration `tfsdk:"vpnlink_configuration"` // propertyName=vpnlink_configuration type=REFERENCE
 }

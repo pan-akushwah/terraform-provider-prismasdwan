@@ -121,7 +121,7 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	resourceTypeToUrlMap["prismasdwan_element_ipfix"] = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ipfix/{ipfix_id}"
 	resourceTypeToUrlMap["prismasdwan_site_prisma_sase_connection"] = "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
 	resourceTypeToUrlMap["prismasdwan_security_policy_local_prefix"] = "/sdwan/v2.0/api/ngfwsecuritypolicylocalprefixes/{prefix_id}"
-	resourceTypeToUrlMap["prismasdwan_anynetlinks"] = "/sdwan/v4.0/api/anynetlinks/{anynet_id}"
+	resourceTypeToUrlMap["prismasdwan_anynet_link"] = "/sdwan/v4.0/api/anynetlinks/{anynet_id}"
 	resourceTypeToUrlMap["prismasdwan_wan_overlay"] = "/sdwan/v2.0/api/wanoverlays/{wan_overlay_id}"
 	resourceTypeToUrlMap["prismasdwan_appdefs"] = "/sdwan/v2.6/api/appdefs/{appdef_id}"
 	resourceTypeToUrlMap["prismasdwan_multicast_peer_group_profile"] = "/sdwan/v2.1/api/multicastpeergroups/{peer_group_id}"

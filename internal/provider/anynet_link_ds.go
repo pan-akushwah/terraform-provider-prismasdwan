@@ -23,13 +23,13 @@ import (
 // | Computed Resource Name=anynetlinks
 // +-----------------------------------------------------------------
 // | VPNLinkConfiguration HasID=false
-// | Anynetlink HasID=true
+// | AnynetLinkV4 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
 var (
-	_ datasource.DataSource              = &anynetlinksDataSource{}
-	_ datasource.DataSourceWithConfigure = &anynetlinksDataSource{}
+	_ datasource.DataSource              = &anynetLinkDataSource{}
+	_ datasource.DataSourceWithConfigure = &anynetLinkDataSource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -38,25 +38,25 @@ var (
 //	func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 //	  	return []func() datasource.DataSource{
 //	     ... <other existing data sources>
-//	     NewAnynetlinksDataSource,
+//	     NewAnynetLinkDataSource,
 //	     // -- append next datasource above -- //
 //	     }
 //	  }
-func NewAnynetlinksDataSource() datasource.DataSource {
-	return &anynetlinksDataSource{}
+func NewAnynetLinkDataSource() datasource.DataSource {
+	return &anynetLinkDataSource{}
 }
 
-type anynetlinksDataSource struct {
+type anynetLinkDataSource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (d *anynetlinksDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_anynetlinks"
+func (d *anynetLinkDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_anynet_link"
 }
 
 // Schema defines the schema for this data source.
-func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
 
@@ -64,7 +64,7 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=Anynetlink
+			// rest all properties to be read from GET API Schema schema=AnynetLinkV4
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -104,30 +104,6 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-			// property: name=ep1_branch_gateway, type=BOOLEAN macro=rss_schema
-			"ep1_branch_gateway": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep1_branch_gateway, type=BOOLEAN macro=rss_schema
 			// property: name=ep1_hub_cluster_id, type=STRING macro=rss_schema
 			"ep1_hub_cluster_id": dsschema.StringAttribute{
 				Required:  false,
@@ -144,14 +120,6 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep1_site_id, type=STRING macro=rss_schema
-			// property: name=ep1_site_role, type=STRING macro=rss_schema
-			"ep1_site_role": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep1_site_role, type=STRING macro=rss_schema
 			// property: name=ep1_wan_interface_id, type=STRING macro=rss_schema
 			"ep1_wan_interface_id": dsschema.StringAttribute{
 				Required:  false,
@@ -160,14 +128,6 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep1_wan_interface_id, type=STRING macro=rss_schema
-			// property: name=ep2_branch_gateway, type=BOOLEAN macro=rss_schema
-			"ep2_branch_gateway": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep2_branch_gateway, type=BOOLEAN macro=rss_schema
 			// property: name=ep2_hub_cluster_id, type=STRING macro=rss_schema
 			"ep2_hub_cluster_id": dsschema.StringAttribute{
 				Required:  false,
@@ -184,14 +144,6 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep2_site_id, type=STRING macro=rss_schema
-			// property: name=ep2_site_role, type=STRING macro=rss_schema
-			"ep2_site_role": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep2_site_role, type=STRING macro=rss_schema
 			// property: name=ep2_wan_interface_id, type=STRING macro=rss_schema
 			"ep2_wan_interface_id": dsschema.StringAttribute{
 				Required:  false,
@@ -200,6 +152,14 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep2_wan_interface_id, type=STRING macro=rss_schema
+			// property: name=forced, type=BOOLEAN macro=rss_schema
+			"forced": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=forced, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": dsschema.StringAttribute{
 				Required:  false,
@@ -208,22 +168,6 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": dsschema.StringAttribute{
 				Required:  false,
@@ -232,22 +176,6 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": dsschema.SetAttribute{
 				Required:    false,
@@ -257,14 +185,14 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=target_serviceendpoint_id, type=STRING macro=rss_schema
-			"target_serviceendpoint_id": dsschema.StringAttribute{
+			// property: name=tenant_id, type=STRING macro=rss_schema
+			"tenant_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
-			// key name holder for attribute: name=target_serviceendpoint_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": dsschema.StringAttribute{
 				Required:  false,
@@ -304,7 +232,7 @@ func (d *anynetlinksDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 }
 
 // Configure prepares the struct.
-func (d *anynetlinksDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *anynetLinkDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -312,8 +240,8 @@ func (d *anynetlinksDataSource) Configure(_ context.Context, req datasource.Conf
 }
 
 // Read performs Read for the struct.
-func (d *anynetlinksDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelAnynetlink
+func (d *anynetLinkDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var state dsModelAnynetLinkV4
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -324,13 +252,13 @@ func (d *anynetlinksDataSource) Read(ctx context.Context, req datasource.ReadReq
 	// Basic logging.
 	tflog.Info(ctx, "performing datasource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_anynetlinks",
+		"resource_name":               "prismasdwan_anynet_link",
 	})
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_anynetlinks ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return
 	}
 
@@ -353,7 +281,7 @@ func (d *anynetlinksDataSource) Read(ctx context.Context, req datasource.ReadReq
 		if IsObjectNotFound(*read_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_anynetlinks", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_anynet_link", (*read_request.ResponseErr).Error())
 		}
 		return
 	}
@@ -365,17 +293,17 @@ func (d *anynetlinksDataSource) Read(ctx context.Context, req datasource.ReadReq
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.Anynetlink
+	var ans sdwan_schema.AnynetLinkV4
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to Anynetlink", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to AnynetLinkV4", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=Anynetlink
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=26
+	// lets copy all items into state schema=AnynetLinkV4
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -384,48 +312,30 @@ func (d *anynetlinksDataSource) Read(ctx context.Context, req datasource.ReadReq
 	state.AdminUp = types.BoolPointerValue(ans.AdminUp)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
-	// property: name=ep1_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep1BranchGateway = types.BoolPointerValue(ans.Ep1BranchGateway)
 	// property: name=ep1_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep1HubClusterId = types.StringPointerValue(ans.Ep1HubClusterId)
 	// property: name=ep1_site_id, type=STRING macro=copy_to_state
 	state.Ep1SiteId = types.StringPointerValue(ans.Ep1SiteId)
-	// property: name=ep1_site_role, type=STRING macro=copy_to_state
-	state.Ep1SiteRole = types.StringPointerValue(ans.Ep1SiteRole)
 	// property: name=ep1_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep1WanInterfaceId = types.StringPointerValue(ans.Ep1WanInterfaceId)
-	// property: name=ep2_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep2BranchGateway = types.BoolPointerValue(ans.Ep2BranchGateway)
 	// property: name=ep2_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep2HubClusterId = types.StringPointerValue(ans.Ep2HubClusterId)
 	// property: name=ep2_site_id, type=STRING macro=copy_to_state
 	state.Ep2SiteId = types.StringPointerValue(ans.Ep2SiteId)
-	// property: name=ep2_site_role, type=STRING macro=copy_to_state
-	state.Ep2SiteRole = types.StringPointerValue(ans.Ep2SiteRole)
 	// property: name=ep2_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep2WanInterfaceId = types.StringPointerValue(ans.Ep2WanInterfaceId)
+	// property: name=forced, type=BOOLEAN macro=copy_to_state
+	state.Forced = types.BoolPointerValue(ans.Forced)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=target_serviceendpoint_id, type=STRING macro=copy_to_state
-	state.TargetServiceendpointId = types.StringPointerValue(ans.TargetServiceendpointId)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=type, type=STRING macro=copy_to_state
 	state.Type = types.StringPointerValue(ans.Type)
 	// property: name=vpnlink_configuration, type=REFERENCE macro=copy_to_state

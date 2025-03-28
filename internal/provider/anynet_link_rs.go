@@ -28,14 +28,14 @@ import (
 // | Computed Resource Name=anynetlinks
 // +-----------------------------------------------------------------
 // | VPNLinkConfiguration HasID=false
-// | Anynetlink HasID=true
+// | AnynetLinkV4 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
 var (
-	_ resource.Resource                = &anynetlinksResource{}
-	_ resource.ResourceWithConfigure   = &anynetlinksResource{}
-	_ resource.ResourceWithImportState = &anynetlinksResource{}
+	_ resource.Resource                = &anynetLinkResource{}
+	_ resource.ResourceWithConfigure   = &anynetLinkResource{}
+	_ resource.ResourceWithImportState = &anynetLinkResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -44,25 +44,25 @@ var (
 //	func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource {
 //	  	return []func() resource.Resource{
 //	     ... <other existing resources>
-//	     NewAnynetlinksResource,
+//	     NewAnynetLinkResource,
 //	     // -- append next resource above -- //
 //	     }
 //	  }
-func NewAnynetlinksResource() resource.Resource {
-	return &anynetlinksResource{}
+func NewAnynetLinkResource() resource.Resource {
+	return &anynetLinkResource{}
 }
 
-type anynetlinksResource struct {
+type anynetLinkResource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (r *anynetlinksResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_anynetlinks"
+func (r *anynetLinkResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_anynet_link"
 }
 
 // Schema defines the schema for this data source.
-func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
 		Description: "Retrieves a config item.",
 		Attributes: map[string]rsschema.Attribute{
@@ -72,7 +72,7 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=Anynetlink
+			// rest all properties to be read from GET API Schema schema=AnynetLinkV4
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -112,30 +112,6 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-			// property: name=ep1_branch_gateway, type=BOOLEAN macro=rss_schema
-			"ep1_branch_gateway": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep1_branch_gateway, type=BOOLEAN macro=rss_schema
 			// property: name=ep1_hub_cluster_id, type=STRING macro=rss_schema
 			"ep1_hub_cluster_id": rsschema.StringAttribute{
 				Required:  false,
@@ -152,14 +128,6 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep1_site_id, type=STRING macro=rss_schema
-			// property: name=ep1_site_role, type=STRING macro=rss_schema
-			"ep1_site_role": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep1_site_role, type=STRING macro=rss_schema
 			// property: name=ep1_wan_interface_id, type=STRING macro=rss_schema
 			"ep1_wan_interface_id": rsschema.StringAttribute{
 				Required:  false,
@@ -168,14 +136,6 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep1_wan_interface_id, type=STRING macro=rss_schema
-			// property: name=ep2_branch_gateway, type=BOOLEAN macro=rss_schema
-			"ep2_branch_gateway": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep2_branch_gateway, type=BOOLEAN macro=rss_schema
 			// property: name=ep2_hub_cluster_id, type=STRING macro=rss_schema
 			"ep2_hub_cluster_id": rsschema.StringAttribute{
 				Required:  false,
@@ -192,14 +152,6 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep2_site_id, type=STRING macro=rss_schema
-			// property: name=ep2_site_role, type=STRING macro=rss_schema
-			"ep2_site_role": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=ep2_site_role, type=STRING macro=rss_schema
 			// property: name=ep2_wan_interface_id, type=STRING macro=rss_schema
 			"ep2_wan_interface_id": rsschema.StringAttribute{
 				Required:  false,
@@ -208,6 +160,14 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ep2_wan_interface_id, type=STRING macro=rss_schema
+			// property: name=forced, type=BOOLEAN macro=rss_schema
+			"forced": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=forced, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -216,22 +176,6 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
 				Required:  false,
@@ -240,22 +184,6 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": rsschema.SetAttribute{
 				Required:    false,
@@ -265,14 +193,14 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=target_serviceendpoint_id, type=STRING macro=rss_schema
-			"target_serviceendpoint_id": rsschema.StringAttribute{
+			// property: name=tenant_id, type=STRING macro=rss_schema
+			"tenant_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
-			// key name holder for attribute: name=target_serviceendpoint_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": rsschema.StringAttribute{
 				Required:  false,
@@ -312,7 +240,7 @@ func (r *anynetlinksResource) Schema(_ context.Context, _ resource.SchemaRequest
 }
 
 // Configure prepares the struct.
-func (r *anynetlinksResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *anynetLinkResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -321,7 +249,7 @@ func (r *anynetlinksResource) Configure(_ context.Context, req resource.Configur
 
 // in some apis the status code is not consistent and hence we may have to act upon
 // specific error codes instead
-func (r *anynetlinksResource) GetHttpStatusCode(request *sdwan_client.SdwanClientRequestResponse) int {
+func (r *anynetLinkResource) GetHttpStatusCode(request *sdwan_client.SdwanClientRequestResponse) int {
 	if request.ResponseErrorCode == nil {
 		return request.ResponseStatusCode
 	}
@@ -333,11 +261,11 @@ func (r *anynetlinksResource) GetHttpStatusCode(request *sdwan_client.SdwanClien
 	}
 }
 
-func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlink, state *rsModelAnynetlink, resp *resource.CreateResponse) bool {
-	tflog.Info(ctx, "executing http post for prismasdwan_anynetlinks")
+func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLinkV4, state *rsModelAnynetLinkV4, resp *resource.CreateResponse) bool {
+	tflog.Info(ctx, "executing http post for prismasdwan_anynet_link")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
-		"resource_name":               "prismasdwan_anynetlinks",
+		"resource_name":               "prismasdwan_anynet_link",
 		"terraform_provider_function": "Create",
 	})
 
@@ -354,10 +282,10 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.Anynetlink{}
+	var body = &sdwan_schema.AnynetLinkV4{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=26
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -366,46 +294,28 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	body.AdminUp = BoolValueOrNil(plan.AdminUp)
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-	body.Disabled = BoolValueOrNil(plan.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_from_plan
-	body.DisabledReason = StringValueOrNil(plan.DisabledReason)
-	// property: name=ep1_branch_gateway, type=BOOLEAN macro=copy_from_plan
-	body.Ep1BranchGateway = BoolValueOrNil(plan.Ep1BranchGateway)
 	// property: name=ep1_hub_cluster_id, type=STRING macro=copy_from_plan
 	body.Ep1HubClusterId = StringValueOrNil(plan.Ep1HubClusterId)
 	// property: name=ep1_site_id, type=STRING macro=copy_from_plan
 	body.Ep1SiteId = StringValueOrNil(plan.Ep1SiteId)
-	// property: name=ep1_site_role, type=STRING macro=copy_from_plan
-	body.Ep1SiteRole = StringValueOrNil(plan.Ep1SiteRole)
 	// property: name=ep1_wan_interface_id, type=STRING macro=copy_from_plan
 	body.Ep1WanInterfaceId = StringValueOrNil(plan.Ep1WanInterfaceId)
-	// property: name=ep2_branch_gateway, type=BOOLEAN macro=copy_from_plan
-	body.Ep2BranchGateway = BoolValueOrNil(plan.Ep2BranchGateway)
 	// property: name=ep2_hub_cluster_id, type=STRING macro=copy_from_plan
 	body.Ep2HubClusterId = StringValueOrNil(plan.Ep2HubClusterId)
 	// property: name=ep2_site_id, type=STRING macro=copy_from_plan
 	body.Ep2SiteId = StringValueOrNil(plan.Ep2SiteId)
-	// property: name=ep2_site_role, type=STRING macro=copy_from_plan
-	body.Ep2SiteRole = StringValueOrNil(plan.Ep2SiteRole)
 	// property: name=ep2_wan_interface_id, type=STRING macro=copy_from_plan
 	body.Ep2WanInterfaceId = StringValueOrNil(plan.Ep2WanInterfaceId)
+	// property: name=forced, type=BOOLEAN macro=copy_from_plan
+	body.Forced = BoolValueOrNil(plan.Forced)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-	body.Inactive = BoolValueOrNil(plan.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_from_plan
-	body.InactiveReason = StringValueOrNil(plan.InactiveReason)
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
-	// property: name=region, type=STRING macro=copy_from_plan
-	body.Region = StringValueOrNil(plan.Region)
-	// property: name=site_id, type=STRING macro=copy_from_plan
-	body.SiteId = StringValueOrNil(plan.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
-	// property: name=target_serviceendpoint_id, type=STRING macro=copy_from_plan
-	body.TargetServiceendpointId = StringValueOrNil(plan.TargetServiceendpointId)
+	// property: name=tenant_id, type=STRING macro=copy_from_plan
+	body.TenantId = StringValueOrNil(plan.TenantId)
 	// property: name=type, type=STRING macro=copy_from_plan
 	body.Type = StringValueOrNil(plan.Type)
 	// property: name=vpnlink_configuration, type=REFERENCE macro=copy_from_plan
@@ -421,7 +331,7 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct Anynetlink to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct AnynetLinkV4 to JSON:", err.Error())
 		return false
 	}
 
@@ -431,24 +341,26 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
+	// inject overrides
+	request_body_string, _ = sjson.Delete(request_body_string, "tenant_id")
 	// copy pointer
 	create_request.RequestBody = &request_body_string
 
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, create_request)
 	if create_request.ResponseErr != nil {
-		tflog.Info(ctx, "create request failed for prismasdwan_anynetlinks", map[string]any{
+		tflog.Info(ctx, "create request failed for prismasdwan_anynet_link", map[string]any{
 			"terraform_provider_function": "Create",
-			"resource_name":               "prismasdwan_anynetlinks",
+			"resource_name":               "prismasdwan_anynet_link",
 			"path":                        create_request.FinalPath,
 		})
-		tflog.Debug(ctx, "create request failed for prismasdwan_anynetlinks", map[string]any{
+		tflog.Debug(ctx, "create request failed for prismasdwan_anynet_link", map[string]any{
 			"terraform_provider_function": "Create",
-			"resource_name":               "prismasdwan_anynetlinks",
+			"resource_name":               "prismasdwan_anynet_link",
 			"path":                        create_request.FinalPath,
 			"request":                     create_request.ToString(),
 		})
-		resp.Diagnostics.AddError("error creating prismasdwan_anynetlinks", (*create_request.ResponseErr).Error())
+		resp.Diagnostics.AddError("error creating prismasdwan_anynet_link", (*create_request.ResponseErr).Error())
 		return false
 	}
 
@@ -459,12 +371,12 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.Anynetlink
+	var ans sdwan_schema.AnynetLinkV4
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to Anynetlink in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to AnynetLinkV4 in create", json_err.Error())
 		return false
 	}
 
@@ -487,10 +399,10 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	// set the tf id for the resource created
 	state.Tfid = types.StringValue(idBuilder.String())
 	state.TfParameters = plan.TfParameters
-	tflog.Info(ctx, "created prismasdwan_anynetlinks with ID", map[string]any{"tfid": state.Tfid.ValueString()})
+	tflog.Info(ctx, "created prismasdwan_anynet_link with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=Anynetlink
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	// Store the answer to state. schema=AnynetLinkV4
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -499,48 +411,30 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	state.AdminUp = types.BoolPointerValue(ans.AdminUp)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
-	// property: name=ep1_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep1BranchGateway = types.BoolPointerValue(ans.Ep1BranchGateway)
 	// property: name=ep1_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep1HubClusterId = types.StringPointerValue(ans.Ep1HubClusterId)
 	// property: name=ep1_site_id, type=STRING macro=copy_to_state
 	state.Ep1SiteId = types.StringPointerValue(ans.Ep1SiteId)
-	// property: name=ep1_site_role, type=STRING macro=copy_to_state
-	state.Ep1SiteRole = types.StringPointerValue(ans.Ep1SiteRole)
 	// property: name=ep1_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep1WanInterfaceId = types.StringPointerValue(ans.Ep1WanInterfaceId)
-	// property: name=ep2_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep2BranchGateway = types.BoolPointerValue(ans.Ep2BranchGateway)
 	// property: name=ep2_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep2HubClusterId = types.StringPointerValue(ans.Ep2HubClusterId)
 	// property: name=ep2_site_id, type=STRING macro=copy_to_state
 	state.Ep2SiteId = types.StringPointerValue(ans.Ep2SiteId)
-	// property: name=ep2_site_role, type=STRING macro=copy_to_state
-	state.Ep2SiteRole = types.StringPointerValue(ans.Ep2SiteRole)
 	// property: name=ep2_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep2WanInterfaceId = types.StringPointerValue(ans.Ep2WanInterfaceId)
+	// property: name=forced, type=BOOLEAN macro=copy_to_state
+	state.Forced = types.BoolPointerValue(ans.Forced)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=target_serviceendpoint_id, type=STRING macro=copy_to_state
-	state.TargetServiceendpointId = types.StringPointerValue(ans.TargetServiceendpointId)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=type, type=STRING macro=copy_to_state
 	state.Type = types.StringPointerValue(ans.Type)
 	// property: name=vpnlink_configuration, type=REFERENCE macro=copy_to_state
@@ -557,18 +451,18 @@ func (r *anynetlinksResource) doPost(ctx context.Context, plan *rsModelAnynetlin
 	return true
 }
 
-func (r *anynetlinksResource) doGet(ctx context.Context, state *rsModelAnynetlink, savestate *rsModelAnynetlink, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *anynetLinkResource) doGet(ctx context.Context, state *rsModelAnynetLinkV4, savestate *rsModelAnynetLinkV4, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_anynetlinks",
+		"resource_name":               "prismasdwan_anynet_link",
 		"tfid":                        tfid,
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_anynetlinks ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return false
 	}
 
@@ -599,13 +493,13 @@ func (r *anynetlinksResource) doGet(ctx context.Context, state *rsModelAnynetlin
 		} else if r.GetHttpStatusCode(read_request) == 404 {
 			State.RemoveResource(ctx)
 		} else {
-			tflog.Info(ctx, "read request failed for prismasdwan_anynetlinks", map[string]any{
+			tflog.Info(ctx, "read request failed for prismasdwan_anynet_link", map[string]any{
 				"terraform_provider_function": "Read",
-				"resource_name":               "prismasdwan_anynetlinks",
+				"resource_name":               "prismasdwan_anynet_link",
 				"path":                        read_request.FinalPath,
 				"request":                     read_request.ToString(),
 			})
-			resp.Diagnostics.AddError("error reading prismasdwan_anynetlinks from sdwan servers", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_anynet_link from sdwan servers", (*read_request.ResponseErr).Error())
 		}
 		return false
 	}
@@ -616,7 +510,7 @@ func (r *anynetlinksResource) doGet(ctx context.Context, state *rsModelAnynetlin
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=Anynetlink
+	// Store the answer to state. schema=AnynetLinkV4
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -625,16 +519,16 @@ func (r *anynetlinksResource) doGet(ctx context.Context, state *rsModelAnynetlin
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.Anynetlink
+	var ans sdwan_schema.AnynetLinkV4
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to Anynetlink in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to AnynetLinkV4 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -643,48 +537,30 @@ func (r *anynetlinksResource) doGet(ctx context.Context, state *rsModelAnynetlin
 	state.AdminUp = types.BoolPointerValue(ans.AdminUp)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
-	// property: name=ep1_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep1BranchGateway = types.BoolPointerValue(ans.Ep1BranchGateway)
 	// property: name=ep1_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep1HubClusterId = types.StringPointerValue(ans.Ep1HubClusterId)
 	// property: name=ep1_site_id, type=STRING macro=copy_to_state
 	state.Ep1SiteId = types.StringPointerValue(ans.Ep1SiteId)
-	// property: name=ep1_site_role, type=STRING macro=copy_to_state
-	state.Ep1SiteRole = types.StringPointerValue(ans.Ep1SiteRole)
 	// property: name=ep1_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep1WanInterfaceId = types.StringPointerValue(ans.Ep1WanInterfaceId)
-	// property: name=ep2_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep2BranchGateway = types.BoolPointerValue(ans.Ep2BranchGateway)
 	// property: name=ep2_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep2HubClusterId = types.StringPointerValue(ans.Ep2HubClusterId)
 	// property: name=ep2_site_id, type=STRING macro=copy_to_state
 	state.Ep2SiteId = types.StringPointerValue(ans.Ep2SiteId)
-	// property: name=ep2_site_role, type=STRING macro=copy_to_state
-	state.Ep2SiteRole = types.StringPointerValue(ans.Ep2SiteRole)
 	// property: name=ep2_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep2WanInterfaceId = types.StringPointerValue(ans.Ep2WanInterfaceId)
+	// property: name=forced, type=BOOLEAN macro=copy_to_state
+	state.Forced = types.BoolPointerValue(ans.Forced)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=target_serviceendpoint_id, type=STRING macro=copy_to_state
-	state.TargetServiceendpointId = types.StringPointerValue(ans.TargetServiceendpointId)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=type, type=STRING macro=copy_to_state
 	state.Type = types.StringPointerValue(ans.Type)
 	// property: name=vpnlink_configuration, type=REFERENCE macro=copy_to_state
@@ -701,27 +577,27 @@ func (r *anynetlinksResource) doGet(ctx context.Context, state *rsModelAnynetlin
 	return true
 }
 
-func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink, state *rsModelAnynetlink, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV4, state *rsModelAnynetLinkV4, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
 	tflog.Info(ctx, "performing resource update", map[string]any{
 		"terraform_provider_function": "Update",
-		"resource_name":               "prismasdwan_anynetlinks",
+		"resource_name":               "prismasdwan_anynet_link",
 		"state_tfid":                  state_tfid,
 		"plan_tfid":                   plan_tfid,
 	})
 
 	// both TFID must be SAME!!!
 	if state_tfid != plan_tfid {
-		resp.Diagnostics.AddError("error updating prismasdwan_anynetlinks", "state and plan TFID do not match")
+		resp.Diagnostics.AddError("error updating prismasdwan_anynet_link", "state and plan TFID do not match")
 		return false
 	}
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_anynetlinks ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return false
 	}
 
@@ -745,11 +621,11 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.Anynetlink{}
+	var body = &sdwan_schema.AnynetLinkV4{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=26
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=17
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -774,24 +650,6 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	} else {
 		body.Description = StringValueOrNil(plan.Description)
 	}
-	// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Disabled = ValueBoolPointerFromPlanOrState(plan.Disabled, state.Disabled)
-	} else {
-		body.Disabled = BoolValueOrNil(plan.Disabled)
-	}
-	// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.DisabledReason = ValueStringPointerFromPlanOrState(plan.DisabledReason, state.DisabledReason)
-	} else {
-		body.DisabledReason = StringValueOrNil(plan.DisabledReason)
-	}
-	// property: name=ep1_branch_gateway, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Ep1BranchGateway = ValueBoolPointerFromPlanOrState(plan.Ep1BranchGateway, state.Ep1BranchGateway)
-	} else {
-		body.Ep1BranchGateway = BoolValueOrNil(plan.Ep1BranchGateway)
-	}
 	// property: name=ep1_hub_cluster_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Ep1HubClusterId = ValueStringPointerFromPlanOrState(plan.Ep1HubClusterId, state.Ep1HubClusterId)
@@ -804,23 +662,11 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	} else {
 		body.Ep1SiteId = StringValueOrNil(plan.Ep1SiteId)
 	}
-	// property: name=ep1_site_role, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.Ep1SiteRole = ValueStringPointerFromPlanOrState(plan.Ep1SiteRole, state.Ep1SiteRole)
-	} else {
-		body.Ep1SiteRole = StringValueOrNil(plan.Ep1SiteRole)
-	}
 	// property: name=ep1_wan_interface_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Ep1WanInterfaceId = ValueStringPointerFromPlanOrState(plan.Ep1WanInterfaceId, state.Ep1WanInterfaceId)
 	} else {
 		body.Ep1WanInterfaceId = StringValueOrNil(plan.Ep1WanInterfaceId)
-	}
-	// property: name=ep2_branch_gateway, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Ep2BranchGateway = ValueBoolPointerFromPlanOrState(plan.Ep2BranchGateway, state.Ep2BranchGateway)
-	} else {
-		body.Ep2BranchGateway = BoolValueOrNil(plan.Ep2BranchGateway)
 	}
 	// property: name=ep2_hub_cluster_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -834,17 +680,17 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	} else {
 		body.Ep2SiteId = StringValueOrNil(plan.Ep2SiteId)
 	}
-	// property: name=ep2_site_role, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.Ep2SiteRole = ValueStringPointerFromPlanOrState(plan.Ep2SiteRole, state.Ep2SiteRole)
-	} else {
-		body.Ep2SiteRole = StringValueOrNil(plan.Ep2SiteRole)
-	}
 	// property: name=ep2_wan_interface_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Ep2WanInterfaceId = ValueStringPointerFromPlanOrState(plan.Ep2WanInterfaceId, state.Ep2WanInterfaceId)
 	} else {
 		body.Ep2WanInterfaceId = StringValueOrNil(plan.Ep2WanInterfaceId)
+	}
+	// property: name=forced, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.Forced = ValueBoolPointerFromPlanOrState(plan.Forced, state.Forced)
+	} else {
+		body.Forced = BoolValueOrNil(plan.Forced)
 	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -852,43 +698,19 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	} else {
 		body.Id = StringValueOrNil(plan.Id)
 	}
-	// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Inactive = ValueBoolPointerFromPlanOrState(plan.Inactive, state.Inactive)
-	} else {
-		body.Inactive = BoolValueOrNil(plan.Inactive)
-	}
-	// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.InactiveReason = ValueStringPointerFromPlanOrState(plan.InactiveReason, state.InactiveReason)
-	} else {
-		body.InactiveReason = StringValueOrNil(plan.InactiveReason)
-	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
 	} else {
 		body.Name = StringValueOrNil(plan.Name)
 	}
-	// property: name=region, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.Region = ValueStringPointerFromPlanOrState(plan.Region, state.Region)
-	} else {
-		body.Region = StringValueOrNil(plan.Region)
-	}
-	// property: name=site_id, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.SiteId = ValueStringPointerFromPlanOrState(plan.SiteId, state.SiteId)
-	} else {
-		body.SiteId = StringValueOrNil(plan.SiteId)
-	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
-	// property: name=target_serviceendpoint_id, type=STRING macro=copy_from_plan_or_state
+	// property: name=tenant_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
-		body.TargetServiceendpointId = ValueStringPointerFromPlanOrState(plan.TargetServiceendpointId, state.TargetServiceendpointId)
+		body.TenantId = ValueStringPointerFromPlanOrState(plan.TenantId, state.TenantId)
 	} else {
-		body.TargetServiceendpointId = StringValueOrNil(plan.TargetServiceendpointId)
+		body.TenantId = StringValueOrNil(plan.TenantId)
 	}
 	// property: name=type, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -919,7 +741,7 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct Anynetlink to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct AnynetLinkV4 to JSON:", err.Error())
 		return false
 	}
 
@@ -936,18 +758,18 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 		} else if r.GetHttpStatusCode(put_request) == 404 {
 			State.RemoveResource(ctx)
 		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_anynetlinks", map[string]any{
+			tflog.Info(ctx, "update request failed for prismasdwan_anynet_link", map[string]any{
 				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_anynetlinks",
+				"resource_name":               "prismasdwan_anynet_link",
 				"path":                        put_request.FinalPath,
 			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_anynetlinks", map[string]any{
+			tflog.Debug(ctx, "update request failed for prismasdwan_anynet_link", map[string]any{
 				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_anynetlinks",
+				"resource_name":               "prismasdwan_anynet_link",
 				"path":                        put_request.FinalPath,
 				"request":                     put_request.ToString(),
 			})
-			resp.Diagnostics.AddError("error updating prismasdwan_anynetlinks", (*put_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error updating prismasdwan_anynet_link", (*put_request.ResponseErr).Error())
 		}
 		return false
 	}
@@ -959,17 +781,17 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.Anynetlink
+	var ans sdwan_schema.AnynetLinkV4
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to Anynetlink in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to AnynetLinkV4 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=Anynetlink
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	// Store the answer to state. schema=AnynetLinkV4
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -978,48 +800,30 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	state.AdminUp = types.BoolPointerValue(ans.AdminUp)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
-	// property: name=ep1_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep1BranchGateway = types.BoolPointerValue(ans.Ep1BranchGateway)
 	// property: name=ep1_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep1HubClusterId = types.StringPointerValue(ans.Ep1HubClusterId)
 	// property: name=ep1_site_id, type=STRING macro=copy_to_state
 	state.Ep1SiteId = types.StringPointerValue(ans.Ep1SiteId)
-	// property: name=ep1_site_role, type=STRING macro=copy_to_state
-	state.Ep1SiteRole = types.StringPointerValue(ans.Ep1SiteRole)
 	// property: name=ep1_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep1WanInterfaceId = types.StringPointerValue(ans.Ep1WanInterfaceId)
-	// property: name=ep2_branch_gateway, type=BOOLEAN macro=copy_to_state
-	state.Ep2BranchGateway = types.BoolPointerValue(ans.Ep2BranchGateway)
 	// property: name=ep2_hub_cluster_id, type=STRING macro=copy_to_state
 	state.Ep2HubClusterId = types.StringPointerValue(ans.Ep2HubClusterId)
 	// property: name=ep2_site_id, type=STRING macro=copy_to_state
 	state.Ep2SiteId = types.StringPointerValue(ans.Ep2SiteId)
-	// property: name=ep2_site_role, type=STRING macro=copy_to_state
-	state.Ep2SiteRole = types.StringPointerValue(ans.Ep2SiteRole)
 	// property: name=ep2_wan_interface_id, type=STRING macro=copy_to_state
 	state.Ep2WanInterfaceId = types.StringPointerValue(ans.Ep2WanInterfaceId)
+	// property: name=forced, type=BOOLEAN macro=copy_to_state
+	state.Forced = types.BoolPointerValue(ans.Forced)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=target_serviceendpoint_id, type=STRING macro=copy_to_state
-	state.TargetServiceendpointId = types.StringPointerValue(ans.TargetServiceendpointId)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=type, type=STRING macro=copy_to_state
 	state.Type = types.StringPointerValue(ans.Type)
 	// property: name=vpnlink_configuration, type=REFERENCE macro=copy_to_state
@@ -1036,20 +840,20 @@ func (r *anynetlinksResource) doPut(ctx context.Context, plan *rsModelAnynetlink
 	return true
 }
 
-func (r *anynetlinksResource) doDelete(ctx context.Context, state *rsModelAnynetlink, resp *resource.DeleteResponse) bool {
+func (r *anynetLinkResource) doDelete(ctx context.Context, state *rsModelAnynetLinkV4, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
 	tflog.Info(ctx, "performing resource delete", map[string]any{
 		"terraform_provider_function": "Delete",
-		"resource_name":               "prismasdwan_anynetlinks",
+		"resource_name":               "prismasdwan_anynet_link",
 		"locMap":                      map[string]int{"prefix_id": 0},
 	})
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_anynetlinks ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return false
 	}
 
@@ -1076,7 +880,7 @@ func (r *anynetlinksResource) doDelete(ctx context.Context, state *rsModelAnynet
 	svc.ExecuteSdwanRequest(ctx, delete_request)
 	if delete_request.ResponseErr != nil {
 		if !IsObjectNotFound(*delete_request.ResponseErr) {
-			resp.Diagnostics.AddError("error deleting prismasdwan_anynetlinks", (*delete_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error deleting prismasdwan_anynet_link", (*delete_request.ResponseErr).Error())
 			return false
 		}
 	}
@@ -1086,16 +890,16 @@ func (r *anynetlinksResource) doDelete(ctx context.Context, state *rsModelAnynet
 // Performs the Create(POST) Operation on the Resource
 // TfID is pulled from plan to use in the creation request
 // Path Parameters are encoded into TfID itself
-func (r *anynetlinksResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	tflog.Info(ctx, "executing resource create for prismasdwan_anynetlinks")
-	var plan rsModelAnynetlink
+func (r *anynetLinkResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	tflog.Info(ctx, "executing resource create for prismasdwan_anynet_link")
+	var plan rsModelAnynetLinkV4
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelAnynetlink
+	var state rsModelAnynetLinkV4
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1104,10 +908,10 @@ func (r *anynetlinksResource) Create(ctx context.Context, req resource.CreateReq
 // Performs the Read(GET) Operation on the Resource
 // TfID is pulled from state to use in the read request
 // Path Parameters are extracted TfID itself
-func (r *anynetlinksResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *anynetLinkResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
-	tflog.Info(ctx, "executing resource read for prismasdwan_anynetlinks")
-	var savestate, state rsModelAnynetlink
+	tflog.Info(ctx, "executing resource read for prismasdwan_anynet_link")
+	var savestate, state rsModelAnynetLinkV4
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1123,10 +927,10 @@ func (r *anynetlinksResource) Read(ctx context.Context, req resource.ReadRequest
 // TfID is pulled from state to use in the read request
 // Path Parameters are extracted TfID itself
 // TfID must match in state and plan, else error is thrown
-func (r *anynetlinksResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+func (r *anynetLinkResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
-	tflog.Info(ctx, "executing resource update for prismasdwan_anynetlinks")
-	var plan, state rsModelAnynetlink
+	tflog.Info(ctx, "executing resource update for prismasdwan_anynet_link")
+	var plan, state rsModelAnynetLinkV4
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1147,10 +951,10 @@ func (r *anynetlinksResource) Update(ctx context.Context, req resource.UpdateReq
 // Performs the Delete Operation on the Resource
 // TfID is pulled from state to use in the deletion request
 // Path Parameters are extracted from the TfID itself
-func (r *anynetlinksResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *anynetLinkResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
-	tflog.Info(ctx, "executing resource delete for prismasdwan_anynetlinks")
-	var state rsModelAnynetlink
+	tflog.Info(ctx, "executing resource delete for prismasdwan_anynet_link")
+	var state rsModelAnynetLinkV4
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1163,6 +967,6 @@ func (r *anynetlinksResource) Delete(ctx context.Context, req resource.DeleteReq
 	}
 }
 
-func (r *anynetlinksResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *anynetLinkResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("tfid"), req, resp)
 }
