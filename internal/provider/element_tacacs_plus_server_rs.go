@@ -481,7 +481,7 @@ func (r *elementTacacsPlusServerResource) doGet(ctx context.Context, state *rsMo
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
 	read_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*read_request.PathParameters)["element_id"] = &tokens[0]
+	(*read_request.PathParameters)["id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[1:] {
 		param := strings.Split(token, "=")
@@ -620,7 +620,7 @@ func (r *elementTacacsPlusServerResource) doPut(ctx context.Context, plan *rsMod
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	put_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*put_request.PathParameters)["element_id"] = &tokens[0]
+	(*put_request.PathParameters)["id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[1:] {
 		param := strings.Split(token, "=")
@@ -860,7 +860,7 @@ func (r *elementTacacsPlusServerResource) doDelete(ctx context.Context, state *r
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	delete_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*delete_request.PathParameters)["element_id"] = &tokens[0]
+	(*delete_request.PathParameters)["id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[1:] {
 		param := strings.Split(token, "=")
