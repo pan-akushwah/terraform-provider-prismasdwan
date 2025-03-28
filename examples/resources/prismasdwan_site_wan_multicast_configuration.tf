@@ -25,10 +25,20 @@
 #
 #
 
-resource "prismasdwan_site_wan_multicast_configuration" "site_1_multicast_config" {
+resource "prismasdwan_resource_locator" "first_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "element_shell_site"
+}
+
+#
+# Only one can be created per site.
+# If the configuration already exists, import and then start managing it
+#
+resource "prismasdwan_site_wan_multicast_configuration" "site_wan_multicast_config" {
   # Needed for path parameters
   x_parameters = {
-    site_id = prismasdwan_site.site_1.id
+    site_id = prismasdwan_resource_locator.first_site.result
   }
   site_configs = [
     {
