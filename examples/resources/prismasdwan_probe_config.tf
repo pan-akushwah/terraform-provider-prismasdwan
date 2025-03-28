@@ -1,6 +1,6 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "probeconfigs"
+# Sample resource example for "probe_config"
 #
 # To be able to use this template, first use the Prisma SDWAN provider:
 # terraform {
@@ -25,6 +25,6 @@
 #
 #
 
-resource "prismasdwan_probeconfigs" "example" {
+resource "prismasdwan_probe_config" "example" {
  // content goes here
 }

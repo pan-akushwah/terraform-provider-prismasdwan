@@ -224,7 +224,7 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	resourceTypeToUrlMap["prismasdwan_element_iot_device_id_config"] = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{config_id}"
 	resourceTypeToUrlMap["prismasdwan_security_policy_global_prefix"] = "/sdwan/v2.1/api/ngfwsecuritypolicyglobalprefixes/{prefix_id}"
 	resourceTypeToUrlMap["prismasdwan_element_snmp_agent"] = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/snmpagents/{snmpagent_id}"
-	resourceTypeToUrlMap["prismasdwan_probeconfigs"] = "/sdwan/v2.0/api/probeconfigs/{config_id}"
+	resourceTypeToUrlMap["prismasdwan_probe_config"] = "/sdwan/v2.0/api/probeconfigs/{config_id}"
 	resourceTypeToUrlMap["prismasdwan_path_group"] = "/sdwan/v2.1/api/pathgroups/{path_group_id}"
 	resourceTypeToUrlMap["prismasdwan_element_bgp_peer"] = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 	resourceTypeToUrlMap["prismasdwan_security_policy_rule"] = "/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"

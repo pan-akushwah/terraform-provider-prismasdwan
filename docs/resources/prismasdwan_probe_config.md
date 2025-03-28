@@ -1,10 +1,10 @@
-## Documentation for Prisma SDWAN Resource "probeconfigs"
+## Documentation for Prisma SDWAN Resource "probe_config"
 
 ### Overview
 
 | Resource Details | |
 | ------------- | ------------- |
-| Resource Name | `probeconfigs` |
+| Resource Name | `probe_config` |
 | Get Api  | `/sdwan/v2.0/api/probeconfigs/{config_id}` (`ProbeConfigScreen`) |
 | Post Api  | `/sdwan/v2.0/api/probeconfigs` (`ProbeConfigScreen`) |
 | Put Api  | `/sdwan/v2.0/api/probeconfigs/{config_id}` (`ProbeConfigScreen`) |
@@ -146,7 +146,7 @@
 ### Terraform Import
 ```json
 import {
- to="prismasdwan_probeconfigs.my_resource_name"
+ to="prismasdwan_probe_config.my_resource_name"
  id="<resource_id>"
 }
 ```

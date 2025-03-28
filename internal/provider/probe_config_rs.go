@@ -33,9 +33,9 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &probeconfigsResource{}
-	_ resource.ResourceWithConfigure   = &probeconfigsResource{}
-	_ resource.ResourceWithImportState = &probeconfigsResource{}
+	_ resource.Resource                = &probeConfigResource{}
+	_ resource.ResourceWithConfigure   = &probeConfigResource{}
+	_ resource.ResourceWithImportState = &probeConfigResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -44,25 +44,25 @@ var (
 //	func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource {
 //	  	return []func() resource.Resource{
 //	     ... <other existing resources>
-//	     NewProbeconfigsResource,
+//	     NewProbeConfigResource,
 //	     // -- append next resource above -- //
 //	     }
 //	  }
-func NewProbeconfigsResource() resource.Resource {
-	return &probeconfigsResource{}
+func NewProbeConfigResource() resource.Resource {
+	return &probeConfigResource{}
 }
 
-type probeconfigsResource struct {
+type probeConfigResource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (r *probeconfigsResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_probeconfigs"
+func (r *probeConfigResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_probe_config"
 }
 
 // Schema defines the schema for this data source.
-func (r *probeconfigsResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *probeConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
 		Description: "Retrieves a config item.",
 		Attributes: map[string]rsschema.Attribute{
@@ -236,7 +236,7 @@ func (r *probeconfigsResource) Schema(_ context.Context, _ resource.SchemaReques
 }
 
 // Configure prepares the struct.
-func (r *probeconfigsResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *probeConfigResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -245,7 +245,7 @@ func (r *probeconfigsResource) Configure(_ context.Context, req resource.Configu
 
 // in some apis the status code is not consistent and hence we may have to act upon
 // specific error codes instead
-func (r *probeconfigsResource) GetHttpStatusCode(request *sdwan_client.SdwanClientRequestResponse) int {
+func (r *probeConfigResource) GetHttpStatusCode(request *sdwan_client.SdwanClientRequestResponse) int {
 	if request.ResponseErrorCode == nil {
 		return request.ResponseStatusCode
 	}
@@ -257,11 +257,11 @@ func (r *probeconfigsResource) GetHttpStatusCode(request *sdwan_client.SdwanClie
 	}
 }
 
-func (r *probeconfigsResource) doPost(ctx context.Context, plan *rsModelProbeConfigScreen, state *rsModelProbeConfigScreen, resp *resource.CreateResponse) bool {
-	tflog.Info(ctx, "executing http post for prismasdwan_probeconfigs")
+func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConfigScreen, state *rsModelProbeConfigScreen, resp *resource.CreateResponse) bool {
+	tflog.Info(ctx, "executing http post for prismasdwan_probe_config")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
-		"resource_name":               "prismasdwan_probeconfigs",
+		"resource_name":               "prismasdwan_probe_config",
 		"terraform_provider_function": "Create",
 	})
 
@@ -349,18 +349,18 @@ func (r *probeconfigsResource) doPost(ctx context.Context, plan *rsModelProbeCon
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, create_request)
 	if create_request.ResponseErr != nil {
-		tflog.Info(ctx, "create request failed for prismasdwan_probeconfigs", map[string]any{
+		tflog.Info(ctx, "create request failed for prismasdwan_probe_config", map[string]any{
 			"terraform_provider_function": "Create",
-			"resource_name":               "prismasdwan_probeconfigs",
+			"resource_name":               "prismasdwan_probe_config",
 			"path":                        create_request.FinalPath,
 		})
-		tflog.Debug(ctx, "create request failed for prismasdwan_probeconfigs", map[string]any{
+		tflog.Debug(ctx, "create request failed for prismasdwan_probe_config", map[string]any{
 			"terraform_provider_function": "Create",
-			"resource_name":               "prismasdwan_probeconfigs",
+			"resource_name":               "prismasdwan_probe_config",
 			"path":                        create_request.FinalPath,
 			"request":                     create_request.ToString(),
 		})
-		resp.Diagnostics.AddError("error creating prismasdwan_probeconfigs", (*create_request.ResponseErr).Error())
+		resp.Diagnostics.AddError("error creating prismasdwan_probe_config", (*create_request.ResponseErr).Error())
 		return false
 	}
 
@@ -399,7 +399,7 @@ func (r *probeconfigsResource) doPost(ctx context.Context, plan *rsModelProbeCon
 	// set the tf id for the resource created
 	state.Tfid = types.StringValue(idBuilder.String())
 	state.TfParameters = plan.TfParameters
-	tflog.Info(ctx, "created prismasdwan_probeconfigs with ID", map[string]any{"tfid": state.Tfid.ValueString()})
+	tflog.Info(ctx, "created prismasdwan_probe_config with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=ProbeConfigScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
@@ -459,18 +459,18 @@ func (r *probeconfigsResource) doPost(ctx context.Context, plan *rsModelProbeCon
 	return true
 }
 
-func (r *probeconfigsResource) doGet(ctx context.Context, state *rsModelProbeConfigScreen, savestate *rsModelProbeConfigScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConfigScreen, savestate *rsModelProbeConfigScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_probeconfigs",
+		"resource_name":               "prismasdwan_probe_config",
 		"tfid":                        tfid,
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_probeconfigs ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return false
 	}
 
@@ -501,13 +501,13 @@ func (r *probeconfigsResource) doGet(ctx context.Context, state *rsModelProbeCon
 		} else if r.GetHttpStatusCode(read_request) == 404 {
 			State.RemoveResource(ctx)
 		} else {
-			tflog.Info(ctx, "read request failed for prismasdwan_probeconfigs", map[string]any{
+			tflog.Info(ctx, "read request failed for prismasdwan_probe_config", map[string]any{
 				"terraform_provider_function": "Read",
-				"resource_name":               "prismasdwan_probeconfigs",
+				"resource_name":               "prismasdwan_probe_config",
 				"path":                        read_request.FinalPath,
 				"request":                     read_request.ToString(),
 			})
-			resp.Diagnostics.AddError("error reading prismasdwan_probeconfigs from sdwan servers", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_probe_config from sdwan servers", (*read_request.ResponseErr).Error())
 		}
 		return false
 	}
@@ -593,27 +593,27 @@ func (r *probeconfigsResource) doGet(ctx context.Context, state *rsModelProbeCon
 	return true
 }
 
-func (r *probeconfigsResource) doPut(ctx context.Context, plan *rsModelProbeConfigScreen, state *rsModelProbeConfigScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfigScreen, state *rsModelProbeConfigScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
 	tflog.Info(ctx, "performing resource update", map[string]any{
 		"terraform_provider_function": "Update",
-		"resource_name":               "prismasdwan_probeconfigs",
+		"resource_name":               "prismasdwan_probe_config",
 		"state_tfid":                  state_tfid,
 		"plan_tfid":                   plan_tfid,
 	})
 
 	// both TFID must be SAME!!!
 	if state_tfid != plan_tfid {
-		resp.Diagnostics.AddError("error updating prismasdwan_probeconfigs", "state and plan TFID do not match")
+		resp.Diagnostics.AddError("error updating prismasdwan_probe_config", "state and plan TFID do not match")
 		return false
 	}
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_probeconfigs ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return false
 	}
 
@@ -739,18 +739,18 @@ func (r *probeconfigsResource) doPut(ctx context.Context, plan *rsModelProbeConf
 		} else if r.GetHttpStatusCode(put_request) == 404 {
 			State.RemoveResource(ctx)
 		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_probeconfigs", map[string]any{
+			tflog.Info(ctx, "update request failed for prismasdwan_probe_config", map[string]any{
 				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_probeconfigs",
+				"resource_name":               "prismasdwan_probe_config",
 				"path":                        put_request.FinalPath,
 			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_probeconfigs", map[string]any{
+			tflog.Debug(ctx, "update request failed for prismasdwan_probe_config", map[string]any{
 				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_probeconfigs",
+				"resource_name":               "prismasdwan_probe_config",
 				"path":                        put_request.FinalPath,
 				"request":                     put_request.ToString(),
 			})
-			resp.Diagnostics.AddError("error updating prismasdwan_probeconfigs", (*put_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error updating prismasdwan_probe_config", (*put_request.ResponseErr).Error())
 		}
 		return false
 	}
@@ -829,20 +829,20 @@ func (r *probeconfigsResource) doPut(ctx context.Context, plan *rsModelProbeConf
 	return true
 }
 
-func (r *probeconfigsResource) doDelete(ctx context.Context, state *rsModelProbeConfigScreen, resp *resource.DeleteResponse) bool {
+func (r *probeConfigResource) doDelete(ctx context.Context, state *rsModelProbeConfigScreen, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
 	tflog.Info(ctx, "performing resource delete", map[string]any{
 		"terraform_provider_function": "Delete",
-		"resource_name":               "prismasdwan_probeconfigs",
+		"resource_name":               "prismasdwan_probe_config",
 		"locMap":                      map[string]int{"prefix_id": 0},
 	})
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_probeconfigs ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return false
 	}
 
@@ -869,7 +869,7 @@ func (r *probeconfigsResource) doDelete(ctx context.Context, state *rsModelProbe
 	svc.ExecuteSdwanRequest(ctx, delete_request)
 	if delete_request.ResponseErr != nil {
 		if !IsObjectNotFound(*delete_request.ResponseErr) {
-			resp.Diagnostics.AddError("error deleting prismasdwan_probeconfigs", (*delete_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error deleting prismasdwan_probe_config", (*delete_request.ResponseErr).Error())
 			return false
 		}
 	}
@@ -879,8 +879,8 @@ func (r *probeconfigsResource) doDelete(ctx context.Context, state *rsModelProbe
 // Performs the Create(POST) Operation on the Resource
 // TfID is pulled from plan to use in the creation request
 // Path Parameters are encoded into TfID itself
-func (r *probeconfigsResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	tflog.Info(ctx, "executing resource create for prismasdwan_probeconfigs")
+func (r *probeConfigResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	tflog.Info(ctx, "executing resource create for prismasdwan_probe_config")
 	var plan rsModelProbeConfigScreen
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
@@ -897,9 +897,9 @@ func (r *probeconfigsResource) Create(ctx context.Context, req resource.CreateRe
 // Performs the Read(GET) Operation on the Resource
 // TfID is pulled from state to use in the read request
 // Path Parameters are extracted TfID itself
-func (r *probeconfigsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *probeConfigResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
-	tflog.Info(ctx, "executing resource read for prismasdwan_probeconfigs")
+	tflog.Info(ctx, "executing resource read for prismasdwan_probe_config")
 	var savestate, state rsModelProbeConfigScreen
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
@@ -916,9 +916,9 @@ func (r *probeconfigsResource) Read(ctx context.Context, req resource.ReadReques
 // TfID is pulled from state to use in the read request
 // Path Parameters are extracted TfID itself
 // TfID must match in state and plan, else error is thrown
-func (r *probeconfigsResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+func (r *probeConfigResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
-	tflog.Info(ctx, "executing resource update for prismasdwan_probeconfigs")
+	tflog.Info(ctx, "executing resource update for prismasdwan_probe_config")
 	var plan, state rsModelProbeConfigScreen
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -940,9 +940,9 @@ func (r *probeconfigsResource) Update(ctx context.Context, req resource.UpdateRe
 // Performs the Delete Operation on the Resource
 // TfID is pulled from state to use in the deletion request
 // Path Parameters are extracted from the TfID itself
-func (r *probeconfigsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *probeConfigResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
-	tflog.Info(ctx, "executing resource delete for prismasdwan_probeconfigs")
+	tflog.Info(ctx, "executing resource delete for prismasdwan_probe_config")
 	var state rsModelProbeConfigScreen
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -956,6 +956,6 @@ func (r *probeconfigsResource) Delete(ctx context.Context, req resource.DeleteRe
 	}
 }
 
-func (r *probeconfigsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *probeConfigResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("tfid"), req, resp)
 }

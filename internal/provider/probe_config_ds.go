@@ -28,8 +28,8 @@ import (
 
 // Data source.
 var (
-	_ datasource.DataSource              = &probeconfigsDataSource{}
-	_ datasource.DataSourceWithConfigure = &probeconfigsDataSource{}
+	_ datasource.DataSource              = &probeConfigDataSource{}
+	_ datasource.DataSourceWithConfigure = &probeConfigDataSource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -38,25 +38,25 @@ var (
 //	func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 //	  	return []func() datasource.DataSource{
 //	     ... <other existing data sources>
-//	     NewProbeconfigsDataSource,
+//	     NewProbeConfigDataSource,
 //	     // -- append next datasource above -- //
 //	     }
 //	  }
-func NewProbeconfigsDataSource() datasource.DataSource {
-	return &probeconfigsDataSource{}
+func NewProbeConfigDataSource() datasource.DataSource {
+	return &probeConfigDataSource{}
 }
 
-type probeconfigsDataSource struct {
+type probeConfigDataSource struct {
 	client *sdwan.Client
 }
 
 // Metadata returns the data source type name.
-func (d *probeconfigsDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
-	resp.TypeName = "prismasdwan_probeconfigs"
+func (d *probeConfigDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = "prismasdwan_probe_config"
 }
 
 // Schema defines the schema for this data source.
-func (d *probeconfigsDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
 
@@ -228,7 +228,7 @@ func (d *probeconfigsDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 }
 
 // Configure prepares the struct.
-func (d *probeconfigsDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *probeConfigDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -236,7 +236,7 @@ func (d *probeconfigsDataSource) Configure(_ context.Context, req datasource.Con
 }
 
 // Read performs Read for the struct.
-func (d *probeconfigsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
 	var state dsModelProbeConfigScreen
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -248,13 +248,13 @@ func (d *probeconfigsDataSource) Read(ctx context.Context, req datasource.ReadRe
 	// Basic logging.
 	tflog.Info(ctx, "performing datasource read", map[string]any{
 		"terraform_provider_function": "Read",
-		"resource_name":               "prismasdwan_probeconfigs",
+		"resource_name":               "prismasdwan_probe_config",
 	})
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
 	if len(tokens) != 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_probeconfigs ID format", "Expected 1 tokens")
+		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return
 	}
 
@@ -277,7 +277,7 @@ func (d *probeconfigsDataSource) Read(ctx context.Context, req datasource.ReadRe
 		if IsObjectNotFound(*read_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_probeconfigs", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_probe_config", (*read_request.ResponseErr).Error())
 		}
 		return
 	}
