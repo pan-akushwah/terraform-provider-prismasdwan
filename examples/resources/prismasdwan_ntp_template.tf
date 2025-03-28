@@ -25,6 +25,56 @@
 #
 #
 
-resource "prismasdwan_ntp_template" "example" {
- // content goes here
+resource "prismasdwan_ntp_template" "example_ntp_template_1" {
+  name        = "example_ntp_template_1"
+  description = "Created SDWAN NTP Template by Terraform"
+  tags        = ["lorem"]
+  default_template = true
+  ntp_servers = [
+  {
+    host = "10.11.12.13"
+    version = 4
+    min_poll = 6
+    max_poll = 10
+  },
+  {
+    host = "10.11.12.14"
+    version = 4
+    min_poll = 6
+    max_poll = 10
+  }
+]
+}
+
+resource "prismasdwan_ntp_template" "example_ntp_template_2" {
+  name        = "example_ntp_template_2"
+  description = "Created SDWAN NTP Template by Terraform"
+  tags        = ["lorem"]
+  default_template = false
+  ntp_servers = [
+  {
+    host = "0.cloudgenix.pool.ntp.org"
+    version = 4
+    min_poll = 4
+    max_poll = 9
+  },
+  {
+    host = "1.cloudgenix.pool.ntp.org"
+    version = 4
+    min_poll = 9
+    max_poll = 10
+  },
+  {
+    host = "time.nist.gov"
+    version = 4
+    min_poll = 4
+    max_poll = 10
+  },
+  {
+    host = "10.11.12.15"
+    version = 4
+    min_poll = 6
+    max_poll = 10
+  }
+]
 }
