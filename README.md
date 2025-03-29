@@ -14,13 +14,7 @@ Building the Provider
 
 1. Install [Go](https://go.dev/dl)
 
-2. Clone the SDK repo:
-
-```sh
-git clone https://github.com/paloaltonetworks/scm-go
-```
-
-3. Clone this repo:
+2. Clone this repo:
 
 ```sh
 git clone https://github.com/paloaltonetworks/terraform-provider-prismasdwan
@@ -30,7 +24,7 @@ git clone https://github.com/paloaltonetworks/terraform-provider-prismasdwan
 
 ```sh
 cd terraform-provider-prismasdwan
-go build
+make build
 ```
 
 5. Specify the `dev_overrides` configuration per the next section below. This tells Terraform where to find the provider you just built. The directory to specify is the full path to the cloned provider repo.
@@ -46,7 +40,7 @@ To do this, create/populate a Terraform CLI configuration file (`~/.terraformrc`
 ```hcl
 provider_installation {
   dev_overrides {
-    "registry.terraform.io/paloaltonetworks-local/prismasdwan" = "/directory/containing/the/provider/binary/here"
+    "registry.terraform.io/paloaltonetworks-local/prismasdwan" = "/path/to/cloned/repo/terraform-provider-prismasdwan"
   }
 
   direct {}
