@@ -27,21 +27,21 @@
 
 resource "prismasdwan_security_policy_set" "production_policy_set" {
   name                  = "production_security_policy_set"
-  description           = "Security policy set for production environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                  = ["production", "high_priority"]
   defaultrule_policyset = false
 }
 
 resource "prismasdwan_security_policy_set" "development_policy_set" {
   name                  = "development_security_policy_set"
-  description           = "Security policy set for development environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                  = ["development", "testing"]
   defaultrule_policyset = false
 }
 
 resource "prismasdwan_security_policy_set" "compliance_policy_set" {
   name                  = "compliance_security_policy_set"
-  description           = "Security policy set for compliance requirements"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                  = ["compliance", "audit"]
   defaultrule_policyset = true
 }

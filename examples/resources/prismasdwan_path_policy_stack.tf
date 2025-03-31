@@ -27,7 +27,7 @@
 
 resource "prismasdwan_path_policy_stack" "example_path_policy_stack" {
   name                   = "example_test_path_policy_stack"
-  description            = "Example path policy stack for testing"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                   = ["test", "example", "path_policy"]
   default_policysetstack = false
   policyset_ids          = [

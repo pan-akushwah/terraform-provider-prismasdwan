@@ -31,7 +31,7 @@ resource "prismasdwan_qos_policy_rule" "test_qos_policy_rule_1" {
     policy_set_id = prismasdwan_qos_policy_set.test_qos_policy_set_1.id
   }
   name = "example qos rule"
-  description = "sample description"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["tag1", "tag2"]
   network_context_id = prismasdwan_network_context.test_network_context.id
   order_number = 1024

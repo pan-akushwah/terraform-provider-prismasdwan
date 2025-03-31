@@ -27,6 +27,6 @@
 
 resource "prismasdwan_nat_policy_set" "example_nat_policy_set" {
   name        = "example_nat_policy_set_alice"
-  description = "SDWAN NAT Policy Set for production environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["production"]
 }

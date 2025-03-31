@@ -30,7 +30,7 @@ resource "prismasdwan_security_policy_rule" "example_security_policy_rule" {
     policy_set_id = prismasdwan_security_policy_set.example_policy_set.id
   }
   name                   = "example_security_policy_rule"
-  description            = "Example security policy rule"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                   = ["production", "firewall"]
   app_def_ids            = [prismasdwan_appdefs.example_app.id]
   source_zone_ids        = [prismasdwan_security_zone.example_source_zone.id]

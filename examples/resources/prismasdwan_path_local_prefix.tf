@@ -27,18 +27,18 @@
 
 resource "prismasdwan_path_local_prefix" "example" {
   name        = "dev_network_path"
-  description = "Local prefix for development network"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["dev", "internal", "high_priority"]
 }
 
 resource "prismasdwan_path_local_prefix" "test_np_path_local_2" {
   name        = "prod_datacenter_path"
-  description = "Local prefix for production datacenter"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["prod", "datacenter", "critical"]
 }
 
 resource "prismasdwan_path_local_prefix" "test_np_path_local_3" {
   name        = "qa_testing_path"
-  description = "Local prefix for QA testing environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["qa", "testing", "temporary"]
 }

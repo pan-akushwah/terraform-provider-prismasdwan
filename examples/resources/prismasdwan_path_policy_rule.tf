@@ -31,7 +31,7 @@ resource "prismasdwan_path_policy_rule" "example_path_policy_rule" {
     policy_set_id = prismasdwan_path_policy_set.example_path_policy_set.id
   }
   name        = "example_test_path_policy_rule"
-  description = "Example path policy rule for demonstration"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["example", "demo"]
   order_number       = 1024
   enabled            = true

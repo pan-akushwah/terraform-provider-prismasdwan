@@ -27,7 +27,7 @@
 
 resource "prismasdwan_ipfix_profile" "example_ipfix_profile" {
   name = "sample_ipfix_profile"
-  description = "Created sample_ipfix_profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example"]
   ipfixtemplate_id = prismasdwan_ipfix_template.example_ipfix_template.id
   collector_config = [

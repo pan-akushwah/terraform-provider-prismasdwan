@@ -28,7 +28,7 @@
 resource "prismasdwan_dns_service_profile" "default_dns_service_profile" {
   authoritative_config = null
   cache_config         = null
-  description          = "Example profile"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   dns_forward_config = {
     dns_servers = [
       {

@@ -27,7 +27,7 @@
 
 resource "prismasdwan_path_global_prefix" "example_1" {
   name          = "global_prefix_hq"
-  description   = "Global prefix for headquarters"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags          = ["hq", "primary"]
   ipv4_prefixes = ["192.168.0.0/16", "172.16.0.0/12"]
   ipv6_prefixes = ["2001:db8::/32", "2001:db8:1::/48"]
@@ -35,7 +35,7 @@ resource "prismasdwan_path_global_prefix" "example_1" {
 
 resource "prismasdwan_path_global_prefix" "example_2" {
   name          = "branch_office_prefix"
-  description   = "Global prefix for branch offices"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags          = ["branch", "remote"]
   ipv4_prefixes = ["10.0.0.0/8", "172.31.0.0/16"]
   ipv6_prefixes = ["fd00::/8"]
@@ -43,7 +43,7 @@ resource "prismasdwan_path_global_prefix" "example_2" {
 
 resource "prismasdwan_path_global_prefix" "example_3" {
   name          = "data_center_prefix"
-  description   = "Global prefix for data centers"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags          = ["data_center", "high_security"]
   ipv4_prefixes = ["203.0.113.0/24", "198.51.100.0/24", "192.0.2.0/24"]
   ipv6_prefixes = ["2001:db8:2::/48", "2001:db8:3::/48"]

@@ -27,5 +27,5 @@
 
 resource "prismasdwan_ipfix_filter_context" "example_filter_context" {
   name = "example_filter_context"
-  description = "Created example_filter_context by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
 }

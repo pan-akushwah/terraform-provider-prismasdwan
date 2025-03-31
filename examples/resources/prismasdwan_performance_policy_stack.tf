@@ -27,7 +27,7 @@
 
 resource "prismasdwan_performance_policy_stack" "performance_policy_stack_1" {
   name                   = "example_performance_stack_alpha"
-  description            = "Performance policy stack for optimizing network traffic"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                   = ["terraform"]
   default_policysetstack = false
   policyset_ids = [

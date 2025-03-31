@@ -57,7 +57,7 @@ resource "prismasdwan_resource_locator" "second_site_wan_interface" {
 
 resource "prismasdwan_anynet_link" "manual_anynet_link" {
   name        = "Tf Managed Link 01"
-  description = "Managed by Terraform IaaC"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = [
     "lorem", "ipsum"
   ]

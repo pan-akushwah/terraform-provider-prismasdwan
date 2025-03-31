@@ -27,7 +27,7 @@
 
 resource "prismasdwan_nat_policy_set_stack" "example_nat_policy_set_stack" {
   name = "example_stack_alice"
-  description = "SDWAN NAT Policy Set Stack created via Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["alice"]
   default_policysetstack = false
   policyset_ids = [prismasdwan_nat_policy_set.example_nat_policy_set.id]

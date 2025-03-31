@@ -27,21 +27,21 @@
 
 resource "prismasdwan_path_policy_set" "corporate_policy_set" {
   name                  = "corporate_main_policy_set"
-  description           = "Primary path policy set for corporate network"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                  = ["corporate", "main", "policy"]
   defaultrule_policyset = false
 }
 
 resource "prismasdwan_path_policy_set" "branch_office_policy_set" {
   name                  = "branch_office_policy_set"
-  description           = "Path policy set for branch office network"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                  = ["branch", "office", "policy"]
   defaultrule_policyset = false
 }
 
 resource "prismasdwan_path_policy_set" "cloud_policy_set" {
   name                  = "cloud_services_policy_set"
-  description           = "Path policy set for cloud services"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                  = ["cloud", "services", "policy"]
   defaultrule_policyset = false
 }

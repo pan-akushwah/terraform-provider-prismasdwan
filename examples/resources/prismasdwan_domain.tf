@@ -27,18 +27,18 @@
 
 resource "prismasdwan_domain" "example" {
   name        = "marketing_domain"
-  description = "Domain for marketing department resources"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   is_default  = false
 }
 
 resource "prismasdwan_domain" "engineering" {
   name        = "engineering_domain"
-  description = "Domain for engineering team resources and projects"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   is_default  = false
 }
 
 resource "prismasdwan_domain" "finance" {
   name        = "finance_domain"
-  description = "Domain for finance department resources"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   is_default  = false
 }

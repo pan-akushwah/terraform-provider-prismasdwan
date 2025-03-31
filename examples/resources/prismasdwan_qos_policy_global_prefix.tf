@@ -27,7 +27,7 @@
 
 resource "prismasdwan_qos_policy_global_prefix" "test_qos_global_prefix" {
   name = "example_qos_global_policy"
-  description = "SDWAN QOS Global Policy created by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example_tag"]
   ipv6_prefixes = ["fd10:586e:b3f0::/48"]
   ipv4_prefixes = ["10.10.10.0/24"]

@@ -27,7 +27,7 @@
 
 resource "prismasdwan_vrf_context_profile" "test_vrf_context_profile_1" {
   name = "example vrf context profile"
-  description = "sample description"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["tag1", "tag2"]
   default_vrf_context_profile = false
   vrf_context_ids = [
@@ -38,7 +38,7 @@ resource "prismasdwan_vrf_context_profile" "test_vrf_context_profile_1" {
   vrf_context_route_leak_rules = [
     {
       name = "rule001"
-      description = "sample rule description"
+      description = "Managed by Prisma SDWAN Terraform IaaC Provider"
       src_vrf_context_id = prismasdwan_vrf_context.test_vrf_context_2.id
       dest_vrf_context_id = prismasdwan_vrf_context.test_vrf_context_1.id
       ipv4_prefixes = [

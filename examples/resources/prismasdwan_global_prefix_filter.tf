@@ -27,7 +27,6 @@
 
 resource "prismasdwan_global_prefix_filter" "global_filter_1" {
   name = "tf managed prefix filter 1"
-
   filters = [
     {
       type = "ipv4",
@@ -36,6 +35,5 @@ resource "prismasdwan_global_prefix_filter" "global_filter_1" {
       ]
     }
   ]
-
-  description = "lorem ipsum"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
 }

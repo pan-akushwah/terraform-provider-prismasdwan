@@ -27,7 +27,7 @@
 
 resource "prismasdwan_apn_profile" "example_apn_profile_1" {
   name        = "example_apnprofile_1"
-  description = "Created SDWAN APN Profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   apn = "example-tf"
   authentication = "pap_or_chap"
@@ -38,7 +38,7 @@ resource "prismasdwan_apn_profile" "example_apn_profile_1" {
 
 resource "prismasdwan_apn_profile" "example_apn_profile_2" {
   name        = "example_apnprofile_2"
-  description = "Created SDWAN APN Profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   apn = "example-tf"
   authentication = "pap_or_chap"
@@ -49,7 +49,7 @@ resource "prismasdwan_apn_profile" "example_apn_profile_2" {
 
 resource "prismasdwan_apn_profile" "example_apn_profile_3" {
   name        = "example_apnprofile_3"
-  description = "Created SDWAN APN Profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   apn = "example-tf"
   authentication = "pap"
@@ -60,7 +60,7 @@ resource "prismasdwan_apn_profile" "example_apn_profile_3" {
 
 resource "prismasdwan_apn_profile" "example_apn_profile_4" {
   name        = "example_apnprofile_4"
-  description = "Created SDWAN APN Profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   apn = "example-tf"
   authentication = "chap"

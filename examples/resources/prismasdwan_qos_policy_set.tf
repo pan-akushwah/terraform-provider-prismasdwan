@@ -27,7 +27,7 @@
 
 resource "prismasdwan_qos_policy_set" "test_qos_policy_set_1" {
   name = "qos policy set 001"
-  description = "example description"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example", "tag"]
   defaultrule_policyset = false
   bandwidth_allocation_schemes = [

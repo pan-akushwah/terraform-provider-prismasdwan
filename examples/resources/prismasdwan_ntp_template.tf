@@ -27,7 +27,7 @@
 
 resource "prismasdwan_ntp_template" "example_ntp_template_1" {
   name        = "example_ntp_template_1"
-  description = "Created SDWAN NTP Template by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   default_template = true
   ntp_servers = [
@@ -48,7 +48,7 @@ resource "prismasdwan_ntp_template" "example_ntp_template_1" {
 
 resource "prismasdwan_ntp_template" "example_ntp_template_2" {
   name        = "example_ntp_template_2"
-  description = "Created SDWAN NTP Template by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   default_template = false
   ntp_servers = [

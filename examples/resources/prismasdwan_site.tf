@@ -27,7 +27,7 @@
 
 resource "prismasdwan_site" "site_1" {
   name = "tf site 1 example name"
-  description = "example description text"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["tag1", "tag2", "tag3"]
   admin_state = "disabled"
   address = {
@@ -56,7 +56,7 @@ resource "prismasdwan_site" "site_1" {
 
 resource "prismasdwan_site" "site_2" {
   name = "tf site example"
-  description = "Sample description for the site"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["tag1", "tag2", "tag3"]
   admin_state = "disabled"
   address = {

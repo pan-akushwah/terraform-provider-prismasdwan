@@ -27,5 +27,5 @@
 
 resource "prismasdwan_ipfix_collector_context" "example_collector_context" {
   name = "sample_collector_context"
-  description = "IPFIX collector context created via Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
 }

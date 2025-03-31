@@ -27,7 +27,7 @@
 
 resource "prismasdwan_qos_policy_stack" "test_qos_policy_stack_1" {
   name = "example_qos_stack"
-  description = "Sample QoS policy stack"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example", "qos"]
   policyset_ids = [
     prismasdwan_qos_policy_set.example_qos_policy_set.id

@@ -27,6 +27,6 @@
 
 resource "prismasdwan_qos_policy_local_prefix" "test_qos_local_prefix" {
   name        = "example_qos_policy"
-  description = "SDWAN QOS Local created via Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["sample_tag"]
 }

@@ -26,7 +26,7 @@
 #
 resource "prismasdwan_performance_profile" "performance_profile_1" {
   name        = "high_performance_profile"
-  description = "Profile for high-performance applications"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["terraform"]
 
   lqm_thresholds = {
@@ -39,7 +39,7 @@ resource "prismasdwan_performance_profile" "performance_profile_1" {
 
 resource "prismasdwan_performance_profile" "performance_profile_2" {
   name        = "app_metrics_profile"
-  description = "Profile with application metrics limits"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["terraform"]
 
   soft_limit_app_metrics = {
@@ -57,7 +57,7 @@ resource "prismasdwan_performance_profile" "performance_profile_2" {
 
 resource "prismasdwan_performance_profile" "performance_profile_3" {
   name        = "system_health_profile"
-  description = "Profile for monitoring system health"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["terraform"]
 
   system_health_metrics_thresholds = {
@@ -69,7 +69,7 @@ resource "prismasdwan_performance_profile" "performance_profile_3" {
 
 resource "prismasdwan_performance_profile" "performance_profile_4" {
   name        = "circuit_utilization_profile"
-  description = "Profile for monitoring circuit utilization"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["terraform"]
 
   circuit_utilization_metrics_thresholds = {
@@ -79,7 +79,7 @@ resource "prismasdwan_performance_profile" "performance_profile_4" {
 
 resource "prismasdwan_performance_profile" "performance_profile_5" {
   name        = "flow_metrics_profile"
-  description = "Profile for monitoring flow metrics"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["terraform"]
 
   flow_metrics_thresholds = {

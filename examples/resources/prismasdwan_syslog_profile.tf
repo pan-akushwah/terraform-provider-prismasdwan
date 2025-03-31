@@ -27,7 +27,7 @@
 
 resource "prismasdwan_syslog_profile" "example_syslog_profile_1" {
   name        = "example_syslogprofile_1"
-  description = "Created SDWAN Syslog Profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   protocol = "tcp"
   enable_flow_logging = true
@@ -40,7 +40,7 @@ resource "prismasdwan_syslog_profile" "example_syslog_profile_1" {
 
 resource "prismasdwan_syslog_profile" "example_syslog_profile_2" {
   name        = "example_syslogprofile_2"
-  description = "Created SDWAN Syslog Profile by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem"]
   protocol = "udp"
   enable_flow_logging = false

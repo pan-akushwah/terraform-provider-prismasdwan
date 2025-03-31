@@ -27,18 +27,18 @@
 
 resource "prismasdwan_security_zone" "production_zone" {
   name              = "production_security_zone"
-  description       = "High-security zone for production environments"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tcp_allow_non_syn = false
 }
 
 resource "prismasdwan_security_zone" "development_zone" {
   name              = "development_security_zone"
-  description       = "Flexible security zone for development and testing"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tcp_allow_non_syn = true
 }
 
 resource "prismasdwan_security_zone" "dmz_zone" {
   name              = "dmz_security_zone"
-  description       = "Demilitarized zone for public-facing services"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tcp_allow_non_syn = false
 }

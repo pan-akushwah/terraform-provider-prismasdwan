@@ -31,7 +31,7 @@ resource "prismasdwan_site_wan_interface" "site_wan_interface_1" {
     site_id = prismasdwan_site.site_1.id
   }
   name = "tf managed site interface#1"
-  description = "example description"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example", "tag"]
   type = "privatewan"
   network_id = prismasdwan_wan_network.test_private_wan_network_1.id

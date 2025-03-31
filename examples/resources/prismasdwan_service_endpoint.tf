@@ -27,7 +27,7 @@
 
 resource "prismasdwan_service_endpoint" "service_endpoint_1" {
   name        = "tf managed service endpoint 1"
-  description = "lorem ipsum"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem", "ipsum"]
   type        = "non-cg-transit"
   # site_id = null
@@ -69,14 +69,14 @@ resource "prismasdwan_service_endpoint" "service_endpoint_1" {
   location = {
     longitude   = 80.24
     latitude    = 16.5
-    description = "lorem ipsum"
+    description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   }
   disable_tunnel_reoptimization = true
 }
 
 resource "prismasdwan_service_endpoint" "service_endpoint_2" {
   name        = "tf managed service endpoint 2"
-  description = "lorem ipsum"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem", "ipsum"]
   type        = "non-cg-transit"
   # site_id = null
@@ -116,7 +116,7 @@ resource "prismasdwan_service_endpoint" "service_endpoint_2" {
   location = {
     longitude   = 79.5
     latitude    = 14.5
-    description = "lorem ipsum"
+    description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   }
   disable_tunnel_reoptimization = true
 }

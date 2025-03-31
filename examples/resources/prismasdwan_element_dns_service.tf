@@ -91,7 +91,7 @@ output "default_dns_profile_id" {
 
 resource "prismasdwan_element_dns_service" "first_element_dns_service" {
   name                       = "SomeDnsName"
-  description                = "Managed by Terraform IaaC (Modified)"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                       = ["lorem", "ipsum"]
   max_concurrent_dns_queries = 150
   dnsservice_profile_id      = prismasdwan_resource_locator.dnsservice_profile_id.result

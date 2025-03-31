@@ -40,7 +40,7 @@ resource "prismasdwan_element_bgp_peer" "bgp_peer" {
     peer_auth_type               = "none"
     peer_retry_time              = 120
   }
-  description       = "Auto Created by Prisma Access for Networks (managed by Panorama)"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   name              = "AUTO-PRISMA_IPSEC-Tunnel_us-southeast_2"
   peer_ip           = "172.16.0.111"
   peer_ip_v6        = null

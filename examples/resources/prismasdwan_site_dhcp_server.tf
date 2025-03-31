@@ -31,7 +31,7 @@ resource "prismasdwan_site_dhcp_server" "site_dhcp_server_1" {
     site_id = prismasdwan_site.site_1.id
   }
   disabled = false
-  description = "Example DHCP server configuration"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   subnet = "10.10.10.0/24"
   gateway = "10.10.10.253"
   broadcast_address = "10.10.10.255"

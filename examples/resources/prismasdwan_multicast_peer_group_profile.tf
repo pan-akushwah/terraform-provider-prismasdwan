@@ -33,7 +33,7 @@ resource "prismasdwan_resource_locator" "dc_site" {
 
 resource "prismasdwan_multicast_peer_group_profile" "multicast_peer_group_profile" {
   name        = "tf managed profile"
-  description = "Managed by Terraform IaaC Provider"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["ipsum", "lorem"]
   peer_sites = [
     {

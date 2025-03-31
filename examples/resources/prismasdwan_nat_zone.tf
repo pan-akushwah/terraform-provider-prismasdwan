@@ -27,6 +27,6 @@
 
 resource "prismasdwan_nat_zone" "test_nat_zone" {
   name        = "example_nat_zone"
-  description = "Example NAT zone created by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["example_tag"]
 }

@@ -27,7 +27,7 @@
 
 resource "prismasdwan_ipfix_global_prefix" "example_ipfix_global" {
   name = "example_global_prefix"
-  description = "Global prefix created by Terraform"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example"]
   ipv4_prefixes = ["192.168.1.0/24"]
 }

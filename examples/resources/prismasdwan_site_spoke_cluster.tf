@@ -31,7 +31,7 @@ resource "prismasdwan_site_spoke_cluster" "site_spoke_cluster_1" {
     site_id = prismasdwan_site.site_1.id
   }
   name = "example_cluster_alpha"
-  description = "Sample spoke cluster configuration"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example", "cluster"]
   preempt = true
   advertisement_interval = 0.25

@@ -51,7 +51,7 @@ resource "prismasdwan_site_hub_prefix_filter_profile" "hub_prefix_filter_profile
     site_id = prismasdwan_resource_locator.dc_site.result
   }
   name        = "tf managed hub prefix filter profile"
-  description = "Managed by Terraform IaaC Provider"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem", "ipsum"]
   path_prefix_filter_list = [
     {

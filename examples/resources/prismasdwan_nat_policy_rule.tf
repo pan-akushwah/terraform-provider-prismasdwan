@@ -31,7 +31,7 @@ resource "prismasdwan_nat_policy_rule" "test_nat_policy_rule_1" {
     nat_policy_set_id = prismasdwan_nat_policy_set.test_nat_policy_set.id
   }
   name = "example_test_nat_rule"
-  description = "Sample description"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["sample", "tags"]
   source_ports = [
     {

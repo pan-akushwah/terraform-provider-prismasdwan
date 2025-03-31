@@ -27,15 +27,15 @@
 
 resource "prismasdwan_network_context" "production_network_context" {
   name        = "prod_environment"
-  description = "Network context for production environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
 }
 
 resource "prismasdwan_network_context" "staging_network_context" {
   name        = "staging_environment"
-  description = "Network context for staging environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
 }
 
 resource "prismasdwan_network_context" "development_network_context" {
   name        = "dev_environment"
-  description = "Network context for development environment"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
 }

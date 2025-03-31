@@ -28,7 +28,7 @@
 resource "prismasdwan_iot_profile" "iot_profile_1" {
 
   name                                     = "tf managed iot profile 1"
-  description                              = "lorem ipsum"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   snmp_discovery_enabled                   = true
   snmp_discovery_use_local_neighbours      = true
   snmp_discovery_network_refresh_frequency = 1440

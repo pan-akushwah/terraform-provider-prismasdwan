@@ -31,7 +31,7 @@ resource "prismasdwan_site_lan_network" "site_lan_network_1" {
     site_id = prismasdwan_site.site_1.id
   }
   name = "example_lan_network"
-  description = "Sample LAN network configuration"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example", "network"]
   ipv4_config = {
     prefixes = [
