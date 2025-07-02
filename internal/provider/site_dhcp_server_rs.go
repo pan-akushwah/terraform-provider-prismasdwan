@@ -315,7 +315,7 @@ func (r *siteDhcpServerResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},

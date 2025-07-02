@@ -18,7 +18,14 @@
   "properties" : {
     "vrf_context_id" : {
       "description" : "Vrf Context Id",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "static_mappings" : {
       "description" : "Static Mappings: Valid ",
