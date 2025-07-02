@@ -97,26 +97,20 @@ func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 			// key name holder for attribute: name=apn, type=STRING macro=rss_schema
 			// property: name=authentication, type=STRING macro=rss_schema
 			"authentication": dsschema.StringAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=authentication, type=STRING macro=rss_schema
 			// property: name=clear_password, type=BOOLEAN macro=rss_schema
 			"clear_password": dsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
-				Sensitive: true,
-			},
-			// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
-			"clear_password_internal_key_name": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
+			// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": dsschema.StringAttribute{
 				Required:  false,
@@ -135,9 +129,9 @@ func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": dsschema.StringAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema

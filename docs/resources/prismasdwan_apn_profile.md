@@ -19,14 +19,21 @@
     "authentication" : {
       "description" : "Authentication: ValidateEnum(enumClass = classOf[APNAuthentication], message = APN_PROFILE_INVALID_APN_AUTH, nullAllowed = false) ",
       "type" : "string",
-      "enum" : [ "none", "pap", "chap", "pap_or_chap" ]
+      "enum" : [ "none", "pap", "chap", "pap_or_chap" ],
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_required" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "clear_password" : {
       "description" : "Clear Password: Transient ",
       "type" : "boolean",
       "additionalProperties" : {
         "properties" : {
-          "x_flag_sensitive" : {
+          "x_flag_required" : {
             "type" : "boolean"
           }
         }
@@ -72,7 +79,14 @@
     },
     "name" : {
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_required" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id: Transient Id ",

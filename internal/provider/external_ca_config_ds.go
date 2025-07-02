@@ -156,15 +156,9 @@ func (d *externalCaConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=num_challenge_passwords, type=INTEGER macro=rss_schema
-					"num_challenge_passwords_internal_key_name": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=num_challenge_passwords, type=INTEGER macro=rss_schema
 					// property: name=server_certificate, type=STRING macro=rss_schema
 					"server_certificate": dsschema.StringAttribute{
 						Required:  false,
@@ -178,15 +172,9 @@ func (d *externalCaConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=server_password, type=STRING macro=rss_schema
-					"server_password_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=server_password, type=STRING macro=rss_schema
 					// property: name=server_primary_address, type=STRING macro=rss_schema
 					"server_primary_address": dsschema.StringAttribute{
 						Required:  false,

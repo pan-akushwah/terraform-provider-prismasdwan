@@ -164,15 +164,9 @@ func (r *externalCaConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=num_challenge_passwords, type=INTEGER macro=rss_schema
-					"num_challenge_passwords_internal_key_name": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=num_challenge_passwords, type=INTEGER macro=rss_schema
 					// property: name=server_certificate, type=STRING macro=rss_schema
 					"server_certificate": rsschema.StringAttribute{
 						Required:  false,
@@ -186,15 +180,9 @@ func (r *externalCaConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=server_password, type=STRING macro=rss_schema
-					"server_password_internal_key_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=server_password, type=STRING macro=rss_schema
 					// property: name=server_primary_address, type=STRING macro=rss_schema
 					"server_primary_address": rsschema.StringAttribute{
 						Required:  false,
@@ -411,14 +399,7 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 		// property: name=server_certificate, type=STRING macro=copy_to_state
 		state.ScepConfig.ServerCertificate = types.StringPointerValue(ans.ScepConfig.ServerCertificate)
 		// property: name=server_password, type=STRING macro=copy_to_state
-		state.ScepConfig.ServerPassword = types.StringPointerValue(plan.ScepConfig.ServerPassword.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.ScepConfig.ServerPasswordInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.ScepConfig.ServerPassword.IsNull() {
-			encryptedServerPassword, _ := Encrypt([]byte(state.ScepConfig.ServerPassword.String()))
-			resp.Private.SetKey(ctx, state.ScepConfig.ServerPasswordInternalKeyName.String(), []byte(encryptedServerPassword))
-		}
+		state.ScepConfig.ServerPassword = types.StringPointerValue(ans.ScepConfig.ServerPassword)
 		// property: name=server_primary_address, type=STRING macro=copy_to_state
 		state.ScepConfig.ServerPrimaryAddress = types.StringPointerValue(ans.ScepConfig.ServerPrimaryAddress)
 		// property: name=server_username, type=STRING macro=copy_to_state
@@ -536,12 +517,7 @@ func (r *externalCaConfigResource) doGet(ctx context.Context, state *rsModelCert
 		// property: name=server_certificate, type=STRING macro=copy_to_state
 		state.ScepConfig.ServerCertificate = types.StringPointerValue(ans.ScepConfig.ServerCertificate)
 		// property: name=server_password, type=STRING macro=copy_to_state
-		encryptedServerPasswordKeyName := state.ScepConfig.ServerPasswordInternalKeyName.String()
-		encryptedServerPasswordValueBytes, _ := resp.Private.GetKey(ctx, encryptedServerPasswordKeyName)
-		if encryptedServerPasswordValueBytes != nil {
-			decryptedServerPassword, _ := Decrypt(string(encryptedServerPasswordValueBytes))
-			state.ScepConfig.ServerPassword = types.StringValue(decryptedServerPassword)
-		}
+		state.ScepConfig.ServerPassword = types.StringPointerValue(ans.ScepConfig.ServerPassword)
 		// property: name=server_primary_address, type=STRING macro=copy_to_state
 		state.ScepConfig.ServerPrimaryAddress = types.StringPointerValue(ans.ScepConfig.ServerPrimaryAddress)
 		// property: name=server_username, type=STRING macro=copy_to_state
@@ -782,14 +758,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 		// property: name=server_certificate, type=STRING macro=copy_to_state
 		state.ScepConfig.ServerCertificate = types.StringPointerValue(ans.ScepConfig.ServerCertificate)
 		// property: name=server_password, type=STRING macro=copy_to_state
-		state.ScepConfig.ServerPassword = types.StringPointerValue(plan.ScepConfig.ServerPassword.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.ScepConfig.ServerPasswordInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.ScepConfig.ServerPassword.IsNull() {
-			encryptedServerPassword, _ := Encrypt([]byte(state.ScepConfig.ServerPassword.String()))
-			resp.Private.SetKey(ctx, state.ScepConfig.ServerPasswordInternalKeyName.String(), []byte(encryptedServerPassword))
-		}
+		state.ScepConfig.ServerPassword = types.StringPointerValue(ans.ScepConfig.ServerPassword)
 		// property: name=server_primary_address, type=STRING macro=copy_to_state
 		state.ScepConfig.ServerPrimaryAddress = types.StringPointerValue(ans.ScepConfig.ServerPrimaryAddress)
 		// property: name=server_username, type=STRING macro=copy_to_state

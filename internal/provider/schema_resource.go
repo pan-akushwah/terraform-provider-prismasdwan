@@ -4012,8 +4012,6 @@ type rsModelAPNProfileScreen struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
-	// password placeholder: propertyName=clear_password type=BOOLEAN
-	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
@@ -5140,8 +5138,6 @@ type rsModelAPNConfig struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
-	// password placeholder: propertyName=clear_password type=BOOLEAN
-	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=password type=STRING
 	Password types.String `tfsdk:"password"`
 	// password placeholder: propertyName=password type=STRING
@@ -7040,8 +7036,6 @@ type rsModelTenantPassageConf struct {
 	PassageAllowed types.Bool `tfsdk:"passage_allowed"`
 	// propertyName=passage_password type=STRING
 	PassagePassword types.String `tfsdk:"passage_password"`
-	// password placeholder: propertyName=passage_password type=STRING
-	PassagePasswordInternalKeyName types.String `tfsdk:"passage_password_internal_key_name"`
 }
 
 // +-----------------------------------------------------------------
@@ -9704,24 +9698,14 @@ type rsModelPasswordPolicy struct {
 	EnableFailedLoginTimeDelay types.Bool `tfsdk:"enable_failed_login_time_delay"`
 	// propertyName=enable_maximum_password_length type=BOOLEAN
 	EnableMaximumPasswordLength types.Bool `tfsdk:"enable_maximum_password_length"`
-	// password placeholder: propertyName=enable_maximum_password_length type=BOOLEAN
-	EnableMaximumPasswordLengthInternalKeyName types.Bool `tfsdk:"enable_maximum_password_length_internal_key_name"`
 	// propertyName=enable_minimum_password_length type=BOOLEAN
 	EnableMinimumPasswordLength types.Bool `tfsdk:"enable_minimum_password_length"`
-	// password placeholder: propertyName=enable_minimum_password_length type=BOOLEAN
-	EnableMinimumPasswordLengthInternalKeyName types.Bool `tfsdk:"enable_minimum_password_length_internal_key_name"`
 	// propertyName=enable_password_aging type=BOOLEAN
 	EnablePasswordAging types.Bool `tfsdk:"enable_password_aging"`
-	// password placeholder: propertyName=enable_password_aging type=BOOLEAN
-	EnablePasswordAgingInternalKeyName types.Bool `tfsdk:"enable_password_aging_internal_key_name"`
 	// propertyName=enable_password_identity_difference type=BOOLEAN
 	EnablePasswordIdentityDifference types.Bool `tfsdk:"enable_password_identity_difference"`
-	// password placeholder: propertyName=enable_password_identity_difference type=BOOLEAN
-	EnablePasswordIdentityDifferenceInternalKeyName types.Bool `tfsdk:"enable_password_identity_difference_internal_key_name"`
 	// propertyName=enable_password_no_reuse_count type=BOOLEAN
 	EnablePasswordNoReuseCount types.Bool `tfsdk:"enable_password_no_reuse_count"`
-	// password placeholder: propertyName=enable_password_no_reuse_count type=BOOLEAN
-	EnablePasswordNoReuseCountInternalKeyName types.Bool `tfsdk:"enable_password_no_reuse_count_internal_key_name"`
 	// propertyName=enable_session_ip_lock type=BOOLEAN
 	EnableSessionIpLock types.Bool `tfsdk:"enable_session_ip_lock"`
 	// propertyName=enable_two_lower_case_letters type=BOOLEAN
@@ -9736,12 +9720,8 @@ type rsModelPasswordPolicy struct {
 	FailedLoginAttempts types.Int64 `tfsdk:"failed_login_attempts"`
 	// propertyName=maximum_password_length type=INTEGER
 	MaximumPasswordLength types.Int64 `tfsdk:"maximum_password_length"`
-	// password placeholder: propertyName=maximum_password_length type=INTEGER
-	MaximumPasswordLengthInternalKeyName types.Int64 `tfsdk:"maximum_password_length_internal_key_name"`
 	// propertyName=minimum_password_length type=INTEGER
 	MinimumPasswordLength types.Int64 `tfsdk:"minimum_password_length"`
-	// password placeholder: propertyName=minimum_password_length type=INTEGER
-	MinimumPasswordLengthInternalKeyName types.Int64 `tfsdk:"minimum_password_length_internal_key_name"`
 	// propertyName=password_aging_days type=INTEGER
 	PasswordAgingDays types.Int64 `tfsdk:"password_aging_days"`
 	// password placeholder: propertyName=password_aging_days type=INTEGER
@@ -13760,8 +13740,6 @@ type rsModelAPNProfile struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
-	// password placeholder: propertyName=clear_password type=BOOLEAN
-	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
@@ -20646,8 +20624,6 @@ type rsModelAPNProfileQueryFilter struct {
 	Authentication types.String `tfsdk:"authentication"`
 	// propertyName=clear_password type=BOOLEAN
 	ClearPassword types.Bool `tfsdk:"clear_password"`
-	// password placeholder: propertyName=clear_password type=BOOLEAN
-	ClearPasswordInternalKeyName types.Bool `tfsdk:"clear_password_internal_key_name"`
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=id type=STRING
@@ -28584,14 +28560,10 @@ type rsModelScepConfig struct {
 	Https types.Bool `tfsdk:"https"`
 	// propertyName=num_challenge_passwords type=INTEGER
 	NumChallengePasswords types.Int64 `tfsdk:"num_challenge_passwords"`
-	// password placeholder: propertyName=num_challenge_passwords type=INTEGER
-	NumChallengePasswordsInternalKeyName types.Int64 `tfsdk:"num_challenge_passwords_internal_key_name"`
 	// propertyName=server_certificate type=STRING
 	ServerCertificate types.String `tfsdk:"server_certificate"`
 	// propertyName=server_password type=STRING
 	ServerPassword types.String `tfsdk:"server_password"`
-	// password placeholder: propertyName=server_password type=STRING
-	ServerPasswordInternalKeyName types.String `tfsdk:"server_password_internal_key_name"`
 	// propertyName=server_primary_address type=STRING
 	ServerPrimaryAddress types.String `tfsdk:"server_primary_address"`
 	// propertyName=server_username type=STRING
@@ -35676,8 +35648,6 @@ type rsModelElementPassageConf struct {
 	PassageAllowed types.Bool `tfsdk:"passage_allowed"`
 	// propertyName=passage_password type=STRING
 	PassagePassword types.String `tfsdk:"passage_password"`
-	// password placeholder: propertyName=passage_password type=STRING
-	PassagePasswordInternalKeyName types.String `tfsdk:"passage_password_internal_key_name"`
 	// propertyName=start_time type=INTEGER
 	StartTime types.Int64 `tfsdk:"start_time"`
 }
@@ -36012,12 +35982,8 @@ type rsModelDeviceIdSNMPV3Config struct {
 	SnmpAuthProtocol types.String `tfsdk:"snmp_auth_protocol"`
 	// propertyName=snmp_privacy_password type=STRING
 	SnmpPrivacyPassword types.String `tfsdk:"snmp_privacy_password"`
-	// password placeholder: propertyName=snmp_privacy_password type=STRING
-	SnmpPrivacyPasswordInternalKeyName types.String `tfsdk:"snmp_privacy_password_internal_key_name"`
 	// propertyName=snmp_privacy_password_encrypted type=STRING
 	SnmpPrivacyPasswordEncrypted types.String `tfsdk:"snmp_privacy_password_encrypted"`
-	// password placeholder: propertyName=snmp_privacy_password_encrypted type=STRING
-	SnmpPrivacyPasswordEncryptedInternalKeyName types.String `tfsdk:"snmp_privacy_password_encrypted_internal_key_name"`
 	// propertyName=snmp_privacy_protocol type=STRING
 	SnmpPrivacyProtocol types.String `tfsdk:"snmp_privacy_protocol"`
 	// propertyName=snmp_security_level type=STRING

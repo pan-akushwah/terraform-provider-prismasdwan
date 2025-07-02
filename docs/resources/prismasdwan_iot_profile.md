@@ -32,25 +32,11 @@
       "properties" : {
         "snmp_privacy_password_encrypted" : {
           "description" : "Snmp Privacy Password Encrypted",
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_sensitive" : {
-                "type" : "boolean"
-              }
-            }
-          }
+          "type" : "string"
         },
         "snmp_privacy_password" : {
           "description" : "Snmp Privacy Password: Transient Pattern(error = SNMPCONFIG_UNSUPPORTED_ENC_PHRASE: White spaces not allowed in enc phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_ENC_PHRASE_LEN: Enc phrase length should be between 8 and 256, min = 5) ",
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_sensitive" : {
-                "type" : "boolean"
-              }
-            }
-          }
+          "type" : "string"
         },
         "snmp_privacy_protocol" : {
           "description" : "Snmp Privacy Protocol: ValidateEnum(enumClass = classOf[SNMPEncType], error = DEVICEID_SNMP_PRIVACY_PROTOCOL_UNSUPPORTED: Unsupported SNMP privacy protocol specified, nullAllowed = false) ",

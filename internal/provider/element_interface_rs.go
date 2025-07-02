@@ -288,15 +288,9 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 								Required:  false,
 								Computed:  false,
 								Optional:  true,
-								Sensitive: true,
-							},
-							// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
-							"clear_password_internal_key_name": rsschema.BoolAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
 								Sensitive: false,
 							},
+							// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
 							// property: name=password, type=STRING macro=rss_schema
 							"password": rsschema.StringAttribute{
 								Required:  false,

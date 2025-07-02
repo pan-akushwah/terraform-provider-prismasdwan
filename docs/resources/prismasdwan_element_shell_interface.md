@@ -33,14 +33,7 @@
             },
             "clear_password" : {
               "description" : "Clear Password: Transient ",
-              "type" : "boolean",
-              "additionalProperties" : {
-                "properties" : {
-                  "x_flag_sensitive" : {
-                    "type" : "boolean"
-                  }
-                }
-              }
+              "type" : "boolean"
             },
             "password" : {
               "description" : "Password: Transient ",

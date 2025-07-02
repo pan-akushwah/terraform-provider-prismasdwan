@@ -36,25 +36,11 @@
         },
         "num_challenge_passwords" : {
           "description" : "Num Challenge Passwords",
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_sensitive" : {
-                "type" : "boolean"
-              }
-            }
-          }
+          "type" : "integer"
         },
         "server_password" : {
           "description" : "Server Password",
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_sensitive" : {
-                "type" : "boolean"
-              }
-            }
-          }
+          "type" : "string"
         },
         "server_username" : {
           "description" : "Server Username",

@@ -284,29 +284,17 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=snmp_privacy_password, type=STRING macro=rss_schema
-					"snmp_privacy_password_internal_key_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=snmp_privacy_password, type=STRING macro=rss_schema
 					// property: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
 					"snmp_privacy_password_encrypted": rsschema.StringAttribute{
 						Required:  false,
 						Computed:  false,
 						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
-					"snmp_privacy_password_encrypted_internal_key_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
 						Sensitive: false,
 					},
+					// key name holder for attribute: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
 					// property: name=snmp_privacy_protocol, type=STRING macro=rss_schema
 					"snmp_privacy_protocol": rsschema.StringAttribute{
 						Required:  false,
@@ -593,23 +581,9 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 		// property: name=snmp_auth_protocol, type=STRING macro=copy_to_state
 		state.V3Config.SnmpAuthProtocol = types.StringPointerValue(ans.V3Config.SnmpAuthProtocol)
 		// property: name=snmp_privacy_password, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(plan.V3Config.SnmpPrivacyPassword.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.V3Config.SnmpPrivacyPasswordInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.V3Config.SnmpPrivacyPassword.IsNull() {
-			encryptedSnmpPrivacyPassword, _ := Encrypt([]byte(state.V3Config.SnmpPrivacyPassword.String()))
-			resp.Private.SetKey(ctx, state.V3Config.SnmpPrivacyPasswordInternalKeyName.String(), []byte(encryptedSnmpPrivacyPassword))
-		}
+		state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(ans.V3Config.SnmpPrivacyPassword)
 		// property: name=snmp_privacy_password_encrypted, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(plan.V3Config.SnmpPrivacyPasswordEncrypted.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.V3Config.SnmpPrivacyPasswordEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.V3Config.SnmpPrivacyPasswordEncrypted.IsNull() {
-			encryptedSnmpPrivacyPasswordEncrypted, _ := Encrypt([]byte(state.V3Config.SnmpPrivacyPasswordEncrypted.String()))
-			resp.Private.SetKey(ctx, state.V3Config.SnmpPrivacyPasswordEncryptedInternalKeyName.String(), []byte(encryptedSnmpPrivacyPasswordEncrypted))
-		}
+		state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpPrivacyPasswordEncrypted)
 		// property: name=snmp_privacy_protocol, type=STRING macro=copy_to_state
 		state.V3Config.SnmpPrivacyProtocol = types.StringPointerValue(ans.V3Config.SnmpPrivacyProtocol)
 		// property: name=snmp_security_level, type=STRING macro=copy_to_state
@@ -766,19 +740,9 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 		// property: name=snmp_auth_protocol, type=STRING macro=copy_to_state
 		state.V3Config.SnmpAuthProtocol = types.StringPointerValue(ans.V3Config.SnmpAuthProtocol)
 		// property: name=snmp_privacy_password, type=STRING macro=copy_to_state
-		encryptedSnmpPrivacyPasswordKeyName := state.V3Config.SnmpPrivacyPasswordInternalKeyName.String()
-		encryptedSnmpPrivacyPasswordValueBytes, _ := resp.Private.GetKey(ctx, encryptedSnmpPrivacyPasswordKeyName)
-		if encryptedSnmpPrivacyPasswordValueBytes != nil {
-			decryptedSnmpPrivacyPassword, _ := Decrypt(string(encryptedSnmpPrivacyPasswordValueBytes))
-			state.V3Config.SnmpPrivacyPassword = types.StringValue(decryptedSnmpPrivacyPassword)
-		}
+		state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(ans.V3Config.SnmpPrivacyPassword)
 		// property: name=snmp_privacy_password_encrypted, type=STRING macro=copy_to_state
-		encryptedSnmpPrivacyPasswordEncryptedKeyName := state.V3Config.SnmpPrivacyPasswordEncryptedInternalKeyName.String()
-		encryptedSnmpPrivacyPasswordEncryptedValueBytes, _ := resp.Private.GetKey(ctx, encryptedSnmpPrivacyPasswordEncryptedKeyName)
-		if encryptedSnmpPrivacyPasswordEncryptedValueBytes != nil {
-			decryptedSnmpPrivacyPasswordEncrypted, _ := Decrypt(string(encryptedSnmpPrivacyPasswordEncryptedValueBytes))
-			state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringValue(decryptedSnmpPrivacyPasswordEncrypted)
-		}
+		state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpPrivacyPasswordEncrypted)
 		// property: name=snmp_privacy_protocol, type=STRING macro=copy_to_state
 		state.V3Config.SnmpPrivacyProtocol = types.StringPointerValue(ans.V3Config.SnmpPrivacyProtocol)
 		// property: name=snmp_security_level, type=STRING macro=copy_to_state
@@ -1131,23 +1095,9 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 		// property: name=snmp_auth_protocol, type=STRING macro=copy_to_state
 		state.V3Config.SnmpAuthProtocol = types.StringPointerValue(ans.V3Config.SnmpAuthProtocol)
 		// property: name=snmp_privacy_password, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(plan.V3Config.SnmpPrivacyPassword.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.V3Config.SnmpPrivacyPasswordInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.V3Config.SnmpPrivacyPassword.IsNull() {
-			encryptedSnmpPrivacyPassword, _ := Encrypt([]byte(state.V3Config.SnmpPrivacyPassword.String()))
-			resp.Private.SetKey(ctx, state.V3Config.SnmpPrivacyPasswordInternalKeyName.String(), []byte(encryptedSnmpPrivacyPassword))
-		}
+		state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(ans.V3Config.SnmpPrivacyPassword)
 		// property: name=snmp_privacy_password_encrypted, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(plan.V3Config.SnmpPrivacyPasswordEncrypted.ValueStringPointer())
-		// this property is sensitive and will be stored in the state's internal key name
-		state.V3Config.SnmpPrivacyPasswordEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
-		// store value if needed
-		if !state.V3Config.SnmpPrivacyPasswordEncrypted.IsNull() {
-			encryptedSnmpPrivacyPasswordEncrypted, _ := Encrypt([]byte(state.V3Config.SnmpPrivacyPasswordEncrypted.String()))
-			resp.Private.SetKey(ctx, state.V3Config.SnmpPrivacyPasswordEncryptedInternalKeyName.String(), []byte(encryptedSnmpPrivacyPasswordEncrypted))
-		}
+		state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpPrivacyPasswordEncrypted)
 		// property: name=snmp_privacy_protocol, type=STRING macro=copy_to_state
 		state.V3Config.SnmpPrivacyProtocol = types.StringPointerValue(ans.V3Config.SnmpPrivacyProtocol)
 		// property: name=snmp_security_level, type=STRING macro=copy_to_state

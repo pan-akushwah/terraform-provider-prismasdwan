@@ -280,15 +280,9 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 								Required:  false,
 								Computed:  false,
 								Optional:  true,
-								Sensitive: true,
-							},
-							// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
-							"clear_password_internal_key_name": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
 								Sensitive: false,
 							},
+							// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
 							// property: name=password, type=STRING macro=rss_schema
 							"password": dsschema.StringAttribute{
 								Required:  false,
