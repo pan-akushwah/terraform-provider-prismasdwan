@@ -18,7 +18,14 @@
   "properties" : {
     "tcp_allow_non_syn" : {
       "description" : "Tcp Allow Non Syn",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "description" : {
       "description" : "Description: Size(max = 256, error = SECURITYZONE_DESCRIPTION_INVALID: Security zone description exceeds limit., min = 0) ",

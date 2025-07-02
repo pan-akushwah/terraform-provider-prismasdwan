@@ -122,7 +122,7 @@ func (r *securityZoneResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=tcp_allow_non_syn, type=BOOLEAN macro=rss_schema
 			"tcp_allow_non_syn": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
