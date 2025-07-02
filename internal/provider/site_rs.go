@@ -401,7 +401,7 @@ func (r *siteResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 			// property: name=vrf_context_profile_id, type=STRING macro=rss_schema
 			"vrf_context_profile_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},

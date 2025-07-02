@@ -393,7 +393,7 @@ func (d *siteDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, r
 			// property: name=vrf_context_profile_id, type=STRING macro=rss_schema
 			"vrf_context_profile_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
