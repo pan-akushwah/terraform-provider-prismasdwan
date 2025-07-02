@@ -642,6 +642,8 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	request_body_string, _ = sjson.Set(request_body_string, "_schema", 1)
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 

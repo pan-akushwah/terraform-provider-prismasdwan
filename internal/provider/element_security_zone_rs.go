@@ -228,6 +228,8 @@ func (r *elementSecurityZoneResource) doPost(ctx context.Context, plan *rsModelE
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
+	// inject overrides
+	request_body_string, _ = sjson.Delete(request_body_string, "site_id")
 	// copy pointer
 	create_request.RequestBody = &request_body_string
 
@@ -511,6 +513,8 @@ func (r *elementSecurityZoneResource) doPut(ctx context.Context, plan *rsModelEl
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	request_body_string, _ = sjson.Delete(request_body_string, "site_id")
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 
