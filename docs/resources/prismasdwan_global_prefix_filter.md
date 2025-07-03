@@ -22,8 +22,15 @@
       "items" : {
         "properties" : {
           "type" : {
-            "description" : "Type",
-            "type" : "string"
+            "type" : "string",
+            "enum" : [ "ipv4" ]
+          },
+          "ip_prefixes" : {
+            "description" : "IPV4 Prefixes",
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
           }
         }
       }

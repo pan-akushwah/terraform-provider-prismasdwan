@@ -27,7 +27,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=2)
 // | Computed Resource Name=globalprefixfilters
 // +-----------------------------------------------------------------
-// | Filter HasID=false
+// | GlobalPrefixIpPrefixes HasID=false
 // | GlobalPrefixFilterScreen HasID=true
 // +-----------------------------------------------------------------
 
@@ -112,6 +112,15 @@ func (r *globalPrefixFilterResource) Schema(_ context.Context, _ resource.Schema
 				Sensitive: false,
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
+						// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"ip_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": rsschema.StringAttribute{
 							Required:  false,
@@ -201,13 +210,15 @@ func (r *globalPrefixFilterResource) doPost(ctx context.Context, plan *rsModelGl
 	if plan.Filters == nil {
 		body.Filters = nil
 	} else if len(plan.Filters) == 0 {
-		body.Filters = []sdwan_schema.Filter{}
+		body.Filters = []sdwan_schema.GlobalPrefixIpPrefixes{}
 	} else {
-		body.Filters = make([]sdwan_schema.Filter, 0, len(plan.Filters))
+		body.Filters = make([]sdwan_schema.GlobalPrefixIpPrefixes, 0, len(plan.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range plan.Filters {
 			// add a new item
-			body.Filters = append(body.Filters, sdwan_schema.Filter{})
-			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=1
+			body.Filters = append(body.Filters, sdwan_schema.GlobalPrefixIpPrefixes{})
+			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=2
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].IpPrefixes = ListStringValueOrNil(ctx, varLoopFilters.IpPrefixes)
 			// property: name=type, type=STRING macro=copy_from_plan
 			body.Filters[varLoopFiltersIndex].Type = StringValueOrNil(varLoopFilters.Type)
 		}
@@ -300,13 +311,17 @@ func (r *globalPrefixFilterResource) doPost(ctx context.Context, plan *rsModelGl
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []rsModelFilter{}
+		state.Filters = []rsModelGlobalPrefixIpPrefixes{}
 	} else {
-		state.Filters = make([]rsModelFilter, 0, len(ans.Filters))
+		state.Filters = make([]rsModelGlobalPrefixIpPrefixes, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
-			state.Filters = append(state.Filters, rsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=1
+			state.Filters = append(state.Filters, rsModelGlobalPrefixIpPrefixes{})
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=2
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
 		}
@@ -406,13 +421,17 @@ func (r *globalPrefixFilterResource) doGet(ctx context.Context, state *rsModelGl
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []rsModelFilter{}
+		state.Filters = []rsModelGlobalPrefixIpPrefixes{}
 	} else {
-		state.Filters = make([]rsModelFilter, 0, len(ans.Filters))
+		state.Filters = make([]rsModelGlobalPrefixIpPrefixes, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
-			state.Filters = append(state.Filters, rsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=1
+			state.Filters = append(state.Filters, rsModelGlobalPrefixIpPrefixes{})
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=2
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
 		}
@@ -495,18 +514,20 @@ func (r *globalPrefixFilterResource) doPut(ctx context.Context, plan *rsModelGlo
 	if plan.Filters == nil && (state == nil || state.Filters == nil) {
 		body.Filters = nil
 	} else if len(plan.Filters) == 0 && (state == nil || len(state.Filters) == 0) {
-		body.Filters = []sdwan_schema.Filter{}
+		body.Filters = []sdwan_schema.GlobalPrefixIpPrefixes{}
 	} else if len(plan.Filters) != 0 || (state != nil && len(state.Filters) != 0) {
 		FiltersToUse := plan.Filters
 		if len(plan.Filters) == 0 {
 			FiltersToUse = state.Filters
 		}
-		body.Filters = make([]sdwan_schema.Filter, 0, len(FiltersToUse))
+		body.Filters = make([]sdwan_schema.GlobalPrefixIpPrefixes, 0, len(FiltersToUse))
 		for varLoopFiltersIndex, varLoopFilters := range FiltersToUse {
 			// add a new item
-			body.Filters = append(body.Filters, sdwan_schema.Filter{})
+			body.Filters = append(body.Filters, sdwan_schema.GlobalPrefixIpPrefixes{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=1
+			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=2
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].IpPrefixes = ListStringValueOrNil(ctx, varLoopFilters.IpPrefixes)
 			// property: name=type, type=STRING macro=copy_from_plan
 			body.Filters[varLoopFiltersIndex].Type = StringValueOrNil(varLoopFilters.Type)
 		}
@@ -588,13 +609,17 @@ func (r *globalPrefixFilterResource) doPut(ctx context.Context, plan *rsModelGlo
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []rsModelFilter{}
+		state.Filters = []rsModelGlobalPrefixIpPrefixes{}
 	} else {
-		state.Filters = make([]rsModelFilter, 0, len(ans.Filters))
+		state.Filters = make([]rsModelGlobalPrefixIpPrefixes, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
-			state.Filters = append(state.Filters, rsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=1
+			state.Filters = append(state.Filters, rsModelGlobalPrefixIpPrefixes{})
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=2
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
 		}

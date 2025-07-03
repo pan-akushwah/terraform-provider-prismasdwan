@@ -22,7 +22,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=2)
 // | Computed Resource Name=globalprefixfilters
 // +-----------------------------------------------------------------
-// | Filter HasID=false
+// | GlobalPrefixIpPrefixes HasID=false
 // | GlobalPrefixFilterScreen HasID=true
 // +-----------------------------------------------------------------
 
@@ -104,6 +104,15 @@ func (d *globalPrefixFilterDataSource) Schema(_ context.Context, _ datasource.Sc
 				Sensitive: false,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
+						// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"ip_prefixes": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": dsschema.StringAttribute{
 							Required:  false,
@@ -219,13 +228,17 @@ func (d *globalPrefixFilterDataSource) Read(ctx context.Context, req datasource.
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []dsModelFilter{}
+		state.Filters = []dsModelGlobalPrefixIpPrefixes{}
 	} else {
-		state.Filters = make([]dsModelFilter, 0, len(ans.Filters))
+		state.Filters = make([]dsModelGlobalPrefixIpPrefixes, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
-			state.Filters = append(state.Filters, dsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=dsModel ans=varLoopFilters properties=1
+			state.Filters = append(state.Filters, dsModelGlobalPrefixIpPrefixes{})
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=dsModel ans=varLoopFilters properties=2
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
 		}

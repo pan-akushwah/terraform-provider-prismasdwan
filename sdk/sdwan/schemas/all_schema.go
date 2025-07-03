@@ -5,7 +5,7 @@ package schemas
 //
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=1,677)
+// | Schema Map Summary (size=goLangStructMap=1,678)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -762,6 +762,7 @@ package schemas
 // | CellularModuleQueryFilter HasID=true
 // | ListQueryResponseCellularModuleQueryFilter HasID=true
 // | ErrorResponse HasID=false
+// | GlobalPrefixIpPrefixes HasID=false
 // | GlobalPrefixFilterScreen HasID=true
 // | SaseConnectionGlobalConfigV3N1 HasID=true
 // | BulkConfigPushQueryFilter HasID=true
@@ -13170,15 +13171,23 @@ type ErrorResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `GlobalPrefixIpPrefixes`
+// +-----------------------------------------------------------------
+type GlobalPrefixIpPrefixes struct {
+	IpPrefixes []string `json:"ip_prefixes"` // propertyName=ip_prefixes type=ARRAY_PRIMITIVE
+	Type       *string  `json:"type"`        // propertyName=type type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `GlobalPrefixFilterScreen`
 // +-----------------------------------------------------------------
 type GlobalPrefixFilterScreen struct {
-	Etag        *int64   `json:"_etag"`       // propertyName=_etag type=INTEGER
-	Schema      *int64   `json:"_schema"`     // propertyName=_schema type=INTEGER
-	Description *string  `json:"description"` // propertyName=description type=STRING
-	Filters     []Filter `json:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
-	Id          *string  `json:"id"`          // propertyName=id type=STRING
-	Name        *string  `json:"name"`        // propertyName=name type=STRING
+	Etag        *int64                   `json:"_etag"`       // propertyName=_etag type=INTEGER
+	Schema      *int64                   `json:"_schema"`     // propertyName=_schema type=INTEGER
+	Description *string                  `json:"description"` // propertyName=description type=STRING
+	Filters     []GlobalPrefixIpPrefixes `json:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
+	Id          *string                  `json:"id"`          // propertyName=id type=STRING
+	Name        *string                  `json:"name"`        // propertyName=name type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -27500,12 +27509,12 @@ type PasswordChange struct {
 // | Auto Generated for Schema `GlobalPrefixFilter`
 // +-----------------------------------------------------------------
 type GlobalPrefixFilter struct {
-	Etag        *int64   `json:"_etag"`       // propertyName=_etag type=INTEGER
-	Schema      *int64   `json:"_schema"`     // propertyName=_schema type=INTEGER
-	Description *string  `json:"description"` // propertyName=description type=STRING
-	Filters     []Filter `json:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
-	Id          *string  `json:"id"`          // propertyName=id type=STRING
-	Name        *string  `json:"name"`        // propertyName=name type=STRING
+	Etag        *int64                   `json:"_etag"`       // propertyName=_etag type=INTEGER
+	Schema      *int64                   `json:"_schema"`     // propertyName=_schema type=INTEGER
+	Description *string                  `json:"description"` // propertyName=description type=STRING
+	Filters     []GlobalPrefixIpPrefixes `json:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
+	Id          *string                  `json:"id"`          // propertyName=id type=STRING
+	Name        *string                  `json:"name"`        // propertyName=name type=STRING
 }
 
 // +-----------------------------------------------------------------

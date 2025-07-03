@@ -8,7 +8,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | All Schema Map Summary (size=allGoLangStructMap=1,677)
+// | All Schema Map Summary (size=allGoLangStructMap=1,678)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -765,6 +765,7 @@ import (
 // | CellularModuleQueryFilter HasID=true
 // | ListQueryResponseCellularModuleQueryFilter HasID=true
 // | ErrorResponse HasID=false
+// | GlobalPrefixIpPrefixes HasID=false
 // | GlobalPrefixFilterScreen HasID=true
 // | SaseConnectionGlobalConfigV3N1 HasID=true
 // | BulkConfigPushQueryFilter HasID=true
@@ -1689,7 +1690,7 @@ import (
 // | ListQueryResponseSecurityPolicyV2SetStack HasID=true
 // +-----------------------------------------------------------------
 
-// template=schema.datasource.model.tpl allGoLangStructMap=1,677
+// template=schema.datasource.model.tpl allGoLangStructMap=1,678
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `LedConfig`
 // +-----------------------------------------------------------------
@@ -14014,17 +14015,25 @@ type dsModelErrorResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `GlobalPrefixIpPrefixes`
+// +-----------------------------------------------------------------
+type dsModelGlobalPrefixIpPrefixes struct {
+	IpPrefixes types.List   `tfsdk:"ip_prefixes"` // propertyName=ip_prefixes type=ARRAY_PRIMITIVE
+	Type       types.String `tfsdk:"type"`        // propertyName=type type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `GlobalPrefixFilterScreen`
 // +-----------------------------------------------------------------
 type dsModelGlobalPrefixFilterScreen struct {
 	// added tfid for bookkeeping
-	Tfid        types.String    `tfsdk:"tfid"`
-	Etag        types.Int64     `tfsdk:"_etag"`       // propertyName=_etag type=INTEGER
-	Schema      types.Int64     `tfsdk:"_schema"`     // propertyName=_schema type=INTEGER
-	Description types.String    `tfsdk:"description"` // propertyName=description type=STRING
-	Filters     []dsModelFilter `tfsdk:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
-	Id          types.String    `tfsdk:"id"`          // propertyName=id type=STRING
-	Name        types.String    `tfsdk:"name"`        // propertyName=name type=STRING
+	Tfid        types.String                    `tfsdk:"tfid"`
+	Etag        types.Int64                     `tfsdk:"_etag"`       // propertyName=_etag type=INTEGER
+	Schema      types.Int64                     `tfsdk:"_schema"`     // propertyName=_schema type=INTEGER
+	Description types.String                    `tfsdk:"description"` // propertyName=description type=STRING
+	Filters     []dsModelGlobalPrefixIpPrefixes `tfsdk:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
+	Id          types.String                    `tfsdk:"id"`          // propertyName=id type=STRING
+	Name        types.String                    `tfsdk:"name"`        // propertyName=name type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -29581,13 +29590,13 @@ type dsModelPasswordChange struct {
 // +-----------------------------------------------------------------
 type dsModelGlobalPrefixFilter struct {
 	// added tfid for bookkeeping
-	Tfid        types.String    `tfsdk:"tfid"`
-	Etag        types.Int64     `tfsdk:"_etag"`       // propertyName=_etag type=INTEGER
-	Schema      types.Int64     `tfsdk:"_schema"`     // propertyName=_schema type=INTEGER
-	Description types.String    `tfsdk:"description"` // propertyName=description type=STRING
-	Filters     []dsModelFilter `tfsdk:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
-	Id          types.String    `tfsdk:"id"`          // propertyName=id type=STRING
-	Name        types.String    `tfsdk:"name"`        // propertyName=name type=STRING
+	Tfid        types.String                    `tfsdk:"tfid"`
+	Etag        types.Int64                     `tfsdk:"_etag"`       // propertyName=_etag type=INTEGER
+	Schema      types.Int64                     `tfsdk:"_schema"`     // propertyName=_schema type=INTEGER
+	Description types.String                    `tfsdk:"description"` // propertyName=description type=STRING
+	Filters     []dsModelGlobalPrefixIpPrefixes `tfsdk:"filters"`     // propertyName=filters type=ARRAY_REFERENCE
+	Id          types.String                    `tfsdk:"id"`          // propertyName=id type=STRING
+	Name        types.String                    `tfsdk:"name"`        // propertyName=name type=STRING
 }
 
 // +-----------------------------------------------------------------

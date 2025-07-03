@@ -8,7 +8,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | All Schema Map Summary (size=allGoLangStructMap=1,677)
+// | All Schema Map Summary (size=allGoLangStructMap=1,678)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -765,6 +765,7 @@ import (
 // | CellularModuleQueryFilter HasID=true
 // | ListQueryResponseCellularModuleQueryFilter HasID=true
 // | ErrorResponse HasID=false
+// | GlobalPrefixIpPrefixes HasID=false
 // | GlobalPrefixFilterScreen HasID=true
 // | SaseConnectionGlobalConfigV3N1 HasID=true
 // | BulkConfigPushQueryFilter HasID=true
@@ -1689,7 +1690,7 @@ import (
 // | ListQueryResponseSecurityPolicyV2SetStack HasID=true
 // +-----------------------------------------------------------------
 
-// template=schema.resource.model.tpl allGoLangStructMap=1,677
+// template=schema.resource.model.tpl allGoLangStructMap=1,678
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `LedConfig`
 // +-----------------------------------------------------------------
@@ -21877,6 +21878,16 @@ type rsModelErrorResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `GlobalPrefixIpPrefixes`
+// +-----------------------------------------------------------------
+type rsModelGlobalPrefixIpPrefixes struct {
+	// propertyName=ip_prefixes type=ARRAY_PRIMITIVE
+	IpPrefixes types.List `tfsdk:"ip_prefixes"`
+	// propertyName=type type=STRING
+	Type types.String `tfsdk:"type"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `GlobalPrefixFilterScreen`
 // +-----------------------------------------------------------------
 type rsModelGlobalPrefixFilterScreen struct {
@@ -21891,7 +21902,7 @@ type rsModelGlobalPrefixFilterScreen struct {
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=filters type=ARRAY_REFERENCE
-	Filters []rsModelFilter `tfsdk:"filters"`
+	Filters []rsModelGlobalPrefixIpPrefixes `tfsdk:"filters"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
@@ -47925,7 +47936,7 @@ type rsModelGlobalPrefixFilter struct {
 	// propertyName=description type=STRING
 	Description types.String `tfsdk:"description"`
 	// propertyName=filters type=ARRAY_REFERENCE
-	Filters []rsModelFilter `tfsdk:"filters"`
+	Filters []rsModelGlobalPrefixIpPrefixes `tfsdk:"filters"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=name type=STRING
