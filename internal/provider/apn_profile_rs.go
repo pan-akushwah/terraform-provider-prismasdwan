@@ -210,6 +210,7 @@ func (r *apnProfileResource) doPost(ctx context.Context, plan *rsModelAPNProfile
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_apn_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/apnprofiles"
 
@@ -375,6 +376,7 @@ func (r *apnProfileResource) doGet(ctx context.Context, state *rsModelAPNProfile
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_apn_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/apnprofiles/{apnprofile_id}"
 
@@ -491,6 +493,7 @@ func (r *apnProfileResource) doPut(ctx context.Context, plan *rsModelAPNProfileS
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_apn_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/apnprofiles/{apnprofile_id}"
 
@@ -684,6 +687,7 @@ func (r *apnProfileResource) doDelete(ctx context.Context, state *rsModelAPNProf
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_apn_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/apnprofiles/{apnprofile_id}"
 

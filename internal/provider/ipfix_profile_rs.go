@@ -406,6 +406,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_ipfix_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/ipfixprofiles"
 
@@ -756,6 +757,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_ipfix_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/ipfixprofiles/{profile_id}"
 
@@ -968,6 +970,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_ipfix_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/ipfixprofiles/{profile_id}"
 
@@ -1358,6 +1361,7 @@ func (r *ipfixProfileResource) doDelete(ctx context.Context, state *rsModelIPFix
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_ipfix_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/ipfixprofiles/{profile_id}"
 

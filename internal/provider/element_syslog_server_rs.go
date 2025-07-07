@@ -244,6 +244,7 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_syslog_server"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers"
 
@@ -422,6 +423,7 @@ func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelS
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_syslog_server"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 
@@ -543,6 +545,7 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_syslog_server"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 
@@ -769,6 +772,7 @@ func (r *elementSyslogServerResource) doDelete(ctx context.Context, state *rsMod
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_syslog_server"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 

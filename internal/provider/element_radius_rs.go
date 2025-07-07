@@ -290,6 +290,7 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_radius"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/elements/{element_id}/radii"
 
@@ -514,6 +515,7 @@ func (r *elementRadiusResource) doGet(ctx context.Context, state *rsModelElement
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_radius"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/elements/{element_id}/radii/{radius_id}"
 
@@ -662,6 +664,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_radius"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/elements/{element_id}/radii/{radius_id}"
 
@@ -907,6 +910,7 @@ func (r *elementRadiusResource) doDelete(ctx context.Context, state *rsModelElem
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_radius"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/elements/{element_id}/radii/{radius_id}"
 

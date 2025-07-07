@@ -184,6 +184,7 @@ func (r *pathGroupResource) doPost(ctx context.Context, plan *rsModelPathGroupSc
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_path_group"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.1/api/pathgroups"
 
@@ -350,6 +351,7 @@ func (r *pathGroupResource) doGet(ctx context.Context, state *rsModelPathGroupSc
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_path_group"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.1/api/pathgroups/{path_group_id}"
 
@@ -464,6 +466,7 @@ func (r *pathGroupResource) doPut(ctx context.Context, plan *rsModelPathGroupScr
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_path_group"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.1/api/pathgroups/{path_group_id}"
 
@@ -643,6 +646,7 @@ func (r *pathGroupResource) doDelete(ctx context.Context, state *rsModelPathGrou
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_path_group"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.1/api/pathgroups/{path_group_id}"
 

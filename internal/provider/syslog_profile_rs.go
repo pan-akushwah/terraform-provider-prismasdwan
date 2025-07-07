@@ -220,6 +220,7 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_syslog_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/syslogserverprofiles"
 
@@ -386,6 +387,7 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_syslog_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/syslogserverprofiles/{profile_id}"
 
@@ -501,6 +503,7 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_syslog_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/syslogserverprofiles/{profile_id}"
 
@@ -703,6 +706,7 @@ func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSysl
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_syslog_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/syslogserverprofiles/{profile_id}"
 

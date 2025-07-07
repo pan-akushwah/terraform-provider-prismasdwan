@@ -367,6 +367,7 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_wan_interface"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces"
 
@@ -629,6 +630,7 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_wan_interface"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 
@@ -797,6 +799,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_wan_interface"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 
@@ -1149,6 +1152,7 @@ func (r *siteWanInterfaceResource) doDelete(ctx context.Context, state *rsModelW
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_wan_interface"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 

@@ -198,6 +198,7 @@ func (r *elementCellularModuleResource) doGet(ctx context.Context, state *rsMode
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_cellular_module"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/elements/{element_id}/cellular_modules/{cellular_module_id}"
 
@@ -305,6 +306,7 @@ func (r *elementCellularModuleResource) doPut(ctx context.Context, plan *rsModel
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_cellular_module"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/elements/{element_id}/cellular_modules/{cellular_module_id}"
 

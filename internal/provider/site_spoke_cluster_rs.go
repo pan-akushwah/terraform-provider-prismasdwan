@@ -180,6 +180,7 @@ func (r *siteSpokeClusterResource) doPost(ctx context.Context, plan *rsModelSpok
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_spoke_cluster"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/spokeclusters"
 
@@ -326,6 +327,7 @@ func (r *siteSpokeClusterResource) doGet(ctx context.Context, state *rsModelSpok
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_spoke_cluster"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/spokeclusters/{spoke_cluster_id}"
 
@@ -431,6 +433,7 @@ func (r *siteSpokeClusterResource) doPut(ctx context.Context, plan *rsModelSpoke
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_spoke_cluster"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/spokeclusters/{spoke_cluster_id}"
 
@@ -593,6 +596,7 @@ func (r *siteSpokeClusterResource) doDelete(ctx context.Context, state *rsModelS
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_spoke_cluster"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/spokeclusters/{spoke_cluster_id}"
 

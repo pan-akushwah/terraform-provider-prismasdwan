@@ -183,6 +183,7 @@ func (r *natPolicySetStackResource) doPost(ctx context.Context, plan *rsModelNAT
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_nat_policy_set_stack"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/natpolicysetstacks"
 
@@ -331,6 +332,7 @@ func (r *natPolicySetStackResource) doGet(ctx context.Context, state *rsModelNAT
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_nat_policy_set_stack"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/natpolicysetstacks/{natpolicy_set_stack_id}"
 
@@ -438,6 +440,7 @@ func (r *natPolicySetStackResource) doPut(ctx context.Context, plan *rsModelNATP
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_nat_policy_set_stack"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/natpolicysetstacks/{natpolicy_set_stack_id}"
 
@@ -598,6 +601,7 @@ func (r *natPolicySetStackResource) doDelete(ctx context.Context, state *rsModel
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_nat_policy_set_stack"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/natpolicysetstacks/{natpolicy_set_stack_id}"
 

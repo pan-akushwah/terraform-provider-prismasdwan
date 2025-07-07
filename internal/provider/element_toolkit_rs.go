@@ -197,6 +197,7 @@ func (r *elementToolkitResource) doGet(ctx context.Context, state *rsModelElemen
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_toolkit"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.2/api/elements/{element_id}/elementaccessconfigs"
 
@@ -302,6 +303,7 @@ func (r *elementToolkitResource) doPut(ctx context.Context, plan *rsModelElement
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_toolkit"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.2/api/elements/{element_id}/elementaccessconfigs/{element_access_id}"
 

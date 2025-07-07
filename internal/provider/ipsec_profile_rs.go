@@ -726,6 +726,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_ipsec_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.2/api/ipsecprofiles"
 
@@ -1252,6 +1253,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_ipsec_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.2/api/ipsecprofiles/{profile_id}"
 
@@ -1565,6 +1567,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_ipsec_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.2/api/ipsecprofiles/{profile_id}"
 
@@ -2293,6 +2296,7 @@ func (r *ipsecProfileResource) doDelete(ctx context.Context, state *rsModelIPSEC
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_ipsec_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.2/api/ipsecprofiles/{profile_id}"
 

@@ -164,6 +164,7 @@ func (r *vrfContextResource) doPost(ctx context.Context, plan *rsModelVRFContext
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_vrf_context"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/vrfcontexts"
 
@@ -302,6 +303,7 @@ func (r *vrfContextResource) doGet(ctx context.Context, state *rsModelVRFContext
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_vrf_context"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/vrfcontexts/{vrf_context_id}"
 
@@ -403,6 +405,7 @@ func (r *vrfContextResource) doPut(ctx context.Context, plan *rsModelVRFContextS
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_vrf_context"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/vrfcontexts/{vrf_context_id}"
 
@@ -549,6 +552,7 @@ func (r *vrfContextResource) doDelete(ctx context.Context, state *rsModelVRFCont
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_vrf_context"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/vrfcontexts/{vrf_context_id}"
 

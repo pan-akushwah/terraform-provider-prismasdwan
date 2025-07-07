@@ -217,6 +217,7 @@ func (r *ntpTemplateResource) doPost(ctx context.Context, plan *rsModelNTPTempla
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_ntp_template"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/templates/ntp"
 
@@ -401,6 +402,7 @@ func (r *ntpTemplateResource) doGet(ctx context.Context, state *rsModelNTPTempla
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_ntp_template"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/templates/ntp/{ntp_id}"
 
@@ -525,6 +527,7 @@ func (r *ntpTemplateResource) doPut(ctx context.Context, plan *rsModelNTPTemplat
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_ntp_template"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/templates/ntp/{ntp_id}"
 
@@ -726,6 +729,7 @@ func (r *ntpTemplateResource) doDelete(ctx context.Context, state *rsModelNTPTem
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_ntp_template"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/templates/ntp/{ntp_id}"
 

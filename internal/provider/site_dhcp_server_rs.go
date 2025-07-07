@@ -356,6 +356,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_dhcp_server"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.3/api/sites/{site_id}/dhcpservers"
 
@@ -650,6 +651,7 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_dhcp_server"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/dhcpservers/{dhcp_server_id}"
 
@@ -830,6 +832,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_dhcp_server"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.3/api/sites/{site_id}/dhcpservers/{dhcp_server_id}"
 
@@ -1183,6 +1186,7 @@ func (r *siteDhcpServerResource) doDelete(ctx context.Context, state *rsModelDHC
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_dhcp_server"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.3/api/sites/{site_id}/dhcpservers/{dhcp_server_id}"
 

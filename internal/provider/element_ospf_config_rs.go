@@ -359,6 +359,7 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_ospf_config"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs"
 
@@ -644,6 +645,7 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_ospf_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 
@@ -821,6 +823,7 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_ospf_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 
@@ -1156,6 +1159,7 @@ func (r *elementOspfConfigResource) doDelete(ctx context.Context, state *rsModel
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_ospf_config"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 

@@ -193,6 +193,7 @@ func (r *multicastPeerGroupProfileResource) doPost(ctx context.Context, plan *rs
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_multicast_peer_group_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.1/api/multicastpeergroups"
 
@@ -365,6 +366,7 @@ func (r *multicastPeerGroupProfileResource) doGet(ctx context.Context, state *rs
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_multicast_peer_group_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.1/api/multicastpeergroups/{peer_group_id}"
 
@@ -483,6 +485,7 @@ func (r *multicastPeerGroupProfileResource) doPut(ctx context.Context, plan *rsM
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_multicast_peer_group_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.1/api/multicastpeergroups/{peer_group_id}"
 
@@ -672,6 +675,7 @@ func (r *multicastPeerGroupProfileResource) doDelete(ctx context.Context, state 
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_multicast_peer_group_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.1/api/multicastpeergroups/{peer_group_id}"
 

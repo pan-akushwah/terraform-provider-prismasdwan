@@ -166,6 +166,7 @@ func (r *securityPolicyLocalPrefixResource) doPost(ctx context.Context, plan *rs
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_security_policy_local_prefix"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/ngfwsecuritypolicylocalprefixes"
 
@@ -304,6 +305,7 @@ func (r *securityPolicyLocalPrefixResource) doGet(ctx context.Context, state *rs
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_security_policy_local_prefix"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/ngfwsecuritypolicylocalprefixes/{prefix_id}"
 
@@ -405,6 +407,7 @@ func (r *securityPolicyLocalPrefixResource) doPut(ctx context.Context, plan *rsM
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_security_policy_local_prefix"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/ngfwsecuritypolicylocalprefixes/{prefix_id}"
 
@@ -551,6 +554,7 @@ func (r *securityPolicyLocalPrefixResource) doDelete(ctx context.Context, state 
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_security_policy_local_prefix"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/ngfwsecuritypolicylocalprefixes/{prefix_id}"
 

@@ -174,6 +174,7 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_ciphers"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/siteciphers"
 
@@ -275,6 +276,7 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_ciphers"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/siteciphers"
 

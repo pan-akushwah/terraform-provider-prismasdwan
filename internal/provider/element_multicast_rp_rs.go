@@ -201,6 +201,7 @@ func (r *elementMulticastRpResource) doPost(ctx context.Context, plan *rsModelMu
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_multicast_rp"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/multicastrps"
 
@@ -377,6 +378,7 @@ func (r *elementMulticastRpResource) doGet(ctx context.Context, state *rsModelMu
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_multicast_rp"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/multicastrps/{config_id}"
 
@@ -497,6 +499,7 @@ func (r *elementMulticastRpResource) doPut(ctx context.Context, plan *rsModelMul
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_multicast_rp"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/multicastrps/{config_id}"
 
@@ -690,6 +693,7 @@ func (r *elementMulticastRpResource) doDelete(ctx context.Context, state *rsMode
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_multicast_rp"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/multicastrps/{config_id}"
 

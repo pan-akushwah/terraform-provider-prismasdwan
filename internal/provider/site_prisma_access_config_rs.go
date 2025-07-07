@@ -202,6 +202,7 @@ func (r *sitePrismaAccessConfigResource) doPost(ctx context.Context, plan *rsMod
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_prisma_access_config"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prismaaccess_configs"
 
@@ -380,6 +381,7 @@ func (r *sitePrismaAccessConfigResource) doGet(ctx context.Context, state *rsMod
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_prisma_access_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prismaaccess_configs/{config_id}"
 
@@ -502,6 +504,7 @@ func (r *sitePrismaAccessConfigResource) doPut(ctx context.Context, plan *rsMode
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_prisma_access_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prismaaccess_configs/{config_id}"
 
@@ -689,6 +692,7 @@ func (r *sitePrismaAccessConfigResource) doDelete(ctx context.Context, state *rs
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_prisma_access_config"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prismaaccess_configs/{config_id}"
 

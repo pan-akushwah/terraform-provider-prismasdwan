@@ -165,6 +165,7 @@ func (r *siteNatLocalPrefixResource) doPost(ctx context.Context, plan *rsModelSi
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_nat_local_prefix"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/natlocalprefixes"
 
@@ -305,6 +306,7 @@ func (r *siteNatLocalPrefixResource) doGet(ctx context.Context, state *rsModelSi
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_nat_local_prefix"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/natlocalprefixes/{prefix_id}"
 
@@ -408,6 +410,7 @@ func (r *siteNatLocalPrefixResource) doPut(ctx context.Context, plan *rsModelSit
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_nat_local_prefix"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/natlocalprefixes/{prefix_id}"
 
@@ -552,6 +555,7 @@ func (r *siteNatLocalPrefixResource) doDelete(ctx context.Context, state *rsMode
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_nat_local_prefix"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/natlocalprefixes/{prefix_id}"
 

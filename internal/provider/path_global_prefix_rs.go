@@ -184,6 +184,7 @@ func (r *pathGlobalPrefixResource) doPost(ctx context.Context, plan *rsModelNetw
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_path_global_prefix"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.1/api/networkpolicyglobalprefixes"
 
@@ -334,6 +335,7 @@ func (r *pathGlobalPrefixResource) doGet(ctx context.Context, state *rsModelNetw
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_path_global_prefix"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.1/api/networkpolicyglobalprefixes/{prefix_id}"
 
@@ -443,6 +445,7 @@ func (r *pathGlobalPrefixResource) doPut(ctx context.Context, plan *rsModelNetwo
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_path_global_prefix"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.1/api/networkpolicyglobalprefixes/{prefix_id}"
 
@@ -601,6 +604,7 @@ func (r *pathGlobalPrefixResource) doDelete(ctx context.Context, state *rsModelN
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_path_global_prefix"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.1/api/networkpolicyglobalprefixes/{prefix_id}"
 

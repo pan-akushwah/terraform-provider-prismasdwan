@@ -358,6 +358,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_iot_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/deviceidprofiles"
 
@@ -614,6 +615,7 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_iot_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/deviceidprofiles/{profile_id}"
 
@@ -779,6 +781,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_iot_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/deviceidprofiles/{profile_id}"
 
@@ -1127,6 +1130,7 @@ func (r *iotProfileResource) doDelete(ctx context.Context, state *rsModelDeviceI
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_iot_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/deviceidprofiles/{profile_id}"
 

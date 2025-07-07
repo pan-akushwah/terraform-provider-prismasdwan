@@ -251,6 +251,7 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_multicast_global_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/multicastglobalconfigs/{config_id}"
 
@@ -378,6 +379,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_multicast_global_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/multicastglobalconfigs/{config_id}"
 

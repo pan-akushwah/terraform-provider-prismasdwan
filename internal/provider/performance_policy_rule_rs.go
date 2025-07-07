@@ -515,6 +515,7 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_performance_policy_rule"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules"
 
@@ -949,6 +950,7 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_performance_policy_rule"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
 
@@ -1213,6 +1215,7 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_performance_policy_rule"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
 
@@ -1679,6 +1682,7 @@ func (r *performancePolicyRuleResource) doDelete(ctx context.Context, state *rsM
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_performance_policy_rule"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
 

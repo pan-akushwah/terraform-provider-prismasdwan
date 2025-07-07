@@ -430,6 +430,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_bgp_peer"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers"
 
@@ -739,6 +740,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_bgp_peer"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 
@@ -930,6 +932,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_bgp_peer"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 
@@ -1360,6 +1363,7 @@ func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGP
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_bgp_peer"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 

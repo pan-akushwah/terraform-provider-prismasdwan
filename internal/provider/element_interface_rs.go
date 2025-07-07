@@ -2021,6 +2021,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_interface"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces"
 
@@ -3496,6 +3497,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_interface"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}"
 
@@ -4317,6 +4319,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_interface"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}"
 
@@ -6473,6 +6476,7 @@ func (r *elementInterfaceResource) doDelete(ctx context.Context, state *rsModelI
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_interface"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v4.20/api/sites/{site_id}/elements/{element_id}/interfaces/{interface_id}"
 

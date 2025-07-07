@@ -1368,6 +1368,7 @@ func (r *dnsServiceProfileResource) doPost(ctx context.Context, plan *rsModelDns
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_dns_service_profile"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.1/api/dnsserviceprofiles"
 
@@ -2542,6 +2543,7 @@ func (r *dnsServiceProfileResource) doGet(ctx context.Context, state *rsModelDns
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_dns_service_profile"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.1/api/dnsserviceprofiles/{dnsservice_role_id}"
 
@@ -3183,6 +3185,7 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_dns_service_profile"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.1/api/dnsserviceprofiles/{dnsservice_role_id}"
 
@@ -4577,6 +4580,7 @@ func (r *dnsServiceProfileResource) doDelete(ctx context.Context, state *rsModel
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_dns_service_profile"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.1/api/dnsserviceprofiles/{dnsservice_role_id}"
 

@@ -263,6 +263,7 @@ func (r *elementTacacsPlusServerResource) doPost(ctx context.Context, plan *rsMo
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers"
 
@@ -474,6 +475,7 @@ func (r *elementTacacsPlusServerResource) doGet(ctx context.Context, state *rsMo
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{id}"
 
@@ -613,6 +615,7 @@ func (r *elementTacacsPlusServerResource) doPut(ctx context.Context, plan *rsMod
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{id}"
 
@@ -853,6 +856,7 @@ func (r *elementTacacsPlusServerResource) doDelete(ctx context.Context, state *r
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{id}"
 

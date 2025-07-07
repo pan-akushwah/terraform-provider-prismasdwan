@@ -267,6 +267,7 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_probe_config"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/probeconfigs"
 
@@ -479,6 +480,7 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_probe_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/probeconfigs/{config_id}"
 
@@ -619,6 +621,7 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_probe_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/probeconfigs/{config_id}"
 
@@ -848,6 +851,7 @@ func (r *probeConfigResource) doDelete(ctx context.Context, state *rsModelProbeC
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_probe_config"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/probeconfigs/{config_id}"
 

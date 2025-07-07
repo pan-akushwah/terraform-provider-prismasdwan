@@ -193,6 +193,7 @@ func (r *siteIotSnmpStartNodeResource) doPost(ctx context.Context, plan *rsModel
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_iot_snmp_start_node"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/deviceidconfigs/{deviceid_config_id}/snmpdiscoverystartnodes"
 
@@ -365,6 +366,7 @@ func (r *siteIotSnmpStartNodeResource) doGet(ctx context.Context, state *rsModel
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_iot_snmp_start_node"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/deviceidconfigs/{deviceid_config_id}/snmpdiscoverystartnodes/{deviceid_start_node_id}"
 
@@ -483,6 +485,7 @@ func (r *siteIotSnmpStartNodeResource) doPut(ctx context.Context, plan *rsModelD
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_iot_snmp_start_node"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/deviceidconfigs/{deviceid_config_id}/snmpdiscoverystartnodes/{deviceid_start_node_id}"
 
@@ -672,6 +675,7 @@ func (r *siteIotSnmpStartNodeResource) doDelete(ctx context.Context, state *rsMo
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_iot_snmp_start_node"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/deviceidconfigs/{deviceid_config_id}/snmpdiscoverystartnodes/{deviceid_start_node_id}"
 

@@ -166,6 +166,7 @@ func (r *qosPolicyLocalPrefixResource) doPost(ctx context.Context, plan *rsModel
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_qos_policy_local_prefix"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/prioritypolicylocalprefixes"
 
@@ -304,6 +305,7 @@ func (r *qosPolicyLocalPrefixResource) doGet(ctx context.Context, state *rsModel
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_qos_policy_local_prefix"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/prioritypolicylocalprefixes/{priority_policy_id}"
 
@@ -405,6 +407,7 @@ func (r *qosPolicyLocalPrefixResource) doPut(ctx context.Context, plan *rsModelP
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_qos_policy_local_prefix"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/prioritypolicylocalprefixes/{priority_policy_id}"
 
@@ -551,6 +554,7 @@ func (r *qosPolicyLocalPrefixResource) doDelete(ctx context.Context, state *rsMo
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_qos_policy_local_prefix"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/prioritypolicylocalprefixes/{priority_policy_id}"
 

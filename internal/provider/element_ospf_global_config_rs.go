@@ -227,6 +227,7 @@ func (r *elementOspfGlobalConfigResource) doGet(ctx context.Context, state *rsMo
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_ospf_global_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfglobalconfigs/{ospf_config_id}"
 
@@ -343,6 +344,7 @@ func (r *elementOspfGlobalConfigResource) doPut(ctx context.Context, plan *rsMod
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_ospf_global_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfglobalconfigs/{ospf_config_id}"
 

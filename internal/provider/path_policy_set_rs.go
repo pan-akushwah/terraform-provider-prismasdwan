@@ -501,6 +501,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_path_policy_set"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/networkpolicysets"
 
@@ -908,6 +909,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_path_policy_set"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/networkpolicysets/{policy_set_id}"
 
@@ -1143,6 +1145,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_path_policy_set"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/networkpolicysets/{policy_set_id}"
 
@@ -1599,6 +1602,7 @@ func (r *pathPolicySetResource) doDelete(ctx context.Context, state *rsModelNetw
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_path_policy_set"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/networkpolicysets/{policy_set_id}"
 

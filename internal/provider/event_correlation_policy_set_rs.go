@@ -295,6 +295,7 @@ func (r *eventCorrelationPolicySetResource) doPost(ctx context.Context, plan *rs
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_event_correlation_policy_set"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/eventcorrelationpolicysets"
 
@@ -535,6 +536,7 @@ func (r *eventCorrelationPolicySetResource) doGet(ctx context.Context, state *rs
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_event_correlation_policy_set"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/eventcorrelationpolicysets/{policy_set_id}"
 
@@ -689,6 +691,7 @@ func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsM
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_event_correlation_policy_set"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/eventcorrelationpolicysets/{policy_set_id}"
 
@@ -942,6 +945,7 @@ func (r *eventCorrelationPolicySetResource) doDelete(ctx context.Context, state 
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_event_correlation_policy_set"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/eventcorrelationpolicysets/{policy_set_id}"
 

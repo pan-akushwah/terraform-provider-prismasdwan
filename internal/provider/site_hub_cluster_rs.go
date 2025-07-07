@@ -218,6 +218,7 @@ func (r *siteHubClusterResource) doPost(ctx context.Context, plan *rsModelHubClu
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_site_hub_cluster"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v4.0/api/sites/{site_id}/hubclusters"
 
@@ -404,6 +405,7 @@ func (r *siteHubClusterResource) doGet(ctx context.Context, state *rsModelHubClu
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_site_hub_cluster"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v4.0/api/sites/{site_id}/hubclusters/{hub_cluster_id}"
 
@@ -530,6 +532,7 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_site_hub_cluster"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v4.0/api/sites/{site_id}/hubclusters/{hub_cluster_id}"
 
@@ -737,6 +740,7 @@ func (r *siteHubClusterResource) doDelete(ctx context.Context, state *rsModelHub
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_site_hub_cluster"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v4.0/api/sites/{site_id}/hubclusters/{hub_cluster_id}"
 

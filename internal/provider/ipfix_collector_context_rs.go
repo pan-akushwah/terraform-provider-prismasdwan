@@ -155,6 +155,7 @@ func (r *ipfixCollectorContextResource) doPost(ctx context.Context, plan *rsMode
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_ipfix_collector_context"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/ipfixcollectorcontexts"
 
@@ -287,6 +288,7 @@ func (r *ipfixCollectorContextResource) doGet(ctx context.Context, state *rsMode
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_ipfix_collector_context"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/ipfixcollectorcontexts/{context_id}"
 
@@ -384,6 +386,7 @@ func (r *ipfixCollectorContextResource) doPut(ctx context.Context, plan *rsModel
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_ipfix_collector_context"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/ipfixcollectorcontexts/{context_id}"
 
@@ -524,6 +527,7 @@ func (r *ipfixCollectorContextResource) doDelete(ctx context.Context, state *rsM
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_ipfix_collector_context"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/ipfixcollectorcontexts/{context_id}"
 

@@ -297,6 +297,7 @@ func (r *elementSnmpTrapResource) doPost(ctx context.Context, plan *rsModelSNMPT
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_snmp_trap"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps"
 
@@ -529,6 +530,7 @@ func (r *elementSnmpTrapResource) doGet(ctx context.Context, state *rsModelSNMPT
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_snmp_trap"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
 
@@ -683,6 +685,7 @@ func (r *elementSnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPTr
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_snmp_trap"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
 
@@ -973,6 +976,7 @@ func (r *elementSnmpTrapResource) doDelete(ctx context.Context, state *rsModelSN
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_snmp_trap"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
 

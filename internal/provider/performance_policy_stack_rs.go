@@ -189,6 +189,7 @@ func (r *performancePolicyStackResource) doPost(ctx context.Context, plan *rsMod
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_performance_policy_stack"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/perfmgmtpolicysetstacks"
 
@@ -341,6 +342,7 @@ func (r *performancePolicyStackResource) doGet(ctx context.Context, state *rsMod
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_performance_policy_stack"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/perfmgmtpolicysetstacks/{id}"
 
@@ -450,6 +452,7 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_performance_policy_stack"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/perfmgmtpolicysetstacks/{id}"
 
@@ -618,6 +621,7 @@ func (r *performancePolicyStackResource) doDelete(ctx context.Context, state *rs
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_performance_policy_stack"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/perfmgmtpolicysetstacks/{id}"
 

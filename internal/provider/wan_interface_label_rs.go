@@ -285,6 +285,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_wan_interface_label"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}"
 
@@ -424,6 +425,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_wan_interface_label"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}"
 

@@ -246,6 +246,7 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_external_ca_config"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.0/api/externalcaconfigs"
 
@@ -430,6 +431,7 @@ func (r *externalCaConfigResource) doGet(ctx context.Context, state *rsModelCert
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_external_ca_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/externalcaconfigs/{id}"
 
@@ -554,6 +556,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_external_ca_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/externalcaconfigs/{id}"
 
@@ -788,6 +791,7 @@ func (r *externalCaConfigResource) doDelete(ctx context.Context, state *rsModelC
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_external_ca_config"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.0/api/externalcaconfigs/{id}"
 

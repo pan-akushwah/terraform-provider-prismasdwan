@@ -209,6 +209,7 @@ func (r *elementRoutingAspathaccesslistResource) doPost(ctx context.Context, pla
 
 	// Prepare input for the API endpoint.
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
+	create_request.ResourceType = "prismasdwan_element_routing_aspathaccesslist"
 	create_request.Method = "POST"
 	create_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/routing_aspathaccesslists"
 
@@ -389,6 +390,7 @@ func (r *elementRoutingAspathaccesslistResource) doGet(ctx context.Context, stat
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_routing_aspathaccesslist"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/routing_aspathaccesslists/{config_id}"
 
@@ -511,6 +513,7 @@ func (r *elementRoutingAspathaccesslistResource) doPut(ctx context.Context, plan
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_routing_aspathaccesslist"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/routing_aspathaccesslists/{config_id}"
 
@@ -708,6 +711,7 @@ func (r *elementRoutingAspathaccesslistResource) doDelete(ctx context.Context, s
 
 	// Prepare input for the API endpoint.
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
+	delete_request.ResourceType = "prismasdwan_element_routing_aspathaccesslist"
 	delete_request.Method = "DELETE"
 	delete_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/routing_aspathaccesslists/{config_id}"
 

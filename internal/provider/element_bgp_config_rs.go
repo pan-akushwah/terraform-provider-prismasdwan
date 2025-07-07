@@ -322,6 +322,7 @@ func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPG
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_bgp_config"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
 
@@ -475,6 +476,7 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_bgp_config"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
 

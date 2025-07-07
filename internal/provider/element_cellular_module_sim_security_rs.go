@@ -198,6 +198,7 @@ func (r *elementCellularModuleSimSecurityResource) doGet(ctx context.Context, st
 
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
+	read_request.ResourceType = "prismasdwan_element_cellular_module_sim_security"
 	read_request.Method = "GET"
 	read_request.Path = "/sdwan/v2.0/api/elements/{element_id}/cellular_modules/{cellular_module_id}/sim_security/{sim_security_id}"
 
@@ -305,6 +306,7 @@ func (r *elementCellularModuleSimSecurityResource) doPut(ctx context.Context, pl
 
 	// Prepare input for the API endpoint.
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
+	put_request.ResourceType = "prismasdwan_element_cellular_module_sim_security"
 	put_request.Method = "PUT"
 	put_request.Path = "/sdwan/v2.0/api/elements/{element_id}/cellular_modules/{cellular_module_id}/sim_security/{sim_security_id}"
 

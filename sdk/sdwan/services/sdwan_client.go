@@ -6,7 +6,11 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"os"
+	"path/filepath"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/bhmj/jsonslice"
 	"github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/api"
@@ -33,6 +37,7 @@ func NewClient(client api.Client) *Client {
 
 // request & response struct
 type SdwanClientRequestResponse struct {
+	ResourceType       string
 	Path               string
 	FinalPath          *string
 	PathParameters     *(map[string]*string)
@@ -82,6 +87,19 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 	r_bytes, r_status, r_err := c.client.Do(ctx, request.Method, path, nil, request.RequestBody, nil)
 	request.ResponseBytes = &r_bytes
 	request.ResponseStatusCode = r_status
+
+	// dump to file
+	if dump_dir, exists := os.LookupEnv("SDWAN_DUMP_PATH_DIR"); exists {
+		// create a new file under this directory
+		t_stamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
+		// file name
+		file_name := t_stamp + "." + request.ResourceType + "." + request.Method + ".json"
+		// file path
+		file_path := filepath.Join(dump_dir, file_name)
+		// write
+		os.WriteFile(file_path, []byte(request.ToString()), 0644)
+	}
+
 	if r_err != nil {
 		request.ResponseErr = &r_err
 		if len(r_bytes) > 0 {
