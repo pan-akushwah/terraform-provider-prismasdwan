@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/bhmj/jsonslice"
+	"github.com/google/uuid"
 	"github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/api"
 )
 
@@ -93,7 +94,7 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 		// create a new file under this directory
 		t_stamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
 		// file name
-		file_name := t_stamp + "." + request.ResourceType + "." + request.Method + ".json"
+		file_name := strings.Join([]string{t_stamp, request.ResourceType, request.Method, uuid.New().String(), "json"}, ".")
 		// file path
 		file_path := filepath.Join(dump_dir, file_name)
 		// write
