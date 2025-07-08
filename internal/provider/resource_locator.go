@@ -311,6 +311,7 @@ func (r *newResourceLocatorResource) makeHttpGetLookUp(ctx context.Context, plan
 
 	// Prepare input for the API endpoint.
 	get_request := &sdwan_client.SdwanClientRequestResponse{}
+	get_request.ResourceType = "prismasdwan_resource_locator"
 	get_request.Method = "GET"
 	get_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
