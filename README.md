@@ -17,7 +17,7 @@ Building the Provider
 2. Clone this repo:
 
 ```sh
-git clone https://github.com/paloaltonetworks/terraform-provider-prismasdwan
+https://github.com/pan-akushwah/terraform-provider-prismasdwan.git
 ```
 
 4. Build the provider:
