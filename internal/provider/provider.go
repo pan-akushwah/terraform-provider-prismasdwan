@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	sdk "github.com/paloaltonetworks/scm-go"
-	sdkapi "github.com/paloaltonetworks/scm-go/api"
+	sdk "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
+	sdkapi "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/api"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
@@ -20,27 +20,28 @@ var (
 	_ provider.Provider = &SdwanProvider{}
 )
 
-// SdwanProvider is the provider implementation.
+// SdProvider is the provider implementation.
 type SdwanProvider struct {
 	version string
 }
 
 // SdwanProviderModel maps provider schema data to a Go type.
 type SdwanProviderModel struct {
+	AuthUrl      types.String `tfsdk:"auth_url"`
+	Protocol     types.String `tfsdk:"protocol"`
 	Host         types.String `tfsdk:"host"`
 	Port         types.Int64  `tfsdk:"port"`
-	Protocol     types.String `tfsdk:"protocol"`
+	Headers      types.Map    `tfsdk:"headers"`
 	ClientId     types.String `tfsdk:"client_id"`
 	ClientSecret types.String `tfsdk:"client_secret"`
 	Scope        types.String `tfsdk:"scope"`
 	Logging      types.String `tfsdk:"logging"`
 	AuthFile     types.String `tfsdk:"auth_file"`
-	AuthUrl      types.String `tfsdk:"auth_url"`
 }
 
 // Metadata returns the provider type name.
 func (p *SdwanProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "prismasdwan"
+	resp.TypeName = "sdwan"
 	resp.Version = p.version
 }
 
@@ -49,10 +50,28 @@ func (p *SdwanProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp
 	resp.Schema = schema.Schema{
 		Description: "Terraform provider to interact with Palo Alto Networks Strata Cloud Manager API.",
 		Attributes: map[string]schema.Attribute{
+			"auth_url": schema.StringAttribute{
+				Description: ProviderParamDescription(
+					"The URL to send auth credentials to which will return a JWT.",
+					"https://auth.apps.paloaltonetworks.com/auth/v1/oauth2/access_token",
+					"SCM_AUTH_URL",
+					"auth_url",
+				),
+				Optional: true,
+			},
+			"protocol": schema.StringAttribute{
+				Description: ProviderParamDescription(
+					"The protocol to use for SCM. This should be 'http' or 'https'.",
+					"https",
+					"SCM_PROTOCOL",
+					"protocol",
+				),
+				Optional: true,
+			},
 			"host": schema.StringAttribute{
 				Description: ProviderParamDescription(
 					"The hostname of Strata Cloud Manager API.",
-					"pa-us01.api.prismaaccess.com",
+					"api.sase.paloaltonetworks.com",
 					"SCM_HOST",
 					"host",
 				),
@@ -60,21 +79,22 @@ func (p *SdwanProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp
 			},
 			"port": schema.Int64Attribute{
 				Description: ProviderParamDescription(
-					"The port number for API operations, if non-standard for the given protocol.",
+					"The port number to use for API commands, if non-standard for the given protocol.",
 					"",
 					"SCM_PORT",
 					"port",
 				),
 				Optional: true,
 			},
-			"protocol": schema.StringAttribute{
+			"headers": schema.MapAttribute{
 				Description: ProviderParamDescription(
-					"The protocol (https or http).",
-					"https",
-					"SCM_PROTOCOL",
-					"protocol",
+					"Custom HTTP headers to be sent with all API commands.",
+					"",
+					"SCM_HEADERS",
+					"headers",
 				),
-				Optional: true,
+				Optional:    true,
+				ElementType: types.StringType,
 			},
 			"client_id": schema.StringAttribute{
 				Description: ProviderParamDescription(
@@ -122,15 +142,6 @@ func (p *SdwanProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp
 				),
 				Optional: true,
 			},
-			"auth_url": schema.StringAttribute{
-				Description: ProviderParamDescription(
-					"The URL to send auth credentials to which will return a JWT.",
-					"https://auth.apps.paloaltonetworks.com/auth/v1/oauth2/access_token",
-					"SCM_AUTH_URL",
-					"auth_url",
-				),
-				Optional: true,
-			},
 		},
 	}
 }
@@ -145,15 +156,24 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 		return
 	}
 
-	if config.Host.ValueString() == "" {
-		config.Host = types.StringValue("pa-us01.api.prismaaccess.com")
+	// Configure the client.
+	ht := make(map[string]types.String, len(config.Headers.Elements()))
+	resp.Diagnostics.Append(config.Headers.ElementsAs(ctx, &ht, false).Errors()...)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 
-	// Configure the client.
+	headers := make(map[string]string, len(ht))
+	for hkey, hval := range ht {
+		headers[hkey] = hval.ValueString()
+	}
+
 	con := &sdk.Client{
+		AuthUrl:          config.AuthUrl.ValueString(),
+		Protocol:         config.Protocol.ValueString(),
 		Host:             config.Host.ValueString(),
 		Port:             int(config.Port.ValueInt64()),
-		Protocol:         config.Protocol.ValueString(),
+		Headers:          headers,
 		ClientId:         config.ClientId.ValueString(),
 		ClientSecret:     config.ClientSecret.ValueString(),
 		Scope:            config.Scope.ValueString(),
@@ -161,7 +181,6 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 		Logging:          config.Logging.ValueString(),
 		Logger:           tflog.Debug,
 		CheckEnvironment: true,
-		AuthUrl:          config.AuthUrl.ValueString(),
 		Agent:            fmt.Sprintf("Terraform/%s Provider/prismasdwan Version/%s", req.TerraformVersion, p.version),
 	}
 
@@ -171,6 +190,7 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 	}
 
 	con.HttpClient.Transport = sdkapi.NewTransport(con.HttpClient.Transport, con)
+
 	if err := con.RefreshJwt(ctx); err != nil {
 		resp.Diagnostics.AddError("Authentication error", err.Error())
 		return
@@ -186,14 +206,134 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 // DataSources defines the data sources for this provider.
 func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
-		NewSdwanSiteDataSource,
+		// -- append next datasource above -- //
+
 	}
 }
 
 // Resources defines the data sources for this provider.
 func (p *SdwanProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
-		NewSdwanSiteResource,
+		// Resource Locator
+		NewResourceLocatorResource,
+		// -- add content of provider.sources.txt below --
+		NewAnynetLinkResource,
+		NewApnProfileResource,
+		NewAppDefOverrideResource,
+		NewAppDefResource,
+		NewDnsServiceProfileResource,
+		NewDnsServiceRoleResource,
+		NewDomainResource,
+		NewElementApplicationProbeResource,
+		NewElementBgpConfigResource,
+		NewElementBgpPeerResource,
+		NewElementCellularModuleResource,
+		NewElementCellularModuleSimSecurityResource,
+		NewElementDnsServiceResource,
+		NewElementInterfaceResource,
+		NewElementIotDeviceIdConfigResource,
+		NewElementIpfixResource,
+		NewElementMulticastGlobalConfigResource,
+		NewElementMulticastRpResource,
+		NewElementNtpResource,
+		NewElementOspfConfigResource,
+		NewElementOspfGlobalConfigResource,
+		NewElementRadiusResource,
+		NewElementResource,
+		NewElementRoutingAspathaccesslistResource,
+		NewElementRoutingIpcommunitylistResource,
+		NewElementRoutingPrefixlistResource,
+		NewElementRoutingRoutemapResource,
+		NewElementSecurityZoneResource,
+		NewElementShellInterfaceResource,
+		NewElementShellResource,
+		NewElementSnmpAgentResource,
+		NewElementSnmpTrapResource,
+		NewElementStaticRouteResource,
+		NewElementSyslogServerResource,
+		NewElementTacacsPlusServerResource,
+		NewElementToolkitResource,
+		NewEventCorrelationPolicyRuleResource,
+		NewEventCorrelationPolicySetResource,
+		NewExternalCaConfigResource,
+		NewGlobalPrefixFilterResource,
+		NewIotProfileResource,
+		NewIpfixCollectorContextResource,
+		NewIpfixFilterContextResource,
+		NewIpfixGlobalPrefixResource,
+		NewIpfixLocalPrefixResource,
+		NewIpfixProfileResource,
+		NewIpfixTemplateResource,
+		NewIpsecProfileResource,
+		NewLocalPrefixFilterResource,
+		NewMulticastPeerGroupProfileResource,
+		NewNatGlobalPrefixResource,
+		NewNatLocalPrefixResource,
+		NewNatPolicyPoolResource,
+		NewNatPolicyRuleResource,
+		NewNatPolicySetResource,
+		NewNatPolicySetStackResource,
+		NewNatZoneResource,
+		NewNetworkContextResource,
+		NewNtpTemplateResource,
+		NewPathGlobalPrefixResource,
+		NewPathGroupResource,
+		NewPathLocalPrefixResource,
+		NewPathPolicyRuleResource,
+		NewPathPolicySetResource,
+		NewPathPolicyStackResource,
+		NewPerformancePolicyRuleResource,
+		NewPerformancePolicySetResource,
+		NewPerformancePolicyStackResource,
+		NewPerformanceProfileResource,
+		NewProbeConfigResource,
+		NewProbeProfileResource,
+		NewQosPolicyGlobalPrefixResource,
+		NewQosPolicyLocalPrefixResource,
+		NewQosPolicyRuleResource,
+		NewQosPolicySetResource,
+		NewQosPolicyStackResource,
+		NewSdwanappsConfigResource,
+		NewSecurityPolicyGlobalPrefixResource,
+		NewSecurityPolicyLocalPrefixResource,
+		NewSecurityPolicyRuleResource,
+		NewSecurityPolicySetResource,
+		NewSecurityPolicyStackResource,
+		NewSecurityZoneResource,
+		NewServiceEndpointResource,
+		NewServiceGroupResource,
+		NewSiteCiphersResource,
+		NewSiteDhcpServerResource,
+		NewSiteHubClusterMemberResource,
+		NewSiteHubClusterResource,
+		NewSiteHubDistributionFabricResource,
+		NewSiteHubPrefixFilterAssociationResource,
+		NewSiteHubPrefixFilterProfileResource,
+		NewSiteHubPrefixFilterResource,
+		NewSiteIotDeviceIdConfigResource,
+		NewSiteIotSnmpStartNodeResource,
+		NewSiteIpfixLocalPrefixResource,
+		NewSiteLanNetworkResource,
+		NewSiteNatLocalPrefixResource,
+		NewSitePathPolicyLocalPrefixResource,
+		NewSitePrismaAccessConfigResource,
+		NewSitePrismaSaseConnectionResource,
+		NewSiteQosPolicyLocalPrefixResource,
+		NewSiteResource,
+		NewSiteSecurityPolicyLocalPrefixResource,
+		NewSiteSecurityZoneResource,
+		NewSiteSpokeClusterResource,
+		NewSiteWanInterfaceResource,
+		NewSiteWanMulticastConfigurationResource,
+		NewSyslogProfileResource,
+		NewTacacsPlusProfileResource,
+		NewVrfContextProfileResource,
+		NewVrfContextResource,
+		NewWanInterfaceLabelResource,
+		NewWanNetworkResource,
+		NewWanOverlayResource,
+		// -- append next resource above -- //
+
 	}
 }
 
