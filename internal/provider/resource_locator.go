@@ -82,11 +82,13 @@ func (r *newResourceLocatorResource) Schema(_ context.Context, _ resource.Schema
 			},
 			"resource_property": rsschema.StringAttribute{
 				Computed: false,
-				Required: true,
+				Required: false,
+				Optional: true,
 			},
 			"resource_property_value": rsschema.StringAttribute{
 				Computed: false,
-				Required: true,
+				Required: false,
+				Optional: true,
 			},
 			"result": rsschema.StringAttribute{
 				Computed: true,
@@ -311,7 +313,6 @@ func (r *newResourceLocatorResource) makeHttpGetLookUp(ctx context.Context, plan
 
 	// Prepare input for the API endpoint.
 	get_request := &sdwan_client.SdwanClientRequestResponse{}
-	get_request.ResourceType = "prismasdwan_resource_locator"
 	get_request.Method = "GET"
 	get_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
