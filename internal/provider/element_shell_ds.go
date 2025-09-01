@@ -19,7 +19,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=13)
+// | Schema Map Summary (size=goLangStructMap=12)
 // | Computed Resource Name=sites_elementshells
 // +-----------------------------------------------------------------
 // | IntraClusterTunnel HasID=false
@@ -34,7 +34,6 @@ import (
 // | SpokeHAConfigV2 HasID=false
 // | Software HasID=false
 // | ElementScreenV3N2 HasID=true
-// | ElementShellV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -75,7 +74,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=ElementShellV2N1
+			// rest all properties to be read from GET API Schema schema=ElementScreenV3N2
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -143,7 +142,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=device_mode, type=STRING macro=rss_schema
 			"device_mode": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -315,7 +314,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=model_name, type=STRING macro=rss_schema
 			"model_name": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -355,7 +354,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=role, type=STRING macro=rss_schema
 			"role": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -371,7 +370,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=software_version, type=STRING macro=rss_schema
 			"software_version": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -487,11 +486,37 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=state, type=STRING macro=rss_schema
 			"state": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=state, type=STRING macro=rss_schema
+			// property: name=sw_obj, type=REFERENCE macro=rss_schema
+			"sw_obj": dsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				Attributes: map[string]dsschema.Attribute{
+					// property: name=location, type=STRING macro=rss_schema
+					"location": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=location, type=STRING macro=rss_schema
+					// property: name=version, type=STRING macro=rss_schema
+					"version": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=version, type=STRING macro=rss_schema
+				},
+			},
+			// key name holder for attribute: name=version, type=STRING macro=rss_schema
 			// property: name=switch_config, type=REFERENCE macro=rss_schema
 			"switch_config": dsschema.SingleNestedAttribute{
 				Required:  false,
@@ -583,468 +608,6 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
-			// property: name=tracked_element, type=REFERENCE macro=rss_schema
-			"tracked_element": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// generic x_parameters is added to accomodate path parameters
-					"x_parameters": dsschema.MapAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					// property: name=_etag, type=INTEGER macro=rss_schema
-					"x_etag": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-					// property: name=_schema, type=INTEGER macro=rss_schema
-					"x_schema": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-					// property: name=cluster_id, type=STRING macro=rss_schema
-					"cluster_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
-					// property: name=description, type=STRING macro=rss_schema
-					"description": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=device_profile_id, type=STRING macro=rss_schema
-					"device_profile_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=device_profile_id, type=STRING macro=rss_schema
-					// property: name=hub_cluster_config, type=REFERENCE macro=rss_schema
-					"hub_cluster_config": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=intra_cluster_tunnel, type=REFERENCE macro=rss_schema
-							"intra_cluster_tunnel": dsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-								Attributes: map[string]dsschema.Attribute{
-									// property: name=destination_ip, type=STRING macro=rss_schema
-									"destination_ip": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=destination_ip, type=STRING macro=rss_schema
-									// property: name=source_ip, type=STRING macro=rss_schema
-									"source_ip": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=source_ip, type=STRING macro=rss_schema
-									// property: name=status, type=STRING macro=rss_schema
-									"status": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=status, type=STRING macro=rss_schema
-								},
-							},
-							// key name holder for attribute: name=status, type=STRING macro=rss_schema
-							// property: name=track, type=REFERENCE macro=rss_schema
-							"track": dsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-								Attributes: map[string]dsschema.Attribute{
-									// property: name=hosts, type=ARRAY_REFERENCE macro=rss_schema
-									"hosts": dsschema.ListNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-										NestedObject: dsschema.NestedAttributeObject{
-											Attributes: map[string]dsschema.Attribute{
-												// property: name=address_v4, type=STRING macro=rss_schema
-												"address_v4": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=address_v4, type=STRING macro=rss_schema
-												// property: name=address_v6, type=STRING macro=rss_schema
-												"address_v6": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=address_v6, type=STRING macro=rss_schema
-												// property: name=vrf_context_id, type=STRING macro=rss_schema
-												"vrf_context_id": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
-											},
-										},
-									},
-									// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
-								},
-							},
-							// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
-					// property: name=id, type=STRING macro=rss_schema
-					"id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=id, type=STRING macro=rss_schema
-					// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
-					"l3_direct_private_wan_forwarding": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
-					// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
-					"l3_lan_forwarding": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
-					// property: name=led_config, type=REFERENCE macro=rss_schema
-					"led_config": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=service_led_on, type=BOOLEAN macro=rss_schema
-							"service_led_on": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=service_led_on, type=BOOLEAN macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=service_led_on, type=BOOLEAN macro=rss_schema
-					// property: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
-					"main_power_usage_threshold": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
-					// property: name=name, type=STRING macro=rss_schema
-					"name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=name, type=STRING macro=rss_schema
-					// property: name=nat_policysetstack_id, type=STRING macro=rss_schema
-					"nat_policysetstack_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=nat_policysetstack_id, type=STRING macro=rss_schema
-					// property: name=network_policysetstack_id, type=STRING macro=rss_schema
-					"network_policysetstack_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=network_policysetstack_id, type=STRING macro=rss_schema
-					// property: name=priority_policysetstack_id, type=STRING macro=rss_schema
-					"priority_policysetstack_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=priority_policysetstack_id, type=STRING macro=rss_schema
-					// property: name=site_id, type=STRING macro=rss_schema
-					"site_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-					// property: name=spoke_ha_config, type=REFERENCE macro=rss_schema
-					"spoke_ha_config": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=cluster_id, type=STRING macro=rss_schema
-							"cluster_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
-							// property: name=enable, type=BOOLEAN macro=rss_schema
-							"enable": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=enable, type=BOOLEAN macro=rss_schema
-							// property: name=priority, type=INTEGER macro=rss_schema
-							"priority": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=priority, type=INTEGER macro=rss_schema
-							// property: name=source_interface, type=STRING macro=rss_schema
-							"source_interface": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
-							// property: name=track, type=REFERENCE macro=rss_schema
-							"track": dsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-								Attributes: map[string]dsschema.Attribute{
-									// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
-									"interfaces": dsschema.ListNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-										NestedObject: dsschema.NestedAttributeObject{
-											Attributes: map[string]dsschema.Attribute{
-												// property: name=interface_id, type=STRING macro=rss_schema
-												"interface_id": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
-												// property: name=reduce_priority, type=INTEGER macro=rss_schema
-												"reduce_priority": dsschema.Int64Attribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
-											},
-										},
-									},
-									// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
-									// property: name=waninterfaces, type=ARRAY_REFERENCE macro=rss_schema
-									"waninterfaces": dsschema.ListNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-										NestedObject: dsschema.NestedAttributeObject{
-											Attributes: map[string]dsschema.Attribute{
-												// property: name=reduce_priority, type=INTEGER macro=rss_schema
-												"reduce_priority": dsschema.Int64Attribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
-												// property: name=wan_interface_id, type=STRING macro=rss_schema
-												"wan_interface_id": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
-												},
-												// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
-											},
-										},
-									},
-									// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
-								},
-							},
-							// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
-					// property: name=sw_obj, type=REFERENCE macro=rss_schema
-					"sw_obj": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=location, type=STRING macro=rss_schema
-							"location": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=location, type=STRING macro=rss_schema
-							// property: name=version, type=STRING macro=rss_schema
-							"version": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=version, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=version, type=STRING macro=rss_schema
-					// property: name=switch_config, type=REFERENCE macro=rss_schema
-					"switch_config": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=default_vlan_id, type=INTEGER macro=rss_schema
-							"default_vlan_id": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=default_vlan_id, type=INTEGER macro=rss_schema
-							// property: name=mstp_enabled, type=BOOLEAN macro=rss_schema
-							"mstp_enabled": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=mstp_enabled, type=BOOLEAN macro=rss_schema
-							// property: name=stp_aging_timer, type=INTEGER macro=rss_schema
-							"stp_aging_timer": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=stp_aging_timer, type=INTEGER macro=rss_schema
-							// property: name=stp_forward_delay, type=INTEGER macro=rss_schema
-							"stp_forward_delay": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=stp_forward_delay, type=INTEGER macro=rss_schema
-							// property: name=stp_hello_time, type=INTEGER macro=rss_schema
-							"stp_hello_time": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=stp_hello_time, type=INTEGER macro=rss_schema
-							// property: name=stp_max_age, type=INTEGER macro=rss_schema
-							"stp_max_age": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=stp_max_age, type=INTEGER macro=rss_schema
-							// property: name=stp_mode, type=STRING macro=rss_schema
-							"stp_mode": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=stp_mode, type=STRING macro=rss_schema
-							// property: name=stp_priority, type=INTEGER macro=rss_schema
-							"stp_priority": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=stp_priority, type=INTEGER macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=stp_priority, type=INTEGER macro=rss_schema
-					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					"tags": dsschema.SetAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
-					"vpn_to_vpn_forwarding": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": dsschema.BoolAttribute{
 				Required:  false,
@@ -1067,7 +630,7 @@ func (d *elementShellDataSource) Configure(_ context.Context, req datasource.Con
 
 // Read performs Read for the struct.
 func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelElementShellV2N1
+	var state dsModelElementScreenV3N2
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1120,16 +683,16 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.ElementShellV2N1
+	var ans sdwan_schema.ElementScreenV3N2
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ElementShellV2N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to ElementScreenV3N2", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=ElementShellV2N1
+	// lets copy all items into state schema=ElementScreenV3N2
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=32
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -1302,6 +865,18 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	}
 	// property: name=state, type=STRING macro=copy_to_state
 	state.State = types.StringPointerValue(ans.State)
+	// property: name=sw_obj, type=REFERENCE macro=copy_to_state
+	if ans.SwObj == nil {
+		state.SwObj = nil
+	} else {
+		state.SwObj = &dsModelSoftware{}
+		// copy_to_state: state=state.SwObj prefix=dsModel ans=ans.SwObj properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SwObj prefix=dsModel ans=ans.SwObj")
+		// property: name=location, type=STRING macro=copy_to_state
+		state.SwObj.Location = types.StringPointerValue(ans.SwObj.Location)
+		// property: name=version, type=STRING macro=copy_to_state
+		state.SwObj.Version = types.StringPointerValue(ans.SwObj.Version)
+	}
 	// property: name=switch_config, type=REFERENCE macro=copy_to_state
 	if ans.SwitchConfig == nil {
 		state.SwitchConfig = nil
@@ -1332,204 +907,6 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	resp.Diagnostics.Append(errTags.Errors()...)
 	// property: name=tenant_id, type=STRING macro=copy_to_state
 	state.TenantId = types.StringPointerValue(ans.TenantId)
-	// property: name=tracked_element, type=REFERENCE macro=copy_to_state
-	if ans.TrackedElement == nil {
-		state.TrackedElement = nil
-	} else {
-		state.TrackedElement = &dsModelElementScreenV3N2{}
-		// copy_to_state: state=state.TrackedElement prefix=dsModel ans=ans.TrackedElement properties=21
-		tflog.Debug(ctx, "copy_to_state state=state.TrackedElement prefix=dsModel ans=ans.TrackedElement")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.TrackedElement.Schema = types.Int64PointerValue(ans.TrackedElement.Schema)
-		// property: name=cluster_id, type=STRING macro=copy_to_state
-		state.TrackedElement.ClusterId = types.StringPointerValue(ans.TrackedElement.ClusterId)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.TrackedElement.Description = types.StringPointerValue(ans.TrackedElement.Description)
-		// property: name=device_profile_id, type=STRING macro=copy_to_state
-		state.TrackedElement.DeviceProfileId = types.StringPointerValue(ans.TrackedElement.DeviceProfileId)
-		// property: name=hub_cluster_config, type=REFERENCE macro=copy_to_state
-		if ans.TrackedElement.HubClusterConfig == nil {
-			state.TrackedElement.HubClusterConfig = nil
-		} else {
-			state.TrackedElement.HubClusterConfig = &dsModelHubClusterConfig{}
-			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=dsModel ans=ans.TrackedElement.HubClusterConfig properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig prefix=dsModel ans=ans.TrackedElement.HubClusterConfig")
-			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
-			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
-				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
-			} else {
-				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &dsModelIntraClusterTunnel{}
-				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
-				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel")
-				// property: name=destination_ip, type=STRING macro=copy_to_state
-				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
-				// property: name=source_ip, type=STRING macro=copy_to_state
-				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
-				// property: name=status, type=STRING macro=copy_to_state
-				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
-			}
-			// property: name=track, type=REFERENCE macro=copy_to_state
-			if ans.TrackedElement.HubClusterConfig.Track == nil {
-				state.TrackedElement.HubClusterConfig.Track = nil
-			} else {
-				state.TrackedElement.HubClusterConfig.Track = &dsModelTracker{}
-				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=dsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
-				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track prefix=dsModel ans=ans.TrackedElement.HubClusterConfig.Track")
-				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
-				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
-					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
-				} else if len(ans.TrackedElement.HubClusterConfig.Track.Hosts) == 0 {
-					state.TrackedElement.HubClusterConfig.Track.Hosts = []dsModelHost{}
-				} else {
-					state.TrackedElement.HubClusterConfig.Track.Hosts = make([]dsModelHost, 0, len(ans.TrackedElement.HubClusterConfig.Track.Hosts))
-					for varLoopHostsIndex, varLoopHosts := range ans.TrackedElement.HubClusterConfig.Track.Hosts {
-						// add a new item
-						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, dsModelHost{})
-						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=dsModel ans=varLoopHosts properties=3
-						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=dsModel ans=varLoopHosts")
-						// property: name=address_v4, type=STRING macro=copy_to_state
-						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
-						// property: name=address_v6, type=STRING macro=copy_to_state
-						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV6 = types.StringPointerValue(varLoopHosts.AddressV6)
-						// property: name=vrf_context_id, type=STRING macro=copy_to_state
-						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].VrfContextId = types.StringPointerValue(varLoopHosts.VrfContextId)
-					}
-				}
-			}
-		}
-		// property: name=id, type=STRING macro=copy_to_state
-		state.TrackedElement.Id = types.StringPointerValue(ans.TrackedElement.Id)
-		// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_to_state
-		state.TrackedElement.L3DirectPrivateWanForwarding = types.BoolPointerValue(ans.TrackedElement.L3DirectPrivateWanForwarding)
-		// property: name=l3_lan_forwarding, type=BOOLEAN macro=copy_to_state
-		state.TrackedElement.L3LanForwarding = types.BoolPointerValue(ans.TrackedElement.L3LanForwarding)
-		// property: name=led_config, type=REFERENCE macro=copy_to_state
-		if ans.TrackedElement.LedConfig == nil {
-			state.TrackedElement.LedConfig = nil
-		} else {
-			state.TrackedElement.LedConfig = &dsModelLedConfig{}
-			// copy_to_state: state=state.TrackedElement.LedConfig prefix=dsModel ans=ans.TrackedElement.LedConfig properties=1
-			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.LedConfig prefix=dsModel ans=ans.TrackedElement.LedConfig")
-			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
-			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
-		}
-		// property: name=main_power_usage_threshold, type=INTEGER macro=copy_to_state
-		state.TrackedElement.MainPowerUsageThreshold = types.Int64PointerValue(ans.TrackedElement.MainPowerUsageThreshold)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.TrackedElement.Name = types.StringPointerValue(ans.TrackedElement.Name)
-		// property: name=nat_policysetstack_id, type=STRING macro=copy_to_state
-		state.TrackedElement.NatPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NatPolicysetstackId)
-		// property: name=network_policysetstack_id, type=STRING macro=copy_to_state
-		state.TrackedElement.NetworkPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NetworkPolicysetstackId)
-		// property: name=priority_policysetstack_id, type=STRING macro=copy_to_state
-		state.TrackedElement.PriorityPolicysetstackId = types.StringPointerValue(ans.TrackedElement.PriorityPolicysetstackId)
-		// property: name=site_id, type=STRING macro=copy_to_state
-		state.TrackedElement.SiteId = types.StringPointerValue(ans.TrackedElement.SiteId)
-		// property: name=spoke_ha_config, type=REFERENCE macro=copy_to_state
-		if ans.TrackedElement.SpokeHaConfig == nil {
-			state.TrackedElement.SpokeHaConfig = nil
-		} else {
-			state.TrackedElement.SpokeHaConfig = &dsModelSpokeHAConfigV2{}
-			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=dsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
-			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig prefix=dsModel ans=ans.TrackedElement.SpokeHaConfig")
-			// property: name=cluster_id, type=STRING macro=copy_to_state
-			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
-			// property: name=enable, type=BOOLEAN macro=copy_to_state
-			state.TrackedElement.SpokeHaConfig.Enable = types.BoolPointerValue(ans.TrackedElement.SpokeHaConfig.Enable)
-			// property: name=priority, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SpokeHaConfig.Priority = types.Int64PointerValue(ans.TrackedElement.SpokeHaConfig.Priority)
-			// property: name=source_interface, type=STRING macro=copy_to_state
-			state.TrackedElement.SpokeHaConfig.SourceInterface = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.SourceInterface)
-			// property: name=track, type=REFERENCE macro=copy_to_state
-			if ans.TrackedElement.SpokeHaConfig.Track == nil {
-				state.TrackedElement.SpokeHaConfig.Track = nil
-			} else {
-				state.TrackedElement.SpokeHaConfig.Track = &dsModelTrackV2{}
-				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=dsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track prefix=dsModel ans=ans.TrackedElement.SpokeHaConfig.Track")
-				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
-				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
-					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
-				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 {
-					state.TrackedElement.SpokeHaConfig.Track.Interfaces = []dsModelTrackInterface{}
-				} else {
-					state.TrackedElement.SpokeHaConfig.Track.Interfaces = make([]dsModelTrackInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces))
-					for varLoopInterfacesIndex, varLoopInterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Interfaces {
-						// add a new item
-						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, dsModelTrackInterface{})
-						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces properties=2
-						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces")
-						// property: name=interface_id, type=STRING macro=copy_to_state
-						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
-						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
-						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopInterfaces.ReducePriority)
-					}
-				}
-				// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_to_state
-				if ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil {
-					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = nil
-				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 {
-					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = []dsModelTrackWANInterface{}
-				} else {
-					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = make([]dsModelTrackWANInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces))
-					for varLoopWaninterfacesIndex, varLoopWaninterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces {
-						// add a new item
-						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, dsModelTrackWANInterface{})
-						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=dsModel ans=varLoopWaninterfaces properties=2
-						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=dsModel ans=varLoopWaninterfaces")
-						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
-						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
-						// property: name=wan_interface_id, type=STRING macro=copy_to_state
-						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].WanInterfaceId = types.StringPointerValue(varLoopWaninterfaces.WanInterfaceId)
-					}
-				}
-			}
-		}
-		// property: name=sw_obj, type=REFERENCE macro=copy_to_state
-		if ans.TrackedElement.SwObj == nil {
-			state.TrackedElement.SwObj = nil
-		} else {
-			state.TrackedElement.SwObj = &dsModelSoftware{}
-			// copy_to_state: state=state.TrackedElement.SwObj prefix=dsModel ans=ans.TrackedElement.SwObj properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwObj prefix=dsModel ans=ans.TrackedElement.SwObj")
-			// property: name=location, type=STRING macro=copy_to_state
-			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
-			// property: name=version, type=STRING macro=copy_to_state
-			state.TrackedElement.SwObj.Version = types.StringPointerValue(ans.TrackedElement.SwObj.Version)
-		}
-		// property: name=switch_config, type=REFERENCE macro=copy_to_state
-		if ans.TrackedElement.SwitchConfig == nil {
-			state.TrackedElement.SwitchConfig = nil
-		} else {
-			state.TrackedElement.SwitchConfig = &dsModelSwitchConfig{}
-			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=dsModel ans=ans.TrackedElement.SwitchConfig properties=8
-			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwitchConfig prefix=dsModel ans=ans.TrackedElement.SwitchConfig")
-			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
-			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
-			state.TrackedElement.SwitchConfig.MstpEnabled = types.BoolPointerValue(ans.TrackedElement.SwitchConfig.MstpEnabled)
-			// property: name=stp_aging_timer, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SwitchConfig.StpAgingTimer = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpAgingTimer)
-			// property: name=stp_forward_delay, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SwitchConfig.StpForwardDelay = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpForwardDelay)
-			// property: name=stp_hello_time, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SwitchConfig.StpHelloTime = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpHelloTime)
-			// property: name=stp_max_age, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SwitchConfig.StpMaxAge = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpMaxAge)
-			// property: name=stp_mode, type=STRING macro=copy_to_state
-			state.TrackedElement.SwitchConfig.StpMode = types.StringPointerValue(ans.TrackedElement.SwitchConfig.StpMode)
-			// property: name=stp_priority, type=INTEGER macro=copy_to_state
-			state.TrackedElement.SwitchConfig.StpPriority = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpPriority)
-		}
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.TrackedElement.Tags)
-		state.TrackedElement.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-		// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
-		state.TrackedElement.VpnToVpnForwarding = types.BoolPointerValue(ans.TrackedElement.VpnToVpnForwarding)
-	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 

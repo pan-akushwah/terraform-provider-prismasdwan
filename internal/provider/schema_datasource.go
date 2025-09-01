@@ -858,7 +858,6 @@ import (
 // | EventQueryRequestV3_5SuppressedInfo HasID=false
 // | EventQueryRequestV3_5View HasID=false
 // | EventQueryRequestV3_5 HasID=false
-// | ElementScreenV3N2 HasID=true
 // | ElementShellV2N1 HasID=true
 // | VffTokenScreen HasID=true
 // | DiskPartitionStatus HasID=false
@@ -1130,6 +1129,7 @@ import (
 // | ListResponseServiceLabelV2N1 HasID=false
 // | TcpRuleV2 HasID=false
 // | ListResponseTacacsPlusServer HasID=false
+// | ElementScreenV3N2 HasID=true
 // | StateNextHop HasID=false
 // | StaticRouteStatus HasID=true
 // | ElementScreenV3N1 HasID=true
@@ -15520,72 +15520,41 @@ type dsModelEventQueryRequestV3_5 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementScreenV3N2`
+// | Auto Generated for Schema `ElementShellV2N1`
 // +-----------------------------------------------------------------
-type dsModelElementScreenV3N2 struct {
+type dsModelElementShellV2N1 struct {
 	// added tfid for bookkeeping
 	Tfid                         types.String             `tfsdk:"tfid"`
 	Etag                         types.Int64              `tfsdk:"_etag"`                            // propertyName=_etag type=INTEGER
 	Schema                       types.Int64              `tfsdk:"_schema"`                          // propertyName=_schema type=INTEGER
+	AllowedRoles                 types.List               `tfsdk:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
 	ClusterId                    types.String             `tfsdk:"cluster_id"`                       // propertyName=cluster_id type=STRING
+	ClusterInsertionMode         types.String             `tfsdk:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
+	ClusterMemberId              types.String             `tfsdk:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
 	Description                  types.String             `tfsdk:"description"`                      // propertyName=description type=STRING
+	DeviceMode                   types.String             `tfsdk:"device_mode"`                      // propertyName=device_mode type=STRING
 	DeviceProfileId              types.String             `tfsdk:"device_profile_id"`                // propertyName=device_profile_id type=STRING
+	ElementId                    types.String             `tfsdk:"element_id"`                       // propertyName=element_id type=STRING
 	HubClusterConfig             *dsModelHubClusterConfig `tfsdk:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
+	HwId                         types.String             `tfsdk:"hw_id"`                            // propertyName=hw_id type=STRING
 	Id                           types.String             `tfsdk:"id"`                               // propertyName=id type=STRING
 	L3DirectPrivateWanForwarding types.Bool               `tfsdk:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
 	L3LanForwarding              types.Bool               `tfsdk:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
 	LedConfig                    *dsModelLedConfig        `tfsdk:"led_config"`                       // propertyName=led_config type=REFERENCE
 	MainPowerUsageThreshold      types.Int64              `tfsdk:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
+	ModelName                    types.String             `tfsdk:"model_name"`                       // propertyName=model_name type=STRING
 	Name                         types.String             `tfsdk:"name"`                             // propertyName=name type=STRING
 	NatPolicysetstackId          types.String             `tfsdk:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
 	NetworkPolicysetstackId      types.String             `tfsdk:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
 	PriorityPolicysetstackId     types.String             `tfsdk:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
+	Role                         types.String             `tfsdk:"role"`                             // propertyName=role type=STRING
 	SiteId                       types.String             `tfsdk:"site_id"`                          // propertyName=site_id type=STRING
+	SoftwareVersion              types.String             `tfsdk:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *dsModelSpokeHAConfigV2  `tfsdk:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
-	SwObj                        *dsModelSoftware         `tfsdk:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
+	State                        types.String             `tfsdk:"state"`                            // propertyName=state type=STRING
 	SwitchConfig                 *dsModelSwitchConfig     `tfsdk:"switch_config"`                    // propertyName=switch_config type=REFERENCE
 	Tags                         types.Set                `tfsdk:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           types.Bool               `tfsdk:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementShellV2N1`
-// +-----------------------------------------------------------------
-type dsModelElementShellV2N1 struct {
-	// added tfid for bookkeeping
-	Tfid                         types.String              `tfsdk:"tfid"`
-	Etag                         types.Int64               `tfsdk:"_etag"`                            // propertyName=_etag type=INTEGER
-	Schema                       types.Int64               `tfsdk:"_schema"`                          // propertyName=_schema type=INTEGER
-	AllowedRoles                 types.List                `tfsdk:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
-	ClusterId                    types.String              `tfsdk:"cluster_id"`                       // propertyName=cluster_id type=STRING
-	ClusterInsertionMode         types.String              `tfsdk:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
-	ClusterMemberId              types.String              `tfsdk:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
-	Description                  types.String              `tfsdk:"description"`                      // propertyName=description type=STRING
-	DeviceMode                   types.String              `tfsdk:"device_mode"`                      // propertyName=device_mode type=STRING
-	DeviceProfileId              types.String              `tfsdk:"device_profile_id"`                // propertyName=device_profile_id type=STRING
-	ElementId                    types.String              `tfsdk:"element_id"`                       // propertyName=element_id type=STRING
-	HubClusterConfig             *dsModelHubClusterConfig  `tfsdk:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
-	HwId                         types.String              `tfsdk:"hw_id"`                            // propertyName=hw_id type=STRING
-	Id                           types.String              `tfsdk:"id"`                               // propertyName=id type=STRING
-	L3DirectPrivateWanForwarding types.Bool                `tfsdk:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
-	L3LanForwarding              types.Bool                `tfsdk:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
-	LedConfig                    *dsModelLedConfig         `tfsdk:"led_config"`                       // propertyName=led_config type=REFERENCE
-	MainPowerUsageThreshold      types.Int64               `tfsdk:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
-	ModelName                    types.String              `tfsdk:"model_name"`                       // propertyName=model_name type=STRING
-	Name                         types.String              `tfsdk:"name"`                             // propertyName=name type=STRING
-	NatPolicysetstackId          types.String              `tfsdk:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
-	NetworkPolicysetstackId      types.String              `tfsdk:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
-	PriorityPolicysetstackId     types.String              `tfsdk:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
-	Role                         types.String              `tfsdk:"role"`                             // propertyName=role type=STRING
-	SiteId                       types.String              `tfsdk:"site_id"`                          // propertyName=site_id type=STRING
-	SoftwareVersion              types.String              `tfsdk:"software_version"`                 // propertyName=software_version type=STRING
-	SpokeHaConfig                *dsModelSpokeHAConfigV2   `tfsdk:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
-	State                        types.String              `tfsdk:"state"`                            // propertyName=state type=STRING
-	SwitchConfig                 *dsModelSwitchConfig      `tfsdk:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         types.Set                 `tfsdk:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
-	TenantId                     types.String              `tfsdk:"tenant_id"`                        // propertyName=tenant_id type=STRING
-	TrackedElement               *dsModelElementScreenV3N2 `tfsdk:"tracked_element"`                  // propertyName=tracked_element type=REFERENCE
-	VpnToVpnForwarding           types.Bool                `tfsdk:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -20188,6 +20157,46 @@ type dsModelTcpRuleV2 struct {
 type dsModelListResponseTacacsPlusServer struct {
 	Count types.Int64               `tfsdk:"count"` // propertyName=count type=INTEGER
 	Items []dsModelTacacsPlusServer `tfsdk:"items"` // propertyName=items type=ARRAY_REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementScreenV3N2`
+// +-----------------------------------------------------------------
+type dsModelElementScreenV3N2 struct {
+	// added tfid for bookkeeping
+	Tfid                         types.String             `tfsdk:"tfid"`
+	Etag                         types.Int64              `tfsdk:"_etag"`                            // propertyName=_etag type=INTEGER
+	Schema                       types.Int64              `tfsdk:"_schema"`                          // propertyName=_schema type=INTEGER
+	AllowedRoles                 types.List               `tfsdk:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
+	ClusterId                    types.String             `tfsdk:"cluster_id"`                       // propertyName=cluster_id type=STRING
+	ClusterInsertionMode         types.String             `tfsdk:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
+	ClusterMemberId              types.String             `tfsdk:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
+	Description                  types.String             `tfsdk:"description"`                      // propertyName=description type=STRING
+	DeviceMode                   types.String             `tfsdk:"device_mode"`                      // propertyName=device_mode type=STRING
+	DeviceProfileId              types.String             `tfsdk:"device_profile_id"`                // propertyName=device_profile_id type=STRING
+	ElementId                    types.String             `tfsdk:"element_id"`                       // propertyName=element_id type=STRING
+	HubClusterConfig             *dsModelHubClusterConfig `tfsdk:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
+	HwId                         types.String             `tfsdk:"hw_id"`                            // propertyName=hw_id type=STRING
+	Id                           types.String             `tfsdk:"id"`                               // propertyName=id type=STRING
+	L3DirectPrivateWanForwarding types.Bool               `tfsdk:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
+	L3LanForwarding              types.Bool               `tfsdk:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
+	LedConfig                    *dsModelLedConfig        `tfsdk:"led_config"`                       // propertyName=led_config type=REFERENCE
+	MainPowerUsageThreshold      types.Int64              `tfsdk:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
+	ModelName                    types.String             `tfsdk:"model_name"`                       // propertyName=model_name type=STRING
+	Name                         types.String             `tfsdk:"name"`                             // propertyName=name type=STRING
+	NatPolicysetstackId          types.String             `tfsdk:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
+	NetworkPolicysetstackId      types.String             `tfsdk:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
+	PriorityPolicysetstackId     types.String             `tfsdk:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
+	Role                         types.String             `tfsdk:"role"`                             // propertyName=role type=STRING
+	SiteId                       types.String             `tfsdk:"site_id"`                          // propertyName=site_id type=STRING
+	SoftwareVersion              types.String             `tfsdk:"software_version"`                 // propertyName=software_version type=STRING
+	SpokeHaConfig                *dsModelSpokeHAConfigV2  `tfsdk:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
+	State                        types.String             `tfsdk:"state"`                            // propertyName=state type=STRING
+	SwObj                        *dsModelSoftware         `tfsdk:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
+	SwitchConfig                 *dsModelSwitchConfig     `tfsdk:"switch_config"`                    // propertyName=switch_config type=REFERENCE
+	Tags                         types.Set                `tfsdk:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
+	TenantId                     types.String             `tfsdk:"tenant_id"`                        // propertyName=tenant_id type=STRING
+	VpnToVpnForwarding           types.Bool               `tfsdk:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------

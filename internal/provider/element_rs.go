@@ -106,6 +106,15 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
+			"allowed_roles": rsschema.ListAttribute{
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				ElementType: types.StringType,
+			},
+			// key name holder for attribute: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=cluster_id, type=STRING macro=rss_schema
 			"cluster_id": rsschema.StringAttribute{
 				Required:  false,
@@ -114,6 +123,22 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
+			// property: name=cluster_insertion_mode, type=STRING macro=rss_schema
+			"cluster_insertion_mode": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=cluster_insertion_mode, type=STRING macro=rss_schema
+			// property: name=cluster_member_id, type=STRING macro=rss_schema
+			"cluster_member_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=cluster_member_id, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
 				Required:  false,
@@ -122,6 +147,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
+			// property: name=device_mode, type=STRING macro=rss_schema
+			"device_mode": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=device_mode, type=STRING macro=rss_schema
 			// property: name=device_profile_id, type=STRING macro=rss_schema
 			"device_profile_id": rsschema.StringAttribute{
 				Required:  false,
@@ -130,6 +163,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=device_profile_id, type=STRING macro=rss_schema
+			// property: name=element_id, type=STRING macro=rss_schema
+			"element_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 			// property: name=hub_cluster_config, type=REFERENCE macro=rss_schema
 			"hub_cluster_config": rsschema.SingleNestedAttribute{
 				Required:  false,
@@ -220,6 +261,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				},
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+			// property: name=hw_id, type=STRING macro=rss_schema
+			"hw_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=hw_id, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -270,6 +319,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
+			// property: name=model_name, type=STRING macro=rss_schema
+			"model_name": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=model_name, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
 				Required:  false,
@@ -302,6 +359,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=priority_policysetstack_id, type=STRING macro=rss_schema
+			// property: name=role, type=STRING macro=rss_schema
+			"role": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=role, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
 			"site_id": rsschema.StringAttribute{
 				Required:  false,
@@ -310,6 +375,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
+			// property: name=software_version, type=STRING macro=rss_schema
+			"software_version": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=software_version, type=STRING macro=rss_schema
 			// property: name=spoke_ha_config, type=REFERENCE macro=rss_schema
 			"spoke_ha_config": rsschema.SingleNestedAttribute{
 				Required:  false,
@@ -418,6 +491,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				},
 			},
 			// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
+			// property: name=state, type=STRING macro=rss_schema
+			"state": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=state, type=STRING macro=rss_schema
 			// property: name=sw_obj, type=REFERENCE macro=rss_schema
 			"sw_obj": rsschema.SingleNestedAttribute{
 				Required:  false,
@@ -527,6 +608,14 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			// property: name=tenant_id, type=STRING macro=rss_schema
+			"tenant_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": rsschema.BoolAttribute{
 				Required:  false,
@@ -641,18 +730,30 @@ func (r *elementResource) doGet(ctx context.Context, state *rsModelElementScreen
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varAllowedRoles, errAllowedRoles := types.ListValueFrom(ctx, types.StringType, ans.AllowedRoles)
+	state.AllowedRoles = varAllowedRoles
+	resp.Diagnostics.Append(errAllowedRoles.Errors()...)
 	// property: name=cluster_id, type=STRING macro=copy_to_state
 	state.ClusterId = types.StringPointerValue(ans.ClusterId)
+	// property: name=cluster_insertion_mode, type=STRING macro=copy_to_state
+	state.ClusterInsertionMode = types.StringPointerValue(ans.ClusterInsertionMode)
+	// property: name=cluster_member_id, type=STRING macro=copy_to_state
+	state.ClusterMemberId = types.StringPointerValue(ans.ClusterMemberId)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=device_mode, type=STRING macro=copy_to_state
+	state.DeviceMode = types.StringPointerValue(ans.DeviceMode)
 	// property: name=device_profile_id, type=STRING macro=copy_to_state
 	state.DeviceProfileId = types.StringPointerValue(ans.DeviceProfileId)
+	// property: name=element_id, type=STRING macro=copy_to_state
+	state.ElementId = types.StringPointerValue(ans.ElementId)
 	// property: name=hub_cluster_config, type=REFERENCE macro=copy_to_state
 	if ans.HubClusterConfig == nil {
 		state.HubClusterConfig = nil
@@ -703,6 +804,8 @@ func (r *elementResource) doGet(ctx context.Context, state *rsModelElementScreen
 			}
 		}
 	}
+	// property: name=hw_id, type=STRING macro=copy_to_state
+	state.HwId = types.StringPointerValue(ans.HwId)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_to_state
@@ -721,6 +824,8 @@ func (r *elementResource) doGet(ctx context.Context, state *rsModelElementScreen
 	}
 	// property: name=main_power_usage_threshold, type=INTEGER macro=copy_to_state
 	state.MainPowerUsageThreshold = types.Int64PointerValue(ans.MainPowerUsageThreshold)
+	// property: name=model_name, type=STRING macro=copy_to_state
+	state.ModelName = types.StringPointerValue(ans.ModelName)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=nat_policysetstack_id, type=STRING macro=copy_to_state
@@ -729,8 +834,12 @@ func (r *elementResource) doGet(ctx context.Context, state *rsModelElementScreen
 	state.NetworkPolicysetstackId = types.StringPointerValue(ans.NetworkPolicysetstackId)
 	// property: name=priority_policysetstack_id, type=STRING macro=copy_to_state
 	state.PriorityPolicysetstackId = types.StringPointerValue(ans.PriorityPolicysetstackId)
+	// property: name=role, type=STRING macro=copy_to_state
+	state.Role = types.StringPointerValue(ans.Role)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// property: name=software_version, type=STRING macro=copy_to_state
+	state.SoftwareVersion = types.StringPointerValue(ans.SoftwareVersion)
 	// property: name=spoke_ha_config, type=REFERENCE macro=copy_to_state
 	if ans.SpokeHaConfig == nil {
 		state.SpokeHaConfig = nil
@@ -791,6 +900,8 @@ func (r *elementResource) doGet(ctx context.Context, state *rsModelElementScreen
 			}
 		}
 	}
+	// property: name=state, type=STRING macro=copy_to_state
+	state.State = types.StringPointerValue(ans.State)
 	// property: name=sw_obj, type=REFERENCE macro=copy_to_state
 	if ans.SwObj == nil {
 		state.SwObj = nil
@@ -831,6 +942,8 @@ func (r *elementResource) doGet(ctx context.Context, state *rsModelElementScreen
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 	return true
@@ -885,7 +998,7 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=21
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=32
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -899,11 +1012,25 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
+	// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+	body.AllowedRoles = ListStringValueOrNil(ctx, plan.AllowedRoles)
 	// property: name=cluster_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.ClusterId = ValueStringPointerFromPlanOrState(plan.ClusterId, state.ClusterId)
 	} else {
 		body.ClusterId = StringValueOrNil(plan.ClusterId)
+	}
+	// property: name=cluster_insertion_mode, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.ClusterInsertionMode = ValueStringPointerFromPlanOrState(plan.ClusterInsertionMode, state.ClusterInsertionMode)
+	} else {
+		body.ClusterInsertionMode = StringValueOrNil(plan.ClusterInsertionMode)
+	}
+	// property: name=cluster_member_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.ClusterMemberId = ValueStringPointerFromPlanOrState(plan.ClusterMemberId, state.ClusterMemberId)
+	} else {
+		body.ClusterMemberId = StringValueOrNil(plan.ClusterMemberId)
 	}
 	// property: name=description, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -911,11 +1038,23 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	} else {
 		body.Description = StringValueOrNil(plan.Description)
 	}
+	// property: name=device_mode, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.DeviceMode = ValueStringPointerFromPlanOrState(plan.DeviceMode, state.DeviceMode)
+	} else {
+		body.DeviceMode = StringValueOrNil(plan.DeviceMode)
+	}
 	// property: name=device_profile_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.DeviceProfileId = ValueStringPointerFromPlanOrState(plan.DeviceProfileId, state.DeviceProfileId)
 	} else {
 		body.DeviceProfileId = StringValueOrNil(plan.DeviceProfileId)
+	}
+	// property: name=element_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.ElementId = ValueStringPointerFromPlanOrState(plan.ElementId, state.ElementId)
+	} else {
+		body.ElementId = StringValueOrNil(plan.ElementId)
 	}
 	// property: name=hub_cluster_config, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.HubClusterConfig == nil {
@@ -984,6 +1123,12 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			}
 		}
 	}
+	// property: name=hw_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.HwId = ValueStringPointerFromPlanOrState(plan.HwId, state.HwId)
+	} else {
+		body.HwId = StringValueOrNil(plan.HwId)
+	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Id = ValueStringPointerFromPlanOrState(plan.Id, state.Id)
@@ -1022,6 +1167,12 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	} else {
 		body.MainPowerUsageThreshold = Int64ValueOrNil(plan.MainPowerUsageThreshold)
 	}
+	// property: name=model_name, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.ModelName = ValueStringPointerFromPlanOrState(plan.ModelName, state.ModelName)
+	} else {
+		body.ModelName = StringValueOrNil(plan.ModelName)
+	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
@@ -1046,11 +1197,23 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	} else {
 		body.PriorityPolicysetstackId = StringValueOrNil(plan.PriorityPolicysetstackId)
 	}
+	// property: name=role, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.Role = ValueStringPointerFromPlanOrState(plan.Role, state.Role)
+	} else {
+		body.Role = StringValueOrNil(plan.Role)
+	}
 	// property: name=site_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.SiteId = ValueStringPointerFromPlanOrState(plan.SiteId, state.SiteId)
 	} else {
 		body.SiteId = StringValueOrNil(plan.SiteId)
+	}
+	// property: name=software_version, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.SoftwareVersion = ValueStringPointerFromPlanOrState(plan.SoftwareVersion, state.SoftwareVersion)
+	} else {
+		body.SoftwareVersion = StringValueOrNil(plan.SoftwareVersion)
 	}
 	// property: name=spoke_ha_config, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.SpokeHaConfig == nil {
@@ -1138,6 +1301,12 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			}
 		}
 	}
+	// property: name=state, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.State = ValueStringPointerFromPlanOrState(plan.State, state.State)
+	} else {
+		body.State = StringValueOrNil(plan.State)
+	}
 	// property: name=sw_obj, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.SwObj == nil {
 		body.SwObj = nil
@@ -1216,6 +1385,12 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	// property: name=tenant_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.TenantId = ValueStringPointerFromPlanOrState(plan.TenantId, state.TenantId)
+	} else {
+		body.TenantId = StringValueOrNil(plan.TenantId)
+	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.VpnToVpnForwarding = ValueBoolPointerFromPlanOrState(plan.VpnToVpnForwarding, state.VpnToVpnForwarding)
@@ -1313,18 +1488,30 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	}
 
 	// Store the answer to state. schema=ElementScreenV3N2
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varAllowedRoles, errAllowedRoles := types.ListValueFrom(ctx, types.StringType, ans.AllowedRoles)
+	state.AllowedRoles = varAllowedRoles
+	resp.Diagnostics.Append(errAllowedRoles.Errors()...)
 	// property: name=cluster_id, type=STRING macro=copy_to_state
 	state.ClusterId = types.StringPointerValue(ans.ClusterId)
+	// property: name=cluster_insertion_mode, type=STRING macro=copy_to_state
+	state.ClusterInsertionMode = types.StringPointerValue(ans.ClusterInsertionMode)
+	// property: name=cluster_member_id, type=STRING macro=copy_to_state
+	state.ClusterMemberId = types.StringPointerValue(ans.ClusterMemberId)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=device_mode, type=STRING macro=copy_to_state
+	state.DeviceMode = types.StringPointerValue(ans.DeviceMode)
 	// property: name=device_profile_id, type=STRING macro=copy_to_state
 	state.DeviceProfileId = types.StringPointerValue(ans.DeviceProfileId)
+	// property: name=element_id, type=STRING macro=copy_to_state
+	state.ElementId = types.StringPointerValue(ans.ElementId)
 	// property: name=hub_cluster_config, type=REFERENCE macro=copy_to_state
 	if ans.HubClusterConfig == nil {
 		state.HubClusterConfig = nil
@@ -1375,6 +1562,8 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			}
 		}
 	}
+	// property: name=hw_id, type=STRING macro=copy_to_state
+	state.HwId = types.StringPointerValue(ans.HwId)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_to_state
@@ -1393,6 +1582,8 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	}
 	// property: name=main_power_usage_threshold, type=INTEGER macro=copy_to_state
 	state.MainPowerUsageThreshold = types.Int64PointerValue(ans.MainPowerUsageThreshold)
+	// property: name=model_name, type=STRING macro=copy_to_state
+	state.ModelName = types.StringPointerValue(ans.ModelName)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=nat_policysetstack_id, type=STRING macro=copy_to_state
@@ -1401,8 +1592,12 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	state.NetworkPolicysetstackId = types.StringPointerValue(ans.NetworkPolicysetstackId)
 	// property: name=priority_policysetstack_id, type=STRING macro=copy_to_state
 	state.PriorityPolicysetstackId = types.StringPointerValue(ans.PriorityPolicysetstackId)
+	// property: name=role, type=STRING macro=copy_to_state
+	state.Role = types.StringPointerValue(ans.Role)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// property: name=software_version, type=STRING macro=copy_to_state
+	state.SoftwareVersion = types.StringPointerValue(ans.SoftwareVersion)
 	// property: name=spoke_ha_config, type=REFERENCE macro=copy_to_state
 	if ans.SpokeHaConfig == nil {
 		state.SpokeHaConfig = nil
@@ -1463,6 +1658,8 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			}
 		}
 	}
+	// property: name=state, type=STRING macro=copy_to_state
+	state.State = types.StringPointerValue(ans.State)
 	// property: name=sw_obj, type=REFERENCE macro=copy_to_state
 	if ans.SwObj == nil {
 		state.SwObj = nil
@@ -1503,6 +1700,8 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 	return true

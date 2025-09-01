@@ -280,6 +280,98 @@
           }
         }
       }
+    },
+    "tenant_id" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "element_id" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "software_version" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "model_name" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "role" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "cluster_insertion_mode" : {
+      "type" : "string"
+    },
+    "state" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "cluster_member_id" : {
+      "type" : "string"
+    },
+    "device_mode" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "hw_id" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "allowed_roles" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
     }
   },
   "required" : [ "site_id" ]
