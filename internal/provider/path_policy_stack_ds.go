@@ -924,6 +924,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 
 	// lets copy all items into state schema=NetworkPolicySetStack
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=18
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -936,6 +937,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.DefaultrulePolicyset = &dsModelNetworkPolicySet{}
 		// copy_to_state: state=state.DefaultrulePolicyset prefix=dsModel ans=ans.DefaultrulePolicyset properties=16
+		tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset prefix=dsModel ans=ans.DefaultrulePolicyset")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DefaultrulePolicyset.Etag = types.Int64PointerValue(ans.DefaultrulePolicyset.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -971,6 +973,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 				// add a new item
 				state.DefaultrulePolicyset.PolicyRules = append(state.DefaultrulePolicyset.PolicyRules, dsModelNetworkPolicyRule{})
 				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=14
+				tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
 				// property: name=_etag, type=INTEGER macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 				// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -999,6 +1002,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 				} else {
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &dsModelPathsAllowed{}
 					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=dsModel ans=varLoopPolicyRules.PathsAllowed properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=dsModel ans=varLoopPolicyRules.PathsAllowed")
 					// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
 					if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
 						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
@@ -1010,6 +1014,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 							// add a new item
 							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, dsModelWANPath{})
 							// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths")
 							// property: name=label, type=STRING macro=copy_to_state
 							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
 							// property: name=path_type, type=STRING macro=copy_to_state
@@ -1027,6 +1032,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 							// add a new item
 							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, dsModelWANPath{})
 							// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths")
 							// property: name=label, type=STRING macro=copy_to_state
 							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
 							// property: name=path_type, type=STRING macro=copy_to_state
@@ -1044,6 +1050,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 							// add a new item
 							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, dsModelWANPath{})
 							// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths")
 							// property: name=label, type=STRING macro=copy_to_state
 							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
 							// property: name=path_type, type=STRING macro=copy_to_state
@@ -1057,6 +1064,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 				} else {
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &dsModelServiceContext{}
 					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=dsModel ans=varLoopPolicyRules.ServiceContext properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=dsModel ans=varLoopPolicyRules.ServiceContext")
 					// property: name=active_service_label_id, type=STRING macro=copy_to_state
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
 					// property: name=active_service_label_type, type=STRING macro=copy_to_state
@@ -1120,6 +1128,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 			// add a new item
 			state.Policysets = append(state.Policysets, dsModelBasePolicySet{})
 			// copy_to_state: state=state.Policysets[varLoopPolicysetsIndex] prefix=dsModel ans=varLoopPolicysets properties=14
+			tflog.Debug(ctx, "copy_to_state state=state.Policysets[varLoopPolicysetsIndex] prefix=dsModel ans=varLoopPolicysets")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Policysets[varLoopPolicysetsIndex].Etag = types.Int64PointerValue(varLoopPolicysets.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1151,6 +1160,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 					// add a new item
 					state.Policysets[varLoopPolicysetsIndex].PolicyRules = append(state.Policysets[varLoopPolicysetsIndex].PolicyRules, dsModelBasePolicyRule{})
 					// copy_to_state: state=state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=12
+					tflog.Debug(ctx, "copy_to_state state=state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
 					// property: name=_etag, type=INTEGER macro=copy_to_state
 					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 					// property: name=_schema, type=INTEGER macro=copy_to_state

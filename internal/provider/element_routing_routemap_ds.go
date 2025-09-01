@@ -402,6 +402,7 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 
 	// lets copy all items into state schema=RoutingRouteMapScreenV2N3
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -425,6 +426,7 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 			// add a new item
 			state.RouteMapEntries = append(state.RouteMapEntries, dsModelRoutingRouteMapEntryV2N3{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=dsModel ans=varLoopRouteMapEntries properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=dsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
 			state.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = types.StringPointerValue(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_to_state
@@ -433,6 +435,7 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &dsModelRoutingRouteMapEntryMatchClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=dsModel ans=varLoopRouteMapEntries.Match properties=6
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=dsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
 				// property: name=community_list_id, type=STRING macro=copy_to_state
@@ -456,6 +459,7 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set = &dsModelRoutingRouteMapEntrySetClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=dsModel ans=varLoopRouteMapEntries.Set properties=10
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=dsModel ans=varLoopRouteMapEntries.Set")
 				// property: name=additive_community, type=BOOLEAN macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set.AdditiveCommunity = types.BoolPointerValue(varLoopRouteMapEntries.Set.AdditiveCommunity)
 				// property: name=as_path_prepend, type=STRING macro=copy_to_state

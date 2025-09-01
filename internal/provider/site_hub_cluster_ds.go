@@ -252,6 +252,7 @@ func (d *siteHubClusterDataSource) Read(ctx context.Context, req datasource.Read
 
 	// lets copy all items into state schema=HubClusterV4
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=10
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -271,6 +272,7 @@ func (d *siteHubClusterDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.Elements = append(state.Elements, dsModelHubClusterElement{})
 			// copy_to_state: state=state.Elements[varLoopElementsIndex] prefix=dsModel ans=varLoopElements properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Elements[varLoopElementsIndex] prefix=dsModel ans=varLoopElements")
 			// property: name=hub_element_id, type=STRING macro=copy_to_state
 			state.Elements[varLoopElementsIndex].HubElementId = types.StringPointerValue(varLoopElements.HubElementId)
 			// property: name=locked, type=BOOLEAN macro=copy_to_state

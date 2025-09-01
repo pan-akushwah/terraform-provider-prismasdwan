@@ -422,6 +422,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=11
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -437,6 +438,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 			// add a new item
 			body.CollectorConfig = append(body.CollectorConfig, sdwan_schema.CollectorConfig{})
 			// copy_from_plan: body=body.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel plan=varLoopCollectorConfig properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel plan=varLoopCollectorConfig")
 			// property: name=host, type=STRING macro=copy_from_plan
 			body.CollectorConfig[varLoopCollectorConfigIndex].Host = StringValueOrNil(varLoopCollectorConfig.Host)
 			// property: name=host_port, type=INTEGER macro=copy_from_plan
@@ -464,6 +466,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 			// add a new item
 			body.Filters = append(body.Filters, sdwan_schema.IPFixFilter{})
 			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=10
+			tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters")
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.Filters[varLoopFiltersIndex].AppDefIds = ListStringValueOrNil(ctx, varLoopFilters.AppDefIds)
 			// property: name=dst_ports, type=ARRAY_REFERENCE macro=copy_from_plan
@@ -477,6 +480,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 					// add a new item
 					body.Filters[varLoopFiltersIndex].DstPorts = append(body.Filters[varLoopFiltersIndex].DstPorts, sdwan_schema.Port{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
 					body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = Int64ValueOrNil(varLoopDstPorts.End)
 					// property: name=start, type=INTEGER macro=copy_from_plan
@@ -504,6 +508,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 					// add a new item
 					body.Filters[varLoopFiltersIndex].SrcPorts = append(body.Filters[varLoopFiltersIndex].SrcPorts, sdwan_schema.Port{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
 					body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = Int64ValueOrNil(varLoopSrcPorts.End)
 					// property: name=start, type=INTEGER macro=copy_from_plan
@@ -526,6 +531,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	if plan.Sampler != nil {
 		body.Sampler = &sdwan_schema.IPFixSampler{}
 		// copy_from_plan: body=body.Sampler prefix=rsModel plan=plan.Sampler properties=3
+		tflog.Debug(ctx, "copy_from_plan body=body.Sampler prefix=rsModel plan=plan.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_from_plan
 		body.Sampler.Algorithm = StringValueOrNil(plan.Sampler.Algorithm)
 		// property: name=time_interval, type=INTEGER macro=copy_from_plan
@@ -546,8 +552,11 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -573,7 +582,9 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -609,6 +620,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 
 	// Store the answer to state. schema=IPFixProfileScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -624,6 +636,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 			// add a new item
 			state.CollectorConfig = append(state.CollectorConfig, rsModelCollectorConfig{})
 			// copy_to_state: state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel ans=varLoopCollectorConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel ans=varLoopCollectorConfig")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.CollectorConfig[varLoopCollectorConfigIndex].Host = types.StringPointerValue(varLoopCollectorConfig.Host)
 			// property: name=host_port, type=INTEGER macro=copy_to_state
@@ -651,6 +664,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 			// add a new item
 			state.Filters = append(state.Filters, rsModelIPFixFilter{})
 			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters")
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopFilters.AppDefIds)
 			state.Filters[varLoopFiltersIndex].AppDefIds = varAppDefIds
@@ -666,6 +680,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 					// add a new item
 					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = types.Int64PointerValue(varLoopDstPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -699,6 +714,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 					// add a new item
 					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = types.Int64PointerValue(varLoopSrcPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -723,6 +739,7 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	} else {
 		state.Sampler = &rsModelIPFixSampler{}
 		// copy_to_state: state=state.Sampler prefix=rsModel ans=ans.Sampler properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Sampler prefix=rsModel ans=ans.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_to_state
 		state.Sampler.Algorithm = types.StringPointerValue(ans.Sampler.Algorithm)
 		// property: name=time_interval, type=INTEGER macro=copy_to_state
@@ -794,7 +811,9 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=IPFixProfileScreen
@@ -816,6 +835,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -831,6 +851,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 			// add a new item
 			state.CollectorConfig = append(state.CollectorConfig, rsModelCollectorConfig{})
 			// copy_to_state: state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel ans=varLoopCollectorConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel ans=varLoopCollectorConfig")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.CollectorConfig[varLoopCollectorConfigIndex].Host = types.StringPointerValue(varLoopCollectorConfig.Host)
 			// property: name=host_port, type=INTEGER macro=copy_to_state
@@ -858,6 +879,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 			// add a new item
 			state.Filters = append(state.Filters, rsModelIPFixFilter{})
 			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters")
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopFilters.AppDefIds)
 			state.Filters[varLoopFiltersIndex].AppDefIds = varAppDefIds
@@ -873,6 +895,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 					// add a new item
 					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = types.Int64PointerValue(varLoopDstPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -906,6 +929,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 					// add a new item
 					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = types.Int64PointerValue(varLoopSrcPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -930,6 +954,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 	} else {
 		state.Sampler = &rsModelIPFixSampler{}
 		// copy_to_state: state=state.Sampler prefix=rsModel ans=ans.Sampler properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Sampler prefix=rsModel ans=ans.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_to_state
 		state.Sampler.Algorithm = types.StringPointerValue(ans.Sampler.Algorithm)
 		// property: name=time_interval, type=INTEGER macro=copy_to_state
@@ -994,6 +1019,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=11
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1022,6 +1048,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 			body.CollectorConfig = append(body.CollectorConfig, sdwan_schema.CollectorConfig{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel plan=varLoopCollectorConfig properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel plan=varLoopCollectorConfig")
 			// property: name=host, type=STRING macro=copy_from_plan
 			body.CollectorConfig[varLoopCollectorConfigIndex].Host = StringValueOrNil(varLoopCollectorConfig.Host)
 			// property: name=host_port, type=INTEGER macro=copy_from_plan
@@ -1062,6 +1089,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 			body.Filters = append(body.Filters, sdwan_schema.IPFixFilter{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=10
+			tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters")
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.Filters[varLoopFiltersIndex].AppDefIds = ListStringValueOrNil(ctx, varLoopFilters.AppDefIds)
 			// property: name=dst_ports, type=ARRAY_REFERENCE macro=copy_from_plan
@@ -1075,6 +1103,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 					// add a new item
 					body.Filters[varLoopFiltersIndex].DstPorts = append(body.Filters[varLoopFiltersIndex].DstPorts, sdwan_schema.Port{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
 					body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = Int64ValueOrNil(varLoopDstPorts.End)
 					// property: name=start, type=INTEGER macro=copy_from_plan
@@ -1102,6 +1131,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 					// add a new item
 					body.Filters[varLoopFiltersIndex].SrcPorts = append(body.Filters[varLoopFiltersIndex].SrcPorts, sdwan_schema.Port{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
 					body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = Int64ValueOrNil(varLoopSrcPorts.End)
 					// property: name=start, type=INTEGER macro=copy_from_plan
@@ -1138,6 +1168,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	} else {
 		body.Sampler = &sdwan_schema.IPFixSampler{}
 		// copy_from_plan_or_state: body=body.Sampler prefix=rsModel state=state.Sampler plan=plan.Sampler properties=3
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Sampler prefix=rsModel state=state.Sampler plan=plan.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_from_plan_or_state
 		if state.Sampler != nil {
 			body.Sampler.Algorithm = ValueStringPointerFromPlanOrState(plan.Sampler.Algorithm, state.Sampler.Algorithm)
@@ -1199,7 +1230,9 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1214,6 +1247,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 
 	// Store the answer to state. schema=IPFixProfileScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1229,6 +1263,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 			// add a new item
 			state.CollectorConfig = append(state.CollectorConfig, rsModelCollectorConfig{})
 			// copy_to_state: state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel ans=varLoopCollectorConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=rsModel ans=varLoopCollectorConfig")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.CollectorConfig[varLoopCollectorConfigIndex].Host = types.StringPointerValue(varLoopCollectorConfig.Host)
 			// property: name=host_port, type=INTEGER macro=copy_to_state
@@ -1256,6 +1291,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 			// add a new item
 			state.Filters = append(state.Filters, rsModelIPFixFilter{})
 			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters")
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopFilters.AppDefIds)
 			state.Filters[varLoopFiltersIndex].AppDefIds = varAppDefIds
@@ -1271,6 +1307,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 					// add a new item
 					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = types.Int64PointerValue(varLoopDstPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -1304,6 +1341,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 					// add a new item
 					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = types.Int64PointerValue(varLoopSrcPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -1328,6 +1366,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	} else {
 		state.Sampler = &rsModelIPFixSampler{}
 		// copy_to_state: state=state.Sampler prefix=rsModel ans=ans.Sampler properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Sampler prefix=rsModel ans=ans.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_to_state
 		state.Sampler.Algorithm = types.StringPointerValue(ans.Sampler.Algorithm)
 		// property: name=time_interval, type=INTEGER macro=copy_to_state

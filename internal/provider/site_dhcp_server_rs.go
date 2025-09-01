@@ -372,6 +372,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=19
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -391,6 +392,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 			// add a new item
 			body.CustomOptions = append(body.CustomOptions, sdwan_schema.CustomDHCPOptions{})
 			// copy_from_plan: body=body.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel plan=varLoopCustomOptions properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel plan=varLoopCustomOptions")
 			// property: name=option_definition, type=STRING macro=copy_from_plan
 			body.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = StringValueOrNil(varLoopCustomOptions.OptionDefinition)
 			// property: name=option_value, type=STRING macro=copy_from_plan
@@ -424,6 +426,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 			// add a new item
 			body.IpRanges = append(body.IpRanges, sdwan_schema.IPRange{})
 			// copy_from_plan: body=body.IpRanges[varLoopIpRangesIndex] prefix=rsModel plan=varLoopIpRanges properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.IpRanges[varLoopIpRangesIndex] prefix=rsModel plan=varLoopIpRanges")
 			// property: name=end_ip, type=STRING macro=copy_from_plan
 			body.IpRanges[varLoopIpRangesIndex].EndIp = StringValueOrNil(varLoopIpRanges.EndIp)
 			// property: name=start_ip, type=STRING macro=copy_from_plan
@@ -445,6 +448,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 			// add a new item
 			body.StaticMappings = append(body.StaticMappings, sdwan_schema.StaticMappingV2{})
 			// copy_from_plan: body=body.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel plan=varLoopStaticMappings properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel plan=varLoopStaticMappings")
 			// property: name=client_duid, type=STRING macro=copy_from_plan
 			body.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = StringValueOrNil(varLoopStaticMappings.ClientDuid)
 			// property: name=ip_address, type=STRING macro=copy_from_plan
@@ -472,8 +476,11 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -499,7 +506,9 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -535,6 +544,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 
 	// Store the answer to state. schema=DHCPServerScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -554,6 +564,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 			// add a new item
 			state.CustomOptions = append(state.CustomOptions, rsModelCustomDHCPOptions{})
 			// copy_to_state: state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel ans=varLoopCustomOptions properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel ans=varLoopCustomOptions")
 			// property: name=option_definition, type=STRING macro=copy_to_state
 			state.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
 			// property: name=option_value, type=STRING macro=copy_to_state
@@ -589,6 +600,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 			// add a new item
 			state.IpRanges = append(state.IpRanges, rsModelIPRange{})
 			// copy_to_state: state=state.IpRanges[varLoopIpRangesIndex] prefix=rsModel ans=varLoopIpRanges properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.IpRanges[varLoopIpRangesIndex] prefix=rsModel ans=varLoopIpRanges")
 			// property: name=end_ip, type=STRING macro=copy_to_state
 			state.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
 			// property: name=start_ip, type=STRING macro=copy_to_state
@@ -610,6 +622,7 @@ func (r *siteDhcpServerResource) doPost(ctx context.Context, plan *rsModelDHCPSe
 			// add a new item
 			state.StaticMappings = append(state.StaticMappings, rsModelStaticMappingV2{})
 			// copy_to_state: state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel ans=varLoopStaticMappings properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel ans=varLoopStaticMappings")
 			// property: name=client_duid, type=STRING macro=copy_to_state
 			state.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = types.StringPointerValue(varLoopStaticMappings.ClientDuid)
 			// property: name=ip_address, type=STRING macro=copy_to_state
@@ -688,7 +701,9 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=DHCPServerScreenV2N3
@@ -710,6 +725,7 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -729,6 +745,7 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 			// add a new item
 			state.CustomOptions = append(state.CustomOptions, rsModelCustomDHCPOptions{})
 			// copy_to_state: state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel ans=varLoopCustomOptions properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel ans=varLoopCustomOptions")
 			// property: name=option_definition, type=STRING macro=copy_to_state
 			state.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
 			// property: name=option_value, type=STRING macro=copy_to_state
@@ -764,6 +781,7 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 			// add a new item
 			state.IpRanges = append(state.IpRanges, rsModelIPRange{})
 			// copy_to_state: state=state.IpRanges[varLoopIpRangesIndex] prefix=rsModel ans=varLoopIpRanges properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.IpRanges[varLoopIpRangesIndex] prefix=rsModel ans=varLoopIpRanges")
 			// property: name=end_ip, type=STRING macro=copy_to_state
 			state.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
 			// property: name=start_ip, type=STRING macro=copy_to_state
@@ -785,6 +803,7 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 			// add a new item
 			state.StaticMappings = append(state.StaticMappings, rsModelStaticMappingV2{})
 			// copy_to_state: state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel ans=varLoopStaticMappings properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel ans=varLoopStaticMappings")
 			// property: name=client_duid, type=STRING macro=copy_to_state
 			state.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = types.StringPointerValue(varLoopStaticMappings.ClientDuid)
 			// property: name=ip_address, type=STRING macro=copy_to_state
@@ -856,6 +875,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=19
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -896,6 +916,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 			body.CustomOptions = append(body.CustomOptions, sdwan_schema.CustomDHCPOptions{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel plan=varLoopCustomOptions properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel plan=varLoopCustomOptions")
 			// property: name=option_definition, type=STRING macro=copy_from_plan
 			body.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = StringValueOrNil(varLoopCustomOptions.OptionDefinition)
 			// property: name=option_value, type=STRING macro=copy_from_plan
@@ -958,6 +979,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 			body.IpRanges = append(body.IpRanges, sdwan_schema.IPRange{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.IpRanges[varLoopIpRangesIndex] prefix=rsModel plan=varLoopIpRanges properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.IpRanges[varLoopIpRangesIndex] prefix=rsModel plan=varLoopIpRanges")
 			// property: name=end_ip, type=STRING macro=copy_from_plan
 			body.IpRanges[varLoopIpRangesIndex].EndIp = StringValueOrNil(varLoopIpRanges.EndIp)
 			// property: name=start_ip, type=STRING macro=copy_from_plan
@@ -992,6 +1014,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 			body.StaticMappings = append(body.StaticMappings, sdwan_schema.StaticMappingV2{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel plan=varLoopStaticMappings properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel plan=varLoopStaticMappings")
 			// property: name=client_duid, type=STRING macro=copy_from_plan
 			body.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = StringValueOrNil(varLoopStaticMappings.ClientDuid)
 			// property: name=ip_address, type=STRING macro=copy_from_plan
@@ -1056,7 +1079,9 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1071,6 +1096,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 
 	// Store the answer to state. schema=DHCPServerScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1090,6 +1116,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 			// add a new item
 			state.CustomOptions = append(state.CustomOptions, rsModelCustomDHCPOptions{})
 			// copy_to_state: state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel ans=varLoopCustomOptions properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=rsModel ans=varLoopCustomOptions")
 			// property: name=option_definition, type=STRING macro=copy_to_state
 			state.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
 			// property: name=option_value, type=STRING macro=copy_to_state
@@ -1125,6 +1152,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 			// add a new item
 			state.IpRanges = append(state.IpRanges, rsModelIPRange{})
 			// copy_to_state: state=state.IpRanges[varLoopIpRangesIndex] prefix=rsModel ans=varLoopIpRanges properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.IpRanges[varLoopIpRangesIndex] prefix=rsModel ans=varLoopIpRanges")
 			// property: name=end_ip, type=STRING macro=copy_to_state
 			state.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
 			// property: name=start_ip, type=STRING macro=copy_to_state
@@ -1146,6 +1174,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 			// add a new item
 			state.StaticMappings = append(state.StaticMappings, rsModelStaticMappingV2{})
 			// copy_to_state: state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel ans=varLoopStaticMappings properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=rsModel ans=varLoopStaticMappings")
 			// property: name=client_duid, type=STRING macro=copy_to_state
 			state.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = types.StringPointerValue(varLoopStaticMappings.ClientDuid)
 			// property: name=ip_address, type=STRING macro=copy_to_state

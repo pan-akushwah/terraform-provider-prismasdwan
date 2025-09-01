@@ -236,6 +236,7 @@ func (d *sitePrismaAccessConfigDataSource) Read(ctx context.Context, req datasou
 
 	// lets copy all items into state schema=PrismaAccessConfig
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=5
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -253,6 +254,7 @@ func (d *sitePrismaAccessConfigDataSource) Read(ctx context.Context, req datasou
 			// add a new item
 			state.RemoteNetworks = append(state.RemoteNetworks, dsModelRemoteNetwork{})
 			// copy_to_state: state=state.RemoteNetworks[varLoopRemoteNetworksIndex] prefix=dsModel ans=varLoopRemoteNetworks properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworks[varLoopRemoteNetworksIndex] prefix=dsModel ans=varLoopRemoteNetworks")
 			// property: name=edge_location_display, type=STRING macro=copy_to_state
 			state.RemoteNetworks[varLoopRemoteNetworksIndex].EdgeLocationDisplay = types.StringPointerValue(varLoopRemoteNetworks.EdgeLocationDisplay)
 			// property: name=edge_location_value, type=STRING macro=copy_to_state

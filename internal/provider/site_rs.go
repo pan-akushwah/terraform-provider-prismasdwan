@@ -458,6 +458,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=25
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -466,6 +467,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	if plan.Address != nil {
 		body.Address = &sdwan_schema.Address{}
 		// copy_from_plan: body=body.Address prefix=rsModel plan=plan.Address properties=6
+		tflog.Debug(ctx, "copy_from_plan body=body.Address prefix=rsModel plan=plan.Address")
 		// property: name=city, type=STRING macro=copy_from_plan
 		body.Address.City = StringValueOrNil(plan.Address.City)
 		// property: name=country, type=STRING macro=copy_from_plan
@@ -500,6 +502,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 			// add a new item
 			body.ExtendedTags = append(body.ExtendedTags, sdwan_schema.ExtendedTag{})
 			// copy_from_plan: body=body.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel plan=varLoopExtendedTags properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel plan=varLoopExtendedTags")
 			// property: name=key, type=STRING macro=copy_from_plan
 			body.ExtendedTags[varLoopExtendedTagsIndex].Key = StringValueOrNil(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_from_plan
@@ -514,6 +517,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	if plan.Location != nil {
 		body.Location = &sdwan_schema.Location{}
 		// copy_from_plan: body=body.Location prefix=rsModel plan=plan.Location properties=3
+		tflog.Debug(ctx, "copy_from_plan body=body.Location prefix=rsModel plan=plan.Location")
 		// property: name=description, type=STRING macro=copy_from_plan
 		body.Location.Description = StringValueOrNil(plan.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_from_plan
@@ -547,6 +551,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	if plan.SgiConfig != nil {
 		body.SgiConfig = &sdwan_schema.SecurityGroupInformationConfig{}
 		// copy_from_plan: body=body.SgiConfig prefix=rsModel plan=plan.SgiConfig properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.SgiConfig prefix=rsModel plan=plan.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_from_plan
 		body.SgiConfig.SgiTag = Int64ValueOrNil(plan.SgiConfig.SgiTag)
 		// property: name=sgi_vendor_id, type=STRING macro=copy_from_plan
@@ -567,8 +572,11 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -594,7 +602,9 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -630,6 +640,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 
 	// Store the answer to state. schema=SiteScreenV4N12
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=25
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -640,6 +651,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	} else {
 		state.Address = &rsModelAddress{}
 		// copy_to_state: state=state.Address prefix=rsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=rsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -674,6 +686,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 			// add a new item
 			state.ExtendedTags = append(state.ExtendedTags, rsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags")
 			// property: name=key, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
@@ -690,6 +703,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	} else {
 		state.Location = &rsModelLocation{}
 		// copy_to_state: state=state.Location prefix=rsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=rsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -725,6 +739,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	} else {
 		state.SgiConfig = &rsModelSecurityGroupInformationConfig{}
 		// copy_to_state: state=state.SgiConfig prefix=rsModel ans=ans.SgiConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SgiConfig prefix=rsModel ans=ans.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_to_state
 		state.SgiConfig.SgiTag = types.Int64PointerValue(ans.SgiConfig.SgiTag)
 		// property: name=sgi_vendor_id, type=STRING macro=copy_to_state
@@ -796,7 +811,9 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=SiteScreenV4N12
@@ -818,6 +835,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=25
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -828,6 +846,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	} else {
 		state.Address = &rsModelAddress{}
 		// copy_to_state: state=state.Address prefix=rsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=rsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -862,6 +881,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 			// add a new item
 			state.ExtendedTags = append(state.ExtendedTags, rsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags")
 			// property: name=key, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
@@ -878,6 +898,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	} else {
 		state.Location = &rsModelLocation{}
 		// copy_to_state: state=state.Location prefix=rsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=rsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -913,6 +934,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	} else {
 		state.SgiConfig = &rsModelSecurityGroupInformationConfig{}
 		// copy_to_state: state=state.SgiConfig prefix=rsModel ans=ans.SgiConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SgiConfig prefix=rsModel ans=ans.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_to_state
 		state.SgiConfig.SgiTag = types.Int64PointerValue(ans.SgiConfig.SgiTag)
 		// property: name=sgi_vendor_id, type=STRING macro=copy_to_state
@@ -977,6 +999,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=25
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -995,6 +1018,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	} else {
 		body.Address = &sdwan_schema.Address{}
 		// copy_from_plan_or_state: body=body.Address prefix=rsModel state=state.Address plan=plan.Address properties=6
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Address prefix=rsModel state=state.Address plan=plan.Address")
 		// property: name=city, type=STRING macro=copy_from_plan_or_state
 		if state.Address != nil {
 			body.Address.City = ValueStringPointerFromPlanOrState(plan.Address.City, state.Address.City)
@@ -1078,6 +1102,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 			body.ExtendedTags = append(body.ExtendedTags, sdwan_schema.ExtendedTag{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel plan=varLoopExtendedTags properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel plan=varLoopExtendedTags")
 			// property: name=key, type=STRING macro=copy_from_plan
 			body.ExtendedTags[varLoopExtendedTagsIndex].Key = StringValueOrNil(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_from_plan
@@ -1098,6 +1123,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	} else {
 		body.Location = &sdwan_schema.Location{}
 		// copy_from_plan_or_state: body=body.Location prefix=rsModel state=state.Location plan=plan.Location properties=3
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Location prefix=rsModel state=state.Location plan=plan.Location")
 		// property: name=description, type=STRING macro=copy_from_plan_or_state
 		if state.Location != nil {
 			body.Location.Description = ValueStringPointerFromPlanOrState(plan.Location.Description, state.Location.Description)
@@ -1189,6 +1215,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	} else {
 		body.SgiConfig = &sdwan_schema.SecurityGroupInformationConfig{}
 		// copy_from_plan_or_state: body=body.SgiConfig prefix=rsModel state=state.SgiConfig plan=plan.SgiConfig properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SgiConfig prefix=rsModel state=state.SgiConfig plan=plan.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_from_plan_or_state
 		if state.SgiConfig != nil {
 			body.SgiConfig.SgiTag = ValueInt64PointerFromPlanOrState(plan.SgiConfig.SgiTag, state.SgiConfig.SgiTag)
@@ -1250,7 +1277,9 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1265,6 +1294,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 
 	// Store the answer to state. schema=SiteScreenV4N12
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=25
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1275,6 +1305,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	} else {
 		state.Address = &rsModelAddress{}
 		// copy_to_state: state=state.Address prefix=rsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=rsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -1309,6 +1340,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 			// add a new item
 			state.ExtendedTags = append(state.ExtendedTags, rsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=rsModel ans=varLoopExtendedTags")
 			// property: name=key, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
@@ -1325,6 +1357,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	} else {
 		state.Location = &rsModelLocation{}
 		// copy_to_state: state=state.Location prefix=rsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=rsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -1360,6 +1393,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	} else {
 		state.SgiConfig = &rsModelSecurityGroupInformationConfig{}
 		// copy_to_state: state=state.SgiConfig prefix=rsModel ans=ans.SgiConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SgiConfig prefix=rsModel ans=ans.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_to_state
 		state.SgiConfig.SgiTag = types.Int64PointerValue(ans.SgiConfig.SgiTag)
 		// property: name=sgi_vendor_id, type=STRING macro=copy_to_state

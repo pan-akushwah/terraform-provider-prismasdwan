@@ -223,6 +223,7 @@ func (d *elementCellularModuleSimSecurityDataSource) Read(ctx context.Context, r
 
 	// lets copy all items into state schema=SimSecurityScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state

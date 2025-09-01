@@ -262,6 +262,7 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -278,6 +279,7 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 	if plan.ScepConfig != nil {
 		body.ScepConfig = &sdwan_schema.ScepConfig{}
 		// copy_from_plan: body=body.ScepConfig prefix=rsModel plan=plan.ScepConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.ScepConfig prefix=rsModel plan=plan.ScepConfig")
 		// property: name=challenge_uri, type=STRING macro=copy_from_plan
 		body.ScepConfig.ChallengeUri = StringValueOrNil(plan.ScepConfig.ChallengeUri)
 		// property: name=enrollment_uri, type=STRING macro=copy_from_plan
@@ -308,8 +310,11 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -335,7 +340,9 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -371,6 +378,7 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 
 	// Store the answer to state. schema=CertificateAuthorityConfig
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -389,6 +397,7 @@ func (r *externalCaConfigResource) doPost(ctx context.Context, plan *rsModelCert
 	} else {
 		state.ScepConfig = &rsModelScepConfig{}
 		// copy_to_state: state=state.ScepConfig prefix=rsModel ans=ans.ScepConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ScepConfig prefix=rsModel ans=ans.ScepConfig")
 		// property: name=challenge_uri, type=STRING macro=copy_to_state
 		state.ScepConfig.ChallengeUri = types.StringPointerValue(ans.ScepConfig.ChallengeUri)
 		// property: name=enrollment_uri, type=STRING macro=copy_to_state
@@ -468,7 +477,9 @@ func (r *externalCaConfigResource) doGet(ctx context.Context, state *rsModelCert
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=CertificateAuthorityConfig
@@ -490,6 +501,7 @@ func (r *externalCaConfigResource) doGet(ctx context.Context, state *rsModelCert
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -508,6 +520,7 @@ func (r *externalCaConfigResource) doGet(ctx context.Context, state *rsModelCert
 	} else {
 		state.ScepConfig = &rsModelScepConfig{}
 		// copy_to_state: state=state.ScepConfig prefix=rsModel ans=ans.ScepConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ScepConfig prefix=rsModel ans=ans.ScepConfig")
 		// property: name=challenge_uri, type=STRING macro=copy_to_state
 		state.ScepConfig.ChallengeUri = types.StringPointerValue(ans.ScepConfig.ChallengeUri)
 		// property: name=enrollment_uri, type=STRING macro=copy_to_state
@@ -580,6 +593,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -622,6 +636,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 	} else {
 		body.ScepConfig = &sdwan_schema.ScepConfig{}
 		// copy_from_plan_or_state: body=body.ScepConfig prefix=rsModel state=state.ScepConfig plan=plan.ScepConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.ScepConfig prefix=rsModel state=state.ScepConfig plan=plan.ScepConfig")
 		// property: name=challenge_uri, type=STRING macro=copy_from_plan_or_state
 		if state.ScepConfig != nil {
 			body.ScepConfig.ChallengeUri = ValueStringPointerFromPlanOrState(plan.ScepConfig.ChallengeUri, state.ScepConfig.ChallengeUri)
@@ -717,7 +732,9 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -732,6 +749,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 
 	// Store the answer to state. schema=CertificateAuthorityConfig
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -750,6 +768,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 	} else {
 		state.ScepConfig = &rsModelScepConfig{}
 		// copy_to_state: state=state.ScepConfig prefix=rsModel ans=ans.ScepConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ScepConfig prefix=rsModel ans=ans.ScepConfig")
 		// property: name=challenge_uri, type=STRING macro=copy_to_state
 		state.ScepConfig.ChallengeUri = types.StringPointerValue(ans.ScepConfig.ChallengeUri)
 		// property: name=enrollment_uri, type=STRING macro=copy_to_state

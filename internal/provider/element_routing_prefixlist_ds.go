@@ -268,6 +268,7 @@ func (d *elementRoutingPrefixlistDataSource) Read(ctx context.Context, req datas
 
 	// lets copy all items into state schema=RoutingPrefixListScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -291,6 +292,7 @@ func (d *elementRoutingPrefixlistDataSource) Read(ctx context.Context, req datas
 			// add a new item
 			state.PrefixFilterList = append(state.PrefixFilterList, dsModelRoutingPrefixFilterV2N1{})
 			// copy_to_state: state=state.PrefixFilterList[varLoopPrefixFilterListIndex] prefix=dsModel ans=varLoopPrefixFilterList properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.PrefixFilterList[varLoopPrefixFilterListIndex] prefix=dsModel ans=varLoopPrefixFilterList")
 			// property: name=ge, type=INTEGER macro=copy_to_state
 			state.PrefixFilterList[varLoopPrefixFilterListIndex].Ge = types.Int64PointerValue(varLoopPrefixFilterList.Ge)
 			// property: name=ipv6_prefix, type=STRING macro=copy_to_state

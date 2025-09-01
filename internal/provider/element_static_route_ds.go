@@ -292,6 +292,7 @@ func (d *elementStaticRouteDataSource) Read(ctx context.Context, req datasource.
 
 	// lets copy all items into state schema=StaticRouteV2N3
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -321,6 +322,7 @@ func (d *elementStaticRouteDataSource) Read(ctx context.Context, req datasource.
 			// add a new item
 			state.Nexthops = append(state.Nexthops, dsModelNextHop{})
 			// copy_to_state: state=state.Nexthops[varLoopNexthopsIndex] prefix=dsModel ans=varLoopNexthops properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.Nexthops[varLoopNexthopsIndex] prefix=dsModel ans=varLoopNexthops")
 			// property: name=admin_distance, type=INTEGER macro=copy_to_state
 			state.Nexthops[varLoopNexthopsIndex].AdminDistance = types.Int64PointerValue(varLoopNexthops.AdminDistance)
 			// property: name=nexthop_interface_id, type=STRING macro=copy_to_state

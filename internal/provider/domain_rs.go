@@ -218,6 +218,7 @@ func (r *domainResource) doPost(ctx context.Context, plan *rsModelServiceBinding
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -241,6 +242,7 @@ func (r *domainResource) doPost(ctx context.Context, plan *rsModelServiceBinding
 			// add a new item
 			body.ServiceBindings = append(body.ServiceBindings, sdwan_schema.ServiceBinding{})
 			// copy_from_plan: body=body.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel plan=varLoopServiceBindings properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel plan=varLoopServiceBindings")
 			// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.ServiceBindings[varLoopServiceBindingsIndex].ServiceEndpointIds = ListStringValueOrNil(ctx, varLoopServiceBindings.ServiceEndpointIds)
 			// property: name=service_label_id, type=STRING macro=copy_from_plan
@@ -260,10 +262,14 @@ func (r *domainResource) doPost(ctx context.Context, plan *rsModelServiceBinding
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: set request_body_string::service_bindings")
 	request_body_string, _ = sjson.Set(request_body_string, "service_bindings", []string{})
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -289,9 +295,12 @@ func (r *domainResource) doPost(ctx context.Context, plan *rsModelServiceBinding
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::service_bindings")
 	response_body_string, _ = sjson.Delete(response_body_string, "service_bindings")
 
 	// start copying attributes
@@ -327,6 +336,7 @@ func (r *domainResource) doPost(ctx context.Context, plan *rsModelServiceBinding
 
 	// Store the answer to state. schema=ServiceBindingMapScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -350,6 +360,7 @@ func (r *domainResource) doPost(ctx context.Context, plan *rsModelServiceBinding
 			// add a new item
 			state.ServiceBindings = append(state.ServiceBindings, rsModelServiceBinding{})
 			// copy_to_state: state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel ans=varLoopServiceBindings properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel ans=varLoopServiceBindings")
 			// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varServiceEndpointIds, errServiceEndpointIds := types.ListValueFrom(ctx, types.StringType, varLoopServiceBindings.ServiceEndpointIds)
 			state.ServiceBindings[varLoopServiceBindingsIndex].ServiceEndpointIds = varServiceEndpointIds
@@ -422,9 +433,12 @@ func (r *domainResource) doGet(ctx context.Context, state *rsModelServiceBinding
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::service_bindings")
 	response_body_string, _ = sjson.Delete(response_body_string, "service_bindings")
 
 	// Store the answer to state. schema=ServiceBindingMapScreenV2N1
@@ -446,6 +460,7 @@ func (r *domainResource) doGet(ctx context.Context, state *rsModelServiceBinding
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -469,6 +484,7 @@ func (r *domainResource) doGet(ctx context.Context, state *rsModelServiceBinding
 			// add a new item
 			state.ServiceBindings = append(state.ServiceBindings, rsModelServiceBinding{})
 			// copy_to_state: state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel ans=varLoopServiceBindings properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel ans=varLoopServiceBindings")
 			// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varServiceEndpointIds, errServiceEndpointIds := types.ListValueFrom(ctx, types.StringType, varLoopServiceBindings.ServiceEndpointIds)
 			state.ServiceBindings[varLoopServiceBindingsIndex].ServiceEndpointIds = varServiceEndpointIds
@@ -534,6 +550,7 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -586,6 +603,7 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 			body.ServiceBindings = append(body.ServiceBindings, sdwan_schema.ServiceBinding{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel plan=varLoopServiceBindings properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel plan=varLoopServiceBindings")
 			// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.ServiceBindings[varLoopServiceBindingsIndex].ServiceEndpointIds = ListStringValueOrNil(ctx, varLoopServiceBindings.ServiceEndpointIds)
 			// property: name=service_label_id, type=STRING macro=copy_from_plan
@@ -605,6 +623,7 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: set request_body_string::service_bindings")
 	request_body_string, _ = sjson.Set(request_body_string, "service_bindings", []string{})
 	// copy pointer
 	put_request.RequestBody = &request_body_string
@@ -636,9 +655,12 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::service_bindings")
 	response_body_string, _ = sjson.Delete(response_body_string, "service_bindings")
 
 	// start copying attributes
@@ -653,6 +675,7 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 
 	// Store the answer to state. schema=ServiceBindingMapScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -676,6 +699,7 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 			// add a new item
 			state.ServiceBindings = append(state.ServiceBindings, rsModelServiceBinding{})
 			// copy_to_state: state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel ans=varLoopServiceBindings properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=rsModel ans=varLoopServiceBindings")
 			// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varServiceEndpointIds, errServiceEndpointIds := types.ListValueFrom(ctx, types.StringType, varLoopServiceBindings.ServiceEndpointIds)
 			state.ServiceBindings[varLoopServiceBindingsIndex].ServiceEndpointIds = varServiceEndpointIds

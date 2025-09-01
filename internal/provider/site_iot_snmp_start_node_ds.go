@@ -228,6 +228,7 @@ func (d *siteIotSnmpStartNodeDataSource) Read(ctx context.Context, req datasourc
 
 	// lets copy all items into state schema=DeviceIdStartNodeScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -251,6 +252,7 @@ func (d *siteIotSnmpStartNodeDataSource) Read(ctx context.Context, req datasourc
 			// add a new item
 			state.Scope = append(state.Scope, dsModelStartNodeScopeConfig{})
 			// copy_to_state: state=state.Scope[varLoopScopeIndex] prefix=dsModel ans=varLoopScope properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.Scope[varLoopScopeIndex] prefix=dsModel ans=varLoopScope")
 			// property: name=ipv4_prefix, type=STRING macro=copy_to_state
 			state.Scope[varLoopScopeIndex].Ipv4Prefix = types.StringPointerValue(varLoopScope.Ipv4Prefix)
 		}

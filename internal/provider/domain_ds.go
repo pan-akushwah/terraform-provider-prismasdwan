@@ -235,6 +235,7 @@ func (d *domainDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 
 	// lets copy all items into state schema=ServiceBindingMapScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -258,6 +259,7 @@ func (d *domainDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 			// add a new item
 			state.ServiceBindings = append(state.ServiceBindings, dsModelServiceBinding{})
 			// copy_to_state: state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=dsModel ans=varLoopServiceBindings properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceBindings[varLoopServiceBindingsIndex] prefix=dsModel ans=varLoopServiceBindings")
 			// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varServiceEndpointIds, errServiceEndpointIds := types.ListValueFrom(ctx, types.StringType, varLoopServiceBindings.ServiceEndpointIds)
 			state.ServiceBindings[varLoopServiceBindingsIndex].ServiceEndpointIds = varServiceEndpointIds

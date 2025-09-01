@@ -276,6 +276,7 @@ func (d *elementMulticastGlobalConfigDataSource) Read(ctx context.Context, req d
 
 	// lets copy all items into state schema=MulticastGlobalConfigScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -292,6 +293,7 @@ func (d *elementMulticastGlobalConfigDataSource) Read(ctx context.Context, req d
 	} else {
 		state.IgmpProtocolParameters = &dsModelMulticastIgmpProtocolConfig{}
 		// copy_to_state: state=state.IgmpProtocolParameters prefix=dsModel ans=ans.IgmpProtocolParameters properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.IgmpProtocolParameters prefix=dsModel ans=ans.IgmpProtocolParameters")
 		// property: name=last_member_query_count, type=INTEGER macro=copy_to_state
 		state.IgmpProtocolParameters.LastMemberQueryCount = types.Int64PointerValue(ans.IgmpProtocolParameters.LastMemberQueryCount)
 		// property: name=last_member_query_interval, type=INTEGER macro=copy_to_state
@@ -307,6 +309,7 @@ func (d *elementMulticastGlobalConfigDataSource) Read(ctx context.Context, req d
 	} else {
 		state.PimProtocolParameters = &dsModelMulticastPimProtocolConfig{}
 		// copy_to_state: state=state.PimProtocolParameters prefix=dsModel ans=ans.PimProtocolParameters properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.PimProtocolParameters prefix=dsModel ans=ans.PimProtocolParameters")
 		// property: name=hello_hold_time, type=INTEGER macro=copy_to_state
 		state.PimProtocolParameters.HelloHoldTime = types.Int64PointerValue(ans.PimProtocolParameters.HelloHoldTime)
 		// property: name=hello_interval, type=INTEGER macro=copy_to_state

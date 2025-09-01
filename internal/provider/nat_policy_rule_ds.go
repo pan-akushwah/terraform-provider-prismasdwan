@@ -864,6 +864,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 
 	// lets copy all items into state schema=NATPolicyRule
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=26
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -879,6 +880,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 			// add a new item
 			state.Actions = append(state.Actions, dsModelNATAction{})
 			// copy_to_state: state=state.Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions")
 			// property: name=nat_pool_id, type=STRING macro=copy_to_state
 			state.Actions[varLoopActionsIndex].NatPoolId = types.StringPointerValue(varLoopActions.NatPoolId)
 			// property: name=port, type=INTEGER macro=copy_to_state
@@ -904,6 +906,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 			// add a new item
 			state.DestinationPorts = append(state.DestinationPorts, dsModelPortRange{})
 			// copy_to_state: state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=dsModel ans=varLoopDestinationPorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=dsModel ans=varLoopDestinationPorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.DestinationPorts[varLoopDestinationPortsIndex].From = types.Int64PointerValue(varLoopDestinationPorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -916,6 +919,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 	} else {
 		state.DestinationPrefixes = &dsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.DestinationPrefixes prefix=dsModel ans=ans.DestinationPrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=dsModel ans=ans.DestinationPrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -947,6 +951,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 	} else {
 		state.DestinationZone = &dsModelNATPolicyZone{}
 		// copy_to_state: state=state.DestinationZone prefix=dsModel ans=ans.DestinationZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=dsModel ans=ans.DestinationZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1001,6 +1006,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 			// add a new item
 			state.Natpolicypools = append(state.Natpolicypools, dsModelNATPolicyPool{})
 			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=dsModel ans=varLoopNatpolicypools properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=dsModel ans=varLoopNatpolicypools")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1034,6 +1040,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 			// add a new item
 			state.SourcePorts = append(state.SourcePorts, dsModelPortRange{})
 			// copy_to_state: state=state.SourcePorts[varLoopSourcePortsIndex] prefix=dsModel ans=varLoopSourcePorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SourcePorts[varLoopSourcePortsIndex] prefix=dsModel ans=varLoopSourcePorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.SourcePorts[varLoopSourcePortsIndex].From = types.Int64PointerValue(varLoopSourcePorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -1046,6 +1053,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 	} else {
 		state.SourcePrefixes = &dsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.SourcePrefixes prefix=dsModel ans=ans.SourcePrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=dsModel ans=ans.SourcePrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1077,6 +1085,7 @@ func (d *natPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 	} else {
 		state.SourceZone = &dsModelNATPolicyZone{}
 		// copy_to_state: state=state.SourceZone prefix=dsModel ans=ans.SourceZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=dsModel ans=ans.SourceZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state

@@ -490,6 +490,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 
 	// lets copy all items into state schema=ServiceEndpointV3
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -500,6 +501,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.Address = &dsModelAddress{}
 		// copy_to_state: state=state.Address prefix=dsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=dsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -531,6 +533,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.LivelinessProbe = &dsModelSEPLivelinessProbeV2N2{}
 		// copy_to_state: state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
 			state.LivelinessProbe.Http = nil
@@ -542,6 +545,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 				// add a new item
 				state.LivelinessProbe.Http = append(state.LivelinessProbe.Http, dsModelHttpProbe{})
 				// copy_to_state: state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=dsModel ans=varLoopHttp properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=dsModel ans=varLoopHttp")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = types.Int64PointerValue(varLoopHttp.FailureCount)
 				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -565,6 +569,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 				// add a new item
 				state.LivelinessProbe.IcmpPing = append(state.LivelinessProbe.IcmpPing, dsModelIcmpPingProbe{})
 				// copy_to_state: state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=dsModel ans=varLoopIcmpPing properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=dsModel ans=varLoopIcmpPing")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = types.Int64PointerValue(varLoopIcmpPing.FailureCount)
 				// property: name=interval, type=INTEGER macro=copy_to_state
@@ -582,6 +587,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.Location = &dsModelLocation{}
 		// copy_to_state: state=state.Location prefix=dsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=dsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -597,6 +603,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.SaseProperties = &dsModelSaseServiceEndpointProperties{}
 		// copy_to_state: state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
@@ -608,6 +615,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.ServiceLinkPeers = &dsModelServiceLinkPeers{}
 		// copy_to_state: state=state.ServiceLinkPeers prefix=dsModel ans=ans.ServiceLinkPeers properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkPeers prefix=dsModel ans=ans.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHostnames, errHostnames := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.Hostnames)
 		state.ServiceLinkPeers.Hostnames = varHostnames

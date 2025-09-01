@@ -451,6 +451,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 
 	// lets copy all items into state schema=DnsService
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=15
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -461,6 +462,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.CacheConfig = &dsModelElemCacheConfig{}
 		// copy_to_state: state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig")
 		// property: name=cache_size, type=INTEGER macro=copy_to_state
 		state.CacheConfig.CacheSize = types.Int64PointerValue(ans.CacheConfig.CacheSize)
 	}
@@ -472,12 +474,14 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.DnsQueriesMetadata = &dsModelElemDnsQueriesMetadata{}
 		// copy_to_state: state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata")
 		// property: name=add_customer_premises_equipment, type=REFERENCE macro=copy_to_state
 		if ans.DnsQueriesMetadata.AddCustomerPremisesEquipment == nil {
 			state.DnsQueriesMetadata.AddCustomerPremisesEquipment = nil
 		} else {
 			state.DnsQueriesMetadata.AddCustomerPremisesEquipment = &dsModelElemCustomerPremisesEquipment{}
 			// copy_to_state: state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment")
 			// property: name=identifier_text, type=STRING macro=copy_to_state
 			state.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = types.StringPointerValue(ans.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
 			// property: name=type, type=STRING macro=copy_to_state
@@ -494,6 +498,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.DnsQueriesMetadata.AddSubnets = append(state.DnsQueriesMetadata.AddSubnets, dsModelSubnet{})
 				// copy_to_state: state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets")
 				// property: name=ipv4_address, type=STRING macro=copy_to_state
 				state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv4Address = types.StringPointerValue(varLoopAddSubnets.Ipv4Address)
 				// property: name=ipv4_prefix_length, type=INTEGER macro=copy_to_state
@@ -518,6 +523,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.DnsserviceroleBindings = append(state.DnsserviceroleBindings, dsModelDnsServiceroleBindings{})
 			// copy_to_state: state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex] prefix=dsModel ans=varLoopDnsserviceroleBindings properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex] prefix=dsModel ans=varLoopDnsserviceroleBindings")
 			// property: name=dnsservicerole_id, type=STRING macro=copy_to_state
 			state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].DnsserviceroleId = types.StringPointerValue(varLoopDnsserviceroleBindings.DnsserviceroleId)
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
@@ -531,6 +537,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 					// add a new item
 					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = append(state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces, dsModelInterface{})
 					// copy_to_state: state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_to_state
 					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 					// property: name=interface_ip, type=STRING macro=copy_to_state
@@ -550,6 +557,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.DomainsToAddresses = append(state.DomainsToAddresses, dsModelDomainsToAddress{})
 			// copy_to_state: state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses")
 			// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToAddresses.DomainNames)
 			state.DomainsToAddresses[varLoopDomainsToAddressesIndex].DomainNames = varDomainNames
@@ -571,6 +579,7 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.DomainsToInterfaces = append(state.DomainsToInterfaces, dsModelDomainsToInterface{})
 			// copy_to_state: state=state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex] prefix=dsModel ans=varLoopDomainsToInterfaces properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex] prefix=dsModel ans=varLoopDomainsToInterfaces")
 			// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToInterfaces.DomainNames)
 			state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex].DomainNames = varDomainNames

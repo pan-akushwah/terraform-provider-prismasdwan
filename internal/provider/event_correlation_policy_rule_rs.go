@@ -327,6 +327,7 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -343,10 +344,12 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 	if plan.EscalationRules != nil {
 		body.EscalationRules = &sdwan_schema.EscalationRule{}
 		// copy_from_plan: body=body.EscalationRules prefix=rsModel plan=plan.EscalationRules properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.EscalationRules prefix=rsModel plan=plan.EscalationRules")
 		// property: name=flap_rule, type=REFERENCE macro=copy_from_plan
 		if plan.EscalationRules.FlapRule != nil {
 			body.EscalationRules.FlapRule = &sdwan_schema.FlapRule{}
 			// copy_from_plan: body=body.EscalationRules.FlapRule prefix=rsModel plan=plan.EscalationRules.FlapRule properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.EscalationRules.FlapRule prefix=rsModel plan=plan.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_from_plan
 			body.EscalationRules.FlapRule.FlapDuration = Int64ValueOrNil(plan.EscalationRules.FlapRule.FlapDuration)
 			// property: name=flap_rate, type=INTEGER macro=copy_from_plan
@@ -356,6 +359,7 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 		if plan.EscalationRules.StandingRule != nil {
 			body.EscalationRules.StandingRule = &sdwan_schema.StandingRule{}
 			// copy_from_plan: body=body.EscalationRules.StandingRule prefix=rsModel plan=plan.EscalationRules.StandingRule properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.EscalationRules.StandingRule prefix=rsModel plan=plan.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_from_plan
 			body.EscalationRules.StandingRule.Priority = StringValueOrNil(plan.EscalationRules.StandingRule.Priority)
 			// property: name=standing_for, type=INTEGER macro=copy_from_plan
@@ -393,8 +397,11 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -420,7 +427,9 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -456,6 +465,7 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 
 	// Store the answer to state. schema=EventCorrelationPolicyRuleScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -474,12 +484,14 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 	} else {
 		state.EscalationRules = &rsModelEscalationRule{}
 		// copy_to_state: state=state.EscalationRules prefix=rsModel ans=ans.EscalationRules properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EscalationRules prefix=rsModel ans=ans.EscalationRules")
 		// property: name=flap_rule, type=REFERENCE macro=copy_to_state
 		if ans.EscalationRules.FlapRule == nil {
 			state.EscalationRules.FlapRule = nil
 		} else {
 			state.EscalationRules.FlapRule = &rsModelFlapRule{}
 			// copy_to_state: state=state.EscalationRules.FlapRule prefix=rsModel ans=ans.EscalationRules.FlapRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.FlapRule prefix=rsModel ans=ans.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_to_state
 			state.EscalationRules.FlapRule.FlapDuration = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapDuration)
 			// property: name=flap_rate, type=INTEGER macro=copy_to_state
@@ -491,6 +503,7 @@ func (r *eventCorrelationPolicyRuleResource) doPost(ctx context.Context, plan *r
 		} else {
 			state.EscalationRules.StandingRule = &rsModelStandingRule{}
 			// copy_to_state: state=state.EscalationRules.StandingRule prefix=rsModel ans=ans.EscalationRules.StandingRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.StandingRule prefix=rsModel ans=ans.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_to_state
 			state.EscalationRules.StandingRule.Priority = types.StringPointerValue(ans.EscalationRules.StandingRule.Priority)
 			// property: name=standing_for, type=INTEGER macro=copy_to_state
@@ -583,7 +596,9 @@ func (r *eventCorrelationPolicyRuleResource) doGet(ctx context.Context, state *r
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=EventCorrelationPolicyRuleScreenV2N1
@@ -605,6 +620,7 @@ func (r *eventCorrelationPolicyRuleResource) doGet(ctx context.Context, state *r
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -623,12 +639,14 @@ func (r *eventCorrelationPolicyRuleResource) doGet(ctx context.Context, state *r
 	} else {
 		state.EscalationRules = &rsModelEscalationRule{}
 		// copy_to_state: state=state.EscalationRules prefix=rsModel ans=ans.EscalationRules properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EscalationRules prefix=rsModel ans=ans.EscalationRules")
 		// property: name=flap_rule, type=REFERENCE macro=copy_to_state
 		if ans.EscalationRules.FlapRule == nil {
 			state.EscalationRules.FlapRule = nil
 		} else {
 			state.EscalationRules.FlapRule = &rsModelFlapRule{}
 			// copy_to_state: state=state.EscalationRules.FlapRule prefix=rsModel ans=ans.EscalationRules.FlapRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.FlapRule prefix=rsModel ans=ans.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_to_state
 			state.EscalationRules.FlapRule.FlapDuration = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapDuration)
 			// property: name=flap_rate, type=INTEGER macro=copy_to_state
@@ -640,6 +658,7 @@ func (r *eventCorrelationPolicyRuleResource) doGet(ctx context.Context, state *r
 		} else {
 			state.EscalationRules.StandingRule = &rsModelStandingRule{}
 			// copy_to_state: state=state.EscalationRules.StandingRule prefix=rsModel ans=ans.EscalationRules.StandingRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.StandingRule prefix=rsModel ans=ans.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_to_state
 			state.EscalationRules.StandingRule.Priority = types.StringPointerValue(ans.EscalationRules.StandingRule.Priority)
 			// property: name=standing_for, type=INTEGER macro=copy_to_state
@@ -725,6 +744,7 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -767,12 +787,14 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 	} else {
 		body.EscalationRules = &sdwan_schema.EscalationRule{}
 		// copy_from_plan_or_state: body=body.EscalationRules prefix=rsModel state=state.EscalationRules plan=plan.EscalationRules properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.EscalationRules prefix=rsModel state=state.EscalationRules plan=plan.EscalationRules")
 		// property: name=flap_rule, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.EscalationRules.FlapRule == nil {
 			body.EscalationRules.FlapRule = nil
 		} else {
 			body.EscalationRules.FlapRule = &sdwan_schema.FlapRule{}
 			// copy_from_plan_or_state: body=body.EscalationRules.FlapRule prefix=rsModel state=state.EscalationRules.FlapRule plan=plan.EscalationRules.FlapRule properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EscalationRules.FlapRule prefix=rsModel state=state.EscalationRules.FlapRule plan=plan.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_from_plan_or_state
 			if state.EscalationRules.FlapRule != nil {
 				body.EscalationRules.FlapRule.FlapDuration = ValueInt64PointerFromPlanOrState(plan.EscalationRules.FlapRule.FlapDuration, state.EscalationRules.FlapRule.FlapDuration)
@@ -792,6 +814,7 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 		} else {
 			body.EscalationRules.StandingRule = &sdwan_schema.StandingRule{}
 			// copy_from_plan_or_state: body=body.EscalationRules.StandingRule prefix=rsModel state=state.EscalationRules.StandingRule plan=plan.EscalationRules.StandingRule properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EscalationRules.StandingRule prefix=rsModel state=state.EscalationRules.StandingRule plan=plan.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_from_plan_or_state
 			if state.EscalationRules.StandingRule != nil {
 				body.EscalationRules.StandingRule.Priority = ValueStringPointerFromPlanOrState(plan.EscalationRules.StandingRule.Priority, state.EscalationRules.StandingRule.Priority)
@@ -894,7 +917,9 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -909,6 +934,7 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 
 	// Store the answer to state. schema=EventCorrelationPolicyRuleScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -927,12 +953,14 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 	} else {
 		state.EscalationRules = &rsModelEscalationRule{}
 		// copy_to_state: state=state.EscalationRules prefix=rsModel ans=ans.EscalationRules properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EscalationRules prefix=rsModel ans=ans.EscalationRules")
 		// property: name=flap_rule, type=REFERENCE macro=copy_to_state
 		if ans.EscalationRules.FlapRule == nil {
 			state.EscalationRules.FlapRule = nil
 		} else {
 			state.EscalationRules.FlapRule = &rsModelFlapRule{}
 			// copy_to_state: state=state.EscalationRules.FlapRule prefix=rsModel ans=ans.EscalationRules.FlapRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.FlapRule prefix=rsModel ans=ans.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_to_state
 			state.EscalationRules.FlapRule.FlapDuration = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapDuration)
 			// property: name=flap_rate, type=INTEGER macro=copy_to_state
@@ -944,6 +972,7 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 		} else {
 			state.EscalationRules.StandingRule = &rsModelStandingRule{}
 			// copy_to_state: state=state.EscalationRules.StandingRule prefix=rsModel ans=ans.EscalationRules.StandingRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.StandingRule prefix=rsModel ans=ans.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_to_state
 			state.EscalationRules.StandingRule.Priority = types.StringPointerValue(ans.EscalationRules.StandingRule.Priority)
 			// property: name=standing_for, type=INTEGER macro=copy_to_state

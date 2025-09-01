@@ -218,6 +218,7 @@ func (d *globalPrefixFilterDataSource) Read(ctx context.Context, req datasource.
 
 	// lets copy all items into state schema=GlobalPrefixFilterScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=6
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -235,6 +236,7 @@ func (d *globalPrefixFilterDataSource) Read(ctx context.Context, req datasource.
 			// add a new item
 			state.Filters = append(state.Filters, dsModelGlobalPrefixIpPrefixes{})
 			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=dsModel ans=varLoopFilters properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=dsModel ans=varLoopFilters")
 			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
 			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes

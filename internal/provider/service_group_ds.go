@@ -224,6 +224,7 @@ func (d *serviceGroupDataSource) Read(ctx context.Context, req datasource.ReadRe
 
 	// lets copy all items into state schema=ServiceLabelV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -240,6 +241,7 @@ func (d *serviceGroupDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.SaseProperties = &dsModelSaseServiceLabelProperties{}
 		// copy_to_state: state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties")
 		// property: name=active_sase_label, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.ActiveSaseLabel = types.BoolPointerValue(ans.SaseProperties.ActiveSaseLabel)
 	}

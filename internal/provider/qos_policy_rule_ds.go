@@ -321,6 +321,7 @@ func (d *qosPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 
 	// lets copy all items into state schema=PriorityPolicyRuleV2N2
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -343,6 +344,7 @@ func (d *qosPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 	} else {
 		state.Dscp = &dsModelDSCP{}
 		// copy_to_state: state=state.Dscp prefix=dsModel ans=ans.Dscp properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.Dscp prefix=dsModel ans=ans.Dscp")
 		// property: name=value, type=INTEGER macro=copy_to_state
 		state.Dscp.Value = types.Int64PointerValue(ans.Dscp.Value)
 	}
@@ -374,6 +376,7 @@ func (d *qosPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 	} else {
 		state.UserOrGroup = &dsModelUserGroup{}
 		// copy_to_state: state=state.UserOrGroup prefix=dsModel ans=ans.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.UserOrGroup prefix=dsModel ans=ans.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, ans.UserOrGroup.UserGroupIds)
 		state.UserOrGroup.UserGroupIds = varUserGroupIds

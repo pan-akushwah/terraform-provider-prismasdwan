@@ -202,6 +202,7 @@ func (d *siteWanMulticastConfigurationDataSource) Read(ctx context.Context, req 
 
 	// lets copy all items into state schema=MulticastSourceSiteConfigScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=4
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -219,6 +220,7 @@ func (d *siteWanMulticastConfigurationDataSource) Read(ctx context.Context, req 
 			// add a new item
 			state.SiteConfigs = append(state.SiteConfigs, dsModelSiteConfig{})
 			// copy_to_state: state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=dsModel ans=varLoopSiteConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=dsModel ans=varLoopSiteConfigs")
 			// property: name=group_ipv4_prefix, type=STRING macro=copy_to_state
 			state.SiteConfigs[varLoopSiteConfigsIndex].GroupIpv4Prefix = types.StringPointerValue(varLoopSiteConfigs.GroupIpv4Prefix)
 			// property: name=source_ipv4_address, type=STRING macro=copy_to_state

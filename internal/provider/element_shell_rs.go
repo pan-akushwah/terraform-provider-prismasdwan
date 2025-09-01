@@ -1113,6 +1113,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=32
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -1137,10 +1138,12 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	if plan.HubClusterConfig != nil {
 		body.HubClusterConfig = &sdwan_schema.HubClusterConfig{}
 		// copy_from_plan: body=body.HubClusterConfig prefix=rsModel plan=plan.HubClusterConfig properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.HubClusterConfig prefix=rsModel plan=plan.HubClusterConfig")
 		// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_from_plan
 		if plan.HubClusterConfig.IntraClusterTunnel != nil {
 			body.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
 			// copy_from_plan: body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel plan=plan.HubClusterConfig.IntraClusterTunnel properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel plan=plan.HubClusterConfig.IntraClusterTunnel")
 			// property: name=destination_ip, type=STRING macro=copy_from_plan
 			body.HubClusterConfig.IntraClusterTunnel.DestinationIp = StringValueOrNil(plan.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 			// property: name=source_ip, type=STRING macro=copy_from_plan
@@ -1152,6 +1155,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.HubClusterConfig.Track != nil {
 			body.HubClusterConfig.Track = &sdwan_schema.Tracker{}
 			// copy_from_plan: body=body.HubClusterConfig.Track prefix=rsModel plan=plan.HubClusterConfig.Track properties=1
+			tflog.Debug(ctx, "copy_from_plan body=body.HubClusterConfig.Track prefix=rsModel plan=plan.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan
 			if plan.HubClusterConfig.Track.Hosts == nil {
 				body.HubClusterConfig.Track.Hosts = nil
@@ -1163,6 +1167,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 					// add a new item
 					body.HubClusterConfig.Track.Hosts = append(body.HubClusterConfig.Track.Hosts, sdwan_schema.Host{})
 					// copy_from_plan: body=body.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts properties=3
+					tflog.Debug(ctx, "copy_from_plan body=body.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts")
 					// property: name=address_v4, type=STRING macro=copy_from_plan
 					body.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = StringValueOrNil(varLoopHosts.AddressV4)
 					// property: name=address_v6, type=STRING macro=copy_from_plan
@@ -1185,6 +1190,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	if plan.LedConfig != nil {
 		body.LedConfig = &sdwan_schema.LedConfig{}
 		// copy_from_plan: body=body.LedConfig prefix=rsModel plan=plan.LedConfig properties=1
+		tflog.Debug(ctx, "copy_from_plan body=body.LedConfig prefix=rsModel plan=plan.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan
 		body.LedConfig.ServiceLedOn = BoolValueOrNil(plan.LedConfig.ServiceLedOn)
 	}
@@ -1210,6 +1216,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	if plan.SpokeHaConfig != nil {
 		body.SpokeHaConfig = &sdwan_schema.SpokeHAConfigV2{}
 		// copy_from_plan: body=body.SpokeHaConfig prefix=rsModel plan=plan.SpokeHaConfig properties=5
+		tflog.Debug(ctx, "copy_from_plan body=body.SpokeHaConfig prefix=rsModel plan=plan.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_from_plan
 		body.SpokeHaConfig.ClusterId = StringValueOrNil(plan.SpokeHaConfig.ClusterId)
 		// property: name=enable, type=BOOLEAN macro=copy_from_plan
@@ -1222,6 +1229,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.SpokeHaConfig.Track != nil {
 			body.SpokeHaConfig.Track = &sdwan_schema.TrackV2{}
 			// copy_from_plan: body=body.SpokeHaConfig.Track prefix=rsModel plan=plan.SpokeHaConfig.Track properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SpokeHaConfig.Track prefix=rsModel plan=plan.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan
 			if plan.SpokeHaConfig.Track.Interfaces == nil {
 				body.SpokeHaConfig.Track.Interfaces = nil
@@ -1233,6 +1241,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 					// add a new item
 					body.SpokeHaConfig.Track.Interfaces = append(body.SpokeHaConfig.Track.Interfaces, sdwan_schema.TrackInterface{})
 					// copy_from_plan: body=body.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_from_plan
 					body.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = StringValueOrNil(varLoopInterfaces.InterfaceId)
 					// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
@@ -1250,6 +1259,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 					// add a new item
 					body.SpokeHaConfig.Track.Waninterfaces = append(body.SpokeHaConfig.Track.Waninterfaces, sdwan_schema.TrackWANInterface{})
 					// copy_from_plan: body=body.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces")
 					// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
 					body.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopWaninterfaces.ReducePriority)
 					// property: name=wan_interface_id, type=STRING macro=copy_from_plan
@@ -1264,6 +1274,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	if plan.SwitchConfig != nil {
 		body.SwitchConfig = &sdwan_schema.SwitchConfig{}
 		// copy_from_plan: body=body.SwitchConfig prefix=rsModel plan=plan.SwitchConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.SwitchConfig prefix=rsModel plan=plan.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan
 		body.SwitchConfig.DefaultVlanId = Int64ValueOrNil(plan.SwitchConfig.DefaultVlanId)
 		// property: name=mstp_enabled, type=BOOLEAN macro=copy_from_plan
@@ -1289,6 +1300,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	if plan.TrackedElement != nil {
 		body.TrackedElement = &sdwan_schema.ElementScreenV3N2{}
 		// copy_from_plan: body=body.TrackedElement prefix=rsModel plan=plan.TrackedElement properties=21
+		tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement prefix=rsModel plan=plan.TrackedElement")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan
 		body.TrackedElement.Etag = Int64ValueOrNil(plan.TrackedElement.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -1303,10 +1315,12 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.TrackedElement.HubClusterConfig != nil {
 			body.TrackedElement.HubClusterConfig = &sdwan_schema.HubClusterConfig{}
 			// copy_from_plan: body=body.TrackedElement.HubClusterConfig prefix=rsModel plan=plan.TrackedElement.HubClusterConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.HubClusterConfig prefix=rsModel plan=plan.TrackedElement.HubClusterConfig")
 			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_from_plan
 			if plan.TrackedElement.HubClusterConfig.IntraClusterTunnel != nil {
 				body.TrackedElement.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
 				// copy_from_plan: body=body.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel plan=plan.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel plan=plan.TrackedElement.HubClusterConfig.IntraClusterTunnel")
 				// property: name=destination_ip, type=STRING macro=copy_from_plan
 				body.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 				// property: name=source_ip, type=STRING macro=copy_from_plan
@@ -1318,6 +1332,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 			if plan.TrackedElement.HubClusterConfig.Track != nil {
 				body.TrackedElement.HubClusterConfig.Track = &sdwan_schema.Tracker{}
 				// copy_from_plan: body=body.TrackedElement.HubClusterConfig.Track prefix=rsModel plan=plan.TrackedElement.HubClusterConfig.Track properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.HubClusterConfig.Track prefix=rsModel plan=plan.TrackedElement.HubClusterConfig.Track")
 				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan
 				if plan.TrackedElement.HubClusterConfig.Track.Hosts == nil {
 					body.TrackedElement.HubClusterConfig.Track.Hosts = nil
@@ -1329,6 +1344,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 						// add a new item
 						body.TrackedElement.HubClusterConfig.Track.Hosts = append(body.TrackedElement.HubClusterConfig.Track.Hosts, sdwan_schema.Host{})
 						// copy_from_plan: body=body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts properties=3
+						tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts")
 						// property: name=address_v4, type=STRING macro=copy_from_plan
 						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = StringValueOrNil(varLoopHosts.AddressV4)
 						// property: name=address_v6, type=STRING macro=copy_from_plan
@@ -1349,6 +1365,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.TrackedElement.LedConfig != nil {
 			body.TrackedElement.LedConfig = &sdwan_schema.LedConfig{}
 			// copy_from_plan: body=body.TrackedElement.LedConfig prefix=rsModel plan=plan.TrackedElement.LedConfig properties=1
+			tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.LedConfig prefix=rsModel plan=plan.TrackedElement.LedConfig")
 			// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan
 			body.TrackedElement.LedConfig.ServiceLedOn = BoolValueOrNil(plan.TrackedElement.LedConfig.ServiceLedOn)
 		}
@@ -1368,6 +1385,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.TrackedElement.SpokeHaConfig != nil {
 			body.TrackedElement.SpokeHaConfig = &sdwan_schema.SpokeHAConfigV2{}
 			// copy_from_plan: body=body.TrackedElement.SpokeHaConfig prefix=rsModel plan=plan.TrackedElement.SpokeHaConfig properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SpokeHaConfig prefix=rsModel plan=plan.TrackedElement.SpokeHaConfig")
 			// property: name=cluster_id, type=STRING macro=copy_from_plan
 			body.TrackedElement.SpokeHaConfig.ClusterId = StringValueOrNil(plan.TrackedElement.SpokeHaConfig.ClusterId)
 			// property: name=enable, type=BOOLEAN macro=copy_from_plan
@@ -1380,6 +1398,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 			if plan.TrackedElement.SpokeHaConfig.Track != nil {
 				body.TrackedElement.SpokeHaConfig.Track = &sdwan_schema.TrackV2{}
 				// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track prefix=rsModel plan=plan.TrackedElement.SpokeHaConfig.Track properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SpokeHaConfig.Track prefix=rsModel plan=plan.TrackedElement.SpokeHaConfig.Track")
 				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan
 				if plan.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
 					body.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
@@ -1391,6 +1410,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 						// add a new item
 						body.TrackedElement.SpokeHaConfig.Track.Interfaces = append(body.TrackedElement.SpokeHaConfig.Track.Interfaces, sdwan_schema.TrackInterface{})
 						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces")
 						// property: name=interface_id, type=STRING macro=copy_from_plan
 						body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = StringValueOrNil(varLoopInterfaces.InterfaceId)
 						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
@@ -1408,6 +1428,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 						// add a new item
 						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(body.TrackedElement.SpokeHaConfig.Track.Waninterfaces, sdwan_schema.TrackWANInterface{})
 						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces")
 						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
 						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopWaninterfaces.ReducePriority)
 						// property: name=wan_interface_id, type=STRING macro=copy_from_plan
@@ -1420,6 +1441,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.TrackedElement.SwObj != nil {
 			body.TrackedElement.SwObj = &sdwan_schema.Software{}
 			// copy_from_plan: body=body.TrackedElement.SwObj prefix=rsModel plan=plan.TrackedElement.SwObj properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SwObj prefix=rsModel plan=plan.TrackedElement.SwObj")
 			// property: name=location, type=STRING macro=copy_from_plan
 			body.TrackedElement.SwObj.Location = StringValueOrNil(plan.TrackedElement.SwObj.Location)
 			// property: name=version, type=STRING macro=copy_from_plan
@@ -1429,6 +1451,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		if plan.TrackedElement.SwitchConfig != nil {
 			body.TrackedElement.SwitchConfig = &sdwan_schema.SwitchConfig{}
 			// copy_from_plan: body=body.TrackedElement.SwitchConfig prefix=rsModel plan=plan.TrackedElement.SwitchConfig properties=8
+			tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SwitchConfig prefix=rsModel plan=plan.TrackedElement.SwitchConfig")
 			// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan
 			body.TrackedElement.SwitchConfig.DefaultVlanId = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.DefaultVlanId)
 			// property: name=mstp_enabled, type=BOOLEAN macro=copy_from_plan
@@ -1464,8 +1487,11 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -1491,7 +1517,9 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1527,6 +1555,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 
 	// Store the answer to state. schema=ElementShellV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1555,12 +1584,14 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	} else {
 		state.HubClusterConfig = &rsModelHubClusterConfig{}
 		// copy_to_state: state=state.HubClusterConfig prefix=rsModel ans=ans.HubClusterConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig prefix=rsModel ans=ans.HubClusterConfig")
 		// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.IntraClusterTunnel == nil {
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
 			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
 			// property: name=destination_ip, type=STRING macro=copy_to_state
 			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 			// property: name=source_ip, type=STRING macro=copy_to_state
@@ -1574,6 +1605,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.HubClusterConfig.Track = &rsModelTracker{}
 			// copy_to_state: state=state.HubClusterConfig.Track prefix=rsModel ans=ans.HubClusterConfig.Track properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track prefix=rsModel ans=ans.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.HubClusterConfig.Track.Hosts == nil {
 				state.HubClusterConfig.Track.Hosts = nil
@@ -1585,6 +1617,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 					// add a new item
 					state.HubClusterConfig.Track.Hosts = append(state.HubClusterConfig.Track.Hosts, rsModelHost{})
 					// copy_to_state: state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts")
 					// property: name=address_v4, type=STRING macro=copy_to_state
 					state.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 					// property: name=address_v6, type=STRING macro=copy_to_state
@@ -1609,6 +1642,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	} else {
 		state.LedConfig = &rsModelLedConfig{}
 		// copy_to_state: state=state.LedConfig prefix=rsModel ans=ans.LedConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LedConfig prefix=rsModel ans=ans.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 		state.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.LedConfig.ServiceLedOn)
 	}
@@ -1636,6 +1670,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	} else {
 		state.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
 		// copy_to_state: state=state.SpokeHaConfig prefix=rsModel ans=ans.SpokeHaConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig prefix=rsModel ans=ans.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_to_state
 		state.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.SpokeHaConfig.ClusterId)
 		// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -1650,6 +1685,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.SpokeHaConfig.Track = &rsModelTrackV2{}
 			// copy_to_state: state=state.SpokeHaConfig.Track prefix=rsModel ans=ans.SpokeHaConfig.Track properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track prefix=rsModel ans=ans.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.SpokeHaConfig.Track.Interfaces == nil {
 				state.SpokeHaConfig.Track.Interfaces = nil
@@ -1661,6 +1697,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 					// add a new item
 					state.SpokeHaConfig.Track.Interfaces = append(state.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_to_state
 					state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -1678,6 +1715,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 					// add a new item
 					state.SpokeHaConfig.Track.Waninterfaces = append(state.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces")
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 					state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 					// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -1694,6 +1732,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	} else {
 		state.SwitchConfig = &rsModelSwitchConfig{}
 		// copy_to_state: state=state.SwitchConfig prefix=rsModel ans=ans.SwitchConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchConfig prefix=rsModel ans=ans.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.SwitchConfig.DefaultVlanId)
 		// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
@@ -1723,6 +1762,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	} else {
 		state.TrackedElement = &rsModelElementScreenV3N2{}
 		// copy_to_state: state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement properties=21
+		tflog.Debug(ctx, "copy_to_state state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1739,12 +1779,14 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.TrackedElement.HubClusterConfig = &rsModelHubClusterConfig{}
 			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig")
 			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
 			} else {
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
 				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel")
 				// property: name=destination_ip, type=STRING macro=copy_to_state
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 				// property: name=source_ip, type=STRING macro=copy_to_state
@@ -1758,6 +1800,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 			} else {
 				state.TrackedElement.HubClusterConfig.Track = &rsModelTracker{}
 				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track")
 				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
 					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
@@ -1769,6 +1812,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 						// add a new item
 						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, rsModelHost{})
 						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts")
 						// property: name=address_v4, type=STRING macro=copy_to_state
 						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 						// property: name=address_v6, type=STRING macro=copy_to_state
@@ -1791,6 +1835,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.TrackedElement.LedConfig = &rsModelLedConfig{}
 			// copy_to_state: state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig")
 			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
 		}
@@ -1812,6 +1857,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.TrackedElement.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
 			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig")
 			// property: name=cluster_id, type=STRING macro=copy_to_state
 			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -1826,6 +1872,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 			} else {
 				state.TrackedElement.SpokeHaConfig.Track = &rsModelTrackV2{}
 				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track")
 				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
 					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
@@ -1837,6 +1884,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 						// add a new item
 						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
 						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces")
 						// property: name=interface_id, type=STRING macro=copy_to_state
 						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -1854,6 +1902,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 						// add a new item
 						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
 						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces")
 						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 						// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -1868,6 +1917,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.TrackedElement.SwObj = &rsModelSoftware{}
 			// copy_to_state: state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj")
 			// property: name=location, type=STRING macro=copy_to_state
 			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
 			// property: name=version, type=STRING macro=copy_to_state
@@ -1879,6 +1929,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 		} else {
 			state.TrackedElement.SwitchConfig = &rsModelSwitchConfig{}
 			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig")
 			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
 			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
@@ -1965,7 +2016,9 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=ElementShellV2N1
@@ -1987,6 +2040,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2015,12 +2069,14 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	} else {
 		state.HubClusterConfig = &rsModelHubClusterConfig{}
 		// copy_to_state: state=state.HubClusterConfig prefix=rsModel ans=ans.HubClusterConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig prefix=rsModel ans=ans.HubClusterConfig")
 		// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.IntraClusterTunnel == nil {
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
 			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
 			// property: name=destination_ip, type=STRING macro=copy_to_state
 			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 			// property: name=source_ip, type=STRING macro=copy_to_state
@@ -2034,6 +2090,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.HubClusterConfig.Track = &rsModelTracker{}
 			// copy_to_state: state=state.HubClusterConfig.Track prefix=rsModel ans=ans.HubClusterConfig.Track properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track prefix=rsModel ans=ans.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.HubClusterConfig.Track.Hosts == nil {
 				state.HubClusterConfig.Track.Hosts = nil
@@ -2045,6 +2102,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 					// add a new item
 					state.HubClusterConfig.Track.Hosts = append(state.HubClusterConfig.Track.Hosts, rsModelHost{})
 					// copy_to_state: state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts")
 					// property: name=address_v4, type=STRING macro=copy_to_state
 					state.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 					// property: name=address_v6, type=STRING macro=copy_to_state
@@ -2069,6 +2127,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	} else {
 		state.LedConfig = &rsModelLedConfig{}
 		// copy_to_state: state=state.LedConfig prefix=rsModel ans=ans.LedConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LedConfig prefix=rsModel ans=ans.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 		state.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.LedConfig.ServiceLedOn)
 	}
@@ -2096,6 +2155,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	} else {
 		state.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
 		// copy_to_state: state=state.SpokeHaConfig prefix=rsModel ans=ans.SpokeHaConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig prefix=rsModel ans=ans.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_to_state
 		state.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.SpokeHaConfig.ClusterId)
 		// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -2110,6 +2170,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.SpokeHaConfig.Track = &rsModelTrackV2{}
 			// copy_to_state: state=state.SpokeHaConfig.Track prefix=rsModel ans=ans.SpokeHaConfig.Track properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track prefix=rsModel ans=ans.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.SpokeHaConfig.Track.Interfaces == nil {
 				state.SpokeHaConfig.Track.Interfaces = nil
@@ -2121,6 +2182,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 					// add a new item
 					state.SpokeHaConfig.Track.Interfaces = append(state.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_to_state
 					state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -2138,6 +2200,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 					// add a new item
 					state.SpokeHaConfig.Track.Waninterfaces = append(state.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces")
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 					state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 					// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -2154,6 +2217,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	} else {
 		state.SwitchConfig = &rsModelSwitchConfig{}
 		// copy_to_state: state=state.SwitchConfig prefix=rsModel ans=ans.SwitchConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchConfig prefix=rsModel ans=ans.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.SwitchConfig.DefaultVlanId)
 		// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
@@ -2183,6 +2247,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	} else {
 		state.TrackedElement = &rsModelElementScreenV3N2{}
 		// copy_to_state: state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement properties=21
+		tflog.Debug(ctx, "copy_to_state state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2199,12 +2264,14 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.TrackedElement.HubClusterConfig = &rsModelHubClusterConfig{}
 			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig")
 			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
 			} else {
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
 				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel")
 				// property: name=destination_ip, type=STRING macro=copy_to_state
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 				// property: name=source_ip, type=STRING macro=copy_to_state
@@ -2218,6 +2285,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 			} else {
 				state.TrackedElement.HubClusterConfig.Track = &rsModelTracker{}
 				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track")
 				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
 					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
@@ -2229,6 +2297,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 						// add a new item
 						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, rsModelHost{})
 						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts")
 						// property: name=address_v4, type=STRING macro=copy_to_state
 						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 						// property: name=address_v6, type=STRING macro=copy_to_state
@@ -2251,6 +2320,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.TrackedElement.LedConfig = &rsModelLedConfig{}
 			// copy_to_state: state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig")
 			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
 		}
@@ -2272,6 +2342,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.TrackedElement.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
 			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig")
 			// property: name=cluster_id, type=STRING macro=copy_to_state
 			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -2286,6 +2357,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 			} else {
 				state.TrackedElement.SpokeHaConfig.Track = &rsModelTrackV2{}
 				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track")
 				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
 					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
@@ -2297,6 +2369,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 						// add a new item
 						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
 						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces")
 						// property: name=interface_id, type=STRING macro=copy_to_state
 						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -2314,6 +2387,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 						// add a new item
 						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
 						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces")
 						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 						// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -2328,6 +2402,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.TrackedElement.SwObj = &rsModelSoftware{}
 			// copy_to_state: state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj")
 			// property: name=location, type=STRING macro=copy_to_state
 			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
 			// property: name=version, type=STRING macro=copy_to_state
@@ -2339,6 +2414,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		} else {
 			state.TrackedElement.SwitchConfig = &rsModelSwitchConfig{}
 			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig")
 			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
 			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
@@ -2418,6 +2494,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=32
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -2480,12 +2557,14 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		body.HubClusterConfig = &sdwan_schema.HubClusterConfig{}
 		// copy_from_plan_or_state: body=body.HubClusterConfig prefix=rsModel state=state.HubClusterConfig plan=plan.HubClusterConfig properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.HubClusterConfig prefix=rsModel state=state.HubClusterConfig plan=plan.HubClusterConfig")
 		// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.HubClusterConfig.IntraClusterTunnel == nil {
 			body.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			body.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
 			// copy_from_plan_or_state: body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel properties=3
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel")
 			// property: name=destination_ip, type=STRING macro=copy_from_plan_or_state
 			if state.HubClusterConfig.IntraClusterTunnel != nil {
 				body.HubClusterConfig.IntraClusterTunnel.DestinationIp = ValueStringPointerFromPlanOrState(plan.HubClusterConfig.IntraClusterTunnel.DestinationIp, state.HubClusterConfig.IntraClusterTunnel.DestinationIp)
@@ -2511,6 +2590,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.HubClusterConfig.Track = &sdwan_schema.Tracker{}
 			// copy_from_plan_or_state: body=body.HubClusterConfig.Track prefix=rsModel state=state.HubClusterConfig.Track plan=plan.HubClusterConfig.Track properties=1
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.HubClusterConfig.Track prefix=rsModel state=state.HubClusterConfig.Track plan=plan.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 			if plan.HubClusterConfig.Track.Hosts == nil && (state.HubClusterConfig.Track == nil || state.HubClusterConfig.Track.Hosts == nil) {
 				body.HubClusterConfig.Track.Hosts = nil
@@ -2527,6 +2607,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 					body.HubClusterConfig.Track.Hosts = append(body.HubClusterConfig.Track.Hosts, sdwan_schema.Host{})
 					// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 					// copy_from_plan: body=body.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts properties=3
+					tflog.Debug(ctx, "copy_from_plan body=body.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts")
 					// property: name=address_v4, type=STRING macro=copy_from_plan
 					body.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = StringValueOrNil(varLoopHosts.AddressV4)
 					// property: name=address_v6, type=STRING macro=copy_from_plan
@@ -2567,6 +2648,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		body.LedConfig = &sdwan_schema.LedConfig{}
 		// copy_from_plan_or_state: body=body.LedConfig prefix=rsModel state=state.LedConfig plan=plan.LedConfig properties=1
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LedConfig prefix=rsModel state=state.LedConfig plan=plan.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.LedConfig != nil {
 			body.LedConfig.ServiceLedOn = ValueBoolPointerFromPlanOrState(plan.LedConfig.ServiceLedOn, state.LedConfig.ServiceLedOn)
@@ -2634,6 +2716,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		body.SpokeHaConfig = &sdwan_schema.SpokeHAConfigV2{}
 		// copy_from_plan_or_state: body=body.SpokeHaConfig prefix=rsModel state=state.SpokeHaConfig plan=plan.SpokeHaConfig properties=5
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SpokeHaConfig prefix=rsModel state=state.SpokeHaConfig plan=plan.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_from_plan_or_state
 		if state.SpokeHaConfig != nil {
 			body.SpokeHaConfig.ClusterId = ValueStringPointerFromPlanOrState(plan.SpokeHaConfig.ClusterId, state.SpokeHaConfig.ClusterId)
@@ -2664,6 +2747,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.SpokeHaConfig.Track = &sdwan_schema.TrackV2{}
 			// copy_from_plan_or_state: body=body.SpokeHaConfig.Track prefix=rsModel state=state.SpokeHaConfig.Track plan=plan.SpokeHaConfig.Track properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SpokeHaConfig.Track prefix=rsModel state=state.SpokeHaConfig.Track plan=plan.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 			if plan.SpokeHaConfig.Track.Interfaces == nil && (state.SpokeHaConfig.Track == nil || state.SpokeHaConfig.Track.Interfaces == nil) {
 				body.SpokeHaConfig.Track.Interfaces = nil
@@ -2680,6 +2764,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 					body.SpokeHaConfig.Track.Interfaces = append(body.SpokeHaConfig.Track.Interfaces, sdwan_schema.TrackInterface{})
 					// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 					// copy_from_plan: body=body.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_from_plan
 					body.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = StringValueOrNil(varLoopInterfaces.InterfaceId)
 					// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
@@ -2702,6 +2787,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 					body.SpokeHaConfig.Track.Waninterfaces = append(body.SpokeHaConfig.Track.Waninterfaces, sdwan_schema.TrackWANInterface{})
 					// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 					// copy_from_plan: body=body.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces")
 					// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
 					body.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopWaninterfaces.ReducePriority)
 					// property: name=wan_interface_id, type=STRING macro=copy_from_plan
@@ -2722,6 +2808,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		body.SwitchConfig = &sdwan_schema.SwitchConfig{}
 		// copy_from_plan_or_state: body=body.SwitchConfig prefix=rsModel state=state.SwitchConfig plan=plan.SwitchConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwitchConfig prefix=rsModel state=state.SwitchConfig plan=plan.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan_or_state
 		if state.SwitchConfig != nil {
 			body.SwitchConfig.DefaultVlanId = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.DefaultVlanId, state.SwitchConfig.DefaultVlanId)
@@ -2785,6 +2872,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		body.TrackedElement = &sdwan_schema.ElementScreenV3N2{}
 		// copy_from_plan_or_state: body=body.TrackedElement prefix=rsModel state=state.TrackedElement plan=plan.TrackedElement properties=21
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement prefix=rsModel state=state.TrackedElement plan=plan.TrackedElement")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 		if state.TrackedElement != nil {
 			body.TrackedElement.Etag = ValueInt64PointerFromPlanOrState(plan.TrackedElement.Etag, state.TrackedElement.Etag)
@@ -2821,12 +2909,14 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.TrackedElement.HubClusterConfig = &sdwan_schema.HubClusterConfig{}
 			// copy_from_plan_or_state: body=body.TrackedElement.HubClusterConfig prefix=rsModel state=state.TrackedElement.HubClusterConfig plan=plan.TrackedElement.HubClusterConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.HubClusterConfig prefix=rsModel state=state.TrackedElement.HubClusterConfig plan=plan.TrackedElement.HubClusterConfig")
 			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_from_plan_or_state
 			if plan.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
 				body.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
 			} else {
 				body.TrackedElement.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
 				// copy_from_plan_or_state: body=body.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel plan=plan.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel plan=plan.TrackedElement.HubClusterConfig.IntraClusterTunnel")
 				// property: name=destination_ip, type=STRING macro=copy_from_plan_or_state
 				if state.TrackedElement.HubClusterConfig.IntraClusterTunnel != nil {
 					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = ValueStringPointerFromPlanOrState(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp, state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
@@ -2852,6 +2942,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 			} else {
 				body.TrackedElement.HubClusterConfig.Track = &sdwan_schema.Tracker{}
 				// copy_from_plan_or_state: body=body.TrackedElement.HubClusterConfig.Track prefix=rsModel state=state.TrackedElement.HubClusterConfig.Track plan=plan.TrackedElement.HubClusterConfig.Track properties=1
+				tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.HubClusterConfig.Track prefix=rsModel state=state.TrackedElement.HubClusterConfig.Track plan=plan.TrackedElement.HubClusterConfig.Track")
 				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 				if plan.TrackedElement.HubClusterConfig.Track.Hosts == nil && (state.TrackedElement.HubClusterConfig.Track == nil || state.TrackedElement.HubClusterConfig.Track.Hosts == nil) {
 					body.TrackedElement.HubClusterConfig.Track.Hosts = nil
@@ -2868,6 +2959,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 						body.TrackedElement.HubClusterConfig.Track.Hosts = append(body.TrackedElement.HubClusterConfig.Track.Hosts, sdwan_schema.Host{})
 						// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 						// copy_from_plan: body=body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts properties=3
+						tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts")
 						// property: name=address_v4, type=STRING macro=copy_from_plan
 						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = StringValueOrNil(varLoopHosts.AddressV4)
 						// property: name=address_v6, type=STRING macro=copy_from_plan
@@ -2902,6 +2994,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.TrackedElement.LedConfig = &sdwan_schema.LedConfig{}
 			// copy_from_plan_or_state: body=body.TrackedElement.LedConfig prefix=rsModel state=state.TrackedElement.LedConfig plan=plan.TrackedElement.LedConfig properties=1
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.LedConfig prefix=rsModel state=state.TrackedElement.LedConfig plan=plan.TrackedElement.LedConfig")
 			// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan_or_state
 			if state.TrackedElement.LedConfig != nil {
 				body.TrackedElement.LedConfig.ServiceLedOn = ValueBoolPointerFromPlanOrState(plan.TrackedElement.LedConfig.ServiceLedOn, state.TrackedElement.LedConfig.ServiceLedOn)
@@ -2951,6 +3044,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.TrackedElement.SpokeHaConfig = &sdwan_schema.SpokeHAConfigV2{}
 			// copy_from_plan_or_state: body=body.TrackedElement.SpokeHaConfig prefix=rsModel state=state.TrackedElement.SpokeHaConfig plan=plan.TrackedElement.SpokeHaConfig properties=5
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.SpokeHaConfig prefix=rsModel state=state.TrackedElement.SpokeHaConfig plan=plan.TrackedElement.SpokeHaConfig")
 			// property: name=cluster_id, type=STRING macro=copy_from_plan_or_state
 			if state.TrackedElement.SpokeHaConfig != nil {
 				body.TrackedElement.SpokeHaConfig.ClusterId = ValueStringPointerFromPlanOrState(plan.TrackedElement.SpokeHaConfig.ClusterId, state.TrackedElement.SpokeHaConfig.ClusterId)
@@ -2981,6 +3075,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 			} else {
 				body.TrackedElement.SpokeHaConfig.Track = &sdwan_schema.TrackV2{}
 				// copy_from_plan_or_state: body=body.TrackedElement.SpokeHaConfig.Track prefix=rsModel state=state.TrackedElement.SpokeHaConfig.Track plan=plan.TrackedElement.SpokeHaConfig.Track properties=2
+				tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.SpokeHaConfig.Track prefix=rsModel state=state.TrackedElement.SpokeHaConfig.Track plan=plan.TrackedElement.SpokeHaConfig.Track")
 				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 				if plan.TrackedElement.SpokeHaConfig.Track.Interfaces == nil && (state.TrackedElement.SpokeHaConfig.Track == nil || state.TrackedElement.SpokeHaConfig.Track.Interfaces == nil) {
 					body.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
@@ -2997,6 +3092,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 						body.TrackedElement.SpokeHaConfig.Track.Interfaces = append(body.TrackedElement.SpokeHaConfig.Track.Interfaces, sdwan_schema.TrackInterface{})
 						// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces")
 						// property: name=interface_id, type=STRING macro=copy_from_plan
 						body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = StringValueOrNil(varLoopInterfaces.InterfaceId)
 						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
@@ -3019,6 +3115,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(body.TrackedElement.SpokeHaConfig.Track.Waninterfaces, sdwan_schema.TrackWANInterface{})
 						// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces")
 						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
 						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopWaninterfaces.ReducePriority)
 						// property: name=wan_interface_id, type=STRING macro=copy_from_plan
@@ -3033,6 +3130,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.TrackedElement.SwObj = &sdwan_schema.Software{}
 			// copy_from_plan_or_state: body=body.TrackedElement.SwObj prefix=rsModel state=state.TrackedElement.SwObj plan=plan.TrackedElement.SwObj properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.SwObj prefix=rsModel state=state.TrackedElement.SwObj plan=plan.TrackedElement.SwObj")
 			// property: name=location, type=STRING macro=copy_from_plan_or_state
 			if state.TrackedElement.SwObj != nil {
 				body.TrackedElement.SwObj.Location = ValueStringPointerFromPlanOrState(plan.TrackedElement.SwObj.Location, state.TrackedElement.SwObj.Location)
@@ -3052,6 +3150,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			body.TrackedElement.SwitchConfig = &sdwan_schema.SwitchConfig{}
 			// copy_from_plan_or_state: body=body.TrackedElement.SwitchConfig prefix=rsModel state=state.TrackedElement.SwitchConfig plan=plan.TrackedElement.SwitchConfig properties=8
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.TrackedElement.SwitchConfig prefix=rsModel state=state.TrackedElement.SwitchConfig plan=plan.TrackedElement.SwitchConfig")
 			// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan_or_state
 			if state.TrackedElement.SwitchConfig != nil {
 				body.TrackedElement.SwitchConfig.DefaultVlanId = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.DefaultVlanId, state.TrackedElement.SwitchConfig.DefaultVlanId)
@@ -3156,7 +3255,9 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -3171,6 +3272,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 
 	// Store the answer to state. schema=ElementShellV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -3199,12 +3301,14 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		state.HubClusterConfig = &rsModelHubClusterConfig{}
 		// copy_to_state: state=state.HubClusterConfig prefix=rsModel ans=ans.HubClusterConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig prefix=rsModel ans=ans.HubClusterConfig")
 		// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.IntraClusterTunnel == nil {
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
 			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
 			// property: name=destination_ip, type=STRING macro=copy_to_state
 			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 			// property: name=source_ip, type=STRING macro=copy_to_state
@@ -3218,6 +3322,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.HubClusterConfig.Track = &rsModelTracker{}
 			// copy_to_state: state=state.HubClusterConfig.Track prefix=rsModel ans=ans.HubClusterConfig.Track properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track prefix=rsModel ans=ans.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.HubClusterConfig.Track.Hosts == nil {
 				state.HubClusterConfig.Track.Hosts = nil
@@ -3229,6 +3334,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 					// add a new item
 					state.HubClusterConfig.Track.Hosts = append(state.HubClusterConfig.Track.Hosts, rsModelHost{})
 					// copy_to_state: state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts")
 					// property: name=address_v4, type=STRING macro=copy_to_state
 					state.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 					// property: name=address_v6, type=STRING macro=copy_to_state
@@ -3253,6 +3359,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		state.LedConfig = &rsModelLedConfig{}
 		// copy_to_state: state=state.LedConfig prefix=rsModel ans=ans.LedConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LedConfig prefix=rsModel ans=ans.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 		state.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.LedConfig.ServiceLedOn)
 	}
@@ -3280,6 +3387,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		state.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
 		// copy_to_state: state=state.SpokeHaConfig prefix=rsModel ans=ans.SpokeHaConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig prefix=rsModel ans=ans.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_to_state
 		state.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.SpokeHaConfig.ClusterId)
 		// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -3294,6 +3402,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.SpokeHaConfig.Track = &rsModelTrackV2{}
 			// copy_to_state: state=state.SpokeHaConfig.Track prefix=rsModel ans=ans.SpokeHaConfig.Track properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track prefix=rsModel ans=ans.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.SpokeHaConfig.Track.Interfaces == nil {
 				state.SpokeHaConfig.Track.Interfaces = nil
@@ -3305,6 +3414,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 					// add a new item
 					state.SpokeHaConfig.Track.Interfaces = append(state.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_to_state
 					state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -3322,6 +3432,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 					// add a new item
 					state.SpokeHaConfig.Track.Waninterfaces = append(state.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces")
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 					state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 					// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -3338,6 +3449,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		state.SwitchConfig = &rsModelSwitchConfig{}
 		// copy_to_state: state=state.SwitchConfig prefix=rsModel ans=ans.SwitchConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchConfig prefix=rsModel ans=ans.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.SwitchConfig.DefaultVlanId)
 		// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
@@ -3367,6 +3479,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	} else {
 		state.TrackedElement = &rsModelElementScreenV3N2{}
 		// copy_to_state: state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement properties=21
+		tflog.Debug(ctx, "copy_to_state state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -3383,12 +3496,14 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.TrackedElement.HubClusterConfig = &rsModelHubClusterConfig{}
 			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig")
 			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
 			} else {
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
 				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel")
 				// property: name=destination_ip, type=STRING macro=copy_to_state
 				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 				// property: name=source_ip, type=STRING macro=copy_to_state
@@ -3402,6 +3517,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 			} else {
 				state.TrackedElement.HubClusterConfig.Track = &rsModelTracker{}
 				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track")
 				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
 					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
@@ -3413,6 +3529,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 						// add a new item
 						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, rsModelHost{})
 						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts")
 						// property: name=address_v4, type=STRING macro=copy_to_state
 						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 						// property: name=address_v6, type=STRING macro=copy_to_state
@@ -3435,6 +3552,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.TrackedElement.LedConfig = &rsModelLedConfig{}
 			// copy_to_state: state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig")
 			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
 		}
@@ -3456,6 +3574,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.TrackedElement.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
 			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig")
 			// property: name=cluster_id, type=STRING macro=copy_to_state
 			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -3470,6 +3589,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 			} else {
 				state.TrackedElement.SpokeHaConfig.Track = &rsModelTrackV2{}
 				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track")
 				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
 					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
@@ -3481,6 +3601,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 						// add a new item
 						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
 						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces")
 						// property: name=interface_id, type=STRING macro=copy_to_state
 						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -3498,6 +3619,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 						// add a new item
 						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
 						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces")
 						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 						// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -3512,6 +3634,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.TrackedElement.SwObj = &rsModelSoftware{}
 			// copy_to_state: state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj")
 			// property: name=location, type=STRING macro=copy_to_state
 			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
 			// property: name=version, type=STRING macro=copy_to_state
@@ -3523,6 +3646,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 		} else {
 			state.TrackedElement.SwitchConfig = &rsModelSwitchConfig{}
 			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig")
 			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
 			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state

@@ -308,6 +308,7 @@ func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.R
 
 	// lets copy all items into state schema=WANInterfaceLabelScreenV2N5
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=15
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -324,6 +325,7 @@ func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.L3Reachability = &dsModelWANL3Reachability{}
 		// copy_to_state: state=state.L3Reachability prefix=dsModel ans=ans.L3Reachability properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.L3Reachability prefix=dsModel ans=ans.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varProbeConfigIds, errProbeConfigIds := types.ListValueFrom(ctx, types.StringType, ans.L3Reachability.ProbeConfigIds)
 		state.L3Reachability.ProbeConfigIds = varProbeConfigIds
@@ -355,6 +357,7 @@ func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.VpnlinkConfiguration = &dsModelVPNLinkConfiguration{}
 		// copy_to_state: state=state.VpnlinkConfiguration prefix=dsModel ans=ans.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.VpnlinkConfiguration prefix=dsModel ans=ans.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_to_state
 		state.VpnlinkConfiguration.KeepAliveFailureCount = types.Int64PointerValue(ans.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_to_state

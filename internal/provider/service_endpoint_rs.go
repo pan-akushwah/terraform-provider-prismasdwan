@@ -473,6 +473,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -481,6 +482,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	if plan.Address != nil {
 		body.Address = &sdwan_schema.Address{}
 		// copy_from_plan: body=body.Address prefix=rsModel plan=plan.Address properties=6
+		tflog.Debug(ctx, "copy_from_plan body=body.Address prefix=rsModel plan=plan.Address")
 		// property: name=city, type=STRING macro=copy_from_plan
 		body.Address.City = StringValueOrNil(plan.Address.City)
 		// property: name=country, type=STRING macro=copy_from_plan
@@ -510,6 +512,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	if plan.LivelinessProbe != nil {
 		body.LivelinessProbe = &sdwan_schema.SEPLivelinessProbeV2N2{}
 		// copy_from_plan: body=body.LivelinessProbe prefix=rsModel plan=plan.LivelinessProbe properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.LivelinessProbe prefix=rsModel plan=plan.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_from_plan
 		if plan.LivelinessProbe.Http == nil {
 			body.LivelinessProbe.Http = nil
@@ -521,6 +524,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 				// add a new item
 				body.LivelinessProbe.Http = append(body.LivelinessProbe.Http, sdwan_schema.HttpProbe{})
 				// copy_from_plan: body=body.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel plan=varLoopHttp properties=4
+				tflog.Debug(ctx, "copy_from_plan body=body.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel plan=varLoopHttp")
 				// property: name=failure_count, type=INTEGER macro=copy_from_plan
 				body.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = Int64ValueOrNil(varLoopHttp.FailureCount)
 				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -542,6 +546,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 				// add a new item
 				body.LivelinessProbe.IcmpPing = append(body.LivelinessProbe.IcmpPing, sdwan_schema.IcmpPingProbe{})
 				// copy_from_plan: body=body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel plan=varLoopIcmpPing properties=3
+				tflog.Debug(ctx, "copy_from_plan body=body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel plan=varLoopIcmpPing")
 				// property: name=failure_count, type=INTEGER macro=copy_from_plan
 				body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = Int64ValueOrNil(varLoopIcmpPing.FailureCount)
 				// property: name=interval, type=INTEGER macro=copy_from_plan
@@ -555,6 +560,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	if plan.Location != nil {
 		body.Location = &sdwan_schema.Location{}
 		// copy_from_plan: body=body.Location prefix=rsModel plan=plan.Location properties=3
+		tflog.Debug(ctx, "copy_from_plan body=body.Location prefix=rsModel plan=plan.Location")
 		// property: name=description, type=STRING macro=copy_from_plan
 		body.Location.Description = StringValueOrNil(plan.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_from_plan
@@ -568,6 +574,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	if plan.SaseProperties != nil {
 		body.SaseProperties = &sdwan_schema.SaseServiceEndpointProperties{}
 		// copy_from_plan: body=body.SaseProperties prefix=rsModel plan=plan.SaseProperties properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.SaseProperties prefix=rsModel plan=plan.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_from_plan
 		body.SaseProperties.Active = BoolValueOrNil(plan.SaseProperties.Active)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_from_plan
@@ -577,6 +584,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	if plan.ServiceLinkPeers != nil {
 		body.ServiceLinkPeers = &sdwan_schema.ServiceLinkPeers{}
 		// copy_from_plan: body=body.ServiceLinkPeers prefix=rsModel plan=plan.ServiceLinkPeers properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkPeers prefix=rsModel plan=plan.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_from_plan
 		body.ServiceLinkPeers.Hostnames = ListStringValueOrNil(ctx, plan.ServiceLinkPeers.Hostnames)
 		// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -599,8 +607,11 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -626,7 +637,9 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -662,6 +675,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 
 	// Store the answer to state. schema=ServiceEndpointV3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -672,6 +686,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	} else {
 		state.Address = &rsModelAddress{}
 		// copy_to_state: state=state.Address prefix=rsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=rsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -703,6 +718,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	} else {
 		state.LivelinessProbe = &rsModelSEPLivelinessProbeV2N2{}
 		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
 			state.LivelinessProbe.Http = nil
@@ -714,6 +730,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 				// add a new item
 				state.LivelinessProbe.Http = append(state.LivelinessProbe.Http, rsModelHttpProbe{})
 				// copy_to_state: state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel ans=varLoopHttp properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel ans=varLoopHttp")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = types.Int64PointerValue(varLoopHttp.FailureCount)
 				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -737,6 +754,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 				// add a new item
 				state.LivelinessProbe.IcmpPing = append(state.LivelinessProbe.IcmpPing, rsModelIcmpPingProbe{})
 				// copy_to_state: state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel ans=varLoopIcmpPing properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel ans=varLoopIcmpPing")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = types.Int64PointerValue(varLoopIcmpPing.FailureCount)
 				// property: name=interval, type=INTEGER macro=copy_to_state
@@ -754,6 +772,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	} else {
 		state.Location = &rsModelLocation{}
 		// copy_to_state: state=state.Location prefix=rsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=rsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -769,6 +788,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	} else {
 		state.SaseProperties = &rsModelSaseServiceEndpointProperties{}
 		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
@@ -780,6 +800,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	} else {
 		state.ServiceLinkPeers = &rsModelServiceLinkPeers{}
 		// copy_to_state: state=state.ServiceLinkPeers prefix=rsModel ans=ans.ServiceLinkPeers properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkPeers prefix=rsModel ans=ans.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHostnames, errHostnames := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.Hostnames)
 		state.ServiceLinkPeers.Hostnames = varHostnames
@@ -857,7 +878,9 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=ServiceEndpointV3
@@ -879,6 +902,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -889,6 +913,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	} else {
 		state.Address = &rsModelAddress{}
 		// copy_to_state: state=state.Address prefix=rsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=rsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -920,6 +945,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	} else {
 		state.LivelinessProbe = &rsModelSEPLivelinessProbeV2N2{}
 		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
 			state.LivelinessProbe.Http = nil
@@ -931,6 +957,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 				// add a new item
 				state.LivelinessProbe.Http = append(state.LivelinessProbe.Http, rsModelHttpProbe{})
 				// copy_to_state: state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel ans=varLoopHttp properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel ans=varLoopHttp")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = types.Int64PointerValue(varLoopHttp.FailureCount)
 				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -954,6 +981,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 				// add a new item
 				state.LivelinessProbe.IcmpPing = append(state.LivelinessProbe.IcmpPing, rsModelIcmpPingProbe{})
 				// copy_to_state: state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel ans=varLoopIcmpPing properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel ans=varLoopIcmpPing")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = types.Int64PointerValue(varLoopIcmpPing.FailureCount)
 				// property: name=interval, type=INTEGER macro=copy_to_state
@@ -971,6 +999,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	} else {
 		state.Location = &rsModelLocation{}
 		// copy_to_state: state=state.Location prefix=rsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=rsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -986,6 +1015,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	} else {
 		state.SaseProperties = &rsModelSaseServiceEndpointProperties{}
 		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
@@ -997,6 +1027,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	} else {
 		state.ServiceLinkPeers = &rsModelServiceLinkPeers{}
 		// copy_to_state: state=state.ServiceLinkPeers prefix=rsModel ans=ans.ServiceLinkPeers properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkPeers prefix=rsModel ans=ans.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHostnames, errHostnames := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.Hostnames)
 		state.ServiceLinkPeers.Hostnames = varHostnames
@@ -1067,6 +1098,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1085,6 +1117,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		body.Address = &sdwan_schema.Address{}
 		// copy_from_plan_or_state: body=body.Address prefix=rsModel state=state.Address plan=plan.Address properties=6
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Address prefix=rsModel state=state.Address plan=plan.Address")
 		// property: name=city, type=STRING macro=copy_from_plan_or_state
 		if state.Address != nil {
 			body.Address.City = ValueStringPointerFromPlanOrState(plan.Address.City, state.Address.City)
@@ -1164,6 +1197,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		body.LivelinessProbe = &sdwan_schema.SEPLivelinessProbeV2N2{}
 		// copy_from_plan_or_state: body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 		if plan.LivelinessProbe.Http == nil && (state.LivelinessProbe == nil || state.LivelinessProbe.Http == nil) {
 			body.LivelinessProbe.Http = nil
@@ -1180,6 +1214,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 				body.LivelinessProbe.Http = append(body.LivelinessProbe.Http, sdwan_schema.HttpProbe{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel plan=varLoopHttp properties=4
+				tflog.Debug(ctx, "copy_from_plan body=body.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel plan=varLoopHttp")
 				// property: name=failure_count, type=INTEGER macro=copy_from_plan
 				body.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = Int64ValueOrNil(varLoopHttp.FailureCount)
 				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -1206,6 +1241,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 				body.LivelinessProbe.IcmpPing = append(body.LivelinessProbe.IcmpPing, sdwan_schema.IcmpPingProbe{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel plan=varLoopIcmpPing properties=3
+				tflog.Debug(ctx, "copy_from_plan body=body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel plan=varLoopIcmpPing")
 				// property: name=failure_count, type=INTEGER macro=copy_from_plan
 				body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = Int64ValueOrNil(varLoopIcmpPing.FailureCount)
 				// property: name=interval, type=INTEGER macro=copy_from_plan
@@ -1221,6 +1257,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		body.Location = &sdwan_schema.Location{}
 		// copy_from_plan_or_state: body=body.Location prefix=rsModel state=state.Location plan=plan.Location properties=3
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Location prefix=rsModel state=state.Location plan=plan.Location")
 		// property: name=description, type=STRING macro=copy_from_plan_or_state
 		if state.Location != nil {
 			body.Location.Description = ValueStringPointerFromPlanOrState(plan.Location.Description, state.Location.Description)
@@ -1252,6 +1289,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		body.SaseProperties = &sdwan_schema.SaseServiceEndpointProperties{}
 		// copy_from_plan_or_state: body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.SaseProperties != nil {
 			body.SaseProperties.Active = ValueBoolPointerFromPlanOrState(plan.SaseProperties.Active, state.SaseProperties.Active)
@@ -1271,6 +1309,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		body.ServiceLinkPeers = &sdwan_schema.ServiceLinkPeers{}
 		// copy_from_plan_or_state: body=body.ServiceLinkPeers prefix=rsModel state=state.ServiceLinkPeers plan=plan.ServiceLinkPeers properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkPeers prefix=rsModel state=state.ServiceLinkPeers plan=plan.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 		body.ServiceLinkPeers.Hostnames = ListStringValueOrNil(ctx, plan.ServiceLinkPeers.Hostnames)
 		// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
@@ -1330,7 +1369,9 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1345,6 +1386,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 
 	// Store the answer to state. schema=ServiceEndpointV3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1355,6 +1397,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		state.Address = &rsModelAddress{}
 		// copy_to_state: state=state.Address prefix=rsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=rsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -1386,6 +1429,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		state.LivelinessProbe = &rsModelSEPLivelinessProbeV2N2{}
 		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
 			state.LivelinessProbe.Http = nil
@@ -1397,6 +1441,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 				// add a new item
 				state.LivelinessProbe.Http = append(state.LivelinessProbe.Http, rsModelHttpProbe{})
 				// copy_to_state: state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel ans=varLoopHttp properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=rsModel ans=varLoopHttp")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = types.Int64PointerValue(varLoopHttp.FailureCount)
 				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -1420,6 +1465,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 				// add a new item
 				state.LivelinessProbe.IcmpPing = append(state.LivelinessProbe.IcmpPing, rsModelIcmpPingProbe{})
 				// copy_to_state: state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel ans=varLoopIcmpPing properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=rsModel ans=varLoopIcmpPing")
 				// property: name=failure_count, type=INTEGER macro=copy_to_state
 				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = types.Int64PointerValue(varLoopIcmpPing.FailureCount)
 				// property: name=interval, type=INTEGER macro=copy_to_state
@@ -1437,6 +1483,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		state.Location = &rsModelLocation{}
 		// copy_to_state: state=state.Location prefix=rsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=rsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -1452,6 +1499,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		state.SaseProperties = &rsModelSaseServiceEndpointProperties{}
 		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
@@ -1463,6 +1511,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	} else {
 		state.ServiceLinkPeers = &rsModelServiceLinkPeers{}
 		// copy_to_state: state=state.ServiceLinkPeers prefix=rsModel ans=ans.ServiceLinkPeers properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkPeers prefix=rsModel ans=ans.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHostnames, errHostnames := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.Hostnames)
 		state.ServiceLinkPeers.Hostnames = varHostnames

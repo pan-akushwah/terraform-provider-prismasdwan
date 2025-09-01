@@ -506,6 +506,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=13
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -518,6 +519,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	if plan.IpsecTunnelConfigs != nil {
 		body.IpsecTunnelConfigs = &sdwan_schema.IPSecTunnelConfigs{}
 		// copy_from_plan: body=body.IpsecTunnelConfigs prefix=rsModel plan=plan.IpsecTunnelConfigs properties=7
+		tflog.Debug(ctx, "copy_from_plan body=body.IpsecTunnelConfigs prefix=rsModel plan=plan.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_from_plan
 		body.IpsecTunnelConfigs.AntiReplay = BoolValueOrNil(plan.IpsecTunnelConfigs.AntiReplay)
 		// property: name=copy_tos, type=BOOLEAN macro=copy_from_plan
@@ -554,6 +556,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 			// add a new item
 			body.RemoteNetworkGroups = append(body.RemoteNetworkGroups, sdwan_schema.RemoteNetworkGroup{})
 			// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel plan=varLoopRemoteNetworkGroups properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel plan=varLoopRemoteNetworkGroups")
 			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_from_plan
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
@@ -565,10 +568,12 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					// add a new item
 					body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, sdwan_schema.IPSecTunnel{})
 					// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel plan=varLoopIpsecTunnels properties=5
+					tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel plan=varLoopIpsecTunnels")
 					// property: name=authentication, type=REFERENCE macro=copy_from_plan
 					if varLoopIpsecTunnels.Authentication != nil {
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &sdwan_schema.IPSecTunnelAuthentication{}
 						// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel plan=varLoopIpsecTunnels.Authentication properties=3
+						tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel plan=varLoopIpsecTunnels.Authentication")
 						// property: name=branch_ike_identification, type=STRING macro=copy_from_plan
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = StringValueOrNil(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
 						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_from_plan
@@ -582,6 +587,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					if varLoopIpsecTunnels.Routing != nil {
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &sdwan_schema.Routing{}
 						// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel plan=varLoopIpsecTunnels.Routing properties=3
+						tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel plan=varLoopIpsecTunnels.Routing")
 						// property: name=branch_as_number, type=STRING macro=copy_from_plan
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = StringValueOrNil(varLoopIpsecTunnels.Routing.BranchAsNumber)
 						// property: name=branch_ip_address, type=STRING macro=copy_from_plan
@@ -593,6 +599,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					if varLoopIpsecTunnels.RoutingConfigs != nil {
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &sdwan_schema.RoutingConfigs{}
 						// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel plan=varLoopIpsecTunnels.RoutingConfigs properties=4
+						tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel plan=varLoopIpsecTunnels.RoutingConfigs")
 						// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = BoolValueOrNil(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
 						// property: name=bgp_secret, type=STRING macro=copy_from_plan
@@ -616,6 +623,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	if plan.RoutingConfigs != nil {
 		body.RoutingConfigs = &sdwan_schema.RoutingConfigs{}
 		// copy_from_plan: body=body.RoutingConfigs prefix=rsModel plan=plan.RoutingConfigs properties=4
+		tflog.Debug(ctx, "copy_from_plan body=body.RoutingConfigs prefix=rsModel plan=plan.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan
 		body.RoutingConfigs.AdvertiseDefaultRoute = BoolValueOrNil(plan.RoutingConfigs.AdvertiseDefaultRoute)
 		// property: name=bgp_secret, type=STRING macro=copy_from_plan
@@ -638,8 +646,11 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -665,7 +676,9 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -701,6 +714,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 
 	// Store the answer to state. schema=SaseConnectionScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -717,6 +731,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	} else {
 		state.IpsecTunnelConfigs = &rsModelIPSecTunnelConfigs{}
 		// copy_to_state: state=state.IpsecTunnelConfigs prefix=rsModel ans=ans.IpsecTunnelConfigs properties=7
+		tflog.Debug(ctx, "copy_to_state state=state.IpsecTunnelConfigs prefix=rsModel ans=ans.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.AntiReplay = types.BoolPointerValue(ans.IpsecTunnelConfigs.AntiReplay)
 		// property: name=copy_tos, type=BOOLEAN macro=copy_to_state
@@ -755,6 +770,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 			// add a new item
 			state.RemoteNetworkGroups = append(state.RemoteNetworkGroups, rsModelRemoteNetworkGroup{})
 			// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel ans=varLoopRemoteNetworkGroups properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel ans=varLoopRemoteNetworkGroups")
 			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
@@ -766,12 +782,14 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					// add a new item
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, rsModelIPSecTunnel{})
 					// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel ans=varLoopIpsecTunnels properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel ans=varLoopIpsecTunnels")
 					// property: name=authentication, type=REFERENCE macro=copy_to_state
 					if varLoopIpsecTunnels.Authentication == nil {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = nil
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &rsModelIPSecTunnelAuthentication{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel ans=varLoopIpsecTunnels.Authentication properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel ans=varLoopIpsecTunnels.Authentication")
 						// property: name=branch_ike_identification, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
 						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_to_state
@@ -787,6 +805,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &rsModelRouting{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel ans=varLoopIpsecTunnels.Routing properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel ans=varLoopIpsecTunnels.Routing")
 						// property: name=branch_as_number, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchAsNumber)
 						// property: name=branch_ip_address, type=STRING macro=copy_to_state
@@ -800,6 +819,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &rsModelRoutingConfigs{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel ans=varLoopIpsecTunnels.RoutingConfigs properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel ans=varLoopIpsecTunnels.RoutingConfigs")
 						// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
 						// property: name=bgp_secret, type=STRING macro=copy_to_state
@@ -834,6 +854,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	} else {
 		state.RoutingConfigs = &rsModelRoutingConfigs{}
 		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
 		// property: name=bgp_secret, type=STRING macro=copy_to_state
@@ -912,7 +933,9 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=SaseConnectionScreenV2N1
@@ -934,6 +957,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -950,6 +974,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	} else {
 		state.IpsecTunnelConfigs = &rsModelIPSecTunnelConfigs{}
 		// copy_to_state: state=state.IpsecTunnelConfigs prefix=rsModel ans=ans.IpsecTunnelConfigs properties=7
+		tflog.Debug(ctx, "copy_to_state state=state.IpsecTunnelConfigs prefix=rsModel ans=ans.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.AntiReplay = types.BoolPointerValue(ans.IpsecTunnelConfigs.AntiReplay)
 		// property: name=copy_tos, type=BOOLEAN macro=copy_to_state
@@ -988,6 +1013,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 			// add a new item
 			state.RemoteNetworkGroups = append(state.RemoteNetworkGroups, rsModelRemoteNetworkGroup{})
 			// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel ans=varLoopRemoteNetworkGroups properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel ans=varLoopRemoteNetworkGroups")
 			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
@@ -999,12 +1025,14 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 					// add a new item
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, rsModelIPSecTunnel{})
 					// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel ans=varLoopIpsecTunnels properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel ans=varLoopIpsecTunnels")
 					// property: name=authentication, type=REFERENCE macro=copy_to_state
 					if varLoopIpsecTunnels.Authentication == nil {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = nil
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &rsModelIPSecTunnelAuthentication{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel ans=varLoopIpsecTunnels.Authentication properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel ans=varLoopIpsecTunnels.Authentication")
 						// property: name=branch_ike_identification, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
 						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_to_state
@@ -1020,6 +1048,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &rsModelRouting{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel ans=varLoopIpsecTunnels.Routing properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel ans=varLoopIpsecTunnels.Routing")
 						// property: name=branch_as_number, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchAsNumber)
 						// property: name=branch_ip_address, type=STRING macro=copy_to_state
@@ -1033,6 +1062,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &rsModelRoutingConfigs{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel ans=varLoopIpsecTunnels.RoutingConfigs properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel ans=varLoopIpsecTunnels.RoutingConfigs")
 						// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
 						// property: name=bgp_secret, type=STRING macro=copy_to_state
@@ -1065,6 +1095,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	} else {
 		state.RoutingConfigs = &rsModelRoutingConfigs{}
 		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
 		// property: name=bgp_secret, type=STRING macro=copy_to_state
@@ -1134,6 +1165,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=13
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1160,6 +1192,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	} else {
 		body.IpsecTunnelConfigs = &sdwan_schema.IPSecTunnelConfigs{}
 		// copy_from_plan_or_state: body=body.IpsecTunnelConfigs prefix=rsModel state=state.IpsecTunnelConfigs plan=plan.IpsecTunnelConfigs properties=7
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.IpsecTunnelConfigs prefix=rsModel state=state.IpsecTunnelConfigs plan=plan.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.AntiReplay = ValueBoolPointerFromPlanOrState(plan.IpsecTunnelConfigs.AntiReplay, state.IpsecTunnelConfigs.AntiReplay)
@@ -1245,6 +1278,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 			body.RemoteNetworkGroups = append(body.RemoteNetworkGroups, sdwan_schema.RemoteNetworkGroup{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel plan=varLoopRemoteNetworkGroups properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel plan=varLoopRemoteNetworkGroups")
 			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_from_plan
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
@@ -1256,10 +1290,12 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					// add a new item
 					body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, sdwan_schema.IPSecTunnel{})
 					// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel plan=varLoopIpsecTunnels properties=5
+					tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel plan=varLoopIpsecTunnels")
 					// property: name=authentication, type=REFERENCE macro=copy_from_plan
 					if varLoopIpsecTunnels.Authentication != nil {
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &sdwan_schema.IPSecTunnelAuthentication{}
 						// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel plan=varLoopIpsecTunnels.Authentication properties=3
+						tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel plan=varLoopIpsecTunnels.Authentication")
 						// property: name=branch_ike_identification, type=STRING macro=copy_from_plan
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = StringValueOrNil(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
 						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_from_plan
@@ -1273,6 +1309,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					if varLoopIpsecTunnels.Routing != nil {
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &sdwan_schema.Routing{}
 						// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel plan=varLoopIpsecTunnels.Routing properties=3
+						tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel plan=varLoopIpsecTunnels.Routing")
 						// property: name=branch_as_number, type=STRING macro=copy_from_plan
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = StringValueOrNil(varLoopIpsecTunnels.Routing.BranchAsNumber)
 						// property: name=branch_ip_address, type=STRING macro=copy_from_plan
@@ -1284,6 +1321,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					if varLoopIpsecTunnels.RoutingConfigs != nil {
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &sdwan_schema.RoutingConfigs{}
 						// copy_from_plan: body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel plan=varLoopIpsecTunnels.RoutingConfigs properties=4
+						tflog.Debug(ctx, "copy_from_plan body=body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel plan=varLoopIpsecTunnels.RoutingConfigs")
 						// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan
 						body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = BoolValueOrNil(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
 						// property: name=bgp_secret, type=STRING macro=copy_from_plan
@@ -1309,6 +1347,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	} else {
 		body.RoutingConfigs = &sdwan_schema.RoutingConfigs{}
 		// copy_from_plan_or_state: body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs properties=4
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.RoutingConfigs != nil {
 			body.RoutingConfigs.AdvertiseDefaultRoute = ValueBoolPointerFromPlanOrState(plan.RoutingConfigs.AdvertiseDefaultRoute, state.RoutingConfigs.AdvertiseDefaultRoute)
@@ -1380,7 +1419,9 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1395,6 +1436,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 
 	// Store the answer to state. schema=SaseConnectionScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1411,6 +1453,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	} else {
 		state.IpsecTunnelConfigs = &rsModelIPSecTunnelConfigs{}
 		// copy_to_state: state=state.IpsecTunnelConfigs prefix=rsModel ans=ans.IpsecTunnelConfigs properties=7
+		tflog.Debug(ctx, "copy_to_state state=state.IpsecTunnelConfigs prefix=rsModel ans=ans.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.AntiReplay = types.BoolPointerValue(ans.IpsecTunnelConfigs.AntiReplay)
 		// property: name=copy_tos, type=BOOLEAN macro=copy_to_state
@@ -1449,6 +1492,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 			// add a new item
 			state.RemoteNetworkGroups = append(state.RemoteNetworkGroups, rsModelRemoteNetworkGroup{})
 			// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel ans=varLoopRemoteNetworkGroups properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=rsModel ans=varLoopRemoteNetworkGroups")
 			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
@@ -1460,12 +1504,14 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					// add a new item
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, rsModelIPSecTunnel{})
 					// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel ans=varLoopIpsecTunnels properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=rsModel ans=varLoopIpsecTunnels")
 					// property: name=authentication, type=REFERENCE macro=copy_to_state
 					if varLoopIpsecTunnels.Authentication == nil {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = nil
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &rsModelIPSecTunnelAuthentication{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel ans=varLoopIpsecTunnels.Authentication properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=rsModel ans=varLoopIpsecTunnels.Authentication")
 						// property: name=branch_ike_identification, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
 						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_to_state
@@ -1481,6 +1527,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &rsModelRouting{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel ans=varLoopIpsecTunnels.Routing properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=rsModel ans=varLoopIpsecTunnels.Routing")
 						// property: name=branch_as_number, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchAsNumber)
 						// property: name=branch_ip_address, type=STRING macro=copy_to_state
@@ -1494,6 +1541,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &rsModelRoutingConfigs{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel ans=varLoopIpsecTunnels.RoutingConfigs properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=rsModel ans=varLoopIpsecTunnels.RoutingConfigs")
 						// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
 						// property: name=bgp_secret, type=STRING macro=copy_to_state
@@ -1528,6 +1576,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	} else {
 		state.RoutingConfigs = &rsModelRoutingConfigs{}
 		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
 		// property: name=bgp_secret, type=STRING macro=copy_to_state

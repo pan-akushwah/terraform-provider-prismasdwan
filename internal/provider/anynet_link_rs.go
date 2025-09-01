@@ -287,6 +287,7 @@ func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLink
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -323,6 +324,7 @@ func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLink
 	if plan.VpnlinkConfiguration != nil {
 		body.VpnlinkConfiguration = &sdwan_schema.VPNLinkConfiguration{}
 		// copy_from_plan: body=body.VpnlinkConfiguration prefix=rsModel plan=plan.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.VpnlinkConfiguration prefix=rsModel plan=plan.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_from_plan
 		body.VpnlinkConfiguration.KeepAliveFailureCount = Int64ValueOrNil(plan.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_from_plan
@@ -339,10 +341,14 @@ func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLink
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::tenant_id")
 	request_body_string, _ = sjson.Delete(request_body_string, "tenant_id")
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -368,7 +374,9 @@ func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLink
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -404,6 +412,7 @@ func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLink
 
 	// Store the answer to state. schema=AnynetLinkV4
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -444,6 +453,7 @@ func (r *anynetLinkResource) doPost(ctx context.Context, plan *rsModelAnynetLink
 	} else {
 		state.VpnlinkConfiguration = &rsModelVPNLinkConfiguration{}
 		// copy_to_state: state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_to_state
 		state.VpnlinkConfiguration.KeepAliveFailureCount = types.Int64PointerValue(ans.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_to_state
@@ -509,7 +519,9 @@ func (r *anynetLinkResource) doGet(ctx context.Context, state *rsModelAnynetLink
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=AnynetLinkV4
@@ -531,6 +543,7 @@ func (r *anynetLinkResource) doGet(ctx context.Context, state *rsModelAnynetLink
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -571,6 +584,7 @@ func (r *anynetLinkResource) doGet(ctx context.Context, state *rsModelAnynetLink
 	} else {
 		state.VpnlinkConfiguration = &rsModelVPNLinkConfiguration{}
 		// copy_to_state: state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_to_state
 		state.VpnlinkConfiguration.KeepAliveFailureCount = types.Int64PointerValue(ans.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_to_state
@@ -629,6 +643,7 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -727,6 +742,7 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 	} else {
 		body.VpnlinkConfiguration = &sdwan_schema.VPNLinkConfiguration{}
 		// copy_from_plan_or_state: body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_from_plan_or_state
 		if state.VpnlinkConfiguration != nil {
 			body.VpnlinkConfiguration.KeepAliveFailureCount = ValueInt64PointerFromPlanOrState(plan.VpnlinkConfiguration.KeepAliveFailureCount, state.VpnlinkConfiguration.KeepAliveFailureCount)
@@ -780,7 +796,9 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -795,6 +813,7 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 
 	// Store the answer to state. schema=AnynetLinkV4
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -835,6 +854,7 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 	} else {
 		state.VpnlinkConfiguration = &rsModelVPNLinkConfiguration{}
 		// copy_to_state: state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_to_state
 		state.VpnlinkConfiguration.KeepAliveFailureCount = types.Int64PointerValue(ans.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_to_state

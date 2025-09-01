@@ -265,7 +265,9 @@ func (r *elementNtpResource) doGet(ctx context.Context, state *rsModelElementNTP
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=ElementNTPV2N1
@@ -287,6 +289,7 @@ func (r *elementNtpResource) doGet(ctx context.Context, state *rsModelElementNTP
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -308,6 +311,7 @@ func (r *elementNtpResource) doGet(ctx context.Context, state *rsModelElementNTP
 			// add a new item
 			state.NtpServers = append(state.NtpServers, rsModelNTPServer{})
 			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Host = types.StringPointerValue(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_to_state
@@ -379,6 +383,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -425,6 +430,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 			body.NtpServers = append(body.NtpServers, sdwan_schema.NTPServer{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.NtpServers[varLoopNtpServersIndex] prefix=rsModel plan=varLoopNtpServers properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.NtpServers[varLoopNtpServersIndex] prefix=rsModel plan=varLoopNtpServers")
 			// property: name=host, type=STRING macro=copy_from_plan
 			body.NtpServers[varLoopNtpServersIndex].Host = StringValueOrNil(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_from_plan
@@ -450,6 +456,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 1)
 	// copy pointer
 	put_request.RequestBody = &request_body_string
@@ -481,7 +488,9 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -496,6 +505,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 
 	// Store the answer to state. schema=ElementNTPV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -517,6 +527,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 			// add a new item
 			state.NtpServers = append(state.NtpServers, rsModelNTPServer{})
 			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.NtpServers[varLoopNtpServersIndex] prefix=rsModel ans=varLoopNtpServers")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Host = types.StringPointerValue(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_to_state

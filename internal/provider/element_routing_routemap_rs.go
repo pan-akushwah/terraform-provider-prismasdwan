@@ -383,6 +383,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=9
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -406,12 +407,14 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 			// add a new item
 			body.RouteMapEntries = append(body.RouteMapEntries, sdwan_schema.RoutingRouteMapEntryV2N3{})
 			// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_from_plan
 			body.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = StringValueOrNil(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_from_plan
 			if varLoopRouteMapEntries.Match != nil {
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &sdwan_schema.RoutingRouteMapEntryMatchClause{}
 				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match properties=6
+				tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = StringValueOrNil(varLoopRouteMapEntries.Match.AsPathId)
 				// property: name=community_list_id, type=STRING macro=copy_from_plan
@@ -433,6 +436,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 			if varLoopRouteMapEntries.Set != nil {
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set = &sdwan_schema.RoutingRouteMapEntrySetClause{}
 				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel plan=varLoopRouteMapEntries.Set properties=10
+				tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel plan=varLoopRouteMapEntries.Set")
 				// property: name=additive_community, type=BOOLEAN macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set.AdditiveCommunity = BoolValueOrNil(varLoopRouteMapEntries.Set.AdditiveCommunity)
 				// property: name=as_path_prepend, type=STRING macro=copy_from_plan
@@ -471,8 +475,11 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -498,7 +505,9 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -534,6 +543,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 
 	// Store the answer to state. schema=RoutingRouteMapScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -557,6 +567,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 			// add a new item
 			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N3{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
 			state.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = types.StringPointerValue(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_to_state
@@ -565,6 +576,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=6
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
 				// property: name=community_list_id, type=STRING macro=copy_to_state
@@ -588,6 +600,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set = &rsModelRoutingRouteMapEntrySetClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel ans=varLoopRouteMapEntries.Set properties=10
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel ans=varLoopRouteMapEntries.Set")
 				// property: name=additive_community, type=BOOLEAN macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set.AdditiveCommunity = types.BoolPointerValue(varLoopRouteMapEntries.Set.AdditiveCommunity)
 				// property: name=as_path_prepend, type=STRING macro=copy_to_state
@@ -677,7 +690,9 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=RoutingRouteMapScreenV2N3
@@ -699,6 +714,7 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -722,6 +738,7 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 			// add a new item
 			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N3{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
 			state.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = types.StringPointerValue(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_to_state
@@ -730,6 +747,7 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=6
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
 				// property: name=community_list_id, type=STRING macro=copy_to_state
@@ -753,6 +771,7 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set = &rsModelRoutingRouteMapEntrySetClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel ans=varLoopRouteMapEntries.Set properties=10
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel ans=varLoopRouteMapEntries.Set")
 				// property: name=additive_community, type=BOOLEAN macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set.AdditiveCommunity = types.BoolPointerValue(varLoopRouteMapEntries.Set.AdditiveCommunity)
 				// property: name=as_path_prepend, type=STRING macro=copy_to_state
@@ -835,6 +854,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=9
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -887,12 +907,14 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			body.RouteMapEntries = append(body.RouteMapEntries, sdwan_schema.RoutingRouteMapEntryV2N3{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_from_plan
 			body.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = StringValueOrNil(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_from_plan
 			if varLoopRouteMapEntries.Match != nil {
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &sdwan_schema.RoutingRouteMapEntryMatchClause{}
 				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match properties=6
+				tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = StringValueOrNil(varLoopRouteMapEntries.Match.AsPathId)
 				// property: name=community_list_id, type=STRING macro=copy_from_plan
@@ -914,6 +936,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			if varLoopRouteMapEntries.Set != nil {
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set = &sdwan_schema.RoutingRouteMapEntrySetClause{}
 				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel plan=varLoopRouteMapEntries.Set properties=10
+				tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel plan=varLoopRouteMapEntries.Set")
 				// property: name=additive_community, type=BOOLEAN macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Set.AdditiveCommunity = BoolValueOrNil(varLoopRouteMapEntries.Set.AdditiveCommunity)
 				// property: name=as_path_prepend, type=STRING macro=copy_from_plan
@@ -985,7 +1008,9 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1000,6 +1025,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 
 	// Store the answer to state. schema=RoutingRouteMapScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1023,6 +1049,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			// add a new item
 			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N3{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
 			state.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = types.StringPointerValue(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_to_state
@@ -1031,6 +1058,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=6
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
 				// property: name=community_list_id, type=STRING macro=copy_to_state
@@ -1054,6 +1082,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			} else {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set = &rsModelRoutingRouteMapEntrySetClause{}
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel ans=varLoopRouteMapEntries.Set properties=10
+				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set prefix=rsModel ans=varLoopRouteMapEntries.Set")
 				// property: name=additive_community, type=BOOLEAN macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Set.AdditiveCommunity = types.BoolPointerValue(varLoopRouteMapEntries.Set.AdditiveCommunity)
 				// property: name=as_path_prepend, type=STRING macro=copy_to_state

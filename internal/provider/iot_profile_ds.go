@@ -391,6 +391,7 @@ func (d *iotProfileDataSource) Read(ctx context.Context, req datasource.ReadRequ
 
 	// lets copy all items into state schema=DeviceIdProfile
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -433,6 +434,7 @@ func (d *iotProfileDataSource) Read(ctx context.Context, req datasource.ReadRequ
 	} else {
 		state.V2Config = &dsModelDeviceIdSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_to_state
 		state.V2Config.SnmpCommunityString = types.StringPointerValue(ans.V2Config.SnmpCommunityString)
 	}
@@ -442,6 +444,7 @@ func (d *iotProfileDataSource) Read(ctx context.Context, req datasource.ReadRequ
 	} else {
 		state.V3Config = &dsModelDeviceIdSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_to_state
 		state.V3Config.SnmpAuthPassword = types.StringPointerValue(ans.V3Config.SnmpAuthPassword)
 		// property: name=snmp_auth_password_encrypted, type=STRING macro=copy_to_state

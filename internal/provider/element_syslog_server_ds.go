@@ -279,6 +279,7 @@ func (d *elementSyslogServerDataSource) Read(ctx context.Context, req datasource
 
 	// lets copy all items into state schema=SyslogServerScreenV2N2
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=16
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
