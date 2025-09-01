@@ -24,7 +24,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=11)
+// | Schema Map Summary (size=goLangStructMap=13)
 // | Computed Resource Name=sites_elementshells
 // +-----------------------------------------------------------------
 // | IntraClusterTunnel HasID=false
@@ -37,6 +37,8 @@ import (
 // | TrackInterface HasID=false
 // | TrackV2 HasID=false
 // | SpokeHAConfigV2 HasID=false
+// | Software HasID=false
+// | ElementScreenV3N2 HasID=true
 // | ElementShellV2N1 HasID=true
 // +-----------------------------------------------------------------
 
@@ -165,7 +167,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=element_id, type=STRING macro=rss_schema
 			"element_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -263,7 +265,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=hw_id, type=STRING macro=rss_schema
 			"hw_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -581,6 +583,476 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			// property: name=tenant_id, type=STRING macro=rss_schema
+			"tenant_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
+			// property: name=tracked_element, type=REFERENCE macro=rss_schema
+			"tracked_element": rsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+				Attributes: map[string]rsschema.Attribute{
+					// generic x_parameters is added to accomodate path parameters
+					"x_parameters": rsschema.MapAttribute{
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					// property: name=_etag, type=INTEGER macro=rss_schema
+					"x_etag": rsschema.Int64Attribute{
+						Required:  false,
+						Computed:  true,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+					// property: name=_schema, type=INTEGER macro=rss_schema
+					"x_schema": rsschema.Int64Attribute{
+						Required:  false,
+						Computed:  true,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+					// property: name=cluster_id, type=STRING macro=rss_schema
+					"cluster_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
+					// property: name=description, type=STRING macro=rss_schema
+					"description": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=description, type=STRING macro=rss_schema
+					// property: name=device_profile_id, type=STRING macro=rss_schema
+					"device_profile_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=device_profile_id, type=STRING macro=rss_schema
+					// property: name=hub_cluster_config, type=REFERENCE macro=rss_schema
+					"hub_cluster_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=intra_cluster_tunnel, type=REFERENCE macro=rss_schema
+							"intra_cluster_tunnel": rsschema.SingleNestedAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+								Attributes: map[string]rsschema.Attribute{
+									// property: name=destination_ip, type=STRING macro=rss_schema
+									"destination_ip": rsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=destination_ip, type=STRING macro=rss_schema
+									// property: name=source_ip, type=STRING macro=rss_schema
+									"source_ip": rsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=source_ip, type=STRING macro=rss_schema
+									// property: name=status, type=STRING macro=rss_schema
+									"status": rsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=status, type=STRING macro=rss_schema
+								},
+							},
+							// key name holder for attribute: name=status, type=STRING macro=rss_schema
+							// property: name=track, type=REFERENCE macro=rss_schema
+							"track": rsschema.SingleNestedAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+								Attributes: map[string]rsschema.Attribute{
+									// property: name=hosts, type=ARRAY_REFERENCE macro=rss_schema
+									"hosts": rsschema.ListNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										NestedObject: rsschema.NestedAttributeObject{
+											Attributes: map[string]rsschema.Attribute{
+												// property: name=address_v4, type=STRING macro=rss_schema
+												"address_v4": rsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=address_v4, type=STRING macro=rss_schema
+												// property: name=address_v6, type=STRING macro=rss_schema
+												"address_v6": rsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=address_v6, type=STRING macro=rss_schema
+												// property: name=vrf_context_id, type=STRING macro=rss_schema
+												"vrf_context_id": rsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+											},
+										},
+									},
+									// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+								},
+							},
+							// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+					// property: name=id, type=STRING macro=rss_schema
+					"id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  true,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=id, type=STRING macro=rss_schema
+					// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
+					"l3_direct_private_wan_forwarding": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
+					// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
+					"l3_lan_forwarding": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
+					// property: name=led_config, type=REFERENCE macro=rss_schema
+					"led_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=service_led_on, type=BOOLEAN macro=rss_schema
+							"service_led_on": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=service_led_on, type=BOOLEAN macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=service_led_on, type=BOOLEAN macro=rss_schema
+					// property: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
+					"main_power_usage_threshold": rsschema.Int64Attribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
+					// property: name=name, type=STRING macro=rss_schema
+					"name": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=name, type=STRING macro=rss_schema
+					// property: name=nat_policysetstack_id, type=STRING macro=rss_schema
+					"nat_policysetstack_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=nat_policysetstack_id, type=STRING macro=rss_schema
+					// property: name=network_policysetstack_id, type=STRING macro=rss_schema
+					"network_policysetstack_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=network_policysetstack_id, type=STRING macro=rss_schema
+					// property: name=priority_policysetstack_id, type=STRING macro=rss_schema
+					"priority_policysetstack_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=priority_policysetstack_id, type=STRING macro=rss_schema
+					// property: name=site_id, type=STRING macro=rss_schema
+					"site_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
+					// property: name=spoke_ha_config, type=REFERENCE macro=rss_schema
+					"spoke_ha_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=cluster_id, type=STRING macro=rss_schema
+							"cluster_id": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
+							// property: name=enable, type=BOOLEAN macro=rss_schema
+							"enable": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=enable, type=BOOLEAN macro=rss_schema
+							// property: name=priority, type=INTEGER macro=rss_schema
+							"priority": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=priority, type=INTEGER macro=rss_schema
+							// property: name=source_interface, type=STRING macro=rss_schema
+							"source_interface": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
+							// property: name=track, type=REFERENCE macro=rss_schema
+							"track": rsschema.SingleNestedAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+								Attributes: map[string]rsschema.Attribute{
+									// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
+									"interfaces": rsschema.ListNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										NestedObject: rsschema.NestedAttributeObject{
+											Attributes: map[string]rsschema.Attribute{
+												// property: name=interface_id, type=STRING macro=rss_schema
+												"interface_id": rsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
+												// property: name=reduce_priority, type=INTEGER macro=rss_schema
+												"reduce_priority": rsschema.Int64Attribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
+											},
+										},
+									},
+									// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
+									// property: name=waninterfaces, type=ARRAY_REFERENCE macro=rss_schema
+									"waninterfaces": rsschema.ListNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										NestedObject: rsschema.NestedAttributeObject{
+											Attributes: map[string]rsschema.Attribute{
+												// property: name=reduce_priority, type=INTEGER macro=rss_schema
+												"reduce_priority": rsschema.Int64Attribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
+												// property: name=wan_interface_id, type=STRING macro=rss_schema
+												"wan_interface_id": rsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
+											},
+										},
+									},
+									// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
+								},
+							},
+							// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
+					// property: name=sw_obj, type=REFERENCE macro=rss_schema
+					"sw_obj": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=location, type=STRING macro=rss_schema
+							"location": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=location, type=STRING macro=rss_schema
+							// property: name=version, type=STRING macro=rss_schema
+							"version": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=version, type=STRING macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=version, type=STRING macro=rss_schema
+					// property: name=switch_config, type=REFERENCE macro=rss_schema
+					"switch_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=default_vlan_id, type=INTEGER macro=rss_schema
+							"default_vlan_id": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=default_vlan_id, type=INTEGER macro=rss_schema
+							// property: name=mstp_enabled, type=BOOLEAN macro=rss_schema
+							"mstp_enabled": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=mstp_enabled, type=BOOLEAN macro=rss_schema
+							// property: name=stp_aging_timer, type=INTEGER macro=rss_schema
+							"stp_aging_timer": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=stp_aging_timer, type=INTEGER macro=rss_schema
+							// property: name=stp_forward_delay, type=INTEGER macro=rss_schema
+							"stp_forward_delay": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=stp_forward_delay, type=INTEGER macro=rss_schema
+							// property: name=stp_hello_time, type=INTEGER macro=rss_schema
+							"stp_hello_time": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=stp_hello_time, type=INTEGER macro=rss_schema
+							// property: name=stp_max_age, type=INTEGER macro=rss_schema
+							"stp_max_age": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=stp_max_age, type=INTEGER macro=rss_schema
+							// property: name=stp_mode, type=STRING macro=rss_schema
+							"stp_mode": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=stp_mode, type=STRING macro=rss_schema
+							// property: name=stp_priority, type=INTEGER macro=rss_schema
+							"stp_priority": rsschema.Int64Attribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=stp_priority, type=INTEGER macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=stp_priority, type=INTEGER macro=rss_schema
+					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+					"tags": rsschema.SetAttribute{
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						ElementType: types.StringType,
+					},
+					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+					// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
+					"vpn_to_vpn_forwarding": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
+				},
+			},
+			// key name holder for attribute: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": rsschema.BoolAttribute{
 				Required:  false,
@@ -640,7 +1112,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	var body = &sdwan_schema.ElementShellV2N1{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=30
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=32
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -811,6 +1283,174 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	// property: name=tenant_id, type=STRING macro=copy_from_plan
+	body.TenantId = StringValueOrNil(plan.TenantId)
+	// property: name=tracked_element, type=REFERENCE macro=copy_from_plan
+	if plan.TrackedElement != nil {
+		body.TrackedElement = &sdwan_schema.ElementScreenV3N2{}
+		// copy_from_plan: body=body.TrackedElement prefix=rsModel plan=plan.TrackedElement properties=21
+		// property: name=_etag, type=INTEGER macro=copy_from_plan
+		body.TrackedElement.Etag = Int64ValueOrNil(plan.TrackedElement.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_from_plan
+		body.TrackedElement.Schema = Int64ValueOrNil(plan.TrackedElement.Schema)
+		// property: name=cluster_id, type=STRING macro=copy_from_plan
+		body.TrackedElement.ClusterId = StringValueOrNil(plan.TrackedElement.ClusterId)
+		// property: name=description, type=STRING macro=copy_from_plan
+		body.TrackedElement.Description = StringValueOrNil(plan.TrackedElement.Description)
+		// property: name=device_profile_id, type=STRING macro=copy_from_plan
+		body.TrackedElement.DeviceProfileId = StringValueOrNil(plan.TrackedElement.DeviceProfileId)
+		// property: name=hub_cluster_config, type=REFERENCE macro=copy_from_plan
+		if plan.TrackedElement.HubClusterConfig != nil {
+			body.TrackedElement.HubClusterConfig = &sdwan_schema.HubClusterConfig{}
+			// copy_from_plan: body=body.TrackedElement.HubClusterConfig prefix=rsModel plan=plan.TrackedElement.HubClusterConfig properties=2
+			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_from_plan
+			if plan.TrackedElement.HubClusterConfig.IntraClusterTunnel != nil {
+				body.TrackedElement.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
+				// copy_from_plan: body=body.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel plan=plan.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				// property: name=destination_ip, type=STRING macro=copy_from_plan
+				body.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				// property: name=source_ip, type=STRING macro=copy_from_plan
+				body.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
+				// property: name=status, type=STRING macro=copy_from_plan
+				body.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
+			}
+			// property: name=track, type=REFERENCE macro=copy_from_plan
+			if plan.TrackedElement.HubClusterConfig.Track != nil {
+				body.TrackedElement.HubClusterConfig.Track = &sdwan_schema.Tracker{}
+				// copy_from_plan: body=body.TrackedElement.HubClusterConfig.Track prefix=rsModel plan=plan.TrackedElement.HubClusterConfig.Track properties=1
+				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan
+				if plan.TrackedElement.HubClusterConfig.Track.Hosts == nil {
+					body.TrackedElement.HubClusterConfig.Track.Hosts = nil
+				} else if len(plan.TrackedElement.HubClusterConfig.Track.Hosts) == 0 {
+					body.TrackedElement.HubClusterConfig.Track.Hosts = []sdwan_schema.Host{}
+				} else {
+					body.TrackedElement.HubClusterConfig.Track.Hosts = make([]sdwan_schema.Host, 0, len(plan.TrackedElement.HubClusterConfig.Track.Hosts))
+					for varLoopHostsIndex, varLoopHosts := range plan.TrackedElement.HubClusterConfig.Track.Hosts {
+						// add a new item
+						body.TrackedElement.HubClusterConfig.Track.Hosts = append(body.TrackedElement.HubClusterConfig.Track.Hosts, sdwan_schema.Host{})
+						// copy_from_plan: body=body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts properties=3
+						// property: name=address_v4, type=STRING macro=copy_from_plan
+						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = StringValueOrNil(varLoopHosts.AddressV4)
+						// property: name=address_v6, type=STRING macro=copy_from_plan
+						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV6 = StringValueOrNil(varLoopHosts.AddressV6)
+						// property: name=vrf_context_id, type=STRING macro=copy_from_plan
+						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].VrfContextId = StringValueOrNil(varLoopHosts.VrfContextId)
+					}
+				}
+			}
+		}
+		// property: name=id, type=STRING macro=copy_from_plan
+		body.TrackedElement.Id = StringValueOrNil(plan.TrackedElement.Id)
+		// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_from_plan
+		body.TrackedElement.L3DirectPrivateWanForwarding = BoolValueOrNil(plan.TrackedElement.L3DirectPrivateWanForwarding)
+		// property: name=l3_lan_forwarding, type=BOOLEAN macro=copy_from_plan
+		body.TrackedElement.L3LanForwarding = BoolValueOrNil(plan.TrackedElement.L3LanForwarding)
+		// property: name=led_config, type=REFERENCE macro=copy_from_plan
+		if plan.TrackedElement.LedConfig != nil {
+			body.TrackedElement.LedConfig = &sdwan_schema.LedConfig{}
+			// copy_from_plan: body=body.TrackedElement.LedConfig prefix=rsModel plan=plan.TrackedElement.LedConfig properties=1
+			// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan
+			body.TrackedElement.LedConfig.ServiceLedOn = BoolValueOrNil(plan.TrackedElement.LedConfig.ServiceLedOn)
+		}
+		// property: name=main_power_usage_threshold, type=INTEGER macro=copy_from_plan
+		body.TrackedElement.MainPowerUsageThreshold = Int64ValueOrNil(plan.TrackedElement.MainPowerUsageThreshold)
+		// property: name=name, type=STRING macro=copy_from_plan
+		body.TrackedElement.Name = StringValueOrNil(plan.TrackedElement.Name)
+		// property: name=nat_policysetstack_id, type=STRING macro=copy_from_plan
+		body.TrackedElement.NatPolicysetstackId = StringValueOrNil(plan.TrackedElement.NatPolicysetstackId)
+		// property: name=network_policysetstack_id, type=STRING macro=copy_from_plan
+		body.TrackedElement.NetworkPolicysetstackId = StringValueOrNil(plan.TrackedElement.NetworkPolicysetstackId)
+		// property: name=priority_policysetstack_id, type=STRING macro=copy_from_plan
+		body.TrackedElement.PriorityPolicysetstackId = StringValueOrNil(plan.TrackedElement.PriorityPolicysetstackId)
+		// property: name=site_id, type=STRING macro=copy_from_plan
+		body.TrackedElement.SiteId = StringValueOrNil(plan.TrackedElement.SiteId)
+		// property: name=spoke_ha_config, type=REFERENCE macro=copy_from_plan
+		if plan.TrackedElement.SpokeHaConfig != nil {
+			body.TrackedElement.SpokeHaConfig = &sdwan_schema.SpokeHAConfigV2{}
+			// copy_from_plan: body=body.TrackedElement.SpokeHaConfig prefix=rsModel plan=plan.TrackedElement.SpokeHaConfig properties=5
+			// property: name=cluster_id, type=STRING macro=copy_from_plan
+			body.TrackedElement.SpokeHaConfig.ClusterId = StringValueOrNil(plan.TrackedElement.SpokeHaConfig.ClusterId)
+			// property: name=enable, type=BOOLEAN macro=copy_from_plan
+			body.TrackedElement.SpokeHaConfig.Enable = BoolValueOrNil(plan.TrackedElement.SpokeHaConfig.Enable)
+			// property: name=priority, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SpokeHaConfig.Priority = Int64ValueOrNil(plan.TrackedElement.SpokeHaConfig.Priority)
+			// property: name=source_interface, type=STRING macro=copy_from_plan
+			body.TrackedElement.SpokeHaConfig.SourceInterface = StringValueOrNil(plan.TrackedElement.SpokeHaConfig.SourceInterface)
+			// property: name=track, type=REFERENCE macro=copy_from_plan
+			if plan.TrackedElement.SpokeHaConfig.Track != nil {
+				body.TrackedElement.SpokeHaConfig.Track = &sdwan_schema.TrackV2{}
+				// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track prefix=rsModel plan=plan.TrackedElement.SpokeHaConfig.Track properties=2
+				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan
+				if plan.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
+					body.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
+				} else if len(plan.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 {
+					body.TrackedElement.SpokeHaConfig.Track.Interfaces = []sdwan_schema.TrackInterface{}
+				} else {
+					body.TrackedElement.SpokeHaConfig.Track.Interfaces = make([]sdwan_schema.TrackInterface, 0, len(plan.TrackedElement.SpokeHaConfig.Track.Interfaces))
+					for varLoopInterfacesIndex, varLoopInterfaces := range plan.TrackedElement.SpokeHaConfig.Track.Interfaces {
+						// add a new item
+						body.TrackedElement.SpokeHaConfig.Track.Interfaces = append(body.TrackedElement.SpokeHaConfig.Track.Interfaces, sdwan_schema.TrackInterface{})
+						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces properties=2
+						// property: name=interface_id, type=STRING macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = StringValueOrNil(varLoopInterfaces.InterfaceId)
+						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopInterfaces.ReducePriority)
+					}
+				}
+				// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_from_plan
+				if plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil {
+					body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = nil
+				} else if len(plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 {
+					body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = []sdwan_schema.TrackWANInterface{}
+				} else {
+					body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = make([]sdwan_schema.TrackWANInterface, 0, len(plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces))
+					for varLoopWaninterfacesIndex, varLoopWaninterfaces := range plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces {
+						// add a new item
+						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(body.TrackedElement.SpokeHaConfig.Track.Waninterfaces, sdwan_schema.TrackWANInterface{})
+						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces properties=2
+						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopWaninterfaces.ReducePriority)
+						// property: name=wan_interface_id, type=STRING macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].WanInterfaceId = StringValueOrNil(varLoopWaninterfaces.WanInterfaceId)
+					}
+				}
+			}
+		}
+		// property: name=sw_obj, type=REFERENCE macro=copy_from_plan
+		if plan.TrackedElement.SwObj != nil {
+			body.TrackedElement.SwObj = &sdwan_schema.Software{}
+			// copy_from_plan: body=body.TrackedElement.SwObj prefix=rsModel plan=plan.TrackedElement.SwObj properties=2
+			// property: name=location, type=STRING macro=copy_from_plan
+			body.TrackedElement.SwObj.Location = StringValueOrNil(plan.TrackedElement.SwObj.Location)
+			// property: name=version, type=STRING macro=copy_from_plan
+			body.TrackedElement.SwObj.Version = StringValueOrNil(plan.TrackedElement.SwObj.Version)
+		}
+		// property: name=switch_config, type=REFERENCE macro=copy_from_plan
+		if plan.TrackedElement.SwitchConfig != nil {
+			body.TrackedElement.SwitchConfig = &sdwan_schema.SwitchConfig{}
+			// copy_from_plan: body=body.TrackedElement.SwitchConfig prefix=rsModel plan=plan.TrackedElement.SwitchConfig properties=8
+			// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.DefaultVlanId = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.DefaultVlanId)
+			// property: name=mstp_enabled, type=BOOLEAN macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.MstpEnabled = BoolValueOrNil(plan.TrackedElement.SwitchConfig.MstpEnabled)
+			// property: name=stp_aging_timer, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.StpAgingTimer = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpAgingTimer)
+			// property: name=stp_forward_delay, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.StpForwardDelay = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpForwardDelay)
+			// property: name=stp_hello_time, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.StpHelloTime = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpHelloTime)
+			// property: name=stp_max_age, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.StpMaxAge = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpMaxAge)
+			// property: name=stp_mode, type=STRING macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.StpMode = StringValueOrNil(plan.TrackedElement.SwitchConfig.StpMode)
+			// property: name=stp_priority, type=INTEGER macro=copy_from_plan
+			body.TrackedElement.SwitchConfig.StpPriority = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpPriority)
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
+		body.TrackedElement.Tags = SetStringValueOrNil(ctx, plan.TrackedElement.Tags)
+		// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_from_plan
+		body.TrackedElement.VpnToVpnForwarding = BoolValueOrNil(plan.TrackedElement.VpnToVpnForwarding)
+	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_from_plan
 	body.VpnToVpnForwarding = BoolValueOrNil(plan.VpnToVpnForwarding)
 
@@ -886,7 +1526,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	tflog.Info(ctx, "created prismasdwan_element_shell with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=ElementShellV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=30
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1075,6 +1715,194 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
+	// property: name=tracked_element, type=REFERENCE macro=copy_to_state
+	if ans.TrackedElement == nil {
+		state.TrackedElement = nil
+	} else {
+		state.TrackedElement = &rsModelElementScreenV3N2{}
+		// copy_to_state: state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement properties=21
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.TrackedElement.Schema = types.Int64PointerValue(ans.TrackedElement.Schema)
+		// property: name=cluster_id, type=STRING macro=copy_to_state
+		state.TrackedElement.ClusterId = types.StringPointerValue(ans.TrackedElement.ClusterId)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.TrackedElement.Description = types.StringPointerValue(ans.TrackedElement.Description)
+		// property: name=device_profile_id, type=STRING macro=copy_to_state
+		state.TrackedElement.DeviceProfileId = types.StringPointerValue(ans.TrackedElement.DeviceProfileId)
+		// property: name=hub_cluster_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.HubClusterConfig == nil {
+			state.TrackedElement.HubClusterConfig = nil
+		} else {
+			state.TrackedElement.HubClusterConfig = &rsModelHubClusterConfig{}
+			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig properties=2
+			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
+			} else {
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
+				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				// property: name=destination_ip, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				// property: name=source_ip, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
+				// property: name=status, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
+			}
+			// property: name=track, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.HubClusterConfig.Track == nil {
+				state.TrackedElement.HubClusterConfig.Track = nil
+			} else {
+				state.TrackedElement.HubClusterConfig.Track = &rsModelTracker{}
+				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
+				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
+				} else if len(ans.TrackedElement.HubClusterConfig.Track.Hosts) == 0 {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = []rsModelHost{}
+				} else {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = make([]rsModelHost, 0, len(ans.TrackedElement.HubClusterConfig.Track.Hosts))
+					for varLoopHostsIndex, varLoopHosts := range ans.TrackedElement.HubClusterConfig.Track.Hosts {
+						// add a new item
+						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, rsModelHost{})
+						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+						// property: name=address_v4, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
+						// property: name=address_v6, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV6 = types.StringPointerValue(varLoopHosts.AddressV6)
+						// property: name=vrf_context_id, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].VrfContextId = types.StringPointerValue(varLoopHosts.VrfContextId)
+					}
+				}
+			}
+		}
+		// property: name=id, type=STRING macro=copy_to_state
+		state.TrackedElement.Id = types.StringPointerValue(ans.TrackedElement.Id)
+		// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.L3DirectPrivateWanForwarding = types.BoolPointerValue(ans.TrackedElement.L3DirectPrivateWanForwarding)
+		// property: name=l3_lan_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.L3LanForwarding = types.BoolPointerValue(ans.TrackedElement.L3LanForwarding)
+		// property: name=led_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.LedConfig == nil {
+			state.TrackedElement.LedConfig = nil
+		} else {
+			state.TrackedElement.LedConfig = &rsModelLedConfig{}
+			// copy_to_state: state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig properties=1
+			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
+		}
+		// property: name=main_power_usage_threshold, type=INTEGER macro=copy_to_state
+		state.TrackedElement.MainPowerUsageThreshold = types.Int64PointerValue(ans.TrackedElement.MainPowerUsageThreshold)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.TrackedElement.Name = types.StringPointerValue(ans.TrackedElement.Name)
+		// property: name=nat_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.NatPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NatPolicysetstackId)
+		// property: name=network_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.NetworkPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NetworkPolicysetstackId)
+		// property: name=priority_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.PriorityPolicysetstackId = types.StringPointerValue(ans.TrackedElement.PriorityPolicysetstackId)
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.TrackedElement.SiteId = types.StringPointerValue(ans.TrackedElement.SiteId)
+		// property: name=spoke_ha_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SpokeHaConfig == nil {
+			state.TrackedElement.SpokeHaConfig = nil
+		} else {
+			state.TrackedElement.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
+			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
+			// property: name=cluster_id, type=STRING macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
+			// property: name=enable, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.Enable = types.BoolPointerValue(ans.TrackedElement.SpokeHaConfig.Enable)
+			// property: name=priority, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.Priority = types.Int64PointerValue(ans.TrackedElement.SpokeHaConfig.Priority)
+			// property: name=source_interface, type=STRING macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.SourceInterface = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.SourceInterface)
+			// property: name=track, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.SpokeHaConfig.Track == nil {
+				state.TrackedElement.SpokeHaConfig.Track = nil
+			} else {
+				state.TrackedElement.SpokeHaConfig.Track = &rsModelTrackV2{}
+				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
+				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
+				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = []rsModelTrackInterface{}
+				} else {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = make([]rsModelTrackInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces))
+					for varLoopInterfacesIndex, varLoopInterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Interfaces {
+						// add a new item
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
+						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+						// property: name=interface_id, type=STRING macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
+						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopInterfaces.ReducePriority)
+					}
+				}
+				// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = nil
+				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = []rsModelTrackWANInterface{}
+				} else {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = make([]rsModelTrackWANInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces))
+					for varLoopWaninterfacesIndex, varLoopWaninterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces {
+						// add a new item
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
+						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
+						// property: name=wan_interface_id, type=STRING macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].WanInterfaceId = types.StringPointerValue(varLoopWaninterfaces.WanInterfaceId)
+					}
+				}
+			}
+		}
+		// property: name=sw_obj, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SwObj == nil {
+			state.TrackedElement.SwObj = nil
+		} else {
+			state.TrackedElement.SwObj = &rsModelSoftware{}
+			// copy_to_state: state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj properties=2
+			// property: name=location, type=STRING macro=copy_to_state
+			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
+			// property: name=version, type=STRING macro=copy_to_state
+			state.TrackedElement.SwObj.Version = types.StringPointerValue(ans.TrackedElement.SwObj.Version)
+		}
+		// property: name=switch_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SwitchConfig == nil {
+			state.TrackedElement.SwitchConfig = nil
+		} else {
+			state.TrackedElement.SwitchConfig = &rsModelSwitchConfig{}
+			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig properties=8
+			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
+			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.SwitchConfig.MstpEnabled = types.BoolPointerValue(ans.TrackedElement.SwitchConfig.MstpEnabled)
+			// property: name=stp_aging_timer, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpAgingTimer = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpAgingTimer)
+			// property: name=stp_forward_delay, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpForwardDelay = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpForwardDelay)
+			// property: name=stp_hello_time, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpHelloTime = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpHelloTime)
+			// property: name=stp_max_age, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpMaxAge = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpMaxAge)
+			// property: name=stp_mode, type=STRING macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpMode = types.StringPointerValue(ans.TrackedElement.SwitchConfig.StpMode)
+			// property: name=stp_priority, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpPriority = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpPriority)
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.TrackedElement.Tags)
+		state.TrackedElement.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.VpnToVpnForwarding = types.BoolPointerValue(ans.TrackedElement.VpnToVpnForwarding)
+	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 	return true
@@ -1158,7 +1986,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=30
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1347,6 +2175,194 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
+	// property: name=tracked_element, type=REFERENCE macro=copy_to_state
+	if ans.TrackedElement == nil {
+		state.TrackedElement = nil
+	} else {
+		state.TrackedElement = &rsModelElementScreenV3N2{}
+		// copy_to_state: state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement properties=21
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.TrackedElement.Schema = types.Int64PointerValue(ans.TrackedElement.Schema)
+		// property: name=cluster_id, type=STRING macro=copy_to_state
+		state.TrackedElement.ClusterId = types.StringPointerValue(ans.TrackedElement.ClusterId)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.TrackedElement.Description = types.StringPointerValue(ans.TrackedElement.Description)
+		// property: name=device_profile_id, type=STRING macro=copy_to_state
+		state.TrackedElement.DeviceProfileId = types.StringPointerValue(ans.TrackedElement.DeviceProfileId)
+		// property: name=hub_cluster_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.HubClusterConfig == nil {
+			state.TrackedElement.HubClusterConfig = nil
+		} else {
+			state.TrackedElement.HubClusterConfig = &rsModelHubClusterConfig{}
+			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig properties=2
+			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
+			} else {
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
+				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				// property: name=destination_ip, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				// property: name=source_ip, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
+				// property: name=status, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
+			}
+			// property: name=track, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.HubClusterConfig.Track == nil {
+				state.TrackedElement.HubClusterConfig.Track = nil
+			} else {
+				state.TrackedElement.HubClusterConfig.Track = &rsModelTracker{}
+				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
+				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
+				} else if len(ans.TrackedElement.HubClusterConfig.Track.Hosts) == 0 {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = []rsModelHost{}
+				} else {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = make([]rsModelHost, 0, len(ans.TrackedElement.HubClusterConfig.Track.Hosts))
+					for varLoopHostsIndex, varLoopHosts := range ans.TrackedElement.HubClusterConfig.Track.Hosts {
+						// add a new item
+						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, rsModelHost{})
+						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+						// property: name=address_v4, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
+						// property: name=address_v6, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV6 = types.StringPointerValue(varLoopHosts.AddressV6)
+						// property: name=vrf_context_id, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].VrfContextId = types.StringPointerValue(varLoopHosts.VrfContextId)
+					}
+				}
+			}
+		}
+		// property: name=id, type=STRING macro=copy_to_state
+		state.TrackedElement.Id = types.StringPointerValue(ans.TrackedElement.Id)
+		// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.L3DirectPrivateWanForwarding = types.BoolPointerValue(ans.TrackedElement.L3DirectPrivateWanForwarding)
+		// property: name=l3_lan_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.L3LanForwarding = types.BoolPointerValue(ans.TrackedElement.L3LanForwarding)
+		// property: name=led_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.LedConfig == nil {
+			state.TrackedElement.LedConfig = nil
+		} else {
+			state.TrackedElement.LedConfig = &rsModelLedConfig{}
+			// copy_to_state: state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig properties=1
+			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
+		}
+		// property: name=main_power_usage_threshold, type=INTEGER macro=copy_to_state
+		state.TrackedElement.MainPowerUsageThreshold = types.Int64PointerValue(ans.TrackedElement.MainPowerUsageThreshold)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.TrackedElement.Name = types.StringPointerValue(ans.TrackedElement.Name)
+		// property: name=nat_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.NatPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NatPolicysetstackId)
+		// property: name=network_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.NetworkPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NetworkPolicysetstackId)
+		// property: name=priority_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.PriorityPolicysetstackId = types.StringPointerValue(ans.TrackedElement.PriorityPolicysetstackId)
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.TrackedElement.SiteId = types.StringPointerValue(ans.TrackedElement.SiteId)
+		// property: name=spoke_ha_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SpokeHaConfig == nil {
+			state.TrackedElement.SpokeHaConfig = nil
+		} else {
+			state.TrackedElement.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
+			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
+			// property: name=cluster_id, type=STRING macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
+			// property: name=enable, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.Enable = types.BoolPointerValue(ans.TrackedElement.SpokeHaConfig.Enable)
+			// property: name=priority, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.Priority = types.Int64PointerValue(ans.TrackedElement.SpokeHaConfig.Priority)
+			// property: name=source_interface, type=STRING macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.SourceInterface = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.SourceInterface)
+			// property: name=track, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.SpokeHaConfig.Track == nil {
+				state.TrackedElement.SpokeHaConfig.Track = nil
+			} else {
+				state.TrackedElement.SpokeHaConfig.Track = &rsModelTrackV2{}
+				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
+				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
+				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = []rsModelTrackInterface{}
+				} else {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = make([]rsModelTrackInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces))
+					for varLoopInterfacesIndex, varLoopInterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Interfaces {
+						// add a new item
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
+						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+						// property: name=interface_id, type=STRING macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
+						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopInterfaces.ReducePriority)
+					}
+				}
+				// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = nil
+				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = []rsModelTrackWANInterface{}
+				} else {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = make([]rsModelTrackWANInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces))
+					for varLoopWaninterfacesIndex, varLoopWaninterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces {
+						// add a new item
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
+						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
+						// property: name=wan_interface_id, type=STRING macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].WanInterfaceId = types.StringPointerValue(varLoopWaninterfaces.WanInterfaceId)
+					}
+				}
+			}
+		}
+		// property: name=sw_obj, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SwObj == nil {
+			state.TrackedElement.SwObj = nil
+		} else {
+			state.TrackedElement.SwObj = &rsModelSoftware{}
+			// copy_to_state: state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj properties=2
+			// property: name=location, type=STRING macro=copy_to_state
+			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
+			// property: name=version, type=STRING macro=copy_to_state
+			state.TrackedElement.SwObj.Version = types.StringPointerValue(ans.TrackedElement.SwObj.Version)
+		}
+		// property: name=switch_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SwitchConfig == nil {
+			state.TrackedElement.SwitchConfig = nil
+		} else {
+			state.TrackedElement.SwitchConfig = &rsModelSwitchConfig{}
+			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig properties=8
+			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
+			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.SwitchConfig.MstpEnabled = types.BoolPointerValue(ans.TrackedElement.SwitchConfig.MstpEnabled)
+			// property: name=stp_aging_timer, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpAgingTimer = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpAgingTimer)
+			// property: name=stp_forward_delay, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpForwardDelay = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpForwardDelay)
+			// property: name=stp_hello_time, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpHelloTime = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpHelloTime)
+			// property: name=stp_max_age, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpMaxAge = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpMaxAge)
+			// property: name=stp_mode, type=STRING macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpMode = types.StringPointerValue(ans.TrackedElement.SwitchConfig.StpMode)
+			// property: name=stp_priority, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpPriority = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpPriority)
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.TrackedElement.Tags)
+		state.TrackedElement.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.VpnToVpnForwarding = types.BoolPointerValue(ans.TrackedElement.VpnToVpnForwarding)
+	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 	return true
@@ -1401,7 +2417,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=30
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=32
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1757,6 +2773,343 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	// property: name=tenant_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.TenantId = ValueStringPointerFromPlanOrState(plan.TenantId, state.TenantId)
+	} else {
+		body.TenantId = StringValueOrNil(plan.TenantId)
+	}
+	// property: name=tracked_element, type=REFERENCE macro=copy_from_plan_or_state
+	if plan.TrackedElement == nil {
+		body.TrackedElement = nil
+	} else {
+		body.TrackedElement = &sdwan_schema.ElementScreenV3N2{}
+		// copy_from_plan_or_state: body=body.TrackedElement prefix=rsModel state=state.TrackedElement plan=plan.TrackedElement properties=21
+		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.Etag = ValueInt64PointerFromPlanOrState(plan.TrackedElement.Etag, state.TrackedElement.Etag)
+		} else {
+			body.TrackedElement.Etag = Int64ValueOrNil(plan.TrackedElement.Etag)
+		}
+		// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.Schema = ValueInt64PointerFromPlanOrState(plan.TrackedElement.Schema, state.TrackedElement.Schema)
+		} else {
+			body.TrackedElement.Schema = Int64ValueOrNil(plan.TrackedElement.Schema)
+		}
+		// property: name=cluster_id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.ClusterId = ValueStringPointerFromPlanOrState(plan.TrackedElement.ClusterId, state.TrackedElement.ClusterId)
+		} else {
+			body.TrackedElement.ClusterId = StringValueOrNil(plan.TrackedElement.ClusterId)
+		}
+		// property: name=description, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.Description = ValueStringPointerFromPlanOrState(plan.TrackedElement.Description, state.TrackedElement.Description)
+		} else {
+			body.TrackedElement.Description = StringValueOrNil(plan.TrackedElement.Description)
+		}
+		// property: name=device_profile_id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.DeviceProfileId = ValueStringPointerFromPlanOrState(plan.TrackedElement.DeviceProfileId, state.TrackedElement.DeviceProfileId)
+		} else {
+			body.TrackedElement.DeviceProfileId = StringValueOrNil(plan.TrackedElement.DeviceProfileId)
+		}
+		// property: name=hub_cluster_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.TrackedElement.HubClusterConfig == nil {
+			body.TrackedElement.HubClusterConfig = nil
+		} else {
+			body.TrackedElement.HubClusterConfig = &sdwan_schema.HubClusterConfig{}
+			// copy_from_plan_or_state: body=body.TrackedElement.HubClusterConfig prefix=rsModel state=state.TrackedElement.HubClusterConfig plan=plan.TrackedElement.HubClusterConfig properties=2
+			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_from_plan_or_state
+			if plan.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
+				body.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
+			} else {
+				body.TrackedElement.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
+				// copy_from_plan_or_state: body=body.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel plan=plan.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				// property: name=destination_ip, type=STRING macro=copy_from_plan_or_state
+				if state.TrackedElement.HubClusterConfig.IntraClusterTunnel != nil {
+					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = ValueStringPointerFromPlanOrState(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp, state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				} else {
+					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				}
+				// property: name=source_ip, type=STRING macro=copy_from_plan_or_state
+				if state.TrackedElement.HubClusterConfig.IntraClusterTunnel != nil {
+					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = ValueStringPointerFromPlanOrState(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp, state.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
+				} else {
+					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
+				}
+				// property: name=status, type=STRING macro=copy_from_plan_or_state
+				if state.TrackedElement.HubClusterConfig.IntraClusterTunnel != nil {
+					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = ValueStringPointerFromPlanOrState(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status, state.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
+				} else {
+					body.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = StringValueOrNil(plan.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
+				}
+			}
+			// property: name=track, type=REFERENCE macro=copy_from_plan_or_state
+			if plan.TrackedElement.HubClusterConfig.Track == nil {
+				body.TrackedElement.HubClusterConfig.Track = nil
+			} else {
+				body.TrackedElement.HubClusterConfig.Track = &sdwan_schema.Tracker{}
+				// copy_from_plan_or_state: body=body.TrackedElement.HubClusterConfig.Track prefix=rsModel state=state.TrackedElement.HubClusterConfig.Track plan=plan.TrackedElement.HubClusterConfig.Track properties=1
+				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+				if plan.TrackedElement.HubClusterConfig.Track.Hosts == nil && (state.TrackedElement.HubClusterConfig.Track == nil || state.TrackedElement.HubClusterConfig.Track.Hosts == nil) {
+					body.TrackedElement.HubClusterConfig.Track.Hosts = nil
+				} else if len(plan.TrackedElement.HubClusterConfig.Track.Hosts) == 0 && (state.TrackedElement.HubClusterConfig.Track == nil || len(state.TrackedElement.HubClusterConfig.Track.Hosts) == 0) {
+					body.TrackedElement.HubClusterConfig.Track.Hosts = []sdwan_schema.Host{}
+				} else if len(plan.TrackedElement.HubClusterConfig.Track.Hosts) != 0 || (state.TrackedElement.HubClusterConfig.Track != nil && len(state.TrackedElement.HubClusterConfig.Track.Hosts) != 0) {
+					HostsToUse := plan.TrackedElement.HubClusterConfig.Track.Hosts
+					if len(plan.TrackedElement.HubClusterConfig.Track.Hosts) == 0 {
+						HostsToUse = state.TrackedElement.HubClusterConfig.Track.Hosts
+					}
+					body.TrackedElement.HubClusterConfig.Track.Hosts = make([]sdwan_schema.Host, 0, len(HostsToUse))
+					for varLoopHostsIndex, varLoopHosts := range HostsToUse {
+						// add a new item
+						body.TrackedElement.HubClusterConfig.Track.Hosts = append(body.TrackedElement.HubClusterConfig.Track.Hosts, sdwan_schema.Host{})
+						// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+						// copy_from_plan: body=body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel plan=varLoopHosts properties=3
+						// property: name=address_v4, type=STRING macro=copy_from_plan
+						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = StringValueOrNil(varLoopHosts.AddressV4)
+						// property: name=address_v6, type=STRING macro=copy_from_plan
+						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV6 = StringValueOrNil(varLoopHosts.AddressV6)
+						// property: name=vrf_context_id, type=STRING macro=copy_from_plan
+						body.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].VrfContextId = StringValueOrNil(varLoopHosts.VrfContextId)
+					}
+				}
+			}
+		}
+		// property: name=id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.Id = ValueStringPointerFromPlanOrState(plan.TrackedElement.Id, state.TrackedElement.Id)
+		} else {
+			body.TrackedElement.Id = StringValueOrNil(plan.TrackedElement.Id)
+		}
+		// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.L3DirectPrivateWanForwarding = ValueBoolPointerFromPlanOrState(plan.TrackedElement.L3DirectPrivateWanForwarding, state.TrackedElement.L3DirectPrivateWanForwarding)
+		} else {
+			body.TrackedElement.L3DirectPrivateWanForwarding = BoolValueOrNil(plan.TrackedElement.L3DirectPrivateWanForwarding)
+		}
+		// property: name=l3_lan_forwarding, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.L3LanForwarding = ValueBoolPointerFromPlanOrState(plan.TrackedElement.L3LanForwarding, state.TrackedElement.L3LanForwarding)
+		} else {
+			body.TrackedElement.L3LanForwarding = BoolValueOrNil(plan.TrackedElement.L3LanForwarding)
+		}
+		// property: name=led_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.TrackedElement.LedConfig == nil {
+			body.TrackedElement.LedConfig = nil
+		} else {
+			body.TrackedElement.LedConfig = &sdwan_schema.LedConfig{}
+			// copy_from_plan_or_state: body=body.TrackedElement.LedConfig prefix=rsModel state=state.TrackedElement.LedConfig plan=plan.TrackedElement.LedConfig properties=1
+			// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.TrackedElement.LedConfig != nil {
+				body.TrackedElement.LedConfig.ServiceLedOn = ValueBoolPointerFromPlanOrState(plan.TrackedElement.LedConfig.ServiceLedOn, state.TrackedElement.LedConfig.ServiceLedOn)
+			} else {
+				body.TrackedElement.LedConfig.ServiceLedOn = BoolValueOrNil(plan.TrackedElement.LedConfig.ServiceLedOn)
+			}
+		}
+		// property: name=main_power_usage_threshold, type=INTEGER macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.MainPowerUsageThreshold = ValueInt64PointerFromPlanOrState(plan.TrackedElement.MainPowerUsageThreshold, state.TrackedElement.MainPowerUsageThreshold)
+		} else {
+			body.TrackedElement.MainPowerUsageThreshold = Int64ValueOrNil(plan.TrackedElement.MainPowerUsageThreshold)
+		}
+		// property: name=name, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.Name = ValueStringPointerFromPlanOrState(plan.TrackedElement.Name, state.TrackedElement.Name)
+		} else {
+			body.TrackedElement.Name = StringValueOrNil(plan.TrackedElement.Name)
+		}
+		// property: name=nat_policysetstack_id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.NatPolicysetstackId = ValueStringPointerFromPlanOrState(plan.TrackedElement.NatPolicysetstackId, state.TrackedElement.NatPolicysetstackId)
+		} else {
+			body.TrackedElement.NatPolicysetstackId = StringValueOrNil(plan.TrackedElement.NatPolicysetstackId)
+		}
+		// property: name=network_policysetstack_id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.NetworkPolicysetstackId = ValueStringPointerFromPlanOrState(plan.TrackedElement.NetworkPolicysetstackId, state.TrackedElement.NetworkPolicysetstackId)
+		} else {
+			body.TrackedElement.NetworkPolicysetstackId = StringValueOrNil(plan.TrackedElement.NetworkPolicysetstackId)
+		}
+		// property: name=priority_policysetstack_id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.PriorityPolicysetstackId = ValueStringPointerFromPlanOrState(plan.TrackedElement.PriorityPolicysetstackId, state.TrackedElement.PriorityPolicysetstackId)
+		} else {
+			body.TrackedElement.PriorityPolicysetstackId = StringValueOrNil(plan.TrackedElement.PriorityPolicysetstackId)
+		}
+		// property: name=site_id, type=STRING macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.SiteId = ValueStringPointerFromPlanOrState(plan.TrackedElement.SiteId, state.TrackedElement.SiteId)
+		} else {
+			body.TrackedElement.SiteId = StringValueOrNil(plan.TrackedElement.SiteId)
+		}
+		// property: name=spoke_ha_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.TrackedElement.SpokeHaConfig == nil {
+			body.TrackedElement.SpokeHaConfig = nil
+		} else {
+			body.TrackedElement.SpokeHaConfig = &sdwan_schema.SpokeHAConfigV2{}
+			// copy_from_plan_or_state: body=body.TrackedElement.SpokeHaConfig prefix=rsModel state=state.TrackedElement.SpokeHaConfig plan=plan.TrackedElement.SpokeHaConfig properties=5
+			// property: name=cluster_id, type=STRING macro=copy_from_plan_or_state
+			if state.TrackedElement.SpokeHaConfig != nil {
+				body.TrackedElement.SpokeHaConfig.ClusterId = ValueStringPointerFromPlanOrState(plan.TrackedElement.SpokeHaConfig.ClusterId, state.TrackedElement.SpokeHaConfig.ClusterId)
+			} else {
+				body.TrackedElement.SpokeHaConfig.ClusterId = StringValueOrNil(plan.TrackedElement.SpokeHaConfig.ClusterId)
+			}
+			// property: name=enable, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.TrackedElement.SpokeHaConfig != nil {
+				body.TrackedElement.SpokeHaConfig.Enable = ValueBoolPointerFromPlanOrState(plan.TrackedElement.SpokeHaConfig.Enable, state.TrackedElement.SpokeHaConfig.Enable)
+			} else {
+				body.TrackedElement.SpokeHaConfig.Enable = BoolValueOrNil(plan.TrackedElement.SpokeHaConfig.Enable)
+			}
+			// property: name=priority, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SpokeHaConfig != nil {
+				body.TrackedElement.SpokeHaConfig.Priority = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SpokeHaConfig.Priority, state.TrackedElement.SpokeHaConfig.Priority)
+			} else {
+				body.TrackedElement.SpokeHaConfig.Priority = Int64ValueOrNil(plan.TrackedElement.SpokeHaConfig.Priority)
+			}
+			// property: name=source_interface, type=STRING macro=copy_from_plan_or_state
+			if state.TrackedElement.SpokeHaConfig != nil {
+				body.TrackedElement.SpokeHaConfig.SourceInterface = ValueStringPointerFromPlanOrState(plan.TrackedElement.SpokeHaConfig.SourceInterface, state.TrackedElement.SpokeHaConfig.SourceInterface)
+			} else {
+				body.TrackedElement.SpokeHaConfig.SourceInterface = StringValueOrNil(plan.TrackedElement.SpokeHaConfig.SourceInterface)
+			}
+			// property: name=track, type=REFERENCE macro=copy_from_plan_or_state
+			if plan.TrackedElement.SpokeHaConfig.Track == nil {
+				body.TrackedElement.SpokeHaConfig.Track = nil
+			} else {
+				body.TrackedElement.SpokeHaConfig.Track = &sdwan_schema.TrackV2{}
+				// copy_from_plan_or_state: body=body.TrackedElement.SpokeHaConfig.Track prefix=rsModel state=state.TrackedElement.SpokeHaConfig.Track plan=plan.TrackedElement.SpokeHaConfig.Track properties=2
+				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+				if plan.TrackedElement.SpokeHaConfig.Track.Interfaces == nil && (state.TrackedElement.SpokeHaConfig.Track == nil || state.TrackedElement.SpokeHaConfig.Track.Interfaces == nil) {
+					body.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
+				} else if len(plan.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 && (state.TrackedElement.SpokeHaConfig.Track == nil || len(state.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0) {
+					body.TrackedElement.SpokeHaConfig.Track.Interfaces = []sdwan_schema.TrackInterface{}
+				} else if len(plan.TrackedElement.SpokeHaConfig.Track.Interfaces) != 0 || (state.TrackedElement.SpokeHaConfig.Track != nil && len(state.TrackedElement.SpokeHaConfig.Track.Interfaces) != 0) {
+					InterfacesToUse := plan.TrackedElement.SpokeHaConfig.Track.Interfaces
+					if len(plan.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 {
+						InterfacesToUse = state.TrackedElement.SpokeHaConfig.Track.Interfaces
+					}
+					body.TrackedElement.SpokeHaConfig.Track.Interfaces = make([]sdwan_schema.TrackInterface, 0, len(InterfacesToUse))
+					for varLoopInterfacesIndex, varLoopInterfaces := range InterfacesToUse {
+						// add a new item
+						body.TrackedElement.SpokeHaConfig.Track.Interfaces = append(body.TrackedElement.SpokeHaConfig.Track.Interfaces, sdwan_schema.TrackInterface{})
+						// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel plan=varLoopInterfaces properties=2
+						// property: name=interface_id, type=STRING macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = StringValueOrNil(varLoopInterfaces.InterfaceId)
+						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopInterfaces.ReducePriority)
+					}
+				}
+				// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+				if plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil && (state.TrackedElement.SpokeHaConfig.Track == nil || state.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil) {
+					body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = nil
+				} else if len(plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 && (state.TrackedElement.SpokeHaConfig.Track == nil || len(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0) {
+					body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = []sdwan_schema.TrackWANInterface{}
+				} else if len(plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces) != 0 || (state.TrackedElement.SpokeHaConfig.Track != nil && len(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces) != 0) {
+					WaninterfacesToUse := plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces
+					if len(plan.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 {
+						WaninterfacesToUse = state.TrackedElement.SpokeHaConfig.Track.Waninterfaces
+					}
+					body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = make([]sdwan_schema.TrackWANInterface, 0, len(WaninterfacesToUse))
+					for varLoopWaninterfacesIndex, varLoopWaninterfaces := range WaninterfacesToUse {
+						// add a new item
+						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(body.TrackedElement.SpokeHaConfig.Track.Waninterfaces, sdwan_schema.TrackWANInterface{})
+						// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+						// copy_from_plan: body=body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel plan=varLoopWaninterfaces properties=2
+						// property: name=reduce_priority, type=INTEGER macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = Int64ValueOrNil(varLoopWaninterfaces.ReducePriority)
+						// property: name=wan_interface_id, type=STRING macro=copy_from_plan
+						body.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].WanInterfaceId = StringValueOrNil(varLoopWaninterfaces.WanInterfaceId)
+					}
+				}
+			}
+		}
+		// property: name=sw_obj, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.TrackedElement.SwObj == nil {
+			body.TrackedElement.SwObj = nil
+		} else {
+			body.TrackedElement.SwObj = &sdwan_schema.Software{}
+			// copy_from_plan_or_state: body=body.TrackedElement.SwObj prefix=rsModel state=state.TrackedElement.SwObj plan=plan.TrackedElement.SwObj properties=2
+			// property: name=location, type=STRING macro=copy_from_plan_or_state
+			if state.TrackedElement.SwObj != nil {
+				body.TrackedElement.SwObj.Location = ValueStringPointerFromPlanOrState(plan.TrackedElement.SwObj.Location, state.TrackedElement.SwObj.Location)
+			} else {
+				body.TrackedElement.SwObj.Location = StringValueOrNil(plan.TrackedElement.SwObj.Location)
+			}
+			// property: name=version, type=STRING macro=copy_from_plan_or_state
+			if state.TrackedElement.SwObj != nil {
+				body.TrackedElement.SwObj.Version = ValueStringPointerFromPlanOrState(plan.TrackedElement.SwObj.Version, state.TrackedElement.SwObj.Version)
+			} else {
+				body.TrackedElement.SwObj.Version = StringValueOrNil(plan.TrackedElement.SwObj.Version)
+			}
+		}
+		// property: name=switch_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.TrackedElement.SwitchConfig == nil {
+			body.TrackedElement.SwitchConfig = nil
+		} else {
+			body.TrackedElement.SwitchConfig = &sdwan_schema.SwitchConfig{}
+			// copy_from_plan_or_state: body=body.TrackedElement.SwitchConfig prefix=rsModel state=state.TrackedElement.SwitchConfig plan=plan.TrackedElement.SwitchConfig properties=8
+			// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.DefaultVlanId = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.DefaultVlanId, state.TrackedElement.SwitchConfig.DefaultVlanId)
+			} else {
+				body.TrackedElement.SwitchConfig.DefaultVlanId = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.DefaultVlanId)
+			}
+			// property: name=mstp_enabled, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.MstpEnabled = ValueBoolPointerFromPlanOrState(plan.TrackedElement.SwitchConfig.MstpEnabled, state.TrackedElement.SwitchConfig.MstpEnabled)
+			} else {
+				body.TrackedElement.SwitchConfig.MstpEnabled = BoolValueOrNil(plan.TrackedElement.SwitchConfig.MstpEnabled)
+			}
+			// property: name=stp_aging_timer, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.StpAgingTimer = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.StpAgingTimer, state.TrackedElement.SwitchConfig.StpAgingTimer)
+			} else {
+				body.TrackedElement.SwitchConfig.StpAgingTimer = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpAgingTimer)
+			}
+			// property: name=stp_forward_delay, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.StpForwardDelay = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.StpForwardDelay, state.TrackedElement.SwitchConfig.StpForwardDelay)
+			} else {
+				body.TrackedElement.SwitchConfig.StpForwardDelay = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpForwardDelay)
+			}
+			// property: name=stp_hello_time, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.StpHelloTime = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.StpHelloTime, state.TrackedElement.SwitchConfig.StpHelloTime)
+			} else {
+				body.TrackedElement.SwitchConfig.StpHelloTime = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpHelloTime)
+			}
+			// property: name=stp_max_age, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.StpMaxAge = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.StpMaxAge, state.TrackedElement.SwitchConfig.StpMaxAge)
+			} else {
+				body.TrackedElement.SwitchConfig.StpMaxAge = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpMaxAge)
+			}
+			// property: name=stp_mode, type=STRING macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.StpMode = ValueStringPointerFromPlanOrState(plan.TrackedElement.SwitchConfig.StpMode, state.TrackedElement.SwitchConfig.StpMode)
+			} else {
+				body.TrackedElement.SwitchConfig.StpMode = StringValueOrNil(plan.TrackedElement.SwitchConfig.StpMode)
+			}
+			// property: name=stp_priority, type=INTEGER macro=copy_from_plan_or_state
+			if state.TrackedElement.SwitchConfig != nil {
+				body.TrackedElement.SwitchConfig.StpPriority = ValueInt64PointerFromPlanOrState(plan.TrackedElement.SwitchConfig.StpPriority, state.TrackedElement.SwitchConfig.StpPriority)
+			} else {
+				body.TrackedElement.SwitchConfig.StpPriority = Int64ValueOrNil(plan.TrackedElement.SwitchConfig.StpPriority)
+			}
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
+		body.TrackedElement.Tags = SetStringValueOrNil(ctx, plan.TrackedElement.Tags)
+		// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.TrackedElement != nil {
+			body.TrackedElement.VpnToVpnForwarding = ValueBoolPointerFromPlanOrState(plan.TrackedElement.VpnToVpnForwarding, state.TrackedElement.VpnToVpnForwarding)
+		} else {
+			body.TrackedElement.VpnToVpnForwarding = BoolValueOrNil(plan.TrackedElement.VpnToVpnForwarding)
+		}
+	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.VpnToVpnForwarding = ValueBoolPointerFromPlanOrState(plan.VpnToVpnForwarding, state.VpnToVpnForwarding)
@@ -1817,7 +3170,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	}
 
 	// Store the answer to state. schema=ElementShellV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=30
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=32
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2006,6 +3359,194 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSh
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
+	// property: name=tracked_element, type=REFERENCE macro=copy_to_state
+	if ans.TrackedElement == nil {
+		state.TrackedElement = nil
+	} else {
+		state.TrackedElement = &rsModelElementScreenV3N2{}
+		// copy_to_state: state=state.TrackedElement prefix=rsModel ans=ans.TrackedElement properties=21
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.TrackedElement.Etag = types.Int64PointerValue(ans.TrackedElement.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.TrackedElement.Schema = types.Int64PointerValue(ans.TrackedElement.Schema)
+		// property: name=cluster_id, type=STRING macro=copy_to_state
+		state.TrackedElement.ClusterId = types.StringPointerValue(ans.TrackedElement.ClusterId)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.TrackedElement.Description = types.StringPointerValue(ans.TrackedElement.Description)
+		// property: name=device_profile_id, type=STRING macro=copy_to_state
+		state.TrackedElement.DeviceProfileId = types.StringPointerValue(ans.TrackedElement.DeviceProfileId)
+		// property: name=hub_cluster_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.HubClusterConfig == nil {
+			state.TrackedElement.HubClusterConfig = nil
+		} else {
+			state.TrackedElement.HubClusterConfig = &rsModelHubClusterConfig{}
+			// copy_to_state: state=state.TrackedElement.HubClusterConfig prefix=rsModel ans=ans.TrackedElement.HubClusterConfig properties=2
+			// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.HubClusterConfig.IntraClusterTunnel == nil {
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = nil
+			} else {
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
+				// copy_to_state: state=state.TrackedElement.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.IntraClusterTunnel properties=3
+				// property: name=destination_ip, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				// property: name=source_ip, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.SourceIp)
+				// property: name=status, type=STRING macro=copy_to_state
+				state.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.TrackedElement.HubClusterConfig.IntraClusterTunnel.Status)
+			}
+			// property: name=track, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.HubClusterConfig.Track == nil {
+				state.TrackedElement.HubClusterConfig.Track = nil
+			} else {
+				state.TrackedElement.HubClusterConfig.Track = &rsModelTracker{}
+				// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track prefix=rsModel ans=ans.TrackedElement.HubClusterConfig.Track properties=1
+				// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.HubClusterConfig.Track.Hosts == nil {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = nil
+				} else if len(ans.TrackedElement.HubClusterConfig.Track.Hosts) == 0 {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = []rsModelHost{}
+				} else {
+					state.TrackedElement.HubClusterConfig.Track.Hosts = make([]rsModelHost, 0, len(ans.TrackedElement.HubClusterConfig.Track.Hosts))
+					for varLoopHostsIndex, varLoopHosts := range ans.TrackedElement.HubClusterConfig.Track.Hosts {
+						// add a new item
+						state.TrackedElement.HubClusterConfig.Track.Hosts = append(state.TrackedElement.HubClusterConfig.Track.Hosts, rsModelHost{})
+						// copy_to_state: state=state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=rsModel ans=varLoopHosts properties=3
+						// property: name=address_v4, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
+						// property: name=address_v6, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV6 = types.StringPointerValue(varLoopHosts.AddressV6)
+						// property: name=vrf_context_id, type=STRING macro=copy_to_state
+						state.TrackedElement.HubClusterConfig.Track.Hosts[varLoopHostsIndex].VrfContextId = types.StringPointerValue(varLoopHosts.VrfContextId)
+					}
+				}
+			}
+		}
+		// property: name=id, type=STRING macro=copy_to_state
+		state.TrackedElement.Id = types.StringPointerValue(ans.TrackedElement.Id)
+		// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.L3DirectPrivateWanForwarding = types.BoolPointerValue(ans.TrackedElement.L3DirectPrivateWanForwarding)
+		// property: name=l3_lan_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.L3LanForwarding = types.BoolPointerValue(ans.TrackedElement.L3LanForwarding)
+		// property: name=led_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.LedConfig == nil {
+			state.TrackedElement.LedConfig = nil
+		} else {
+			state.TrackedElement.LedConfig = &rsModelLedConfig{}
+			// copy_to_state: state=state.TrackedElement.LedConfig prefix=rsModel ans=ans.TrackedElement.LedConfig properties=1
+			// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.TrackedElement.LedConfig.ServiceLedOn)
+		}
+		// property: name=main_power_usage_threshold, type=INTEGER macro=copy_to_state
+		state.TrackedElement.MainPowerUsageThreshold = types.Int64PointerValue(ans.TrackedElement.MainPowerUsageThreshold)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.TrackedElement.Name = types.StringPointerValue(ans.TrackedElement.Name)
+		// property: name=nat_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.NatPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NatPolicysetstackId)
+		// property: name=network_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.NetworkPolicysetstackId = types.StringPointerValue(ans.TrackedElement.NetworkPolicysetstackId)
+		// property: name=priority_policysetstack_id, type=STRING macro=copy_to_state
+		state.TrackedElement.PriorityPolicysetstackId = types.StringPointerValue(ans.TrackedElement.PriorityPolicysetstackId)
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.TrackedElement.SiteId = types.StringPointerValue(ans.TrackedElement.SiteId)
+		// property: name=spoke_ha_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SpokeHaConfig == nil {
+			state.TrackedElement.SpokeHaConfig = nil
+		} else {
+			state.TrackedElement.SpokeHaConfig = &rsModelSpokeHAConfigV2{}
+			// copy_to_state: state=state.TrackedElement.SpokeHaConfig prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig properties=5
+			// property: name=cluster_id, type=STRING macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.ClusterId)
+			// property: name=enable, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.Enable = types.BoolPointerValue(ans.TrackedElement.SpokeHaConfig.Enable)
+			// property: name=priority, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.Priority = types.Int64PointerValue(ans.TrackedElement.SpokeHaConfig.Priority)
+			// property: name=source_interface, type=STRING macro=copy_to_state
+			state.TrackedElement.SpokeHaConfig.SourceInterface = types.StringPointerValue(ans.TrackedElement.SpokeHaConfig.SourceInterface)
+			// property: name=track, type=REFERENCE macro=copy_to_state
+			if ans.TrackedElement.SpokeHaConfig.Track == nil {
+				state.TrackedElement.SpokeHaConfig.Track = nil
+			} else {
+				state.TrackedElement.SpokeHaConfig.Track = &rsModelTrackV2{}
+				// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track prefix=rsModel ans=ans.TrackedElement.SpokeHaConfig.Track properties=2
+				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.SpokeHaConfig.Track.Interfaces == nil {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = nil
+				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces) == 0 {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = []rsModelTrackInterface{}
+				} else {
+					state.TrackedElement.SpokeHaConfig.Track.Interfaces = make([]rsModelTrackInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Interfaces))
+					for varLoopInterfacesIndex, varLoopInterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Interfaces {
+						// add a new item
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces = append(state.TrackedElement.SpokeHaConfig.Track.Interfaces, rsModelTrackInterface{})
+						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=rsModel ans=varLoopInterfaces properties=2
+						// property: name=interface_id, type=STRING macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
+						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopInterfaces.ReducePriority)
+					}
+				}
+				// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces == nil {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = nil
+				} else if len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces) == 0 {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = []rsModelTrackWANInterface{}
+				} else {
+					state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = make([]rsModelTrackWANInterface, 0, len(ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces))
+					for varLoopWaninterfacesIndex, varLoopWaninterfaces := range ans.TrackedElement.SpokeHaConfig.Track.Waninterfaces {
+						// add a new item
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces = append(state.TrackedElement.SpokeHaConfig.Track.Waninterfaces, rsModelTrackWANInterface{})
+						// copy_to_state: state=state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=rsModel ans=varLoopWaninterfaces properties=2
+						// property: name=reduce_priority, type=INTEGER macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
+						// property: name=wan_interface_id, type=STRING macro=copy_to_state
+						state.TrackedElement.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].WanInterfaceId = types.StringPointerValue(varLoopWaninterfaces.WanInterfaceId)
+					}
+				}
+			}
+		}
+		// property: name=sw_obj, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SwObj == nil {
+			state.TrackedElement.SwObj = nil
+		} else {
+			state.TrackedElement.SwObj = &rsModelSoftware{}
+			// copy_to_state: state=state.TrackedElement.SwObj prefix=rsModel ans=ans.TrackedElement.SwObj properties=2
+			// property: name=location, type=STRING macro=copy_to_state
+			state.TrackedElement.SwObj.Location = types.StringPointerValue(ans.TrackedElement.SwObj.Location)
+			// property: name=version, type=STRING macro=copy_to_state
+			state.TrackedElement.SwObj.Version = types.StringPointerValue(ans.TrackedElement.SwObj.Version)
+		}
+		// property: name=switch_config, type=REFERENCE macro=copy_to_state
+		if ans.TrackedElement.SwitchConfig == nil {
+			state.TrackedElement.SwitchConfig = nil
+		} else {
+			state.TrackedElement.SwitchConfig = &rsModelSwitchConfig{}
+			// copy_to_state: state=state.TrackedElement.SwitchConfig prefix=rsModel ans=ans.TrackedElement.SwitchConfig properties=8
+			// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.DefaultVlanId)
+			// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
+			state.TrackedElement.SwitchConfig.MstpEnabled = types.BoolPointerValue(ans.TrackedElement.SwitchConfig.MstpEnabled)
+			// property: name=stp_aging_timer, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpAgingTimer = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpAgingTimer)
+			// property: name=stp_forward_delay, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpForwardDelay = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpForwardDelay)
+			// property: name=stp_hello_time, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpHelloTime = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpHelloTime)
+			// property: name=stp_max_age, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpMaxAge = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpMaxAge)
+			// property: name=stp_mode, type=STRING macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpMode = types.StringPointerValue(ans.TrackedElement.SwitchConfig.StpMode)
+			// property: name=stp_priority, type=INTEGER macro=copy_to_state
+			state.TrackedElement.SwitchConfig.StpPriority = types.Int64PointerValue(ans.TrackedElement.SwitchConfig.StpPriority)
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.TrackedElement.Tags)
+		state.TrackedElement.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
+		state.TrackedElement.VpnToVpnForwarding = types.BoolPointerValue(ans.TrackedElement.VpnToVpnForwarding)
+	}
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 	return true

@@ -858,6 +858,7 @@ import (
 // | EventQueryRequestV3_5SuppressedInfo HasID=false
 // | EventQueryRequestV3_5View HasID=false
 // | EventQueryRequestV3_5 HasID=false
+// | ElementScreenV3N2 HasID=true
 // | ElementShellV2N1 HasID=true
 // | VffTokenScreen HasID=true
 // | DiskPartitionStatus HasID=false
@@ -1129,7 +1130,6 @@ import (
 // | ListResponseServiceLabelV2N1 HasID=false
 // | TcpRuleV2 HasID=false
 // | ListResponseTacacsPlusServer HasID=false
-// | ElementScreenV3N2 HasID=true
 // | StateNextHop HasID=false
 // | StaticRouteStatus HasID=true
 // | ElementScreenV3N1 HasID=true
@@ -24330,6 +24330,58 @@ type rsModelEventQueryRequestV3_5 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementScreenV3N2`
+// +-----------------------------------------------------------------
+type rsModelElementScreenV3N2 struct {
+	// added tfid for bookkeeping
+	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
+	// propertyName=_etag type=INTEGER
+	Etag types.Int64 `tfsdk:"x_etag"`
+	// propertyName=_schema type=INTEGER
+	Schema types.Int64 `tfsdk:"x_schema"`
+	// propertyName=cluster_id type=STRING
+	ClusterId types.String `tfsdk:"cluster_id"`
+	// propertyName=description type=STRING
+	Description types.String `tfsdk:"description"`
+	// propertyName=device_profile_id type=STRING
+	DeviceProfileId types.String `tfsdk:"device_profile_id"`
+	// propertyName=hub_cluster_config type=REFERENCE
+	HubClusterConfig *rsModelHubClusterConfig `tfsdk:"hub_cluster_config"`
+	// propertyName=id type=STRING
+	Id types.String `tfsdk:"id"`
+	// propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
+	L3DirectPrivateWanForwarding types.Bool `tfsdk:"l3_direct_private_wan_forwarding"`
+	// propertyName=l3_lan_forwarding type=BOOLEAN
+	L3LanForwarding types.Bool `tfsdk:"l3_lan_forwarding"`
+	// propertyName=led_config type=REFERENCE
+	LedConfig *rsModelLedConfig `tfsdk:"led_config"`
+	// propertyName=main_power_usage_threshold type=INTEGER
+	MainPowerUsageThreshold types.Int64 `tfsdk:"main_power_usage_threshold"`
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=nat_policysetstack_id type=STRING
+	NatPolicysetstackId types.String `tfsdk:"nat_policysetstack_id"`
+	// propertyName=network_policysetstack_id type=STRING
+	NetworkPolicysetstackId types.String `tfsdk:"network_policysetstack_id"`
+	// propertyName=priority_policysetstack_id type=STRING
+	PriorityPolicysetstackId types.String `tfsdk:"priority_policysetstack_id"`
+	// propertyName=site_id type=STRING
+	SiteId types.String `tfsdk:"site_id"`
+	// propertyName=spoke_ha_config type=REFERENCE
+	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
+	// propertyName=sw_obj type=REFERENCE
+	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
+	// propertyName=switch_config type=REFERENCE
+	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
+	// propertyName=tags type=SET_PRIMITIVE
+	Tags types.Set `tfsdk:"tags"`
+	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
+	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `ElementShellV2N1`
 // +-----------------------------------------------------------------
 type rsModelElementShellV2N1 struct {
@@ -24395,6 +24447,10 @@ type rsModelElementShellV2N1 struct {
 	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+	// propertyName=tenant_id type=STRING
+	TenantId types.String `tfsdk:"tenant_id"`
+	// propertyName=tracked_element type=REFERENCE
+	TrackedElement *rsModelElementScreenV3N2 `tfsdk:"tracked_element"`
 	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
@@ -31999,58 +32055,6 @@ type rsModelListResponseTacacsPlusServer struct {
 	Count types.Int64 `tfsdk:"count"`
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelTacacsPlusServer `tfsdk:"items"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementScreenV3N2`
-// +-----------------------------------------------------------------
-type rsModelElementScreenV3N2 struct {
-	// added tfid for bookkeeping
-	Tfid types.String `tfsdk:"tfid"`
-	// Generic Map for Path Ids
-	TfParameters types.Map `tfsdk:"x_parameters"`
-	// propertyName=_etag type=INTEGER
-	Etag types.Int64 `tfsdk:"x_etag"`
-	// propertyName=_schema type=INTEGER
-	Schema types.Int64 `tfsdk:"x_schema"`
-	// propertyName=cluster_id type=STRING
-	ClusterId types.String `tfsdk:"cluster_id"`
-	// propertyName=description type=STRING
-	Description types.String `tfsdk:"description"`
-	// propertyName=device_profile_id type=STRING
-	DeviceProfileId types.String `tfsdk:"device_profile_id"`
-	// propertyName=hub_cluster_config type=REFERENCE
-	HubClusterConfig *rsModelHubClusterConfig `tfsdk:"hub_cluster_config"`
-	// propertyName=id type=STRING
-	Id types.String `tfsdk:"id"`
-	// propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
-	L3DirectPrivateWanForwarding types.Bool `tfsdk:"l3_direct_private_wan_forwarding"`
-	// propertyName=l3_lan_forwarding type=BOOLEAN
-	L3LanForwarding types.Bool `tfsdk:"l3_lan_forwarding"`
-	// propertyName=led_config type=REFERENCE
-	LedConfig *rsModelLedConfig `tfsdk:"led_config"`
-	// propertyName=main_power_usage_threshold type=INTEGER
-	MainPowerUsageThreshold types.Int64 `tfsdk:"main_power_usage_threshold"`
-	// propertyName=name type=STRING
-	Name types.String `tfsdk:"name"`
-	// propertyName=nat_policysetstack_id type=STRING
-	NatPolicysetstackId types.String `tfsdk:"nat_policysetstack_id"`
-	// propertyName=network_policysetstack_id type=STRING
-	NetworkPolicysetstackId types.String `tfsdk:"network_policysetstack_id"`
-	// propertyName=priority_policysetstack_id type=STRING
-	PriorityPolicysetstackId types.String `tfsdk:"priority_policysetstack_id"`
-	// propertyName=site_id type=STRING
-	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=spoke_ha_config type=REFERENCE
-	SpokeHaConfig *rsModelSpokeHAConfigV2 `tfsdk:"spoke_ha_config"`
-	// propertyName=sw_obj type=REFERENCE
-	SwObj *rsModelSoftware `tfsdk:"sw_obj"`
-	// propertyName=switch_config type=REFERENCE
-	SwitchConfig *rsModelSwitchConfig `tfsdk:"switch_config"`
-	// propertyName=tags type=SET_PRIMITIVE
-	Tags types.Set `tfsdk:"tags"`
-	// propertyName=vpn_to_vpn_forwarding type=BOOLEAN
-	VpnToVpnForwarding types.Bool `tfsdk:"vpn_to_vpn_forwarding"`
 }
 
 // +-----------------------------------------------------------------

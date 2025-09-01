@@ -855,6 +855,7 @@ package schemas
 // | EventQueryRequestV3_5SuppressedInfo HasID=false
 // | EventQueryRequestV3_5View HasID=false
 // | EventQueryRequestV3_5 HasID=false
+// | ElementScreenV3N2 HasID=true
 // | ElementShellV2N1 HasID=true
 // | VffTokenScreen HasID=true
 // | DiskPartitionStatus HasID=false
@@ -1126,7 +1127,6 @@ package schemas
 // | ListResponseServiceLabelV2N1 HasID=false
 // | TcpRuleV2 HasID=false
 // | ListResponseTacacsPlusServer HasID=false
-// | ElementScreenV3N2 HasID=true
 // | StateNextHop HasID=false
 // | StaticRouteStatus HasID=true
 // | ElementScreenV3N1 HasID=true
@@ -14556,39 +14556,68 @@ type EventQueryRequestV3_5 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementShellV2N1`
+// | Auto Generated for Schema `ElementScreenV3N2`
 // +-----------------------------------------------------------------
-type ElementShellV2N1 struct {
+type ElementScreenV3N2 struct {
 	Etag                         *int64            `json:"_etag"`                            // propertyName=_etag type=INTEGER
 	Schema                       *int64            `json:"_schema"`                          // propertyName=_schema type=INTEGER
-	AllowedRoles                 []string          `json:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
 	ClusterId                    *string           `json:"cluster_id"`                       // propertyName=cluster_id type=STRING
-	ClusterInsertionMode         *string           `json:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
-	ClusterMemberId              *string           `json:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
 	Description                  *string           `json:"description"`                      // propertyName=description type=STRING
-	DeviceMode                   *string           `json:"device_mode"`                      // propertyName=device_mode type=STRING
 	DeviceProfileId              *string           `json:"device_profile_id"`                // propertyName=device_profile_id type=STRING
-	ElementId                    *string           `json:"element_id"`                       // propertyName=element_id type=STRING
 	HubClusterConfig             *HubClusterConfig `json:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
-	HwId                         *string           `json:"hw_id"`                            // propertyName=hw_id type=STRING
 	Id                           *string           `json:"id"`                               // propertyName=id type=STRING
 	L3DirectPrivateWanForwarding *bool             `json:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
 	L3LanForwarding              *bool             `json:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
 	LedConfig                    *LedConfig        `json:"led_config"`                       // propertyName=led_config type=REFERENCE
 	MainPowerUsageThreshold      *int64            `json:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
-	ModelName                    *string           `json:"model_name"`                       // propertyName=model_name type=STRING
 	Name                         *string           `json:"name"`                             // propertyName=name type=STRING
 	NatPolicysetstackId          *string           `json:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
 	NetworkPolicysetstackId      *string           `json:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
 	PriorityPolicysetstackId     *string           `json:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
-	Role                         *string           `json:"role"`                             // propertyName=role type=STRING
 	SiteId                       *string           `json:"site_id"`                          // propertyName=site_id type=STRING
-	SoftwareVersion              *string           `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
-	State                        *string           `json:"state"`                            // propertyName=state type=STRING
+	SwObj                        *Software         `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
 	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementShellV2N1`
+// +-----------------------------------------------------------------
+type ElementShellV2N1 struct {
+	Etag                         *int64             `json:"_etag"`                            // propertyName=_etag type=INTEGER
+	Schema                       *int64             `json:"_schema"`                          // propertyName=_schema type=INTEGER
+	AllowedRoles                 []string           `json:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
+	ClusterId                    *string            `json:"cluster_id"`                       // propertyName=cluster_id type=STRING
+	ClusterInsertionMode         *string            `json:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
+	ClusterMemberId              *string            `json:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
+	Description                  *string            `json:"description"`                      // propertyName=description type=STRING
+	DeviceMode                   *string            `json:"device_mode"`                      // propertyName=device_mode type=STRING
+	DeviceProfileId              *string            `json:"device_profile_id"`                // propertyName=device_profile_id type=STRING
+	ElementId                    *string            `json:"element_id"`                       // propertyName=element_id type=STRING
+	HubClusterConfig             *HubClusterConfig  `json:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
+	HwId                         *string            `json:"hw_id"`                            // propertyName=hw_id type=STRING
+	Id                           *string            `json:"id"`                               // propertyName=id type=STRING
+	L3DirectPrivateWanForwarding *bool              `json:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
+	L3LanForwarding              *bool              `json:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
+	LedConfig                    *LedConfig         `json:"led_config"`                       // propertyName=led_config type=REFERENCE
+	MainPowerUsageThreshold      *int64             `json:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
+	ModelName                    *string            `json:"model_name"`                       // propertyName=model_name type=STRING
+	Name                         *string            `json:"name"`                             // propertyName=name type=STRING
+	NatPolicysetstackId          *string            `json:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
+	NetworkPolicysetstackId      *string            `json:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
+	PriorityPolicysetstackId     *string            `json:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
+	Role                         *string            `json:"role"`                             // propertyName=role type=STRING
+	SiteId                       *string            `json:"site_id"`                          // propertyName=site_id type=STRING
+	SoftwareVersion              *string            `json:"software_version"`                 // propertyName=software_version type=STRING
+	SpokeHaConfig                *SpokeHAConfigV2   `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
+	State                        *string            `json:"state"`                            // propertyName=state type=STRING
+	SwitchConfig                 *SwitchConfig      `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
+	Tags                         []string           `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
+	TenantId                     *string            `json:"tenant_id"`                        // propertyName=tenant_id type=STRING
+	TrackedElement               *ElementScreenV3N2 `json:"tracked_element"`                  // propertyName=tracked_element type=REFERENCE
+	VpnToVpnForwarding           *bool              `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -18843,33 +18872,6 @@ type TcpRuleV2 struct {
 type ListResponseTacacsPlusServer struct {
 	Count *int64             `json:"count"` // propertyName=count type=INTEGER
 	Items []TacacsPlusServer `json:"items"` // propertyName=items type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementScreenV3N2`
-// +-----------------------------------------------------------------
-type ElementScreenV3N2 struct {
-	Etag                         *int64            `json:"_etag"`                            // propertyName=_etag type=INTEGER
-	Schema                       *int64            `json:"_schema"`                          // propertyName=_schema type=INTEGER
-	ClusterId                    *string           `json:"cluster_id"`                       // propertyName=cluster_id type=STRING
-	Description                  *string           `json:"description"`                      // propertyName=description type=STRING
-	DeviceProfileId              *string           `json:"device_profile_id"`                // propertyName=device_profile_id type=STRING
-	HubClusterConfig             *HubClusterConfig `json:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
-	Id                           *string           `json:"id"`                               // propertyName=id type=STRING
-	L3DirectPrivateWanForwarding *bool             `json:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
-	L3LanForwarding              *bool             `json:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
-	LedConfig                    *LedConfig        `json:"led_config"`                       // propertyName=led_config type=REFERENCE
-	MainPowerUsageThreshold      *int64            `json:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
-	Name                         *string           `json:"name"`                             // propertyName=name type=STRING
-	NatPolicysetstackId          *string           `json:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
-	NetworkPolicysetstackId      *string           `json:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
-	PriorityPolicysetstackId     *string           `json:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
-	SiteId                       *string           `json:"site_id"`                          // propertyName=site_id type=STRING
-	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
-	SwObj                        *Software         `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
-	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
-	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
