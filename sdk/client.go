@@ -51,6 +51,7 @@ type Client struct {
 	AuthUrl      string            `json:"auth_url"`
 	Host         string            `json:"host"`
 	Port         int               `json:"port"`
+	Timeout      int64             `json:"timeout`
 	ClientId     string            `json:"client_id"`
 	ClientSecret string            `json:"client_secret"`
 	Scope        string            `json:"scope"`
@@ -191,6 +192,17 @@ func (c *Client) Setup() error {
 		}
 	}
 
+	// Timeout.
+	if c.Timeout <= 0 {
+		if val := os.Getenv("SCM_CLIENT_TIMEOUT"); c.CheckEnvironment && val != "" {
+			c.Timeout, _ = strconv.ParseInt(val, 10, 32)
+		} else if json_client.Timeout != 0 {
+			c.Timeout = json_client.Timeout
+		} else {
+			c.Timeout = 60
+		}
+	}
+
 	// Headers.
 	if len(c.Headers) == 0 {
 		if val := os.Getenv("SCM_HEADERS"); c.CheckEnvironment && val != "" {
@@ -286,9 +298,13 @@ func (c *Client) RefreshJwt(ctx context.Context) error {
 		resp = c.testData[c.testIndex%len(c.testData)]
 		c.testIndex++
 	} else {
+		timeout := int64(60)
+		if c.Timeout <= 0 {
+			timeout = c.Timeout // Default value
+		}
 		authClient := &http.Client{
 			Transport: c.Transport,
-			Timeout:   time.Duration(10 * time.Second),
+			Timeout:   time.Duration(timeout * int64(time.Second)),
 		}
 
 		uv := url.Values{}
