@@ -401,7 +401,7 @@ func (r *ntpTemplateResource) doGet(ctx context.Context, state *rsModelNTPTempla
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ntp_template ID format", "Expected 1 tokens")
 		return false
 	}
@@ -533,7 +533,7 @@ func (r *ntpTemplateResource) doPut(ctx context.Context, plan *rsModelNTPTemplat
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ntp_template ID format", "Expected 1 tokens")
 		return false
 	}
@@ -741,7 +741,7 @@ func (r *ntpTemplateResource) doDelete(ctx context.Context, state *rsModelNTPTem
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ntp_template ID format", "Expected 1 tokens")
 		return false
 	}

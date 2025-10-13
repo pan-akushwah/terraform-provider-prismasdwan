@@ -472,7 +472,7 @@ func (r *anynetLinkResource) doGet(ctx context.Context, state *rsModelAnynetLink
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return false
 	}
@@ -612,7 +612,7 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return false
 	}
@@ -875,7 +875,7 @@ func (r *anynetLinkResource) doDelete(ctx context.Context, state *rsModelAnynetL
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_anynet_link ID format", "Expected 1 tokens")
 		return false
 	}

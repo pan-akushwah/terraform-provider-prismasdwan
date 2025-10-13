@@ -154,7 +154,7 @@ func (d *siteHubPrefixFilterDataSource) Read(ctx context.Context, req datasource
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter ID format", "Expected 2 tokens")
 		return
 	}

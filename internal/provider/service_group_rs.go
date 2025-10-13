@@ -349,7 +349,7 @@ func (r *serviceGroupResource) doGet(ctx context.Context, state *rsModelServiceL
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_service_group ID format", "Expected 1 tokens")
 		return false
 	}
@@ -469,7 +469,7 @@ func (r *serviceGroupResource) doPut(ctx context.Context, plan *rsModelServiceLa
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_service_group ID format", "Expected 1 tokens")
 		return false
 	}
@@ -652,7 +652,7 @@ func (r *serviceGroupResource) doDelete(ctx context.Context, state *rsModelServi
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_service_group ID format", "Expected 1 tokens")
 		return false
 	}

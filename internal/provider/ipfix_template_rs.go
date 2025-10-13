@@ -366,7 +366,7 @@ func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTe
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_template ID format", "Expected 1 tokens")
 		return false
 	}
@@ -488,7 +488,7 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_template ID format", "Expected 1 tokens")
 		return false
 	}
@@ -675,7 +675,7 @@ func (r *ipfixTemplateResource) doDelete(ctx context.Context, state *rsModelIPFi
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_template ID format", "Expected 1 tokens")
 		return false
 	}

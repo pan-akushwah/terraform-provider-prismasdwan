@@ -474,7 +474,7 @@ func (r *elementTacacsPlusServerResource) doGet(ctx context.Context, state *rsMo
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_tacacs_plus_server ID format", "Expected 3 tokens")
 		return false
 	}
@@ -621,7 +621,7 @@ func (r *elementTacacsPlusServerResource) doPut(ctx context.Context, plan *rsMod
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_tacacs_plus_server ID format", "Expected 3 tokens")
 		return false
 	}
@@ -868,7 +868,7 @@ func (r *elementTacacsPlusServerResource) doDelete(ctx context.Context, state *r
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_tacacs_plus_server ID format", "Expected 3 tokens")
 		return false
 	}

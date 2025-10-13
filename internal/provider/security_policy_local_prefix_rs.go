@@ -302,7 +302,7 @@ func (r *securityPolicyLocalPrefixResource) doGet(ctx context.Context, state *rs
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_local_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -410,7 +410,7 @@ func (r *securityPolicyLocalPrefixResource) doPut(ctx context.Context, plan *rsM
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_local_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -561,7 +561,7 @@ func (r *securityPolicyLocalPrefixResource) doDelete(ctx context.Context, state 
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_local_prefix ID format", "Expected 1 tokens")
 		return false
 	}

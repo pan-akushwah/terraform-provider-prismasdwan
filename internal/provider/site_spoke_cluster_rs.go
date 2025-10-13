@@ -324,7 +324,7 @@ func (r *siteSpokeClusterResource) doGet(ctx context.Context, state *rsModelSpok
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_spoke_cluster ID format", "Expected 2 tokens")
 		return false
 	}
@@ -436,7 +436,7 @@ func (r *siteSpokeClusterResource) doPut(ctx context.Context, plan *rsModelSpoke
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_spoke_cluster ID format", "Expected 2 tokens")
 		return false
 	}
@@ -603,7 +603,7 @@ func (r *siteSpokeClusterResource) doDelete(ctx context.Context, state *rsModelS
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_spoke_cluster ID format", "Expected 2 tokens")
 		return false
 	}

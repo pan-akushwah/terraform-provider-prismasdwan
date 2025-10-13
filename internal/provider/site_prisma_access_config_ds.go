@@ -188,7 +188,7 @@ func (d *sitePrismaAccessConfigDataSource) Read(ctx context.Context, req datasou
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_prisma_access_config ID format", "Expected 2 tokens")
 		return
 	}

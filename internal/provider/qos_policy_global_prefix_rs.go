@@ -332,7 +332,7 @@ func (r *qosPolicyGlobalPrefixResource) doGet(ctx context.Context, state *rsMode
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_global_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -448,7 +448,7 @@ func (r *qosPolicyGlobalPrefixResource) doPut(ctx context.Context, plan *rsModel
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_global_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -611,7 +611,7 @@ func (r *qosPolicyGlobalPrefixResource) doDelete(ctx context.Context, state *rsM
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_global_prefix ID format", "Expected 1 tokens")
 		return false
 	}

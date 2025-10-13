@@ -404,7 +404,7 @@ func (r *siteHubClusterResource) doGet(ctx context.Context, state *rsModelHubClu
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_cluster ID format", "Expected 2 tokens")
 		return false
 	}
@@ -538,7 +538,7 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_cluster ID format", "Expected 2 tokens")
 		return false
 	}
@@ -752,7 +752,7 @@ func (r *siteHubClusterResource) doDelete(ctx context.Context, state *rsModelHub
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_cluster ID format", "Expected 2 tokens")
 		return false
 	}

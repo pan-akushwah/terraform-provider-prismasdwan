@@ -384,7 +384,7 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_syslog_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -506,7 +506,7 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_syslog_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -713,7 +713,7 @@ func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSysl
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_syslog_profile ID format", "Expected 1 tokens")
 		return false
 	}

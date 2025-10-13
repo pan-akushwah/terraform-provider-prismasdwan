@@ -616,7 +616,7 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -790,7 +790,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1147,7 +1147,7 @@ func (r *iotProfileResource) doDelete(ctx context.Context, state *rsModelDeviceI
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
 		return false
 	}

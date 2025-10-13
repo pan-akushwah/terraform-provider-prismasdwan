@@ -3575,7 +3575,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return false
 	}
@@ -4442,7 +4442,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return false
 	}
@@ -6684,7 +6684,7 @@ func (r *elementInterfaceResource) doDelete(ctx context.Context, state *rsModelI
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return false
 	}

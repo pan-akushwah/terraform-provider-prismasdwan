@@ -295,7 +295,7 @@ func (r *sdwanappsConfigResource) doGet(ctx context.Context, state *rsModelSDWAN
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_sdwanapps_config ID format", "Expected 2 tokens")
 		return false
 	}
@@ -400,7 +400,7 @@ func (r *sdwanappsConfigResource) doPut(ctx context.Context, plan *rsModelSDWANA
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_sdwanapps_config ID format", "Expected 2 tokens")
 		return false
 	}
@@ -547,7 +547,7 @@ func (r *sdwanappsConfigResource) doDelete(ctx context.Context, state *rsModelSD
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_sdwanapps_config ID format", "Expected 2 tokens")
 		return false
 	}

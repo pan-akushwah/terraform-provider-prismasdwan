@@ -365,7 +365,7 @@ func (r *siteIotSnmpStartNodeResource) doGet(ctx context.Context, state *rsModel
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_iot_snmp_start_node ID format", "Expected 3 tokens")
 		return false
 	}
@@ -491,7 +491,7 @@ func (r *siteIotSnmpStartNodeResource) doPut(ctx context.Context, plan *rsModelD
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_iot_snmp_start_node ID format", "Expected 3 tokens")
 		return false
 	}
@@ -687,7 +687,7 @@ func (r *siteIotSnmpStartNodeResource) doDelete(ctx context.Context, state *rsMo
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_iot_snmp_start_node ID format", "Expected 3 tokens")
 		return false
 	}

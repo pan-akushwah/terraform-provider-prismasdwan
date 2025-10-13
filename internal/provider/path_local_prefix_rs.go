@@ -302,7 +302,7 @@ func (r *pathLocalPrefixResource) doGet(ctx context.Context, state *rsModelNetwo
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_local_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -410,7 +410,7 @@ func (r *pathLocalPrefixResource) doPut(ctx context.Context, plan *rsModelNetwor
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_local_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -561,7 +561,7 @@ func (r *pathLocalPrefixResource) doDelete(ctx context.Context, state *rsModelNe
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_local_prefix ID format", "Expected 1 tokens")
 		return false
 	}

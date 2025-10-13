@@ -389,7 +389,7 @@ func (r *elementRoutingAspathaccesslistResource) doGet(ctx context.Context, stat
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_aspathaccesslist ID format", "Expected 3 tokens")
 		return false
 	}
@@ -519,7 +519,7 @@ func (r *elementRoutingAspathaccesslistResource) doPut(ctx context.Context, plan
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_aspathaccesslist ID format", "Expected 3 tokens")
 		return false
 	}
@@ -723,7 +723,7 @@ func (r *elementRoutingAspathaccesslistResource) doDelete(ctx context.Context, s
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_aspathaccesslist ID format", "Expected 3 tokens")
 		return false
 	}

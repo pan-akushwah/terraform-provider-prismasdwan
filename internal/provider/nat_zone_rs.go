@@ -383,7 +383,7 @@ func (r *natZoneResource) doGet(ctx context.Context, state *rsModelNATPolicyZone
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_zone ID format", "Expected 1 tokens")
 		return false
 	}
@@ -503,7 +503,7 @@ func (r *natZoneResource) doPut(ctx context.Context, plan *rsModelNATPolicyZone,
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_zone ID format", "Expected 1 tokens")
 		return false
 	}
@@ -713,7 +713,7 @@ func (r *natZoneResource) doDelete(ctx context.Context, state *rsModelNATPolicyZ
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_zone ID format", "Expected 1 tokens")
 		return false
 	}

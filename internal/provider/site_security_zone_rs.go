@@ -338,7 +338,7 @@ func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecu
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_security_zone ID format", "Expected 2 tokens")
 		return false
 	}
@@ -458,7 +458,7 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_security_zone ID format", "Expected 2 tokens")
 		return false
 	}
@@ -636,7 +636,7 @@ func (r *siteSecurityZoneResource) doDelete(ctx context.Context, state *rsModelS
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_security_zone ID format", "Expected 2 tokens")
 		return false
 	}

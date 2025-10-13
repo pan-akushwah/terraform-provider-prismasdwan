@@ -275,7 +275,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_interface_label ID format", "Expected 1 tokens")
 		return false
 	}
@@ -423,7 +423,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_interface_label ID format", "Expected 1 tokens")
 		return false
 	}

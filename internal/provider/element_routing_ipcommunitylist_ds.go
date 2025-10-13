@@ -187,7 +187,7 @@ func (d *elementRoutingIpcommunitylistDataSource) Read(ctx context.Context, req 
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_ipcommunitylist ID format", "Expected 3 tokens")
 		return
 	}

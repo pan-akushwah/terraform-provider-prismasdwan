@@ -764,7 +764,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_site ID format", "Expected 1 tokens")
 		return false
 	}
@@ -968,7 +968,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_site ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1420,7 +1420,7 @@ func (r *siteResource) doDelete(ctx context.Context, state *rsModelSiteScreenV4N
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_site ID format", "Expected 1 tokens")
 		return false
 	}

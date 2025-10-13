@@ -353,7 +353,7 @@ func (r *globalPrefixFilterResource) doGet(ctx context.Context, state *rsModelGl
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_global_prefix_filter ID format", "Expected 1 tokens")
 		return false
 	}
@@ -477,7 +477,7 @@ func (r *globalPrefixFilterResource) doPut(ctx context.Context, plan *rsModelGlo
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_global_prefix_filter ID format", "Expected 1 tokens")
 		return false
 	}
@@ -665,7 +665,7 @@ func (r *globalPrefixFilterResource) doDelete(ctx context.Context, state *rsMode
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_global_prefix_filter ID format", "Expected 1 tokens")
 		return false
 	}

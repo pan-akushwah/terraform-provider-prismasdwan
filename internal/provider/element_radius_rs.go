@@ -514,7 +514,7 @@ func (r *elementRadiusResource) doGet(ctx context.Context, state *rsModelElement
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return false
 	}
@@ -670,7 +670,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return false
 	}
@@ -922,7 +922,7 @@ func (r *elementRadiusResource) doDelete(ctx context.Context, state *rsModelElem
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return false
 	}

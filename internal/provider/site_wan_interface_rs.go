@@ -633,7 +633,7 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_interface ID format", "Expected 2 tokens")
 		return false
 	}
@@ -811,7 +811,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_interface ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1174,7 +1174,7 @@ func (r *siteWanInterfaceResource) doDelete(ctx context.Context, state *rsModelW
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_interface ID format", "Expected 2 tokens")
 		return false
 	}

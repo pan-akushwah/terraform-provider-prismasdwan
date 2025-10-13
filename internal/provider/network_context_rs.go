@@ -285,7 +285,7 @@ func (r *networkContextResource) doGet(ctx context.Context, state *rsModelNetwor
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_network_context ID format", "Expected 1 tokens")
 		return false
 	}
@@ -389,7 +389,7 @@ func (r *networkContextResource) doPut(ctx context.Context, plan *rsModelNetwork
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_network_context ID format", "Expected 1 tokens")
 		return false
 	}
@@ -534,7 +534,7 @@ func (r *networkContextResource) doDelete(ctx context.Context, state *rsModelNet
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_network_context ID format", "Expected 1 tokens")
 		return false
 	}

@@ -276,7 +276,7 @@ func (d *elementRadiusDataSource) Read(ctx context.Context, req datasource.ReadR
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return
 	}

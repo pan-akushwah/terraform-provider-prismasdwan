@@ -298,7 +298,7 @@ func (d *elementBgpConfigDataSource) Read(ctx context.Context, req datasource.Re
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_config ID format", "Expected 3 tokens")
 		return
 	}

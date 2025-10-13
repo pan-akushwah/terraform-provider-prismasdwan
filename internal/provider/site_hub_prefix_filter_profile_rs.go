@@ -442,7 +442,7 @@ func (r *siteHubPrefixFilterProfileResource) doGet(ctx context.Context, state *r
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_profile ID format", "Expected 2 tokens")
 		return false
 	}
@@ -588,7 +588,7 @@ func (r *siteHubPrefixFilterProfileResource) doPut(ctx context.Context, plan *rs
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_profile ID format", "Expected 2 tokens")
 		return false
 	}
@@ -820,7 +820,7 @@ func (r *siteHubPrefixFilterProfileResource) doDelete(ctx context.Context, state
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_profile ID format", "Expected 2 tokens")
 		return false
 	}

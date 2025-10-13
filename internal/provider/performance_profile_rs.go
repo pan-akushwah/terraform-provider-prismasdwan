@@ -908,7 +908,7 @@ func (r *performanceProfileResource) doGet(ctx context.Context, state *rsModelPe
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1162,7 +1162,7 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1718,7 +1718,7 @@ func (r *performanceProfileResource) doDelete(ctx context.Context, state *rsMode
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_profile ID format", "Expected 1 tokens")
 		return false
 	}

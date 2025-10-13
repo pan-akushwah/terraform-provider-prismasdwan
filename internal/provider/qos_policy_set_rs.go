@@ -711,7 +711,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -925,7 +925,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1309,7 +1309,7 @@ func (r *qosPolicySetResource) doDelete(ctx context.Context, state *rsModelPrior
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
 		return false
 	}

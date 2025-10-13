@@ -232,7 +232,7 @@ func (d *externalCaConfigDataSource) Read(ctx context.Context, req datasource.Re
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_external_ca_config ID format", "Expected 1 tokens")
 		return
 	}

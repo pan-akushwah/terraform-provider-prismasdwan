@@ -430,7 +430,7 @@ func (r *externalCaConfigResource) doGet(ctx context.Context, state *rsModelCert
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_external_ca_config ID format", "Expected 1 tokens")
 		return false
 	}
@@ -562,7 +562,7 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_external_ca_config ID format", "Expected 1 tokens")
 		return false
 	}
@@ -803,7 +803,7 @@ func (r *externalCaConfigResource) doDelete(ctx context.Context, state *rsModelC
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_external_ca_config ID format", "Expected 1 tokens")
 		return false
 	}

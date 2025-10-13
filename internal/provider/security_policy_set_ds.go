@@ -175,7 +175,7 @@ func (d *securityPolicySetDataSource) Read(ctx context.Context, req datasource.R
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_set ID format", "Expected 1 tokens")
 		return
 	}

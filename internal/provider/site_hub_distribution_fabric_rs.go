@@ -315,7 +315,7 @@ func (r *siteHubDistributionFabricResource) doGet(ctx context.Context, state *rs
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_distribution_fabric ID format", "Expected 2 tokens")
 		return false
 	}
@@ -427,7 +427,7 @@ func (r *siteHubDistributionFabricResource) doPut(ctx context.Context, plan *rsM
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_distribution_fabric ID format", "Expected 2 tokens")
 		return false
 	}
@@ -584,7 +584,7 @@ func (r *siteHubDistributionFabricResource) doDelete(ctx context.Context, state 
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_distribution_fabric ID format", "Expected 2 tokens")
 		return false
 	}

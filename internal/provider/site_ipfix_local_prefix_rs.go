@@ -303,7 +303,7 @@ func (r *siteIpfixLocalPrefixResource) doGet(ctx context.Context, state *rsModel
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_ipfix_local_prefix ID format", "Expected 2 tokens")
 		return false
 	}
@@ -413,7 +413,7 @@ func (r *siteIpfixLocalPrefixResource) doPut(ctx context.Context, plan *rsModelS
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_ipfix_local_prefix ID format", "Expected 2 tokens")
 		return false
 	}
@@ -562,7 +562,7 @@ func (r *siteIpfixLocalPrefixResource) doDelete(ctx context.Context, state *rsMo
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_ipfix_local_prefix ID format", "Expected 2 tokens")
 		return false
 	}

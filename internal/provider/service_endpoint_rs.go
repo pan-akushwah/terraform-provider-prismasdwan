@@ -831,7 +831,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_service_endpoint ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1067,7 +1067,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_service_endpoint ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1544,7 +1544,7 @@ func (r *serviceEndpointResource) doDelete(ctx context.Context, state *rsModelSe
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_service_endpoint ID format", "Expected 1 tokens")
 		return false
 	}

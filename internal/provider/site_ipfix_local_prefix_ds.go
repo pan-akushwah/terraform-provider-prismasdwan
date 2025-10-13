@@ -151,7 +151,7 @@ func (d *siteIpfixLocalPrefixDataSource) Read(ctx context.Context, req datasourc
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_ipfix_local_prefix ID format", "Expected 2 tokens")
 		return
 	}

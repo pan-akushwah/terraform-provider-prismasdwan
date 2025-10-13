@@ -133,7 +133,7 @@ func (d *siteIotDeviceIdConfigDataSource) Read(ctx context.Context, req datasour
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_iot_device_id_config ID format", "Expected 2 tokens")
 		return
 	}

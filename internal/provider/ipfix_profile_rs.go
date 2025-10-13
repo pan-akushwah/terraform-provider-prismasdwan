@@ -764,7 +764,7 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -988,7 +988,7 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1393,7 +1393,7 @@ func (r *ipfixProfileResource) doDelete(ctx context.Context, state *rsModelIPFix
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_profile ID format", "Expected 1 tokens")
 		return false
 	}

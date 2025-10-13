@@ -648,7 +648,7 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ospf_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -835,7 +835,7 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ospf_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -1181,7 +1181,7 @@ func (r *elementOspfConfigResource) doDelete(ctx context.Context, state *rsModel
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ospf_config ID format", "Expected 3 tokens")
 		return false
 	}

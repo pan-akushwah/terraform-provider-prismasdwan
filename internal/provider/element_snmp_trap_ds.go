@@ -283,7 +283,7 @@ func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.Rea
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return
 	}

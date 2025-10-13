@@ -380,7 +380,7 @@ func (r *sitePrismaAccessConfigResource) doGet(ctx context.Context, state *rsMod
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_prisma_access_config ID format", "Expected 2 tokens")
 		return false
 	}
@@ -510,7 +510,7 @@ func (r *sitePrismaAccessConfigResource) doPut(ctx context.Context, plan *rsMode
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_prisma_access_config ID format", "Expected 2 tokens")
 		return false
 	}
@@ -704,7 +704,7 @@ func (r *sitePrismaAccessConfigResource) doDelete(ctx context.Context, state *rs
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_prisma_access_config ID format", "Expected 2 tokens")
 		return false
 	}

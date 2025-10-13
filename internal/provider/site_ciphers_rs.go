@@ -164,7 +164,7 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_ciphers ID format", "Expected 1 tokens")
 		return false
 	}
@@ -272,7 +272,7 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_ciphers ID format", "Expected 1 tokens")
 		return false
 	}

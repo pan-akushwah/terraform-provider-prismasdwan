@@ -204,7 +204,7 @@ func (d *elementNtpDataSource) Read(ctx context.Context, req datasource.ReadRequ
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ntp ID format", "Expected 2 tokens")
 		return
 	}

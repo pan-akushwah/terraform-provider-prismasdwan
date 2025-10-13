@@ -180,7 +180,7 @@ func (r *elementApplicationProbeResource) doGet(ctx context.Context, state *rsMo
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_application_probe ID format", "Expected 2 tokens")
 		return false
 	}
@@ -292,7 +292,7 @@ func (r *elementApplicationProbeResource) doPut(ctx context.Context, plan *rsMod
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_application_probe ID format", "Expected 2 tokens")
 		return false
 	}

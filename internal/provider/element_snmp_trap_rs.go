@@ -533,7 +533,7 @@ func (r *elementSnmpTrapResource) doGet(ctx context.Context, state *rsModelSNMPT
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return false
 	}
@@ -697,7 +697,7 @@ func (r *elementSnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPTr
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return false
 	}
@@ -998,7 +998,7 @@ func (r *elementSnmpTrapResource) doDelete(ctx context.Context, state *rsModelSN
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return false
 	}

@@ -327,7 +327,7 @@ func (r *siteHubPrefixFilterAssociationResource) doGet(ctx context.Context, stat
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_association ID format", "Expected 2 tokens")
 		return false
 	}
@@ -441,7 +441,7 @@ func (r *siteHubPrefixFilterAssociationResource) doPut(ctx context.Context, plan
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_association ID format", "Expected 2 tokens")
 		return false
 	}
@@ -606,7 +606,7 @@ func (r *siteHubPrefixFilterAssociationResource) doDelete(ctx context.Context, s
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_association ID format", "Expected 2 tokens")
 		return false
 	}

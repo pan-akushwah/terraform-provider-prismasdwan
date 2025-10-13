@@ -2007,7 +2007,7 @@ func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return
 	}

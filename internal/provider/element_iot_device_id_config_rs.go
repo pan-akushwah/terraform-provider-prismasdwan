@@ -312,7 +312,7 @@ func (r *elementIotDeviceIdConfigResource) doGet(ctx context.Context, state *rsM
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_iot_device_id_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -422,7 +422,7 @@ func (r *elementIotDeviceIdConfigResource) doPut(ctx context.Context, plan *rsMo
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_iot_device_id_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -581,7 +581,7 @@ func (r *elementIotDeviceIdConfigResource) doDelete(ctx context.Context, state *
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_iot_device_id_config ID format", "Expected 3 tokens")
 		return false
 	}

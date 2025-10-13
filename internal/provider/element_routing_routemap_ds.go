@@ -353,7 +353,7 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_routemap ID format", "Expected 3 tokens")
 		return
 	}

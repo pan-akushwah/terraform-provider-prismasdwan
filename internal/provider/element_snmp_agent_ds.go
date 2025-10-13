@@ -285,7 +285,7 @@ func (d *elementSnmpAgentDataSource) Read(ctx context.Context, req datasource.Re
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return
 	}

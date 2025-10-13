@@ -602,7 +602,7 @@ func (r *appDefResource) doGet(ctx context.Context, state *rsModelAppDefScreenV2
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def ID format", "Expected 1 tokens")
 		return false
 	}
@@ -762,7 +762,7 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1097,7 +1097,7 @@ func (r *appDefResource) doDelete(ctx context.Context, state *rsModelAppDefScree
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def ID format", "Expected 1 tokens")
 		return false
 	}

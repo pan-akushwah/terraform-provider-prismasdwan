@@ -654,7 +654,7 @@ func (r *siteDhcpServerResource) doGet(ctx context.Context, state *rsModelDHCPSe
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_dhcp_server ID format", "Expected 2 tokens")
 		return false
 	}
@@ -844,7 +844,7 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_dhcp_server ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1208,7 +1208,7 @@ func (r *siteDhcpServerResource) doDelete(ctx context.Context, state *rsModelDHC
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_dhcp_server ID format", "Expected 2 tokens")
 		return false
 	}

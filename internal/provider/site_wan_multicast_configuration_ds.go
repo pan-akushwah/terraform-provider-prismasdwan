@@ -154,7 +154,7 @@ func (d *siteWanMulticastConfigurationDataSource) Read(ctx context.Context, req 
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_multicast_configuration ID format", "Expected 2 tokens")
 		return
 	}

@@ -315,7 +315,7 @@ func (r *probeProfileResource) doGet(ctx context.Context, state *rsModelProbePro
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -427,7 +427,7 @@ func (r *probeProfileResource) doPut(ctx context.Context, plan *rsModelProbeProf
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -584,7 +584,7 @@ func (r *probeProfileResource) doDelete(ctx context.Context, state *rsModelProbe
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_profile ID format", "Expected 1 tokens")
 		return false
 	}

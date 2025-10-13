@@ -1005,7 +1005,7 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_shell ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1313,7 +1313,7 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSc
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_shell ID format", "Expected 2 tokens")
 		return false
 	}
@@ -2032,7 +2032,7 @@ func (r *elementShellResource) doDelete(ctx context.Context, state *rsModelEleme
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_shell ID format", "Expected 2 tokens")
 		return false
 	}

@@ -187,7 +187,7 @@ func (r *elementToolkitResource) doGet(ctx context.Context, state *rsModelElemen
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_toolkit ID format", "Expected 1 tokens")
 		return false
 	}
@@ -299,7 +299,7 @@ func (r *elementToolkitResource) doPut(ctx context.Context, plan *rsModelElement
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_toolkit ID format", "Expected 2 tokens")
 		return false
 	}

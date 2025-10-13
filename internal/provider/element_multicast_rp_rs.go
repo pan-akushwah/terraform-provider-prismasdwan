@@ -377,7 +377,7 @@ func (r *elementMulticastRpResource) doGet(ctx context.Context, state *rsModelMu
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_rp ID format", "Expected 3 tokens")
 		return false
 	}
@@ -505,7 +505,7 @@ func (r *elementMulticastRpResource) doPut(ctx context.Context, plan *rsModelMul
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_rp ID format", "Expected 3 tokens")
 		return false
 	}
@@ -705,7 +705,7 @@ func (r *elementMulticastRpResource) doDelete(ctx context.Context, state *rsMode
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_rp ID format", "Expected 3 tokens")
 		return false
 	}

@@ -339,7 +339,7 @@ func (r *performancePolicyStackResource) doGet(ctx context.Context, state *rsMod
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_policy_stack ID format", "Expected 1 tokens")
 		return false
 	}
@@ -455,7 +455,7 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_policy_stack ID format", "Expected 1 tokens")
 		return false
 	}
@@ -628,7 +628,7 @@ func (r *performancePolicyStackResource) doDelete(ctx context.Context, state *rs
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_policy_stack ID format", "Expected 1 tokens")
 		return false
 	}

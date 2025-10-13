@@ -241,7 +241,7 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_global_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -377,7 +377,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_global_config ID format", "Expected 3 tokens")
 		return false
 	}

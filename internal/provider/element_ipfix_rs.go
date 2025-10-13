@@ -776,7 +776,7 @@ func (r *elementIpfixResource) doGet(ctx context.Context, state *rsModelIPFixCon
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ipfix ID format", "Expected 3 tokens")
 		return false
 	}
@@ -1002,7 +1002,7 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ipfix ID format", "Expected 3 tokens")
 		return false
 	}
@@ -1415,7 +1415,7 @@ func (r *elementIpfixResource) doDelete(ctx context.Context, state *rsModelIPFix
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ipfix ID format", "Expected 3 tokens")
 		return false
 	}

@@ -743,7 +743,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return false
 	}
@@ -944,7 +944,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return false
 	}
@@ -1385,7 +1385,7 @@ func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGP
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return false
 	}

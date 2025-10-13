@@ -315,7 +315,7 @@ func (r *natGlobalPrefixResource) doGet(ctx context.Context, state *rsModelNATGl
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_global_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -427,7 +427,7 @@ func (r *natGlobalPrefixResource) doPut(ctx context.Context, plan *rsModelNATGlo
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_global_prefix ID format", "Expected 1 tokens")
 		return false
 	}
@@ -584,7 +584,7 @@ func (r *natGlobalPrefixResource) doDelete(ctx context.Context, state *rsModelNA
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_global_prefix ID format", "Expected 1 tokens")
 		return false
 	}

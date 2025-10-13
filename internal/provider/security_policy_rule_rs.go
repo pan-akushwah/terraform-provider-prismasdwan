@@ -668,7 +668,7 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}
@@ -876,7 +876,7 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1222,7 +1222,7 @@ func (r *securityPolicyRuleResource) doDelete(ctx context.Context, state *rsMode
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}

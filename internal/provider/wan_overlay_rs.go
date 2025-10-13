@@ -297,7 +297,7 @@ func (r *wanOverlayResource) doGet(ctx context.Context, state *rsModelWanOverlay
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_overlay ID format", "Expected 1 tokens")
 		return false
 	}
@@ -403,7 +403,7 @@ func (r *wanOverlayResource) doPut(ctx context.Context, plan *rsModelWanOverlay,
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_overlay ID format", "Expected 1 tokens")
 		return false
 	}
@@ -556,7 +556,7 @@ func (r *wanOverlayResource) doDelete(ctx context.Context, state *rsModelWanOver
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_overlay ID format", "Expected 1 tokens")
 		return false
 	}

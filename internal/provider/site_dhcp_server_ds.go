@@ -342,7 +342,7 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_dhcp_server ID format", "Expected 2 tokens")
 		return
 	}

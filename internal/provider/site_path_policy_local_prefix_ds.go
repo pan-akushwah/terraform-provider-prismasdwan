@@ -160,7 +160,7 @@ func (d *sitePathPolicyLocalPrefixDataSource) Read(ctx context.Context, req data
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_path_policy_local_prefix ID format", "Expected 2 tokens")
 		return
 	}

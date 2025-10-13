@@ -149,7 +149,7 @@ func (d *wanOverlayDataSource) Read(ctx context.Context, req datasource.ReadRequ
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_overlay ID format", "Expected 1 tokens")
 		return
 	}

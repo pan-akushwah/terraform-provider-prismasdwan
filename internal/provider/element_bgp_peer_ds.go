@@ -416,7 +416,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return
 	}

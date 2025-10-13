@@ -300,7 +300,7 @@ func (r *dnsServiceRoleResource) doGet(ctx context.Context, state *rsModelDnsSer
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_dns_service_role ID format", "Expected 1 tokens")
 		return false
 	}
@@ -408,7 +408,7 @@ func (r *dnsServiceRoleResource) doPut(ctx context.Context, plan *rsModelDnsServ
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_dns_service_role ID format", "Expected 1 tokens")
 		return false
 	}
@@ -559,7 +559,7 @@ func (r *dnsServiceRoleResource) doDelete(ctx context.Context, state *rsModelDns
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_dns_service_role ID format", "Expected 1 tokens")
 		return false
 	}

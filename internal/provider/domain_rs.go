@@ -386,7 +386,7 @@ func (r *domainResource) doGet(ctx context.Context, state *rsModelServiceBinding
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_domain ID format", "Expected 1 tokens")
 		return false
 	}
@@ -519,7 +519,7 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_domain ID format", "Expected 1 tokens")
 		return false
 	}
@@ -727,7 +727,7 @@ func (r *domainResource) doDelete(ctx context.Context, state *rsModelServiceBind
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_domain ID format", "Expected 1 tokens")
 		return false
 	}

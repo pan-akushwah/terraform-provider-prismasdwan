@@ -996,7 +996,7 @@ func (r *siteLanNetworkResource) doGet(ctx context.Context, state *rsModelLANNet
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_lan_network ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1270,7 +1270,7 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_lan_network ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1838,7 +1838,7 @@ func (r *siteLanNetworkResource) doDelete(ctx context.Context, state *rsModelLAN
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_lan_network ID format", "Expected 2 tokens")
 		return false
 	}

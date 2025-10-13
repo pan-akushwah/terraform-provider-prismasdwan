@@ -188,7 +188,7 @@ func (r *elementCellularModuleSimSecurityResource) doGet(ctx context.Context, st
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_cellular_module_sim_security ID format", "Expected 3 tokens")
 		return false
 	}
@@ -302,7 +302,7 @@ func (r *elementCellularModuleSimSecurityResource) doPut(ctx context.Context, pl
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_cellular_module_sim_security ID format", "Expected 3 tokens")
 		return false
 	}

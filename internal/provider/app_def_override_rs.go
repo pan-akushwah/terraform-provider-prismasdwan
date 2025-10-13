@@ -992,7 +992,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1274,7 +1274,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1814,7 +1814,7 @@ func (r *appDefOverrideResource) doDelete(ctx context.Context, state *rsModelApp
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return false
 	}

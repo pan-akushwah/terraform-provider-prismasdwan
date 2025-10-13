@@ -231,7 +231,7 @@ func (d *siteHubClusterMemberDataSource) Read(ctx context.Context, req datasourc
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_cluster_member ID format", "Expected 3 tokens")
 		return
 	}

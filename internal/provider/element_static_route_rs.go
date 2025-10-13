@@ -461,7 +461,7 @@ func (r *elementStaticRouteResource) doGet(ctx context.Context, state *rsModelSt
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_static_route ID format", "Expected 3 tokens")
 		return false
 	}
@@ -603,7 +603,7 @@ func (r *elementStaticRouteResource) doPut(ctx context.Context, plan *rsModelSta
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_static_route ID format", "Expected 3 tokens")
 		return false
 	}
@@ -851,7 +851,7 @@ func (r *elementStaticRouteResource) doDelete(ctx context.Context, state *rsMode
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_static_route ID format", "Expected 3 tokens")
 		return false
 	}

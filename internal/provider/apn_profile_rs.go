@@ -373,7 +373,7 @@ func (r *apnProfileResource) doGet(ctx context.Context, state *rsModelAPNProfile
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_apn_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -496,7 +496,7 @@ func (r *apnProfileResource) doPut(ctx context.Context, plan *rsModelAPNProfileS
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_apn_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -694,7 +694,7 @@ func (r *apnProfileResource) doDelete(ctx context.Context, state *rsModelAPNProf
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_apn_profile ID format", "Expected 1 tokens")
 		return false
 	}

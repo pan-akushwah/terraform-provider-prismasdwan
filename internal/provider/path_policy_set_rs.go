@@ -926,7 +926,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1174,7 +1174,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1655,7 +1655,7 @@ func (r *pathPolicySetResource) doDelete(ctx context.Context, state *rsModelNetw
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_set ID format", "Expected 1 tokens")
 		return false
 	}

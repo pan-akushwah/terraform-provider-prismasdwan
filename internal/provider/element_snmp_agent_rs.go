@@ -549,7 +549,7 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return false
 	}
@@ -719,7 +719,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return false
 	}
@@ -1009,7 +1009,7 @@ func (r *elementSnmpAgentResource) doDelete(ctx context.Context, state *rsModelS
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return false
 	}

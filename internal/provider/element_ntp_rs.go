@@ -218,7 +218,7 @@ func (r *elementNtpResource) doGet(ctx context.Context, state *rsModelElementNTP
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ntp ID format", "Expected 2 tokens")
 		return false
 	}
@@ -352,7 +352,7 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ntp ID format", "Expected 2 tokens")
 		return false
 	}

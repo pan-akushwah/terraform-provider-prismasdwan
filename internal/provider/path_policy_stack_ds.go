@@ -877,7 +877,7 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_stack ID format", "Expected 1 tokens")
 		return
 	}
