@@ -250,3 +250,19 @@ func Decrypt(cryptoText string) (string, error) {
 	cfb.XORKeyStream(ciphertext, ciphertext)
 	return string(ciphertext), nil
 }
+
+func TfidFromParams(params *map[string]*string) types.String {
+	// Create the Terraform ID.
+	var idBuilder strings.Builder
+	idValue, ok := (*params)["id"]
+	if ok {
+		idBuilder.WriteString(*idValue)
+	}
+	for p, v := range *params {
+		idBuilder.WriteString(IdSeparator)
+		idBuilder.WriteString(p)
+		idBuilder.WriteString("=")
+		idBuilder.WriteString(*v)
+	}
+	return types.StringValue(idBuilder.String())
+}
