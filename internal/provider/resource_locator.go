@@ -242,7 +242,7 @@ func (r *newResourceLocatorResource) GetHttpStatusCode(request *sdwan_client.Sdw
 	if request.ResponseErrorCode == nil {
 		return request.ResponseStatusCode
 	}
-	if strings.Index(*request.ResponseErrorCode, "_NOT_FOUND") != -1 {
+	if strings.Contains(*request.ResponseErrorCode, "_NOT_FOUND") {
 		return 404
 	}
 	return request.ResponseStatusCode
