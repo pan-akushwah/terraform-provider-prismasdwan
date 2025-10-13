@@ -414,7 +414,6 @@ import (
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | Ipv4Pppoe HasID=false
 // | Ipv4Dhcp HasID=false
@@ -1477,6 +1476,7 @@ import (
 // | WANInterfaceV2N4 HasID=true
 // | WANInterfaceV2N3 HasID=true
 // | ListQueryResponseWANInterfaceQueryFilter HasID=true
+// | Ethernet HasID=true
 // | ListResponseSNMPAgentV2N1 HasID=false
 // | ListResponseRoutingAccessListV2N1 HasID=false
 // | SimSecurity HasID=true
@@ -11384,57 +11384,11 @@ type rsModelSubInterface struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `Ethernet`
-// +-----------------------------------------------------------------
-type rsModelEthernet struct {
-	// added tfid for bookkeeping
-	Tfid types.String `tfsdk:"tfid"`
-	// Generic Map for Path Ids
-	TfParameters types.Map `tfsdk:"x_parameters"`
-	// propertyName=_etag type=INTEGER
-	Etag types.Int64 `tfsdk:"x_etag"`
-	// propertyName=_schema type=INTEGER
-	Schema types.Int64 `tfsdk:"x_schema"`
-	// propertyName=connector type=STRING
-	Connector types.String `tfsdk:"connector"`
-	// propertyName=device type=STRING
-	Device types.String `tfsdk:"device"`
-	// propertyName=disabled type=BOOLEAN
-	Disabled types.Bool `tfsdk:"disabled"`
-	// propertyName=disabled_reason type=STRING
-	DisabledReason types.String `tfsdk:"disabled_reason"`
-	// propertyName=element_id type=STRING
-	ElementId types.String `tfsdk:"element_id"`
-	// propertyName=id type=STRING
-	Id types.String `tfsdk:"id"`
-	// propertyName=inactive type=BOOLEAN
-	Inactive types.Bool `tfsdk:"inactive"`
-	// propertyName=inactive_reason type=STRING
-	InactiveReason types.String `tfsdk:"inactive_reason"`
-	// propertyName=max_mtu type=INTEGER
-	MaxMtu types.Int64 `tfsdk:"max_mtu"`
-	// propertyName=max_speed type=INTEGER
-	MaxSpeed types.Int64 `tfsdk:"max_speed"`
-	// propertyName=name type=STRING
-	Name types.String `tfsdk:"name"`
-	// propertyName=original_mac_address type=STRING
-	OriginalMacAddress types.String `tfsdk:"original_mac_address"`
-	// propertyName=region type=STRING
-	Region types.String `tfsdk:"region"`
-	// propertyName=site_id type=STRING
-	SiteId types.String `tfsdk:"site_id"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EthernetPort`
 // +-----------------------------------------------------------------
 type rsModelEthernetPort struct {
 	// propertyName=full_duplex type=BOOLEAN
 	FullDuplex types.Bool `tfsdk:"full_duplex"`
-	// propertyName=port_id type=REFERENCE
-	PortId *rsModelEthernet `tfsdk:"port_id"`
-	// propertyName=port_name type=STRING
-	PortName types.String `tfsdk:"port_name"`
 	// propertyName=speed type=INTEGER
 	Speed types.Int64 `tfsdk:"speed"`
 }
@@ -43467,6 +43421,48 @@ type rsModelListQueryResponseWANInterfaceQueryFilter struct {
 	NextQuery types.Map `tfsdk:"next_query"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `Ethernet`
+// +-----------------------------------------------------------------
+type rsModelEthernet struct {
+	// added tfid for bookkeeping
+	Tfid types.String `tfsdk:"tfid"`
+	// Generic Map for Path Ids
+	TfParameters types.Map `tfsdk:"x_parameters"`
+	// propertyName=_etag type=INTEGER
+	Etag types.Int64 `tfsdk:"x_etag"`
+	// propertyName=_schema type=INTEGER
+	Schema types.Int64 `tfsdk:"x_schema"`
+	// propertyName=connector type=STRING
+	Connector types.String `tfsdk:"connector"`
+	// propertyName=device type=STRING
+	Device types.String `tfsdk:"device"`
+	// propertyName=disabled type=BOOLEAN
+	Disabled types.Bool `tfsdk:"disabled"`
+	// propertyName=disabled_reason type=STRING
+	DisabledReason types.String `tfsdk:"disabled_reason"`
+	// propertyName=element_id type=STRING
+	ElementId types.String `tfsdk:"element_id"`
+	// propertyName=id type=STRING
+	Id types.String `tfsdk:"id"`
+	// propertyName=inactive type=BOOLEAN
+	Inactive types.Bool `tfsdk:"inactive"`
+	// propertyName=inactive_reason type=STRING
+	InactiveReason types.String `tfsdk:"inactive_reason"`
+	// propertyName=max_mtu type=INTEGER
+	MaxMtu types.Int64 `tfsdk:"max_mtu"`
+	// propertyName=max_speed type=INTEGER
+	MaxSpeed types.Int64 `tfsdk:"max_speed"`
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=original_mac_address type=STRING
+	OriginalMacAddress types.String `tfsdk:"original_mac_address"`
+	// propertyName=region type=STRING
+	Region types.String `tfsdk:"region"`
+	// propertyName=site_id type=STRING
+	SiteId types.String `tfsdk:"site_id"`
 }
 
 // +-----------------------------------------------------------------

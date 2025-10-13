@@ -24,7 +24,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=37)
 // | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
 // | APNConfig HasID=false
@@ -55,7 +55,6 @@ import (
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | DHCPRelayOption82 HasID=false
 // | DHCPRelay HasID=false
@@ -461,7 +460,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=directed_broadcast, type=BOOLEAN macro=rss_schema
 			"directed_broadcast": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -481,159 +480,6 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=full_duplex, type=BOOLEAN macro=rss_schema
-					// property: name=port_id, type=REFERENCE macro=rss_schema
-					"port_id": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]rsschema.Attribute{
-							// generic x_parameters is added to accomodate path parameters
-							"x_parameters": rsschema.MapAttribute{
-								Required:    false,
-								Computed:    false,
-								Optional:    true,
-								ElementType: types.StringType,
-							},
-							// property: name=_etag, type=INTEGER macro=rss_schema
-							"x_etag": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-							// property: name=_schema, type=INTEGER macro=rss_schema
-							"x_schema": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-							// property: name=connector, type=STRING macro=rss_schema
-							"connector": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=connector, type=STRING macro=rss_schema
-							// property: name=device, type=STRING macro=rss_schema
-							"device": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=device, type=STRING macro=rss_schema
-							// property: name=disabled, type=BOOLEAN macro=rss_schema
-							"disabled": rsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-							// property: name=disabled_reason, type=STRING macro=rss_schema
-							"disabled_reason": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-							// property: name=element_id, type=STRING macro=rss_schema
-							"element_id": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
-							// property: name=id, type=STRING macro=rss_schema
-							"id": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=id, type=STRING macro=rss_schema
-							// property: name=inactive, type=BOOLEAN macro=rss_schema
-							"inactive": rsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-							// property: name=inactive_reason, type=STRING macro=rss_schema
-							"inactive_reason": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-							// property: name=max_mtu, type=INTEGER macro=rss_schema
-							"max_mtu": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_mtu, type=INTEGER macro=rss_schema
-							// property: name=max_speed, type=INTEGER macro=rss_schema
-							"max_speed": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_speed, type=INTEGER macro=rss_schema
-							// property: name=name, type=STRING macro=rss_schema
-							"name": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=name, type=STRING macro=rss_schema
-							// property: name=original_mac_address, type=STRING macro=rss_schema
-							"original_mac_address": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=original_mac_address, type=STRING macro=rss_schema
-							// property: name=region, type=STRING macro=rss_schema
-							"region": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=region, type=STRING macro=rss_schema
-							// property: name=site_id, type=STRING macro=rss_schema
-							"site_id": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-					// property: name=port_name, type=STRING macro=rss_schema
-					"port_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=port_name, type=STRING macro=rss_schema
 					// property: name=speed, type=INTEGER macro=rss_schema
 					"speed": rsschema.Int64Attribute{
 						Required:  false,
@@ -958,7 +804,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=lldp_enabled, type=BOOLEAN macro=rss_schema
 			"lldp_enabled": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -974,7 +820,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=mtu, type=INTEGER macro=rss_schema
 			"mtu": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1116,7 +962,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=nat_port, type=INTEGER macro=rss_schema
 			"nat_port": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1124,7 +970,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=nat_port_v6, type=INTEGER macro=rss_schema
 			"nat_port_v6": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1156,7 +1002,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=peer_bypasspair_wan_port_type, type=STRING macro=rss_schema
 			"peer_bypasspair_wan_port_type": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1164,7 +1010,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=poe_enabled, type=BOOLEAN macro=rss_schema
 			"poe_enabled": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1198,7 +1044,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=power_usage_threshold, type=INTEGER macro=rss_schema
 			"power_usage_threshold": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1725,7 +1571,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=sgi_apply_static_tag, type=BOOLEAN macro=rss_schema
 			"sgi_apply_static_tag": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1980,7 +1826,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -2157,50 +2003,10 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	// property: name=ethernet_port, type=REFERENCE macro=copy_from_plan
 	if plan.EthernetPort != nil {
 		body.EthernetPort = &sdwan_schema.EthernetPort{}
-		// copy_from_plan: body=body.EthernetPort prefix=rsModel plan=plan.EthernetPort properties=4
+		// copy_from_plan: body=body.EthernetPort prefix=rsModel plan=plan.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_from_plan body=body.EthernetPort prefix=rsModel plan=plan.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_from_plan
 		body.EthernetPort.FullDuplex = BoolValueOrNil(plan.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_from_plan
-		if plan.EthernetPort.PortId != nil {
-			body.EthernetPort.PortId = &sdwan_schema.Ethernet{}
-			// copy_from_plan: body=body.EthernetPort.PortId prefix=rsModel plan=plan.EthernetPort.PortId properties=16
-			tflog.Debug(ctx, "copy_from_plan body=body.EthernetPort.PortId prefix=rsModel plan=plan.EthernetPort.PortId")
-			// property: name=_etag, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.Etag = Int64ValueOrNil(plan.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.Schema = Int64ValueOrNil(plan.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Connector = StringValueOrNil(plan.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Device = StringValueOrNil(plan.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-			body.EthernetPort.PortId.Disabled = BoolValueOrNil(plan.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.DisabledReason = StringValueOrNil(plan.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.ElementId = StringValueOrNil(plan.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Id = StringValueOrNil(plan.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-			body.EthernetPort.PortId.Inactive = BoolValueOrNil(plan.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.InactiveReason = StringValueOrNil(plan.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.MaxMtu = Int64ValueOrNil(plan.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.MaxSpeed = Int64ValueOrNil(plan.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Name = StringValueOrNil(plan.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.OriginalMacAddress = StringValueOrNil(plan.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Region = StringValueOrNil(plan.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.SiteId = StringValueOrNil(plan.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_from_plan
-		body.EthernetPort.PortName = StringValueOrNil(plan.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_from_plan
 		body.EthernetPort.Speed = Int64ValueOrNil(plan.EthernetPort.Speed)
 	}
@@ -2915,52 +2721,10 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &rsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &rsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId properties=16
-			tflog.Debug(ctx, "copy_to_state state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -3787,52 +3551,10 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &rsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &rsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId properties=16
-			tflog.Debug(ctx, "copy_to_state state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -4721,123 +4443,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		body.EthernetPort = nil
 	} else {
 		body.EthernetPort = &sdwan_schema.EthernetPort{}
-		// copy_from_plan_or_state: body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort properties=4
+		// copy_from_plan_or_state: body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.EthernetPort != nil {
 			body.EthernetPort.FullDuplex = ValueBoolPointerFromPlanOrState(plan.EthernetPort.FullDuplex, state.EthernetPort.FullDuplex)
 		} else {
 			body.EthernetPort.FullDuplex = BoolValueOrNil(plan.EthernetPort.FullDuplex)
-		}
-		// property: name=port_id, type=REFERENCE macro=copy_from_plan_or_state
-		if plan.EthernetPort.PortId == nil {
-			body.EthernetPort.PortId = nil
-		} else {
-			body.EthernetPort.PortId = &sdwan_schema.Ethernet{}
-			// copy_from_plan_or_state: body=body.EthernetPort.PortId prefix=rsModel state=state.EthernetPort.PortId plan=plan.EthernetPort.PortId properties=16
-			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EthernetPort.PortId prefix=rsModel state=state.EthernetPort.PortId plan=plan.EthernetPort.PortId")
-			// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Etag = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.Etag, state.EthernetPort.PortId.Etag)
-			} else {
-				body.EthernetPort.PortId.Etag = Int64ValueOrNil(plan.EthernetPort.PortId.Etag)
-			}
-			// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Schema = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.Schema, state.EthernetPort.PortId.Schema)
-			} else {
-				body.EthernetPort.PortId.Schema = Int64ValueOrNil(plan.EthernetPort.PortId.Schema)
-			}
-			// property: name=connector, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Connector = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Connector, state.EthernetPort.PortId.Connector)
-			} else {
-				body.EthernetPort.PortId.Connector = StringValueOrNil(plan.EthernetPort.PortId.Connector)
-			}
-			// property: name=device, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Device = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Device, state.EthernetPort.PortId.Device)
-			} else {
-				body.EthernetPort.PortId.Device = StringValueOrNil(plan.EthernetPort.PortId.Device)
-			}
-			// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Disabled = ValueBoolPointerFromPlanOrState(plan.EthernetPort.PortId.Disabled, state.EthernetPort.PortId.Disabled)
-			} else {
-				body.EthernetPort.PortId.Disabled = BoolValueOrNil(plan.EthernetPort.PortId.Disabled)
-			}
-			// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.DisabledReason = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.DisabledReason, state.EthernetPort.PortId.DisabledReason)
-			} else {
-				body.EthernetPort.PortId.DisabledReason = StringValueOrNil(plan.EthernetPort.PortId.DisabledReason)
-			}
-			// property: name=element_id, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.ElementId = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.ElementId, state.EthernetPort.PortId.ElementId)
-			} else {
-				body.EthernetPort.PortId.ElementId = StringValueOrNil(plan.EthernetPort.PortId.ElementId)
-			}
-			// property: name=id, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Id = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Id, state.EthernetPort.PortId.Id)
-			} else {
-				body.EthernetPort.PortId.Id = StringValueOrNil(plan.EthernetPort.PortId.Id)
-			}
-			// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Inactive = ValueBoolPointerFromPlanOrState(plan.EthernetPort.PortId.Inactive, state.EthernetPort.PortId.Inactive)
-			} else {
-				body.EthernetPort.PortId.Inactive = BoolValueOrNil(plan.EthernetPort.PortId.Inactive)
-			}
-			// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.InactiveReason = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.InactiveReason, state.EthernetPort.PortId.InactiveReason)
-			} else {
-				body.EthernetPort.PortId.InactiveReason = StringValueOrNil(plan.EthernetPort.PortId.InactiveReason)
-			}
-			// property: name=max_mtu, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.MaxMtu = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.MaxMtu, state.EthernetPort.PortId.MaxMtu)
-			} else {
-				body.EthernetPort.PortId.MaxMtu = Int64ValueOrNil(plan.EthernetPort.PortId.MaxMtu)
-			}
-			// property: name=max_speed, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.MaxSpeed = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.MaxSpeed, state.EthernetPort.PortId.MaxSpeed)
-			} else {
-				body.EthernetPort.PortId.MaxSpeed = Int64ValueOrNil(plan.EthernetPort.PortId.MaxSpeed)
-			}
-			// property: name=name, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Name = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Name, state.EthernetPort.PortId.Name)
-			} else {
-				body.EthernetPort.PortId.Name = StringValueOrNil(plan.EthernetPort.PortId.Name)
-			}
-			// property: name=original_mac_address, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.OriginalMacAddress = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.OriginalMacAddress, state.EthernetPort.PortId.OriginalMacAddress)
-			} else {
-				body.EthernetPort.PortId.OriginalMacAddress = StringValueOrNil(plan.EthernetPort.PortId.OriginalMacAddress)
-			}
-			// property: name=region, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Region = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Region, state.EthernetPort.PortId.Region)
-			} else {
-				body.EthernetPort.PortId.Region = StringValueOrNil(plan.EthernetPort.PortId.Region)
-			}
-			// property: name=site_id, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.SiteId = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.SiteId, state.EthernetPort.PortId.SiteId)
-			} else {
-				body.EthernetPort.PortId.SiteId = StringValueOrNil(plan.EthernetPort.PortId.SiteId)
-			}
-		}
-		// property: name=port_name, type=STRING macro=copy_from_plan_or_state
-		if state.EthernetPort != nil {
-			body.EthernetPort.PortName = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortName, state.EthernetPort.PortName)
-		} else {
-			body.EthernetPort.PortName = StringValueOrNil(plan.EthernetPort.PortName)
 		}
 		// property: name=speed, type=INTEGER macro=copy_from_plan_or_state
 		if state.EthernetPort != nil {
@@ -5816,6 +5428,9 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
+	request_body_string, _ = sjson.Set(request_body_string, "_schema", 4)
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 
@@ -6015,52 +5630,10 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &rsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &rsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId properties=16
-			tflog.Debug(ctx, "copy_to_state state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -6717,10 +6290,25 @@ func (r *elementShellInterfaceResource) Create(ctx context.Context, req resource
 		return
 	}
 
-	// make post call
 	var state rsModelInterfaceScreenV4N20
-	if r.doPost(ctx, &plan, &state, resp) {
-		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	_, objectIdGiven := plan.TfParameters.Elements()["id"]
+	if objectIdGiven {
+		// make get call
+		r_resp := &resource.ReadResponse{
+			Diagnostics: resp.Diagnostics,
+			State:       resp.State,
+			Private:     resp.Private,
+		}
+		params := MapStringValueOrNil(ctx, plan.TfParameters)
+		plan.Tfid = TfidFromParams(&params)
+		if r.doGet(ctx, &state, &plan, &resp.State, r_resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
+	} else {
+		// make post call
+		if r.doPost(ctx, &plan, &state, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
 	}
 }
 

@@ -411,7 +411,6 @@ package schemas
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | Ipv4Pppoe HasID=false
 // | Ipv4Dhcp HasID=false
@@ -1474,6 +1473,7 @@ package schemas
 // | WANInterfaceV2N4 HasID=true
 // | WANInterfaceV2N3 HasID=true
 // | ListQueryResponseWANInterfaceQueryFilter HasID=true
+// | Ethernet HasID=true
 // | ListResponseSNMPAgentV2N1 HasID=false
 // | ListResponseRoutingAccessListV2N1 HasID=false
 // | SimSecurity HasID=true
@@ -7339,35 +7339,11 @@ type SubInterface struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `Ethernet`
-// +-----------------------------------------------------------------
-type Ethernet struct {
-	Etag               *int64  `json:"_etag"`                // propertyName=_etag type=INTEGER
-	Schema             *int64  `json:"_schema"`              // propertyName=_schema type=INTEGER
-	Connector          *string `json:"connector"`            // propertyName=connector type=STRING
-	Device             *string `json:"device"`               // propertyName=device type=STRING
-	Disabled           *bool   `json:"disabled"`             // propertyName=disabled type=BOOLEAN
-	DisabledReason     *string `json:"disabled_reason"`      // propertyName=disabled_reason type=STRING
-	ElementId          *string `json:"element_id"`           // propertyName=element_id type=STRING
-	Id                 *string `json:"id"`                   // propertyName=id type=STRING
-	Inactive           *bool   `json:"inactive"`             // propertyName=inactive type=BOOLEAN
-	InactiveReason     *string `json:"inactive_reason"`      // propertyName=inactive_reason type=STRING
-	MaxMtu             *int64  `json:"max_mtu"`              // propertyName=max_mtu type=INTEGER
-	MaxSpeed           *int64  `json:"max_speed"`            // propertyName=max_speed type=INTEGER
-	Name               *string `json:"name"`                 // propertyName=name type=STRING
-	OriginalMacAddress *string `json:"original_mac_address"` // propertyName=original_mac_address type=STRING
-	Region             *string `json:"region"`               // propertyName=region type=STRING
-	SiteId             *string `json:"site_id"`              // propertyName=site_id type=STRING
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EthernetPort`
 // +-----------------------------------------------------------------
 type EthernetPort struct {
-	FullDuplex *bool     `json:"full_duplex"` // propertyName=full_duplex type=BOOLEAN
-	PortId     *Ethernet `json:"port_id"`     // propertyName=port_id type=REFERENCE
-	PortName   *string   `json:"port_name"`   // propertyName=port_name type=STRING
-	Speed      *int64    `json:"speed"`       // propertyName=speed type=INTEGER
+	FullDuplex *bool  `json:"full_duplex"` // propertyName=full_duplex type=BOOLEAN
+	Speed      *int64 `json:"speed"`       // propertyName=speed type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25067,6 +25043,28 @@ type ListQueryResponseWANInterfaceQueryFilter struct {
 	Items        []WANInterfaceQueryFilter `json:"items"`         // propertyName=items type=ARRAY_REFERENCE
 	NextQuery    *map[string]interface{}   `json:"next_query"`    // propertyName=next_query type=OBJECT
 	TotalCount   *int64                    `json:"total_count"`   // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `Ethernet`
+// +-----------------------------------------------------------------
+type Ethernet struct {
+	Etag               *int64  `json:"_etag"`                // propertyName=_etag type=INTEGER
+	Schema             *int64  `json:"_schema"`              // propertyName=_schema type=INTEGER
+	Connector          *string `json:"connector"`            // propertyName=connector type=STRING
+	Device             *string `json:"device"`               // propertyName=device type=STRING
+	Disabled           *bool   `json:"disabled"`             // propertyName=disabled type=BOOLEAN
+	DisabledReason     *string `json:"disabled_reason"`      // propertyName=disabled_reason type=STRING
+	ElementId          *string `json:"element_id"`           // propertyName=element_id type=STRING
+	Id                 *string `json:"id"`                   // propertyName=id type=STRING
+	Inactive           *bool   `json:"inactive"`             // propertyName=inactive type=BOOLEAN
+	InactiveReason     *string `json:"inactive_reason"`      // propertyName=inactive_reason type=STRING
+	MaxMtu             *int64  `json:"max_mtu"`              // propertyName=max_mtu type=INTEGER
+	MaxSpeed           *int64  `json:"max_speed"`            // propertyName=max_speed type=INTEGER
+	Name               *string `json:"name"`                 // propertyName=name type=STRING
+	OriginalMacAddress *string `json:"original_mac_address"` // propertyName=original_mac_address type=STRING
+	Region             *string `json:"region"`               // propertyName=region type=STRING
+	SiteId             *string `json:"site_id"`              // propertyName=site_id type=STRING
 }
 
 // +-----------------------------------------------------------------

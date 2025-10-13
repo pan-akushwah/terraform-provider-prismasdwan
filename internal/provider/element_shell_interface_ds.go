@@ -19,7 +19,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=37)
 // | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
 // | APNConfig HasID=false
@@ -50,7 +50,6 @@ import (
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | DHCPRelayOption82 HasID=false
 // | DHCPRelay HasID=false
@@ -453,7 +452,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=directed_broadcast, type=BOOLEAN macro=rss_schema
 			"directed_broadcast": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -473,159 +472,6 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=full_duplex, type=BOOLEAN macro=rss_schema
-					// property: name=port_id, type=REFERENCE macro=rss_schema
-					"port_id": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// generic x_parameters is added to accomodate path parameters
-							"x_parameters": dsschema.MapAttribute{
-								Required:    false,
-								Computed:    false,
-								Optional:    true,
-								ElementType: types.StringType,
-							},
-							// property: name=_etag, type=INTEGER macro=rss_schema
-							"x_etag": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-							// property: name=_schema, type=INTEGER macro=rss_schema
-							"x_schema": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-							// property: name=connector, type=STRING macro=rss_schema
-							"connector": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=connector, type=STRING macro=rss_schema
-							// property: name=device, type=STRING macro=rss_schema
-							"device": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=device, type=STRING macro=rss_schema
-							// property: name=disabled, type=BOOLEAN macro=rss_schema
-							"disabled": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-							// property: name=disabled_reason, type=STRING macro=rss_schema
-							"disabled_reason": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-							// property: name=element_id, type=STRING macro=rss_schema
-							"element_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
-							// property: name=id, type=STRING macro=rss_schema
-							"id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=id, type=STRING macro=rss_schema
-							// property: name=inactive, type=BOOLEAN macro=rss_schema
-							"inactive": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-							// property: name=inactive_reason, type=STRING macro=rss_schema
-							"inactive_reason": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-							// property: name=max_mtu, type=INTEGER macro=rss_schema
-							"max_mtu": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_mtu, type=INTEGER macro=rss_schema
-							// property: name=max_speed, type=INTEGER macro=rss_schema
-							"max_speed": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_speed, type=INTEGER macro=rss_schema
-							// property: name=name, type=STRING macro=rss_schema
-							"name": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=name, type=STRING macro=rss_schema
-							// property: name=original_mac_address, type=STRING macro=rss_schema
-							"original_mac_address": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=original_mac_address, type=STRING macro=rss_schema
-							// property: name=region, type=STRING macro=rss_schema
-							"region": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=region, type=STRING macro=rss_schema
-							// property: name=site_id, type=STRING macro=rss_schema
-							"site_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-					// property: name=port_name, type=STRING macro=rss_schema
-					"port_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=port_name, type=STRING macro=rss_schema
 					// property: name=speed, type=INTEGER macro=rss_schema
 					"speed": dsschema.Int64Attribute{
 						Required:  false,
@@ -950,7 +796,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=lldp_enabled, type=BOOLEAN macro=rss_schema
 			"lldp_enabled": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -966,7 +812,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=mtu, type=INTEGER macro=rss_schema
 			"mtu": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1108,7 +954,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=nat_port, type=INTEGER macro=rss_schema
 			"nat_port": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1116,7 +962,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=nat_port_v6, type=INTEGER macro=rss_schema
 			"nat_port_v6": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1148,7 +994,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=peer_bypasspair_wan_port_type, type=STRING macro=rss_schema
 			"peer_bypasspair_wan_port_type": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1156,7 +1002,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=poe_enabled, type=BOOLEAN macro=rss_schema
 			"poe_enabled": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1190,7 +1036,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=power_usage_threshold, type=INTEGER macro=rss_schema
 			"power_usage_threshold": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1717,7 +1563,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=sgi_apply_static_tag, type=BOOLEAN macro=rss_schema
 			"sgi_apply_static_tag": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1972,7 +1818,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -2194,52 +2040,10 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &dsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=dsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=dsModel ans=ans.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=dsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &dsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=dsModel ans=ans.EthernetPort.PortId properties=16
-			tflog.Debug(ctx, "copy_to_state state=state.EthernetPort.PortId prefix=dsModel ans=ans.EthernetPort.PortId")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
