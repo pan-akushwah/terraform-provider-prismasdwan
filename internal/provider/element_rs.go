@@ -109,7 +109,7 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 			// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
 			"allowed_roles": rsschema.ListAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
@@ -280,7 +280,7 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 			// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_direct_private_wan_forwarding": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -288,7 +288,7 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 			// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_lan_forwarding": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -314,7 +314,7 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 			// property: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
 			"main_power_usage_threshold": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -619,7 +619,7 @@ func (r *elementResource) Schema(_ context.Context, _ resource.SchemaRequest, re
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1442,6 +1442,17 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 	request_body_string, _ = sjson.Delete(request_body_string, "serial_number")
 	tflog.Debug(ctx, "http json override: delete request_body_string::state")
 	request_body_string, _ = sjson.Delete(request_body_string, "state")
+	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::element_id")
+	request_body_string, _ = sjson.Delete(request_body_string, "element_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::cluster_insertion_mode")
+	request_body_string, _ = sjson.Delete(request_body_string, "cluster_insertion_mode")
+	tflog.Debug(ctx, "http json override: delete request_body_string::cluster_member_id")
+	request_body_string, _ = sjson.Delete(request_body_string, "cluster_member_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::software_version")
+	request_body_string, _ = sjson.Delete(request_body_string, "software_version")
+	tflog.Debug(ctx, "http json override: delete request_body_string::tenant_id")
+	request_body_string, _ = sjson.Delete(request_body_string, "tenant_id")
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 

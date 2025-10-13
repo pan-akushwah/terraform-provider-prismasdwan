@@ -73,6 +73,7 @@ type ElementShellPostBody struct {
 	ModelName       *string `json:"model_name"`
 	Name            *string `json:"name"`
 	Role            *string `json:"role"`
+	ClusterId       *string `json:"cluster_id"`
 }
 
 // Metadata returns the data source type name.
@@ -118,7 +119,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
 			"allowed_roles": rsschema.ListAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
@@ -289,7 +290,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_direct_private_wan_forwarding": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -297,7 +298,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_lan_forwarding": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -323,7 +324,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
 			"main_power_usage_threshold": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -628,7 +629,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -689,6 +690,7 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	body.Role = StringValueOrNil(plan.Role)
 	body.Name = StringValueOrNil(plan.Name)
 	body.TenantId = StringValueOrNil(plan.TenantId)
+	body.ClusterId = StringValueOrNil(plan.ClusterId)
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -2096,9 +2098,29 @@ func (r *elementShellResource) Read(ctx context.Context, req resource.ReadReques
 		return
 	}
 
-	// make a get call
-	if r.doGet(ctx, &state, &savestate, &resp.State, resp) {
-		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	// for shell, hw_id is always null
+	if savestate.HwId.IsNull() {
+		tflog.Debug(ctx, "hw_id was found to be null, reading as shell")
+		if r.doGet(ctx, &state, &savestate, &resp.State, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		} else {
+			tflog.Debug(ctx, "reading as shell failed, reading as element")
+			e_r := &elementResource{
+				client: r.client,
+			}
+			savestate.Tfid = savestate.ElementId
+			if e_r.doGet(ctx, &state, &savestate, &resp.State, resp) {
+				resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+			}
+		}
+	} else {
+		tflog.Debug(ctx, "hw_id was found to be non-null, reading as element")
+		e_r := &elementResource{
+			client: r.client,
+		}
+		if e_r.doGet(ctx, &state, &savestate, &resp.State, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
 	}
 }
 
@@ -2121,9 +2143,30 @@ func (r *elementShellResource) Update(ctx context.Context, req resource.UpdateRe
 		return
 	}
 
-	// make a put call
-	if r.doPut(ctx, &plan, &state, &resp.State, resp) {
-		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	// for shell, hw_id is always null
+	if state.HwId.IsNull() {
+		// make a put call
+		tflog.Debug(ctx, "hw_id was found to be null, updating as shell")
+		if r.doPut(ctx, &plan, &state, &resp.State, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		} else {
+			tflog.Debug(ctx, "updating as shell failed, updating as element")
+			e_r := &elementResource{
+				client: r.client,
+			}
+			state.Tfid = state.ElementId
+			if e_r.doPut(ctx, &plan, &state, &resp.State, resp) {
+				resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+			}
+		}
+	} else {
+		tflog.Debug(ctx, "hw_id was found to be non-null, updating as element")
+		e_r := &elementResource{
+			client: r.client,
+		}
+		if e_r.doPut(ctx, &plan, &state, &resp.State, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
 	}
 }
 

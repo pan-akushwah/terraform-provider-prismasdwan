@@ -101,7 +101,7 @@ func (d *elementDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 			// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
 			"allowed_roles": dsschema.ListAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
@@ -272,7 +272,7 @@ func (d *elementDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 			// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_direct_private_wan_forwarding": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -280,7 +280,7 @@ func (d *elementDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 			// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_lan_forwarding": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -306,7 +306,7 @@ func (d *elementDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 			// property: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
 			"main_power_usage_threshold": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -611,7 +611,7 @@ func (d *elementDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},

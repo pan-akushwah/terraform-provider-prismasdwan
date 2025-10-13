@@ -119,11 +119,25 @@
     "main_power_usage_threshold" : {
       "description" : "Main Power Usage Threshold: ValidateDecimal(allowZero = true, increment = 0, max = 0, error = INVALID_MAIN_POWER_USAGE_THRESHOLD: Invalid main power usage threshold. Allowed range is 50-100., min = 0) ",
       "format" : "int32",
-      "type" : "integer"
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "vpn_to_vpn_forwarding" : {
       "description" : "Vpn To Vpn Forwarding",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_policysetstack_id" : {
       "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
@@ -191,11 +205,25 @@
     },
     "l3_lan_forwarding" : {
       "description" : "L3 Lan Forwarding",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "l3_direct_private_wan_forwarding" : {
       "description" : "L3 Direct Private Wan Forwarding",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "priority_policysetstack_id" : {
       "description" : "Priority Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PRIORITY_POLICYSETSTACK_ID: Invalid priority policy set stack id) ",
@@ -373,6 +401,13 @@
       "type" : "array",
       "items" : {
         "type" : "string"
+      },
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
       }
     }
   },
