@@ -475,7 +475,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 					// property: name=full_duplex, type=BOOLEAN macro=rss_schema
 					"full_duplex": rsschema.BoolAttribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
@@ -483,7 +483,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 					// property: name=speed, type=INTEGER macro=rss_schema
 					"speed": rsschema.Int64Attribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
@@ -1784,7 +1784,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -5429,6 +5429,8 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::ipv4_config.pppoe_config")
+	request_body_string, _ = sjson.Delete(request_body_string, "ipv4_config.pppoe_config")
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 4)
 	// copy pointer
@@ -6301,13 +6303,30 @@ func (r *elementShellInterfaceResource) Create(ctx context.Context, req resource
 		}
 		params := MapStringValueOrNil(ctx, plan.TfParameters)
 		plan.Tfid = TfidFromParams(&params)
+		tflog.Info(ctx, "trying to execute get on the shell interface")
 		if r.doGet(ctx, &state, &plan, &resp.State, r_resp) {
+			tflog.Info(ctx, "get on the shell interface succeeded, state will be updated by it")
 			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+			// make a put call to send plan to server!
+			put_resp := &resource.UpdateResponse{
+				Diagnostics: resp.Diagnostics,
+				State:       resp.State,
+				Private:     resp.Private,
+			}
+			if r.doPut(ctx, &plan, &state, &resp.State, put_resp) {
+				tflog.Info(ctx, "put on the shell interface succeeded, state will be updated by it")
+				resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+			}
+		} else {
+			tflog.Error(ctx, "failed to set the state from the response from sdwan")
 		}
 	} else {
+		tflog.Info(ctx, "trying to execute get on the element interface, as id was given")
 		// make post call
 		if r.doPost(ctx, &plan, &state, resp) {
 			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		} else {
+			tflog.Error(ctx, "failed to set the state from the response from sdwan")
 		}
 	}
 }
@@ -6327,6 +6346,14 @@ func (r *elementShellInterfaceResource) Read(ctx context.Context, req resource.R
 	// make a get call
 	if r.doGet(ctx, &state, &savestate, &resp.State, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	} else {
+		// read as an actual interface
+		inf_resource := elementInterfaceResource{
+			client: r.client,
+		}
+		if inf_resource.doGet(ctx, &state, &savestate, &resp.State, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
 	}
 }
 
@@ -6352,6 +6379,16 @@ func (r *elementShellInterfaceResource) Update(ctx context.Context, req resource
 	// make a put call
 	if r.doPut(ctx, &plan, &state, &resp.State, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	} else {
+		tflog.Debug(ctx, "updating as shell interface failed, updating as element interface")
+		// read as an actual interface
+		inf_resource := elementInterfaceResource{
+			client: r.client,
+		}
+		// state.Tfid = state.ElementId
+		if inf_resource.doPut(ctx, &plan, &state, &resp.State, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
 	}
 }
 

@@ -820,7 +820,14 @@
     },
     "used_for" : {
       "description" : "Used For: ValidateEnum(enumClass = classOf[UsedFor], error = INTERFACE_CONFIG_INVALID_USEDFOR_VALUE: Invalid used for value specified.The allowed values are public,private_wan,lan,none, nullAllowed = false) ",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_port" : {
       "description" : "Nat Port: Range(max = 65535L, error = INTERFACE_CONFIG_INVALID_PORT: LAN,WAN,Internet bypass ports cannot be part of logical interface groups., min = 0L) ",
@@ -846,12 +853,26 @@
       "properties" : {
         "full_duplex" : {
           "description" : "Full Duplex",
-          "type" : "boolean"
+          "type" : "boolean",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_computed" : {
+                "type" : "boolean"
+              }
+            }
+          }
         },
         "speed" : {
           "description" : "Speed",
           "format" : "int32",
-          "type" : "integer"
+          "type" : "integer",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_computed" : {
+                "type" : "boolean"
+              }
+            }
+          }
         }
       }
     },

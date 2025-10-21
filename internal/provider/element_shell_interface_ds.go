@@ -467,7 +467,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 					// property: name=full_duplex, type=BOOLEAN macro=rss_schema
 					"full_duplex": dsschema.BoolAttribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
@@ -475,7 +475,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 					// property: name=speed, type=INTEGER macro=rss_schema
 					"speed": dsschema.Int64Attribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
@@ -1776,7 +1776,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},

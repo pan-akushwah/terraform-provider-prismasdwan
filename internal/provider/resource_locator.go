@@ -255,6 +255,10 @@ func (r *newResourceLocatorResource) Create(ctx context.Context, req resource.Cr
 	if resp.Diagnostics.HasError() {
 		return
 	}
+	tflog.Debug(ctx, "resource lookup prismasdwan_resource_locator} parameters", map[string]any{
+		"req_path":  plan.ResourceProperty.ValueString(),
+		"req_value": plan.ResourcePropertyValue.ValueString(),
+	})
 	r.makeHttpGetLookUp(ctx, &plan, &resp.State, &resp.Diagnostics)
 	if !resp.Diagnostics.HasError() {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
