@@ -6,7 +6,7 @@ Requirements
 ------------
 
 - [Terraform](https://www.terraform.io/downloads.html) v1+
-- [Go](https://go.dev) v1.21+ (to build the provider from source)
+- [Go](https://go.dev) v1.22+ (to build the provider from source)
 
 
 Building the Provider
@@ -54,7 +54,7 @@ terraform {
     required_providers {
         prismasdwan = {
             source = "paloaltonetworks-local/prismasdwan"
-            version = "1.0.0"
+            version = "v6.5.2b1"
         }
     }
 }

@@ -24,11 +24,15 @@ provider "prismasdwan" {
 terraform {
   required_providers {
     prismasdwan = {
-      source  = "paloaltonetworks/terraform-provider-prismasdwan"
-      version = "0.1.0"
+      source  = "paloaltonetworks/prismasdwan"
+      version = "6.5.2b1"
     }
   }
 }
+
+#
+# run `terraform init` to download the binary
+#
 ```
 
 
