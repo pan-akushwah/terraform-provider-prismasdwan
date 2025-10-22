@@ -305,6 +305,7 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -321,6 +322,7 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	if plan.Dscp != nil {
 		body.Dscp = &sdwan_schema.DSCP{}
 		// copy_from_plan: body=body.Dscp prefix=rsModel plan=plan.Dscp properties=1
+		tflog.Debug(ctx, "copy_from_plan body=body.Dscp prefix=rsModel plan=plan.Dscp")
 		// property: name=value, type=INTEGER macro=copy_from_plan
 		body.Dscp.Value = Int64ValueOrNil(plan.Dscp.Value)
 	}
@@ -346,6 +348,7 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	if plan.UserOrGroup != nil {
 		body.UserOrGroup = &sdwan_schema.UserGroup{}
 		// copy_from_plan: body=body.UserOrGroup prefix=rsModel plan=plan.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.UserOrGroup prefix=rsModel plan=plan.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 		body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
 		// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -362,8 +365,11 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -389,7 +395,9 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -425,6 +433,7 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 
 	// Store the answer to state. schema=PriorityPolicyRuleV2N2
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -447,6 +456,7 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	} else {
 		state.Dscp = &rsModelDSCP{}
 		// copy_to_state: state=state.Dscp prefix=rsModel ans=ans.Dscp properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.Dscp prefix=rsModel ans=ans.Dscp")
 		// property: name=value, type=INTEGER macro=copy_to_state
 		state.Dscp.Value = types.Int64PointerValue(ans.Dscp.Value)
 	}
@@ -478,6 +488,7 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	} else {
 		state.UserOrGroup = &rsModelUserGroup{}
 		// copy_to_state: state=state.UserOrGroup prefix=rsModel ans=ans.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.UserOrGroup prefix=rsModel ans=ans.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, ans.UserOrGroup.UserGroupIds)
 		state.UserOrGroup.UserGroupIds = varUserGroupIds
@@ -500,7 +511,7 @@ func (r *qosPolicyRuleResource) doGet(ctx context.Context, state *rsModelPriorit
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}
@@ -547,7 +558,9 @@ func (r *qosPolicyRuleResource) doGet(ctx context.Context, state *rsModelPriorit
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=PriorityPolicyRuleV2N2
@@ -569,6 +582,7 @@ func (r *qosPolicyRuleResource) doGet(ctx context.Context, state *rsModelPriorit
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -591,6 +605,7 @@ func (r *qosPolicyRuleResource) doGet(ctx context.Context, state *rsModelPriorit
 	} else {
 		state.Dscp = &rsModelDSCP{}
 		// copy_to_state: state=state.Dscp prefix=rsModel ans=ans.Dscp properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.Dscp prefix=rsModel ans=ans.Dscp")
 		// property: name=value, type=INTEGER macro=copy_to_state
 		state.Dscp.Value = types.Int64PointerValue(ans.Dscp.Value)
 	}
@@ -622,6 +637,7 @@ func (r *qosPolicyRuleResource) doGet(ctx context.Context, state *rsModelPriorit
 	} else {
 		state.UserOrGroup = &rsModelUserGroup{}
 		// copy_to_state: state=state.UserOrGroup prefix=rsModel ans=ans.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.UserOrGroup prefix=rsModel ans=ans.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, ans.UserOrGroup.UserGroupIds)
 		state.UserOrGroup.UserGroupIds = varUserGroupIds
@@ -653,7 +669,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}
@@ -684,6 +700,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=17
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -718,6 +735,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	} else {
 		body.Dscp = &sdwan_schema.DSCP{}
 		// copy_from_plan_or_state: body=body.Dscp prefix=rsModel state=state.Dscp plan=plan.Dscp properties=1
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Dscp prefix=rsModel state=state.Dscp plan=plan.Dscp")
 		// property: name=value, type=INTEGER macro=copy_from_plan_or_state
 		if state.Dscp != nil {
 			body.Dscp.Value = ValueInt64PointerFromPlanOrState(plan.Dscp.Value, state.Dscp.Value)
@@ -777,6 +795,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	} else {
 		body.UserOrGroup = &sdwan_schema.UserGroup{}
 		// copy_from_plan_or_state: body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 		body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
 		// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
@@ -822,7 +841,9 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -837,6 +858,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 
 	// Store the answer to state. schema=PriorityPolicyRuleV2N2
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -859,6 +881,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	} else {
 		state.Dscp = &rsModelDSCP{}
 		// copy_to_state: state=state.Dscp prefix=rsModel ans=ans.Dscp properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.Dscp prefix=rsModel ans=ans.Dscp")
 		// property: name=value, type=INTEGER macro=copy_to_state
 		state.Dscp.Value = types.Int64PointerValue(ans.Dscp.Value)
 	}
@@ -890,6 +913,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	} else {
 		state.UserOrGroup = &rsModelUserGroup{}
 		// copy_to_state: state=state.UserOrGroup prefix=rsModel ans=ans.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.UserOrGroup prefix=rsModel ans=ans.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, ans.UserOrGroup.UserGroupIds)
 		state.UserOrGroup.UserGroupIds = varUserGroupIds
@@ -914,7 +938,7 @@ func (r *qosPolicyRuleResource) doDelete(ctx context.Context, state *rsModelPrio
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}

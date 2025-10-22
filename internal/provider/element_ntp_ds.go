@@ -204,7 +204,7 @@ func (d *elementNtpDataSource) Read(ctx context.Context, req datasource.ReadRequ
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ntp ID format", "Expected 2 tokens")
 		return
 	}
@@ -252,6 +252,7 @@ func (d *elementNtpDataSource) Read(ctx context.Context, req datasource.ReadRequ
 
 	// lets copy all items into state schema=ElementNTPV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -273,6 +274,7 @@ func (d *elementNtpDataSource) Read(ctx context.Context, req datasource.ReadRequ
 			// add a new item
 			state.NtpServers = append(state.NtpServers, dsModelNTPServer{})
 			// copy_to_state: state=state.NtpServers[varLoopNtpServersIndex] prefix=dsModel ans=varLoopNtpServers properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.NtpServers[varLoopNtpServersIndex] prefix=dsModel ans=varLoopNtpServers")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.NtpServers[varLoopNtpServersIndex].Host = types.StringPointerValue(varLoopNtpServers.Host)
 			// property: name=max_poll, type=INTEGER macro=copy_to_state

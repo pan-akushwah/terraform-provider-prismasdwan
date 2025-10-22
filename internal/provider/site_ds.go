@@ -428,7 +428,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_site ID format", "Expected 1 tokens")
 		return
 	}
@@ -475,6 +475,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 
 	// lets copy all items into state schema=SiteScreenV4N12
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=25
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -485,6 +486,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 	} else {
 		state.Address = &dsModelAddress{}
 		// copy_to_state: state=state.Address prefix=dsModel ans=ans.Address properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=dsModel ans=ans.Address")
 		// property: name=city, type=STRING macro=copy_to_state
 		state.Address.City = types.StringPointerValue(ans.Address.City)
 		// property: name=country, type=STRING macro=copy_to_state
@@ -519,6 +521,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 			// add a new item
 			state.ExtendedTags = append(state.ExtendedTags, dsModelExtendedTag{})
 			// copy_to_state: state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=dsModel ans=varLoopExtendedTags properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.ExtendedTags[varLoopExtendedTagsIndex] prefix=dsModel ans=varLoopExtendedTags")
 			// property: name=key, type=STRING macro=copy_to_state
 			state.ExtendedTags[varLoopExtendedTagsIndex].Key = types.StringPointerValue(varLoopExtendedTags.Key)
 			// property: name=value, type=STRING macro=copy_to_state
@@ -535,6 +538,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 	} else {
 		state.Location = &dsModelLocation{}
 		// copy_to_state: state=state.Location prefix=dsModel ans=ans.Location properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=dsModel ans=ans.Location")
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
@@ -570,6 +574,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 	} else {
 		state.SgiConfig = &dsModelSecurityGroupInformationConfig{}
 		// copy_to_state: state=state.SgiConfig prefix=dsModel ans=ans.SgiConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SgiConfig prefix=dsModel ans=ans.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_to_state
 		state.SgiConfig.SgiTag = types.Int64PointerValue(ans.SgiConfig.SgiTag)
 		// property: name=sgi_vendor_id, type=STRING macro=copy_to_state

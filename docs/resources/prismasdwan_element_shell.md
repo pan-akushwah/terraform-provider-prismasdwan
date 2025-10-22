@@ -5,9 +5,9 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_shell` |
-| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells/{element_shell_id}` (`ElementShellV2N1`) |
-| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells` (`ElementShellV2N1`) |
-| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells/{element_shell_id}` (`ElementShellV2N1`) |
+| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells/{element_shell_id}` (`ElementScreenV3N2`) |
+| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells` (`ElementScreenV3N2`) |
+| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells/{element_shell_id}` (`ElementScreenV3N2`) |
 | Delete Api  | `/sdwan/v2.1/api/sites/{site_id}/elementshells/{element_shell_id}` |
 
 
@@ -59,11 +59,6 @@
           }
         }
       }
-    },
-    "device_mode" : {
-      "description" : "Device Mode",
-      "type" : "string",
-      "enum" : [ "none", "l3-mode", "l2-mode" ]
     },
     "led_config" : {
       "properties" : {
@@ -124,19 +119,25 @@
     "main_power_usage_threshold" : {
       "description" : "Main Power Usage Threshold: ValidateDecimal(allowZero = true, increment = 0, max = 0, error = INVALID_MAIN_POWER_USAGE_THRESHOLD: Invalid main power usage threshold. Allowed range is 50-100., min = 0) ",
       "format" : "int32",
-      "type" : "integer"
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "vpn_to_vpn_forwarding" : {
       "description" : "Vpn To Vpn Forwarding",
-      "type" : "boolean"
-    },
-    "l3_lan_forwarding" : {
-      "description" : "L3 Lan Forwarding",
-      "type" : "boolean"
-    },
-    "l3_direct_private_wan_forwarding" : {
-      "description" : "L3 Direct Private Wan Forwarding",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_policysetstack_id" : {
       "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
@@ -202,6 +203,28 @@
       },
       "required" : [ "source_interface", "priority", "enable", "cluster_id" ]
     },
+    "l3_lan_forwarding" : {
+      "description" : "L3 Lan Forwarding",
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "l3_direct_private_wan_forwarding" : {
+      "description" : "L3 Direct Private Wan Forwarding",
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "priority_policysetstack_id" : {
       "description" : "Priority Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PRIORITY_POLICYSETSTACK_ID: Invalid priority policy set stack id) ",
       "type" : "string"
@@ -210,61 +233,21 @@
       "description" : "Network Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NETWORK_POLICYSETSTACK_ID: Invalid network policy set stack id) ",
       "type" : "string"
     },
-    "cluster_insertion_mode" : {
-      "description" : "Cluster Insertion Mode",
-      "type" : "string",
-      "enum" : [ "AUTO", "MANUAL" ]
-    },
     "cluster_id" : {
       "description" : "Cluster Id",
       "type" : "string"
     },
-    "cluster_member_id" : {
-      "description" : "Cluster Member Id",
-      "type" : "string"
-    },
-    "element_id" : {
-      "description" : "Element Id",
-      "type" : "string"
-    },
-    "allowed_roles" : {
-      "description" : "Allowed Roles",
-      "type" : "array",
-      "items" : {
-        "description" : "Allowed Roles",
-        "type" : "string",
-        "enum" : [ "NONE", "HUB", "SPOKE", "PA_WE_BR", "PA_WE_DC", "PA_CONN" ]
+    "sw_obj" : {
+      "properties" : {
+        "location" : {
+          "description" : "Location",
+          "type" : "string"
+        },
+        "version" : {
+          "description" : "Version",
+          "type" : "string"
+        }
       }
-    },
-    "state" : {
-      "description" : "State",
-      "type" : "string",
-      "enum" : [ "ACTIVE_INIT", "ACTIVE_INVENTORY_IN_PROGRESS", "ACTIVE_INVENTORY_OPERATION_FAILED", "ACTIVE_INVENTORY_GET_PENDING", "ACTIVE_INVENTORY_GET_COMPLETE", "ACTIVE_INVENTORY_POST_PENDING", "ACTIVE_INTF_CONFIG_GET_FAILED", "ACTIVE_INTF_STATE_GET_FAILED", "ACTIVE_READY", "ACTIVE_BOUND_IN_PROGRESS", "ACTIVE_UNBOUND_IN_PROGRESS", "ACTIVE_UNBOUND_FROM_SITE_FAILED", "ACTIVE_BOUND_TO_SITE", "ACTIVE_BOUND_TO_SITE_FAILED", "OOS", "ACTIVE_DECLAIM_IN_PROGRESS", "ACTIVE_DECLAIMED" ]
-    },
-    "role" : {
-      "description" : "Role",
-      "type" : "string",
-      "enum" : [ "NONE", "HUB", "SPOKE", "PA_WE_BR", "PA_WE_DC", "PA_CONN" ]
-    },
-    "model_name" : {
-      "description" : "Model Name: Required(ELEMENT_SHELL_MODEL_NAME_REQUIRED) ",
-      "type" : "string"
-    },
-    "hw_id" : {
-      "description" : "Hw Id",
-      "type" : "string"
-    },
-    "software_version" : {
-      "description" : "Software Version: Required(ELEMENT_SHELL_SOFTWARE_VERSION_REQUIRED) ",
-      "type" : "string"
-    },
-    "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
-      "type" : "string"
-    },
-    "name" : {
-      "description" : "Name: Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
-      "type" : "string"
     },
     "tags" : {
       "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
@@ -281,8 +264,16 @@
         }
       }
     },
+    "description" : {
+      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "type" : "string"
+    },
+    "name" : {
+      "description" : "Name: Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "type" : "string"
+    },
     "site_id" : {
-      "description" : "Site Id: Transient Required(ELEMENT_SHELL_SITE_ID_REQUIRED) Size(max = 21, ELEMENT_SHELL_SITE_ID_EXCEEDS_LIMIT, min = 0) Pattern(error = ID_HAS_INVALID_CHARS: ID has invalid chars., regexp = [0-9]*) ",
+      "description" : "Site Id: Transient Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
       "type" : "string"
     },
     "id" : {
@@ -319,9 +310,108 @@
           }
         }
       }
+    },
+    "tenant_id" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "element_id" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "software_version" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "model_name" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "role" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "cluster_insertion_mode" : {
+      "type" : "string"
+    },
+    "state" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "cluster_member_id" : {
+      "type" : "string"
+    },
+    "device_mode" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "hw_id" : {
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "allowed_roles" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      },
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     }
   },
-  "required" : [ "model_name", "software_version", "site_id" ]
+  "required" : [ "site_id" ]
 }
 ```
 

@@ -414,7 +414,6 @@ import (
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | Ipv4Pppoe HasID=false
 // | Ipv4Dhcp HasID=false
@@ -1477,6 +1476,7 @@ import (
 // | WANInterfaceV2N4 HasID=true
 // | WANInterfaceV2N3 HasID=true
 // | ListQueryResponseWANInterfaceQueryFilter HasID=true
+// | Ethernet HasID=true
 // | ListResponseSNMPAgentV2N1 HasID=false
 // | ListResponseRoutingAccessListV2N1 HasID=false
 // | SimSecurity HasID=true
@@ -7723,37 +7723,11 @@ type dsModelSubInterface struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `Ethernet`
-// +-----------------------------------------------------------------
-type dsModelEthernet struct {
-	// added tfid for bookkeeping
-	Tfid               types.String `tfsdk:"tfid"`
-	Etag               types.Int64  `tfsdk:"_etag"`                // propertyName=_etag type=INTEGER
-	Schema             types.Int64  `tfsdk:"_schema"`              // propertyName=_schema type=INTEGER
-	Connector          types.String `tfsdk:"connector"`            // propertyName=connector type=STRING
-	Device             types.String `tfsdk:"device"`               // propertyName=device type=STRING
-	Disabled           types.Bool   `tfsdk:"disabled"`             // propertyName=disabled type=BOOLEAN
-	DisabledReason     types.String `tfsdk:"disabled_reason"`      // propertyName=disabled_reason type=STRING
-	ElementId          types.String `tfsdk:"element_id"`           // propertyName=element_id type=STRING
-	Id                 types.String `tfsdk:"id"`                   // propertyName=id type=STRING
-	Inactive           types.Bool   `tfsdk:"inactive"`             // propertyName=inactive type=BOOLEAN
-	InactiveReason     types.String `tfsdk:"inactive_reason"`      // propertyName=inactive_reason type=STRING
-	MaxMtu             types.Int64  `tfsdk:"max_mtu"`              // propertyName=max_mtu type=INTEGER
-	MaxSpeed           types.Int64  `tfsdk:"max_speed"`            // propertyName=max_speed type=INTEGER
-	Name               types.String `tfsdk:"name"`                 // propertyName=name type=STRING
-	OriginalMacAddress types.String `tfsdk:"original_mac_address"` // propertyName=original_mac_address type=STRING
-	Region             types.String `tfsdk:"region"`               // propertyName=region type=STRING
-	SiteId             types.String `tfsdk:"site_id"`              // propertyName=site_id type=STRING
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EthernetPort`
 // +-----------------------------------------------------------------
 type dsModelEthernetPort struct {
-	FullDuplex types.Bool       `tfsdk:"full_duplex"` // propertyName=full_duplex type=BOOLEAN
-	PortId     *dsModelEthernet `tfsdk:"port_id"`     // propertyName=port_id type=REFERENCE
-	PortName   types.String     `tfsdk:"port_name"`   // propertyName=port_name type=STRING
-	Speed      types.Int64      `tfsdk:"speed"`       // propertyName=speed type=INTEGER
+	FullDuplex types.Bool  `tfsdk:"full_duplex"` // propertyName=full_duplex type=BOOLEAN
+	Speed      types.Int64 `tfsdk:"speed"`       // propertyName=speed type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20167,24 +20141,35 @@ type dsModelElementScreenV3N2 struct {
 	Tfid                         types.String             `tfsdk:"tfid"`
 	Etag                         types.Int64              `tfsdk:"_etag"`                            // propertyName=_etag type=INTEGER
 	Schema                       types.Int64              `tfsdk:"_schema"`                          // propertyName=_schema type=INTEGER
+	AllowedRoles                 types.List               `tfsdk:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
 	ClusterId                    types.String             `tfsdk:"cluster_id"`                       // propertyName=cluster_id type=STRING
+	ClusterInsertionMode         types.String             `tfsdk:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
+	ClusterMemberId              types.String             `tfsdk:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
 	Description                  types.String             `tfsdk:"description"`                      // propertyName=description type=STRING
+	DeviceMode                   types.String             `tfsdk:"device_mode"`                      // propertyName=device_mode type=STRING
 	DeviceProfileId              types.String             `tfsdk:"device_profile_id"`                // propertyName=device_profile_id type=STRING
+	ElementId                    types.String             `tfsdk:"element_id"`                       // propertyName=element_id type=STRING
 	HubClusterConfig             *dsModelHubClusterConfig `tfsdk:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
+	HwId                         types.String             `tfsdk:"hw_id"`                            // propertyName=hw_id type=STRING
 	Id                           types.String             `tfsdk:"id"`                               // propertyName=id type=STRING
 	L3DirectPrivateWanForwarding types.Bool               `tfsdk:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
 	L3LanForwarding              types.Bool               `tfsdk:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
 	LedConfig                    *dsModelLedConfig        `tfsdk:"led_config"`                       // propertyName=led_config type=REFERENCE
 	MainPowerUsageThreshold      types.Int64              `tfsdk:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
+	ModelName                    types.String             `tfsdk:"model_name"`                       // propertyName=model_name type=STRING
 	Name                         types.String             `tfsdk:"name"`                             // propertyName=name type=STRING
 	NatPolicysetstackId          types.String             `tfsdk:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
 	NetworkPolicysetstackId      types.String             `tfsdk:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
 	PriorityPolicysetstackId     types.String             `tfsdk:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
+	Role                         types.String             `tfsdk:"role"`                             // propertyName=role type=STRING
 	SiteId                       types.String             `tfsdk:"site_id"`                          // propertyName=site_id type=STRING
+	SoftwareVersion              types.String             `tfsdk:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *dsModelSpokeHAConfigV2  `tfsdk:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
+	State                        types.String             `tfsdk:"state"`                            // propertyName=state type=STRING
 	SwObj                        *dsModelSoftware         `tfsdk:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *dsModelSwitchConfig     `tfsdk:"switch_config"`                    // propertyName=switch_config type=REFERENCE
 	Tags                         types.Set                `tfsdk:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
+	TenantId                     types.String             `tfsdk:"tenant_id"`                        // propertyName=tenant_id type=STRING
 	VpnToVpnForwarding           types.Bool               `tfsdk:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -26908,6 +26893,30 @@ type dsModelListQueryResponseWANInterfaceQueryFilter struct {
 	Items        []dsModelWANInterfaceQueryFilter `tfsdk:"items"`         // propertyName=items type=ARRAY_REFERENCE
 	NextQuery    types.Map                        `tfsdk:"next_query"`    // propertyName=next_query type=OBJECT
 	TotalCount   types.Int64                      `tfsdk:"total_count"`   // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `Ethernet`
+// +-----------------------------------------------------------------
+type dsModelEthernet struct {
+	// added tfid for bookkeeping
+	Tfid               types.String `tfsdk:"tfid"`
+	Etag               types.Int64  `tfsdk:"_etag"`                // propertyName=_etag type=INTEGER
+	Schema             types.Int64  `tfsdk:"_schema"`              // propertyName=_schema type=INTEGER
+	Connector          types.String `tfsdk:"connector"`            // propertyName=connector type=STRING
+	Device             types.String `tfsdk:"device"`               // propertyName=device type=STRING
+	Disabled           types.Bool   `tfsdk:"disabled"`             // propertyName=disabled type=BOOLEAN
+	DisabledReason     types.String `tfsdk:"disabled_reason"`      // propertyName=disabled_reason type=STRING
+	ElementId          types.String `tfsdk:"element_id"`           // propertyName=element_id type=STRING
+	Id                 types.String `tfsdk:"id"`                   // propertyName=id type=STRING
+	Inactive           types.Bool   `tfsdk:"inactive"`             // propertyName=inactive type=BOOLEAN
+	InactiveReason     types.String `tfsdk:"inactive_reason"`      // propertyName=inactive_reason type=STRING
+	MaxMtu             types.Int64  `tfsdk:"max_mtu"`              // propertyName=max_mtu type=INTEGER
+	MaxSpeed           types.Int64  `tfsdk:"max_speed"`            // propertyName=max_speed type=INTEGER
+	Name               types.String `tfsdk:"name"`                 // propertyName=name type=STRING
+	OriginalMacAddress types.String `tfsdk:"original_mac_address"` // propertyName=original_mac_address type=STRING
+	Region             types.String `tfsdk:"region"`               // propertyName=region type=STRING
+	SiteId             types.String `tfsdk:"site_id"`              // propertyName=site_id type=STRING
 }
 
 // +-----------------------------------------------------------------

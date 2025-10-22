@@ -446,6 +446,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=23
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -460,6 +461,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	if plan.BgpConfig != nil {
 		body.BgpConfig = &sdwan_schema.BGPConfig{}
 		// copy_from_plan: body=body.BgpConfig prefix=rsModel plan=plan.BgpConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.BgpConfig prefix=rsModel plan=plan.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_from_plan
 		body.BgpConfig.AdvInterval = Int64ValueOrNil(plan.BgpConfig.AdvInterval)
 		// property: name=hold_time, type=INTEGER macro=copy_from_plan
@@ -495,6 +497,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	if plan.RouteAggregation != nil {
 		body.RouteAggregation = &sdwan_schema.RouteAggregation{}
 		// copy_from_plan: body=body.RouteAggregation prefix=rsModel plan=plan.RouteAggregation properties=4
+		tflog.Debug(ctx, "copy_from_plan body=body.RouteAggregation prefix=rsModel plan=plan.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_from_plan
 		if plan.RouteAggregation.AggregatePrefixes == nil {
 			body.RouteAggregation.AggregatePrefixes = nil
@@ -506,6 +509,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 				// add a new item
 				body.RouteAggregation.AggregatePrefixes = append(body.RouteAggregation.AggregatePrefixes, sdwan_schema.AggregatePrefixes{})
 				// copy_from_plan: body=body.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel plan=varLoopAggregatePrefixes properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel plan=varLoopAggregatePrefixes")
 				// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 				body.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex].IpPrefixes = ListStringValueOrNil(ctx, varLoopAggregatePrefixes.IpPrefixes)
 				// property: name=type, type=STRING macro=copy_from_plan
@@ -548,8 +552,11 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -575,7 +582,9 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -611,6 +620,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 
 	// Store the answer to state. schema=BGPPeerConfigScreenV2N6
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -627,6 +637,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	} else {
 		state.BgpConfig = &rsModelBGPConfig{}
 		// copy_to_state: state=state.BgpConfig prefix=rsModel ans=ans.BgpConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.BgpConfig prefix=rsModel ans=ans.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_to_state
 		state.BgpConfig.AdvInterval = types.Int64PointerValue(ans.BgpConfig.AdvInterval)
 		// property: name=hold_time, type=INTEGER macro=copy_to_state
@@ -671,6 +682,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	} else {
 		state.RouteAggregation = &rsModelRouteAggregation{}
 		// copy_to_state: state=state.RouteAggregation prefix=rsModel ans=ans.RouteAggregation properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation prefix=rsModel ans=ans.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.RouteAggregation.AggregatePrefixes == nil {
 			state.RouteAggregation.AggregatePrefixes = nil
@@ -682,6 +694,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 				// add a new item
 				state.RouteAggregation.AggregatePrefixes = append(state.RouteAggregation.AggregatePrefixes, rsModelAggregatePrefixes{})
 				// copy_to_state: state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel ans=varLoopAggregatePrefixes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel ans=varLoopAggregatePrefixes")
 				// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopAggregatePrefixes.IpPrefixes)
 				state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex].IpPrefixes = varIpPrefixes
@@ -730,7 +743,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return false
 	}
@@ -777,7 +790,9 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=BGPPeerConfigScreenV2N6
@@ -799,6 +814,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -815,6 +831,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	} else {
 		state.BgpConfig = &rsModelBGPConfig{}
 		// copy_to_state: state=state.BgpConfig prefix=rsModel ans=ans.BgpConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.BgpConfig prefix=rsModel ans=ans.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_to_state
 		state.BgpConfig.AdvInterval = types.Int64PointerValue(ans.BgpConfig.AdvInterval)
 		// property: name=hold_time, type=INTEGER macro=copy_to_state
@@ -857,6 +874,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	} else {
 		state.RouteAggregation = &rsModelRouteAggregation{}
 		// copy_to_state: state=state.RouteAggregation prefix=rsModel ans=ans.RouteAggregation properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation prefix=rsModel ans=ans.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.RouteAggregation.AggregatePrefixes == nil {
 			state.RouteAggregation.AggregatePrefixes = nil
@@ -868,6 +886,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 				// add a new item
 				state.RouteAggregation.AggregatePrefixes = append(state.RouteAggregation.AggregatePrefixes, rsModelAggregatePrefixes{})
 				// copy_to_state: state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel ans=varLoopAggregatePrefixes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel ans=varLoopAggregatePrefixes")
 				// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopAggregatePrefixes.IpPrefixes)
 				state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex].IpPrefixes = varIpPrefixes
@@ -925,7 +944,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return false
 	}
@@ -956,6 +975,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=23
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -992,6 +1012,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	} else {
 		body.BgpConfig = &sdwan_schema.BGPConfig{}
 		// copy_from_plan_or_state: body=body.BgpConfig prefix=rsModel state=state.BgpConfig plan=plan.BgpConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.BgpConfig prefix=rsModel state=state.BgpConfig plan=plan.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_from_plan_or_state
 		if state.BgpConfig != nil {
 			body.BgpConfig.AdvInterval = ValueInt64PointerFromPlanOrState(plan.BgpConfig.AdvInterval, state.BgpConfig.AdvInterval)
@@ -1089,6 +1110,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	} else {
 		body.RouteAggregation = &sdwan_schema.RouteAggregation{}
 		// copy_from_plan_or_state: body=body.RouteAggregation prefix=rsModel state=state.RouteAggregation plan=plan.RouteAggregation properties=4
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.RouteAggregation prefix=rsModel state=state.RouteAggregation plan=plan.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 		if plan.RouteAggregation.AggregatePrefixes == nil && (state.RouteAggregation == nil || state.RouteAggregation.AggregatePrefixes == nil) {
 			body.RouteAggregation.AggregatePrefixes = nil
@@ -1105,6 +1127,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 				body.RouteAggregation.AggregatePrefixes = append(body.RouteAggregation.AggregatePrefixes, sdwan_schema.AggregatePrefixes{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel plan=varLoopAggregatePrefixes properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel plan=varLoopAggregatePrefixes")
 				// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 				body.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex].IpPrefixes = ListStringValueOrNil(ctx, varLoopAggregatePrefixes.IpPrefixes)
 				// property: name=type, type=STRING macro=copy_from_plan
@@ -1220,7 +1243,9 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1235,6 +1260,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 
 	// Store the answer to state. schema=BGPPeerConfigScreenV2N6
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1251,6 +1277,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	} else {
 		state.BgpConfig = &rsModelBGPConfig{}
 		// copy_to_state: state=state.BgpConfig prefix=rsModel ans=ans.BgpConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.BgpConfig prefix=rsModel ans=ans.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_to_state
 		state.BgpConfig.AdvInterval = types.Int64PointerValue(ans.BgpConfig.AdvInterval)
 		// property: name=hold_time, type=INTEGER macro=copy_to_state
@@ -1295,6 +1322,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	} else {
 		state.RouteAggregation = &rsModelRouteAggregation{}
 		// copy_to_state: state=state.RouteAggregation prefix=rsModel ans=ans.RouteAggregation properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation prefix=rsModel ans=ans.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.RouteAggregation.AggregatePrefixes == nil {
 			state.RouteAggregation.AggregatePrefixes = nil
@@ -1306,6 +1334,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 				// add a new item
 				state.RouteAggregation.AggregatePrefixes = append(state.RouteAggregation.AggregatePrefixes, rsModelAggregatePrefixes{})
 				// copy_to_state: state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel ans=varLoopAggregatePrefixes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=rsModel ans=varLoopAggregatePrefixes")
 				// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopAggregatePrefixes.IpPrefixes)
 				state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex].IpPrefixes = varIpPrefixes
@@ -1356,7 +1385,7 @@ func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGP
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return false
 	}

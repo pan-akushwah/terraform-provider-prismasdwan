@@ -554,6 +554,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=24
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -585,6 +586,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			// add a new item
 			body.IpRules = append(body.IpRules, sdwan_schema.IPRuleV2{})
 			// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules")
 			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.IpRules[varLoopIpRulesIndex].DestFilters = ListStringValueOrNil(ctx, varLoopIpRules.DestFilters)
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -593,6 +595,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			if varLoopIpRules.Dscp != nil {
 				body.IpRules[varLoopIpRulesIndex].Dscp = &sdwan_schema.DSCP{}
 				// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_from_plan
 				body.IpRules[varLoopIpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopIpRules.Dscp.Value)
 			}
@@ -631,12 +634,14 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			// add a new item
 			body.TcpRules = append(body.TcpRules, sdwan_schema.TcpRuleV2{})
 			// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules")
 			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.TcpRules[varLoopTcpRulesIndex].ClientFilters = ListStringValueOrNil(ctx, varLoopTcpRules.ClientFilters)
 			// property: name=client_port, type=REFERENCE macro=copy_from_plan
 			if varLoopTcpRules.ClientPort != nil {
 				body.TcpRules[varLoopTcpRulesIndex].ClientPort = &sdwan_schema.Port{}
 				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort")
 				// property: name=end, type=INTEGER macro=copy_from_plan
 				body.TcpRules[varLoopTcpRulesIndex].ClientPort.End = Int64ValueOrNil(varLoopTcpRules.ClientPort.End)
 				// property: name=start, type=INTEGER macro=copy_from_plan
@@ -646,6 +651,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			if varLoopTcpRules.Dscp != nil {
 				body.TcpRules[varLoopTcpRulesIndex].Dscp = &sdwan_schema.DSCP{}
 				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_from_plan
 				body.TcpRules[varLoopTcpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopTcpRules.Dscp.Value)
 			}
@@ -655,6 +661,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			if varLoopTcpRules.ServerPort != nil {
 				body.TcpRules[varLoopTcpRulesIndex].ServerPort = &sdwan_schema.Port{}
 				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort")
 				// property: name=end, type=INTEGER macro=copy_from_plan
 				body.TcpRules[varLoopTcpRulesIndex].ServerPort.End = Int64ValueOrNil(varLoopTcpRules.ServerPort.End)
 				// property: name=start, type=INTEGER macro=copy_from_plan
@@ -677,12 +684,14 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			// add a new item
 			body.UdpRules = append(body.UdpRules, sdwan_schema.UdpRuleV2{})
 			// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules")
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.UdpRules[varLoopUdpRulesIndex].DestPrefixes = ListStringValueOrNil(ctx, varLoopUdpRules.DestPrefixes)
 			// property: name=dscp, type=REFERENCE macro=copy_from_plan
 			if varLoopUdpRules.Dscp != nil {
 				body.UdpRules[varLoopUdpRulesIndex].Dscp = &sdwan_schema.DSCP{}
 				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_from_plan
 				body.UdpRules[varLoopUdpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopUdpRules.Dscp.Value)
 			}
@@ -692,6 +701,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			if varLoopUdpRules.UdpPort != nil {
 				body.UdpRules[varLoopUdpRulesIndex].UdpPort = &sdwan_schema.Port{}
 				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort")
 				// property: name=end, type=INTEGER macro=copy_from_plan
 				body.UdpRules[varLoopUdpRulesIndex].UdpPort.End = Int64ValueOrNil(varLoopUdpRules.UdpPort.End)
 				// property: name=start, type=INTEGER macro=copy_from_plan
@@ -712,8 +722,11 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -739,7 +752,9 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -775,6 +790,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 
 	// Store the answer to state. schema=AppdefOverrideScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=24
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -808,6 +824,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			// add a new item
 			state.IpRules = append(state.IpRules, rsModelIPRuleV2{})
 			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules")
 			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
 			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
@@ -822,6 +839,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			} else {
 				state.IpRules[varLoopIpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
 			}
@@ -864,6 +882,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			// add a new item
 			state.TcpRules = append(state.TcpRules, rsModelTcpRuleV2{})
 			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules")
 			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
 			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
@@ -874,6 +893,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &rsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.Int64PointerValue(varLoopTcpRules.ClientPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -885,6 +905,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
 			}
@@ -898,6 +919,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &rsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.Int64PointerValue(varLoopTcpRules.ServerPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -922,6 +944,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			// add a new item
 			state.UdpRules = append(state.UdpRules, rsModelUdpRuleV2{})
 			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules")
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
 			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
@@ -932,6 +955,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
 			}
@@ -945,6 +969,7 @@ func (r *appDefOverrideResource) doPost(ctx context.Context, plan *rsModelAppdef
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &rsModelPort{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.Int64PointerValue(varLoopUdpRules.UdpPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -967,7 +992,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1014,7 +1039,9 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=AppdefOverrideScreenV2N3
@@ -1036,6 +1063,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=24
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1069,6 +1097,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			// add a new item
 			state.IpRules = append(state.IpRules, rsModelIPRuleV2{})
 			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules")
 			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
 			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
@@ -1083,6 +1112,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			} else {
 				state.IpRules[varLoopIpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
 			}
@@ -1125,6 +1155,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			// add a new item
 			state.TcpRules = append(state.TcpRules, rsModelTcpRuleV2{})
 			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules")
 			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
 			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
@@ -1135,6 +1166,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &rsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.Int64PointerValue(varLoopTcpRules.ClientPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -1146,6 +1178,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
 			}
@@ -1159,6 +1192,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &rsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.Int64PointerValue(varLoopTcpRules.ServerPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -1183,6 +1217,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			// add a new item
 			state.UdpRules = append(state.UdpRules, rsModelUdpRuleV2{})
 			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules")
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
 			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
@@ -1193,6 +1228,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
 			}
@@ -1206,6 +1242,7 @@ func (r *appDefOverrideResource) doGet(ctx context.Context, state *rsModelAppdef
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &rsModelPort{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.Int64PointerValue(varLoopUdpRules.UdpPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -1237,7 +1274,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1268,6 +1305,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=24
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1340,6 +1378,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			body.IpRules = append(body.IpRules, sdwan_schema.IPRuleV2{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules")
 			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.IpRules[varLoopIpRulesIndex].DestFilters = ListStringValueOrNil(ctx, varLoopIpRules.DestFilters)
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -1348,6 +1387,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			if varLoopIpRules.Dscp != nil {
 				body.IpRules[varLoopIpRulesIndex].Dscp = &sdwan_schema.DSCP{}
 				// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_from_plan
 				body.IpRules[varLoopIpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopIpRules.Dscp.Value)
 			}
@@ -1423,12 +1463,14 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			body.TcpRules = append(body.TcpRules, sdwan_schema.TcpRuleV2{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules")
 			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.TcpRules[varLoopTcpRulesIndex].ClientFilters = ListStringValueOrNil(ctx, varLoopTcpRules.ClientFilters)
 			// property: name=client_port, type=REFERENCE macro=copy_from_plan
 			if varLoopTcpRules.ClientPort != nil {
 				body.TcpRules[varLoopTcpRulesIndex].ClientPort = &sdwan_schema.Port{}
 				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort")
 				// property: name=end, type=INTEGER macro=copy_from_plan
 				body.TcpRules[varLoopTcpRulesIndex].ClientPort.End = Int64ValueOrNil(varLoopTcpRules.ClientPort.End)
 				// property: name=start, type=INTEGER macro=copy_from_plan
@@ -1438,6 +1480,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			if varLoopTcpRules.Dscp != nil {
 				body.TcpRules[varLoopTcpRulesIndex].Dscp = &sdwan_schema.DSCP{}
 				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_from_plan
 				body.TcpRules[varLoopTcpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopTcpRules.Dscp.Value)
 			}
@@ -1447,6 +1490,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			if varLoopTcpRules.ServerPort != nil {
 				body.TcpRules[varLoopTcpRulesIndex].ServerPort = &sdwan_schema.Port{}
 				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort")
 				// property: name=end, type=INTEGER macro=copy_from_plan
 				body.TcpRules[varLoopTcpRulesIndex].ServerPort.End = Int64ValueOrNil(varLoopTcpRules.ServerPort.End)
 				// property: name=start, type=INTEGER macro=copy_from_plan
@@ -1478,12 +1522,14 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			body.UdpRules = append(body.UdpRules, sdwan_schema.UdpRuleV2{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules")
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.UdpRules[varLoopUdpRulesIndex].DestPrefixes = ListStringValueOrNil(ctx, varLoopUdpRules.DestPrefixes)
 			// property: name=dscp, type=REFERENCE macro=copy_from_plan
 			if varLoopUdpRules.Dscp != nil {
 				body.UdpRules[varLoopUdpRulesIndex].Dscp = &sdwan_schema.DSCP{}
 				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_from_plan
 				body.UdpRules[varLoopUdpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopUdpRules.Dscp.Value)
 			}
@@ -1493,6 +1539,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			if varLoopUdpRules.UdpPort != nil {
 				body.UdpRules[varLoopUdpRulesIndex].UdpPort = &sdwan_schema.Port{}
 				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort")
 				// property: name=end, type=INTEGER macro=copy_from_plan
 				body.UdpRules[varLoopUdpRulesIndex].UdpPort.End = Int64ValueOrNil(varLoopUdpRules.UdpPort.End)
 				// property: name=start, type=INTEGER macro=copy_from_plan
@@ -1546,7 +1593,9 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1561,6 +1610,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 
 	// Store the answer to state. schema=AppdefOverrideScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=24
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1594,6 +1644,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			// add a new item
 			state.IpRules = append(state.IpRules, rsModelIPRuleV2{})
 			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules")
 			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
 			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
@@ -1608,6 +1659,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			} else {
 				state.IpRules[varLoopIpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
 			}
@@ -1650,6 +1702,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			// add a new item
 			state.TcpRules = append(state.TcpRules, rsModelTcpRuleV2{})
 			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules")
 			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
 			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
@@ -1660,6 +1713,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &rsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.Int64PointerValue(varLoopTcpRules.ClientPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -1671,6 +1725,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
 			}
@@ -1684,6 +1739,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &rsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.Int64PointerValue(varLoopTcpRules.ServerPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -1708,6 +1764,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			// add a new item
 			state.UdpRules = append(state.UdpRules, rsModelUdpRuleV2{})
 			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules")
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
 			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
@@ -1718,6 +1775,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].Dscp = &rsModelDSCP{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
 			}
@@ -1731,6 +1789,7 @@ func (r *appDefOverrideResource) doPut(ctx context.Context, plan *rsModelAppdefO
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &rsModelPort{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.Int64PointerValue(varLoopUdpRules.UdpPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -1755,7 +1814,7 @@ func (r *appDefOverrideResource) doDelete(ctx context.Context, state *rsModelApp
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return false
 	}

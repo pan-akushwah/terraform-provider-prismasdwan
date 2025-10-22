@@ -241,7 +241,7 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_global_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -288,7 +288,9 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=MulticastGlobalConfigScreenV2N1
@@ -310,6 +312,7 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -326,6 +329,7 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 	} else {
 		state.IgmpProtocolParameters = &rsModelMulticastIgmpProtocolConfig{}
 		// copy_to_state: state=state.IgmpProtocolParameters prefix=rsModel ans=ans.IgmpProtocolParameters properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.IgmpProtocolParameters prefix=rsModel ans=ans.IgmpProtocolParameters")
 		// property: name=last_member_query_count, type=INTEGER macro=copy_to_state
 		state.IgmpProtocolParameters.LastMemberQueryCount = types.Int64PointerValue(ans.IgmpProtocolParameters.LastMemberQueryCount)
 		// property: name=last_member_query_interval, type=INTEGER macro=copy_to_state
@@ -341,6 +345,7 @@ func (r *elementMulticastGlobalConfigResource) doGet(ctx context.Context, state 
 	} else {
 		state.PimProtocolParameters = &rsModelMulticastPimProtocolConfig{}
 		// copy_to_state: state=state.PimProtocolParameters prefix=rsModel ans=ans.PimProtocolParameters properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.PimProtocolParameters prefix=rsModel ans=ans.PimProtocolParameters")
 		// property: name=hello_hold_time, type=INTEGER macro=copy_to_state
 		state.PimProtocolParameters.HelloHoldTime = types.Int64PointerValue(ans.PimProtocolParameters.HelloHoldTime)
 		// property: name=hello_interval, type=INTEGER macro=copy_to_state
@@ -372,7 +377,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_global_config ID format", "Expected 3 tokens")
 		return false
 	}
@@ -403,6 +408,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -439,6 +445,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 	} else {
 		body.IgmpProtocolParameters = &sdwan_schema.MulticastIgmpProtocolConfig{}
 		// copy_from_plan_or_state: body=body.IgmpProtocolParameters prefix=rsModel state=state.IgmpProtocolParameters plan=plan.IgmpProtocolParameters properties=4
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.IgmpProtocolParameters prefix=rsModel state=state.IgmpProtocolParameters plan=plan.IgmpProtocolParameters")
 		// property: name=last_member_query_count, type=INTEGER macro=copy_from_plan_or_state
 		if state.IgmpProtocolParameters != nil {
 			body.IgmpProtocolParameters.LastMemberQueryCount = ValueInt64PointerFromPlanOrState(plan.IgmpProtocolParameters.LastMemberQueryCount, state.IgmpProtocolParameters.LastMemberQueryCount)
@@ -470,6 +477,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 	} else {
 		body.PimProtocolParameters = &sdwan_schema.MulticastPimProtocolConfig{}
 		// copy_from_plan_or_state: body=body.PimProtocolParameters prefix=rsModel state=state.PimProtocolParameters plan=plan.PimProtocolParameters properties=3
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PimProtocolParameters prefix=rsModel state=state.PimProtocolParameters plan=plan.PimProtocolParameters")
 		// property: name=hello_hold_time, type=INTEGER macro=copy_from_plan_or_state
 		if state.PimProtocolParameters != nil {
 			body.PimProtocolParameters.HelloHoldTime = ValueInt64PointerFromPlanOrState(plan.PimProtocolParameters.HelloHoldTime, state.PimProtocolParameters.HelloHoldTime)
@@ -535,7 +543,9 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -550,6 +560,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 
 	// Store the answer to state. schema=MulticastGlobalConfigScreenV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -566,6 +577,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 	} else {
 		state.IgmpProtocolParameters = &rsModelMulticastIgmpProtocolConfig{}
 		// copy_to_state: state=state.IgmpProtocolParameters prefix=rsModel ans=ans.IgmpProtocolParameters properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.IgmpProtocolParameters prefix=rsModel ans=ans.IgmpProtocolParameters")
 		// property: name=last_member_query_count, type=INTEGER macro=copy_to_state
 		state.IgmpProtocolParameters.LastMemberQueryCount = types.Int64PointerValue(ans.IgmpProtocolParameters.LastMemberQueryCount)
 		// property: name=last_member_query_interval, type=INTEGER macro=copy_to_state
@@ -581,6 +593,7 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 	} else {
 		state.PimProtocolParameters = &rsModelMulticastPimProtocolConfig{}
 		// copy_to_state: state=state.PimProtocolParameters prefix=rsModel ans=ans.PimProtocolParameters properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.PimProtocolParameters prefix=rsModel ans=ans.PimProtocolParameters")
 		// property: name=hello_hold_time, type=INTEGER macro=copy_to_state
 		state.PimProtocolParameters.HelloHoldTime = types.Int64PointerValue(ans.PimProtocolParameters.HelloHoldTime)
 		// property: name=hello_interval, type=INTEGER macro=copy_to_state

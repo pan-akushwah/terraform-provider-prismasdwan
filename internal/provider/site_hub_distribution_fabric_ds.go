@@ -159,7 +159,7 @@ func (d *siteHubDistributionFabricDataSource) Read(ctx context.Context, req data
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_distribution_fabric ID format", "Expected 2 tokens")
 		return
 	}
@@ -207,6 +207,7 @@ func (d *siteHubDistributionFabricDataSource) Read(ctx context.Context, req data
 
 	// lets copy all items into state schema=PrefixDistributionSpokeList
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=7
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state

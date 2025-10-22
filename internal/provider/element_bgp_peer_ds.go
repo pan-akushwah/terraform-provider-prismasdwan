@@ -416,7 +416,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_peer ID format", "Expected 3 tokens")
 		return
 	}
@@ -465,6 +465,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 
 	// lets copy all items into state schema=BGPPeerConfigScreenV2N6
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=23
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -481,6 +482,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.BgpConfig = &dsModelBGPConfig{}
 		// copy_to_state: state=state.BgpConfig prefix=dsModel ans=ans.BgpConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.BgpConfig prefix=dsModel ans=ans.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_to_state
 		state.BgpConfig.AdvInterval = types.Int64PointerValue(ans.BgpConfig.AdvInterval)
 		// property: name=hold_time, type=INTEGER macro=copy_to_state
@@ -518,6 +520,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.RouteAggregation = &dsModelRouteAggregation{}
 		// copy_to_state: state=state.RouteAggregation prefix=dsModel ans=ans.RouteAggregation properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation prefix=dsModel ans=ans.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.RouteAggregation.AggregatePrefixes == nil {
 			state.RouteAggregation.AggregatePrefixes = nil
@@ -529,6 +532,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 				// add a new item
 				state.RouteAggregation.AggregatePrefixes = append(state.RouteAggregation.AggregatePrefixes, dsModelAggregatePrefixes{})
 				// copy_to_state: state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=dsModel ans=varLoopAggregatePrefixes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex] prefix=dsModel ans=varLoopAggregatePrefixes")
 				// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopAggregatePrefixes.IpPrefixes)
 				state.RouteAggregation.AggregatePrefixes[varLoopAggregatePrefixesIndex].IpPrefixes = varIpPrefixes

@@ -517,6 +517,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=16
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -552,6 +553,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			// add a new item
 			body.PolicyRules = append(body.PolicyRules, sdwan_schema.NetworkPolicyRule{})
 			// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules properties=14
+			tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules")
 			// property: name=_etag, type=INTEGER macro=copy_from_plan
 			body.PolicyRules[varLoopPolicyRulesIndex].Etag = Int64ValueOrNil(varLoopPolicyRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -576,6 +578,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			if varLoopPolicyRules.PathsAllowed != nil {
 				body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &sdwan_schema.PathsAllowed{}
 				// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel plan=varLoopPolicyRules.PathsAllowed properties=3
+				tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel plan=varLoopPolicyRules.PathsAllowed")
 				// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_from_plan
 				if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
 					body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
@@ -587,6 +590,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 						// add a new item
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, sdwan_schema.WANPath{})
 						// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel plan=varLoopActivePaths properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel plan=varLoopActivePaths")
 						// property: name=label, type=STRING macro=copy_from_plan
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = StringValueOrNil(varLoopActivePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_from_plan
@@ -604,6 +608,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 						// add a new item
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, sdwan_schema.WANPath{})
 						// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel plan=varLoopBackupPaths properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel plan=varLoopBackupPaths")
 						// property: name=label, type=STRING macro=copy_from_plan
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = StringValueOrNil(varLoopBackupPaths.Label)
 						// property: name=path_type, type=STRING macro=copy_from_plan
@@ -621,6 +626,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 						// add a new item
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, sdwan_schema.WANPath{})
 						// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel plan=varLoopL3FailurePaths properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel plan=varLoopL3FailurePaths")
 						// property: name=label, type=STRING macro=copy_from_plan
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = StringValueOrNil(varLoopL3FailurePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_from_plan
@@ -632,6 +638,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			if varLoopPolicyRules.ServiceContext != nil {
 				body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &sdwan_schema.ServiceContext{}
 				// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel plan=varLoopPolicyRules.ServiceContext properties=5
+				tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel plan=varLoopPolicyRules.ServiceContext")
 				// property: name=active_service_label_id, type=STRING macro=copy_from_plan
 				body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = StringValueOrNil(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
 				// property: name=active_service_label_type, type=STRING macro=copy_from_plan
@@ -666,17 +673,28 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled")
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::region")
 	request_body_string, _ = sjson.Delete(request_body_string, "region")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_req_version")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_req_version")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_rules")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_rules")
+	tflog.Debug(ctx, "http json override: delete request_body_string::send_to_element")
 	request_body_string, _ = sjson.Delete(request_body_string, "send_to_element")
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -702,7 +720,9 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -738,6 +758,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 
 	// Store the answer to state. schema=NetworkPolicySet
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -773,6 +794,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			// add a new item
 			state.PolicyRules = append(state.PolicyRules, rsModelNetworkPolicyRule{})
 			// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=14
+			tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -801,6 +823,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			} else {
 				state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &rsModelPathsAllowed{}
 				// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel ans=varLoopPolicyRules.PathsAllowed properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel ans=varLoopPolicyRules.PathsAllowed")
 				// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
 					state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
@@ -812,6 +835,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel ans=varLoopActivePaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel ans=varLoopActivePaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -829,6 +853,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel ans=varLoopBackupPaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel ans=varLoopBackupPaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -846,6 +871,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel ans=varLoopL3FailurePaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel ans=varLoopL3FailurePaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -859,6 +885,7 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			} else {
 				state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &rsModelServiceContext{}
 				// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel ans=varLoopPolicyRules.ServiceContext properties=5
+				tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel ans=varLoopPolicyRules.ServiceContext")
 				// property: name=active_service_label_id, type=STRING macro=copy_to_state
 				state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
 				// property: name=active_service_label_type, type=STRING macro=copy_to_state
@@ -899,7 +926,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -946,7 +973,9 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=NetworkPolicySet
@@ -968,6 +997,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1003,6 +1033,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 			// add a new item
 			state.PolicyRules = append(state.PolicyRules, rsModelNetworkPolicyRule{})
 			// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=14
+			tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1031,6 +1062,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 			} else {
 				state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &rsModelPathsAllowed{}
 				// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel ans=varLoopPolicyRules.PathsAllowed properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel ans=varLoopPolicyRules.PathsAllowed")
 				// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
 					state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
@@ -1042,6 +1074,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel ans=varLoopActivePaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel ans=varLoopActivePaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -1059,6 +1092,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel ans=varLoopBackupPaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel ans=varLoopBackupPaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -1076,6 +1110,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel ans=varLoopL3FailurePaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel ans=varLoopL3FailurePaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -1089,6 +1124,7 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 			} else {
 				state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &rsModelServiceContext{}
 				// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel ans=varLoopPolicyRules.ServiceContext properties=5
+				tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel ans=varLoopPolicyRules.ServiceContext")
 				// property: name=active_service_label_id, type=STRING macro=copy_to_state
 				state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
 				// property: name=active_service_label_type, type=STRING macro=copy_to_state
@@ -1138,7 +1174,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -1169,6 +1205,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=16
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1257,6 +1294,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			body.PolicyRules = append(body.PolicyRules, sdwan_schema.NetworkPolicyRule{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules properties=14
+			tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules")
 			// property: name=_etag, type=INTEGER macro=copy_from_plan
 			body.PolicyRules[varLoopPolicyRulesIndex].Etag = Int64ValueOrNil(varLoopPolicyRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -1281,6 +1319,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			if varLoopPolicyRules.PathsAllowed != nil {
 				body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &sdwan_schema.PathsAllowed{}
 				// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel plan=varLoopPolicyRules.PathsAllowed properties=3
+				tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel plan=varLoopPolicyRules.PathsAllowed")
 				// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_from_plan
 				if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
 					body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
@@ -1292,6 +1331,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 						// add a new item
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, sdwan_schema.WANPath{})
 						// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel plan=varLoopActivePaths properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel plan=varLoopActivePaths")
 						// property: name=label, type=STRING macro=copy_from_plan
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = StringValueOrNil(varLoopActivePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_from_plan
@@ -1309,6 +1349,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 						// add a new item
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, sdwan_schema.WANPath{})
 						// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel plan=varLoopBackupPaths properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel plan=varLoopBackupPaths")
 						// property: name=label, type=STRING macro=copy_from_plan
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = StringValueOrNil(varLoopBackupPaths.Label)
 						// property: name=path_type, type=STRING macro=copy_from_plan
@@ -1326,6 +1367,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 						// add a new item
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, sdwan_schema.WANPath{})
 						// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel plan=varLoopL3FailurePaths properties=2
+						tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel plan=varLoopL3FailurePaths")
 						// property: name=label, type=STRING macro=copy_from_plan
 						body.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = StringValueOrNil(varLoopL3FailurePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_from_plan
@@ -1337,6 +1379,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			if varLoopPolicyRules.ServiceContext != nil {
 				body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &sdwan_schema.ServiceContext{}
 				// copy_from_plan: body=body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel plan=varLoopPolicyRules.ServiceContext properties=5
+				tflog.Debug(ctx, "copy_from_plan body=body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel plan=varLoopPolicyRules.ServiceContext")
 				// property: name=active_service_label_id, type=STRING macro=copy_from_plan
 				body.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = StringValueOrNil(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
 				// property: name=active_service_label_type, type=STRING macro=copy_from_plan
@@ -1379,13 +1422,21 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled")
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::region")
 	request_body_string, _ = sjson.Delete(request_body_string, "region")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_req_version")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_req_version")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_rules")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_rules")
+	tflog.Debug(ctx, "http json override: delete request_body_string::send_to_element")
 	request_body_string, _ = sjson.Delete(request_body_string, "send_to_element")
 	// copy pointer
 	put_request.RequestBody = &request_body_string
@@ -1417,7 +1468,9 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1432,6 +1485,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 
 	// Store the answer to state. schema=NetworkPolicySet
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1467,6 +1521,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			// add a new item
 			state.PolicyRules = append(state.PolicyRules, rsModelNetworkPolicyRule{})
 			// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=14
+			tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1495,6 +1550,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			} else {
 				state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &rsModelPathsAllowed{}
 				// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel ans=varLoopPolicyRules.PathsAllowed properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=rsModel ans=varLoopPolicyRules.PathsAllowed")
 				// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
 					state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
@@ -1506,6 +1562,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel ans=varLoopActivePaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=rsModel ans=varLoopActivePaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -1523,6 +1580,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel ans=varLoopBackupPaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=rsModel ans=varLoopBackupPaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -1540,6 +1598,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 						// add a new item
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, rsModelWANPath{})
 						// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel ans=varLoopL3FailurePaths properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=rsModel ans=varLoopL3FailurePaths")
 						// property: name=label, type=STRING macro=copy_to_state
 						state.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
 						// property: name=path_type, type=STRING macro=copy_to_state
@@ -1553,6 +1612,7 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			} else {
 				state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &rsModelServiceContext{}
 				// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel ans=varLoopPolicyRules.ServiceContext properties=5
+				tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=rsModel ans=varLoopPolicyRules.ServiceContext")
 				// property: name=active_service_label_id, type=STRING macro=copy_to_state
 				state.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
 				// property: name=active_service_label_type, type=STRING macro=copy_to_state
@@ -1595,7 +1655,7 @@ func (r *pathPolicySetResource) doDelete(ctx context.Context, state *rsModelNetw
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_set ID format", "Expected 1 tokens")
 		return false
 	}

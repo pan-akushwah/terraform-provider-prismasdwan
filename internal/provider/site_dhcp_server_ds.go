@@ -342,7 +342,7 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_dhcp_server ID format", "Expected 2 tokens")
 		return
 	}
@@ -390,6 +390,7 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 
 	// lets copy all items into state schema=DHCPServerScreenV2N3
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -409,6 +410,7 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.CustomOptions = append(state.CustomOptions, dsModelCustomDHCPOptions{})
 			// copy_to_state: state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions")
 			// property: name=option_definition, type=STRING macro=copy_to_state
 			state.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
 			// property: name=option_value, type=STRING macro=copy_to_state
@@ -444,6 +446,7 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.IpRanges = append(state.IpRanges, dsModelIPRange{})
 			// copy_to_state: state=state.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges")
 			// property: name=end_ip, type=STRING macro=copy_to_state
 			state.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
 			// property: name=start_ip, type=STRING macro=copy_to_state
@@ -465,6 +468,7 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.StaticMappings = append(state.StaticMappings, dsModelStaticMappingV2{})
 			// copy_to_state: state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings")
 			// property: name=client_duid, type=STRING macro=copy_to_state
 			state.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = types.StringPointerValue(varLoopStaticMappings.ClientDuid)
 			// property: name=ip_address, type=STRING macro=copy_to_state

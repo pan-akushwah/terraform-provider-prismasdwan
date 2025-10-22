@@ -848,6 +848,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=26
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -863,6 +864,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			body.Actions = append(body.Actions, sdwan_schema.NATAction{})
 			// copy_from_plan: body=body.Actions[varLoopActionsIndex] prefix=rsModel plan=varLoopActions properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.Actions[varLoopActionsIndex] prefix=rsModel plan=varLoopActions")
 			// property: name=nat_pool_id, type=STRING macro=copy_from_plan
 			body.Actions[varLoopActionsIndex].NatPoolId = StringValueOrNil(varLoopActions.NatPoolId)
 			// property: name=port, type=INTEGER macro=copy_from_plan
@@ -886,6 +888,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			body.DestinationPorts = append(body.DestinationPorts, sdwan_schema.PortRange{})
 			// copy_from_plan: body=body.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel plan=varLoopDestinationPorts properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel plan=varLoopDestinationPorts")
 			// property: name=from, type=INTEGER macro=copy_from_plan
 			body.DestinationPorts[varLoopDestinationPortsIndex].From = Int64ValueOrNil(varLoopDestinationPorts.From)
 			// property: name=to, type=INTEGER macro=copy_from_plan
@@ -896,6 +899,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	if plan.DestinationPrefixes != nil {
 		body.DestinationPrefixes = &sdwan_schema.BasePolicyPrefixS{}
 		// copy_from_plan: body=body.DestinationPrefixes prefix=rsModel plan=plan.DestinationPrefixes properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.DestinationPrefixes prefix=rsModel plan=plan.DestinationPrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan
 		body.DestinationPrefixes.Etag = Int64ValueOrNil(plan.DestinationPrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -919,6 +923,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	if plan.DestinationZone != nil {
 		body.DestinationZone = &sdwan_schema.NATPolicyZone{}
 		// copy_from_plan: body=body.DestinationZone prefix=rsModel plan=plan.DestinationZone properties=12
+		tflog.Debug(ctx, "copy_from_plan body=body.DestinationZone prefix=rsModel plan=plan.DestinationZone")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan
 		body.DestinationZone.Etag = Int64ValueOrNil(plan.DestinationZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -971,6 +976,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			body.Natpolicypools = append(body.Natpolicypools, sdwan_schema.NATPolicyPool{})
 			// copy_from_plan: body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools")
 			// property: name=_etag, type=INTEGER macro=copy_from_plan
 			body.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = Int64ValueOrNil(varLoopNatpolicypools.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -1002,6 +1008,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			body.SourcePorts = append(body.SourcePorts, sdwan_schema.PortRange{})
 			// copy_from_plan: body=body.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel plan=varLoopSourcePorts properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel plan=varLoopSourcePorts")
 			// property: name=from, type=INTEGER macro=copy_from_plan
 			body.SourcePorts[varLoopSourcePortsIndex].From = Int64ValueOrNil(varLoopSourcePorts.From)
 			// property: name=to, type=INTEGER macro=copy_from_plan
@@ -1012,6 +1019,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	if plan.SourcePrefixes != nil {
 		body.SourcePrefixes = &sdwan_schema.BasePolicyPrefixS{}
 		// copy_from_plan: body=body.SourcePrefixes prefix=rsModel plan=plan.SourcePrefixes properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.SourcePrefixes prefix=rsModel plan=plan.SourcePrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan
 		body.SourcePrefixes.Etag = Int64ValueOrNil(plan.SourcePrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -1035,6 +1043,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	if plan.SourceZone != nil {
 		body.SourceZone = &sdwan_schema.NATPolicyZone{}
 		// copy_from_plan: body=body.SourceZone prefix=rsModel plan=plan.SourceZone properties=12
+		tflog.Debug(ctx, "copy_from_plan body=body.SourceZone prefix=rsModel plan=plan.SourceZone")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan
 		body.SourceZone.Etag = Int64ValueOrNil(plan.SourceZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -1075,24 +1084,42 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled")
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::region")
 	request_body_string, _ = sjson.Delete(request_body_string, "region")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_req_version")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_req_version")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_rules")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_rules")
+	tflog.Debug(ctx, "http json override: delete request_body_string::send_to_element")
 	request_body_string, _ = sjson.Delete(request_body_string, "send_to_element")
+	tflog.Debug(ctx, "http json override: delete request_body_string::update_order")
 	request_body_string, _ = sjson.Delete(request_body_string, "update_order")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policyset_id")
 	request_body_string, _ = sjson.Delete(request_body_string, "policyset_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::destination_prefixes")
 	request_body_string, _ = sjson.Delete(request_body_string, "destination_prefixes")
+	tflog.Debug(ctx, "http json override: delete request_body_string::source_prefixes")
 	request_body_string, _ = sjson.Delete(request_body_string, "source_prefixes")
+	tflog.Debug(ctx, "http json override: delete request_body_string::destination_zone")
 	request_body_string, _ = sjson.Delete(request_body_string, "destination_zone")
+	tflog.Debug(ctx, "http json override: delete request_body_string::source_zone")
 	request_body_string, _ = sjson.Delete(request_body_string, "source_zone")
+	tflog.Debug(ctx, "http json override: delete request_body_string::natpolicypools")
 	request_body_string, _ = sjson.Delete(request_body_string, "natpolicypools")
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -1118,7 +1145,9 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1154,6 +1183,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 
 	// Store the answer to state. schema=NATPolicyRule
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1169,6 +1199,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			state.Actions = append(state.Actions, rsModelNATAction{})
 			// copy_to_state: state=state.Actions[varLoopActionsIndex] prefix=rsModel ans=varLoopActions properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex] prefix=rsModel ans=varLoopActions")
 			// property: name=nat_pool_id, type=STRING macro=copy_to_state
 			state.Actions[varLoopActionsIndex].NatPoolId = types.StringPointerValue(varLoopActions.NatPoolId)
 			// property: name=port, type=INTEGER macro=copy_to_state
@@ -1194,6 +1225,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			state.DestinationPorts = append(state.DestinationPorts, rsModelPortRange{})
 			// copy_to_state: state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel ans=varLoopDestinationPorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel ans=varLoopDestinationPorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.DestinationPorts[varLoopDestinationPortsIndex].From = types.Int64PointerValue(varLoopDestinationPorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -1206,6 +1238,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	} else {
 		state.DestinationPrefixes = &rsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1237,6 +1270,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	} else {
 		state.DestinationZone = &rsModelNATPolicyZone{}
 		// copy_to_state: state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1291,6 +1325,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			state.Natpolicypools = append(state.Natpolicypools, rsModelNATPolicyPool{})
 			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1324,6 +1359,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			// add a new item
 			state.SourcePorts = append(state.SourcePorts, rsModelPortRange{})
 			// copy_to_state: state=state.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel ans=varLoopSourcePorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel ans=varLoopSourcePorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.SourcePorts[varLoopSourcePortsIndex].From = types.Int64PointerValue(varLoopSourcePorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -1336,6 +1372,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	} else {
 		state.SourcePrefixes = &rsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1367,6 +1404,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	} else {
 		state.SourceZone = &rsModelNATPolicyZone{}
 		// copy_to_state: state=state.SourceZone prefix=rsModel ans=ans.SourceZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=rsModel ans=ans.SourceZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1413,7 +1451,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1460,7 +1498,9 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=NATPolicyRule
@@ -1482,6 +1522,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1497,6 +1538,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 			// add a new item
 			state.Actions = append(state.Actions, rsModelNATAction{})
 			// copy_to_state: state=state.Actions[varLoopActionsIndex] prefix=rsModel ans=varLoopActions properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex] prefix=rsModel ans=varLoopActions")
 			// property: name=nat_pool_id, type=STRING macro=copy_to_state
 			state.Actions[varLoopActionsIndex].NatPoolId = types.StringPointerValue(varLoopActions.NatPoolId)
 			// property: name=port, type=INTEGER macro=copy_to_state
@@ -1522,6 +1564,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 			// add a new item
 			state.DestinationPorts = append(state.DestinationPorts, rsModelPortRange{})
 			// copy_to_state: state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel ans=varLoopDestinationPorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel ans=varLoopDestinationPorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.DestinationPorts[varLoopDestinationPortsIndex].From = types.Int64PointerValue(varLoopDestinationPorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -1534,6 +1577,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	} else {
 		state.DestinationPrefixes = &rsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1565,6 +1609,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	} else {
 		state.DestinationZone = &rsModelNATPolicyZone{}
 		// copy_to_state: state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1619,6 +1664,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 			// add a new item
 			state.Natpolicypools = append(state.Natpolicypools, rsModelNATPolicyPool{})
 			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1652,6 +1698,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 			// add a new item
 			state.SourcePorts = append(state.SourcePorts, rsModelPortRange{})
 			// copy_to_state: state=state.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel ans=varLoopSourcePorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel ans=varLoopSourcePorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.SourcePorts[varLoopSourcePortsIndex].From = types.Int64PointerValue(varLoopSourcePorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -1664,6 +1711,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	} else {
 		state.SourcePrefixes = &rsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1695,6 +1743,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 	} else {
 		state.SourceZone = &rsModelNATPolicyZone{}
 		// copy_to_state: state=state.SourceZone prefix=rsModel ans=ans.SourceZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=rsModel ans=ans.SourceZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1750,7 +1799,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}
@@ -1781,6 +1830,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=26
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -1809,6 +1859,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			body.Actions = append(body.Actions, sdwan_schema.NATAction{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.Actions[varLoopActionsIndex] prefix=rsModel plan=varLoopActions properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.Actions[varLoopActionsIndex] prefix=rsModel plan=varLoopActions")
 			// property: name=nat_pool_id, type=STRING macro=copy_from_plan
 			body.Actions[varLoopActionsIndex].NatPoolId = StringValueOrNil(varLoopActions.NatPoolId)
 			// property: name=port, type=INTEGER macro=copy_from_plan
@@ -1841,6 +1892,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			body.DestinationPorts = append(body.DestinationPorts, sdwan_schema.PortRange{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel plan=varLoopDestinationPorts properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel plan=varLoopDestinationPorts")
 			// property: name=from, type=INTEGER macro=copy_from_plan
 			body.DestinationPorts[varLoopDestinationPortsIndex].From = Int64ValueOrNil(varLoopDestinationPorts.From)
 			// property: name=to, type=INTEGER macro=copy_from_plan
@@ -1853,6 +1905,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		body.DestinationPrefixes = &sdwan_schema.BasePolicyPrefixS{}
 		// copy_from_plan_or_state: body=body.DestinationPrefixes prefix=rsModel state=state.DestinationPrefixes plan=plan.DestinationPrefixes properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DestinationPrefixes prefix=rsModel state=state.DestinationPrefixes plan=plan.DestinationPrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 		if state.DestinationPrefixes != nil {
 			body.DestinationPrefixes.Etag = ValueInt64PointerFromPlanOrState(plan.DestinationPrefixes.Etag, state.DestinationPrefixes.Etag)
@@ -1902,6 +1955,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		body.DestinationZone = &sdwan_schema.NATPolicyZone{}
 		// copy_from_plan_or_state: body=body.DestinationZone prefix=rsModel state=state.DestinationZone plan=plan.DestinationZone properties=12
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DestinationZone prefix=rsModel state=state.DestinationZone plan=plan.DestinationZone")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 		if state.DestinationZone != nil {
 			body.DestinationZone.Etag = ValueInt64PointerFromPlanOrState(plan.DestinationZone.Etag, state.DestinationZone.Etag)
@@ -2035,6 +2089,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			body.Natpolicypools = append(body.Natpolicypools, sdwan_schema.NATPolicyPool{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools")
 			// property: name=_etag, type=INTEGER macro=copy_from_plan
 			body.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = Int64ValueOrNil(varLoopNatpolicypools.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -2083,6 +2138,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			body.SourcePorts = append(body.SourcePorts, sdwan_schema.PortRange{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel plan=varLoopSourcePorts properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel plan=varLoopSourcePorts")
 			// property: name=from, type=INTEGER macro=copy_from_plan
 			body.SourcePorts[varLoopSourcePortsIndex].From = Int64ValueOrNil(varLoopSourcePorts.From)
 			// property: name=to, type=INTEGER macro=copy_from_plan
@@ -2095,6 +2151,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		body.SourcePrefixes = &sdwan_schema.BasePolicyPrefixS{}
 		// copy_from_plan_or_state: body=body.SourcePrefixes prefix=rsModel state=state.SourcePrefixes plan=plan.SourcePrefixes properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SourcePrefixes prefix=rsModel state=state.SourcePrefixes plan=plan.SourcePrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 		if state.SourcePrefixes != nil {
 			body.SourcePrefixes.Etag = ValueInt64PointerFromPlanOrState(plan.SourcePrefixes.Etag, state.SourcePrefixes.Etag)
@@ -2144,6 +2201,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		body.SourceZone = &sdwan_schema.NATPolicyZone{}
 		// copy_from_plan_or_state: body=body.SourceZone prefix=rsModel state=state.SourceZone plan=plan.SourceZone properties=12
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SourceZone prefix=rsModel state=state.SourceZone plan=plan.SourceZone")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 		if state.SourceZone != nil {
 			body.SourceZone.Etag = ValueInt64PointerFromPlanOrState(plan.SourceZone.Etag, state.SourceZone.Etag)
@@ -2232,20 +2290,35 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled")
+	tflog.Debug(ctx, "http json override: delete request_body_string::disabled_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "disabled_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive")
+	tflog.Debug(ctx, "http json override: delete request_body_string::inactive_reason")
 	request_body_string, _ = sjson.Delete(request_body_string, "inactive_reason")
+	tflog.Debug(ctx, "http json override: delete request_body_string::region")
 	request_body_string, _ = sjson.Delete(request_body_string, "region")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_req_version")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_req_version")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policy_rules")
 	request_body_string, _ = sjson.Delete(request_body_string, "policy_rules")
+	tflog.Debug(ctx, "http json override: delete request_body_string::send_to_element")
 	request_body_string, _ = sjson.Delete(request_body_string, "send_to_element")
+	tflog.Debug(ctx, "http json override: delete request_body_string::update_order")
 	request_body_string, _ = sjson.Delete(request_body_string, "update_order")
+	tflog.Debug(ctx, "http json override: delete request_body_string::policyset_id")
 	request_body_string, _ = sjson.Delete(request_body_string, "policyset_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::destination_prefixes")
 	request_body_string, _ = sjson.Delete(request_body_string, "destination_prefixes")
+	tflog.Debug(ctx, "http json override: delete request_body_string::source_prefixes")
 	request_body_string, _ = sjson.Delete(request_body_string, "source_prefixes")
+	tflog.Debug(ctx, "http json override: delete request_body_string::destination_zone")
 	request_body_string, _ = sjson.Delete(request_body_string, "destination_zone")
+	tflog.Debug(ctx, "http json override: delete request_body_string::source_zone")
 	request_body_string, _ = sjson.Delete(request_body_string, "source_zone")
+	tflog.Debug(ctx, "http json override: delete request_body_string::natpolicypools")
 	request_body_string, _ = sjson.Delete(request_body_string, "natpolicypools")
 	// copy pointer
 	put_request.RequestBody = &request_body_string
@@ -2277,7 +2350,9 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -2292,6 +2367,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 
 	// Store the answer to state. schema=NATPolicyRule
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2307,6 +2383,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			// add a new item
 			state.Actions = append(state.Actions, rsModelNATAction{})
 			// copy_to_state: state=state.Actions[varLoopActionsIndex] prefix=rsModel ans=varLoopActions properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex] prefix=rsModel ans=varLoopActions")
 			// property: name=nat_pool_id, type=STRING macro=copy_to_state
 			state.Actions[varLoopActionsIndex].NatPoolId = types.StringPointerValue(varLoopActions.NatPoolId)
 			// property: name=port, type=INTEGER macro=copy_to_state
@@ -2332,6 +2409,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			// add a new item
 			state.DestinationPorts = append(state.DestinationPorts, rsModelPortRange{})
 			// copy_to_state: state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel ans=varLoopDestinationPorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DestinationPorts[varLoopDestinationPortsIndex] prefix=rsModel ans=varLoopDestinationPorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.DestinationPorts[varLoopDestinationPortsIndex].From = types.Int64PointerValue(varLoopDestinationPorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -2344,6 +2422,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		state.DestinationPrefixes = &rsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2375,6 +2454,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		state.DestinationZone = &rsModelNATPolicyZone{}
 		// copy_to_state: state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2429,6 +2509,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			// add a new item
 			state.Natpolicypools = append(state.Natpolicypools, rsModelNATPolicyPool{})
 			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2462,6 +2543,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			// add a new item
 			state.SourcePorts = append(state.SourcePorts, rsModelPortRange{})
 			// copy_to_state: state=state.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel ans=varLoopSourcePorts properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SourcePorts[varLoopSourcePortsIndex] prefix=rsModel ans=varLoopSourcePorts")
 			// property: name=from, type=INTEGER macro=copy_to_state
 			state.SourcePorts[varLoopSourcePortsIndex].From = types.Int64PointerValue(varLoopSourcePorts.From)
 			// property: name=to, type=INTEGER macro=copy_to_state
@@ -2474,6 +2556,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		state.SourcePrefixes = &rsModelBasePolicyPrefixS{}
 		// copy_to_state: state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2505,6 +2588,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		state.SourceZone = &rsModelNATPolicyZone{}
 		// copy_to_state: state=state.SourceZone prefix=rsModel ans=ans.SourceZone properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=rsModel ans=ans.SourceZone")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2553,7 +2637,7 @@ func (r *natPolicyRuleResource) doDelete(ctx context.Context, state *rsModelNATP
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_policy_rule ID format", "Expected 2 tokens")
 		return false
 	}

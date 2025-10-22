@@ -162,7 +162,7 @@ func (d *siteSecurityZoneDataSource) Read(ctx context.Context, req datasource.Re
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_security_zone ID format", "Expected 2 tokens")
 		return
 	}
@@ -210,6 +210,7 @@ func (d *siteSecurityZoneDataSource) Read(ctx context.Context, req datasource.Re
 
 	// lets copy all items into state schema=SecurityZoneNetworkAssociation
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=5
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -227,6 +228,7 @@ func (d *siteSecurityZoneDataSource) Read(ctx context.Context, req datasource.Re
 			// add a new item
 			state.Networks = append(state.Networks, dsModelSiteContext{})
 			// copy_to_state: state=state.Networks[varLoopNetworksIndex] prefix=dsModel ans=varLoopNetworks properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Networks[varLoopNetworksIndex] prefix=dsModel ans=varLoopNetworks")
 			// property: name=network_id, type=STRING macro=copy_to_state
 			state.Networks[varLoopNetworksIndex].NetworkId = types.StringPointerValue(varLoopNetworks.NetworkId)
 			// property: name=network_type, type=STRING macro=copy_to_state

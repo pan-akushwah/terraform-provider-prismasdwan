@@ -83,7 +83,14 @@
     },
     "sgi_apply_static_tag" : {
       "description" : "Sgi Apply Static Tag",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "port_channel_config" : {
       "properties" : {
@@ -359,7 +366,14 @@
     },
     "vrf_context_id" : {
       "description" : "Vrf Context Id",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "authentication_config" : {
       "properties" : {
@@ -381,7 +395,14 @@
     "peer_bypasspair_wan_port_type" : {
       "description" : "Peer Bypasspair Wan Port Type: ValidateEnum(enumClass = classOf[PortExtensionType], message = Invalid enum string., nullAllowed = false) ",
       "type" : "string",
-      "enum" : [ "none", "cellular" ]
+      "enum" : [ "none", "cellular" ],
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "ipv6_config" : {
       "properties" : {
@@ -565,16 +586,37 @@
     },
     "lldp_enabled" : {
       "description" : "Lldp Enabled",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "power_usage_threshold" : {
       "description" : "Power Usage Threshold: ValidateDecimal(allowZero = true, increment = 0, max = 0, error = INTERFACE_CONFIG_INVALID_POE_POWER_USAGE_THRESHOLD: Invalid Interface configuration. Invalid PoE alarm threshold value {}. Valid values are in the range 50-100., min = 0) ",
       "format" : "int32",
-      "type" : "integer"
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "poe_enabled" : {
       "description" : "Poe Enabled",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "multicast_config" : {
       "properties" : {
@@ -610,7 +652,14 @@
     "nat_port_v6" : {
       "description" : "Nat Port V6: Range(max = 65535L, error = INTERFACE_CONFIG_INVALID_PORT: LAN,WAN,Internet bypass ports cannot be part of logical interface groups., min = 0L) ",
       "format" : "int32",
-      "type" : "integer"
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_address_v6" : {
       "description" : "Nat Address V6: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = INVALID_IPV6_NAT: IPv6 NAT address is invalid., type = IPV6) ",
@@ -658,7 +707,14 @@
     },
     "directed_broadcast" : {
       "description" : "Directed Broadcast",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_pools" : {
       "description" : "Nat Pools: Embedded(concreteClass = classOf[Object], value = .) Valid ",
@@ -764,12 +820,26 @@
     },
     "used_for" : {
       "description" : "Used For: ValidateEnum(enumClass = classOf[UsedFor], error = INTERFACE_CONFIG_INVALID_USEDFOR_VALUE: Invalid used for value specified.The allowed values are public,private_wan,lan,none, nullAllowed = false) ",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_port" : {
       "description" : "Nat Port: Range(max = 65535L, error = INTERFACE_CONFIG_INVALID_PORT: LAN,WAN,Internet bypass ports cannot be part of logical interface groups., min = 0L) ",
       "format" : "int32",
-      "type" : "integer"
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "nat_address" : {
       "description" : "Nat Address: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = INVALID_NAT_IP: NAT IP address is invalid., type = IP) ",
@@ -783,107 +853,26 @@
       "properties" : {
         "full_duplex" : {
           "description" : "Full Duplex",
-          "type" : "boolean"
+          "type" : "boolean",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_computed" : {
+                "type" : "boolean"
+              }
+            }
+          }
         },
         "speed" : {
           "description" : "Speed",
           "format" : "int32",
-          "type" : "integer"
-        },
-        "port_name" : {
-          "description" : "Port Name",
-          "type" : "string"
-        },
-        "port_id" : {
-          "properties" : {
-            "element_id" : {
-              "description" : "Element Id",
-              "type" : "string"
-            },
-            "original_mac_address" : {
-              "description" : "Orig Mac Addr",
-              "type" : "string"
-            },
-            "max_speed" : {
-              "description" : "Max Speed",
-              "type" : "integer"
-            },
-            "max_mtu" : {
-              "description" : "Max Mtu",
-              "type" : "integer"
-            },
-            "connector" : {
-              "description" : "Connector Type",
-              "type" : "string"
-            },
-            "device" : {
-              "description" : "Device Name",
-              "type" : "string"
-            },
-            "name" : {
-              "description" : "Name: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
-              "type" : "string"
-            },
-            "site_id" : {
-              "description" : "Site Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
-              "type" : "string"
-            },
-            "region" : {
-              "description" : "Region: Transient ",
-              "type" : "string"
-            },
-            "disabled_reason" : {
-              "description" : "Disabled Reason: Size(max = 5000, DISABLED_REASON_INVALID_0001, min = 0) ",
-              "type" : "string"
-            },
-            "disabled" : {
-              "description" : "Disabled",
-              "type" : "boolean"
-            },
-            "inactive_reason" : {
-              "description" : "Inactive Reason: Size(max = 5000, INACTIVE_REASON_INVALID_0001, min = 0) ",
-              "type" : "string"
-            },
-            "inactive" : {
-              "description" : "Inactive",
-              "type" : "boolean"
-            },
-            "id" : {
-              "type" : "string",
-              "additionalProperties" : {
-                "properties" : {
-                  "x_flag_computed" : {
-                    "type" : "boolean"
-                  }
-                }
-              }
-            },
-            "_schema" : {
-              "description" : "Schema version for this object",
-              "minimum" : 1,
-              "type" : "integer",
-              "additionalProperties" : {
-                "properties" : {
-                  "x_flag_computed" : {
-                    "type" : "boolean"
-                  }
-                }
-              }
-            },
-            "_etag" : {
-              "description" : "Etag for this object",
-              "minimum" : 1,
-              "type" : "integer",
-              "additionalProperties" : {
-                "properties" : {
-                  "x_flag_computed" : {
-                    "type" : "boolean"
-                  }
-                }
+          "type" : "integer",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_computed" : {
+                "type" : "boolean"
               }
             }
-          },
-          "required" : [ "site_id" ]
+          }
         }
       }
     },
@@ -1011,7 +1000,14 @@
     },
     "mtu" : {
       "description" : "Mtu: Range(max = 9216L, error = INTERFACE_CONFIG_INVALID_MTU: MTU is not in the valid range., min = 0L) ",
-      "type" : "integer"
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "mac_address" : {
       "description" : "Mac Address: Pattern(error = INTERFACE_CONFIG_INVALID_MAC: Invalid mac address syntax., regexp = ([0-9a-f]{2}[:]){5}([0-9a-f]{2})) ",

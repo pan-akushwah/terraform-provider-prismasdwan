@@ -216,7 +216,7 @@ func (d *siteHubPrefixFilterProfileDataSource) Read(ctx context.Context, req dat
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_prefix_filter_profile ID format", "Expected 2 tokens")
 		return
 	}
@@ -264,6 +264,7 @@ func (d *siteHubPrefixFilterProfileDataSource) Read(ctx context.Context, req dat
 
 	// lets copy all items into state schema=PathPrefixDistributionFilters
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=7
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -285,6 +286,7 @@ func (d *siteHubPrefixFilterProfileDataSource) Read(ctx context.Context, req dat
 			// add a new item
 			state.PathPrefixFilterList = append(state.PathPrefixFilterList, dsModelPathPrefixFilterList{})
 			// copy_to_state: state=state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex] prefix=dsModel ans=varLoopPathPrefixFilterList properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex] prefix=dsModel ans=varLoopPathPrefixFilterList")
 			// property: name=path_prefix_filters, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopPathPrefixFilterList.PathPrefixFilters == nil {
 				state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex].PathPrefixFilters = nil
@@ -296,6 +298,7 @@ func (d *siteHubPrefixFilterProfileDataSource) Read(ctx context.Context, req dat
 					// add a new item
 					state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex].PathPrefixFilters = append(state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex].PathPrefixFilters, dsModelPathPrefixFilters{})
 					// copy_to_state: state=state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex].PathPrefixFilters[varLoopPathPrefixFiltersIndex] prefix=dsModel ans=varLoopPathPrefixFilters properties=4
+					tflog.Debug(ctx, "copy_to_state state=state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex].PathPrefixFilters[varLoopPathPrefixFiltersIndex] prefix=dsModel ans=varLoopPathPrefixFilters")
 					// property: name=ipv4_prefix, type=STRING macro=copy_to_state
 					state.PathPrefixFilterList[varLoopPathPrefixFilterListIndex].PathPrefixFilters[varLoopPathPrefixFiltersIndex].Ipv4Prefix = types.StringPointerValue(varLoopPathPrefixFilters.Ipv4Prefix)
 					// property: name=ipv6_prefix, type=STRING macro=copy_to_state

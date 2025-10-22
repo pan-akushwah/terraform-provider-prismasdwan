@@ -217,6 +217,7 @@ func (r *elementRoutingIpcommunitylistResource) doPost(ctx context.Context, plan
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -234,6 +235,7 @@ func (r *elementRoutingIpcommunitylistResource) doPost(ctx context.Context, plan
 			// add a new item
 			body.CommunityList = append(body.CommunityList, sdwan_schema.RoutingIPCommunity{})
 			// copy_from_plan: body=body.CommunityList[varLoopCommunityListIndex] prefix=rsModel plan=varLoopCommunityList properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.CommunityList[varLoopCommunityListIndex] prefix=rsModel plan=varLoopCommunityList")
 			// property: name=community_str, type=STRING macro=copy_from_plan
 			body.CommunityList[varLoopCommunityListIndex].CommunityStr = StringValueOrNil(varLoopCommunityList.CommunityStr)
 			// property: name=permit, type=BOOLEAN macro=copy_from_plan
@@ -259,8 +261,11 @@ func (r *elementRoutingIpcommunitylistResource) doPost(ctx context.Context, plan
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -286,7 +291,9 @@ func (r *elementRoutingIpcommunitylistResource) doPost(ctx context.Context, plan
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -322,6 +329,7 @@ func (r *elementRoutingIpcommunitylistResource) doPost(ctx context.Context, plan
 
 	// Store the answer to state. schema=RoutingCommunityListScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -339,6 +347,7 @@ func (r *elementRoutingIpcommunitylistResource) doPost(ctx context.Context, plan
 			// add a new item
 			state.CommunityList = append(state.CommunityList, rsModelRoutingIPCommunity{})
 			// copy_to_state: state=state.CommunityList[varLoopCommunityListIndex] prefix=rsModel ans=varLoopCommunityList properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.CommunityList[varLoopCommunityListIndex] prefix=rsModel ans=varLoopCommunityList")
 			// property: name=community_str, type=STRING macro=copy_to_state
 			state.CommunityList[varLoopCommunityListIndex].CommunityStr = types.StringPointerValue(varLoopCommunityList.CommunityStr)
 			// property: name=permit, type=BOOLEAN macro=copy_to_state
@@ -368,7 +377,7 @@ func (r *elementRoutingIpcommunitylistResource) doGet(ctx context.Context, state
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_ipcommunitylist ID format", "Expected 3 tokens")
 		return false
 	}
@@ -415,7 +424,9 @@ func (r *elementRoutingIpcommunitylistResource) doGet(ctx context.Context, state
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=RoutingCommunityListScreen
@@ -437,6 +448,7 @@ func (r *elementRoutingIpcommunitylistResource) doGet(ctx context.Context, state
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -454,6 +466,7 @@ func (r *elementRoutingIpcommunitylistResource) doGet(ctx context.Context, state
 			// add a new item
 			state.CommunityList = append(state.CommunityList, rsModelRoutingIPCommunity{})
 			// copy_to_state: state=state.CommunityList[varLoopCommunityListIndex] prefix=rsModel ans=varLoopCommunityList properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.CommunityList[varLoopCommunityListIndex] prefix=rsModel ans=varLoopCommunityList")
 			// property: name=community_str, type=STRING macro=copy_to_state
 			state.CommunityList[varLoopCommunityListIndex].CommunityStr = types.StringPointerValue(varLoopCommunityList.CommunityStr)
 			// property: name=permit, type=BOOLEAN macro=copy_to_state
@@ -492,7 +505,7 @@ func (r *elementRoutingIpcommunitylistResource) doPut(ctx context.Context, plan 
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_ipcommunitylist ID format", "Expected 3 tokens")
 		return false
 	}
@@ -523,6 +536,7 @@ func (r *elementRoutingIpcommunitylistResource) doPut(ctx context.Context, plan 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -557,6 +571,7 @@ func (r *elementRoutingIpcommunitylistResource) doPut(ctx context.Context, plan 
 			body.CommunityList = append(body.CommunityList, sdwan_schema.RoutingIPCommunity{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.CommunityList[varLoopCommunityListIndex] prefix=rsModel plan=varLoopCommunityList properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.CommunityList[varLoopCommunityListIndex] prefix=rsModel plan=varLoopCommunityList")
 			// property: name=community_str, type=STRING macro=copy_from_plan
 			body.CommunityList[varLoopCommunityListIndex].CommunityStr = StringValueOrNil(varLoopCommunityList.CommunityStr)
 			// property: name=permit, type=BOOLEAN macro=copy_from_plan
@@ -623,7 +638,9 @@ func (r *elementRoutingIpcommunitylistResource) doPut(ctx context.Context, plan 
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -638,6 +655,7 @@ func (r *elementRoutingIpcommunitylistResource) doPut(ctx context.Context, plan 
 
 	// Store the answer to state. schema=RoutingCommunityListScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -655,6 +673,7 @@ func (r *elementRoutingIpcommunitylistResource) doPut(ctx context.Context, plan 
 			// add a new item
 			state.CommunityList = append(state.CommunityList, rsModelRoutingIPCommunity{})
 			// copy_to_state: state=state.CommunityList[varLoopCommunityListIndex] prefix=rsModel ans=varLoopCommunityList properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.CommunityList[varLoopCommunityListIndex] prefix=rsModel ans=varLoopCommunityList")
 			// property: name=community_str, type=STRING macro=copy_to_state
 			state.CommunityList[varLoopCommunityListIndex].CommunityStr = types.StringPointerValue(varLoopCommunityList.CommunityStr)
 			// property: name=permit, type=BOOLEAN macro=copy_to_state
@@ -686,7 +705,7 @@ func (r *elementRoutingIpcommunitylistResource) doDelete(ctx context.Context, st
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_ipcommunitylist ID format", "Expected 3 tokens")
 		return false
 	}

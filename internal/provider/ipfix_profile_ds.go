@@ -392,7 +392,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipfix_profile ID format", "Expected 1 tokens")
 		return
 	}
@@ -439,6 +439,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 
 	// lets copy all items into state schema=IPFixProfileScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=11
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -454,6 +455,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 			// add a new item
 			state.CollectorConfig = append(state.CollectorConfig, dsModelCollectorConfig{})
 			// copy_to_state: state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=dsModel ans=varLoopCollectorConfig properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.CollectorConfig[varLoopCollectorConfigIndex] prefix=dsModel ans=varLoopCollectorConfig")
 			// property: name=host, type=STRING macro=copy_to_state
 			state.CollectorConfig[varLoopCollectorConfigIndex].Host = types.StringPointerValue(varLoopCollectorConfig.Host)
 			// property: name=host_port, type=INTEGER macro=copy_to_state
@@ -481,6 +483,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 			// add a new item
 			state.Filters = append(state.Filters, dsModelIPFixFilter{})
 			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=dsModel ans=varLoopFilters properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=dsModel ans=varLoopFilters")
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopFilters.AppDefIds)
 			state.Filters[varLoopFiltersIndex].AppDefIds = varAppDefIds
@@ -496,6 +499,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 					// add a new item
 					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, dsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=dsModel ans=varLoopDstPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=dsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = types.Int64PointerValue(varLoopDstPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -529,6 +533,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 					// add a new item
 					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, dsModelPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=dsModel ans=varLoopSrcPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=dsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
 					state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = types.Int64PointerValue(varLoopSrcPorts.End)
 					// property: name=start, type=INTEGER macro=copy_to_state
@@ -553,6 +558,7 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.Sampler = &dsModelIPFixSampler{}
 		// copy_to_state: state=state.Sampler prefix=dsModel ans=ans.Sampler properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.Sampler prefix=dsModel ans=ans.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_to_state
 		state.Sampler.Algorithm = types.StringPointerValue(ans.Sampler.Algorithm)
 		// property: name=time_interval, type=INTEGER macro=copy_to_state

@@ -179,7 +179,7 @@ func (d *multicastPeerGroupProfileDataSource) Read(ctx context.Context, req data
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_multicast_peer_group_profile ID format", "Expected 1 tokens")
 		return
 	}
@@ -226,6 +226,7 @@ func (d *multicastPeerGroupProfileDataSource) Read(ctx context.Context, req data
 
 	// lets copy all items into state schema=MulticastPeerGroupScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -249,6 +250,7 @@ func (d *multicastPeerGroupProfileDataSource) Read(ctx context.Context, req data
 			// add a new item
 			state.PeerSites = append(state.PeerSites, dsModelMulticastPeerSite{})
 			// copy_to_state: state=state.PeerSites[varLoopPeerSitesIndex] prefix=dsModel ans=varLoopPeerSites properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.PeerSites[varLoopPeerSitesIndex] prefix=dsModel ans=varLoopPeerSites")
 			// property: name=peer_site_id, type=STRING macro=copy_to_state
 			state.PeerSites[varLoopPeerSitesIndex].PeerSiteId = types.StringPointerValue(varLoopPeerSites.PeerSiteId)
 		}

@@ -315,6 +315,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=9
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -333,6 +334,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 	if plan.V2Config != nil {
 		body.V2Config = &sdwan_schema.SNMPV2Config{}
 		// copy_from_plan: body=body.V2Config prefix=rsModel plan=plan.V2Config properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.V2Config prefix=rsModel plan=plan.V2Config")
 		// property: name=community, type=STRING macro=copy_from_plan
 		body.V2Config.Community = StringValueOrNil(plan.V2Config.Community)
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan
@@ -342,6 +344,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 	if plan.V3Config != nil {
 		body.V3Config = &sdwan_schema.SNMPV3Config{}
 		// copy_from_plan: body=body.V3Config prefix=rsModel plan=plan.V3Config properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.V3Config prefix=rsModel plan=plan.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 		body.V3Config.Enabled = BoolValueOrNil(plan.V3Config.Enabled)
 		// property: name=users_access, type=ARRAY_REFERENCE macro=copy_from_plan
@@ -355,6 +358,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 				// add a new item
 				body.V3Config.UsersAccess = append(body.V3Config.UsersAccess, sdwan_schema.SNMPUserAccess{})
 				// copy_from_plan: body=body.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel plan=varLoopUsersAccess properties=7
+				tflog.Debug(ctx, "copy_from_plan body=body.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel plan=varLoopUsersAccess")
 				// property: name=auth_phrase, type=STRING macro=copy_from_plan
 				body.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase = StringValueOrNil(varLoopUsersAccess.AuthPhrase)
 				// property: name=auth_type, type=STRING macro=copy_from_plan
@@ -383,8 +387,11 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -410,7 +417,9 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -446,6 +455,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 
 	// Store the answer to state. schema=SNMPAgentV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -468,6 +478,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 	} else {
 		state.V2Config = &rsModelSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=rsModel ans=ans.V2Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=rsModel ans=ans.V2Config")
 		// property: name=community, type=STRING macro=copy_to_state
 		state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -479,6 +490,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 	} else {
 		state.V3Config = &rsModelSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=rsModel ans=ans.V3Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=rsModel ans=ans.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.V3Config.Enabled = types.BoolPointerValue(ans.V3Config.Enabled)
 		// property: name=users_access, type=ARRAY_REFERENCE macro=copy_to_state
@@ -492,6 +504,7 @@ func (r *elementSnmpAgentResource) doPost(ctx context.Context, plan *rsModelSNMP
 				// add a new item
 				state.V3Config.UsersAccess = append(state.V3Config.UsersAccess, rsModelSNMPUserAccess{})
 				// copy_to_state: state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel ans=varLoopUsersAccess properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel ans=varLoopUsersAccess")
 				// property: name=auth_phrase, type=STRING macro=copy_to_state
 				state.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase = types.StringPointerValue(plan.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase.ValueStringPointer())
 				// this property is sensitive and will be stored in the state's internal key name
@@ -536,7 +549,7 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return false
 	}
@@ -583,7 +596,9 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=SNMPAgentV2N1
@@ -605,6 +620,7 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -627,6 +643,7 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 	} else {
 		state.V2Config = &rsModelSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=rsModel ans=ans.V2Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=rsModel ans=ans.V2Config")
 		// property: name=community, type=STRING macro=copy_to_state
 		state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -638,6 +655,7 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 	} else {
 		state.V3Config = &rsModelSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=rsModel ans=ans.V3Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=rsModel ans=ans.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.V3Config.Enabled = types.BoolPointerValue(ans.V3Config.Enabled)
 		// property: name=users_access, type=ARRAY_REFERENCE macro=copy_to_state
@@ -651,6 +669,7 @@ func (r *elementSnmpAgentResource) doGet(ctx context.Context, state *rsModelSNMP
 				// add a new item
 				state.V3Config.UsersAccess = append(state.V3Config.UsersAccess, rsModelSNMPUserAccess{})
 				// copy_to_state: state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel ans=varLoopUsersAccess properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel ans=varLoopUsersAccess")
 				// property: name=auth_phrase, type=STRING macro=copy_to_state
 				encryptedAuthPhraseKeyName := state.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhraseInternalKeyName.String()
 				encryptedAuthPhraseValueBytes, _ := resp.Private.GetKey(ctx, encryptedAuthPhraseKeyName)
@@ -700,7 +719,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return false
 	}
@@ -731,6 +750,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=9
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -775,6 +795,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 	} else {
 		body.V2Config = &sdwan_schema.SNMPV2Config{}
 		// copy_from_plan_or_state: body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config")
 		// property: name=community, type=STRING macro=copy_from_plan_or_state
 		if state.V2Config != nil {
 			body.V2Config.Community = ValueStringPointerFromPlanOrState(plan.V2Config.Community, state.V2Config.Community)
@@ -794,6 +815,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 	} else {
 		body.V3Config = &sdwan_schema.SNMPV3Config{}
 		// copy_from_plan_or_state: body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.V3Config != nil {
 			body.V3Config.Enabled = ValueBoolPointerFromPlanOrState(plan.V3Config.Enabled, state.V3Config.Enabled)
@@ -816,6 +838,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 				body.V3Config.UsersAccess = append(body.V3Config.UsersAccess, sdwan_schema.SNMPUserAccess{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel plan=varLoopUsersAccess properties=7
+				tflog.Debug(ctx, "copy_from_plan body=body.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel plan=varLoopUsersAccess")
 				// property: name=auth_phrase, type=STRING macro=copy_from_plan
 				body.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase = StringValueOrNil(varLoopUsersAccess.AuthPhrase)
 				// property: name=auth_type, type=STRING macro=copy_from_plan
@@ -873,7 +896,9 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -888,6 +913,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 
 	// Store the answer to state. schema=SNMPAgentV2N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -910,6 +936,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 	} else {
 		state.V2Config = &rsModelSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=rsModel ans=ans.V2Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=rsModel ans=ans.V2Config")
 		// property: name=community, type=STRING macro=copy_to_state
 		state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -921,6 +948,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 	} else {
 		state.V3Config = &rsModelSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=rsModel ans=ans.V3Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=rsModel ans=ans.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.V3Config.Enabled = types.BoolPointerValue(ans.V3Config.Enabled)
 		// property: name=users_access, type=ARRAY_REFERENCE macro=copy_to_state
@@ -934,6 +962,7 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 				// add a new item
 				state.V3Config.UsersAccess = append(state.V3Config.UsersAccess, rsModelSNMPUserAccess{})
 				// copy_to_state: state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel ans=varLoopUsersAccess properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=rsModel ans=varLoopUsersAccess")
 				// property: name=auth_phrase, type=STRING macro=copy_to_state
 				state.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase = types.StringPointerValue(plan.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase.ValueStringPointer())
 				// this property is sensitive and will be stored in the state's internal key name
@@ -980,7 +1009,7 @@ func (r *elementSnmpAgentResource) doDelete(ctx context.Context, state *rsModelS
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return false
 	}

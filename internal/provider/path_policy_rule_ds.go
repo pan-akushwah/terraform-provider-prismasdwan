@@ -428,7 +428,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_path_policy_rule ID format", "Expected 2 tokens")
 		return
 	}
@@ -476,6 +476,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 
 	// lets copy all items into state schema=NetworkPolicyRuleScreenV2N4
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=18
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -490,6 +491,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.BestPathConfig = &dsModelBestPathConfig{}
 		// copy_to_state: state=state.BestPathConfig prefix=dsModel ans=ans.BestPathConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.BestPathConfig prefix=dsModel ans=ans.BestPathConfig")
 		// property: name=metric, type=STRING macro=copy_to_state
 		state.BestPathConfig.Metric = types.StringPointerValue(ans.BestPathConfig.Metric)
 		// property: name=metric_type, type=STRING macro=copy_to_state
@@ -521,6 +523,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.PathsAllowed = &dsModelPathsAllowedV2N1{}
 		// copy_to_state: state=state.PathsAllowed prefix=dsModel ans=ans.PathsAllowed properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed prefix=dsModel ans=ans.PathsAllowed")
 		// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.PathsAllowed.ActivePaths == nil {
 			state.PathsAllowed.ActivePaths = nil
@@ -532,6 +535,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 				// add a new item
 				state.PathsAllowed.ActivePaths = append(state.PathsAllowed.ActivePaths, dsModelWANPath{})
 				// copy_to_state: state=state.PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths")
 				// property: name=label, type=STRING macro=copy_to_state
 				state.PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
 				// property: name=path_type, type=STRING macro=copy_to_state
@@ -549,6 +553,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 				// add a new item
 				state.PathsAllowed.BackupPaths = append(state.PathsAllowed.BackupPaths, dsModelWANPath{})
 				// copy_to_state: state=state.PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths")
 				// property: name=label, type=STRING macro=copy_to_state
 				state.PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
 				// property: name=path_type, type=STRING macro=copy_to_state
@@ -566,6 +571,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 				// add a new item
 				state.PathsAllowed.L3FailurePaths = append(state.PathsAllowed.L3FailurePaths, dsModelWANPath{})
 				// copy_to_state: state=state.PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths")
 				// property: name=label, type=STRING macro=copy_to_state
 				state.PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
 				// property: name=path_type, type=STRING macro=copy_to_state
@@ -579,6 +585,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.ServiceContext = &dsModelServiceContext{}
 		// copy_to_state: state=state.ServiceContext prefix=dsModel ans=ans.ServiceContext properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceContext prefix=dsModel ans=ans.ServiceContext")
 		// property: name=active_service_label_id, type=STRING macro=copy_to_state
 		state.ServiceContext.ActiveServiceLabelId = types.StringPointerValue(ans.ServiceContext.ActiveServiceLabelId)
 		// property: name=active_service_label_type, type=STRING macro=copy_to_state
@@ -606,6 +613,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.UserOrGroup = &dsModelUserGroup{}
 		// copy_to_state: state=state.UserOrGroup prefix=dsModel ans=ans.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.UserOrGroup prefix=dsModel ans=ans.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, ans.UserOrGroup.UserGroupIds)
 		state.UserOrGroup.UserGroupIds = varUserGroupIds

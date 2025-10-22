@@ -477,7 +477,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_profile ID format", "Expected 1 tokens")
 		return
 	}
@@ -524,6 +524,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 
 	// lets copy all items into state schema=PerfMgmtThresholdProfileScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -534,6 +535,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.CircuitUtilizationMetricsThresholds = &dsModelCircuitUtilizationMetricThresholds{}
 		// copy_to_state: state=state.CircuitUtilizationMetricsThresholds prefix=dsModel ans=ans.CircuitUtilizationMetricsThresholds properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.CircuitUtilizationMetricsThresholds prefix=dsModel ans=ans.CircuitUtilizationMetricsThresholds")
 		// property: name=percentage_circuit_utilization, type=INTEGER macro=copy_to_state
 		state.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization = types.Int64PointerValue(ans.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization)
 	}
@@ -545,6 +547,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.FlowMetricsThresholds = &dsModelFlowMetricThresholds{}
 		// copy_to_state: state=state.FlowMetricsThresholds prefix=dsModel ans=ans.FlowMetricsThresholds properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.FlowMetricsThresholds prefix=dsModel ans=ans.FlowMetricsThresholds")
 		// property: name=percentage_flow_utilization, type=INTEGER macro=copy_to_state
 		state.FlowMetricsThresholds.PercentageFlowUtilization = types.Int64PointerValue(ans.FlowMetricsThresholds.PercentageFlowUtilization)
 	}
@@ -554,6 +557,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.HardLimitAppMetrics = &dsModelStaticAppMetricConfigV2N1{}
 		// copy_to_state: state=state.HardLimitAppMetrics prefix=dsModel ans=ans.HardLimitAppMetrics properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.HardLimitAppMetrics prefix=dsModel ans=ans.HardLimitAppMetrics")
 		// property: name=max_init_failure_rate, type=INTEGER macro=copy_to_state
 		state.HardLimitAppMetrics.MaxInitFailureRate = types.Int64PointerValue(ans.HardLimitAppMetrics.MaxInitFailureRate)
 		// property: name=max_rtt, type=INTEGER macro=copy_to_state
@@ -569,6 +573,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.LqmThresholds = &dsModelLQMThresholdConfigV2N1{}
 		// copy_to_state: state=state.LqmThresholds prefix=dsModel ans=ans.LqmThresholds properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.LqmThresholds prefix=dsModel ans=ans.LqmThresholds")
 		// property: name=max_jitter, type=INTEGER macro=copy_to_state
 		state.LqmThresholds.MaxJitter = types.Int64PointerValue(ans.LqmThresholds.MaxJitter)
 		// property: name=max_latency, type=INTEGER macro=copy_to_state
@@ -586,6 +591,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.SoftLimitAppMetrics = &dsModelStaticAppMetricConfigV2N1{}
 		// copy_to_state: state=state.SoftLimitAppMetrics prefix=dsModel ans=ans.SoftLimitAppMetrics properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.SoftLimitAppMetrics prefix=dsModel ans=ans.SoftLimitAppMetrics")
 		// property: name=max_init_failure_rate, type=INTEGER macro=copy_to_state
 		state.SoftLimitAppMetrics.MaxInitFailureRate = types.Int64PointerValue(ans.SoftLimitAppMetrics.MaxInitFailureRate)
 		// property: name=max_rtt, type=INTEGER macro=copy_to_state
@@ -599,12 +605,14 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.SyntheticProbeThresholds = &dsModelSyntheticProbeThresholds{}
 		// copy_to_state: state=state.SyntheticProbeThresholds prefix=dsModel ans=ans.SyntheticProbeThresholds properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds prefix=dsModel ans=ans.SyntheticProbeThresholds")
 		// property: name=dns_txn_failure_pct, type=REFERENCE macro=copy_to_state
 		if ans.SyntheticProbeThresholds.DnsTxnFailurePct == nil {
 			state.SyntheticProbeThresholds.DnsTxnFailurePct = nil
 		} else {
 			state.SyntheticProbeThresholds.DnsTxnFailurePct = &dsModelSyntheticProbeThreshold{}
 			// copy_to_state: state=state.SyntheticProbeThresholds.DnsTxnFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.DnsTxnFailurePct properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.DnsTxnFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.DnsTxnFailurePct")
 			// property: name=probe_config_id, type=STRING macro=copy_to_state
 			state.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId)
 			// property: name=value, type=INTEGER macro=copy_to_state
@@ -616,6 +624,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 		} else {
 			state.SyntheticProbeThresholds.InitFailurePct = &dsModelSyntheticProbeThreshold{}
 			// copy_to_state: state=state.SyntheticProbeThresholds.InitFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.InitFailurePct properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.InitFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.InitFailurePct")
 			// property: name=probe_config_id, type=STRING macro=copy_to_state
 			state.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId)
 			// property: name=value, type=INTEGER macro=copy_to_state
@@ -627,6 +636,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 		} else {
 			state.SyntheticProbeThresholds.Jitter = &dsModelSyntheticProbeThreshold{}
 			// copy_to_state: state=state.SyntheticProbeThresholds.Jitter prefix=dsModel ans=ans.SyntheticProbeThresholds.Jitter properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.Jitter prefix=dsModel ans=ans.SyntheticProbeThresholds.Jitter")
 			// property: name=probe_config_id, type=STRING macro=copy_to_state
 			state.SyntheticProbeThresholds.Jitter.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.Jitter.ProbeConfigId)
 			// property: name=value, type=INTEGER macro=copy_to_state
@@ -638,6 +648,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 		} else {
 			state.SyntheticProbeThresholds.Latency = &dsModelSyntheticProbeThreshold{}
 			// copy_to_state: state=state.SyntheticProbeThresholds.Latency prefix=dsModel ans=ans.SyntheticProbeThresholds.Latency properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.Latency prefix=dsModel ans=ans.SyntheticProbeThresholds.Latency")
 			// property: name=probe_config_id, type=STRING macro=copy_to_state
 			state.SyntheticProbeThresholds.Latency.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.Latency.ProbeConfigId)
 			// property: name=value, type=INTEGER macro=copy_to_state
@@ -649,6 +660,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 		} else {
 			state.SyntheticProbeThresholds.PacketLoss = &dsModelSyntheticProbeThreshold{}
 			// copy_to_state: state=state.SyntheticProbeThresholds.PacketLoss prefix=dsModel ans=ans.SyntheticProbeThresholds.PacketLoss properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.PacketLoss prefix=dsModel ans=ans.SyntheticProbeThresholds.PacketLoss")
 			// property: name=probe_config_id, type=STRING macro=copy_to_state
 			state.SyntheticProbeThresholds.PacketLoss.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.PacketLoss.ProbeConfigId)
 			// property: name=value, type=INTEGER macro=copy_to_state
@@ -661,6 +673,7 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.SystemHealthMetricsThresholds = &dsModelSystemHealthMetricsThresholds{}
 		// copy_to_state: state=state.SystemHealthMetricsThresholds prefix=dsModel ans=ans.SystemHealthMetricsThresholds properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.SystemHealthMetricsThresholds prefix=dsModel ans=ans.SystemHealthMetricsThresholds")
 		// property: name=cpu_utilization, type=INTEGER macro=copy_to_state
 		state.SystemHealthMetricsThresholds.CpuUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.CpuUtilization)
 		// property: name=disk_utilization, type=INTEGER macro=copy_to_state

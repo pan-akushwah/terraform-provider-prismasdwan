@@ -538,7 +538,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_lan_network ID format", "Expected 2 tokens")
 		return
 	}
@@ -586,6 +586,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 
 	// lets copy all items into state schema=LANNetworkScreenV3N3
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=11
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -600,6 +601,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.Ipv4Config = &dsModelLanNetworkIPv4Config{}
 		// copy_to_state: state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config")
 		// property: name=default_routers, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varDefaultRouters, errDefaultRouters := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DefaultRouters)
 		state.Ipv4Config.DefaultRouters = varDefaultRouters
@@ -610,6 +612,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 		} else {
 			state.Ipv4Config.DhcpRelay = &dsModelDHCPRelay{}
 			// copy_to_state: state=state.Ipv4Config.DhcpRelay prefix=dsModel ans=ans.Ipv4Config.DhcpRelay properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpRelay prefix=dsModel ans=ans.Ipv4Config.DhcpRelay")
 			// property: name=enabled, type=BOOLEAN macro=copy_to_state
 			state.Ipv4Config.DhcpRelay.Enabled = types.BoolPointerValue(ans.Ipv4Config.DhcpRelay.Enabled)
 			// property: name=option_82, type=REFERENCE macro=copy_to_state
@@ -618,6 +621,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.Ipv4Config.DhcpRelay.Option82 = &dsModelDHCPRelayOption82{}
 				// copy_to_state: state=state.Ipv4Config.DhcpRelay.Option82 prefix=dsModel ans=ans.Ipv4Config.DhcpRelay.Option82 properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpRelay.Option82 prefix=dsModel ans=ans.Ipv4Config.DhcpRelay.Option82")
 				// property: name=circuit_id, type=STRING macro=copy_to_state
 				state.Ipv4Config.DhcpRelay.Option82.CircuitId = types.StringPointerValue(ans.Ipv4Config.DhcpRelay.Option82.CircuitId)
 				// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -640,6 +644,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 		} else {
 			state.Ipv4Config.DhcpServer = &dsModelDHCPServer{}
 			// copy_to_state: state=state.Ipv4Config.DhcpServer prefix=dsModel ans=ans.Ipv4Config.DhcpServer properties=17
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer prefix=dsModel ans=ans.Ipv4Config.DhcpServer")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Ipv4Config.DhcpServer.Etag = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -657,6 +662,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 					// add a new item
 					state.Ipv4Config.DhcpServer.CustomOptions = append(state.Ipv4Config.DhcpServer.CustomOptions, dsModelBaseCustomDHCPOptions{})
 					// copy_to_state: state=state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions")
 					// property: name=option_definition, type=STRING macro=copy_to_state
 					state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
 					// property: name=option_value, type=STRING macro=copy_to_state
@@ -690,6 +696,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 					// add a new item
 					state.Ipv4Config.DhcpServer.IpRanges = append(state.Ipv4Config.DhcpServer.IpRanges, dsModelIPRange{})
 					// copy_to_state: state=state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges")
 					// property: name=end_ip, type=STRING macro=copy_to_state
 					state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
 					// property: name=start_ip, type=STRING macro=copy_to_state
@@ -711,6 +718,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 					// add a new item
 					state.Ipv4Config.DhcpServer.StaticMappings = append(state.Ipv4Config.DhcpServer.StaticMappings, dsModelStaticMapping{})
 					// copy_to_state: state=state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings")
 					// property: name=ip_address, type=STRING macro=copy_to_state
 					state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex].IpAddress = types.StringPointerValue(varLoopStaticMappings.IpAddress)
 					// property: name=mac, type=STRING macro=copy_to_state
@@ -737,6 +745,7 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 	} else {
 		state.Ipv6Config = &dsModelLanNetworkIPv6Config{}
 		// copy_to_state: state=state.Ipv6Config prefix=dsModel ans=ans.Ipv6Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config prefix=dsModel ans=ans.Ipv6Config")
 		// property: name=default_routers, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varDefaultRouters, errDefaultRouters := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Config.DefaultRouters)
 		state.Ipv6Config.DefaultRouters = varDefaultRouters

@@ -187,7 +187,7 @@ func (d *elementRoutingIpcommunitylistDataSource) Read(ctx context.Context, req 
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_routing_ipcommunitylist ID format", "Expected 3 tokens")
 		return
 	}
@@ -236,6 +236,7 @@ func (d *elementRoutingIpcommunitylistDataSource) Read(ctx context.Context, req 
 
 	// lets copy all items into state schema=RoutingCommunityListScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -253,6 +254,7 @@ func (d *elementRoutingIpcommunitylistDataSource) Read(ctx context.Context, req 
 			// add a new item
 			state.CommunityList = append(state.CommunityList, dsModelRoutingIPCommunity{})
 			// copy_to_state: state=state.CommunityList[varLoopCommunityListIndex] prefix=dsModel ans=varLoopCommunityList properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.CommunityList[varLoopCommunityListIndex] prefix=dsModel ans=varLoopCommunityList")
 			// property: name=community_str, type=STRING macro=copy_to_state
 			state.CommunityList[varLoopCommunityListIndex].CommunityStr = types.StringPointerValue(varLoopCommunityList.CommunityStr)
 			// property: name=permit, type=BOOLEAN macro=copy_to_state

@@ -199,6 +199,7 @@ func (r *natPolicySetStackResource) doPost(ctx context.Context, plan *rsModelNAT
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -226,8 +227,11 @@ func (r *natPolicySetStackResource) doPost(ctx context.Context, plan *rsModelNAT
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -253,7 +257,9 @@ func (r *natPolicySetStackResource) doPost(ctx context.Context, plan *rsModelNAT
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -289,6 +295,7 @@ func (r *natPolicySetStackResource) doPost(ctx context.Context, plan *rsModelNAT
 
 	// Store the answer to state. schema=NATPolicySetStackPOSTScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -322,7 +329,7 @@ func (r *natPolicySetStackResource) doGet(ctx context.Context, state *rsModelNAT
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_policy_set_stack ID format", "Expected 1 tokens")
 		return false
 	}
@@ -369,7 +376,9 @@ func (r *natPolicySetStackResource) doGet(ctx context.Context, state *rsModelNAT
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=NATPolicySetStackPOSTScreen
@@ -391,6 +400,7 @@ func (r *natPolicySetStackResource) doGet(ctx context.Context, state *rsModelNAT
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -433,7 +443,7 @@ func (r *natPolicySetStackResource) doPut(ctx context.Context, plan *rsModelNATP
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_policy_set_stack ID format", "Expected 1 tokens")
 		return false
 	}
@@ -464,6 +474,7 @@ func (r *natPolicySetStackResource) doPut(ctx context.Context, plan *rsModelNATP
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -544,7 +555,9 @@ func (r *natPolicySetStackResource) doPut(ctx context.Context, plan *rsModelNATP
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -559,6 +572,7 @@ func (r *natPolicySetStackResource) doPut(ctx context.Context, plan *rsModelNATP
 
 	// Store the answer to state. schema=NATPolicySetStackPOSTScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -594,7 +608,7 @@ func (r *natPolicySetStackResource) doDelete(ctx context.Context, state *rsModel
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_nat_policy_set_stack ID format", "Expected 1 tokens")
 		return false
 	}

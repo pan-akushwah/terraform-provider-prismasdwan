@@ -297,7 +297,7 @@ func (d *eventCorrelationPolicyRuleDataSource) Read(ctx context.Context, req dat
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_event_correlation_policy_rule ID format", "Expected 2 tokens")
 		return
 	}
@@ -345,6 +345,7 @@ func (d *eventCorrelationPolicyRuleDataSource) Read(ctx context.Context, req dat
 
 	// lets copy all items into state schema=EventCorrelationPolicyRuleScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -363,12 +364,14 @@ func (d *eventCorrelationPolicyRuleDataSource) Read(ctx context.Context, req dat
 	} else {
 		state.EscalationRules = &dsModelEscalationRule{}
 		// copy_to_state: state=state.EscalationRules prefix=dsModel ans=ans.EscalationRules properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EscalationRules prefix=dsModel ans=ans.EscalationRules")
 		// property: name=flap_rule, type=REFERENCE macro=copy_to_state
 		if ans.EscalationRules.FlapRule == nil {
 			state.EscalationRules.FlapRule = nil
 		} else {
 			state.EscalationRules.FlapRule = &dsModelFlapRule{}
 			// copy_to_state: state=state.EscalationRules.FlapRule prefix=dsModel ans=ans.EscalationRules.FlapRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.FlapRule prefix=dsModel ans=ans.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_to_state
 			state.EscalationRules.FlapRule.FlapDuration = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapDuration)
 			// property: name=flap_rate, type=INTEGER macro=copy_to_state
@@ -380,6 +383,7 @@ func (d *eventCorrelationPolicyRuleDataSource) Read(ctx context.Context, req dat
 		} else {
 			state.EscalationRules.StandingRule = &dsModelStandingRule{}
 			// copy_to_state: state=state.EscalationRules.StandingRule prefix=dsModel ans=ans.EscalationRules.StandingRule properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.StandingRule prefix=dsModel ans=ans.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_to_state
 			state.EscalationRules.StandingRule.Priority = types.StringPointerValue(ans.EscalationRules.StandingRule.Priority)
 			// property: name=standing_for, type=INTEGER macro=copy_to_state

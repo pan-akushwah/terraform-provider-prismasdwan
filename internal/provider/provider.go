@@ -37,6 +37,7 @@ type SdwanProviderModel struct {
 	Scope        types.String `tfsdk:"scope"`
 	Logging      types.String `tfsdk:"logging"`
 	AuthFile     types.String `tfsdk:"auth_file"`
+	Timeout      types.Int64  `tfsdk:"timeout"`
 }
 
 // Metadata returns the provider type name.
@@ -124,6 +125,16 @@ func (p *SdwanProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp
 				),
 				Optional: true,
 			},
+			"timeout": schema.Int64Attribute{
+				Description: ProviderParamDescription(
+					"Timeout in seconds for api calls.",
+					"",
+					"SCM_CLIENT_TIMEOUT",
+					"timeout",
+				),
+				Optional:  true,
+				Sensitive: true,
+			},
 			"logging": schema.StringAttribute{
 				Description: ProviderParamDescription(
 					"The logging level of the provider and the underlying communication.",
@@ -181,6 +192,7 @@ func (p *SdwanProvider) Configure(ctx context.Context, req provider.ConfigureReq
 		Logging:          config.Logging.ValueString(),
 		Logger:           tflog.Debug,
 		CheckEnvironment: true,
+		Timeout:          config.Timeout.ValueInt64(),
 		Agent:            fmt.Sprintf("Terraform/%s Provider/prismasdwan Version/%s", req.TerraformVersion, p.version),
 	}
 

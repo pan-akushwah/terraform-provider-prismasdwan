@@ -524,7 +524,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_app_def_override ID format", "Expected 2 tokens")
 		return
 	}
@@ -572,6 +572,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 
 	// lets copy all items into state schema=AppdefOverrideScreenV2N3
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=24
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -605,6 +606,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.IpRules = append(state.IpRules, dsModelIPRuleV2{})
 			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=dsModel ans=varLoopIpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=dsModel ans=varLoopIpRules")
 			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
 			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
@@ -619,6 +621,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.IpRules[varLoopIpRulesIndex].Dscp = &dsModelDSCP{}
 				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=dsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=dsModel ans=varLoopIpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
 			}
@@ -661,6 +664,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.TcpRules = append(state.TcpRules, dsModelTcpRuleV2{})
 			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=dsModel ans=varLoopTcpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=dsModel ans=varLoopTcpRules")
 			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
 			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
@@ -671,6 +675,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &dsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=dsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=dsModel ans=varLoopTcpRules.ClientPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.Int64PointerValue(varLoopTcpRules.ClientPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -682,6 +687,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].Dscp = &dsModelDSCP{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=dsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=dsModel ans=varLoopTcpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
 			}
@@ -695,6 +701,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &dsModelPort{}
 				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=dsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=dsModel ans=varLoopTcpRules.ServerPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.Int64PointerValue(varLoopTcpRules.ServerPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state
@@ -719,6 +726,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			// add a new item
 			state.UdpRules = append(state.UdpRules, dsModelUdpRuleV2{})
 			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=dsModel ans=varLoopUdpRules properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=dsModel ans=varLoopUdpRules")
 			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
 			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
@@ -729,6 +737,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].Dscp = &dsModelDSCP{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=dsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=dsModel ans=varLoopUdpRules.Dscp")
 				// property: name=value, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
 			}
@@ -742,6 +751,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			} else {
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &dsModelPort{}
 				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=dsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=dsModel ans=varLoopUdpRules.UdpPort")
 				// property: name=end, type=INTEGER macro=copy_to_state
 				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.Int64PointerValue(varLoopUdpRules.UdpPort.End)
 				// property: name=start, type=INTEGER macro=copy_to_state

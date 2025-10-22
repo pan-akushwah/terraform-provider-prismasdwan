@@ -166,7 +166,7 @@ func (d *elementApplicationProbeDataSource) Read(ctx context.Context, req dataso
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_application_probe ID format", "Expected 2 tokens")
 		return
 	}
@@ -214,6 +214,7 @@ func (d *elementApplicationProbeDataSource) Read(ctx context.Context, req dataso
 
 	// lets copy all items into state schema=ApplicationProbeScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state

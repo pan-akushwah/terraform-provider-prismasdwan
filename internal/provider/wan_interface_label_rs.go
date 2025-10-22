@@ -275,7 +275,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_interface_label ID format", "Expected 1 tokens")
 		return false
 	}
@@ -322,7 +322,9 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=WANInterfaceLabelScreenV2N5
@@ -344,6 +346,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -360,6 +363,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	} else {
 		state.L3Reachability = &rsModelWANL3Reachability{}
 		// copy_to_state: state=state.L3Reachability prefix=rsModel ans=ans.L3Reachability properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.L3Reachability prefix=rsModel ans=ans.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varProbeConfigIds, errProbeConfigIds := types.ListValueFrom(ctx, types.StringType, ans.L3Reachability.ProbeConfigIds)
 		state.L3Reachability.ProbeConfigIds = varProbeConfigIds
@@ -391,6 +395,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	} else {
 		state.VpnlinkConfiguration = &rsModelVPNLinkConfiguration{}
 		// copy_to_state: state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_to_state
 		state.VpnlinkConfiguration.KeepAliveFailureCount = types.Int64PointerValue(ans.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_to_state
@@ -418,7 +423,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_wan_interface_label ID format", "Expected 1 tokens")
 		return false
 	}
@@ -449,6 +454,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=15
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -485,6 +491,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	} else {
 		body.L3Reachability = &sdwan_schema.WANL3Reachability{}
 		// copy_from_plan_or_state: body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 		body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, plan.L3Reachability.ProbeConfigIds)
 		// property: name=use_element_default, type=BOOLEAN macro=copy_from_plan_or_state
@@ -544,6 +551,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	} else {
 		body.VpnlinkConfiguration = &sdwan_schema.VPNLinkConfiguration{}
 		// copy_from_plan_or_state: body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_from_plan_or_state
 		if state.VpnlinkConfiguration != nil {
 			body.VpnlinkConfiguration.KeepAliveFailureCount = ValueInt64PointerFromPlanOrState(plan.VpnlinkConfiguration.KeepAliveFailureCount, state.VpnlinkConfiguration.KeepAliveFailureCount)
@@ -597,7 +605,9 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -612,6 +622,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 
 	// Store the answer to state. schema=WANInterfaceLabelScreenV2N5
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -628,6 +639,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	} else {
 		state.L3Reachability = &rsModelWANL3Reachability{}
 		// copy_to_state: state=state.L3Reachability prefix=rsModel ans=ans.L3Reachability properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.L3Reachability prefix=rsModel ans=ans.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varProbeConfigIds, errProbeConfigIds := types.ListValueFrom(ctx, types.StringType, ans.L3Reachability.ProbeConfigIds)
 		state.L3Reachability.ProbeConfigIds = varProbeConfigIds
@@ -659,6 +671,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	} else {
 		state.VpnlinkConfiguration = &rsModelVPNLinkConfiguration{}
 		// copy_to_state: state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.VpnlinkConfiguration prefix=rsModel ans=ans.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_to_state
 		state.VpnlinkConfiguration.KeepAliveFailureCount = types.Int64PointerValue(ans.VpnlinkConfiguration.KeepAliveFailureCount)
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_to_state

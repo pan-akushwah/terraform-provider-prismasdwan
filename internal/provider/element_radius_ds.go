@@ -276,7 +276,7 @@ func (d *elementRadiusDataSource) Read(ctx context.Context, req datasource.ReadR
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return
 	}
@@ -324,6 +324,7 @@ func (d *elementRadiusDataSource) Read(ctx context.Context, req datasource.ReadR
 
 	// lets copy all items into state schema=ElementRadiusScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=10
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -349,6 +350,7 @@ func (d *elementRadiusDataSource) Read(ctx context.Context, req datasource.ReadR
 			// add a new item
 			state.RadiusConfiguration = append(state.RadiusConfiguration, dsModelRadiusConfiguration{})
 			// copy_to_state: state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=dsModel ans=varLoopRadiusConfiguration properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=dsModel ans=varLoopRadiusConfiguration")
 			// property: name=accounting_port, type=INTEGER macro=copy_to_state
 			state.RadiusConfiguration[varLoopRadiusConfigurationIndex].AccountingPort = types.Int64PointerValue(varLoopRadiusConfiguration.AccountingPort)
 			// property: name=authentication_port, type=INTEGER macro=copy_to_state

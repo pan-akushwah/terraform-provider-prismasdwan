@@ -24,7 +24,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=37)
 // | Computed Resource Name=sites_elements_interfaces
 // +-----------------------------------------------------------------
 // | APNConfig HasID=false
@@ -55,7 +55,6 @@ import (
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | DHCPRelayOption82 HasID=false
 // | DHCPRelay HasID=false
@@ -461,7 +460,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=directed_broadcast, type=BOOLEAN macro=rss_schema
 			"directed_broadcast": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -476,168 +475,15 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 					// property: name=full_duplex, type=BOOLEAN macro=rss_schema
 					"full_duplex": rsschema.BoolAttribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=full_duplex, type=BOOLEAN macro=rss_schema
-					// property: name=port_id, type=REFERENCE macro=rss_schema
-					"port_id": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]rsschema.Attribute{
-							// generic x_parameters is added to accomodate path parameters
-							"x_parameters": rsschema.MapAttribute{
-								Required:    false,
-								Computed:    false,
-								Optional:    true,
-								ElementType: types.StringType,
-							},
-							// property: name=_etag, type=INTEGER macro=rss_schema
-							"x_etag": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-							// property: name=_schema, type=INTEGER macro=rss_schema
-							"x_schema": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-							// property: name=connector, type=STRING macro=rss_schema
-							"connector": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=connector, type=STRING macro=rss_schema
-							// property: name=device, type=STRING macro=rss_schema
-							"device": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=device, type=STRING macro=rss_schema
-							// property: name=disabled, type=BOOLEAN macro=rss_schema
-							"disabled": rsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-							// property: name=disabled_reason, type=STRING macro=rss_schema
-							"disabled_reason": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-							// property: name=element_id, type=STRING macro=rss_schema
-							"element_id": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
-							// property: name=id, type=STRING macro=rss_schema
-							"id": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=id, type=STRING macro=rss_schema
-							// property: name=inactive, type=BOOLEAN macro=rss_schema
-							"inactive": rsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-							// property: name=inactive_reason, type=STRING macro=rss_schema
-							"inactive_reason": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-							// property: name=max_mtu, type=INTEGER macro=rss_schema
-							"max_mtu": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_mtu, type=INTEGER macro=rss_schema
-							// property: name=max_speed, type=INTEGER macro=rss_schema
-							"max_speed": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_speed, type=INTEGER macro=rss_schema
-							// property: name=name, type=STRING macro=rss_schema
-							"name": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=name, type=STRING macro=rss_schema
-							// property: name=original_mac_address, type=STRING macro=rss_schema
-							"original_mac_address": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=original_mac_address, type=STRING macro=rss_schema
-							// property: name=region, type=STRING macro=rss_schema
-							"region": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=region, type=STRING macro=rss_schema
-							// property: name=site_id, type=STRING macro=rss_schema
-							"site_id": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-					// property: name=port_name, type=STRING macro=rss_schema
-					"port_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=port_name, type=STRING macro=rss_schema
 					// property: name=speed, type=INTEGER macro=rss_schema
 					"speed": rsschema.Int64Attribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
@@ -958,7 +804,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=lldp_enabled, type=BOOLEAN macro=rss_schema
 			"lldp_enabled": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -974,7 +820,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=mtu, type=INTEGER macro=rss_schema
 			"mtu": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1116,7 +962,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=nat_port, type=INTEGER macro=rss_schema
 			"nat_port": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1124,7 +970,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=nat_port_v6, type=INTEGER macro=rss_schema
 			"nat_port_v6": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1156,7 +1002,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=peer_bypasspair_wan_port_type, type=STRING macro=rss_schema
 			"peer_bypasspair_wan_port_type": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1164,7 +1010,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=poe_enabled, type=BOOLEAN macro=rss_schema
 			"poe_enabled": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1198,7 +1044,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=power_usage_threshold, type=INTEGER macro=rss_schema
 			"power_usage_threshold": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1725,7 +1571,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=sgi_apply_static_tag, type=BOOLEAN macro=rss_schema
 			"sgi_apply_static_tag": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1938,7 +1784,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1980,7 +1826,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -2037,6 +1883,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=50
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -2054,6 +1901,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			body.AttachedLanNetworks = append(body.AttachedLanNetworks, sdwan_schema.LanNetworkVlanMapping{})
 			// copy_from_plan: body=body.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel plan=varLoopAttachedLanNetworks properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel plan=varLoopAttachedLanNetworks")
 			// property: name=lan_network_id, type=STRING macro=copy_from_plan
 			body.AttachedLanNetworks[varLoopAttachedLanNetworksIndex].LanNetworkId = StringValueOrNil(varLoopAttachedLanNetworks.LanNetworkId)
 			// property: name=vlan_id, type=INTEGER macro=copy_from_plan
@@ -2064,6 +1912,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.AuthenticationConfig != nil {
 		body.AuthenticationConfig = &sdwan_schema.AuthenticationInterfaceConfig{}
 		// copy_from_plan: body=body.AuthenticationConfig prefix=rsModel plan=plan.AuthenticationConfig properties=3
+		tflog.Debug(ctx, "copy_from_plan body=body.AuthenticationConfig prefix=rsModel plan=plan.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_from_plan
 		body.AuthenticationConfig.FallbackRetryCount = Int64ValueOrNil(plan.AuthenticationConfig.FallbackRetryCount)
 		// property: name=mode, type=STRING macro=copy_from_plan
@@ -2077,6 +1926,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.BypassPair != nil {
 		body.BypassPair = &sdwan_schema.BypassPairV2{}
 		// copy_from_plan: body=body.BypassPair prefix=rsModel plan=plan.BypassPair properties=4
+		tflog.Debug(ctx, "copy_from_plan body=body.BypassPair prefix=rsModel plan=plan.BypassPair")
 		// property: name=lan, type=STRING macro=copy_from_plan
 		body.BypassPair.Lan = StringValueOrNil(plan.BypassPair.Lan)
 		// property: name=lan_state_propagation, type=BOOLEAN macro=copy_from_plan
@@ -2090,10 +1940,12 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.CellularConfig != nil {
 		body.CellularConfig = &sdwan_schema.CellularInterfaceConfig{}
 		// copy_from_plan: body=body.CellularConfig prefix=rsModel plan=plan.CellularConfig properties=5
+		tflog.Debug(ctx, "copy_from_plan body=body.CellularConfig prefix=rsModel plan=plan.CellularConfig")
 		// property: name=apn_config, type=REFERENCE macro=copy_from_plan
 		if plan.CellularConfig.ApnConfig != nil {
 			body.CellularConfig.ApnConfig = &sdwan_schema.APNConfig{}
 			// copy_from_plan: body=body.CellularConfig.ApnConfig prefix=rsModel plan=plan.CellularConfig.ApnConfig properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.CellularConfig.ApnConfig prefix=rsModel plan=plan.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_from_plan
 			body.CellularConfig.ApnConfig.Apn = StringValueOrNil(plan.CellularConfig.ApnConfig.Apn)
 			// property: name=authentication, type=STRING macro=copy_from_plan
@@ -2124,12 +1976,14 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.DhcpRelay != nil {
 		body.DhcpRelay = &sdwan_schema.DHCPRelay{}
 		// copy_from_plan: body=body.DhcpRelay prefix=rsModel plan=plan.DhcpRelay properties=4
+		tflog.Debug(ctx, "copy_from_plan body=body.DhcpRelay prefix=rsModel plan=plan.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 		body.DhcpRelay.Enabled = BoolValueOrNil(plan.DhcpRelay.Enabled)
 		// property: name=option_82, type=REFERENCE macro=copy_from_plan
 		if plan.DhcpRelay.Option82 != nil {
 			body.DhcpRelay.Option82 = &sdwan_schema.DHCPRelayOption82{}
 			// copy_from_plan: body=body.DhcpRelay.Option82 prefix=rsModel plan=plan.DhcpRelay.Option82 properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.DhcpRelay.Option82 prefix=rsModel plan=plan.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_from_plan
 			body.DhcpRelay.Option82.CircuitId = StringValueOrNil(plan.DhcpRelay.Option82.CircuitId)
 			// property: name=enabled, type=BOOLEAN macro=copy_from_plan
@@ -2149,48 +2003,10 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	// property: name=ethernet_port, type=REFERENCE macro=copy_from_plan
 	if plan.EthernetPort != nil {
 		body.EthernetPort = &sdwan_schema.EthernetPort{}
-		// copy_from_plan: body=body.EthernetPort prefix=rsModel plan=plan.EthernetPort properties=4
+		// copy_from_plan: body=body.EthernetPort prefix=rsModel plan=plan.EthernetPort properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.EthernetPort prefix=rsModel plan=plan.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_from_plan
 		body.EthernetPort.FullDuplex = BoolValueOrNil(plan.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_from_plan
-		if plan.EthernetPort.PortId != nil {
-			body.EthernetPort.PortId = &sdwan_schema.Ethernet{}
-			// copy_from_plan: body=body.EthernetPort.PortId prefix=rsModel plan=plan.EthernetPort.PortId properties=16
-			// property: name=_etag, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.Etag = Int64ValueOrNil(plan.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.Schema = Int64ValueOrNil(plan.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Connector = StringValueOrNil(plan.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Device = StringValueOrNil(plan.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-			body.EthernetPort.PortId.Disabled = BoolValueOrNil(plan.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.DisabledReason = StringValueOrNil(plan.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.ElementId = StringValueOrNil(plan.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Id = StringValueOrNil(plan.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-			body.EthernetPort.PortId.Inactive = BoolValueOrNil(plan.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.InactiveReason = StringValueOrNil(plan.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.MaxMtu = Int64ValueOrNil(plan.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_from_plan
-			body.EthernetPort.PortId.MaxSpeed = Int64ValueOrNil(plan.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Name = StringValueOrNil(plan.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.OriginalMacAddress = StringValueOrNil(plan.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.Region = StringValueOrNil(plan.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_from_plan
-			body.EthernetPort.PortId.SiteId = StringValueOrNil(plan.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_from_plan
-		body.EthernetPort.PortName = StringValueOrNil(plan.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_from_plan
 		body.EthernetPort.Speed = Int64ValueOrNil(plan.EthernetPort.Speed)
 	}
@@ -2206,10 +2022,12 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.Ipv4Config != nil {
 		body.Ipv4Config = &sdwan_schema.Ipv4Config{}
 		// copy_from_plan: body=body.Ipv4Config prefix=rsModel plan=plan.Ipv4Config properties=6
+		tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config prefix=rsModel plan=plan.Ipv4Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_from_plan
 		if plan.Ipv4Config.DhcpConfig != nil {
 			body.Ipv4Config.DhcpConfig = &sdwan_schema.Ipv4Dhcp{}
 			// copy_from_plan: body=body.Ipv4Config.DhcpConfig prefix=rsModel plan=plan.Ipv4Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config.DhcpConfig prefix=rsModel plan=plan.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_from_plan
 			body.Ipv4Config.DhcpConfig.ClientId = StringValueOrNil(plan.Ipv4Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_from_plan
@@ -2219,6 +2037,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.Ipv4Config.DnsV4Config != nil {
 			body.Ipv4Config.DnsV4Config = &sdwan_schema.DNS{}
 			// copy_from_plan: body=body.Ipv4Config.DnsV4Config prefix=rsModel plan=plan.Ipv4Config.DnsV4Config properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config.DnsV4Config prefix=rsModel plan=plan.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.Ipv4Config.DnsV4Config.NameServers = ListStringValueOrNil(ctx, plan.Ipv4Config.DnsV4Config.NameServers)
 			// property: name=search, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -2228,6 +2047,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.Ipv4Config.PppoeConfig != nil {
 			body.Ipv4Config.PppoeConfig = &sdwan_schema.Ipv4Pppoe{}
 			// copy_from_plan: body=body.Ipv4Config.PppoeConfig prefix=rsModel plan=plan.Ipv4Config.PppoeConfig properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config.PppoeConfig prefix=rsModel plan=plan.Ipv4Config.PppoeConfig")
 			// property: name=chap_passwd, type=STRING macro=copy_from_plan
 			body.Ipv4Config.PppoeConfig.ChapPasswd = StringValueOrNil(plan.Ipv4Config.PppoeConfig.ChapPasswd)
 			// property: name=chap_user, type=STRING macro=copy_from_plan
@@ -2246,6 +2066,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				// add a new item
 				body.Ipv4Config.Routes = append(body.Ipv4Config.Routes, sdwan_schema.Route{})
 				// copy_from_plan: body=body.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_from_plan
 				body.Ipv4Config.Routes[varLoopRoutesIndex].Destination = StringValueOrNil(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_from_plan
@@ -2256,6 +2077,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.Ipv4Config.StaticConfig != nil {
 			body.Ipv4Config.StaticConfig = &sdwan_schema.Ipv4Static{}
 			// copy_from_plan: body=body.Ipv4Config.StaticConfig prefix=rsModel plan=plan.Ipv4Config.StaticConfig properties=1
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config.StaticConfig prefix=rsModel plan=plan.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_from_plan
 			body.Ipv4Config.StaticConfig.Address = StringValueOrNil(plan.Ipv4Config.StaticConfig.Address)
 		}
@@ -2266,10 +2088,12 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.Ipv6Config != nil {
 		body.Ipv6Config = &sdwan_schema.Ipv6ConfigV1{}
 		// copy_from_plan: body=body.Ipv6Config prefix=rsModel plan=plan.Ipv6Config properties=5
+		tflog.Debug(ctx, "copy_from_plan body=body.Ipv6Config prefix=rsModel plan=plan.Ipv6Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_from_plan
 		if plan.Ipv6Config.DhcpConfig != nil {
 			body.Ipv6Config.DhcpConfig = &sdwan_schema.Ipv6Dhcp{}
 			// copy_from_plan: body=body.Ipv6Config.DhcpConfig prefix=rsModel plan=plan.Ipv6Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv6Config.DhcpConfig prefix=rsModel plan=plan.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_from_plan
 			body.Ipv6Config.DhcpConfig.ClientId = StringValueOrNil(plan.Ipv6Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_from_plan
@@ -2279,6 +2103,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.Ipv6Config.DnsV6Config != nil {
 			body.Ipv6Config.DnsV6Config = &sdwan_schema.DNS{}
 			// copy_from_plan: body=body.Ipv6Config.DnsV6Config prefix=rsModel plan=plan.Ipv6Config.DnsV6Config properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv6Config.DnsV6Config prefix=rsModel plan=plan.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.Ipv6Config.DnsV6Config.NameServers = ListStringValueOrNil(ctx, plan.Ipv6Config.DnsV6Config.NameServers)
 			// property: name=search, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -2295,6 +2120,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				// add a new item
 				body.Ipv6Config.Routes = append(body.Ipv6Config.Routes, sdwan_schema.Route{})
 				// copy_from_plan: body=body.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_from_plan
 				body.Ipv6Config.Routes[varLoopRoutesIndex].Destination = StringValueOrNil(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_from_plan
@@ -2305,6 +2131,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.Ipv6Config.StaticConfig != nil {
 			body.Ipv6Config.StaticConfig = &sdwan_schema.Ipv6StaticV1{}
 			// copy_from_plan: body=body.Ipv6Config.StaticConfig prefix=rsModel plan=plan.Ipv6Config.StaticConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.Ipv6Config.StaticConfig prefix=rsModel plan=plan.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_from_plan
 			body.Ipv6Config.StaticConfig.Address = StringValueOrNil(plan.Ipv6Config.StaticConfig.Address)
 			// property: name=enable_prefix_distribution, type=BOOLEAN macro=copy_from_plan
@@ -2323,6 +2150,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.MulticastConfig != nil {
 		body.MulticastConfig = &sdwan_schema.MulticastInterfaceConfig{}
 		// copy_from_plan: body=body.MulticastConfig prefix=rsModel plan=plan.MulticastConfig properties=4
+		tflog.Debug(ctx, "copy_from_plan body=body.MulticastConfig prefix=rsModel plan=plan.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_from_plan
 		body.MulticastConfig.DrPriority = Int64ValueOrNil(plan.MulticastConfig.DrPriority)
 		// property: name=igmp_static_joins, type=ARRAY_REFERENCE macro=copy_from_plan
@@ -2336,6 +2164,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				// add a new item
 				body.MulticastConfig.IgmpStaticJoins = append(body.MulticastConfig.IgmpStaticJoins, sdwan_schema.MulticastIgmpStaticJoin{})
 				// copy_from_plan: body=body.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel plan=varLoopIgmpStaticJoins properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel plan=varLoopIgmpStaticJoins")
 				// property: name=igmp_static_grp_ipv4, type=STRING macro=copy_from_plan
 				body.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex].IgmpStaticGrpIpv4 = StringValueOrNil(varLoopIgmpStaticJoins.IgmpStaticGrpIpv4)
 				// property: name=igmp_static_src_ipv4, type=STRING macro=copy_from_plan
@@ -2364,6 +2193,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			body.NatPools = append(body.NatPools, sdwan_schema.NatPool{})
 			// copy_from_plan: body=body.NatPools[varLoopNatPoolsIndex] prefix=rsModel plan=varLoopNatPools properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.NatPools[varLoopNatPoolsIndex] prefix=rsModel plan=varLoopNatPools")
 			// property: name=ipv4_ranges, type=ARRAY_REFERENCE macro=copy_from_plan
 			if varLoopNatPools.Ipv4Ranges == nil {
 				body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = nil
@@ -2375,6 +2205,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 					// add a new item
 					body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = append(body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges, sdwan_schema.IPv4Range{})
 					// copy_from_plan: body=body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel plan=varLoopIpv4Ranges properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel plan=varLoopIpv4Ranges")
 					// property: name=end, type=STRING macro=copy_from_plan
 					body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex].End = StringValueOrNil(varLoopIpv4Ranges.End)
 					// property: name=start, type=STRING macro=copy_from_plan
@@ -2403,6 +2234,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.PortChannelConfig != nil {
 		body.PortChannelConfig = &sdwan_schema.PortChannelConfig{}
 		// copy_from_plan: body=body.PortChannelConfig prefix=rsModel plan=plan.PortChannelConfig properties=2
+		tflog.Debug(ctx, "copy_from_plan body=body.PortChannelConfig prefix=rsModel plan=plan.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_from_plan
 		body.PortChannelConfig.LacpEnabled = BoolValueOrNil(plan.PortChannelConfig.LacpEnabled)
 		// property: name=transmission_mode, type=STRING macro=copy_from_plan
@@ -2414,6 +2246,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.PppoeConfig != nil {
 		body.PppoeConfig = &sdwan_schema.PppoEInterfaceConfig{}
 		// copy_from_plan: body=body.PppoeConfig prefix=rsModel plan=plan.PppoeConfig properties=6
+		tflog.Debug(ctx, "copy_from_plan body=body.PppoeConfig prefix=rsModel plan=plan.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_from_plan
 		body.PppoeConfig.HostUniq = StringValueOrNil(plan.PppoeConfig.HostUniq)
 		// property: name=ip_address_type, type=STRING macro=copy_from_plan
@@ -2440,6 +2273,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			body.SecondaryIpConfigs = append(body.SecondaryIpConfigs, sdwan_schema.SecondaryIPConfig{})
 			// copy_from_plan: body=body.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel plan=varLoopSecondaryIpConfigs properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel plan=varLoopSecondaryIpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_from_plan
 			body.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex].Ipv4Address = StringValueOrNil(varLoopSecondaryIpConfigs.Ipv4Address)
 			// property: name=scope, type=STRING macro=copy_from_plan
@@ -2450,10 +2284,12 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.ServiceLinkConfig != nil {
 		body.ServiceLinkConfig = &sdwan_schema.ServiceLinkV4{}
 		// copy_from_plan: body=body.ServiceLinkConfig prefix=rsModel plan=plan.ServiceLinkConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig prefix=rsModel plan=plan.ServiceLinkConfig")
 		// property: name=gre_config, type=REFERENCE macro=copy_from_plan
 		if plan.ServiceLinkConfig.GreConfig != nil {
 			body.ServiceLinkConfig.GreConfig = &sdwan_schema.GREConfig{}
 			// copy_from_plan: body=body.ServiceLinkConfig.GreConfig prefix=rsModel plan=plan.ServiceLinkConfig.GreConfig properties=4
+			tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.GreConfig prefix=rsModel plan=plan.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_from_plan
 			body.ServiceLinkConfig.GreConfig.Csum = BoolValueOrNil(plan.ServiceLinkConfig.GreConfig.Csum)
 			// property: name=keepalive_enable, type=BOOLEAN macro=copy_from_plan
@@ -2467,10 +2303,12 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.ServiceLinkConfig.IpsecConfig != nil {
 			body.ServiceLinkConfig.IpsecConfig = &sdwan_schema.IPSECConfigV1{}
 			// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.IpsecConfig prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig")
 			// property: name=authentication, type=REFERENCE macro=copy_from_plan
 			if plan.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
 				// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_from_plan
 				body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_from_plan
@@ -2481,6 +2319,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				if plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params = &sdwan_schema.IKEV1Params{}
 					// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
+					tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_from_plan
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					// property: name=xauth_secret, type=STRING macro=copy_from_plan
@@ -2540,6 +2379,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.ServiceLinkConfig.PassiveMode != nil {
 			body.ServiceLinkConfig.PassiveMode = &sdwan_schema.PassiveMode{}
 			// copy_from_plan: body=body.ServiceLinkConfig.PassiveMode prefix=rsModel plan=plan.ServiceLinkConfig.PassiveMode properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.PassiveMode prefix=rsModel plan=plan.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_from_plan
 			body.ServiceLinkConfig.PassiveMode.Enable = BoolValueOrNil(plan.ServiceLinkConfig.PassiveMode.Enable)
 			// property: name=peer_ip_dynamic, type=BOOLEAN macro=copy_from_plan
@@ -2549,6 +2389,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.ServiceLinkConfig.Peer != nil {
 			body.ServiceLinkConfig.Peer = &sdwan_schema.PeerInfo{}
 			// copy_from_plan: body=body.ServiceLinkConfig.Peer prefix=rsModel plan=plan.ServiceLinkConfig.Peer properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.Peer prefix=rsModel plan=plan.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_from_plan
 			body.ServiceLinkConfig.Peer.Hostname = StringValueOrNil(plan.ServiceLinkConfig.Peer.Hostname)
 			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan
@@ -2574,6 +2415,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			body.StaticArpConfigs = append(body.StaticArpConfigs, sdwan_schema.StaticARPConfig{})
 			// copy_from_plan: body=body.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel plan=varLoopStaticArpConfigs properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel plan=varLoopStaticArpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_from_plan
 			body.StaticArpConfigs[varLoopStaticArpConfigsIndex].Ipv4Address = StringValueOrNil(varLoopStaticArpConfigs.Ipv4Address)
 			// property: name=mac_address, type=STRING macro=copy_from_plan
@@ -2584,6 +2426,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.SubInterface != nil {
 		body.SubInterface = &sdwan_schema.SubInterface{}
 		// copy_from_plan: body=body.SubInterface prefix=rsModel plan=plan.SubInterface properties=1
+		tflog.Debug(ctx, "copy_from_plan body=body.SubInterface prefix=rsModel plan=plan.SubInterface")
 		// property: name=vlan_id, type=INTEGER macro=copy_from_plan
 		body.SubInterface.VlanId = Int64ValueOrNil(plan.SubInterface.VlanId)
 	}
@@ -2591,6 +2434,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.SwitchPortConfig != nil {
 		body.SwitchPortConfig = &sdwan_schema.SwitchPortConfig{}
 		// copy_from_plan: body=body.SwitchPortConfig prefix=rsModel plan=plan.SwitchPortConfig properties=12
+		tflog.Debug(ctx, "copy_from_plan body=body.SwitchPortConfig prefix=rsModel plan=plan.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_from_plan
 		body.SwitchPortConfig.AccessVlanId = Int64ValueOrNil(plan.SwitchPortConfig.AccessVlanId)
 		// property: name=bpdu_guard_enabled, type=BOOLEAN macro=copy_from_plan
@@ -2605,6 +2449,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		if plan.SwitchPortConfig.StormControlConfig != nil {
 			body.SwitchPortConfig.StormControlConfig = &sdwan_schema.StormControlConfig{}
 			// copy_from_plan: body=body.SwitchPortConfig.StormControlConfig prefix=rsModel plan=plan.SwitchPortConfig.StormControlConfig properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.SwitchPortConfig.StormControlConfig prefix=rsModel plan=plan.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_from_plan
 			body.SwitchPortConfig.StormControlConfig.BroadcastThreshold = Int64ValueOrNil(plan.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			// property: name=multicast_threshold, type=INTEGER macro=copy_from_plan
@@ -2635,6 +2480,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	if plan.VlanConfig != nil {
 		body.VlanConfig = &sdwan_schema.VlanConfig{}
 		// copy_from_plan: body=body.VlanConfig prefix=rsModel plan=plan.VlanConfig properties=3
+		tflog.Debug(ctx, "copy_from_plan body=body.VlanConfig prefix=rsModel plan=plan.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_from_plan
 		body.VlanConfig.MstpInstance = Int64ValueOrNil(plan.VlanConfig.MstpInstance)
 		// property: name=vlan_id, type=INTEGER macro=copy_from_plan
@@ -2655,12 +2501,18 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::ethernet_port.port_id")
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::ethernet_port.port_name")
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_name")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 4)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -2686,7 +2538,9 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -2722,6 +2576,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 
 	// Store the answer to state. schema=InterfaceScreenV4N20
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=50
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2739,6 +2594,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			state.AttachedLanNetworks = append(state.AttachedLanNetworks, rsModelLanNetworkVlanMapping{})
 			// copy_to_state: state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel ans=varLoopAttachedLanNetworks properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel ans=varLoopAttachedLanNetworks")
 			// property: name=lan_network_id, type=STRING macro=copy_to_state
 			state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex].LanNetworkId = types.StringPointerValue(varLoopAttachedLanNetworks.LanNetworkId)
 			// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -2751,6 +2607,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.AuthenticationConfig = &rsModelAuthenticationInterfaceConfig{}
 		// copy_to_state: state=state.AuthenticationConfig prefix=rsModel ans=ans.AuthenticationConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.AuthenticationConfig prefix=rsModel ans=ans.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_to_state
 		state.AuthenticationConfig.FallbackRetryCount = types.Int64PointerValue(ans.AuthenticationConfig.FallbackRetryCount)
 		// property: name=mode, type=STRING macro=copy_to_state
@@ -2768,6 +2625,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.BypassPair = &rsModelBypassPairV2{}
 		// copy_to_state: state=state.BypassPair prefix=rsModel ans=ans.BypassPair properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.BypassPair prefix=rsModel ans=ans.BypassPair")
 		// property: name=lan, type=STRING macro=copy_to_state
 		state.BypassPair.Lan = types.StringPointerValue(ans.BypassPair.Lan)
 		// property: name=lan_state_propagation, type=BOOLEAN macro=copy_to_state
@@ -2783,12 +2641,14 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.CellularConfig = &rsModelCellularInterfaceConfig{}
 		// copy_to_state: state=state.CellularConfig prefix=rsModel ans=ans.CellularConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.CellularConfig prefix=rsModel ans=ans.CellularConfig")
 		// property: name=apn_config, type=REFERENCE macro=copy_to_state
 		if ans.CellularConfig.ApnConfig == nil {
 			state.CellularConfig.ApnConfig = nil
 		} else {
 			state.CellularConfig.ApnConfig = &rsModelAPNConfig{}
 			// copy_to_state: state=state.CellularConfig.ApnConfig prefix=rsModel ans=ans.CellularConfig.ApnConfig properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.CellularConfig.ApnConfig prefix=rsModel ans=ans.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_to_state
 			state.CellularConfig.ApnConfig.Apn = types.StringPointerValue(ans.CellularConfig.ApnConfig.Apn)
 			// property: name=authentication, type=STRING macro=copy_to_state
@@ -2835,6 +2695,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.DhcpRelay = &rsModelDHCPRelay{}
 		// copy_to_state: state=state.DhcpRelay prefix=rsModel ans=ans.DhcpRelay properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay prefix=rsModel ans=ans.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.DhcpRelay.Enabled = types.BoolPointerValue(ans.DhcpRelay.Enabled)
 		// property: name=option_82, type=REFERENCE macro=copy_to_state
@@ -2843,6 +2704,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.DhcpRelay.Option82 = &rsModelDHCPRelayOption82{}
 			// copy_to_state: state=state.DhcpRelay.Option82 prefix=rsModel ans=ans.DhcpRelay.Option82 properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay.Option82 prefix=rsModel ans=ans.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_to_state
 			state.DhcpRelay.Option82.CircuitId = types.StringPointerValue(ans.DhcpRelay.Option82.CircuitId)
 			// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -2866,50 +2728,10 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &rsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &rsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId properties=16
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -2927,12 +2749,14 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.Ipv4Config = &rsModelIpv4Config{}
 		// copy_to_state: state=state.Ipv4Config prefix=rsModel ans=ans.Ipv4Config properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config prefix=rsModel ans=ans.Ipv4Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv4Config.DhcpConfig == nil {
 			state.Ipv4Config.DhcpConfig = nil
 		} else {
 			state.Ipv4Config.DhcpConfig = &rsModelIpv4Dhcp{}
 			// copy_to_state: state=state.Ipv4Config.DhcpConfig prefix=rsModel ans=ans.Ipv4Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpConfig prefix=rsModel ans=ans.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv4Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv4Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -2944,6 +2768,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.Ipv4Config.DnsV4Config = &rsModelDNS{}
 			// copy_to_state: state=state.Ipv4Config.DnsV4Config prefix=rsModel ans=ans.Ipv4Config.DnsV4Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DnsV4Config prefix=rsModel ans=ans.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DnsV4Config.NameServers)
 			state.Ipv4Config.DnsV4Config.NameServers = varNameServers
@@ -2959,6 +2784,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.Ipv4Config.PppoeConfig = &rsModelIpv4Pppoe{}
 			// copy_to_state: state=state.Ipv4Config.PppoeConfig prefix=rsModel ans=ans.Ipv4Config.PppoeConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.PppoeConfig prefix=rsModel ans=ans.Ipv4Config.PppoeConfig")
 			// property: name=chap_passwd, type=STRING macro=copy_to_state
 			state.Ipv4Config.PppoeConfig.ChapPasswd = types.StringPointerValue(ans.Ipv4Config.PppoeConfig.ChapPasswd)
 			// property: name=chap_user, type=STRING macro=copy_to_state
@@ -2977,6 +2803,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				// add a new item
 				state.Ipv4Config.Routes = append(state.Ipv4Config.Routes, rsModelRoute{})
 				// copy_to_state: state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv4Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -2989,6 +2816,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.Ipv4Config.StaticConfig = &rsModelIpv4Static{}
 			// copy_to_state: state=state.Ipv4Config.StaticConfig prefix=rsModel ans=ans.Ipv4Config.StaticConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.StaticConfig prefix=rsModel ans=ans.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv4Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv4Config.StaticConfig.Address)
 		}
@@ -3001,12 +2829,14 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.Ipv6Config = &rsModelIpv6ConfigV1{}
 		// copy_to_state: state=state.Ipv6Config prefix=rsModel ans=ans.Ipv6Config properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config prefix=rsModel ans=ans.Ipv6Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv6Config.DhcpConfig == nil {
 			state.Ipv6Config.DhcpConfig = nil
 		} else {
 			state.Ipv6Config.DhcpConfig = &rsModelIpv6Dhcp{}
 			// copy_to_state: state=state.Ipv6Config.DhcpConfig prefix=rsModel ans=ans.Ipv6Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DhcpConfig prefix=rsModel ans=ans.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv6Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv6Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -3018,6 +2848,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.Ipv6Config.DnsV6Config = &rsModelDNS{}
 			// copy_to_state: state=state.Ipv6Config.DnsV6Config prefix=rsModel ans=ans.Ipv6Config.DnsV6Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DnsV6Config prefix=rsModel ans=ans.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Config.DnsV6Config.NameServers)
 			state.Ipv6Config.DnsV6Config.NameServers = varNameServers
@@ -3038,6 +2869,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				// add a new item
 				state.Ipv6Config.Routes = append(state.Ipv6Config.Routes, rsModelRoute{})
 				// copy_to_state: state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv6Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -3050,6 +2882,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.Ipv6Config.StaticConfig = &rsModelIpv6StaticV1{}
 			// copy_to_state: state=state.Ipv6Config.StaticConfig prefix=rsModel ans=ans.Ipv6Config.StaticConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.StaticConfig prefix=rsModel ans=ans.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv6Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv6Config.StaticConfig.Address)
 			// property: name=enable_prefix_distribution, type=BOOLEAN macro=copy_to_state
@@ -3070,6 +2903,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.MulticastConfig = &rsModelMulticastInterfaceConfig{}
 		// copy_to_state: state=state.MulticastConfig prefix=rsModel ans=ans.MulticastConfig properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig prefix=rsModel ans=ans.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_to_state
 		state.MulticastConfig.DrPriority = types.Int64PointerValue(ans.MulticastConfig.DrPriority)
 		// property: name=igmp_static_joins, type=ARRAY_REFERENCE macro=copy_to_state
@@ -3083,6 +2917,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				// add a new item
 				state.MulticastConfig.IgmpStaticJoins = append(state.MulticastConfig.IgmpStaticJoins, rsModelMulticastIgmpStaticJoin{})
 				// copy_to_state: state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel ans=varLoopIgmpStaticJoins properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel ans=varLoopIgmpStaticJoins")
 				// property: name=igmp_static_grp_ipv4, type=STRING macro=copy_to_state
 				state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex].IgmpStaticGrpIpv4 = types.StringPointerValue(varLoopIgmpStaticJoins.IgmpStaticGrpIpv4)
 				// property: name=igmp_static_src_ipv4, type=STRING macro=copy_to_state
@@ -3111,6 +2946,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			state.NatPools = append(state.NatPools, rsModelNatPool{})
 			// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex] prefix=rsModel ans=varLoopNatPools properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex] prefix=rsModel ans=varLoopNatPools")
 			// property: name=ipv4_ranges, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopNatPools.Ipv4Ranges == nil {
 				state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = nil
@@ -3122,6 +2958,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 					// add a new item
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = append(state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges, rsModelIPv4Range{})
 					// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel ans=varLoopIpv4Ranges properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel ans=varLoopIpv4Ranges")
 					// property: name=end, type=STRING macro=copy_to_state
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex].End = types.StringPointerValue(varLoopIpv4Ranges.End)
 					// property: name=start, type=STRING macro=copy_to_state
@@ -3152,6 +2989,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.PortChannelConfig = &rsModelPortChannelConfig{}
 		// copy_to_state: state=state.PortChannelConfig prefix=rsModel ans=ans.PortChannelConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.PortChannelConfig prefix=rsModel ans=ans.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_to_state
 		state.PortChannelConfig.LacpEnabled = types.BoolPointerValue(ans.PortChannelConfig.LacpEnabled)
 		// property: name=transmission_mode, type=STRING macro=copy_to_state
@@ -3165,6 +3003,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.PppoeConfig = &rsModelPppoEInterfaceConfig{}
 		// copy_to_state: state=state.PppoeConfig prefix=rsModel ans=ans.PppoeConfig properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.PppoeConfig prefix=rsModel ans=ans.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_to_state
 		state.PppoeConfig.HostUniq = types.StringPointerValue(ans.PppoeConfig.HostUniq)
 		// property: name=ip_address_type, type=STRING macro=copy_to_state
@@ -3198,6 +3037,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			state.SecondaryIpConfigs = append(state.SecondaryIpConfigs, rsModelSecondaryIPConfig{})
 			// copy_to_state: state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel ans=varLoopSecondaryIpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel ans=varLoopSecondaryIpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopSecondaryIpConfigs.Ipv4Address)
 			// property: name=scope, type=STRING macro=copy_to_state
@@ -3210,12 +3050,14 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.ServiceLinkConfig = &rsModelServiceLinkV4{}
 		// copy_to_state: state=state.ServiceLinkConfig prefix=rsModel ans=ans.ServiceLinkConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig prefix=rsModel ans=ans.ServiceLinkConfig")
 		// property: name=gre_config, type=REFERENCE macro=copy_to_state
 		if ans.ServiceLinkConfig.GreConfig == nil {
 			state.ServiceLinkConfig.GreConfig = nil
 		} else {
 			state.ServiceLinkConfig.GreConfig = &rsModelGREConfig{}
 			// copy_to_state: state=state.ServiceLinkConfig.GreConfig prefix=rsModel ans=ans.ServiceLinkConfig.GreConfig properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.GreConfig prefix=rsModel ans=ans.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.GreConfig.Csum = types.BoolPointerValue(ans.ServiceLinkConfig.GreConfig.Csum)
 			// property: name=keepalive_enable, type=BOOLEAN macro=copy_to_state
@@ -3231,12 +3073,14 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.ServiceLinkConfig.IpsecConfig = &rsModelIPSECConfigV1{}
 			// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig")
 			// property: name=authentication, type=REFERENCE macro=copy_to_state
 			if ans.ServiceLinkConfig.IpsecConfig.Authentication == nil {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
 				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -3249,6 +3093,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 				} else {
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params = &rsModelIKEV1Params{}
 					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					// property: name=xauth_secret, type=STRING macro=copy_to_state
@@ -3352,6 +3197,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.ServiceLinkConfig.PassiveMode = &rsModelPassiveMode{}
 			// copy_to_state: state=state.ServiceLinkConfig.PassiveMode prefix=rsModel ans=ans.ServiceLinkConfig.PassiveMode properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.PassiveMode prefix=rsModel ans=ans.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.PassiveMode.Enable = types.BoolPointerValue(ans.ServiceLinkConfig.PassiveMode.Enable)
 			// property: name=peer_ip_dynamic, type=BOOLEAN macro=copy_to_state
@@ -3363,6 +3209,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.ServiceLinkConfig.Peer = &rsModelPeerInfo{}
 			// copy_to_state: state=state.ServiceLinkConfig.Peer prefix=rsModel ans=ans.ServiceLinkConfig.Peer properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.Peer prefix=rsModel ans=ans.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.Peer.Hostname = types.StringPointerValue(ans.ServiceLinkConfig.Peer.Hostname)
 			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -3392,6 +3239,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 			// add a new item
 			state.StaticArpConfigs = append(state.StaticArpConfigs, rsModelStaticARPConfig{})
 			// copy_to_state: state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel ans=varLoopStaticArpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel ans=varLoopStaticArpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.StaticArpConfigs[varLoopStaticArpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopStaticArpConfigs.Ipv4Address)
 			// property: name=mac_address, type=STRING macro=copy_to_state
@@ -3404,6 +3252,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.SubInterface = &rsModelSubInterface{}
 		// copy_to_state: state=state.SubInterface prefix=rsModel ans=ans.SubInterface properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.SubInterface prefix=rsModel ans=ans.SubInterface")
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
 		state.SubInterface.VlanId = types.Int64PointerValue(ans.SubInterface.VlanId)
 	}
@@ -3413,6 +3262,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.SwitchPortConfig = &rsModelSwitchPortConfig{}
 		// copy_to_state: state=state.SwitchPortConfig prefix=rsModel ans=ans.SwitchPortConfig properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig prefix=rsModel ans=ans.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchPortConfig.AccessVlanId = types.Int64PointerValue(ans.SwitchPortConfig.AccessVlanId)
 		// property: name=bpdu_guard_enabled, type=BOOLEAN macro=copy_to_state
@@ -3429,6 +3279,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 		} else {
 			state.SwitchPortConfig.StormControlConfig = &rsModelStormControlConfig{}
 			// copy_to_state: state=state.SwitchPortConfig.StormControlConfig prefix=rsModel ans=ans.SwitchPortConfig.StormControlConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig.StormControlConfig prefix=rsModel ans=ans.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_to_state
 			state.SwitchPortConfig.StormControlConfig.BroadcastThreshold = types.Int64PointerValue(ans.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			// property: name=multicast_threshold, type=INTEGER macro=copy_to_state
@@ -3465,6 +3316,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	} else {
 		state.VlanConfig = &rsModelVlanConfig{}
 		// copy_to_state: state=state.VlanConfig prefix=rsModel ans=ans.VlanConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.VlanConfig prefix=rsModel ans=ans.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_to_state
 		state.VlanConfig.MstpInstance = types.Int64PointerValue(ans.VlanConfig.MstpInstance)
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -3487,7 +3339,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return false
 	}
@@ -3534,7 +3386,9 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=InterfaceScreenV4N20
@@ -3556,6 +3410,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=50
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -3573,6 +3428,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 			// add a new item
 			state.AttachedLanNetworks = append(state.AttachedLanNetworks, rsModelLanNetworkVlanMapping{})
 			// copy_to_state: state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel ans=varLoopAttachedLanNetworks properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel ans=varLoopAttachedLanNetworks")
 			// property: name=lan_network_id, type=STRING macro=copy_to_state
 			state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex].LanNetworkId = types.StringPointerValue(varLoopAttachedLanNetworks.LanNetworkId)
 			// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -3585,6 +3441,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.AuthenticationConfig = &rsModelAuthenticationInterfaceConfig{}
 		// copy_to_state: state=state.AuthenticationConfig prefix=rsModel ans=ans.AuthenticationConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.AuthenticationConfig prefix=rsModel ans=ans.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_to_state
 		state.AuthenticationConfig.FallbackRetryCount = types.Int64PointerValue(ans.AuthenticationConfig.FallbackRetryCount)
 		// property: name=mode, type=STRING macro=copy_to_state
@@ -3602,6 +3459,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.BypassPair = &rsModelBypassPairV2{}
 		// copy_to_state: state=state.BypassPair prefix=rsModel ans=ans.BypassPair properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.BypassPair prefix=rsModel ans=ans.BypassPair")
 		// property: name=lan, type=STRING macro=copy_to_state
 		state.BypassPair.Lan = types.StringPointerValue(ans.BypassPair.Lan)
 		// property: name=lan_state_propagation, type=BOOLEAN macro=copy_to_state
@@ -3617,12 +3475,14 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.CellularConfig = &rsModelCellularInterfaceConfig{}
 		// copy_to_state: state=state.CellularConfig prefix=rsModel ans=ans.CellularConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.CellularConfig prefix=rsModel ans=ans.CellularConfig")
 		// property: name=apn_config, type=REFERENCE macro=copy_to_state
 		if ans.CellularConfig.ApnConfig == nil {
 			state.CellularConfig.ApnConfig = nil
 		} else {
 			state.CellularConfig.ApnConfig = &rsModelAPNConfig{}
 			// copy_to_state: state=state.CellularConfig.ApnConfig prefix=rsModel ans=ans.CellularConfig.ApnConfig properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.CellularConfig.ApnConfig prefix=rsModel ans=ans.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_to_state
 			state.CellularConfig.ApnConfig.Apn = types.StringPointerValue(ans.CellularConfig.ApnConfig.Apn)
 			// property: name=authentication, type=STRING macro=copy_to_state
@@ -3665,6 +3525,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.DhcpRelay = &rsModelDHCPRelay{}
 		// copy_to_state: state=state.DhcpRelay prefix=rsModel ans=ans.DhcpRelay properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay prefix=rsModel ans=ans.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.DhcpRelay.Enabled = types.BoolPointerValue(ans.DhcpRelay.Enabled)
 		// property: name=option_82, type=REFERENCE macro=copy_to_state
@@ -3673,6 +3534,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.DhcpRelay.Option82 = &rsModelDHCPRelayOption82{}
 			// copy_to_state: state=state.DhcpRelay.Option82 prefix=rsModel ans=ans.DhcpRelay.Option82 properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay.Option82 prefix=rsModel ans=ans.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_to_state
 			state.DhcpRelay.Option82.CircuitId = types.StringPointerValue(ans.DhcpRelay.Option82.CircuitId)
 			// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -3696,50 +3558,10 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &rsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &rsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId properties=16
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -3757,12 +3579,14 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.Ipv4Config = &rsModelIpv4Config{}
 		// copy_to_state: state=state.Ipv4Config prefix=rsModel ans=ans.Ipv4Config properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config prefix=rsModel ans=ans.Ipv4Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv4Config.DhcpConfig == nil {
 			state.Ipv4Config.DhcpConfig = nil
 		} else {
 			state.Ipv4Config.DhcpConfig = &rsModelIpv4Dhcp{}
 			// copy_to_state: state=state.Ipv4Config.DhcpConfig prefix=rsModel ans=ans.Ipv4Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpConfig prefix=rsModel ans=ans.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv4Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv4Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -3774,6 +3598,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.Ipv4Config.DnsV4Config = &rsModelDNS{}
 			// copy_to_state: state=state.Ipv4Config.DnsV4Config prefix=rsModel ans=ans.Ipv4Config.DnsV4Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DnsV4Config prefix=rsModel ans=ans.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DnsV4Config.NameServers)
 			state.Ipv4Config.DnsV4Config.NameServers = varNameServers
@@ -3789,6 +3614,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.Ipv4Config.PppoeConfig = &rsModelIpv4Pppoe{}
 			// copy_to_state: state=state.Ipv4Config.PppoeConfig prefix=rsModel ans=ans.Ipv4Config.PppoeConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.PppoeConfig prefix=rsModel ans=ans.Ipv4Config.PppoeConfig")
 			// property: name=chap_passwd, type=STRING macro=copy_to_state
 			state.Ipv4Config.PppoeConfig.ChapPasswd = types.StringPointerValue(ans.Ipv4Config.PppoeConfig.ChapPasswd)
 			// property: name=chap_user, type=STRING macro=copy_to_state
@@ -3807,6 +3633,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 				// add a new item
 				state.Ipv4Config.Routes = append(state.Ipv4Config.Routes, rsModelRoute{})
 				// copy_to_state: state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv4Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -3819,6 +3646,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.Ipv4Config.StaticConfig = &rsModelIpv4Static{}
 			// copy_to_state: state=state.Ipv4Config.StaticConfig prefix=rsModel ans=ans.Ipv4Config.StaticConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.StaticConfig prefix=rsModel ans=ans.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv4Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv4Config.StaticConfig.Address)
 		}
@@ -3831,12 +3659,14 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.Ipv6Config = &rsModelIpv6ConfigV1{}
 		// copy_to_state: state=state.Ipv6Config prefix=rsModel ans=ans.Ipv6Config properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config prefix=rsModel ans=ans.Ipv6Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv6Config.DhcpConfig == nil {
 			state.Ipv6Config.DhcpConfig = nil
 		} else {
 			state.Ipv6Config.DhcpConfig = &rsModelIpv6Dhcp{}
 			// copy_to_state: state=state.Ipv6Config.DhcpConfig prefix=rsModel ans=ans.Ipv6Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DhcpConfig prefix=rsModel ans=ans.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv6Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv6Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -3848,6 +3678,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.Ipv6Config.DnsV6Config = &rsModelDNS{}
 			// copy_to_state: state=state.Ipv6Config.DnsV6Config prefix=rsModel ans=ans.Ipv6Config.DnsV6Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DnsV6Config prefix=rsModel ans=ans.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Config.DnsV6Config.NameServers)
 			state.Ipv6Config.DnsV6Config.NameServers = varNameServers
@@ -3868,6 +3699,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 				// add a new item
 				state.Ipv6Config.Routes = append(state.Ipv6Config.Routes, rsModelRoute{})
 				// copy_to_state: state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv6Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -3880,6 +3712,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.Ipv6Config.StaticConfig = &rsModelIpv6StaticV1{}
 			// copy_to_state: state=state.Ipv6Config.StaticConfig prefix=rsModel ans=ans.Ipv6Config.StaticConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.StaticConfig prefix=rsModel ans=ans.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv6Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv6Config.StaticConfig.Address)
 			// property: name=enable_prefix_distribution, type=BOOLEAN macro=copy_to_state
@@ -3900,6 +3733,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.MulticastConfig = &rsModelMulticastInterfaceConfig{}
 		// copy_to_state: state=state.MulticastConfig prefix=rsModel ans=ans.MulticastConfig properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig prefix=rsModel ans=ans.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_to_state
 		state.MulticastConfig.DrPriority = types.Int64PointerValue(ans.MulticastConfig.DrPriority)
 		// property: name=igmp_static_joins, type=ARRAY_REFERENCE macro=copy_to_state
@@ -3913,6 +3747,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 				// add a new item
 				state.MulticastConfig.IgmpStaticJoins = append(state.MulticastConfig.IgmpStaticJoins, rsModelMulticastIgmpStaticJoin{})
 				// copy_to_state: state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel ans=varLoopIgmpStaticJoins properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel ans=varLoopIgmpStaticJoins")
 				// property: name=igmp_static_grp_ipv4, type=STRING macro=copy_to_state
 				state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex].IgmpStaticGrpIpv4 = types.StringPointerValue(varLoopIgmpStaticJoins.IgmpStaticGrpIpv4)
 				// property: name=igmp_static_src_ipv4, type=STRING macro=copy_to_state
@@ -3941,6 +3776,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 			// add a new item
 			state.NatPools = append(state.NatPools, rsModelNatPool{})
 			// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex] prefix=rsModel ans=varLoopNatPools properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex] prefix=rsModel ans=varLoopNatPools")
 			// property: name=ipv4_ranges, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopNatPools.Ipv4Ranges == nil {
 				state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = nil
@@ -3952,6 +3788,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 					// add a new item
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = append(state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges, rsModelIPv4Range{})
 					// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel ans=varLoopIpv4Ranges properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel ans=varLoopIpv4Ranges")
 					// property: name=end, type=STRING macro=copy_to_state
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex].End = types.StringPointerValue(varLoopIpv4Ranges.End)
 					// property: name=start, type=STRING macro=copy_to_state
@@ -3982,6 +3819,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.PortChannelConfig = &rsModelPortChannelConfig{}
 		// copy_to_state: state=state.PortChannelConfig prefix=rsModel ans=ans.PortChannelConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.PortChannelConfig prefix=rsModel ans=ans.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_to_state
 		state.PortChannelConfig.LacpEnabled = types.BoolPointerValue(ans.PortChannelConfig.LacpEnabled)
 		// property: name=transmission_mode, type=STRING macro=copy_to_state
@@ -3995,6 +3833,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.PppoeConfig = &rsModelPppoEInterfaceConfig{}
 		// copy_to_state: state=state.PppoeConfig prefix=rsModel ans=ans.PppoeConfig properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.PppoeConfig prefix=rsModel ans=ans.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_to_state
 		state.PppoeConfig.HostUniq = types.StringPointerValue(ans.PppoeConfig.HostUniq)
 		// property: name=ip_address_type, type=STRING macro=copy_to_state
@@ -4026,6 +3865,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 			// add a new item
 			state.SecondaryIpConfigs = append(state.SecondaryIpConfigs, rsModelSecondaryIPConfig{})
 			// copy_to_state: state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel ans=varLoopSecondaryIpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel ans=varLoopSecondaryIpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopSecondaryIpConfigs.Ipv4Address)
 			// property: name=scope, type=STRING macro=copy_to_state
@@ -4038,12 +3878,14 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.ServiceLinkConfig = &rsModelServiceLinkV4{}
 		// copy_to_state: state=state.ServiceLinkConfig prefix=rsModel ans=ans.ServiceLinkConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig prefix=rsModel ans=ans.ServiceLinkConfig")
 		// property: name=gre_config, type=REFERENCE macro=copy_to_state
 		if ans.ServiceLinkConfig.GreConfig == nil {
 			state.ServiceLinkConfig.GreConfig = nil
 		} else {
 			state.ServiceLinkConfig.GreConfig = &rsModelGREConfig{}
 			// copy_to_state: state=state.ServiceLinkConfig.GreConfig prefix=rsModel ans=ans.ServiceLinkConfig.GreConfig properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.GreConfig prefix=rsModel ans=ans.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.GreConfig.Csum = types.BoolPointerValue(ans.ServiceLinkConfig.GreConfig.Csum)
 			// property: name=keepalive_enable, type=BOOLEAN macro=copy_to_state
@@ -4059,12 +3901,14 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.ServiceLinkConfig.IpsecConfig = &rsModelIPSECConfigV1{}
 			// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig")
 			// property: name=authentication, type=REFERENCE macro=copy_to_state
 			if ans.ServiceLinkConfig.IpsecConfig.Authentication == nil {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
 				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -4077,6 +3921,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 				} else {
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params = &rsModelIKEV1Params{}
 					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					// property: name=xauth_secret, type=STRING macro=copy_to_state
@@ -4168,6 +4013,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.ServiceLinkConfig.PassiveMode = &rsModelPassiveMode{}
 			// copy_to_state: state=state.ServiceLinkConfig.PassiveMode prefix=rsModel ans=ans.ServiceLinkConfig.PassiveMode properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.PassiveMode prefix=rsModel ans=ans.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.PassiveMode.Enable = types.BoolPointerValue(ans.ServiceLinkConfig.PassiveMode.Enable)
 			// property: name=peer_ip_dynamic, type=BOOLEAN macro=copy_to_state
@@ -4179,6 +4025,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.ServiceLinkConfig.Peer = &rsModelPeerInfo{}
 			// copy_to_state: state=state.ServiceLinkConfig.Peer prefix=rsModel ans=ans.ServiceLinkConfig.Peer properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.Peer prefix=rsModel ans=ans.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.Peer.Hostname = types.StringPointerValue(ans.ServiceLinkConfig.Peer.Hostname)
 			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -4208,6 +4055,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 			// add a new item
 			state.StaticArpConfigs = append(state.StaticArpConfigs, rsModelStaticARPConfig{})
 			// copy_to_state: state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel ans=varLoopStaticArpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel ans=varLoopStaticArpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.StaticArpConfigs[varLoopStaticArpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopStaticArpConfigs.Ipv4Address)
 			// property: name=mac_address, type=STRING macro=copy_to_state
@@ -4220,6 +4068,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.SubInterface = &rsModelSubInterface{}
 		// copy_to_state: state=state.SubInterface prefix=rsModel ans=ans.SubInterface properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.SubInterface prefix=rsModel ans=ans.SubInterface")
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
 		state.SubInterface.VlanId = types.Int64PointerValue(ans.SubInterface.VlanId)
 	}
@@ -4229,6 +4078,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.SwitchPortConfig = &rsModelSwitchPortConfig{}
 		// copy_to_state: state=state.SwitchPortConfig prefix=rsModel ans=ans.SwitchPortConfig properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig prefix=rsModel ans=ans.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchPortConfig.AccessVlanId = types.Int64PointerValue(ans.SwitchPortConfig.AccessVlanId)
 		// property: name=bpdu_guard_enabled, type=BOOLEAN macro=copy_to_state
@@ -4245,6 +4095,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 		} else {
 			state.SwitchPortConfig.StormControlConfig = &rsModelStormControlConfig{}
 			// copy_to_state: state=state.SwitchPortConfig.StormControlConfig prefix=rsModel ans=ans.SwitchPortConfig.StormControlConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig.StormControlConfig prefix=rsModel ans=ans.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_to_state
 			state.SwitchPortConfig.StormControlConfig.BroadcastThreshold = types.Int64PointerValue(ans.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			// property: name=multicast_threshold, type=INTEGER macro=copy_to_state
@@ -4281,6 +4132,7 @@ func (r *elementInterfaceResource) doGet(ctx context.Context, state *rsModelInte
 	} else {
 		state.VlanConfig = &rsModelVlanConfig{}
 		// copy_to_state: state=state.VlanConfig prefix=rsModel ans=ans.VlanConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.VlanConfig prefix=rsModel ans=ans.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_to_state
 		state.VlanConfig.MstpInstance = types.Int64PointerValue(ans.VlanConfig.MstpInstance)
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -4312,7 +4164,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return false
 	}
@@ -4343,6 +4195,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=50
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -4377,6 +4230,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			body.AttachedLanNetworks = append(body.AttachedLanNetworks, sdwan_schema.LanNetworkVlanMapping{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel plan=varLoopAttachedLanNetworks properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel plan=varLoopAttachedLanNetworks")
 			// property: name=lan_network_id, type=STRING macro=copy_from_plan
 			body.AttachedLanNetworks[varLoopAttachedLanNetworksIndex].LanNetworkId = StringValueOrNil(varLoopAttachedLanNetworks.LanNetworkId)
 			// property: name=vlan_id, type=INTEGER macro=copy_from_plan
@@ -4389,6 +4243,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.AuthenticationConfig = &sdwan_schema.AuthenticationInterfaceConfig{}
 		// copy_from_plan_or_state: body=body.AuthenticationConfig prefix=rsModel state=state.AuthenticationConfig plan=plan.AuthenticationConfig properties=3
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.AuthenticationConfig prefix=rsModel state=state.AuthenticationConfig plan=plan.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_from_plan_or_state
 		if state.AuthenticationConfig != nil {
 			body.AuthenticationConfig.FallbackRetryCount = ValueInt64PointerFromPlanOrState(plan.AuthenticationConfig.FallbackRetryCount, state.AuthenticationConfig.FallbackRetryCount)
@@ -4416,6 +4271,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.BypassPair = &sdwan_schema.BypassPairV2{}
 		// copy_from_plan_or_state: body=body.BypassPair prefix=rsModel state=state.BypassPair plan=plan.BypassPair properties=4
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.BypassPair prefix=rsModel state=state.BypassPair plan=plan.BypassPair")
 		// property: name=lan, type=STRING macro=copy_from_plan_or_state
 		if state.BypassPair != nil {
 			body.BypassPair.Lan = ValueStringPointerFromPlanOrState(plan.BypassPair.Lan, state.BypassPair.Lan)
@@ -4447,12 +4303,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.CellularConfig = &sdwan_schema.CellularInterfaceConfig{}
 		// copy_from_plan_or_state: body=body.CellularConfig prefix=rsModel state=state.CellularConfig plan=plan.CellularConfig properties=5
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.CellularConfig prefix=rsModel state=state.CellularConfig plan=plan.CellularConfig")
 		// property: name=apn_config, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.CellularConfig.ApnConfig == nil {
 			body.CellularConfig.ApnConfig = nil
 		} else {
 			body.CellularConfig.ApnConfig = &sdwan_schema.APNConfig{}
 			// copy_from_plan_or_state: body=body.CellularConfig.ApnConfig prefix=rsModel state=state.CellularConfig.ApnConfig plan=plan.CellularConfig.ApnConfig properties=6
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.CellularConfig.ApnConfig prefix=rsModel state=state.CellularConfig.ApnConfig plan=plan.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_from_plan_or_state
 			if state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.Apn = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnConfig.Apn, state.CellularConfig.ApnConfig.Apn)
@@ -4533,6 +4391,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.DhcpRelay = &sdwan_schema.DHCPRelay{}
 		// copy_from_plan_or_state: body=body.DhcpRelay prefix=rsModel state=state.DhcpRelay plan=plan.DhcpRelay properties=4
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DhcpRelay prefix=rsModel state=state.DhcpRelay plan=plan.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.DhcpRelay != nil {
 			body.DhcpRelay.Enabled = ValueBoolPointerFromPlanOrState(plan.DhcpRelay.Enabled, state.DhcpRelay.Enabled)
@@ -4545,6 +4404,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.DhcpRelay.Option82 = &sdwan_schema.DHCPRelayOption82{}
 			// copy_from_plan_or_state: body=body.DhcpRelay.Option82 prefix=rsModel state=state.DhcpRelay.Option82 plan=plan.DhcpRelay.Option82 properties=4
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.DhcpRelay.Option82 prefix=rsModel state=state.DhcpRelay.Option82 plan=plan.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_from_plan_or_state
 			if state.DhcpRelay.Option82 != nil {
 				body.DhcpRelay.Option82.CircuitId = ValueStringPointerFromPlanOrState(plan.DhcpRelay.Option82.CircuitId, state.DhcpRelay.Option82.CircuitId)
@@ -4590,121 +4450,13 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		body.EthernetPort = nil
 	} else {
 		body.EthernetPort = &sdwan_schema.EthernetPort{}
-		// copy_from_plan_or_state: body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort properties=4
+		// copy_from_plan_or_state: body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.EthernetPort != nil {
 			body.EthernetPort.FullDuplex = ValueBoolPointerFromPlanOrState(plan.EthernetPort.FullDuplex, state.EthernetPort.FullDuplex)
 		} else {
 			body.EthernetPort.FullDuplex = BoolValueOrNil(plan.EthernetPort.FullDuplex)
-		}
-		// property: name=port_id, type=REFERENCE macro=copy_from_plan_or_state
-		if plan.EthernetPort.PortId == nil {
-			body.EthernetPort.PortId = nil
-		} else {
-			body.EthernetPort.PortId = &sdwan_schema.Ethernet{}
-			// copy_from_plan_or_state: body=body.EthernetPort.PortId prefix=rsModel state=state.EthernetPort.PortId plan=plan.EthernetPort.PortId properties=16
-			// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Etag = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.Etag, state.EthernetPort.PortId.Etag)
-			} else {
-				body.EthernetPort.PortId.Etag = Int64ValueOrNil(plan.EthernetPort.PortId.Etag)
-			}
-			// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Schema = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.Schema, state.EthernetPort.PortId.Schema)
-			} else {
-				body.EthernetPort.PortId.Schema = Int64ValueOrNil(plan.EthernetPort.PortId.Schema)
-			}
-			// property: name=connector, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Connector = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Connector, state.EthernetPort.PortId.Connector)
-			} else {
-				body.EthernetPort.PortId.Connector = StringValueOrNil(plan.EthernetPort.PortId.Connector)
-			}
-			// property: name=device, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Device = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Device, state.EthernetPort.PortId.Device)
-			} else {
-				body.EthernetPort.PortId.Device = StringValueOrNil(plan.EthernetPort.PortId.Device)
-			}
-			// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Disabled = ValueBoolPointerFromPlanOrState(plan.EthernetPort.PortId.Disabled, state.EthernetPort.PortId.Disabled)
-			} else {
-				body.EthernetPort.PortId.Disabled = BoolValueOrNil(plan.EthernetPort.PortId.Disabled)
-			}
-			// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.DisabledReason = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.DisabledReason, state.EthernetPort.PortId.DisabledReason)
-			} else {
-				body.EthernetPort.PortId.DisabledReason = StringValueOrNil(plan.EthernetPort.PortId.DisabledReason)
-			}
-			// property: name=element_id, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.ElementId = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.ElementId, state.EthernetPort.PortId.ElementId)
-			} else {
-				body.EthernetPort.PortId.ElementId = StringValueOrNil(plan.EthernetPort.PortId.ElementId)
-			}
-			// property: name=id, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Id = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Id, state.EthernetPort.PortId.Id)
-			} else {
-				body.EthernetPort.PortId.Id = StringValueOrNil(plan.EthernetPort.PortId.Id)
-			}
-			// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Inactive = ValueBoolPointerFromPlanOrState(plan.EthernetPort.PortId.Inactive, state.EthernetPort.PortId.Inactive)
-			} else {
-				body.EthernetPort.PortId.Inactive = BoolValueOrNil(plan.EthernetPort.PortId.Inactive)
-			}
-			// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.InactiveReason = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.InactiveReason, state.EthernetPort.PortId.InactiveReason)
-			} else {
-				body.EthernetPort.PortId.InactiveReason = StringValueOrNil(plan.EthernetPort.PortId.InactiveReason)
-			}
-			// property: name=max_mtu, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.MaxMtu = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.MaxMtu, state.EthernetPort.PortId.MaxMtu)
-			} else {
-				body.EthernetPort.PortId.MaxMtu = Int64ValueOrNil(plan.EthernetPort.PortId.MaxMtu)
-			}
-			// property: name=max_speed, type=INTEGER macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.MaxSpeed = ValueInt64PointerFromPlanOrState(plan.EthernetPort.PortId.MaxSpeed, state.EthernetPort.PortId.MaxSpeed)
-			} else {
-				body.EthernetPort.PortId.MaxSpeed = Int64ValueOrNil(plan.EthernetPort.PortId.MaxSpeed)
-			}
-			// property: name=name, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Name = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Name, state.EthernetPort.PortId.Name)
-			} else {
-				body.EthernetPort.PortId.Name = StringValueOrNil(plan.EthernetPort.PortId.Name)
-			}
-			// property: name=original_mac_address, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.OriginalMacAddress = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.OriginalMacAddress, state.EthernetPort.PortId.OriginalMacAddress)
-			} else {
-				body.EthernetPort.PortId.OriginalMacAddress = StringValueOrNil(plan.EthernetPort.PortId.OriginalMacAddress)
-			}
-			// property: name=region, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.Region = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.Region, state.EthernetPort.PortId.Region)
-			} else {
-				body.EthernetPort.PortId.Region = StringValueOrNil(plan.EthernetPort.PortId.Region)
-			}
-			// property: name=site_id, type=STRING macro=copy_from_plan_or_state
-			if state.EthernetPort.PortId != nil {
-				body.EthernetPort.PortId.SiteId = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortId.SiteId, state.EthernetPort.PortId.SiteId)
-			} else {
-				body.EthernetPort.PortId.SiteId = StringValueOrNil(plan.EthernetPort.PortId.SiteId)
-			}
-		}
-		// property: name=port_name, type=STRING macro=copy_from_plan_or_state
-		if state.EthernetPort != nil {
-			body.EthernetPort.PortName = ValueStringPointerFromPlanOrState(plan.EthernetPort.PortName, state.EthernetPort.PortName)
-		} else {
-			body.EthernetPort.PortName = StringValueOrNil(plan.EthernetPort.PortName)
 		}
 		// property: name=speed, type=INTEGER macro=copy_from_plan_or_state
 		if state.EthernetPort != nil {
@@ -4743,12 +4495,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.Ipv4Config = &sdwan_schema.Ipv4Config{}
 		// copy_from_plan_or_state: body=body.Ipv4Config prefix=rsModel state=state.Ipv4Config plan=plan.Ipv4Config properties=6
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config prefix=rsModel state=state.Ipv4Config plan=plan.Ipv4Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.Ipv4Config.DhcpConfig == nil {
 			body.Ipv4Config.DhcpConfig = nil
 		} else {
 			body.Ipv4Config.DhcpConfig = &sdwan_schema.Ipv4Dhcp{}
 			// copy_from_plan_or_state: body=body.Ipv4Config.DhcpConfig prefix=rsModel state=state.Ipv4Config.DhcpConfig plan=plan.Ipv4Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DhcpConfig prefix=rsModel state=state.Ipv4Config.DhcpConfig plan=plan.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_from_plan_or_state
 			if state.Ipv4Config.DhcpConfig != nil {
 				body.Ipv4Config.DhcpConfig.ClientId = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpConfig.ClientId, state.Ipv4Config.DhcpConfig.ClientId)
@@ -4768,6 +4522,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.Ipv4Config.DnsV4Config = &sdwan_schema.DNS{}
 			// copy_from_plan_or_state: body=body.Ipv4Config.DnsV4Config prefix=rsModel state=state.Ipv4Config.DnsV4Config plan=plan.Ipv4Config.DnsV4Config properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DnsV4Config prefix=rsModel state=state.Ipv4Config.DnsV4Config plan=plan.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 			body.Ipv4Config.DnsV4Config.NameServers = ListStringValueOrNil(ctx, plan.Ipv4Config.DnsV4Config.NameServers)
 			// property: name=search, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
@@ -4779,6 +4534,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.Ipv4Config.PppoeConfig = &sdwan_schema.Ipv4Pppoe{}
 			// copy_from_plan_or_state: body=body.Ipv4Config.PppoeConfig prefix=rsModel state=state.Ipv4Config.PppoeConfig plan=plan.Ipv4Config.PppoeConfig properties=3
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.PppoeConfig prefix=rsModel state=state.Ipv4Config.PppoeConfig plan=plan.Ipv4Config.PppoeConfig")
 			// property: name=chap_passwd, type=STRING macro=copy_from_plan_or_state
 			if state.Ipv4Config.PppoeConfig != nil {
 				body.Ipv4Config.PppoeConfig.ChapPasswd = ValueStringPointerFromPlanOrState(plan.Ipv4Config.PppoeConfig.ChapPasswd, state.Ipv4Config.PppoeConfig.ChapPasswd)
@@ -4814,6 +4570,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				body.Ipv4Config.Routes = append(body.Ipv4Config.Routes, sdwan_schema.Route{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_from_plan
 				body.Ipv4Config.Routes[varLoopRoutesIndex].Destination = StringValueOrNil(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_from_plan
@@ -4826,6 +4583,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.Ipv4Config.StaticConfig = &sdwan_schema.Ipv4Static{}
 			// copy_from_plan_or_state: body=body.Ipv4Config.StaticConfig prefix=rsModel state=state.Ipv4Config.StaticConfig plan=plan.Ipv4Config.StaticConfig properties=1
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.StaticConfig prefix=rsModel state=state.Ipv4Config.StaticConfig plan=plan.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_from_plan_or_state
 			if state.Ipv4Config.StaticConfig != nil {
 				body.Ipv4Config.StaticConfig.Address = ValueStringPointerFromPlanOrState(plan.Ipv4Config.StaticConfig.Address, state.Ipv4Config.StaticConfig.Address)
@@ -4846,12 +4604,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.Ipv6Config = &sdwan_schema.Ipv6ConfigV1{}
 		// copy_from_plan_or_state: body=body.Ipv6Config prefix=rsModel state=state.Ipv6Config plan=plan.Ipv6Config properties=5
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config prefix=rsModel state=state.Ipv6Config plan=plan.Ipv6Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.Ipv6Config.DhcpConfig == nil {
 			body.Ipv6Config.DhcpConfig = nil
 		} else {
 			body.Ipv6Config.DhcpConfig = &sdwan_schema.Ipv6Dhcp{}
 			// copy_from_plan_or_state: body=body.Ipv6Config.DhcpConfig prefix=rsModel state=state.Ipv6Config.DhcpConfig plan=plan.Ipv6Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config.DhcpConfig prefix=rsModel state=state.Ipv6Config.DhcpConfig plan=plan.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_from_plan_or_state
 			if state.Ipv6Config.DhcpConfig != nil {
 				body.Ipv6Config.DhcpConfig.ClientId = ValueStringPointerFromPlanOrState(plan.Ipv6Config.DhcpConfig.ClientId, state.Ipv6Config.DhcpConfig.ClientId)
@@ -4871,6 +4631,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.Ipv6Config.DnsV6Config = &sdwan_schema.DNS{}
 			// copy_from_plan_or_state: body=body.Ipv6Config.DnsV6Config prefix=rsModel state=state.Ipv6Config.DnsV6Config plan=plan.Ipv6Config.DnsV6Config properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config.DnsV6Config prefix=rsModel state=state.Ipv6Config.DnsV6Config plan=plan.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 			body.Ipv6Config.DnsV6Config.NameServers = ListStringValueOrNil(ctx, plan.Ipv6Config.DnsV6Config.NameServers)
 			// property: name=search, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
@@ -4892,6 +4653,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				body.Ipv6Config.Routes = append(body.Ipv6Config.Routes, sdwan_schema.Route{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel plan=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_from_plan
 				body.Ipv6Config.Routes[varLoopRoutesIndex].Destination = StringValueOrNil(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_from_plan
@@ -4904,6 +4666,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.Ipv6Config.StaticConfig = &sdwan_schema.Ipv6StaticV1{}
 			// copy_from_plan_or_state: body=body.Ipv6Config.StaticConfig prefix=rsModel state=state.Ipv6Config.StaticConfig plan=plan.Ipv6Config.StaticConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config.StaticConfig prefix=rsModel state=state.Ipv6Config.StaticConfig plan=plan.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_from_plan_or_state
 			if state.Ipv6Config.StaticConfig != nil {
 				body.Ipv6Config.StaticConfig.Address = ValueStringPointerFromPlanOrState(plan.Ipv6Config.StaticConfig.Address, state.Ipv6Config.StaticConfig.Address)
@@ -4948,6 +4711,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.MulticastConfig = &sdwan_schema.MulticastInterfaceConfig{}
 		// copy_from_plan_or_state: body=body.MulticastConfig prefix=rsModel state=state.MulticastConfig plan=plan.MulticastConfig properties=4
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.MulticastConfig prefix=rsModel state=state.MulticastConfig plan=plan.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_from_plan_or_state
 		if state.MulticastConfig != nil {
 			body.MulticastConfig.DrPriority = ValueInt64PointerFromPlanOrState(plan.MulticastConfig.DrPriority, state.MulticastConfig.DrPriority)
@@ -4970,6 +4734,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				body.MulticastConfig.IgmpStaticJoins = append(body.MulticastConfig.IgmpStaticJoins, sdwan_schema.MulticastIgmpStaticJoin{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 				// copy_from_plan: body=body.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel plan=varLoopIgmpStaticJoins properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel plan=varLoopIgmpStaticJoins")
 				// property: name=igmp_static_grp_ipv4, type=STRING macro=copy_from_plan
 				body.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex].IgmpStaticGrpIpv4 = StringValueOrNil(varLoopIgmpStaticJoins.IgmpStaticGrpIpv4)
 				// property: name=igmp_static_src_ipv4, type=STRING macro=copy_from_plan
@@ -5023,6 +4788,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			body.NatPools = append(body.NatPools, sdwan_schema.NatPool{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.NatPools[varLoopNatPoolsIndex] prefix=rsModel plan=varLoopNatPools properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.NatPools[varLoopNatPoolsIndex] prefix=rsModel plan=varLoopNatPools")
 			// property: name=ipv4_ranges, type=ARRAY_REFERENCE macro=copy_from_plan
 			if varLoopNatPools.Ipv4Ranges == nil {
 				body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = nil
@@ -5034,6 +4800,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 					// add a new item
 					body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = append(body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges, sdwan_schema.IPv4Range{})
 					// copy_from_plan: body=body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel plan=varLoopIpv4Ranges properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel plan=varLoopIpv4Ranges")
 					// property: name=end, type=STRING macro=copy_from_plan
 					body.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex].End = StringValueOrNil(varLoopIpv4Ranges.End)
 					// property: name=start, type=STRING macro=copy_from_plan
@@ -5092,6 +4859,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.PortChannelConfig = &sdwan_schema.PortChannelConfig{}
 		// copy_from_plan_or_state: body=body.PortChannelConfig prefix=rsModel state=state.PortChannelConfig plan=plan.PortChannelConfig properties=2
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PortChannelConfig prefix=rsModel state=state.PortChannelConfig plan=plan.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.PortChannelConfig != nil {
 			body.PortChannelConfig.LacpEnabled = ValueBoolPointerFromPlanOrState(plan.PortChannelConfig.LacpEnabled, state.PortChannelConfig.LacpEnabled)
@@ -5117,6 +4885,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.PppoeConfig = &sdwan_schema.PppoEInterfaceConfig{}
 		// copy_from_plan_or_state: body=body.PppoeConfig prefix=rsModel state=state.PppoeConfig plan=plan.PppoeConfig properties=6
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PppoeConfig prefix=rsModel state=state.PppoeConfig plan=plan.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_from_plan_or_state
 		if state.PppoeConfig != nil {
 			body.PppoeConfig.HostUniq = ValueStringPointerFromPlanOrState(plan.PppoeConfig.HostUniq, state.PppoeConfig.HostUniq)
@@ -5176,6 +4945,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			body.SecondaryIpConfigs = append(body.SecondaryIpConfigs, sdwan_schema.SecondaryIPConfig{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel plan=varLoopSecondaryIpConfigs properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel plan=varLoopSecondaryIpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_from_plan
 			body.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex].Ipv4Address = StringValueOrNil(varLoopSecondaryIpConfigs.Ipv4Address)
 			// property: name=scope, type=STRING macro=copy_from_plan
@@ -5188,12 +4958,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.ServiceLinkConfig = &sdwan_schema.ServiceLinkV4{}
 		// copy_from_plan_or_state: body=body.ServiceLinkConfig prefix=rsModel state=state.ServiceLinkConfig plan=plan.ServiceLinkConfig properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig prefix=rsModel state=state.ServiceLinkConfig plan=plan.ServiceLinkConfig")
 		// property: name=gre_config, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.ServiceLinkConfig.GreConfig == nil {
 			body.ServiceLinkConfig.GreConfig = nil
 		} else {
 			body.ServiceLinkConfig.GreConfig = &sdwan_schema.GREConfig{}
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.GreConfig prefix=rsModel state=state.ServiceLinkConfig.GreConfig plan=plan.ServiceLinkConfig.GreConfig properties=4
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.GreConfig prefix=rsModel state=state.ServiceLinkConfig.GreConfig plan=plan.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_from_plan_or_state
 			if state.ServiceLinkConfig.GreConfig != nil {
 				body.ServiceLinkConfig.GreConfig.Csum = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.GreConfig.Csum, state.ServiceLinkConfig.GreConfig.Csum)
@@ -5225,12 +4997,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.ServiceLinkConfig.IpsecConfig = &sdwan_schema.IPSECConfigV1{}
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig plan=plan.ServiceLinkConfig.IpsecConfig properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig plan=plan.ServiceLinkConfig.IpsecConfig")
 			// property: name=authentication, type=REFERENCE macro=copy_from_plan_or_state
 			if plan.ServiceLinkConfig.IpsecConfig.Authentication == nil {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
 				// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_from_plan_or_state
 				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate, state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -5255,6 +5029,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params = &sdwan_schema.IKEV1Params{}
 					// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
+					tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_from_plan_or_state
 					if state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId, state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
@@ -5420,6 +5195,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.ServiceLinkConfig.PassiveMode = &sdwan_schema.PassiveMode{}
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.PassiveMode prefix=rsModel state=state.ServiceLinkConfig.PassiveMode plan=plan.ServiceLinkConfig.PassiveMode properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.PassiveMode prefix=rsModel state=state.ServiceLinkConfig.PassiveMode plan=plan.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_from_plan_or_state
 			if state.ServiceLinkConfig.PassiveMode != nil {
 				body.ServiceLinkConfig.PassiveMode.Enable = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.PassiveMode.Enable, state.ServiceLinkConfig.PassiveMode.Enable)
@@ -5439,6 +5215,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.ServiceLinkConfig.Peer = &sdwan_schema.PeerInfo{}
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.Peer prefix=rsModel state=state.ServiceLinkConfig.Peer plan=plan.ServiceLinkConfig.Peer properties=2
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.Peer prefix=rsModel state=state.ServiceLinkConfig.Peer plan=plan.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_from_plan_or_state
 			if state.ServiceLinkConfig.Peer != nil {
 				body.ServiceLinkConfig.Peer.Hostname = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.Peer.Hostname, state.ServiceLinkConfig.Peer.Hostname)
@@ -5485,6 +5262,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			body.StaticArpConfigs = append(body.StaticArpConfigs, sdwan_schema.StaticARPConfig{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel plan=varLoopStaticArpConfigs properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel plan=varLoopStaticArpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_from_plan
 			body.StaticArpConfigs[varLoopStaticArpConfigsIndex].Ipv4Address = StringValueOrNil(varLoopStaticArpConfigs.Ipv4Address)
 			// property: name=mac_address, type=STRING macro=copy_from_plan
@@ -5497,6 +5275,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.SubInterface = &sdwan_schema.SubInterface{}
 		// copy_from_plan_or_state: body=body.SubInterface prefix=rsModel state=state.SubInterface plan=plan.SubInterface properties=1
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SubInterface prefix=rsModel state=state.SubInterface plan=plan.SubInterface")
 		// property: name=vlan_id, type=INTEGER macro=copy_from_plan_or_state
 		if state.SubInterface != nil {
 			body.SubInterface.VlanId = ValueInt64PointerFromPlanOrState(plan.SubInterface.VlanId, state.SubInterface.VlanId)
@@ -5510,6 +5289,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.SwitchPortConfig = &sdwan_schema.SwitchPortConfig{}
 		// copy_from_plan_or_state: body=body.SwitchPortConfig prefix=rsModel state=state.SwitchPortConfig plan=plan.SwitchPortConfig properties=12
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwitchPortConfig prefix=rsModel state=state.SwitchPortConfig plan=plan.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_from_plan_or_state
 		if state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.AccessVlanId = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.AccessVlanId, state.SwitchPortConfig.AccessVlanId)
@@ -5546,6 +5326,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			body.SwitchPortConfig.StormControlConfig = &sdwan_schema.StormControlConfig{}
 			// copy_from_plan_or_state: body=body.SwitchPortConfig.StormControlConfig prefix=rsModel state=state.SwitchPortConfig.StormControlConfig plan=plan.SwitchPortConfig.StormControlConfig properties=3
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwitchPortConfig.StormControlConfig prefix=rsModel state=state.SwitchPortConfig.StormControlConfig plan=plan.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_from_plan_or_state
 			if state.SwitchPortConfig.StormControlConfig != nil {
 				body.SwitchPortConfig.StormControlConfig.BroadcastThreshold = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.StormControlConfig.BroadcastThreshold, state.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
@@ -5618,6 +5399,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		body.VlanConfig = &sdwan_schema.VlanConfig{}
 		// copy_from_plan_or_state: body=body.VlanConfig prefix=rsModel state=state.VlanConfig plan=plan.VlanConfig properties=3
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.VlanConfig prefix=rsModel state=state.VlanConfig plan=plan.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_from_plan_or_state
 		if state.VlanConfig != nil {
 			body.VlanConfig.MstpInstance = ValueInt64PointerFromPlanOrState(plan.VlanConfig.MstpInstance, state.VlanConfig.MstpInstance)
@@ -5654,8 +5436,11 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::ethernet_port.port_id")
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::ethernet_port.port_name")
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_name")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 4)
 	// copy pointer
 	put_request.RequestBody = &request_body_string
@@ -5687,7 +5472,9 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -5702,6 +5489,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 
 	// Store the answer to state. schema=InterfaceScreenV4N20
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=50
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -5719,6 +5507,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			// add a new item
 			state.AttachedLanNetworks = append(state.AttachedLanNetworks, rsModelLanNetworkVlanMapping{})
 			// copy_to_state: state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel ans=varLoopAttachedLanNetworks properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=rsModel ans=varLoopAttachedLanNetworks")
 			// property: name=lan_network_id, type=STRING macro=copy_to_state
 			state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex].LanNetworkId = types.StringPointerValue(varLoopAttachedLanNetworks.LanNetworkId)
 			// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -5731,6 +5520,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.AuthenticationConfig = &rsModelAuthenticationInterfaceConfig{}
 		// copy_to_state: state=state.AuthenticationConfig prefix=rsModel ans=ans.AuthenticationConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.AuthenticationConfig prefix=rsModel ans=ans.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_to_state
 		state.AuthenticationConfig.FallbackRetryCount = types.Int64PointerValue(ans.AuthenticationConfig.FallbackRetryCount)
 		// property: name=mode, type=STRING macro=copy_to_state
@@ -5748,6 +5538,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.BypassPair = &rsModelBypassPairV2{}
 		// copy_to_state: state=state.BypassPair prefix=rsModel ans=ans.BypassPair properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.BypassPair prefix=rsModel ans=ans.BypassPair")
 		// property: name=lan, type=STRING macro=copy_to_state
 		state.BypassPair.Lan = types.StringPointerValue(ans.BypassPair.Lan)
 		// property: name=lan_state_propagation, type=BOOLEAN macro=copy_to_state
@@ -5763,12 +5554,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.CellularConfig = &rsModelCellularInterfaceConfig{}
 		// copy_to_state: state=state.CellularConfig prefix=rsModel ans=ans.CellularConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.CellularConfig prefix=rsModel ans=ans.CellularConfig")
 		// property: name=apn_config, type=REFERENCE macro=copy_to_state
 		if ans.CellularConfig.ApnConfig == nil {
 			state.CellularConfig.ApnConfig = nil
 		} else {
 			state.CellularConfig.ApnConfig = &rsModelAPNConfig{}
 			// copy_to_state: state=state.CellularConfig.ApnConfig prefix=rsModel ans=ans.CellularConfig.ApnConfig properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.CellularConfig.ApnConfig prefix=rsModel ans=ans.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_to_state
 			state.CellularConfig.ApnConfig.Apn = types.StringPointerValue(ans.CellularConfig.ApnConfig.Apn)
 			// property: name=authentication, type=STRING macro=copy_to_state
@@ -5815,6 +5608,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.DhcpRelay = &rsModelDHCPRelay{}
 		// copy_to_state: state=state.DhcpRelay prefix=rsModel ans=ans.DhcpRelay properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay prefix=rsModel ans=ans.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.DhcpRelay.Enabled = types.BoolPointerValue(ans.DhcpRelay.Enabled)
 		// property: name=option_82, type=REFERENCE macro=copy_to_state
@@ -5823,6 +5617,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.DhcpRelay.Option82 = &rsModelDHCPRelayOption82{}
 			// copy_to_state: state=state.DhcpRelay.Option82 prefix=rsModel ans=ans.DhcpRelay.Option82 properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay.Option82 prefix=rsModel ans=ans.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_to_state
 			state.DhcpRelay.Option82.CircuitId = types.StringPointerValue(ans.DhcpRelay.Option82.CircuitId)
 			// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -5846,50 +5641,10 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &rsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=rsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &rsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=rsModel ans=ans.EthernetPort.PortId properties=16
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -5907,12 +5662,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.Ipv4Config = &rsModelIpv4Config{}
 		// copy_to_state: state=state.Ipv4Config prefix=rsModel ans=ans.Ipv4Config properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config prefix=rsModel ans=ans.Ipv4Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv4Config.DhcpConfig == nil {
 			state.Ipv4Config.DhcpConfig = nil
 		} else {
 			state.Ipv4Config.DhcpConfig = &rsModelIpv4Dhcp{}
 			// copy_to_state: state=state.Ipv4Config.DhcpConfig prefix=rsModel ans=ans.Ipv4Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpConfig prefix=rsModel ans=ans.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv4Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv4Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -5924,6 +5681,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.Ipv4Config.DnsV4Config = &rsModelDNS{}
 			// copy_to_state: state=state.Ipv4Config.DnsV4Config prefix=rsModel ans=ans.Ipv4Config.DnsV4Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DnsV4Config prefix=rsModel ans=ans.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DnsV4Config.NameServers)
 			state.Ipv4Config.DnsV4Config.NameServers = varNameServers
@@ -5939,6 +5697,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.Ipv4Config.PppoeConfig = &rsModelIpv4Pppoe{}
 			// copy_to_state: state=state.Ipv4Config.PppoeConfig prefix=rsModel ans=ans.Ipv4Config.PppoeConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.PppoeConfig prefix=rsModel ans=ans.Ipv4Config.PppoeConfig")
 			// property: name=chap_passwd, type=STRING macro=copy_to_state
 			state.Ipv4Config.PppoeConfig.ChapPasswd = types.StringPointerValue(ans.Ipv4Config.PppoeConfig.ChapPasswd)
 			// property: name=chap_user, type=STRING macro=copy_to_state
@@ -5957,6 +5716,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				// add a new item
 				state.Ipv4Config.Routes = append(state.Ipv4Config.Routes, rsModelRoute{})
 				// copy_to_state: state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv4Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -5969,6 +5729,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.Ipv4Config.StaticConfig = &rsModelIpv4Static{}
 			// copy_to_state: state=state.Ipv4Config.StaticConfig prefix=rsModel ans=ans.Ipv4Config.StaticConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.StaticConfig prefix=rsModel ans=ans.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv4Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv4Config.StaticConfig.Address)
 		}
@@ -5981,12 +5742,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.Ipv6Config = &rsModelIpv6ConfigV1{}
 		// copy_to_state: state=state.Ipv6Config prefix=rsModel ans=ans.Ipv6Config properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config prefix=rsModel ans=ans.Ipv6Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv6Config.DhcpConfig == nil {
 			state.Ipv6Config.DhcpConfig = nil
 		} else {
 			state.Ipv6Config.DhcpConfig = &rsModelIpv6Dhcp{}
 			// copy_to_state: state=state.Ipv6Config.DhcpConfig prefix=rsModel ans=ans.Ipv6Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DhcpConfig prefix=rsModel ans=ans.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv6Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv6Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -5998,6 +5761,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.Ipv6Config.DnsV6Config = &rsModelDNS{}
 			// copy_to_state: state=state.Ipv6Config.DnsV6Config prefix=rsModel ans=ans.Ipv6Config.DnsV6Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DnsV6Config prefix=rsModel ans=ans.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Config.DnsV6Config.NameServers)
 			state.Ipv6Config.DnsV6Config.NameServers = varNameServers
@@ -6018,6 +5782,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				// add a new item
 				state.Ipv6Config.Routes = append(state.Ipv6Config.Routes, rsModelRoute{})
 				// copy_to_state: state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=rsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv6Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -6030,6 +5795,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.Ipv6Config.StaticConfig = &rsModelIpv6StaticV1{}
 			// copy_to_state: state=state.Ipv6Config.StaticConfig prefix=rsModel ans=ans.Ipv6Config.StaticConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.StaticConfig prefix=rsModel ans=ans.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv6Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv6Config.StaticConfig.Address)
 			// property: name=enable_prefix_distribution, type=BOOLEAN macro=copy_to_state
@@ -6050,6 +5816,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.MulticastConfig = &rsModelMulticastInterfaceConfig{}
 		// copy_to_state: state=state.MulticastConfig prefix=rsModel ans=ans.MulticastConfig properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig prefix=rsModel ans=ans.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_to_state
 		state.MulticastConfig.DrPriority = types.Int64PointerValue(ans.MulticastConfig.DrPriority)
 		// property: name=igmp_static_joins, type=ARRAY_REFERENCE macro=copy_to_state
@@ -6063,6 +5830,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				// add a new item
 				state.MulticastConfig.IgmpStaticJoins = append(state.MulticastConfig.IgmpStaticJoins, rsModelMulticastIgmpStaticJoin{})
 				// copy_to_state: state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel ans=varLoopIgmpStaticJoins properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=rsModel ans=varLoopIgmpStaticJoins")
 				// property: name=igmp_static_grp_ipv4, type=STRING macro=copy_to_state
 				state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex].IgmpStaticGrpIpv4 = types.StringPointerValue(varLoopIgmpStaticJoins.IgmpStaticGrpIpv4)
 				// property: name=igmp_static_src_ipv4, type=STRING macro=copy_to_state
@@ -6091,6 +5859,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			// add a new item
 			state.NatPools = append(state.NatPools, rsModelNatPool{})
 			// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex] prefix=rsModel ans=varLoopNatPools properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex] prefix=rsModel ans=varLoopNatPools")
 			// property: name=ipv4_ranges, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopNatPools.Ipv4Ranges == nil {
 				state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = nil
@@ -6102,6 +5871,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 					// add a new item
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = append(state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges, rsModelIPv4Range{})
 					// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel ans=varLoopIpv4Ranges properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=rsModel ans=varLoopIpv4Ranges")
 					// property: name=end, type=STRING macro=copy_to_state
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex].End = types.StringPointerValue(varLoopIpv4Ranges.End)
 					// property: name=start, type=STRING macro=copy_to_state
@@ -6132,6 +5902,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.PortChannelConfig = &rsModelPortChannelConfig{}
 		// copy_to_state: state=state.PortChannelConfig prefix=rsModel ans=ans.PortChannelConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.PortChannelConfig prefix=rsModel ans=ans.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_to_state
 		state.PortChannelConfig.LacpEnabled = types.BoolPointerValue(ans.PortChannelConfig.LacpEnabled)
 		// property: name=transmission_mode, type=STRING macro=copy_to_state
@@ -6145,6 +5916,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.PppoeConfig = &rsModelPppoEInterfaceConfig{}
 		// copy_to_state: state=state.PppoeConfig prefix=rsModel ans=ans.PppoeConfig properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.PppoeConfig prefix=rsModel ans=ans.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_to_state
 		state.PppoeConfig.HostUniq = types.StringPointerValue(ans.PppoeConfig.HostUniq)
 		// property: name=ip_address_type, type=STRING macro=copy_to_state
@@ -6178,6 +5950,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			// add a new item
 			state.SecondaryIpConfigs = append(state.SecondaryIpConfigs, rsModelSecondaryIPConfig{})
 			// copy_to_state: state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel ans=varLoopSecondaryIpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=rsModel ans=varLoopSecondaryIpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopSecondaryIpConfigs.Ipv4Address)
 			// property: name=scope, type=STRING macro=copy_to_state
@@ -6190,12 +5963,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.ServiceLinkConfig = &rsModelServiceLinkV4{}
 		// copy_to_state: state=state.ServiceLinkConfig prefix=rsModel ans=ans.ServiceLinkConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig prefix=rsModel ans=ans.ServiceLinkConfig")
 		// property: name=gre_config, type=REFERENCE macro=copy_to_state
 		if ans.ServiceLinkConfig.GreConfig == nil {
 			state.ServiceLinkConfig.GreConfig = nil
 		} else {
 			state.ServiceLinkConfig.GreConfig = &rsModelGREConfig{}
 			// copy_to_state: state=state.ServiceLinkConfig.GreConfig prefix=rsModel ans=ans.ServiceLinkConfig.GreConfig properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.GreConfig prefix=rsModel ans=ans.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.GreConfig.Csum = types.BoolPointerValue(ans.ServiceLinkConfig.GreConfig.Csum)
 			// property: name=keepalive_enable, type=BOOLEAN macro=copy_to_state
@@ -6211,12 +5986,14 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.ServiceLinkConfig.IpsecConfig = &rsModelIPSECConfigV1{}
 			// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig")
 			// property: name=authentication, type=REFERENCE macro=copy_to_state
 			if ans.ServiceLinkConfig.IpsecConfig.Authentication == nil {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
 				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -6229,6 +6006,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 				} else {
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params = &rsModelIKEV1Params{}
 					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					// property: name=xauth_secret, type=STRING macro=copy_to_state
@@ -6332,6 +6110,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.ServiceLinkConfig.PassiveMode = &rsModelPassiveMode{}
 			// copy_to_state: state=state.ServiceLinkConfig.PassiveMode prefix=rsModel ans=ans.ServiceLinkConfig.PassiveMode properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.PassiveMode prefix=rsModel ans=ans.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.PassiveMode.Enable = types.BoolPointerValue(ans.ServiceLinkConfig.PassiveMode.Enable)
 			// property: name=peer_ip_dynamic, type=BOOLEAN macro=copy_to_state
@@ -6343,6 +6122,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.ServiceLinkConfig.Peer = &rsModelPeerInfo{}
 			// copy_to_state: state=state.ServiceLinkConfig.Peer prefix=rsModel ans=ans.ServiceLinkConfig.Peer properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.Peer prefix=rsModel ans=ans.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.Peer.Hostname = types.StringPointerValue(ans.ServiceLinkConfig.Peer.Hostname)
 			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -6372,6 +6152,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 			// add a new item
 			state.StaticArpConfigs = append(state.StaticArpConfigs, rsModelStaticARPConfig{})
 			// copy_to_state: state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel ans=varLoopStaticArpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=rsModel ans=varLoopStaticArpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.StaticArpConfigs[varLoopStaticArpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopStaticArpConfigs.Ipv4Address)
 			// property: name=mac_address, type=STRING macro=copy_to_state
@@ -6384,6 +6165,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.SubInterface = &rsModelSubInterface{}
 		// copy_to_state: state=state.SubInterface prefix=rsModel ans=ans.SubInterface properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.SubInterface prefix=rsModel ans=ans.SubInterface")
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
 		state.SubInterface.VlanId = types.Int64PointerValue(ans.SubInterface.VlanId)
 	}
@@ -6393,6 +6175,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.SwitchPortConfig = &rsModelSwitchPortConfig{}
 		// copy_to_state: state=state.SwitchPortConfig prefix=rsModel ans=ans.SwitchPortConfig properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig prefix=rsModel ans=ans.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchPortConfig.AccessVlanId = types.Int64PointerValue(ans.SwitchPortConfig.AccessVlanId)
 		// property: name=bpdu_guard_enabled, type=BOOLEAN macro=copy_to_state
@@ -6409,6 +6192,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 		} else {
 			state.SwitchPortConfig.StormControlConfig = &rsModelStormControlConfig{}
 			// copy_to_state: state=state.SwitchPortConfig.StormControlConfig prefix=rsModel ans=ans.SwitchPortConfig.StormControlConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig.StormControlConfig prefix=rsModel ans=ans.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_to_state
 			state.SwitchPortConfig.StormControlConfig.BroadcastThreshold = types.Int64PointerValue(ans.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			// property: name=multicast_threshold, type=INTEGER macro=copy_to_state
@@ -6445,6 +6229,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	} else {
 		state.VlanConfig = &rsModelVlanConfig{}
 		// copy_to_state: state=state.VlanConfig prefix=rsModel ans=ans.VlanConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.VlanConfig prefix=rsModel ans=ans.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_to_state
 		state.VlanConfig.MstpInstance = types.Int64PointerValue(ans.VlanConfig.MstpInstance)
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -6469,7 +6254,7 @@ func (r *elementInterfaceResource) doDelete(ctx context.Context, state *rsModelI
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_interface ID format", "Expected 3 tokens")
 		return false
 	}

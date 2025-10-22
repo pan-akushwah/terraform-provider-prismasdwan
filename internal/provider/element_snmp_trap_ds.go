@@ -283,7 +283,7 @@ func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.Rea
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
 		return
 	}
@@ -332,6 +332,7 @@ func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.Rea
 
 	// lets copy all items into state schema=SNMPTrap
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=11
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -356,6 +357,7 @@ func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.V2Config = &dsModelSNMPTrapV2Config{}
 		// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
 		// property: name=community, type=STRING macro=copy_to_state
 		state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
 	}
@@ -365,12 +367,14 @@ func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.Rea
 	} else {
 		state.V3Config = &dsModelSNMPTrapV3Config{}
 		// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
 		// property: name=user_access, type=REFERENCE macro=copy_to_state
 		if ans.V3Config.UserAccess == nil {
 			state.V3Config.UserAccess = nil
 		} else {
 			state.V3Config.UserAccess = &dsModelSNMPTrapUserAccess{}
 			// copy_to_state: state=state.V3Config.UserAccess prefix=dsModel ans=ans.V3Config.UserAccess properties=7
+			tflog.Debug(ctx, "copy_to_state state=state.V3Config.UserAccess prefix=dsModel ans=ans.V3Config.UserAccess")
 			// property: name=auth_phrase, type=STRING macro=copy_to_state
 			state.V3Config.UserAccess.AuthPhrase = types.StringPointerValue(ans.V3Config.UserAccess.AuthPhrase)
 			// property: name=auth_type, type=STRING macro=copy_to_state

@@ -19,7 +19,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=11)
+// | Schema Map Summary (size=goLangStructMap=12)
 // | Computed Resource Name=sites_elementshells
 // +-----------------------------------------------------------------
 // | IntraClusterTunnel HasID=false
@@ -32,7 +32,8 @@ import (
 // | TrackInterface HasID=false
 // | TrackV2 HasID=false
 // | SpokeHAConfigV2 HasID=false
-// | ElementShellV2N1 HasID=true
+// | Software HasID=false
+// | ElementScreenV3N2 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -73,7 +74,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=ElementShellV2N1
+			// rest all properties to be read from GET API Schema schema=ElementScreenV3N2
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -100,7 +101,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
 			"allowed_roles": dsschema.ListAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
@@ -141,7 +142,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=device_mode, type=STRING macro=rss_schema
 			"device_mode": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -157,7 +158,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=element_id, type=STRING macro=rss_schema
 			"element_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -255,7 +256,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=hw_id, type=STRING macro=rss_schema
 			"hw_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -271,7 +272,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_direct_private_wan_forwarding": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -279,7 +280,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
 			"l3_lan_forwarding": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -305,7 +306,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
 			"main_power_usage_threshold": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -313,7 +314,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=model_name, type=STRING macro=rss_schema
 			"model_name": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -353,7 +354,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=role, type=STRING macro=rss_schema
 			"role": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -369,7 +370,7 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=software_version, type=STRING macro=rss_schema
 			"software_version": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -485,11 +486,37 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// property: name=state, type=STRING macro=rss_schema
 			"state": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=state, type=STRING macro=rss_schema
+			// property: name=sw_obj, type=REFERENCE macro=rss_schema
+			"sw_obj": dsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				Attributes: map[string]dsschema.Attribute{
+					// property: name=location, type=STRING macro=rss_schema
+					"location": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=location, type=STRING macro=rss_schema
+					// property: name=version, type=STRING macro=rss_schema
+					"version": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=version, type=STRING macro=rss_schema
+				},
+			},
+			// key name holder for attribute: name=version, type=STRING macro=rss_schema
 			// property: name=switch_config, type=REFERENCE macro=rss_schema
 			"switch_config": dsschema.SingleNestedAttribute{
 				Required:  false,
@@ -573,10 +600,18 @@ func (d *elementShellDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			// property: name=tenant_id, type=STRING macro=rss_schema
+			"tenant_id": dsschema.StringAttribute{
+				Required:  false,
+				Computed:  true,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 			"vpn_to_vpn_forwarding": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -595,7 +630,7 @@ func (d *elementShellDataSource) Configure(_ context.Context, req datasource.Con
 
 // Read performs Read for the struct.
 func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelElementShellV2N1
+	var state dsModelElementScreenV3N2
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -611,7 +646,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_shell ID format", "Expected 2 tokens")
 		return
 	}
@@ -648,17 +683,18 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.ElementShellV2N1
+	var ans sdwan_schema.ElementScreenV3N2
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ElementShellV2N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to ElementScreenV3N2", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=ElementShellV2N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=30
+	// lets copy all items into state schema=ElementScreenV3N2
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=32
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -687,12 +723,14 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.HubClusterConfig = &dsModelHubClusterConfig{}
 		// copy_to_state: state=state.HubClusterConfig prefix=dsModel ans=ans.HubClusterConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig prefix=dsModel ans=ans.HubClusterConfig")
 		// property: name=intra_cluster_tunnel, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.IntraClusterTunnel == nil {
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &dsModelIntraClusterTunnel{}
 			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
 			// property: name=destination_ip, type=STRING macro=copy_to_state
 			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
 			// property: name=source_ip, type=STRING macro=copy_to_state
@@ -706,6 +744,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 		} else {
 			state.HubClusterConfig.Track = &dsModelTracker{}
 			// copy_to_state: state=state.HubClusterConfig.Track prefix=dsModel ans=ans.HubClusterConfig.Track properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track prefix=dsModel ans=ans.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.HubClusterConfig.Track.Hosts == nil {
 				state.HubClusterConfig.Track.Hosts = nil
@@ -717,6 +756,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 					// add a new item
 					state.HubClusterConfig.Track.Hosts = append(state.HubClusterConfig.Track.Hosts, dsModelHost{})
 					// copy_to_state: state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=dsModel ans=varLoopHosts properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.Track.Hosts[varLoopHostsIndex] prefix=dsModel ans=varLoopHosts")
 					// property: name=address_v4, type=STRING macro=copy_to_state
 					state.HubClusterConfig.Track.Hosts[varLoopHostsIndex].AddressV4 = types.StringPointerValue(varLoopHosts.AddressV4)
 					// property: name=address_v6, type=STRING macro=copy_to_state
@@ -741,6 +781,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.LedConfig = &dsModelLedConfig{}
 		// copy_to_state: state=state.LedConfig prefix=dsModel ans=ans.LedConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LedConfig prefix=dsModel ans=ans.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_to_state
 		state.LedConfig.ServiceLedOn = types.BoolPointerValue(ans.LedConfig.ServiceLedOn)
 	}
@@ -768,6 +809,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.SpokeHaConfig = &dsModelSpokeHAConfigV2{}
 		// copy_to_state: state=state.SpokeHaConfig prefix=dsModel ans=ans.SpokeHaConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig prefix=dsModel ans=ans.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_to_state
 		state.SpokeHaConfig.ClusterId = types.StringPointerValue(ans.SpokeHaConfig.ClusterId)
 		// property: name=enable, type=BOOLEAN macro=copy_to_state
@@ -782,6 +824,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 		} else {
 			state.SpokeHaConfig.Track = &dsModelTrackV2{}
 			// copy_to_state: state=state.SpokeHaConfig.Track prefix=dsModel ans=ans.SpokeHaConfig.Track properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track prefix=dsModel ans=ans.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.SpokeHaConfig.Track.Interfaces == nil {
 				state.SpokeHaConfig.Track.Interfaces = nil
@@ -793,6 +836,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 					// add a new item
 					state.SpokeHaConfig.Track.Interfaces = append(state.SpokeHaConfig.Track.Interfaces, dsModelTrackInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces")
 					// property: name=interface_id, type=STRING macro=copy_to_state
 					state.SpokeHaConfig.Track.Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
@@ -810,6 +854,7 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 					// add a new item
 					state.SpokeHaConfig.Track.Waninterfaces = append(state.SpokeHaConfig.Track.Waninterfaces, dsModelTrackWANInterface{})
 					// copy_to_state: state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=dsModel ans=varLoopWaninterfaces properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex] prefix=dsModel ans=varLoopWaninterfaces")
 					// property: name=reduce_priority, type=INTEGER macro=copy_to_state
 					state.SpokeHaConfig.Track.Waninterfaces[varLoopWaninterfacesIndex].ReducePriority = types.Int64PointerValue(varLoopWaninterfaces.ReducePriority)
 					// property: name=wan_interface_id, type=STRING macro=copy_to_state
@@ -820,12 +865,25 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	}
 	// property: name=state, type=STRING macro=copy_to_state
 	state.State = types.StringPointerValue(ans.State)
+	// property: name=sw_obj, type=REFERENCE macro=copy_to_state
+	if ans.SwObj == nil {
+		state.SwObj = nil
+	} else {
+		state.SwObj = &dsModelSoftware{}
+		// copy_to_state: state=state.SwObj prefix=dsModel ans=ans.SwObj properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.SwObj prefix=dsModel ans=ans.SwObj")
+		// property: name=location, type=STRING macro=copy_to_state
+		state.SwObj.Location = types.StringPointerValue(ans.SwObj.Location)
+		// property: name=version, type=STRING macro=copy_to_state
+		state.SwObj.Version = types.StringPointerValue(ans.SwObj.Version)
+	}
 	// property: name=switch_config, type=REFERENCE macro=copy_to_state
 	if ans.SwitchConfig == nil {
 		state.SwitchConfig = nil
 	} else {
 		state.SwitchConfig = &dsModelSwitchConfig{}
 		// copy_to_state: state=state.SwitchConfig prefix=dsModel ans=ans.SwitchConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchConfig prefix=dsModel ans=ans.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchConfig.DefaultVlanId = types.Int64PointerValue(ans.SwitchConfig.DefaultVlanId)
 		// property: name=mstp_enabled, type=BOOLEAN macro=copy_to_state
@@ -847,6 +905,8 @@ func (d *elementShellDataSource) Read(ctx context.Context, req datasource.ReadRe
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// property: name=tenant_id, type=STRING macro=copy_to_state
+	state.TenantId = types.StringPointerValue(ans.TenantId)
 	// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=copy_to_state
 	state.VpnToVpnForwarding = types.BoolPointerValue(ans.VpnToVpnForwarding)
 

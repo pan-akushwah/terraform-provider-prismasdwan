@@ -225,7 +225,7 @@ func (d *tacacsPlusProfileDataSource) Read(ctx context.Context, req datasource.R
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_tacacs_plus_profile ID format", "Expected 1 tokens")
 		return
 	}
@@ -272,6 +272,7 @@ func (d *tacacsPlusProfileDataSource) Read(ctx context.Context, req datasource.R
 
 	// lets copy all items into state schema=TacacsPlusProfileScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -295,6 +296,7 @@ func (d *tacacsPlusProfileDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.TacacsPlusServers = append(state.TacacsPlusServers, dsModelTacacsPlusServerConfig{})
 			// copy_to_state: state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=dsModel ans=varLoopTacacsPlusServers properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=dsModel ans=varLoopTacacsPlusServers")
 			// property: name=secret, type=STRING macro=copy_to_state
 			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringPointerValue(varLoopTacacsPlusServers.Secret)
 			// property: name=server_fqdn, type=STRING macro=copy_to_state

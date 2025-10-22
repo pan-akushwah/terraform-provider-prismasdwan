@@ -285,7 +285,7 @@ func (d *elementSnmpAgentDataSource) Read(ctx context.Context, req datasource.Re
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_agent ID format", "Expected 3 tokens")
 		return
 	}
@@ -334,6 +334,7 @@ func (d *elementSnmpAgentDataSource) Read(ctx context.Context, req datasource.Re
 
 	// lets copy all items into state schema=SNMPAgentV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -356,6 +357,7 @@ func (d *elementSnmpAgentDataSource) Read(ctx context.Context, req datasource.Re
 	} else {
 		state.V2Config = &dsModelSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
 		// property: name=community, type=STRING macro=copy_to_state
 		state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -367,6 +369,7 @@ func (d *elementSnmpAgentDataSource) Read(ctx context.Context, req datasource.Re
 	} else {
 		state.V3Config = &dsModelSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.V3Config.Enabled = types.BoolPointerValue(ans.V3Config.Enabled)
 		// property: name=users_access, type=ARRAY_REFERENCE macro=copy_to_state
@@ -380,6 +383,7 @@ func (d *elementSnmpAgentDataSource) Read(ctx context.Context, req datasource.Re
 				// add a new item
 				state.V3Config.UsersAccess = append(state.V3Config.UsersAccess, dsModelSNMPUserAccess{})
 				// copy_to_state: state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=dsModel ans=varLoopUsersAccess properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.V3Config.UsersAccess[varLoopUsersAccessIndex] prefix=dsModel ans=varLoopUsersAccess")
 				// property: name=auth_phrase, type=STRING macro=copy_to_state
 				state.V3Config.UsersAccess[varLoopUsersAccessIndex].AuthPhrase = types.StringPointerValue(varLoopUsersAccess.AuthPhrase)
 				// property: name=auth_type, type=STRING macro=copy_to_state

@@ -476,7 +476,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_prisma_sase_connection ID format", "Expected 2 tokens")
 		return
 	}
@@ -524,6 +524,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 
 	// lets copy all items into state schema=SaseConnectionScreenV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -540,6 +541,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 	} else {
 		state.IpsecTunnelConfigs = &dsModelIPSecTunnelConfigs{}
 		// copy_to_state: state=state.IpsecTunnelConfigs prefix=dsModel ans=ans.IpsecTunnelConfigs properties=7
+		tflog.Debug(ctx, "copy_to_state state=state.IpsecTunnelConfigs prefix=dsModel ans=ans.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_to_state
 		state.IpsecTunnelConfigs.AntiReplay = types.BoolPointerValue(ans.IpsecTunnelConfigs.AntiReplay)
 		// property: name=copy_tos, type=BOOLEAN macro=copy_to_state
@@ -578,6 +580,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 			// add a new item
 			state.RemoteNetworkGroups = append(state.RemoteNetworkGroups, dsModelRemoteNetworkGroup{})
 			// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=dsModel ans=varLoopRemoteNetworkGroups properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=dsModel ans=varLoopRemoteNetworkGroups")
 			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
@@ -589,12 +592,14 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 					// add a new item
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, dsModelIPSecTunnel{})
 					// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=dsModel ans=varLoopIpsecTunnels properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=dsModel ans=varLoopIpsecTunnels")
 					// property: name=authentication, type=REFERENCE macro=copy_to_state
 					if varLoopIpsecTunnels.Authentication == nil {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = nil
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &dsModelIPSecTunnelAuthentication{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=dsModel ans=varLoopIpsecTunnels.Authentication properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=dsModel ans=varLoopIpsecTunnels.Authentication")
 						// property: name=branch_ike_identification, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
 						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_to_state
@@ -610,6 +615,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &dsModelRouting{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=dsModel ans=varLoopIpsecTunnels.Routing properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=dsModel ans=varLoopIpsecTunnels.Routing")
 						// property: name=branch_as_number, type=STRING macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchAsNumber)
 						// property: name=branch_ip_address, type=STRING macro=copy_to_state
@@ -623,6 +629,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 					} else {
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &dsModelRoutingConfigs{}
 						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=dsModel ans=varLoopIpsecTunnels.RoutingConfigs properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=dsModel ans=varLoopIpsecTunnels.RoutingConfigs")
 						// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
 						// property: name=bgp_secret, type=STRING macro=copy_to_state
@@ -650,6 +657,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 	} else {
 		state.RoutingConfigs = &dsModelRoutingConfigs{}
 		// copy_to_state: state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
 		// property: name=bgp_secret, type=STRING macro=copy_to_state

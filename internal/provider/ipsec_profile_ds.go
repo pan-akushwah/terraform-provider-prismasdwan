@@ -712,7 +712,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_ipsec_profile ID format", "Expected 1 tokens")
 		return
 	}
@@ -759,6 +759,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 
 	// lets copy all items into state schema=IPSECProfileScreenV2N2
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -769,6 +770,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.Authentication = &dsModelIPSECAuthenticationV1{}
 		// copy_to_state: state=state.Authentication prefix=dsModel ans=ans.Authentication properties=22
+		tflog.Debug(ctx, "copy_to_state state=state.Authentication prefix=dsModel ans=ans.Authentication")
 		// property: name=certificate, type=STRING macro=copy_to_state
 		state.Authentication.Certificate = types.StringPointerValue(ans.Authentication.Certificate)
 		// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -781,6 +783,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 		} else {
 			state.Authentication.Ikev1Params = &dsModelIKEV1Params{}
 			// copy_to_state: state=state.Authentication.Ikev1Params prefix=dsModel ans=ans.Authentication.Ikev1Params properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.Authentication.Ikev1Params prefix=dsModel ans=ans.Authentication.Ikev1Params")
 			// property: name=xauth_id, type=STRING macro=copy_to_state
 			state.Authentication.Ikev1Params.XauthId = types.StringPointerValue(ans.Authentication.Ikev1Params.XauthId)
 			// property: name=xauth_secret, type=STRING macro=copy_to_state
@@ -843,6 +846,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.EspGroup = &dsModelESPGroup{}
 		// copy_to_state: state=state.EspGroup prefix=dsModel ans=ans.EspGroup properties=7
+		tflog.Debug(ctx, "copy_to_state state=state.EspGroup prefix=dsModel ans=ans.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.EspGroup.ForceEncapsulation = types.BoolPointerValue(ans.EspGroup.ForceEncapsulation)
 		// property: name=lifesize, type=REFERENCE macro=copy_to_state
@@ -851,6 +855,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 		} else {
 			state.EspGroup.Lifesize = &dsModelLifesize{}
 			// copy_to_state: state=state.EspGroup.Lifesize prefix=dsModel ans=ans.EspGroup.Lifesize properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EspGroup.Lifesize prefix=dsModel ans=ans.EspGroup.Lifesize")
 			// property: name=units, type=STRING macro=copy_to_state
 			state.EspGroup.Lifesize.Units = types.StringPointerValue(ans.EspGroup.Lifesize.Units)
 			// property: name=value, type=INTEGER macro=copy_to_state
@@ -873,6 +878,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 				// add a new item
 				state.EspGroup.Proposals = append(state.EspGroup.Proposals, dsModelProposals{})
 				// copy_to_state: state=state.EspGroup.Proposals[varLoopProposalsIndex] prefix=dsModel ans=varLoopProposals properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.EspGroup.Proposals[varLoopProposalsIndex] prefix=dsModel ans=varLoopProposals")
 				// property: name=dh_groups, type=STRING macro=copy_to_state
 				state.EspGroup.Proposals[varLoopProposalsIndex].DhGroups = types.StringPointerValue(varLoopProposals.DhGroups)
 				// property: name=encryption, type=STRING macro=copy_to_state
@@ -889,6 +895,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 		} else {
 			state.EspGroup.ResponderSaseProposals = &dsModelResponderSaseProposals{}
 			// copy_to_state: state=state.EspGroup.ResponderSaseProposals prefix=dsModel ans=ans.EspGroup.ResponderSaseProposals properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.EspGroup.ResponderSaseProposals prefix=dsModel ans=ans.EspGroup.ResponderSaseProposals")
 			// property: name=dh_group, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDhGroup, errDhGroup := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.ResponderSaseProposals.DhGroup)
 			state.EspGroup.ResponderSaseProposals.DhGroup = varDhGroup
@@ -911,6 +918,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 	} else {
 		state.IkeGroup = &dsModelIKEGroup{}
 		// copy_to_state: state=state.IkeGroup prefix=dsModel ans=ans.IkeGroup properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.IkeGroup prefix=dsModel ans=ans.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_to_state
 		state.IkeGroup.Aggressive = types.BoolPointerValue(ans.IkeGroup.Aggressive)
 		// property: name=authentication_multiple, type=INTEGER macro=copy_to_state
@@ -934,6 +942,7 @@ func (d *ipsecProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 				// add a new item
 				state.IkeGroup.Proposals = append(state.IkeGroup.Proposals, dsModelProposals{})
 				// copy_to_state: state=state.IkeGroup.Proposals[varLoopProposalsIndex] prefix=dsModel ans=varLoopProposals properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.IkeGroup.Proposals[varLoopProposalsIndex] prefix=dsModel ans=varLoopProposals")
 				// property: name=dh_groups, type=STRING macro=copy_to_state
 				state.IkeGroup.Proposals[varLoopProposalsIndex].DhGroups = types.StringPointerValue(varLoopProposals.DhGroups)
 				// property: name=encryption, type=STRING macro=copy_to_state

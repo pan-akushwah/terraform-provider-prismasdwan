@@ -374,6 +374,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=19
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -412,6 +413,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	if plan.V2Config != nil {
 		body.V2Config = &sdwan_schema.DeviceIdSNMPV2Config{}
 		// copy_from_plan: body=body.V2Config prefix=rsModel plan=plan.V2Config properties=1
+		tflog.Debug(ctx, "copy_from_plan body=body.V2Config prefix=rsModel plan=plan.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_from_plan
 		body.V2Config.SnmpCommunityString = StringValueOrNil(plan.V2Config.SnmpCommunityString)
 	}
@@ -419,6 +421,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	if plan.V3Config != nil {
 		body.V3Config = &sdwan_schema.DeviceIdSNMPV3Config{}
 		// copy_from_plan: body=body.V3Config prefix=rsModel plan=plan.V3Config properties=8
+		tflog.Debug(ctx, "copy_from_plan body=body.V3Config prefix=rsModel plan=plan.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_from_plan
 		body.V3Config.SnmpAuthPassword = StringValueOrNil(plan.V3Config.SnmpAuthPassword)
 		// property: name=snmp_auth_password_encrypted, type=STRING macro=copy_from_plan
@@ -447,8 +450,11 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -474,7 +480,9 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -510,6 +518,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 
 	// Store the answer to state. schema=DeviceIdProfile
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -552,6 +561,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	} else {
 		state.V2Config = &rsModelDeviceIdSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=rsModel ans=ans.V2Config properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=rsModel ans=ans.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_to_state
 		state.V2Config.SnmpCommunityString = types.StringPointerValue(ans.V2Config.SnmpCommunityString)
 	}
@@ -561,6 +571,7 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	} else {
 		state.V3Config = &rsModelDeviceIdSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=rsModel ans=ans.V3Config properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=rsModel ans=ans.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_to_state
 		state.V3Config.SnmpAuthPassword = types.StringPointerValue(plan.V3Config.SnmpAuthPassword.ValueStringPointer())
 		// this property is sensitive and will be stored in the state's internal key name
@@ -605,7 +616,7 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -652,7 +663,9 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=DeviceIdProfile
@@ -674,6 +687,7 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -716,6 +730,7 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	} else {
 		state.V2Config = &rsModelDeviceIdSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=rsModel ans=ans.V2Config properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=rsModel ans=ans.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_to_state
 		state.V2Config.SnmpCommunityString = types.StringPointerValue(ans.V2Config.SnmpCommunityString)
 	}
@@ -725,6 +740,7 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	} else {
 		state.V3Config = &rsModelDeviceIdSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=rsModel ans=ans.V3Config properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=rsModel ans=ans.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_to_state
 		encryptedSnmpAuthPasswordKeyName := state.V3Config.SnmpAuthPasswordInternalKeyName.String()
 		encryptedSnmpAuthPasswordValueBytes, _ := resp.Private.GetKey(ctx, encryptedSnmpAuthPasswordKeyName)
@@ -774,7 +790,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
 		return false
 	}
@@ -805,6 +821,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=19
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -909,6 +926,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	} else {
 		body.V2Config = &sdwan_schema.DeviceIdSNMPV2Config{}
 		// copy_from_plan_or_state: body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config properties=1
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_from_plan_or_state
 		if state.V2Config != nil {
 			body.V2Config.SnmpCommunityString = ValueStringPointerFromPlanOrState(plan.V2Config.SnmpCommunityString, state.V2Config.SnmpCommunityString)
@@ -922,6 +940,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	} else {
 		body.V3Config = &sdwan_schema.DeviceIdSNMPV3Config{}
 		// copy_from_plan_or_state: body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config properties=8
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_from_plan_or_state
 		if state.V3Config != nil {
 			body.V3Config.SnmpAuthPassword = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpAuthPassword, state.V3Config.SnmpAuthPassword)
@@ -1011,7 +1030,9 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1026,6 +1047,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 
 	// Store the answer to state. schema=DeviceIdProfile
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1068,6 +1090,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	} else {
 		state.V2Config = &rsModelDeviceIdSNMPV2Config{}
 		// copy_to_state: state=state.V2Config prefix=rsModel ans=ans.V2Config properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=rsModel ans=ans.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_to_state
 		state.V2Config.SnmpCommunityString = types.StringPointerValue(ans.V2Config.SnmpCommunityString)
 	}
@@ -1077,6 +1100,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	} else {
 		state.V3Config = &rsModelDeviceIdSNMPV3Config{}
 		// copy_to_state: state=state.V3Config prefix=rsModel ans=ans.V3Config properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=rsModel ans=ans.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_to_state
 		state.V3Config.SnmpAuthPassword = types.StringPointerValue(plan.V3Config.SnmpAuthPassword.ValueStringPointer())
 		// this property is sensitive and will be stored in the state's internal key name
@@ -1123,7 +1147,7 @@ func (r *iotProfileResource) doDelete(ctx context.Context, state *rsModelDeviceI
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
 		return false
 	}

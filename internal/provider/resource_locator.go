@@ -82,11 +82,13 @@ func (r *newResourceLocatorResource) Schema(_ context.Context, _ resource.Schema
 			},
 			"resource_property": rsschema.StringAttribute{
 				Computed: false,
-				Required: true,
+				Required: false,
+				Optional: true,
 			},
 			"resource_property_value": rsschema.StringAttribute{
 				Computed: false,
-				Required: true,
+				Required: false,
+				Optional: true,
 			},
 			"result": rsschema.StringAttribute{
 				Computed: true,
@@ -240,7 +242,7 @@ func (r *newResourceLocatorResource) GetHttpStatusCode(request *sdwan_client.Sdw
 	if request.ResponseErrorCode == nil {
 		return request.ResponseStatusCode
 	}
-	if strings.Index(*request.ResponseErrorCode, "_NOT_FOUND") != -1 {
+	if strings.Contains(*request.ResponseErrorCode, "_NOT_FOUND") {
 		return 404
 	}
 	return request.ResponseStatusCode
@@ -253,6 +255,10 @@ func (r *newResourceLocatorResource) Create(ctx context.Context, req resource.Cr
 	if resp.Diagnostics.HasError() {
 		return
 	}
+	tflog.Debug(ctx, "resource lookup prismasdwan_resource_locator} parameters", map[string]any{
+		"req_path":  plan.ResourceProperty.ValueString(),
+		"req_value": plan.ResourcePropertyValue.ValueString(),
+	})
 	r.makeHttpGetLookUp(ctx, &plan, &resp.State, &resp.Diagnostics)
 	if !resp.Diagnostics.HasError() {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &plan)...)
@@ -311,7 +317,6 @@ func (r *newResourceLocatorResource) makeHttpGetLookUp(ctx context.Context, plan
 
 	// Prepare input for the API endpoint.
 	get_request := &sdwan_client.SdwanClientRequestResponse{}
-	get_request.ResourceType = "prismasdwan_resource_locator"
 	get_request.Method = "GET"
 	get_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 

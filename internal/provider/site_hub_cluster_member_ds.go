@@ -231,7 +231,7 @@ func (d *siteHubClusterMemberDataSource) Read(ctx context.Context, req datasourc
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_hub_cluster_member ID format", "Expected 3 tokens")
 		return
 	}
@@ -280,6 +280,7 @@ func (d *siteHubClusterMemberDataSource) Read(ctx context.Context, req datasourc
 
 	// lets copy all items into state schema=HubClusterMemberScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=7
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -307,6 +308,7 @@ func (d *siteHubClusterMemberDataSource) Read(ctx context.Context, req datasourc
 			// add a new item
 			state.LoadFactors = append(state.LoadFactors, dsModelLoadFactor{})
 			// copy_to_state: state=state.LoadFactors[varLoopLoadFactorsIndex] prefix=dsModel ans=varLoopLoadFactors properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.LoadFactors[varLoopLoadFactorsIndex] prefix=dsModel ans=varLoopLoadFactors")
 			// property: name=alarm_threshold, type=INTEGER macro=copy_to_state
 			state.LoadFactors[varLoopLoadFactorsIndex].AlarmThreshold = types.Int64PointerValue(varLoopLoadFactors.AlarmThreshold)
 			// property: name=allocated, type=INTEGER macro=copy_to_state
@@ -319,6 +321,7 @@ func (d *siteHubClusterMemberDataSource) Read(ctx context.Context, req datasourc
 			} else {
 				state.LoadFactors[varLoopLoadFactorsIndex].Threshold = &dsModelThresholdConfig{}
 				// copy_to_state: state=state.LoadFactors[varLoopLoadFactorsIndex].Threshold prefix=dsModel ans=varLoopLoadFactors.Threshold properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.LoadFactors[varLoopLoadFactorsIndex].Threshold prefix=dsModel ans=varLoopLoadFactors.Threshold")
 				// property: name=critical_alarm, type=INTEGER macro=copy_to_state
 				state.LoadFactors[varLoopLoadFactorsIndex].Threshold.CriticalAlarm = types.Int64PointerValue(varLoopLoadFactors.Threshold.CriticalAlarm)
 				// property: name=major_alarm, type=INTEGER macro=copy_to_state

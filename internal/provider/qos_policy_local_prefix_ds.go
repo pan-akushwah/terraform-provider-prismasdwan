@@ -150,7 +150,7 @@ func (d *qosPolicyLocalPrefixDataSource) Read(ctx context.Context, req datasourc
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_local_prefix ID format", "Expected 1 tokens")
 		return
 	}
@@ -197,6 +197,7 @@ func (d *qosPolicyLocalPrefixDataSource) Read(ctx context.Context, req datasourc
 
 	// lets copy all items into state schema=PriorityPolicyLocalPrefix
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=6
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state

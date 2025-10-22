@@ -184,6 +184,7 @@ func (r *siteWanMulticastConfigurationResource) doPost(ctx context.Context, plan
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=4
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -201,6 +202,7 @@ func (r *siteWanMulticastConfigurationResource) doPost(ctx context.Context, plan
 			// add a new item
 			body.SiteConfigs = append(body.SiteConfigs, sdwan_schema.SiteConfig{})
 			// copy_from_plan: body=body.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel plan=varLoopSiteConfigs properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel plan=varLoopSiteConfigs")
 			// property: name=group_ipv4_prefix, type=STRING macro=copy_from_plan
 			body.SiteConfigs[varLoopSiteConfigsIndex].GroupIpv4Prefix = StringValueOrNil(varLoopSiteConfigs.GroupIpv4Prefix)
 			// property: name=source_ipv4_address, type=STRING macro=copy_from_plan
@@ -218,8 +220,11 @@ func (r *siteWanMulticastConfigurationResource) doPost(ctx context.Context, plan
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -245,7 +250,9 @@ func (r *siteWanMulticastConfigurationResource) doPost(ctx context.Context, plan
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -281,6 +288,7 @@ func (r *siteWanMulticastConfigurationResource) doPost(ctx context.Context, plan
 
 	// Store the answer to state. schema=MulticastSourceSiteConfigScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=4
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -298,6 +306,7 @@ func (r *siteWanMulticastConfigurationResource) doPost(ctx context.Context, plan
 			// add a new item
 			state.SiteConfigs = append(state.SiteConfigs, rsModelSiteConfig{})
 			// copy_to_state: state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel ans=varLoopSiteConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel ans=varLoopSiteConfigs")
 			// property: name=group_ipv4_prefix, type=STRING macro=copy_to_state
 			state.SiteConfigs[varLoopSiteConfigsIndex].GroupIpv4Prefix = types.StringPointerValue(varLoopSiteConfigs.GroupIpv4Prefix)
 			// property: name=source_ipv4_address, type=STRING macro=copy_to_state
@@ -317,7 +326,7 @@ func (r *siteWanMulticastConfigurationResource) doGet(ctx context.Context, state
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_multicast_configuration ID format", "Expected 2 tokens")
 		return false
 	}
@@ -364,7 +373,9 @@ func (r *siteWanMulticastConfigurationResource) doGet(ctx context.Context, state
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=MulticastSourceSiteConfigScreen
@@ -386,6 +397,7 @@ func (r *siteWanMulticastConfigurationResource) doGet(ctx context.Context, state
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=4
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -403,6 +415,7 @@ func (r *siteWanMulticastConfigurationResource) doGet(ctx context.Context, state
 			// add a new item
 			state.SiteConfigs = append(state.SiteConfigs, rsModelSiteConfig{})
 			// copy_to_state: state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel ans=varLoopSiteConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel ans=varLoopSiteConfigs")
 			// property: name=group_ipv4_prefix, type=STRING macro=copy_to_state
 			state.SiteConfigs[varLoopSiteConfigsIndex].GroupIpv4Prefix = types.StringPointerValue(varLoopSiteConfigs.GroupIpv4Prefix)
 			// property: name=source_ipv4_address, type=STRING macro=copy_to_state
@@ -431,7 +444,7 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_multicast_configuration ID format", "Expected 2 tokens")
 		return false
 	}
@@ -462,6 +475,7 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=4
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -496,6 +510,7 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 			body.SiteConfigs = append(body.SiteConfigs, sdwan_schema.SiteConfig{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel plan=varLoopSiteConfigs properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel plan=varLoopSiteConfigs")
 			// property: name=group_ipv4_prefix, type=STRING macro=copy_from_plan
 			body.SiteConfigs[varLoopSiteConfigsIndex].GroupIpv4Prefix = StringValueOrNil(varLoopSiteConfigs.GroupIpv4Prefix)
 			// property: name=source_ipv4_address, type=STRING macro=copy_from_plan
@@ -542,7 +557,9 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -557,6 +574,7 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 
 	// Store the answer to state. schema=MulticastSourceSiteConfigScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=4
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -574,6 +592,7 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 			// add a new item
 			state.SiteConfigs = append(state.SiteConfigs, rsModelSiteConfig{})
 			// copy_to_state: state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel ans=varLoopSiteConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SiteConfigs[varLoopSiteConfigsIndex] prefix=rsModel ans=varLoopSiteConfigs")
 			// property: name=group_ipv4_prefix, type=STRING macro=copy_to_state
 			state.SiteConfigs[varLoopSiteConfigsIndex].GroupIpv4Prefix = types.StringPointerValue(varLoopSiteConfigs.GroupIpv4Prefix)
 			// property: name=source_ipv4_address, type=STRING macro=copy_to_state
@@ -595,7 +614,7 @@ func (r *siteWanMulticastConfigurationResource) doDelete(ctx context.Context, st
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_site_wan_multicast_configuration ID format", "Expected 2 tokens")
 		return false
 	}

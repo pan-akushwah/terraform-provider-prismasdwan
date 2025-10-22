@@ -203,7 +203,7 @@ func (d *elementOspfGlobalConfigDataSource) Read(ctx context.Context, req dataso
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ospf_global_config ID format", "Expected 3 tokens")
 		return
 	}
@@ -252,6 +252,7 @@ func (d *elementOspfGlobalConfigDataSource) Read(ctx context.Context, req dataso
 
 	// lets copy all items into state schema=OSPFGlobalConfigScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=12
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state

@@ -281,7 +281,7 @@ func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req data
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_event_correlation_policy_set ID format", "Expected 1 tokens")
 		return
 	}
@@ -328,6 +328,7 @@ func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req data
 
 	// lets copy all items into state schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -351,6 +352,7 @@ func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req data
 			// add a new item
 			state.Items = append(state.Items, dsModelEventCorrelationPolicySetQueryFilter{})
 			// copy_to_state: state=state.Items[varLoopItemsIndex] prefix=dsModel ans=varLoopItems properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex] prefix=dsModel ans=varLoopItems")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.Items[varLoopItemsIndex].Etag = types.Int64PointerValue(varLoopItems.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -380,6 +382,7 @@ func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req data
 					// add a new item
 					state.Items[varLoopItemsIndex].SeverityPriorityMapping = append(state.Items[varLoopItemsIndex].SeverityPriorityMapping, dsModelSeverityPriorityMapping{})
 					// copy_to_state: state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=dsModel ans=varLoopSeverityPriorityMapping properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=dsModel ans=varLoopSeverityPriorityMapping")
 					// property: name=priority, type=STRING macro=copy_to_state
 					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
 					// property: name=severity, type=STRING macro=copy_to_state

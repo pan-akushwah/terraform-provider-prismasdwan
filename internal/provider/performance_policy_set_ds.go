@@ -751,7 +751,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_policy_set ID format", "Expected 1 tokens")
 		return
 	}
@@ -798,6 +798,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 
 	// lets copy all items into state schema=PerfMgmtPolicySet
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -833,6 +834,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 			// add a new item
 			state.LinkHealthRules = append(state.LinkHealthRules, dsModelPerfMgmtPolicyRule{})
 			// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex] prefix=dsModel ans=varLoopLinkHealthRules properties=13
+			tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex] prefix=dsModel ans=varLoopLinkHealthRules")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].Etag = types.Int64PointerValue(varLoopLinkHealthRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -848,6 +850,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					// add a new item
 					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions = append(state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions, dsModelPerfMgmtAction{})
 					// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions properties=7
+					tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions")
 					// property: name=action_type, type=STRING macro=copy_to_state
 					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ActionType = types.StringPointerValue(varLoopActions.ActionType)
 					// property: name=always_on, type=BOOLEAN macro=copy_to_state
@@ -858,12 +861,14 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					} else {
 						state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf = &dsModelPerfMgmtActionParameters{}
 						// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf prefix=dsModel ans=varLoopActions.AppPerf properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf prefix=dsModel ans=varLoopActions.AppPerf")
 						// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
 						if varLoopActions.AppPerf.BadHealthThresholds == nil {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds = nil
 						} else {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
 							// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.AppPerf.BadHealthThresholds properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.AppPerf.BadHealthThresholds")
 							// property: name=clear_below, type=INTEGER macro=copy_to_state
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.AppPerf.BadHealthThresholds.ClearBelow)
 							// property: name=raise_above, type=INTEGER macro=copy_to_state
@@ -878,12 +883,14 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					} else {
 						state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf = &dsModelPerfMgmtActionParameters{}
 						// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf")
 						// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
 						if varLoopActions.CircuitUtilizationPerf.BadHealthThresholds == nil {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds = nil
 						} else {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
 							// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf.BadHealthThresholds properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf.BadHealthThresholds")
 							// property: name=clear_below, type=INTEGER macro=copy_to_state
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.CircuitUtilizationPerf.BadHealthThresholds.ClearBelow)
 							// property: name=raise_above, type=INTEGER macro=copy_to_state
@@ -898,12 +905,14 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					} else {
 						state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf = &dsModelPerfMgmtActionParameters{}
 						// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf prefix=dsModel ans=varLoopActions.LqmPerf properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf prefix=dsModel ans=varLoopActions.LqmPerf")
 						// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
 						if varLoopActions.LqmPerf.BadHealthThresholds == nil {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds = nil
 						} else {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
 							// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.LqmPerf.BadHealthThresholds properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.LqmPerf.BadHealthThresholds")
 							// property: name=clear_below, type=INTEGER macro=copy_to_state
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.LqmPerf.BadHealthThresholds.ClearBelow)
 							// property: name=raise_above, type=INTEGER macro=copy_to_state
@@ -918,12 +927,14 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					} else {
 						state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf = &dsModelPerfMgmtActionParameters{}
 						// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf prefix=dsModel ans=varLoopActions.ProbePerf properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf prefix=dsModel ans=varLoopActions.ProbePerf")
 						// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
 						if varLoopActions.ProbePerf.BadHealthThresholds == nil {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds = nil
 						} else {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
 							// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.ProbePerf.BadHealthThresholds properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.ProbePerf.BadHealthThresholds")
 							// property: name=clear_below, type=INTEGER macro=copy_to_state
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.ProbePerf.BadHealthThresholds.ClearBelow)
 							// property: name=raise_above, type=INTEGER macro=copy_to_state
@@ -938,12 +949,14 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					} else {
 						state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf = &dsModelPerfMgmtActionParameters{}
 						// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf prefix=dsModel ans=varLoopActions.SysPerf properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf prefix=dsModel ans=varLoopActions.SysPerf")
 						// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
 						if varLoopActions.SysPerf.BadHealthThresholds == nil {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds = nil
 						} else {
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
 							// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.SysPerf.BadHealthThresholds properties=2
+							tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.SysPerf.BadHealthThresholds")
 							// property: name=clear_below, type=INTEGER macro=copy_to_state
 							state.LinkHealthRules[varLoopLinkHealthRulesIndex].Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.SysPerf.BadHealthThresholds.ClearBelow)
 							// property: name=raise_above, type=INTEGER macro=copy_to_state
@@ -960,6 +973,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 			} else {
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].AppFilters = &dsModelApplicationFilter{}
 				// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].AppFilters prefix=dsModel ans=varLoopLinkHealthRules.AppFilters properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].AppFilters prefix=dsModel ans=varLoopLinkHealthRules.AppFilters")
 				// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varAppTransferTypes, errAppTransferTypes := types.ListValueFrom(ctx, types.StringType, varLoopLinkHealthRules.AppFilters.AppTransferTypes)
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].AppFilters.AppTransferTypes = varAppTransferTypes
@@ -988,6 +1002,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					// add a new item
 					state.LinkHealthRules[varLoopLinkHealthRulesIndex].PathFilters = append(state.LinkHealthRules[varLoopLinkHealthRulesIndex].PathFilters, dsModelPathFilter{})
 					// copy_to_state: state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].PathFilters[varLoopPathFiltersIndex] prefix=dsModel ans=varLoopPathFilters properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.LinkHealthRules[varLoopLinkHealthRulesIndex].PathFilters[varLoopPathFiltersIndex] prefix=dsModel ans=varLoopPathFilters")
 					// property: name=label, type=STRING macro=copy_to_state
 					state.LinkHealthRules[varLoopLinkHealthRulesIndex].PathFilters[varLoopPathFiltersIndex].Label = types.StringPointerValue(varLoopPathFilters.Label)
 					// property: name=path_type, type=STRING macro=copy_to_state
@@ -1021,6 +1036,7 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 			// add a new item
 			state.PolicyRules = append(state.PolicyRules, dsModelBasePolicyRule{})
 			// copy_to_state: state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=12
+			tflog.Debug(ctx, "copy_to_state state=state.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state

@@ -283,6 +283,7 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -302,6 +303,7 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 			// add a new item
 			body.Endpoints = append(body.Endpoints, sdwan_schema.ProbeEndpoint{})
 			// copy_from_plan: body=body.Endpoints[varLoopEndpointsIndex] prefix=rsModel plan=varLoopEndpoints properties=10
+			tflog.Debug(ctx, "copy_from_plan body=body.Endpoints[varLoopEndpointsIndex] prefix=rsModel plan=varLoopEndpoints")
 			// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_from_plan
 			body.Endpoints[varLoopEndpointsIndex].AllowInsecureHttpsConnection = BoolValueOrNil(varLoopEndpoints.AllowInsecureHttpsConnection)
 			// property: name=dns_server_ip, type=STRING macro=copy_from_plan
@@ -341,8 +343,11 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -368,7 +373,9 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -404,6 +411,7 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 
 	// Store the answer to state. schema=ProbeConfigScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -423,6 +431,7 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 			// add a new item
 			state.Endpoints = append(state.Endpoints, rsModelProbeEndpoint{})
 			// copy_to_state: state=state.Endpoints[varLoopEndpointsIndex] prefix=rsModel ans=varLoopEndpoints properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Endpoints[varLoopEndpointsIndex] prefix=rsModel ans=varLoopEndpoints")
 			// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].AllowInsecureHttpsConnection = types.BoolPointerValue(varLoopEndpoints.AllowInsecureHttpsConnection)
 			// property: name=dns_server_ip, type=STRING macro=copy_to_state
@@ -470,7 +479,7 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return false
 	}
@@ -517,7 +526,9 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=ProbeConfigScreen
@@ -539,6 +550,7 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -558,6 +570,7 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 			// add a new item
 			state.Endpoints = append(state.Endpoints, rsModelProbeEndpoint{})
 			// copy_to_state: state=state.Endpoints[varLoopEndpointsIndex] prefix=rsModel ans=varLoopEndpoints properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Endpoints[varLoopEndpointsIndex] prefix=rsModel ans=varLoopEndpoints")
 			// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].AllowInsecureHttpsConnection = types.BoolPointerValue(varLoopEndpoints.AllowInsecureHttpsConnection)
 			// property: name=dns_server_ip, type=STRING macro=copy_to_state
@@ -614,7 +627,7 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return false
 	}
@@ -645,6 +658,7 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -685,6 +699,7 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 			body.Endpoints = append(body.Endpoints, sdwan_schema.ProbeEndpoint{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.Endpoints[varLoopEndpointsIndex] prefix=rsModel plan=varLoopEndpoints properties=10
+			tflog.Debug(ctx, "copy_from_plan body=body.Endpoints[varLoopEndpointsIndex] prefix=rsModel plan=varLoopEndpoints")
 			// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_from_plan
 			body.Endpoints[varLoopEndpointsIndex].AllowInsecureHttpsConnection = BoolValueOrNil(varLoopEndpoints.AllowInsecureHttpsConnection)
 			// property: name=dns_server_ip, type=STRING macro=copy_from_plan
@@ -761,7 +776,9 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -776,6 +793,7 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 
 	// Store the answer to state. schema=ProbeConfigScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -795,6 +813,7 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 			// add a new item
 			state.Endpoints = append(state.Endpoints, rsModelProbeEndpoint{})
 			// copy_to_state: state=state.Endpoints[varLoopEndpointsIndex] prefix=rsModel ans=varLoopEndpoints properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Endpoints[varLoopEndpointsIndex] prefix=rsModel ans=varLoopEndpoints")
 			// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].AllowInsecureHttpsConnection = types.BoolPointerValue(varLoopEndpoints.AllowInsecureHttpsConnection)
 			// property: name=dns_server_ip, type=STRING macro=copy_to_state
@@ -844,7 +863,7 @@ func (r *probeConfigResource) doDelete(ctx context.Context, state *rsModelProbeC
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return false
 	}

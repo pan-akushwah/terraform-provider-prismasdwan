@@ -19,7 +19,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=37)
 // | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
 // | APNConfig HasID=false
@@ -50,7 +50,6 @@ import (
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | DHCPRelayOption82 HasID=false
 // | DHCPRelay HasID=false
@@ -453,7 +452,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=directed_broadcast, type=BOOLEAN macro=rss_schema
 			"directed_broadcast": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -468,168 +467,15 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 					// property: name=full_duplex, type=BOOLEAN macro=rss_schema
 					"full_duplex": dsschema.BoolAttribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=full_duplex, type=BOOLEAN macro=rss_schema
-					// property: name=port_id, type=REFERENCE macro=rss_schema
-					"port_id": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// generic x_parameters is added to accomodate path parameters
-							"x_parameters": dsschema.MapAttribute{
-								Required:    false,
-								Computed:    false,
-								Optional:    true,
-								ElementType: types.StringType,
-							},
-							// property: name=_etag, type=INTEGER macro=rss_schema
-							"x_etag": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-							// property: name=_schema, type=INTEGER macro=rss_schema
-							"x_schema": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-							// property: name=connector, type=STRING macro=rss_schema
-							"connector": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=connector, type=STRING macro=rss_schema
-							// property: name=device, type=STRING macro=rss_schema
-							"device": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=device, type=STRING macro=rss_schema
-							// property: name=disabled, type=BOOLEAN macro=rss_schema
-							"disabled": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-							// property: name=disabled_reason, type=STRING macro=rss_schema
-							"disabled_reason": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-							// property: name=element_id, type=STRING macro=rss_schema
-							"element_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
-							// property: name=id, type=STRING macro=rss_schema
-							"id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=id, type=STRING macro=rss_schema
-							// property: name=inactive, type=BOOLEAN macro=rss_schema
-							"inactive": dsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-							// property: name=inactive_reason, type=STRING macro=rss_schema
-							"inactive_reason": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-							// property: name=max_mtu, type=INTEGER macro=rss_schema
-							"max_mtu": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_mtu, type=INTEGER macro=rss_schema
-							// property: name=max_speed, type=INTEGER macro=rss_schema
-							"max_speed": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=max_speed, type=INTEGER macro=rss_schema
-							// property: name=name, type=STRING macro=rss_schema
-							"name": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=name, type=STRING macro=rss_schema
-							// property: name=original_mac_address, type=STRING macro=rss_schema
-							"original_mac_address": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=original_mac_address, type=STRING macro=rss_schema
-							// property: name=region, type=STRING macro=rss_schema
-							"region": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=region, type=STRING macro=rss_schema
-							// property: name=site_id, type=STRING macro=rss_schema
-							"site_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-					// property: name=port_name, type=STRING macro=rss_schema
-					"port_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=port_name, type=STRING macro=rss_schema
 					// property: name=speed, type=INTEGER macro=rss_schema
 					"speed": dsschema.Int64Attribute{
 						Required:  false,
-						Computed:  false,
+						Computed:  true,
 						Optional:  true,
 						Sensitive: false,
 					},
@@ -950,7 +796,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=lldp_enabled, type=BOOLEAN macro=rss_schema
 			"lldp_enabled": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -966,7 +812,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=mtu, type=INTEGER macro=rss_schema
 			"mtu": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1108,7 +954,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=nat_port, type=INTEGER macro=rss_schema
 			"nat_port": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1116,7 +962,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=nat_port_v6, type=INTEGER macro=rss_schema
 			"nat_port_v6": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1148,7 +994,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=peer_bypasspair_wan_port_type, type=STRING macro=rss_schema
 			"peer_bypasspair_wan_port_type": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1156,7 +1002,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=poe_enabled, type=BOOLEAN macro=rss_schema
 			"poe_enabled": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1190,7 +1036,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=power_usage_threshold, type=INTEGER macro=rss_schema
 			"power_usage_threshold": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1717,7 +1563,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=sgi_apply_static_tag, type=BOOLEAN macro=rss_schema
 			"sgi_apply_static_tag": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1930,7 +1776,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1972,7 +1818,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -2007,7 +1853,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_shell_interface ID format", "Expected 3 tokens")
 		return
 	}
@@ -2056,6 +1902,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 
 	// lets copy all items into state schema=InterfaceScreenV4N20
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=50
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -2073,6 +1920,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			// add a new item
 			state.AttachedLanNetworks = append(state.AttachedLanNetworks, dsModelLanNetworkVlanMapping{})
 			// copy_to_state: state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=dsModel ans=varLoopAttachedLanNetworks properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex] prefix=dsModel ans=varLoopAttachedLanNetworks")
 			// property: name=lan_network_id, type=STRING macro=copy_to_state
 			state.AttachedLanNetworks[varLoopAttachedLanNetworksIndex].LanNetworkId = types.StringPointerValue(varLoopAttachedLanNetworks.LanNetworkId)
 			// property: name=vlan_id, type=INTEGER macro=copy_to_state
@@ -2085,6 +1933,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.AuthenticationConfig = &dsModelAuthenticationInterfaceConfig{}
 		// copy_to_state: state=state.AuthenticationConfig prefix=dsModel ans=ans.AuthenticationConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.AuthenticationConfig prefix=dsModel ans=ans.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_to_state
 		state.AuthenticationConfig.FallbackRetryCount = types.Int64PointerValue(ans.AuthenticationConfig.FallbackRetryCount)
 		// property: name=mode, type=STRING macro=copy_to_state
@@ -2102,6 +1951,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.BypassPair = &dsModelBypassPairV2{}
 		// copy_to_state: state=state.BypassPair prefix=dsModel ans=ans.BypassPair properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.BypassPair prefix=dsModel ans=ans.BypassPair")
 		// property: name=lan, type=STRING macro=copy_to_state
 		state.BypassPair.Lan = types.StringPointerValue(ans.BypassPair.Lan)
 		// property: name=lan_state_propagation, type=BOOLEAN macro=copy_to_state
@@ -2117,12 +1967,14 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.CellularConfig = &dsModelCellularInterfaceConfig{}
 		// copy_to_state: state=state.CellularConfig prefix=dsModel ans=ans.CellularConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.CellularConfig prefix=dsModel ans=ans.CellularConfig")
 		// property: name=apn_config, type=REFERENCE macro=copy_to_state
 		if ans.CellularConfig.ApnConfig == nil {
 			state.CellularConfig.ApnConfig = nil
 		} else {
 			state.CellularConfig.ApnConfig = &dsModelAPNConfig{}
 			// copy_to_state: state=state.CellularConfig.ApnConfig prefix=dsModel ans=ans.CellularConfig.ApnConfig properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.CellularConfig.ApnConfig prefix=dsModel ans=ans.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_to_state
 			state.CellularConfig.ApnConfig.Apn = types.StringPointerValue(ans.CellularConfig.ApnConfig.Apn)
 			// property: name=authentication, type=STRING macro=copy_to_state
@@ -2155,6 +2007,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.DhcpRelay = &dsModelDHCPRelay{}
 		// copy_to_state: state=state.DhcpRelay prefix=dsModel ans=ans.DhcpRelay properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay prefix=dsModel ans=ans.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_to_state
 		state.DhcpRelay.Enabled = types.BoolPointerValue(ans.DhcpRelay.Enabled)
 		// property: name=option_82, type=REFERENCE macro=copy_to_state
@@ -2163,6 +2016,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.DhcpRelay.Option82 = &dsModelDHCPRelayOption82{}
 			// copy_to_state: state=state.DhcpRelay.Option82 prefix=dsModel ans=ans.DhcpRelay.Option82 properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.DhcpRelay.Option82 prefix=dsModel ans=ans.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_to_state
 			state.DhcpRelay.Option82.CircuitId = types.StringPointerValue(ans.DhcpRelay.Option82.CircuitId)
 			// property: name=enabled, type=BOOLEAN macro=copy_to_state
@@ -2186,50 +2040,10 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		state.EthernetPort = nil
 	} else {
 		state.EthernetPort = &dsModelEthernetPort{}
-		// copy_to_state: state=state.EthernetPort prefix=dsModel ans=ans.EthernetPort properties=4
+		// copy_to_state: state=state.EthernetPort prefix=dsModel ans=ans.EthernetPort properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.EthernetPort prefix=dsModel ans=ans.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_to_state
 		state.EthernetPort.FullDuplex = types.BoolPointerValue(ans.EthernetPort.FullDuplex)
-		// property: name=port_id, type=REFERENCE macro=copy_to_state
-		if ans.EthernetPort.PortId == nil {
-			state.EthernetPort.PortId = nil
-		} else {
-			state.EthernetPort.PortId = &dsModelEthernet{}
-			// copy_to_state: state=state.EthernetPort.PortId prefix=dsModel ans=ans.EthernetPort.PortId properties=16
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Etag = types.Int64PointerValue(ans.EthernetPort.PortId.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.Schema = types.Int64PointerValue(ans.EthernetPort.PortId.Schema)
-			// property: name=connector, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Connector = types.StringPointerValue(ans.EthernetPort.PortId.Connector)
-			// property: name=device, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Device = types.StringPointerValue(ans.EthernetPort.PortId.Device)
-			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Disabled = types.BoolPointerValue(ans.EthernetPort.PortId.Disabled)
-			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.DisabledReason = types.StringPointerValue(ans.EthernetPort.PortId.DisabledReason)
-			// property: name=element_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.ElementId = types.StringPointerValue(ans.EthernetPort.PortId.ElementId)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Id = types.StringPointerValue(ans.EthernetPort.PortId.Id)
-			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.EthernetPort.PortId.Inactive = types.BoolPointerValue(ans.EthernetPort.PortId.Inactive)
-			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.InactiveReason = types.StringPointerValue(ans.EthernetPort.PortId.InactiveReason)
-			// property: name=max_mtu, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxMtu = types.Int64PointerValue(ans.EthernetPort.PortId.MaxMtu)
-			// property: name=max_speed, type=INTEGER macro=copy_to_state
-			state.EthernetPort.PortId.MaxSpeed = types.Int64PointerValue(ans.EthernetPort.PortId.MaxSpeed)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Name = types.StringPointerValue(ans.EthernetPort.PortId.Name)
-			// property: name=original_mac_address, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.OriginalMacAddress = types.StringPointerValue(ans.EthernetPort.PortId.OriginalMacAddress)
-			// property: name=region, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.Region = types.StringPointerValue(ans.EthernetPort.PortId.Region)
-			// property: name=site_id, type=STRING macro=copy_to_state
-			state.EthernetPort.PortId.SiteId = types.StringPointerValue(ans.EthernetPort.PortId.SiteId)
-		}
-		// property: name=port_name, type=STRING macro=copy_to_state
-		state.EthernetPort.PortName = types.StringPointerValue(ans.EthernetPort.PortName)
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
@@ -2247,12 +2061,14 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.Ipv4Config = &dsModelIpv4Config{}
 		// copy_to_state: state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv4Config.DhcpConfig == nil {
 			state.Ipv4Config.DhcpConfig = nil
 		} else {
 			state.Ipv4Config.DhcpConfig = &dsModelIpv4Dhcp{}
 			// copy_to_state: state=state.Ipv4Config.DhcpConfig prefix=dsModel ans=ans.Ipv4Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpConfig prefix=dsModel ans=ans.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv4Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv4Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -2264,6 +2080,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.Ipv4Config.DnsV4Config = &dsModelDNS{}
 			// copy_to_state: state=state.Ipv4Config.DnsV4Config prefix=dsModel ans=ans.Ipv4Config.DnsV4Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DnsV4Config prefix=dsModel ans=ans.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DnsV4Config.NameServers)
 			state.Ipv4Config.DnsV4Config.NameServers = varNameServers
@@ -2279,6 +2096,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.Ipv4Config.PppoeConfig = &dsModelIpv4Pppoe{}
 			// copy_to_state: state=state.Ipv4Config.PppoeConfig prefix=dsModel ans=ans.Ipv4Config.PppoeConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.PppoeConfig prefix=dsModel ans=ans.Ipv4Config.PppoeConfig")
 			// property: name=chap_passwd, type=STRING macro=copy_to_state
 			state.Ipv4Config.PppoeConfig.ChapPasswd = types.StringPointerValue(ans.Ipv4Config.PppoeConfig.ChapPasswd)
 			// property: name=chap_user, type=STRING macro=copy_to_state
@@ -2297,6 +2115,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 				// add a new item
 				state.Ipv4Config.Routes = append(state.Ipv4Config.Routes, dsModelRoute{})
 				// copy_to_state: state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=dsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.Routes[varLoopRoutesIndex] prefix=dsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv4Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -2309,6 +2128,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.Ipv4Config.StaticConfig = &dsModelIpv4Static{}
 			// copy_to_state: state=state.Ipv4Config.StaticConfig prefix=dsModel ans=ans.Ipv4Config.StaticConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.StaticConfig prefix=dsModel ans=ans.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv4Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv4Config.StaticConfig.Address)
 		}
@@ -2321,12 +2141,14 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.Ipv6Config = &dsModelIpv6ConfigV1{}
 		// copy_to_state: state=state.Ipv6Config prefix=dsModel ans=ans.Ipv6Config properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config prefix=dsModel ans=ans.Ipv6Config")
 		// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 		if ans.Ipv6Config.DhcpConfig == nil {
 			state.Ipv6Config.DhcpConfig = nil
 		} else {
 			state.Ipv6Config.DhcpConfig = &dsModelIpv6Dhcp{}
 			// copy_to_state: state=state.Ipv6Config.DhcpConfig prefix=dsModel ans=ans.Ipv6Config.DhcpConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DhcpConfig prefix=dsModel ans=ans.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_to_state
 			state.Ipv6Config.DhcpConfig.ClientId = types.StringPointerValue(ans.Ipv6Config.DhcpConfig.ClientId)
 			// property: name=hostname, type=STRING macro=copy_to_state
@@ -2338,6 +2160,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.Ipv6Config.DnsV6Config = &dsModelDNS{}
 			// copy_to_state: state=state.Ipv6Config.DnsV6Config prefix=dsModel ans=ans.Ipv6Config.DnsV6Config properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.DnsV6Config prefix=dsModel ans=ans.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varNameServers, errNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Config.DnsV6Config.NameServers)
 			state.Ipv6Config.DnsV6Config.NameServers = varNameServers
@@ -2358,6 +2181,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 				// add a new item
 				state.Ipv6Config.Routes = append(state.Ipv6Config.Routes, dsModelRoute{})
 				// copy_to_state: state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=dsModel ans=varLoopRoutes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.Routes[varLoopRoutesIndex] prefix=dsModel ans=varLoopRoutes")
 				// property: name=destination, type=STRING macro=copy_to_state
 				state.Ipv6Config.Routes[varLoopRoutesIndex].Destination = types.StringPointerValue(varLoopRoutes.Destination)
 				// property: name=via, type=STRING macro=copy_to_state
@@ -2370,6 +2194,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.Ipv6Config.StaticConfig = &dsModelIpv6StaticV1{}
 			// copy_to_state: state=state.Ipv6Config.StaticConfig prefix=dsModel ans=ans.Ipv6Config.StaticConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Ipv6Config.StaticConfig prefix=dsModel ans=ans.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_to_state
 			state.Ipv6Config.StaticConfig.Address = types.StringPointerValue(ans.Ipv6Config.StaticConfig.Address)
 			// property: name=enable_prefix_distribution, type=BOOLEAN macro=copy_to_state
@@ -2390,6 +2215,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.MulticastConfig = &dsModelMulticastInterfaceConfig{}
 		// copy_to_state: state=state.MulticastConfig prefix=dsModel ans=ans.MulticastConfig properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig prefix=dsModel ans=ans.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_to_state
 		state.MulticastConfig.DrPriority = types.Int64PointerValue(ans.MulticastConfig.DrPriority)
 		// property: name=igmp_static_joins, type=ARRAY_REFERENCE macro=copy_to_state
@@ -2403,6 +2229,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 				// add a new item
 				state.MulticastConfig.IgmpStaticJoins = append(state.MulticastConfig.IgmpStaticJoins, dsModelMulticastIgmpStaticJoin{})
 				// copy_to_state: state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=dsModel ans=varLoopIgmpStaticJoins properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex] prefix=dsModel ans=varLoopIgmpStaticJoins")
 				// property: name=igmp_static_grp_ipv4, type=STRING macro=copy_to_state
 				state.MulticastConfig.IgmpStaticJoins[varLoopIgmpStaticJoinsIndex].IgmpStaticGrpIpv4 = types.StringPointerValue(varLoopIgmpStaticJoins.IgmpStaticGrpIpv4)
 				// property: name=igmp_static_src_ipv4, type=STRING macro=copy_to_state
@@ -2431,6 +2258,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			// add a new item
 			state.NatPools = append(state.NatPools, dsModelNatPool{})
 			// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex] prefix=dsModel ans=varLoopNatPools properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex] prefix=dsModel ans=varLoopNatPools")
 			// property: name=ipv4_ranges, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopNatPools.Ipv4Ranges == nil {
 				state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = nil
@@ -2442,6 +2270,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 					// add a new item
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges = append(state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges, dsModelIPv4Range{})
 					// copy_to_state: state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=dsModel ans=varLoopIpv4Ranges properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex] prefix=dsModel ans=varLoopIpv4Ranges")
 					// property: name=end, type=STRING macro=copy_to_state
 					state.NatPools[varLoopNatPoolsIndex].Ipv4Ranges[varLoopIpv4RangesIndex].End = types.StringPointerValue(varLoopIpv4Ranges.End)
 					// property: name=start, type=STRING macro=copy_to_state
@@ -2472,6 +2301,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.PortChannelConfig = &dsModelPortChannelConfig{}
 		// copy_to_state: state=state.PortChannelConfig prefix=dsModel ans=ans.PortChannelConfig properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.PortChannelConfig prefix=dsModel ans=ans.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_to_state
 		state.PortChannelConfig.LacpEnabled = types.BoolPointerValue(ans.PortChannelConfig.LacpEnabled)
 		// property: name=transmission_mode, type=STRING macro=copy_to_state
@@ -2485,6 +2315,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.PppoeConfig = &dsModelPppoEInterfaceConfig{}
 		// copy_to_state: state=state.PppoeConfig prefix=dsModel ans=ans.PppoeConfig properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.PppoeConfig prefix=dsModel ans=ans.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_to_state
 		state.PppoeConfig.HostUniq = types.StringPointerValue(ans.PppoeConfig.HostUniq)
 		// property: name=ip_address_type, type=STRING macro=copy_to_state
@@ -2511,6 +2342,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			// add a new item
 			state.SecondaryIpConfigs = append(state.SecondaryIpConfigs, dsModelSecondaryIPConfig{})
 			// copy_to_state: state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=dsModel ans=varLoopSecondaryIpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex] prefix=dsModel ans=varLoopSecondaryIpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.SecondaryIpConfigs[varLoopSecondaryIpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopSecondaryIpConfigs.Ipv4Address)
 			// property: name=scope, type=STRING macro=copy_to_state
@@ -2523,12 +2355,14 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.ServiceLinkConfig = &dsModelServiceLinkV4{}
 		// copy_to_state: state=state.ServiceLinkConfig prefix=dsModel ans=ans.ServiceLinkConfig properties=8
+		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig prefix=dsModel ans=ans.ServiceLinkConfig")
 		// property: name=gre_config, type=REFERENCE macro=copy_to_state
 		if ans.ServiceLinkConfig.GreConfig == nil {
 			state.ServiceLinkConfig.GreConfig = nil
 		} else {
 			state.ServiceLinkConfig.GreConfig = &dsModelGREConfig{}
 			// copy_to_state: state=state.ServiceLinkConfig.GreConfig prefix=dsModel ans=ans.ServiceLinkConfig.GreConfig properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.GreConfig prefix=dsModel ans=ans.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.GreConfig.Csum = types.BoolPointerValue(ans.ServiceLinkConfig.GreConfig.Csum)
 			// property: name=keepalive_enable, type=BOOLEAN macro=copy_to_state
@@ -2544,12 +2378,14 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.ServiceLinkConfig.IpsecConfig = &dsModelIPSECConfigV1{}
 			// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig")
 			// property: name=authentication, type=REFERENCE macro=copy_to_state
 			if ans.ServiceLinkConfig.IpsecConfig.Authentication == nil {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &dsModelIPSECAuthenticationV1{}
 				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				// property: name=certificate_profile_id, type=STRING macro=copy_to_state
@@ -2562,6 +2398,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 				} else {
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params = &dsModelIKEV1Params{}
 					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					// property: name=xauth_secret, type=STRING macro=copy_to_state
@@ -2623,6 +2460,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.ServiceLinkConfig.PassiveMode = &dsModelPassiveMode{}
 			// copy_to_state: state=state.ServiceLinkConfig.PassiveMode prefix=dsModel ans=ans.ServiceLinkConfig.PassiveMode properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.PassiveMode prefix=dsModel ans=ans.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_to_state
 			state.ServiceLinkConfig.PassiveMode.Enable = types.BoolPointerValue(ans.ServiceLinkConfig.PassiveMode.Enable)
 			// property: name=peer_ip_dynamic, type=BOOLEAN macro=copy_to_state
@@ -2634,6 +2472,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.ServiceLinkConfig.Peer = &dsModelPeerInfo{}
 			// copy_to_state: state=state.ServiceLinkConfig.Peer prefix=dsModel ans=ans.ServiceLinkConfig.Peer properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.Peer prefix=dsModel ans=ans.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_to_state
 			state.ServiceLinkConfig.Peer.Hostname = types.StringPointerValue(ans.ServiceLinkConfig.Peer.Hostname)
 			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -2663,6 +2502,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			// add a new item
 			state.StaticArpConfigs = append(state.StaticArpConfigs, dsModelStaticARPConfig{})
 			// copy_to_state: state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=dsModel ans=varLoopStaticArpConfigs properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.StaticArpConfigs[varLoopStaticArpConfigsIndex] prefix=dsModel ans=varLoopStaticArpConfigs")
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
 			state.StaticArpConfigs[varLoopStaticArpConfigsIndex].Ipv4Address = types.StringPointerValue(varLoopStaticArpConfigs.Ipv4Address)
 			// property: name=mac_address, type=STRING macro=copy_to_state
@@ -2675,6 +2515,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.SubInterface = &dsModelSubInterface{}
 		// copy_to_state: state=state.SubInterface prefix=dsModel ans=ans.SubInterface properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.SubInterface prefix=dsModel ans=ans.SubInterface")
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state
 		state.SubInterface.VlanId = types.Int64PointerValue(ans.SubInterface.VlanId)
 	}
@@ -2684,6 +2525,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.SwitchPortConfig = &dsModelSwitchPortConfig{}
 		// copy_to_state: state=state.SwitchPortConfig prefix=dsModel ans=ans.SwitchPortConfig properties=12
+		tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig prefix=dsModel ans=ans.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_to_state
 		state.SwitchPortConfig.AccessVlanId = types.Int64PointerValue(ans.SwitchPortConfig.AccessVlanId)
 		// property: name=bpdu_guard_enabled, type=BOOLEAN macro=copy_to_state
@@ -2700,6 +2542,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		} else {
 			state.SwitchPortConfig.StormControlConfig = &dsModelStormControlConfig{}
 			// copy_to_state: state=state.SwitchPortConfig.StormControlConfig prefix=dsModel ans=ans.SwitchPortConfig.StormControlConfig properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.SwitchPortConfig.StormControlConfig prefix=dsModel ans=ans.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_to_state
 			state.SwitchPortConfig.StormControlConfig.BroadcastThreshold = types.Int64PointerValue(ans.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			// property: name=multicast_threshold, type=INTEGER macro=copy_to_state
@@ -2736,6 +2579,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	} else {
 		state.VlanConfig = &dsModelVlanConfig{}
 		// copy_to_state: state=state.VlanConfig prefix=dsModel ans=ans.VlanConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.VlanConfig prefix=dsModel ans=ans.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_to_state
 		state.VlanConfig.MstpInstance = types.Int64PointerValue(ans.VlanConfig.MstpInstance)
 		// property: name=vlan_id, type=INTEGER macro=copy_to_state

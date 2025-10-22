@@ -1354,7 +1354,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_dns_service_profile ID format", "Expected 1 tokens")
 		return
 	}
@@ -1401,6 +1401,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 
 	// lets copy all items into state schema=DnsServiceProfileV2N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=20
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1411,6 +1412,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.AuthoritativeConfig = &dsModelAuthoritativeConfig{}
 		// copy_to_state: state=state.AuthoritativeConfig prefix=dsModel ans=ans.AuthoritativeConfig properties=16
+		tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig prefix=dsModel ans=ans.AuthoritativeConfig")
 		// property: name=caa_records, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.AuthoritativeConfig.CaaRecords == nil {
 			state.AuthoritativeConfig.CaaRecords = nil
@@ -1422,6 +1424,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.CaaRecords = append(state.AuthoritativeConfig.CaaRecords, dsModelCaaRecord{})
 				// copy_to_state: state=state.AuthoritativeConfig.CaaRecords[varLoopCaaRecordsIndex] prefix=dsModel ans=varLoopCaaRecords properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.CaaRecords[varLoopCaaRecordsIndex] prefix=dsModel ans=varLoopCaaRecords")
 				// property: name=flags, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.CaaRecords[varLoopCaaRecordsIndex].Flags = types.StringPointerValue(varLoopCaaRecords.Flags)
 				// property: name=name, type=STRING macro=copy_to_state
@@ -1443,6 +1446,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.CnameRecords = append(state.AuthoritativeConfig.CnameRecords, dsModelCnameRecords{})
 				// copy_to_state: state=state.AuthoritativeConfig.CnameRecords[varLoopCnameRecordsIndex] prefix=dsModel ans=varLoopCnameRecords properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.CnameRecords[varLoopCnameRecordsIndex] prefix=dsModel ans=varLoopCnameRecords")
 				// property: name=name, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varName, errName := types.ListValueFrom(ctx, types.StringType, varLoopCnameRecords.Name)
 				state.AuthoritativeConfig.CnameRecords[varLoopCnameRecordsIndex].Name = varName
@@ -1464,6 +1468,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.DnsResourceRecords = append(state.AuthoritativeConfig.DnsResourceRecords, dsModelDnsResourceRecords{})
 				// copy_to_state: state=state.AuthoritativeConfig.DnsResourceRecords[varLoopDnsResourceRecordsIndex] prefix=dsModel ans=varLoopDnsResourceRecords properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.DnsResourceRecords[varLoopDnsResourceRecordsIndex] prefix=dsModel ans=varLoopDnsResourceRecords")
 				// property: name=hex_data, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.DnsResourceRecords[varLoopDnsResourceRecordsIndex].HexData = types.StringPointerValue(varLoopDnsResourceRecords.HexData)
 				// property: name=name, type=STRING macro=copy_to_state
@@ -1483,6 +1488,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.HostRecords = append(state.AuthoritativeConfig.HostRecords, dsModelHostRecord{})
 				// copy_to_state: state=state.AuthoritativeConfig.HostRecords[varLoopHostRecordsIndex] prefix=dsModel ans=varLoopHostRecords properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.HostRecords[varLoopHostRecordsIndex] prefix=dsModel ans=varLoopHostRecords")
 				// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopHostRecords.DomainNames)
 				state.AuthoritativeConfig.HostRecords[varLoopHostRecordsIndex].DomainNames = varDomainNames
@@ -1506,6 +1512,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.MxHostRecords = append(state.AuthoritativeConfig.MxHostRecords, dsModelMxHostRecord{})
 				// copy_to_state: state=state.AuthoritativeConfig.MxHostRecords[varLoopMxHostRecordsIndex] prefix=dsModel ans=varLoopMxHostRecords properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.MxHostRecords[varLoopMxHostRecordsIndex] prefix=dsModel ans=varLoopMxHostRecords")
 				// property: name=hostname, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.MxHostRecords[varLoopMxHostRecordsIndex].Hostname = types.StringPointerValue(varLoopMxHostRecords.Hostname)
 				// property: name=mx_name, type=STRING macro=copy_to_state
@@ -1525,6 +1532,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.NaptrRecords = append(state.AuthoritativeConfig.NaptrRecords, dsModelNaptrRecords{})
 				// copy_to_state: state=state.AuthoritativeConfig.NaptrRecords[varLoopNaptrRecordsIndex] prefix=dsModel ans=varLoopNaptrRecords properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.NaptrRecords[varLoopNaptrRecordsIndex] prefix=dsModel ans=varLoopNaptrRecords")
 				// property: name=flags, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.NaptrRecords[varLoopNaptrRecordsIndex].Flags = types.StringPointerValue(varLoopNaptrRecords.Flags)
 				// property: name=name, type=STRING macro=copy_to_state
@@ -1556,6 +1564,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.PtrRecords = append(state.AuthoritativeConfig.PtrRecords, dsModelPtrRecords{})
 				// copy_to_state: state=state.AuthoritativeConfig.PtrRecords[varLoopPtrRecordsIndex] prefix=dsModel ans=varLoopPtrRecords properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.PtrRecords[varLoopPtrRecordsIndex] prefix=dsModel ans=varLoopPtrRecords")
 				// property: name=name, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.PtrRecords[varLoopPtrRecordsIndex].Name = types.StringPointerValue(varLoopPtrRecords.Name)
 				// property: name=target, type=STRING macro=copy_to_state
@@ -1577,6 +1586,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.Servers = append(state.AuthoritativeConfig.Servers, dsModelServer{})
 				// copy_to_state: state=state.AuthoritativeConfig.Servers[varLoopServersIndex] prefix=dsModel ans=varLoopServers properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.Servers[varLoopServersIndex] prefix=dsModel ans=varLoopServers")
 				// property: name=dnsservicerole_id, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.Servers[varLoopServersIndex].DnsserviceroleId = types.StringPointerValue(varLoopServers.DnsserviceroleId)
 				// property: name=domain_name, type=STRING macro=copy_to_state
@@ -1594,6 +1604,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.Soa = append(state.AuthoritativeConfig.Soa, dsModelSOA{})
 				// copy_to_state: state=state.AuthoritativeConfig.Soa[varLoopSoaIndex] prefix=dsModel ans=varLoopSoa properties=5
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.Soa[varLoopSoaIndex] prefix=dsModel ans=varLoopSoa")
 				// property: name=expiry, type=INTEGER macro=copy_to_state
 				state.AuthoritativeConfig.Soa[varLoopSoaIndex].Expiry = types.Int64PointerValue(varLoopSoa.Expiry)
 				// property: name=host_master, type=STRING macro=copy_to_state
@@ -1617,6 +1628,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.SrvHosts = append(state.AuthoritativeConfig.SrvHosts, dsModelSrvHost{})
 				// copy_to_state: state=state.AuthoritativeConfig.SrvHosts[varLoopSrvHostsIndex] prefix=dsModel ans=varLoopSrvHosts properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.SrvHosts[varLoopSrvHostsIndex] prefix=dsModel ans=varLoopSrvHosts")
 				// property: name=domain_name, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.SrvHosts[varLoopSrvHostsIndex].DomainName = types.StringPointerValue(varLoopSrvHosts.DomainName)
 				// property: name=port, type=INTEGER macro=copy_to_state
@@ -1644,6 +1656,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.SynthDomains = append(state.AuthoritativeConfig.SynthDomains, dsModelSynthDomain{})
 				// copy_to_state: state=state.AuthoritativeConfig.SynthDomains[varLoopSynthDomainsIndex] prefix=dsModel ans=varLoopSynthDomains properties=5
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.SynthDomains[varLoopSynthDomainsIndex] prefix=dsModel ans=varLoopSynthDomains")
 				// property: name=domain, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.SynthDomains[varLoopSynthDomainsIndex].Domain = types.StringPointerValue(varLoopSynthDomains.Domain)
 				// property: name=end_ipaddress, type=STRING macro=copy_to_state
@@ -1669,6 +1682,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.TxtRecords = append(state.AuthoritativeConfig.TxtRecords, dsModelTxtRecord{})
 				// copy_to_state: state=state.AuthoritativeConfig.TxtRecords[varLoopTxtRecordsIndex] prefix=dsModel ans=varLoopTxtRecords properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.TxtRecords[varLoopTxtRecordsIndex] prefix=dsModel ans=varLoopTxtRecords")
 				// property: name=domain_name, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.TxtRecords[varLoopTxtRecordsIndex].DomainName = types.StringPointerValue(varLoopTxtRecords.DomainName)
 				// property: name=texts, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -1688,6 +1702,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.AuthoritativeConfig.Zones = append(state.AuthoritativeConfig.Zones, dsModelZone{})
 				// copy_to_state: state=state.AuthoritativeConfig.Zones[varLoopZonesIndex] prefix=dsModel ans=varLoopZones properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.AuthoritativeConfig.Zones[varLoopZonesIndex] prefix=dsModel ans=varLoopZones")
 				// property: name=domain_name, type=STRING macro=copy_to_state
 				state.AuthoritativeConfig.Zones[varLoopZonesIndex].DomainName = types.StringPointerValue(varLoopZones.DomainName)
 				// property: name=exclude_prefix, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -1707,6 +1722,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.CacheConfig = &dsModelCacheConfig{}
 		// copy_to_state: state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig properties=5
+		tflog.Debug(ctx, "copy_to_state state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig")
 		// property: name=cache_size, type=INTEGER macro=copy_to_state
 		state.CacheConfig.CacheSize = types.Int64PointerValue(ans.CacheConfig.CacheSize)
 		// property: name=disable_negative_caching, type=BOOLEAN macro=copy_to_state
@@ -1726,6 +1742,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.DnsForwardConfig = &dsModelDnsForwardConfigV2{}
 		// copy_to_state: state=state.DnsForwardConfig prefix=dsModel ans=ans.DnsForwardConfig properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.DnsForwardConfig prefix=dsModel ans=ans.DnsForwardConfig")
 		// property: name=dns_servers, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.DnsForwardConfig.DnsServers == nil {
 			state.DnsForwardConfig.DnsServers = nil
@@ -1737,6 +1754,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.DnsForwardConfig.DnsServers = append(state.DnsForwardConfig.DnsServers, dsModelDnsServersV2{})
 				// copy_to_state: state=state.DnsForwardConfig.DnsServers[varLoopDnsServersIndex] prefix=dsModel ans=varLoopDnsServers properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.DnsForwardConfig.DnsServers[varLoopDnsServersIndex] prefix=dsModel ans=varLoopDnsServers")
 				// property: name=address_family, type=STRING macro=copy_to_state
 				state.DnsForwardConfig.DnsServers[varLoopDnsServersIndex].AddressFamily = types.StringPointerValue(varLoopDnsServers.AddressFamily)
 				// property: name=dnsserver_ip, type=STRING macro=copy_to_state
@@ -1768,12 +1786,14 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.DnsQueriesMetadata = &dsModelDnsQueriesMetadata{}
 		// copy_to_state: state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata")
 		// property: name=add_client_mac, type=REFERENCE macro=copy_to_state
 		if ans.DnsQueriesMetadata.AddClientMac == nil {
 			state.DnsQueriesMetadata.AddClientMac = nil
 		} else {
 			state.DnsQueriesMetadata.AddClientMac = &dsModelClientMac{}
 			// copy_to_state: state=state.DnsQueriesMetadata.AddClientMac prefix=dsModel ans=ans.DnsQueriesMetadata.AddClientMac properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddClientMac prefix=dsModel ans=ans.DnsQueriesMetadata.AddClientMac")
 			// property: name=mac_encoding_format, type=STRING macro=copy_to_state
 			state.DnsQueriesMetadata.AddClientMac.MacEncodingFormat = types.StringPointerValue(ans.DnsQueriesMetadata.AddClientMac.MacEncodingFormat)
 		}
@@ -1783,6 +1803,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 		} else {
 			state.DnsQueriesMetadata.AddCustomerPremisesEquipment = &dsModelCustomerPremisesEquipment{}
 			// copy_to_state: state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment")
 			// property: name=identifier_text, type=STRING macro=copy_to_state
 			state.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = types.StringPointerValue(ans.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
 			// property: name=type, type=STRING macro=copy_to_state
@@ -1799,6 +1820,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.DnsQueriesMetadata.AddSubnets = append(state.DnsQueriesMetadata.AddSubnets, dsModelSubnet{})
 				// copy_to_state: state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets")
 				// property: name=ipv4_address, type=STRING macro=copy_to_state
 				state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv4Address = types.StringPointerValue(varLoopAddSubnets.Ipv4Address)
 				// property: name=ipv4_prefix_length, type=INTEGER macro=copy_to_state
@@ -1816,6 +1838,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.DnsRebindConfig = &dsModelDnsRebindConfig{}
 		// copy_to_state: state=state.DnsRebindConfig prefix=dsModel ans=ans.DnsRebindConfig properties=3
+		tflog.Debug(ctx, "copy_to_state state=state.DnsRebindConfig prefix=dsModel ans=ans.DnsRebindConfig")
 		// property: name=enable_localhost_rebind, type=BOOLEAN macro=copy_to_state
 		state.DnsRebindConfig.EnableLocalhostRebind = types.BoolPointerValue(ans.DnsRebindConfig.EnableLocalhostRebind)
 		// property: name=rebind_domains, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -1831,6 +1854,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.DnsResponseOverrides = &dsModelDnsResponseOverrides{}
 		// copy_to_state: state=state.DnsResponseOverrides prefix=dsModel ans=ans.DnsResponseOverrides properties=6
+		tflog.Debug(ctx, "copy_to_state state=state.DnsResponseOverrides prefix=dsModel ans=ans.DnsResponseOverrides")
 		// property: name=aliases, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.DnsResponseOverrides.Aliases == nil {
 			state.DnsResponseOverrides.Aliases = nil
@@ -1842,6 +1866,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.DnsResponseOverrides.Aliases = append(state.DnsResponseOverrides.Aliases, dsModelAlias{})
 				// copy_to_state: state=state.DnsResponseOverrides.Aliases[varLoopAliasesIndex] prefix=dsModel ans=varLoopAliases properties=5
+				tflog.Debug(ctx, "copy_to_state state=state.DnsResponseOverrides.Aliases[varLoopAliasesIndex] prefix=dsModel ans=varLoopAliases")
 				// property: name=mask, type=INTEGER macro=copy_to_state
 				state.DnsResponseOverrides.Aliases[varLoopAliasesIndex].Mask = types.Int64PointerValue(varLoopAliases.Mask)
 				// property: name=original_end_ip, type=STRING macro=copy_to_state
@@ -1875,6 +1900,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 	} else {
 		state.DnssecConfig = &dsModelDnsSecConfig{}
 		// copy_to_state: state=state.DnssecConfig prefix=dsModel ans=ans.DnssecConfig properties=4
+		tflog.Debug(ctx, "copy_to_state state=state.DnssecConfig prefix=dsModel ans=ans.DnssecConfig")
 		// property: name=disable_dnssec_timecheck, type=BOOLEAN macro=copy_to_state
 		state.DnssecConfig.DisableDnssecTimecheck = types.BoolPointerValue(ans.DnssecConfig.DisableDnssecTimecheck)
 		// property: name=dns_check_unsigned, type=BOOLEAN macro=copy_to_state
@@ -1892,6 +1918,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				// add a new item
 				state.DnssecConfig.TrustAnchors = append(state.DnssecConfig.TrustAnchors, dsModelTrustAnchor{})
 				// copy_to_state: state=state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex] prefix=dsModel ans=varLoopTrustAnchors properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex] prefix=dsModel ans=varLoopTrustAnchors")
 				// property: name=class, type=STRING macro=copy_to_state
 				state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex].Class = types.StringPointerValue(varLoopTrustAnchors.Class)
 				// property: name=domain, type=STRING macro=copy_to_state
@@ -1902,6 +1929,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 				} else {
 					state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex].KeyDigest = &dsModelKeyDigest{}
 					// copy_to_state: state=state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex].KeyDigest prefix=dsModel ans=varLoopTrustAnchors.KeyDigest properties=4
+					tflog.Debug(ctx, "copy_to_state state=state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex].KeyDigest prefix=dsModel ans=varLoopTrustAnchors.KeyDigest")
 					// property: name=algorithm, type=INTEGER macro=copy_to_state
 					state.DnssecConfig.TrustAnchors[varLoopTrustAnchorsIndex].KeyDigest.Algorithm = types.Int64PointerValue(varLoopTrustAnchors.KeyDigest.Algorithm)
 					// property: name=digest, type=STRING macro=copy_to_state
@@ -1925,6 +1953,7 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.DomainsToAddresses = append(state.DomainsToAddresses, dsModelDomainsToAddress{})
 			// copy_to_state: state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses")
 			// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToAddresses.DomainNames)
 			state.DomainsToAddresses[varLoopDomainsToAddressesIndex].DomainNames = varDomainNames

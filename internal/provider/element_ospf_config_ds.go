@@ -345,7 +345,7 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_ospf_config ID format", "Expected 3 tokens")
 		return
 	}
@@ -394,6 +394,7 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 
 	// lets copy all items into state schema=OspfConfigScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=16
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -409,6 +410,7 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.Areas = append(state.Areas, dsModelArea{})
 			// copy_to_state: state=state.Areas[varLoopAreasIndex] prefix=dsModel ans=varLoopAreas properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Areas[varLoopAreasIndex] prefix=dsModel ans=varLoopAreas")
 			// property: name=area_id, type=INTEGER macro=copy_to_state
 			state.Areas[varLoopAreasIndex].AreaId = types.Int64PointerValue(varLoopAreas.AreaId)
 			// property: name=area_type, type=STRING macro=copy_to_state
@@ -430,6 +432,7 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 			// add a new item
 			state.Interfaces = append(state.Interfaces, dsModelInterfaceOspfConfig{})
 			// copy_to_state: state=state.Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces")
 			// property: name=area_id, type=INTEGER macro=copy_to_state
 			state.Interfaces[varLoopInterfacesIndex].AreaId = types.Int64PointerValue(varLoopInterfaces.AreaId)
 			// property: name=interface_id, type=STRING macro=copy_to_state
@@ -440,6 +443,7 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 			} else {
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride = &dsModelOspfGlobalConfig{}
 				// copy_to_state: state=state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride prefix=dsModel ans=varLoopInterfaces.OspfConfigOverride properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride prefix=dsModel ans=varLoopInterfaces.OspfConfigOverride")
 				// property: name=cost, type=INTEGER macro=copy_to_state
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Cost = types.Int64PointerValue(varLoopInterfaces.OspfConfigOverride.Cost)
 				// property: name=dead_interval, type=INTEGER macro=copy_to_state

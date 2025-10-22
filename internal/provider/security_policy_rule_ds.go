@@ -336,7 +336,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_security_policy_rule ID format", "Expected 2 tokens")
 		return
 	}
@@ -384,6 +384,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 
 	// lets copy all items into state schema=SecurityPolicyV2N2RuleScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -425,6 +426,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 			// add a new item
 			state.Services = append(state.Services, dsModelService{})
 			// copy_to_state: state=state.Services[varLoopServicesIndex] prefix=dsModel ans=varLoopServices properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Services[varLoopServicesIndex] prefix=dsModel ans=varLoopServices")
 			// property: name=destination_ports, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopServices.DestinationPorts == nil {
 				state.Services[varLoopServicesIndex].DestinationPorts = nil
@@ -436,6 +438,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 					// add a new item
 					state.Services[varLoopServicesIndex].DestinationPorts = append(state.Services[varLoopServicesIndex].DestinationPorts, dsModelPortRange{})
 					// copy_to_state: state=state.Services[varLoopServicesIndex].DestinationPorts[varLoopDestinationPortsIndex] prefix=dsModel ans=varLoopDestinationPorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Services[varLoopServicesIndex].DestinationPorts[varLoopDestinationPortsIndex] prefix=dsModel ans=varLoopDestinationPorts")
 					// property: name=from, type=INTEGER macro=copy_to_state
 					state.Services[varLoopServicesIndex].DestinationPorts[varLoopDestinationPortsIndex].From = types.Int64PointerValue(varLoopDestinationPorts.From)
 					// property: name=to, type=INTEGER macro=copy_to_state
@@ -455,6 +458,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 					// add a new item
 					state.Services[varLoopServicesIndex].SourcePorts = append(state.Services[varLoopServicesIndex].SourcePorts, dsModelPortRange{})
 					// copy_to_state: state=state.Services[varLoopServicesIndex].SourcePorts[varLoopSourcePortsIndex] prefix=dsModel ans=varLoopSourcePorts properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Services[varLoopServicesIndex].SourcePorts[varLoopSourcePortsIndex] prefix=dsModel ans=varLoopSourcePorts")
 					// property: name=from, type=INTEGER macro=copy_to_state
 					state.Services[varLoopServicesIndex].SourcePorts[varLoopSourcePortsIndex].From = types.Int64PointerValue(varLoopSourcePorts.From)
 					// property: name=to, type=INTEGER macro=copy_to_state
@@ -485,6 +489,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 	} else {
 		state.UserOrGroup = &dsModelUserGroup{}
 		// copy_to_state: state=state.UserOrGroup prefix=dsModel ans=ans.UserOrGroup properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.UserOrGroup prefix=dsModel ans=ans.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, ans.UserOrGroup.UserGroupIds)
 		state.UserOrGroup.UserGroupIds = varUserGroupIds

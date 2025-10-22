@@ -306,6 +306,7 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=10
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -329,6 +330,7 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 			// add a new item
 			body.RadiusConfiguration = append(body.RadiusConfiguration, sdwan_schema.RadiusConfiguration{})
 			// copy_from_plan: body=body.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel plan=varLoopRadiusConfiguration properties=8
+			tflog.Debug(ctx, "copy_from_plan body=body.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel plan=varLoopRadiusConfiguration")
 			// property: name=accounting_port, type=INTEGER macro=copy_from_plan
 			body.RadiusConfiguration[varLoopRadiusConfigurationIndex].AccountingPort = Int64ValueOrNil(varLoopRadiusConfiguration.AccountingPort)
 			// property: name=authentication_port, type=INTEGER macro=copy_from_plan
@@ -364,8 +366,11 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -391,7 +396,9 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -427,6 +434,7 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 
 	// Store the answer to state. schema=ElementRadiusScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=10
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -452,6 +460,7 @@ func (r *elementRadiusResource) doPost(ctx context.Context, plan *rsModelElement
 			// add a new item
 			state.RadiusConfiguration = append(state.RadiusConfiguration, rsModelRadiusConfiguration{})
 			// copy_to_state: state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel ans=varLoopRadiusConfiguration properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel ans=varLoopRadiusConfiguration")
 			// property: name=accounting_port, type=INTEGER macro=copy_to_state
 			state.RadiusConfiguration[varLoopRadiusConfigurationIndex].AccountingPort = types.Int64PointerValue(varLoopRadiusConfiguration.AccountingPort)
 			// property: name=authentication_port, type=INTEGER macro=copy_to_state
@@ -505,7 +514,7 @@ func (r *elementRadiusResource) doGet(ctx context.Context, state *rsModelElement
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return false
 	}
@@ -552,7 +561,9 @@ func (r *elementRadiusResource) doGet(ctx context.Context, state *rsModelElement
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=ElementRadiusScreen
@@ -574,6 +585,7 @@ func (r *elementRadiusResource) doGet(ctx context.Context, state *rsModelElement
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=10
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -599,6 +611,7 @@ func (r *elementRadiusResource) doGet(ctx context.Context, state *rsModelElement
 			// add a new item
 			state.RadiusConfiguration = append(state.RadiusConfiguration, rsModelRadiusConfiguration{})
 			// copy_to_state: state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel ans=varLoopRadiusConfiguration properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel ans=varLoopRadiusConfiguration")
 			// property: name=accounting_port, type=INTEGER macro=copy_to_state
 			state.RadiusConfiguration[varLoopRadiusConfigurationIndex].AccountingPort = types.Int64PointerValue(varLoopRadiusConfiguration.AccountingPort)
 			// property: name=authentication_port, type=INTEGER macro=copy_to_state
@@ -657,7 +670,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return false
 	}
@@ -688,6 +701,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=10
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -736,6 +750,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 			body.RadiusConfiguration = append(body.RadiusConfiguration, sdwan_schema.RadiusConfiguration{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel plan=varLoopRadiusConfiguration properties=8
+			tflog.Debug(ctx, "copy_from_plan body=body.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel plan=varLoopRadiusConfiguration")
 			// property: name=accounting_port, type=INTEGER macro=copy_from_plan
 			body.RadiusConfiguration[varLoopRadiusConfigurationIndex].AccountingPort = Int64ValueOrNil(varLoopRadiusConfiguration.AccountingPort)
 			// property: name=authentication_port, type=INTEGER macro=copy_from_plan
@@ -808,7 +823,9 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -823,6 +840,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 
 	// Store the answer to state. schema=ElementRadiusScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=10
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -848,6 +866,7 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 			// add a new item
 			state.RadiusConfiguration = append(state.RadiusConfiguration, rsModelRadiusConfiguration{})
 			// copy_to_state: state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel ans=varLoopRadiusConfiguration properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.RadiusConfiguration[varLoopRadiusConfigurationIndex] prefix=rsModel ans=varLoopRadiusConfiguration")
 			// property: name=accounting_port, type=INTEGER macro=copy_to_state
 			state.RadiusConfiguration[varLoopRadiusConfigurationIndex].AccountingPort = types.Int64PointerValue(varLoopRadiusConfiguration.AccountingPort)
 			// property: name=authentication_port, type=INTEGER macro=copy_to_state
@@ -903,7 +922,7 @@ func (r *elementRadiusResource) doDelete(ctx context.Context, state *rsModelElem
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 2 {
+	if len(tokens) < 2 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_radius ID format", "Expected 2 tokens")
 		return false
 	}

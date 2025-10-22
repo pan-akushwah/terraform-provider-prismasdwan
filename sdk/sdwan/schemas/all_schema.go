@@ -411,7 +411,6 @@ package schemas
 // | NatPool HasID=false
 // | BypassPairV2 HasID=false
 // | SubInterface HasID=false
-// | Ethernet HasID=true
 // | EthernetPort HasID=false
 // | Ipv4Pppoe HasID=false
 // | Ipv4Dhcp HasID=false
@@ -1474,6 +1473,7 @@ package schemas
 // | WANInterfaceV2N4 HasID=true
 // | WANInterfaceV2N3 HasID=true
 // | ListQueryResponseWANInterfaceQueryFilter HasID=true
+// | Ethernet HasID=true
 // | ListResponseSNMPAgentV2N1 HasID=false
 // | ListResponseRoutingAccessListV2N1 HasID=false
 // | SimSecurity HasID=true
@@ -7339,35 +7339,11 @@ type SubInterface struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `Ethernet`
-// +-----------------------------------------------------------------
-type Ethernet struct {
-	Etag               *int64  `json:"_etag"`                // propertyName=_etag type=INTEGER
-	Schema             *int64  `json:"_schema"`              // propertyName=_schema type=INTEGER
-	Connector          *string `json:"connector"`            // propertyName=connector type=STRING
-	Device             *string `json:"device"`               // propertyName=device type=STRING
-	Disabled           *bool   `json:"disabled"`             // propertyName=disabled type=BOOLEAN
-	DisabledReason     *string `json:"disabled_reason"`      // propertyName=disabled_reason type=STRING
-	ElementId          *string `json:"element_id"`           // propertyName=element_id type=STRING
-	Id                 *string `json:"id"`                   // propertyName=id type=STRING
-	Inactive           *bool   `json:"inactive"`             // propertyName=inactive type=BOOLEAN
-	InactiveReason     *string `json:"inactive_reason"`      // propertyName=inactive_reason type=STRING
-	MaxMtu             *int64  `json:"max_mtu"`              // propertyName=max_mtu type=INTEGER
-	MaxSpeed           *int64  `json:"max_speed"`            // propertyName=max_speed type=INTEGER
-	Name               *string `json:"name"`                 // propertyName=name type=STRING
-	OriginalMacAddress *string `json:"original_mac_address"` // propertyName=original_mac_address type=STRING
-	Region             *string `json:"region"`               // propertyName=region type=STRING
-	SiteId             *string `json:"site_id"`              // propertyName=site_id type=STRING
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EthernetPort`
 // +-----------------------------------------------------------------
 type EthernetPort struct {
-	FullDuplex *bool     `json:"full_duplex"` // propertyName=full_duplex type=BOOLEAN
-	PortId     *Ethernet `json:"port_id"`     // propertyName=port_id type=REFERENCE
-	PortName   *string   `json:"port_name"`   // propertyName=port_name type=STRING
-	Speed      *int64    `json:"speed"`       // propertyName=speed type=INTEGER
+	FullDuplex *bool  `json:"full_duplex"` // propertyName=full_duplex type=BOOLEAN
+	Speed      *int64 `json:"speed"`       // propertyName=speed type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18851,24 +18827,35 @@ type ListResponseTacacsPlusServer struct {
 type ElementScreenV3N2 struct {
 	Etag                         *int64            `json:"_etag"`                            // propertyName=_etag type=INTEGER
 	Schema                       *int64            `json:"_schema"`                          // propertyName=_schema type=INTEGER
+	AllowedRoles                 []string          `json:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
 	ClusterId                    *string           `json:"cluster_id"`                       // propertyName=cluster_id type=STRING
+	ClusterInsertionMode         *string           `json:"cluster_insertion_mode"`           // propertyName=cluster_insertion_mode type=STRING
+	ClusterMemberId              *string           `json:"cluster_member_id"`                // propertyName=cluster_member_id type=STRING
 	Description                  *string           `json:"description"`                      // propertyName=description type=STRING
+	DeviceMode                   *string           `json:"device_mode"`                      // propertyName=device_mode type=STRING
 	DeviceProfileId              *string           `json:"device_profile_id"`                // propertyName=device_profile_id type=STRING
+	ElementId                    *string           `json:"element_id"`                       // propertyName=element_id type=STRING
 	HubClusterConfig             *HubClusterConfig `json:"hub_cluster_config"`               // propertyName=hub_cluster_config type=REFERENCE
+	HwId                         *string           `json:"hw_id"`                            // propertyName=hw_id type=STRING
 	Id                           *string           `json:"id"`                               // propertyName=id type=STRING
 	L3DirectPrivateWanForwarding *bool             `json:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
 	L3LanForwarding              *bool             `json:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
 	LedConfig                    *LedConfig        `json:"led_config"`                       // propertyName=led_config type=REFERENCE
 	MainPowerUsageThreshold      *int64            `json:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
+	ModelName                    *string           `json:"model_name"`                       // propertyName=model_name type=STRING
 	Name                         *string           `json:"name"`                             // propertyName=name type=STRING
 	NatPolicysetstackId          *string           `json:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
 	NetworkPolicysetstackId      *string           `json:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
 	PriorityPolicysetstackId     *string           `json:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
+	Role                         *string           `json:"role"`                             // propertyName=role type=STRING
 	SiteId                       *string           `json:"site_id"`                          // propertyName=site_id type=STRING
+	SoftwareVersion              *string           `json:"software_version"`                 // propertyName=software_version type=STRING
 	SpokeHaConfig                *SpokeHAConfigV2  `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
+	State                        *string           `json:"state"`                            // propertyName=state type=STRING
 	SwObj                        *Software         `json:"sw_obj"`                           // propertyName=sw_obj type=REFERENCE
 	SwitchConfig                 *SwitchConfig     `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
 	Tags                         []string          `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
+	TenantId                     *string           `json:"tenant_id"`                        // propertyName=tenant_id type=STRING
 	VpnToVpnForwarding           *bool             `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
 }
 
@@ -25056,6 +25043,28 @@ type ListQueryResponseWANInterfaceQueryFilter struct {
 	Items        []WANInterfaceQueryFilter `json:"items"`         // propertyName=items type=ARRAY_REFERENCE
 	NextQuery    *map[string]interface{}   `json:"next_query"`    // propertyName=next_query type=OBJECT
 	TotalCount   *int64                    `json:"total_count"`   // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `Ethernet`
+// +-----------------------------------------------------------------
+type Ethernet struct {
+	Etag               *int64  `json:"_etag"`                // propertyName=_etag type=INTEGER
+	Schema             *int64  `json:"_schema"`              // propertyName=_schema type=INTEGER
+	Connector          *string `json:"connector"`            // propertyName=connector type=STRING
+	Device             *string `json:"device"`               // propertyName=device type=STRING
+	Disabled           *bool   `json:"disabled"`             // propertyName=disabled type=BOOLEAN
+	DisabledReason     *string `json:"disabled_reason"`      // propertyName=disabled_reason type=STRING
+	ElementId          *string `json:"element_id"`           // propertyName=element_id type=STRING
+	Id                 *string `json:"id"`                   // propertyName=id type=STRING
+	Inactive           *bool   `json:"inactive"`             // propertyName=inactive type=BOOLEAN
+	InactiveReason     *string `json:"inactive_reason"`      // propertyName=inactive_reason type=STRING
+	MaxMtu             *int64  `json:"max_mtu"`              // propertyName=max_mtu type=INTEGER
+	MaxSpeed           *int64  `json:"max_speed"`            // propertyName=max_speed type=INTEGER
+	Name               *string `json:"name"`                 // propertyName=name type=STRING
+	OriginalMacAddress *string `json:"original_mac_address"` // propertyName=original_mac_address type=STRING
+	Region             *string `json:"region"`               // propertyName=region type=STRING
+	SiteId             *string `json:"site_id"`              // propertyName=site_id type=STRING
 }
 
 // +-----------------------------------------------------------------

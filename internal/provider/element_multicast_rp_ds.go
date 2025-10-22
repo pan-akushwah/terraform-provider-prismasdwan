@@ -187,7 +187,7 @@ func (d *elementMulticastRpDataSource) Read(ctx context.Context, req datasource.
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 3 {
+	if len(tokens) < 3 {
 		resp.Diagnostics.AddError("error in prismasdwan_element_multicast_rp ID format", "Expected 3 tokens")
 		return
 	}
@@ -236,6 +236,7 @@ func (d *elementMulticastRpDataSource) Read(ctx context.Context, req datasource.
 
 	// lets copy all items into state schema=MulticastRPConfigScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -253,6 +254,7 @@ func (d *elementMulticastRpDataSource) Read(ctx context.Context, req datasource.
 			// add a new item
 			state.Groups = append(state.Groups, dsModelGroup{})
 			// copy_to_state: state=state.Groups[varLoopGroupsIndex] prefix=dsModel ans=varLoopGroups properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.Groups[varLoopGroupsIndex] prefix=dsModel ans=varLoopGroups")
 			// property: name=ipv4_prefix, type=STRING macro=copy_to_state
 			state.Groups[varLoopGroupsIndex].Ipv4Prefix = types.StringPointerValue(varLoopGroups.Ipv4Prefix)
 			// property: name=name, type=STRING macro=copy_to_state

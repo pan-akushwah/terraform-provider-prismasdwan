@@ -385,6 +385,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=12
+	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
@@ -400,10 +401,12 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 			// add a new item
 			body.BandwidthAllocationSchemes = append(body.BandwidthAllocationSchemes, sdwan_schema.BandwidthAllocationSchemeV2{})
 			// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel plan=varLoopBandwidthAllocationSchemes properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel plan=varLoopBandwidthAllocationSchemes")
 			// property: name=bandwidth_range, type=REFERENCE macro=copy_from_plan
 			if varLoopBandwidthAllocationSchemes.BandwidthRange != nil {
 				body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &sdwan_schema.BandwidthRange{}
 				// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel plan=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel plan=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_from_plan
 				body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = Float64ValueOrNil(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
 				// property: name=low, type=NUMBER macro=copy_from_plan
@@ -420,12 +423,14 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 					// add a new item
 					body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, sdwan_schema.BusinessPriorityV2{})
 					// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel plan=varLoopBusinessPriorities properties=3
+					tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel plan=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_from_plan
 					body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = Float64ValueOrNil(varLoopBusinessPriorities.BandwidthAllocation)
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_from_plan
 					if varLoopBusinessPriorities.BandwidthSplitPerType != nil {
 						body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &sdwan_schema.BandwidthSplit{}
 						// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel plan=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
+						tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel plan=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_from_plan
 						body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = Float64ValueOrNil(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
 						// property: name=rt_audio, type=NUMBER macro=copy_from_plan
@@ -452,6 +457,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 			// add a new item
 			body.BusinessPriorityNames = append(body.BusinessPriorityNames, sdwan_schema.BusinessPriorityNameMapper{})
 			// copy_from_plan: body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_from_plan
 			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = StringValueOrNil(varLoopBusinessPriorityNames.PriorityName)
 			// property: name=priority_number, type=INTEGER macro=copy_from_plan
@@ -471,6 +477,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 			// add a new item
 			body.DefaultRuleDscpMappings = append(body.DefaultRuleDscpMappings, sdwan_schema.DefaultRuleDSCPMapping{})
 			// copy_from_plan: body=body.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel plan=varLoopDefaultRuleDscpMappings properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel plan=varLoopDefaultRuleDscpMappings")
 			// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = ListInt64ValueOrNil(ctx, varLoopDefaultRuleDscpMappings.Dscp)
 			// property: name=priority_number, type=INTEGER macro=copy_from_plan
@@ -502,8 +509,11 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 	// process http json path
 	request_body_string := string(json_body)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::id")
 	request_body_string, _ = sjson.Delete(request_body_string, "id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::_etag")
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
 	// copy pointer
 	create_request.RequestBody = &request_body_string
@@ -529,7 +539,9 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 	// process http json path
 	response_body_string := string(*create_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -565,6 +577,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 
 	// Store the answer to state. schema=PriorityPolicySet
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=12
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -580,12 +593,14 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 			// add a new item
 			state.BandwidthAllocationSchemes = append(state.BandwidthAllocationSchemes, rsModelBandwidthAllocationSchemeV2{})
 			// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel ans=varLoopBandwidthAllocationSchemes properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel ans=varLoopBandwidthAllocationSchemes")
 			// property: name=bandwidth_range, type=REFERENCE macro=copy_to_state
 			if varLoopBandwidthAllocationSchemes.BandwidthRange == nil {
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = nil
 			} else {
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &rsModelBandwidthRange{}
 				// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
 				// property: name=low, type=NUMBER macro=copy_to_state
@@ -602,6 +617,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 					// add a new item
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, rsModelBusinessPriorityV2{})
 					// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
@@ -610,6 +626,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 					} else {
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &rsModelBandwidthSplit{}
 						// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
 						// property: name=rt_audio, type=NUMBER macro=copy_to_state
@@ -636,6 +653,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 			// add a new item
 			state.BusinessPriorityNames = append(state.BusinessPriorityNames, rsModelBusinessPriorityNameMapper{})
 			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
 			// property: name=priority_number, type=INTEGER macro=copy_to_state
@@ -655,6 +673,7 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 			// add a new item
 			state.DefaultRuleDscpMappings = append(state.DefaultRuleDscpMappings, rsModelDefaultRuleDSCPMapping{})
 			// copy_to_state: state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel ans=varLoopDefaultRuleDscpMappings properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel ans=varLoopDefaultRuleDscpMappings")
 			// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDscp, errDscp := types.ListValueFrom(ctx, types.Int64Type, varLoopDefaultRuleDscpMappings.Dscp)
 			state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = varDscp
@@ -692,7 +711,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 	})
 
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -739,7 +758,9 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 	// process http json path
 	response_body_string := string(*read_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// Store the answer to state. schema=PriorityPolicySet
@@ -761,6 +782,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 	}
 	// lets copy all items into state
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=12
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -776,12 +798,14 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 			// add a new item
 			state.BandwidthAllocationSchemes = append(state.BandwidthAllocationSchemes, rsModelBandwidthAllocationSchemeV2{})
 			// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel ans=varLoopBandwidthAllocationSchemes properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel ans=varLoopBandwidthAllocationSchemes")
 			// property: name=bandwidth_range, type=REFERENCE macro=copy_to_state
 			if varLoopBandwidthAllocationSchemes.BandwidthRange == nil {
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = nil
 			} else {
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &rsModelBandwidthRange{}
 				// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
 				// property: name=low, type=NUMBER macro=copy_to_state
@@ -798,6 +822,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 					// add a new item
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, rsModelBusinessPriorityV2{})
 					// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
@@ -806,6 +831,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 					} else {
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &rsModelBandwidthSplit{}
 						// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
 						// property: name=rt_audio, type=NUMBER macro=copy_to_state
@@ -832,6 +858,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 			// add a new item
 			state.BusinessPriorityNames = append(state.BusinessPriorityNames, rsModelBusinessPriorityNameMapper{})
 			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
 			// property: name=priority_number, type=INTEGER macro=copy_to_state
@@ -851,6 +878,7 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 			// add a new item
 			state.DefaultRuleDscpMappings = append(state.DefaultRuleDscpMappings, rsModelDefaultRuleDSCPMapping{})
 			// copy_to_state: state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel ans=varLoopDefaultRuleDscpMappings properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel ans=varLoopDefaultRuleDscpMappings")
 			// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDscp, errDscp := types.ListValueFrom(ctx, types.Int64Type, varLoopDefaultRuleDscpMappings.Dscp)
 			state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = varDscp
@@ -897,7 +925,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 
 	// split tokens
 	tokens := strings.Split(state_tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
 		return false
 	}
@@ -928,6 +956,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
 	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=12
+	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Etag = ValueInt64PointerFromPlanOrState(plan.Etag, state.Etag)
@@ -956,10 +985,12 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			body.BandwidthAllocationSchemes = append(body.BandwidthAllocationSchemes, sdwan_schema.BandwidthAllocationSchemeV2{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel plan=varLoopBandwidthAllocationSchemes properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel plan=varLoopBandwidthAllocationSchemes")
 			// property: name=bandwidth_range, type=REFERENCE macro=copy_from_plan
 			if varLoopBandwidthAllocationSchemes.BandwidthRange != nil {
 				body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &sdwan_schema.BandwidthRange{}
 				// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel plan=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel plan=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_from_plan
 				body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = Float64ValueOrNil(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
 				// property: name=low, type=NUMBER macro=copy_from_plan
@@ -976,12 +1007,14 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 					// add a new item
 					body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, sdwan_schema.BusinessPriorityV2{})
 					// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel plan=varLoopBusinessPriorities properties=3
+					tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel plan=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_from_plan
 					body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = Float64ValueOrNil(varLoopBusinessPriorities.BandwidthAllocation)
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_from_plan
 					if varLoopBusinessPriorities.BandwidthSplitPerType != nil {
 						body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &sdwan_schema.BandwidthSplit{}
 						// copy_from_plan: body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel plan=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
+						tflog.Debug(ctx, "copy_from_plan body=body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel plan=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_from_plan
 						body.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = Float64ValueOrNil(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
 						// property: name=rt_audio, type=NUMBER macro=copy_from_plan
@@ -1013,6 +1046,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			body.BusinessPriorityNames = append(body.BusinessPriorityNames, sdwan_schema.BusinessPriorityNameMapper{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_from_plan
 			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = StringValueOrNil(varLoopBusinessPriorityNames.PriorityName)
 			// property: name=priority_number, type=INTEGER macro=copy_from_plan
@@ -1041,6 +1075,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			body.DefaultRuleDscpMappings = append(body.DefaultRuleDscpMappings, sdwan_schema.DefaultRuleDSCPMapping{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel plan=varLoopDefaultRuleDscpMappings properties=3
+			tflog.Debug(ctx, "copy_from_plan body=body.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel plan=varLoopDefaultRuleDscpMappings")
 			// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = ListInt64ValueOrNil(ctx, varLoopDefaultRuleDscpMappings.Dscp)
 			// property: name=priority_number, type=INTEGER macro=copy_from_plan
@@ -1121,7 +1156,9 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 	// process http json path
 	response_body_string := string(*put_request.ResponseBytes)
 	// inject overrides
+	tflog.Debug(ctx, "http json override: delete response_body_string::_created_on_utc")
 	response_body_string, _ = sjson.Delete(response_body_string, "_created_on_utc")
+	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
@@ -1136,6 +1173,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 
 	// Store the answer to state. schema=PriorityPolicySet
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=12
+	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -1151,12 +1189,14 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			// add a new item
 			state.BandwidthAllocationSchemes = append(state.BandwidthAllocationSchemes, rsModelBandwidthAllocationSchemeV2{})
 			// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel ans=varLoopBandwidthAllocationSchemes properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=rsModel ans=varLoopBandwidthAllocationSchemes")
 			// property: name=bandwidth_range, type=REFERENCE macro=copy_to_state
 			if varLoopBandwidthAllocationSchemes.BandwidthRange == nil {
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = nil
 			} else {
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &rsModelBandwidthRange{}
 				// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
 				// property: name=low, type=NUMBER macro=copy_to_state
@@ -1173,6 +1213,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 					// add a new item
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, rsModelBusinessPriorityV2{})
 					// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
@@ -1181,6 +1222,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 					} else {
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &rsModelBandwidthSplit{}
 						// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
+						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
 						// property: name=rt_audio, type=NUMBER macro=copy_to_state
@@ -1207,6 +1249,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			// add a new item
 			state.BusinessPriorityNames = append(state.BusinessPriorityNames, rsModelBusinessPriorityNameMapper{})
 			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
 			// property: name=priority_number, type=INTEGER macro=copy_to_state
@@ -1226,6 +1269,7 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			// add a new item
 			state.DefaultRuleDscpMappings = append(state.DefaultRuleDscpMappings, rsModelDefaultRuleDSCPMapping{})
 			// copy_to_state: state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel ans=varLoopDefaultRuleDscpMappings properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=rsModel ans=varLoopDefaultRuleDscpMappings")
 			// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varDscp, errDscp := types.ListValueFrom(ctx, types.Int64Type, varLoopDefaultRuleDscpMappings.Dscp)
 			state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = varDscp
@@ -1265,7 +1309,7 @@ func (r *qosPolicySetResource) doDelete(ctx context.Context, state *rsModelPrior
 
 	// tokens must match
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
 		return false
 	}

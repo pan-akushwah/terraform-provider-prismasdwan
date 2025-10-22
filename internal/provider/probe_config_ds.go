@@ -253,7 +253,7 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_probe_config ID format", "Expected 1 tokens")
 		return
 	}
@@ -300,6 +300,7 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 
 	// lets copy all items into state schema=ProbeConfigScreen
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
@@ -319,6 +320,7 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 			// add a new item
 			state.Endpoints = append(state.Endpoints, dsModelProbeEndpoint{})
 			// copy_to_state: state=state.Endpoints[varLoopEndpointsIndex] prefix=dsModel ans=varLoopEndpoints properties=10
+			tflog.Debug(ctx, "copy_to_state state=state.Endpoints[varLoopEndpointsIndex] prefix=dsModel ans=varLoopEndpoints")
 			// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].AllowInsecureHttpsConnection = types.BoolPointerValue(varLoopEndpoints.AllowInsecureHttpsConnection)
 			// property: name=dns_server_ip, type=STRING macro=copy_to_state

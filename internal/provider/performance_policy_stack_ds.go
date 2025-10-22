@@ -175,7 +175,7 @@ func (d *performancePolicyStackDataSource) Read(ctx context.Context, req datasou
 
 	tfid := state.Tfid.ValueString()
 	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) != 1 {
+	if len(tokens) < 1 {
 		resp.Diagnostics.AddError("error in prismasdwan_performance_policy_stack ID format", "Expected 1 tokens")
 		return
 	}
@@ -222,6 +222,7 @@ func (d *performancePolicyStackDataSource) Read(ctx context.Context, req datasou
 
 	// lets copy all items into state schema=PerfMgmtPolicySetStack
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=9
+	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
