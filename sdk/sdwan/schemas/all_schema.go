@@ -2038,23 +2038,21 @@ type Aggregate struct {
 // | Auto Generated for Schema `MulticastIgmpMembershipQuery`
 // +-----------------------------------------------------------------
 type MulticastIgmpMembershipQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -2553,23 +2551,21 @@ type IPSECProfileQueryFilter struct {
 // | Auto Generated for Schema `WANInterfaceLabelQuery`
 // +-----------------------------------------------------------------
 type WANInterfaceLabelQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3272,23 +3268,21 @@ type APNProfileScreen struct {
 // | Auto Generated for Schema `OspfConfigQuery`
 // +-----------------------------------------------------------------
 type OspfConfigQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3324,23 +3318,21 @@ type InterfaceAuthenticationState struct {
 // | Auto Generated for Schema `DemSiteConfigQuery`
 // +-----------------------------------------------------------------
 type DemSiteConfigQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3369,23 +3361,21 @@ type SuppressedInfoOtherReason struct {
 // | Auto Generated for Schema `PathPrefixDistributionFiltersQuery`
 // +-----------------------------------------------------------------
 type PathPrefixDistributionFiltersQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3422,23 +3412,21 @@ type ListQueryResponseSpokeClusterQueryFilterResponse struct {
 // | Auto Generated for Schema `VRFContextProfileQuery`
 // +-----------------------------------------------------------------
 type VRFContextProfileQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3986,23 +3974,21 @@ type SiteV4N4 struct {
 // | Auto Generated for Schema `CellularModuleQuery`
 // +-----------------------------------------------------------------
 type CellularModuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -4246,23 +4232,21 @@ type CmSecurityProfileInfo struct {
 // | Auto Generated for Schema `EventCorrelationPolicyRuleQueryV2N1`
 // +-----------------------------------------------------------------
 type EventCorrelationPolicyRuleQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -4996,23 +4980,21 @@ type SecurityZoneV2N1 struct {
 // | Auto Generated for Schema `ExtensionQuery`
 // +-----------------------------------------------------------------
 type ExtensionQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5240,23 +5222,21 @@ type ListQueryResponseElementQueryFilterV3N1 struct {
 // | Auto Generated for Schema `MachineSoftwareQuery`
 // +-----------------------------------------------------------------
 type MachineSoftwareQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5425,23 +5405,21 @@ type ListResponseDHCPServerV2N2 struct {
 // | Auto Generated for Schema `DnsServiceRoleQuery`
 // +-----------------------------------------------------------------
 type DnsServiceRoleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5561,23 +5539,21 @@ type ListQueryResponseSiteQueryFilter struct {
 // | Auto Generated for Schema `DirectoryUserGroupQuery`
 // +-----------------------------------------------------------------
 type DirectoryUserGroupQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5744,23 +5720,21 @@ type NextHop struct {
 // | Auto Generated for Schema `AppDefQuery`
 // +-----------------------------------------------------------------
 type AppDefQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5780,23 +5754,21 @@ type LANNetworkScreenV3 struct {
 // | Auto Generated for Schema `BGPPeerQuery`
 // +-----------------------------------------------------------------
 type BGPPeerQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5867,23 +5839,21 @@ type ListQueryResponseAnynetLinkQueryFilterV4 struct {
 // | Auto Generated for Schema `BulkConfigCreateQuery`
 // +-----------------------------------------------------------------
 type BulkConfigCreateQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -6774,23 +6744,21 @@ type ListQueryResponseCmSecurityProfileInfo struct {
 // | Auto Generated for Schema `SpokeClusterQuery`
 // +-----------------------------------------------------------------
 type SpokeClusterQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7136,23 +7104,21 @@ type EventsOperationsRequestBodyBulkAcknowledge struct {
 // | Auto Generated for Schema `PassageQuery`
 // +-----------------------------------------------------------------
 type PassageQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7231,23 +7197,21 @@ type ServiceEndpointV3 struct {
 // | Auto Generated for Schema `IPFixContextQuery`
 // +-----------------------------------------------------------------
 type IPFixContextQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7798,23 +7762,21 @@ type DnsQueriesMetadata struct {
 // | Auto Generated for Schema `DnsServiceQuery`
 // +-----------------------------------------------------------------
 type DnsServiceQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -9239,23 +9201,21 @@ type MacAddressState struct {
 // | Auto Generated for Schema `ServiceLabelQuery`
 // +-----------------------------------------------------------------
 type ServiceLabelQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -9785,23 +9745,21 @@ type SiteOperations struct {
 // | Auto Generated for Schema `SitePrefixAssociationQuery`
 // +-----------------------------------------------------------------
 type SitePrefixAssociationQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -9863,23 +9821,21 @@ type ListResponsePriorityPolicySet struct {
 // | Auto Generated for Schema `SiteQueryV2N1`
 // +-----------------------------------------------------------------
 type SiteQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -12117,23 +12073,21 @@ type SiteQueryFilterV4N10 struct {
 // | Auto Generated for Schema `ServiceLabelQueryFilter`
 // +-----------------------------------------------------------------
 type ServiceLabelQueryFilter struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -12223,23 +12177,21 @@ type InterfaceV4N10 struct {
 // | Auto Generated for Schema `SoftwareDownloadHistoryQuery`
 // +-----------------------------------------------------------------
 type SoftwareDownloadHistoryQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -12397,23 +12349,21 @@ type InterfaceV4N19 struct {
 // | Auto Generated for Schema `WANInterfaceQuery`
 // +-----------------------------------------------------------------
 type WANInterfaceQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -13286,23 +13236,21 @@ type NATPolicyRule struct {
 // | Auto Generated for Schema `SecurityZoneQuery`
 // +-----------------------------------------------------------------
 type SecurityZoneQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -13796,23 +13744,21 @@ type HubClusterTrackingStatus struct {
 // | Auto Generated for Schema `SaseConnectionStatusQuery`
 // +-----------------------------------------------------------------
 type SaseConnectionStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -14214,23 +14160,21 @@ type SyslogServerProfileV2N1 struct {
 // | Auto Generated for Schema `ServiceBindingMapQuery`
 // +-----------------------------------------------------------------
 type ServiceBindingMapQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -14368,23 +14312,21 @@ type BulkConfigPushQueryFilter struct {
 // | Auto Generated for Schema `UserIDAgentQuery`
 // +-----------------------------------------------------------------
 type UserIDAgentQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -15176,23 +15118,21 @@ type ListQueryResponseSecurityPolicyGlobalPrefix struct {
 // | Auto Generated for Schema `ProbeProfileQuery`
 // +-----------------------------------------------------------------
 type ProbeProfileQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -15324,23 +15264,21 @@ type EventQueryRequestV3_6View struct {
 // | Auto Generated for Schema `PriorityPolicySetQuery`
 // +-----------------------------------------------------------------
 type PriorityPolicySetQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -15527,23 +15465,21 @@ type BGPPeerQueryFilterV2N2 struct {
 // | Auto Generated for Schema `DeviceIdMappingsQuery`
 // +-----------------------------------------------------------------
 type DeviceIdMappingsQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -15899,23 +15835,21 @@ type ElementShellV2N1 struct {
 // | Auto Generated for Schema `CellularModuleStatusQueryV2N1`
 // +-----------------------------------------------------------------
 type CellularModuleStatusQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -16306,23 +16240,21 @@ type TaskStatus struct {
 // | Auto Generated for Schema `RoutingRouteMapQuery`
 // +-----------------------------------------------------------------
 type RoutingRouteMapQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -16700,23 +16632,21 @@ type BulkResponseSDWANAppStatus struct {
 // | Auto Generated for Schema `EventCorrelationPolicyRuleQuery`
 // +-----------------------------------------------------------------
 type EventCorrelationPolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -17209,23 +17139,21 @@ type DeviceIdProfileOperations struct {
 // | Auto Generated for Schema `EventCorrelationPolicySetQuery`
 // +-----------------------------------------------------------------
 type EventCorrelationPolicySetQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -17460,46 +17388,42 @@ type SiteSecurityPolicyV2N1PrefixAssociation struct {
 // | Auto Generated for Schema `AnynetLinkQuery`
 // +-----------------------------------------------------------------
 type AnynetLinkQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `BaseQuery`
 // +-----------------------------------------------------------------
 type BaseQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -17561,23 +17485,21 @@ type ElementShell struct {
 // | Auto Generated for Schema `IPFixProfileQuery`
 // +-----------------------------------------------------------------
 type IPFixProfileQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -17928,23 +17850,21 @@ type WANInterfaceLabelQueryFilterV2N6 struct {
 // | Auto Generated for Schema `LocalPrefixQuery`
 // +-----------------------------------------------------------------
 type LocalPrefixQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18031,23 +17951,21 @@ type ListQueryResponseAuditLog struct {
 // | Auto Generated for Schema `VRFContextQuery`
 // +-----------------------------------------------------------------
 type VRFContextQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18355,23 +18273,21 @@ type ListResponseMachineV2N3 struct {
 // | Auto Generated for Schema `RoutingAccessListQuery`
 // +-----------------------------------------------------------------
 type RoutingAccessListQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18589,23 +18505,21 @@ type AppDefQueryFilterTransformedV2N6 struct {
 // | Auto Generated for Schema `MulticastRouteTableQuery`
 // +-----------------------------------------------------------------
 type MulticastRouteTableQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18732,23 +18646,21 @@ type IPSECProfileQueryFilterV2N2 struct {
 // | Auto Generated for Schema `DeviceIdStartNodeQuery`
 // +-----------------------------------------------------------------
 type DeviceIdStartNodeQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18873,46 +18785,42 @@ type ListQueryResponseMulticastSourceSideRpQueryFilter struct {
 // | Auto Generated for Schema `RoutingCommunityListQuery`
 // +-----------------------------------------------------------------
 type RoutingCommunityListQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `VPNLinkQuery`
 // +-----------------------------------------------------------------
 type VPNLinkQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19072,23 +18980,21 @@ type ElementShellInterfaceScreen struct {
 // | Auto Generated for Schema `VffLicenseStateQuery`
 // +-----------------------------------------------------------------
 type VffLicenseStateQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19128,23 +19034,21 @@ type SaseConnectionGlobalConfigScreenV3 struct {
 // | Auto Generated for Schema `SecurityPolicyV2SetQuery`
 // +-----------------------------------------------------------------
 type SecurityPolicyV2SetQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19353,23 +19257,21 @@ type ListResponseRoutingCommunityList struct {
 // | Auto Generated for Schema `OspfDiscoveredNeighborQuery`
 // +-----------------------------------------------------------------
 type OspfDiscoveredNeighborQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19469,46 +19371,42 @@ type ListResponseDirectoryUserGroup struct {
 // | Auto Generated for Schema `PerfMgmtPolicyRuleQuery`
 // +-----------------------------------------------------------------
 type PerfMgmtPolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `MachineSoftwareStateQuery`
 // +-----------------------------------------------------------------
 type MachineSoftwareStateQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19726,23 +19624,21 @@ type ListQueryResponseWANInterfaceLabelQueryFilterV2N6 struct {
 // | Auto Generated for Schema `MulticastDynamicRpQuery`
 // +-----------------------------------------------------------------
 type MulticastDynamicRpQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19849,69 +19745,63 @@ type ElementOTPAccess struct {
 // | Auto Generated for Schema `PolicySetStackQuery`
 // +-----------------------------------------------------------------
 type PolicySetStackQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `URLCategoryQuery`
 // +-----------------------------------------------------------------
 type URLCategoryQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `HubClusterQueryV4`
 // +-----------------------------------------------------------------
 type HubClusterQueryV4 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19991,23 +19881,21 @@ type BulkResponseNATPolicyPool struct {
 // | Auto Generated for Schema `ElementShellQuery`
 // +-----------------------------------------------------------------
 type ElementShellQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20105,23 +19993,21 @@ type NATPolicySetStackPOSTScreen struct {
 // | Auto Generated for Schema `BulkConfigPushQuery`
 // +-----------------------------------------------------------------
 type BulkConfigPushQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20392,46 +20278,42 @@ type SiteEndpoints struct {
 // | Auto Generated for Schema `InterfaceQueryV2N1`
 // +-----------------------------------------------------------------
 type InterfaceQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `IPSECProfileQuery`
 // +-----------------------------------------------------------------
 type IPSECProfileQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21038,23 +20920,21 @@ type ElemCustomerPremisesEquipment struct {
 // | Auto Generated for Schema `ElementStateQuery`
 // +-----------------------------------------------------------------
 type ElementStateQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21135,23 +21015,21 @@ type ElementSecurityZone struct {
 // | Auto Generated for Schema `MulticastSourceSideRpQuery`
 // +-----------------------------------------------------------------
 type MulticastSourceSideRpQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21169,23 +21047,21 @@ type LocalPrefixFilterScreen struct {
 // | Auto Generated for Schema `VffLicenseQuery`
 // +-----------------------------------------------------------------
 type VffLicenseQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21559,23 +21435,21 @@ type ListResponseMachineSoftware struct {
 // | Auto Generated for Schema `DeviceIdConfigQuery`
 // +-----------------------------------------------------------------
 type DeviceIdConfigQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21896,23 +21770,21 @@ type WANInterfaceEvent struct {
 // | Auto Generated for Schema `MulticastStatusQuery`
 // +-----------------------------------------------------------------
 type MulticastStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22144,23 +22016,21 @@ type ListResponsePrefixDistributionSpokeList struct {
 // | Auto Generated for Schema `NATPolicyRuleQuery`
 // +-----------------------------------------------------------------
 type NATPolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22193,23 +22063,21 @@ type BGPGlobalConfigV2N3 struct {
 // | Auto Generated for Schema `NetworkPolicyRuleQuery`
 // +-----------------------------------------------------------------
 type NetworkPolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22353,23 +22221,21 @@ type ListQueryResponsePriorityPolicyRuleQueryFilterV2N1 struct {
 // | Auto Generated for Schema `ElementStatusQuery`
 // +-----------------------------------------------------------------
 type ElementStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22516,46 +22382,42 @@ type ListQueryResponseIPSECProfileQueryFilter struct {
 // | Auto Generated for Schema `PolicySetQuery`
 // +-----------------------------------------------------------------
 type PolicySetQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `PolicyRuleQuery`
 // +-----------------------------------------------------------------
 type PolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22662,23 +22524,21 @@ type PolicySetPOSTScreen struct {
 // | Auto Generated for Schema `PriorityPolicyRuleQuery`
 // +-----------------------------------------------------------------
 type PriorityPolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22787,23 +22647,21 @@ type ListQueryResponsePassageQueryFilter struct {
 // | Auto Generated for Schema `CellularModuleFirmwareStatusQuery`
 // +-----------------------------------------------------------------
 type CellularModuleFirmwareStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22879,23 +22737,21 @@ type ListResponsePriorityPolicyRuleV2N2 struct {
 // | Auto Generated for Schema `ServiceEndpointQuery`
 // +-----------------------------------------------------------------
 type ServiceEndpointQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23237,46 +23093,42 @@ type ProbeConfigScreen struct {
 // | Auto Generated for Schema `MachineQuery`
 // +-----------------------------------------------------------------
 type MachineQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `VffTokenQuery`
 // +-----------------------------------------------------------------
 type VffTokenQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23331,46 +23183,42 @@ type BestPathConfig struct {
 // | Auto Generated for Schema `GlobalPrefixQuery`
 // +-----------------------------------------------------------------
 type GlobalPrefixQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `DnsServiceProfileQuery`
 // +-----------------------------------------------------------------
 type DnsServiceProfileQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23447,7 +23295,6 @@ type BaseQueryDTO struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
-	Getdeleted          *bool                   `json:"getDeleted"`            // propertyName=getDeleted type=BOOLEAN
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -23723,23 +23570,21 @@ type EventCorrelationPolicyRuleQueryFilterV2N1 struct {
 // | Auto Generated for Schema `SecurityPolicySetQuery`
 // +-----------------------------------------------------------------
 type SecurityPolicySetQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24689,23 +24534,21 @@ type SiteQueryFilterV4N6 struct {
 // | Auto Generated for Schema `ThreatMetadataQuery`
 // +-----------------------------------------------------------------
 type ThreatMetadataQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24723,49 +24566,45 @@ type Module struct {
 // | Auto Generated for Schema `PrefixQueryV3`
 // +-----------------------------------------------------------------
 type PrefixQueryV3 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Ge                        *int64                  `json:"ge"`                        // propertyName=ge type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Ipv4Prefix                *string                 `json:"ipv4_prefix"`               // propertyName=ipv4_prefix type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Le                        *int64                  `json:"le"`                        // propertyName=le type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	Ge                  *int64                  `json:"ge"`                    // propertyName=ge type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	Ipv4Prefix          *string                 `json:"ipv4_prefix"`           // propertyName=ipv4_prefix type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Le                  *int64                  `json:"le"`                    // propertyName=le type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `SiteQuery`
 // +-----------------------------------------------------------------
 type SiteQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25285,23 +25124,21 @@ type ElementPSU struct {
 // | Auto Generated for Schema `PathGroupQuery`
 // +-----------------------------------------------------------------
 type PathGroupQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25499,23 +25336,21 @@ type ListQueryResponseSoftwareDownloadHistoryQuery struct {
 // | Auto Generated for Schema `AppAccelerationStatusQuery`
 // +-----------------------------------------------------------------
 type AppAccelerationStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25585,23 +25420,21 @@ type ListQueryResponseSiteQueryFilterV4N11 struct {
 // | Auto Generated for Schema `PriorityPolicyRuleQueryV2N2`
 // +-----------------------------------------------------------------
 type PriorityPolicyRuleQueryV2N2 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25645,23 +25478,21 @@ type ElementCopyConfigurationsScreen struct {
 // | Auto Generated for Schema `PriorityPolicyRuleQueryV2N1`
 // +-----------------------------------------------------------------
 type PriorityPolicyRuleQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25985,23 +25816,21 @@ type NATLocalPrefix struct {
 // | Auto Generated for Schema `SpokeClusterElementStatusQuery`
 // +-----------------------------------------------------------------
 type SpokeClusterElementStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -26444,23 +26273,21 @@ type PasswordReset struct {
 // | Auto Generated for Schema `WANInterfaceQueryV2N1`
 // +-----------------------------------------------------------------
 type WANInterfaceQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -26744,23 +26571,21 @@ type ProfileV2N1 struct {
 // | Auto Generated for Schema `WANNetworkQuery`
 // +-----------------------------------------------------------------
 type WANNetworkQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27288,23 +27113,21 @@ type ListResponseRoutingAccessListV2N1 struct {
 // | Auto Generated for Schema `SecurityProfileGroupQuery`
 // +-----------------------------------------------------------------
 type SecurityProfileGroupQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27392,23 +27215,21 @@ type SecurityPolicyV2N1RuleScreen struct {
 // | Auto Generated for Schema `IPFixConfigQuery`
 // +-----------------------------------------------------------------
 type IPFixConfigQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27430,23 +27251,21 @@ type ListQueryResponseLANNetworkQueryFilterResponse struct {
 // | Auto Generated for Schema `SaseConnectionQuery`
 // +-----------------------------------------------------------------
 type SaseConnectionQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27559,27 +27378,25 @@ type IPFixConfigScreen struct {
 // | Auto Generated for Schema `PrefixQueryV3N1`
 // +-----------------------------------------------------------------
 type PrefixQueryV3N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Ge                        *int64                  `json:"ge"`                        // propertyName=ge type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Ipv4Prefix                *string                 `json:"ipv4_prefix"`               // propertyName=ipv4_prefix type=STRING
-	Ipv6Prefix                *string                 `json:"ipv6_prefix"`               // propertyName=ipv6_prefix type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Le                        *int64                  `json:"le"`                        // propertyName=le type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	Ge                  *int64                  `json:"ge"`                    // propertyName=ge type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	Ipv4Prefix          *string                 `json:"ipv4_prefix"`           // propertyName=ipv4_prefix type=STRING
+	Ipv6Prefix          *string                 `json:"ipv6_prefix"`           // propertyName=ipv6_prefix type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Le                  *int64                  `json:"le"`                    // propertyName=le type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27613,23 +27430,21 @@ type ListQueryResponseServiceLabelQueryFilter struct {
 // | Auto Generated for Schema `ElementQueryV2N1`
 // +-----------------------------------------------------------------
 type ElementQueryV2N1 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27900,23 +27715,21 @@ type ListResponseAnynetLinkV4 struct {
 // | Auto Generated for Schema `AnynetLinkQueryV2N2`
 // +-----------------------------------------------------------------
 type AnynetLinkQueryV2N2 struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28004,23 +27817,21 @@ type DeviceIdDictionary struct {
 // | Auto Generated for Schema `InterfaceStateQuery`
 // +-----------------------------------------------------------------
 type InterfaceStateQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28050,23 +27861,21 @@ type DHCPServerV2N1 struct {
 // | Auto Generated for Schema `LANNetworkQuery`
 // +-----------------------------------------------------------------
 type LANNetworkQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28329,23 +28138,21 @@ type ElementV2N1 struct {
 // | Auto Generated for Schema `ElementQuery`
 // +-----------------------------------------------------------------
 type ElementQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28762,23 +28569,21 @@ type NetworkPolicyRuleQueryFilter struct {
 // | Auto Generated for Schema `ElementSecurityZoneQuery`
 // +-----------------------------------------------------------------
 type ElementSecurityZoneQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28837,23 +28642,21 @@ type ListQueryResponseDeviceIdActiveProfiles struct {
 // | Auto Generated for Schema `ElementImageStatusQuery`
 // +-----------------------------------------------------------------
 type ElementImageStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28979,23 +28782,21 @@ type BulkResponseSDWANAppReleaseInfoResponseV2N1 struct {
 // | Auto Generated for Schema `MulticastRPConfigQuery`
 // +-----------------------------------------------------------------
 type MulticastRPConfigQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29444,23 +29245,21 @@ type DeviceIdProfile struct {
 // | Auto Generated for Schema `MSTPInstanceQuery`
 // +-----------------------------------------------------------------
 type MSTPInstanceQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29710,23 +29509,21 @@ type SiteScreenV4N9 struct {
 // | Auto Generated for Schema `InterfaceQuery`
 // +-----------------------------------------------------------------
 type InterfaceQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29741,46 +29538,42 @@ type ListResponseHubCluster struct {
 // | Auto Generated for Schema `BGPPeerStatusQuery`
 // +-----------------------------------------------------------------
 type BGPPeerStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `PathPrefixDistributionAssociationQuery`
 // +-----------------------------------------------------------------
 type PathPrefixDistributionAssociationQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29798,23 +29591,21 @@ type BGPPeerPatch struct {
 // | Auto Generated for Schema `ActiveUserIPQuery`
 // +-----------------------------------------------------------------
 type ActiveUserIPQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30014,46 +29805,42 @@ type ServiceEndpoint struct {
 // | Auto Generated for Schema `MulticastWanStatusQuery`
 // +-----------------------------------------------------------------
 type MulticastWanStatusQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `SecurityPolicyRuleQuery`
 // +-----------------------------------------------------------------
 type SecurityPolicyRuleQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30324,46 +30111,42 @@ type SyslogServerV2N1 struct {
 // | Auto Generated for Schema `OspfReachablePrefixesQuery`
 // +-----------------------------------------------------------------
 type OspfReachablePrefixesQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `DeviceIdDictionaryQuery`
 // +-----------------------------------------------------------------
 type DeviceIdDictionaryQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30408,23 +30191,21 @@ type BulkConfigPushScreen struct {
 // | Auto Generated for Schema `DirectoryUserQuery`
 // +-----------------------------------------------------------------
 type DirectoryUserQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30533,23 +30314,21 @@ type SecurityPolicySetRuleOrderScreen struct {
 // | Auto Generated for Schema `ProbeConfigQuery`
 // +-----------------------------------------------------------------
 type ProbeConfigQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -31012,23 +30791,21 @@ type ListQueryResponseDemStatusQueryResponse struct {
 // | Auto Generated for Schema `APNProfileQuery`
 // +-----------------------------------------------------------------
 type APNProfileQuery struct {
-	Etag                      *int64                  `json:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    *int64                  `json:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *Aggregate              `json:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  *int64                  `json:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                *bool                   `json:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   []string                `json:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        *string                 `json:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary *bool                   `json:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               *int64                  `json:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     *int64                  `json:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 *map[string]interface{} `json:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               *map[string]interface{} `json:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           []string                `json:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       *bool                   `json:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       *bool                   `json:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                *map[string]interface{} `json:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                *int64                  `json:"total_count"`               // propertyName=total_count type=INTEGER
+	Etag                *int64                  `json:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                  `json:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           *map[string]interface{} `json:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         *map[string]interface{} `json:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     []string                `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                   `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------

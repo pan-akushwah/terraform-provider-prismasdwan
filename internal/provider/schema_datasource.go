@@ -2055,24 +2055,22 @@ type dsModelAggregate struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastIgmpMembershipQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -2604,24 +2602,22 @@ type dsModelIPSECProfileQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelWANInterfaceLabelQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3367,24 +3363,22 @@ type dsModelAPNProfileScreen struct {
 // +-----------------------------------------------------------------
 type dsModelOspfConfigQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3423,24 +3417,22 @@ type dsModelInterfaceAuthenticationState struct {
 // +-----------------------------------------------------------------
 type dsModelDemSiteConfigQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3472,24 +3464,22 @@ type dsModelSuppressedInfoOtherReason struct {
 // +-----------------------------------------------------------------
 type dsModelPathPrefixDistributionFiltersQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -3531,24 +3521,22 @@ type dsModelListQueryResponseSpokeClusterQueryFilterResponse struct {
 // +-----------------------------------------------------------------
 type dsModelVRFContextProfileQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -4133,24 +4121,22 @@ type dsModelSiteV4N4 struct {
 // +-----------------------------------------------------------------
 type dsModelCellularModuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -4415,24 +4401,22 @@ type dsModelCmSecurityProfileInfo struct {
 // +-----------------------------------------------------------------
 type dsModelEventCorrelationPolicyRuleQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5211,24 +5195,22 @@ type dsModelSecurityZoneV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelExtensionQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5473,24 +5455,22 @@ type dsModelListQueryResponseElementQueryFilterV3N1 struct {
 // +-----------------------------------------------------------------
 type dsModelMachineSoftwareQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5676,24 +5656,22 @@ type dsModelListResponseDHCPServerV2N2 struct {
 // +-----------------------------------------------------------------
 type dsModelDnsServiceRoleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -5824,24 +5802,22 @@ type dsModelListQueryResponseSiteQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelDirectoryUserGroupQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -6015,24 +5991,22 @@ type dsModelNextHop struct {
 // +-----------------------------------------------------------------
 type dsModelAppDefQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -6055,24 +6029,22 @@ type dsModelLANNetworkScreenV3 struct {
 // +-----------------------------------------------------------------
 type dsModelBGPPeerQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -6150,24 +6122,22 @@ type dsModelListQueryResponseAnynetLinkQueryFilterV4 struct {
 // +-----------------------------------------------------------------
 type dsModelBulkConfigCreateQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7127,24 +7097,22 @@ type dsModelListQueryResponseCmSecurityProfileInfo struct {
 // +-----------------------------------------------------------------
 type dsModelSpokeClusterQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7515,24 +7483,22 @@ type dsModelEventsOperationsRequestBodyBulkAcknowledge struct {
 // +-----------------------------------------------------------------
 type dsModelPassageQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7620,24 +7586,22 @@ type dsModelServiceEndpointV3 struct {
 // +-----------------------------------------------------------------
 type dsModelIPFixContextQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -8211,24 +8175,22 @@ type dsModelDnsQueriesMetadata struct {
 // +-----------------------------------------------------------------
 type dsModelDnsServiceQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -9738,24 +9700,22 @@ type dsModelMacAddressState struct {
 // +-----------------------------------------------------------------
 type dsModelServiceLabelQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -10340,24 +10300,22 @@ type dsModelSiteOperations struct {
 // +-----------------------------------------------------------------
 type dsModelSitePrefixAssociationQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -10426,24 +10384,22 @@ type dsModelListResponsePriorityPolicySet struct {
 // +-----------------------------------------------------------------
 type dsModelSiteQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -12868,24 +12824,22 @@ type dsModelSiteQueryFilterV4N10 struct {
 // +-----------------------------------------------------------------
 type dsModelServiceLabelQueryFilter struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -12982,24 +12936,22 @@ type dsModelInterfaceV4N10 struct {
 // +-----------------------------------------------------------------
 type dsModelSoftwareDownloadHistoryQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -13164,24 +13116,22 @@ type dsModelInterfaceV4N19 struct {
 // +-----------------------------------------------------------------
 type dsModelWANInterfaceQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -14105,24 +14055,22 @@ type dsModelNATPolicyRule struct {
 // +-----------------------------------------------------------------
 type dsModelSecurityZoneQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -14663,24 +14611,22 @@ type dsModelHubClusterTrackingStatus struct {
 // +-----------------------------------------------------------------
 type dsModelSaseConnectionStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -15121,24 +15067,22 @@ type dsModelSyslogServerProfileV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelServiceBindingMapQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -15289,24 +15233,22 @@ type dsModelBulkConfigPushQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelUserIDAgentQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -16181,24 +16123,22 @@ type dsModelListQueryResponseSecurityPolicyGlobalPrefix struct {
 // +-----------------------------------------------------------------
 type dsModelProbeProfileQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -16343,24 +16283,22 @@ type dsModelEventQueryRequestV3_6View struct {
 // +-----------------------------------------------------------------
 type dsModelPriorityPolicySetQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -16562,24 +16500,22 @@ type dsModelBGPPeerQueryFilterV2N2 struct {
 // +-----------------------------------------------------------------
 type dsModelDeviceIdMappingsQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -16948,24 +16884,22 @@ type dsModelElementShellV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelCellularModuleStatusQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -17389,24 +17323,22 @@ type dsModelTaskStatus struct {
 // +-----------------------------------------------------------------
 type dsModelRoutingRouteMapQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -17809,24 +17741,22 @@ type dsModelBulkResponseSDWANAppStatus struct {
 // +-----------------------------------------------------------------
 type dsModelEventCorrelationPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18358,24 +18288,22 @@ type dsModelDeviceIdProfileOperations struct {
 // +-----------------------------------------------------------------
 type dsModelEventCorrelationPolicySetQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18637,24 +18565,22 @@ type dsModelSiteSecurityPolicyV2N1PrefixAssociation struct {
 // +-----------------------------------------------------------------
 type dsModelAnynetLinkQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18662,24 +18588,22 @@ type dsModelAnynetLinkQuery struct {
 // +-----------------------------------------------------------------
 type dsModelBaseQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -18744,24 +18668,22 @@ type dsModelElementShell struct {
 // +-----------------------------------------------------------------
 type dsModelIPFixProfileQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19137,24 +19059,22 @@ type dsModelWANInterfaceLabelQueryFilterV2N6 struct {
 // +-----------------------------------------------------------------
 type dsModelLocalPrefixQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19250,24 +19170,22 @@ type dsModelListQueryResponseAuditLog struct {
 // +-----------------------------------------------------------------
 type dsModelVRFContextQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19600,24 +19518,22 @@ type dsModelListResponseMachineV2N3 struct {
 // +-----------------------------------------------------------------
 type dsModelRoutingAccessListQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -19848,24 +19764,22 @@ type dsModelAppDefQueryFilterTransformedV2N6 struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastRouteTableQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20001,24 +19915,22 @@ type dsModelIPSECProfileQueryFilterV2N2 struct {
 // +-----------------------------------------------------------------
 type dsModelDeviceIdStartNodeQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20156,24 +20068,22 @@ type dsModelListQueryResponseMulticastSourceSideRpQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelRoutingCommunityListQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20181,24 +20091,22 @@ type dsModelRoutingCommunityListQuery struct {
 // +-----------------------------------------------------------------
 type dsModelVPNLinkQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20367,24 +20275,22 @@ type dsModelElementShellInterfaceScreen struct {
 // +-----------------------------------------------------------------
 type dsModelVffLicenseStateQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20429,24 +20335,22 @@ type dsModelSaseConnectionGlobalConfigScreenV3 struct {
 // +-----------------------------------------------------------------
 type dsModelSecurityPolicyV2SetQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20666,24 +20570,22 @@ type dsModelListResponseRoutingCommunityList struct {
 // +-----------------------------------------------------------------
 type dsModelOspfDiscoveredNeighborQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20794,24 +20696,22 @@ type dsModelListResponseDirectoryUserGroup struct {
 // +-----------------------------------------------------------------
 type dsModelPerfMgmtPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -20819,24 +20719,22 @@ type dsModelPerfMgmtPolicyRuleQuery struct {
 // +-----------------------------------------------------------------
 type dsModelMachineSoftwareStateQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21081,24 +20979,22 @@ type dsModelListQueryResponseWANInterfaceLabelQueryFilterV2N6 struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastDynamicRpQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21218,24 +21114,22 @@ type dsModelElementOTPAccess struct {
 // +-----------------------------------------------------------------
 type dsModelPolicySetStackQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21243,24 +21137,22 @@ type dsModelPolicySetStackQuery struct {
 // +-----------------------------------------------------------------
 type dsModelURLCategoryQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21268,24 +21160,22 @@ type dsModelURLCategoryQuery struct {
 // +-----------------------------------------------------------------
 type dsModelHubClusterQueryV4 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21370,24 +21260,22 @@ type dsModelBulkResponseNATPolicyPool struct {
 // +-----------------------------------------------------------------
 type dsModelElementShellQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21494,24 +21382,22 @@ type dsModelNATPolicySetStackPOSTScreen struct {
 // +-----------------------------------------------------------------
 type dsModelBulkConfigPushQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21809,24 +21695,22 @@ type dsModelSiteEndpoints struct {
 // +-----------------------------------------------------------------
 type dsModelInterfaceQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -21834,24 +21718,22 @@ type dsModelInterfaceQueryV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelIPSECProfileQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22497,24 +22379,22 @@ type dsModelElemCustomerPremisesEquipment struct {
 // +-----------------------------------------------------------------
 type dsModelElementStateQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22602,24 +22482,22 @@ type dsModelElementSecurityZone struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastSourceSideRpQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -22640,24 +22518,22 @@ type dsModelLocalPrefixFilterScreen struct {
 // +-----------------------------------------------------------------
 type dsModelVffLicenseQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23072,24 +22948,22 @@ type dsModelListResponseMachineSoftware struct {
 // +-----------------------------------------------------------------
 type dsModelDeviceIdConfigQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23447,24 +23321,22 @@ type dsModelWANInterfaceEvent struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23717,24 +23589,22 @@ type dsModelListResponsePrefixDistributionSpokeList struct {
 // +-----------------------------------------------------------------
 type dsModelNATPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23770,24 +23640,22 @@ type dsModelBGPGlobalConfigV2N3 struct {
 // +-----------------------------------------------------------------
 type dsModelNetworkPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -23944,24 +23812,22 @@ type dsModelListQueryResponsePriorityPolicyRuleQueryFilterV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelElementStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24125,24 +23991,22 @@ type dsModelListQueryResponseIPSECProfileQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelPolicySetQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24150,24 +24014,22 @@ type dsModelPolicySetQuery struct {
 // +-----------------------------------------------------------------
 type dsModelPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24287,24 +24149,22 @@ type dsModelPolicySetPOSTScreen struct {
 // +-----------------------------------------------------------------
 type dsModelPriorityPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24422,24 +24282,22 @@ type dsModelListQueryResponsePassageQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelCellularModuleFirmwareStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24518,24 +24376,22 @@ type dsModelListResponsePriorityPolicyRuleV2N2 struct {
 // +-----------------------------------------------------------------
 type dsModelServiceEndpointQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24902,24 +24758,22 @@ type dsModelProbeConfigScreen struct {
 // +-----------------------------------------------------------------
 type dsModelMachineQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -24927,24 +24781,22 @@ type dsModelMachineQuery struct {
 // +-----------------------------------------------------------------
 type dsModelVffTokenQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25004,24 +24856,22 @@ type dsModelBestPathConfig struct {
 // +-----------------------------------------------------------------
 type dsModelGlobalPrefixQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25029,24 +24879,22 @@ type dsModelGlobalPrefixQuery struct {
 // +-----------------------------------------------------------------
 type dsModelDnsServiceProfileQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -25133,7 +24981,6 @@ type dsModelBaseQueryDTO struct {
 	Schema              types.Int64         `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *dsModelAggregate   `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            types.Int64         `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
-	Getdeleted          types.Bool          `tfsdk:"getDeleted"`            // propertyName=getDeleted type=BOOLEAN
 	GroupBy             types.List          `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  types.String        `tfsdk:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         types.Int64         `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -25438,24 +25285,22 @@ type dsModelEventCorrelationPolicyRuleQueryFilterV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelSecurityPolicySetQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -26464,24 +26309,22 @@ type dsModelSiteQueryFilterV4N6 struct {
 // +-----------------------------------------------------------------
 type dsModelThreatMetadataQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -26500,27 +26343,25 @@ type dsModelModule struct {
 // +-----------------------------------------------------------------
 type dsModelPrefixQueryV3 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Ge                        types.Int64       `tfsdk:"ge"`                        // propertyName=ge type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Ipv4Prefix                types.String      `tfsdk:"ipv4_prefix"`               // propertyName=ipv4_prefix type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Le                        types.Int64       `tfsdk:"le"`                        // propertyName=le type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	Ge                  types.Int64       `tfsdk:"ge"`                    // propertyName=ge type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	Ipv4Prefix          types.String      `tfsdk:"ipv4_prefix"`           // propertyName=ipv4_prefix type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Le                  types.Int64       `tfsdk:"le"`                    // propertyName=le type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -26528,24 +26369,22 @@ type dsModelPrefixQueryV3 struct {
 // +-----------------------------------------------------------------
 type dsModelSiteQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27106,24 +26945,22 @@ type dsModelElementPSU struct {
 // +-----------------------------------------------------------------
 type dsModelPathGroupQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27340,24 +27177,22 @@ type dsModelListQueryResponseSoftwareDownloadHistoryQuery struct {
 // +-----------------------------------------------------------------
 type dsModelAppAccelerationStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27434,24 +27269,22 @@ type dsModelListQueryResponseSiteQueryFilterV4N11 struct {
 // +-----------------------------------------------------------------
 type dsModelPriorityPolicyRuleQueryV2N2 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27502,24 +27335,22 @@ type dsModelElementCopyConfigurationsScreen struct {
 // +-----------------------------------------------------------------
 type dsModelPriorityPolicyRuleQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -27872,24 +27703,22 @@ type dsModelNATLocalPrefix struct {
 // +-----------------------------------------------------------------
 type dsModelSpokeClusterElementStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28363,24 +28192,22 @@ type dsModelPasswordReset struct {
 // +-----------------------------------------------------------------
 type dsModelWANInterfaceQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -28695,24 +28522,22 @@ type dsModelProfileV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelWANNetworkQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29289,24 +29114,22 @@ type dsModelListResponseRoutingAccessListV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelSecurityProfileGroupQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29405,24 +29228,22 @@ type dsModelSecurityPolicyV2N1RuleScreen struct {
 // +-----------------------------------------------------------------
 type dsModelIPFixConfigQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29447,24 +29268,22 @@ type dsModelListQueryResponseLANNetworkQueryFilterResponse struct {
 // +-----------------------------------------------------------------
 type dsModelSaseConnectionQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29588,28 +29407,26 @@ type dsModelIPFixConfigScreen struct {
 // +-----------------------------------------------------------------
 type dsModelPrefixQueryV3N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Ge                        types.Int64       `tfsdk:"ge"`                        // propertyName=ge type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Ipv4Prefix                types.String      `tfsdk:"ipv4_prefix"`               // propertyName=ipv4_prefix type=STRING
-	Ipv6Prefix                types.String      `tfsdk:"ipv6_prefix"`               // propertyName=ipv6_prefix type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Le                        types.Int64       `tfsdk:"le"`                        // propertyName=le type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	Ge                  types.Int64       `tfsdk:"ge"`                    // propertyName=ge type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	Ipv4Prefix          types.String      `tfsdk:"ipv4_prefix"`           // propertyName=ipv4_prefix type=STRING
+	Ipv6Prefix          types.String      `tfsdk:"ipv6_prefix"`           // propertyName=ipv6_prefix type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Le                  types.Int64       `tfsdk:"le"`                    // propertyName=le type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29648,24 +29465,22 @@ type dsModelListQueryResponseServiceLabelQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelElementQueryV2N1 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -29957,24 +29772,22 @@ type dsModelListResponseAnynetLinkV4 struct {
 // +-----------------------------------------------------------------
 type dsModelAnynetLinkQueryV2N2 struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30071,24 +29884,22 @@ type dsModelDeviceIdDictionary struct {
 // +-----------------------------------------------------------------
 type dsModelInterfaceStateQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30121,24 +29932,22 @@ type dsModelDHCPServerV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelLANNetworkQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30420,24 +30229,22 @@ type dsModelElementV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelElementQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30895,24 +30702,22 @@ type dsModelNetworkPolicyRuleQueryFilter struct {
 // +-----------------------------------------------------------------
 type dsModelElementSecurityZoneQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -30978,24 +30783,22 @@ type dsModelListQueryResponseDeviceIdActiveProfiles struct {
 // +-----------------------------------------------------------------
 type dsModelElementImageStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -31136,24 +30939,22 @@ type dsModelBulkResponseSDWANAppReleaseInfoResponseV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastRPConfigQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -31647,24 +31448,22 @@ type dsModelDeviceIdProfile struct {
 // +-----------------------------------------------------------------
 type dsModelMSTPInstanceQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -31935,24 +31734,22 @@ type dsModelSiteScreenV4N9 struct {
 // +-----------------------------------------------------------------
 type dsModelInterfaceQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -31968,24 +31765,22 @@ type dsModelListResponseHubCluster struct {
 // +-----------------------------------------------------------------
 type dsModelBGPPeerStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -31993,24 +31788,22 @@ type dsModelBGPPeerStatusQuery struct {
 // +-----------------------------------------------------------------
 type dsModelPathPrefixDistributionAssociationQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32031,24 +31824,22 @@ type dsModelBGPPeerPatch struct {
 // +-----------------------------------------------------------------
 type dsModelActiveUserIPQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32269,24 +32060,22 @@ type dsModelServiceEndpoint struct {
 // +-----------------------------------------------------------------
 type dsModelMulticastWanStatusQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32294,24 +32083,22 @@ type dsModelMulticastWanStatusQuery struct {
 // +-----------------------------------------------------------------
 type dsModelSecurityPolicyRuleQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32607,24 +32394,22 @@ type dsModelSyslogServerV2N1 struct {
 // +-----------------------------------------------------------------
 type dsModelOspfReachablePrefixesQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32632,24 +32417,22 @@ type dsModelOspfReachablePrefixesQuery struct {
 // +-----------------------------------------------------------------
 type dsModelDeviceIdDictionaryQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32699,24 +32482,22 @@ type dsModelBulkConfigPushScreen struct {
 // +-----------------------------------------------------------------
 type dsModelDirectoryUserQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -32834,24 +32615,22 @@ type dsModelSecurityPolicySetRuleOrderScreen struct {
 // +-----------------------------------------------------------------
 type dsModelProbeConfigQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -33343,24 +33122,22 @@ type dsModelListQueryResponseDemStatusQueryResponse struct {
 // +-----------------------------------------------------------------
 type dsModelAPNProfileQuery struct {
 	// added tfid for bookkeeping
-	Tfid                      types.String      `tfsdk:"tfid"`
-	Etag                      types.Int64       `tfsdk:"_etag"`                     // propertyName=_etag type=INTEGER
-	Schema                    types.Int64       `tfsdk:"_schema"`                   // propertyName=_schema type=INTEGER
-	Aggregate                 *dsModelAggregate `tfsdk:"aggregate"`                 // propertyName=aggregate type=REFERENCE
-	DestPage                  types.Int64       `tfsdk:"dest_page"`                 // propertyName=dest_page type=INTEGER
-	Getdeleted                types.Bool        `tfsdk:"getDeleted"`                // propertyName=getDeleted type=BOOLEAN
-	GroupBy                   types.List        `tfsdk:"group_by"`                  // propertyName=group_by type=ARRAY_PRIMITIVE
-	Id                        types.String      `tfsdk:"id"`                        // propertyName=id type=STRING
-	Isreadpreferencesecondary types.Bool        `tfsdk:"isReadPreferenceSecondary"` // propertyName=isReadPreferenceSecondary type=BOOLEAN
-	LastQueryTs               types.Int64       `tfsdk:"last_query_ts"`             // propertyName=last_query_ts type=INTEGER
-	Limit                     types.Int64       `tfsdk:"limit"`                     // propertyName=limit type=INTEGER
-	NextQuery                 types.Map         `tfsdk:"next_query"`                // propertyName=next_query type=OBJECT
-	QueryParams               types.Map         `tfsdk:"query_params"`              // propertyName=query_params type=OBJECT
-	RetrievedFields           types.List        `tfsdk:"retrieved_fields"`          // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
-	RetrievedFieldsMask       types.Bool        `tfsdk:"retrieved_fields_mask"`     // propertyName=retrieved_fields_mask type=BOOLEAN
-	SortCaseInsensitive       types.Bool        `tfsdk:"sort_case_insensitive"`     // propertyName=sort_case_insensitive type=BOOLEAN
-	SortParams                types.Map         `tfsdk:"sort_params"`               // propertyName=sort_params type=OBJECT
-	TotalCount                types.Int64       `tfsdk:"total_count"`               // propertyName=total_count type=INTEGER
+	Tfid                types.String      `tfsdk:"tfid"`
+	Etag                types.Int64       `tfsdk:"_etag"`                 // propertyName=_etag type=INTEGER
+	Schema              types.Int64       `tfsdk:"_schema"`               // propertyName=_schema type=INTEGER
+	Aggregate           *dsModelAggregate `tfsdk:"aggregate"`             // propertyName=aggregate type=REFERENCE
+	DestPage            types.Int64       `tfsdk:"dest_page"`             // propertyName=dest_page type=INTEGER
+	GroupBy             types.List        `tfsdk:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
+	Id                  types.String      `tfsdk:"id"`                    // propertyName=id type=STRING
+	LastQueryTs         types.Int64       `tfsdk:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               types.Int64       `tfsdk:"limit"`                 // propertyName=limit type=INTEGER
+	NextQuery           types.Map         `tfsdk:"next_query"`            // propertyName=next_query type=OBJECT
+	QueryParams         types.Map         `tfsdk:"query_params"`          // propertyName=query_params type=OBJECT
+	RetrievedFields     types.List        `tfsdk:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask types.Bool        `tfsdk:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortCaseInsensitive types.Bool        `tfsdk:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
+	SortParams          types.Map         `tfsdk:"sort_params"`           // propertyName=sort_params type=OBJECT
+	TotalCount          types.Int64       `tfsdk:"total_count"`           // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------

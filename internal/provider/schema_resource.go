@@ -2197,14 +2197,10 @@ type rsModelMulticastIgmpMembershipQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -3063,14 +3059,10 @@ type rsModelWANInterfaceLabelQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -4285,14 +4277,10 @@ type rsModelOspfConfigQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -4379,14 +4367,10 @@ type rsModelDemSiteConfigQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -4459,14 +4443,10 @@ type rsModelPathPrefixDistributionFiltersQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -4559,14 +4539,10 @@ type rsModelVRFContextProfileQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -5517,14 +5493,10 @@ type rsModelCellularModuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -5991,14 +5963,10 @@ type rsModelEventCorrelationPolicyRuleQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -7305,14 +7273,10 @@ type rsModelExtensionQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -7745,14 +7709,10 @@ type rsModelMachineSoftwareQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -8073,14 +8033,10 @@ type rsModelDnsServiceRoleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -8315,14 +8271,10 @@ type rsModelDirectoryUserGroupQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -8613,14 +8565,10 @@ type rsModelAppDefQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -8681,14 +8629,10 @@ type rsModelBGPPeerQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -8841,14 +8785,10 @@ type rsModelBulkConfigCreateQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -10447,14 +10387,10 @@ type rsModelSpokeClusterQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -11095,14 +11031,10 @@ type rsModelPassageQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -11275,14 +11207,10 @@ type rsModelIPFixContextQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -12197,14 +12125,10 @@ type rsModelDnsServiceQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -14691,14 +14615,10 @@ type rsModelServiceLabelQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -15665,14 +15585,10 @@ type rsModelSitePrefixAssociationQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -15807,14 +15723,10 @@ type rsModelSiteQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -19825,14 +19737,10 @@ type rsModelServiceLabelQueryFilter struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -20029,14 +19937,10 @@ type rsModelSoftwareDownloadHistoryQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -20369,14 +20273,10 @@ type rsModelWANInterfaceQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -22053,14 +21953,10 @@ type rsModelSecurityZoneQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -22949,14 +22845,10 @@ type rsModelSaseConnectionStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -23707,14 +23599,10 @@ type rsModelServiceBindingMapQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -23971,14 +23859,10 @@ type rsModelUserIDAgentQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -25437,14 +25321,10 @@ type rsModelProbeProfileQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -25701,14 +25581,10 @@ type rsModelPriorityPolicySetQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -26079,14 +25955,10 @@ type rsModelDeviceIdMappingsQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -26683,14 +26555,10 @@ type rsModelCellularModuleStatusQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -27429,14 +27297,10 @@ type rsModelRoutingRouteMapQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -28091,14 +27955,10 @@ type rsModelEventCorrelationPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -29009,14 +28869,10 @@ type rsModelEventCorrelationPolicySetQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -29471,14 +29327,10 @@ type rsModelAnynetLinkQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -29515,14 +29367,10 @@ type rsModelBaseQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -29655,14 +29503,10 @@ type rsModelIPFixProfileQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -30311,14 +30155,10 @@ type rsModelLocalPrefixQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -30501,14 +30341,10 @@ type rsModelVRFContextQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -31087,14 +30923,10 @@ type rsModelRoutingAccessListQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -31511,14 +31343,10 @@ type rsModelMulticastRouteTableQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -31749,14 +31577,10 @@ type rsModelDeviceIdStartNodeQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -31999,14 +31823,10 @@ type rsModelRoutingCommunityListQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -32043,14 +31863,10 @@ type rsModelVPNLinkQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -32367,14 +32183,10 @@ type rsModelVffLicenseStateQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -32473,14 +32285,10 @@ type rsModelSecurityPolicyV2SetQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -32887,14 +32695,10 @@ type rsModelOspfDiscoveredNeighborQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -33095,14 +32899,10 @@ type rsModelPerfMgmtPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -33139,14 +32939,10 @@ type rsModelMachineSoftwareStateQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -33575,14 +33371,10 @@ type rsModelMulticastDynamicRpQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -33795,14 +33587,10 @@ type rsModelPolicySetStackQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -33839,14 +33627,10 @@ type rsModelURLCategoryQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -33883,14 +33667,10 @@ type rsModelHubClusterQueryV4 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -34039,14 +33819,10 @@ type rsModelElementShellQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -34247,14 +34023,10 @@ type rsModelBulkConfigPushQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -34751,14 +34523,10 @@ type rsModelInterfaceQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -34795,14 +34563,10 @@ type rsModelIPSECProfileQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -35917,14 +35681,10 @@ type rsModelElementStateQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -36103,14 +35863,10 @@ type rsModelMulticastSourceSideRpQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -36167,14 +35923,10 @@ type rsModelVffLicenseQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -36875,14 +36627,10 @@ type rsModelDeviceIdConfigQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -37469,14 +37217,10 @@ type rsModelMulticastStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -37889,14 +37633,10 @@ type rsModelNATPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -37985,14 +37725,10 @@ type rsModelNetworkPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -38291,14 +38027,10 @@ type rsModelElementStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -38587,14 +38319,10 @@ type rsModelPolicySetQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -38631,14 +38359,10 @@ type rsModelPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -38857,14 +38581,10 @@ type rsModelPriorityPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -39085,14 +38805,10 @@ type rsModelCellularModuleFirmwareStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -39253,14 +38969,10 @@ type rsModelServiceEndpointQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -39925,14 +39637,10 @@ type rsModelMachineQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -39969,14 +39677,10 @@ type rsModelVffTokenQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -40099,14 +39803,10 @@ type rsModelGlobalPrefixQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -40143,14 +39843,10 @@ type rsModelDnsServiceProfileQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -40305,8 +40001,6 @@ type rsModelBaseQueryDTO struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -40811,14 +40505,10 @@ type rsModelSecurityPolicySetQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -42661,14 +42351,10 @@ type rsModelThreatMetadataQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -42723,16 +42409,12 @@ type rsModelPrefixQueryV3 struct {
 	DestPage types.Int64 `tfsdk:"dest_page"`
 	// propertyName=ge type=INTEGER
 	Ge types.Int64 `tfsdk:"ge"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=ipv4_prefix type=STRING
 	Ipv4Prefix types.String `tfsdk:"ipv4_prefix"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=le type=INTEGER
@@ -42771,14 +42453,10 @@ type rsModelSiteQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -43729,14 +43407,10 @@ type rsModelPathGroupQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -44137,14 +43811,10 @@ type rsModelAppAccelerationStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -44295,14 +43965,10 @@ type rsModelPriorityPolicyRuleQueryV2N2 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -44407,14 +44073,10 @@ type rsModelPriorityPolicyRuleQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -45053,14 +44715,10 @@ type rsModelSpokeClusterElementStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -45899,14 +45557,10 @@ type rsModelWANInterfaceQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -46449,14 +46103,10 @@ type rsModelWANNetworkQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -47427,14 +47077,10 @@ type rsModelSecurityProfileGroupQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -47623,14 +47269,10 @@ type rsModelIPFixConfigQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -47695,14 +47337,10 @@ type rsModelSaseConnectionQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -47919,8 +47557,6 @@ type rsModelPrefixQueryV3N1 struct {
 	DestPage types.Int64 `tfsdk:"dest_page"`
 	// propertyName=ge type=INTEGER
 	Ge types.Int64 `tfsdk:"ge"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -47929,8 +47565,6 @@ type rsModelPrefixQueryV3N1 struct {
 	Ipv4Prefix types.String `tfsdk:"ipv4_prefix"`
 	// propertyName=ipv6_prefix type=STRING
 	Ipv6Prefix types.String `tfsdk:"ipv6_prefix"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=le type=INTEGER
@@ -48019,14 +47653,10 @@ type rsModelElementQueryV2N1 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -48549,14 +48179,10 @@ type rsModelAnynetLinkQueryV2N2 struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -48741,14 +48367,10 @@ type rsModelInterfaceStateQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -48829,14 +48451,10 @@ type rsModelLANNetworkQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -49343,14 +48961,10 @@ type rsModelElementQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -50143,14 +49757,10 @@ type rsModelElementSecurityZoneQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -50279,14 +49889,10 @@ type rsModelElementImageStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -50535,14 +50141,10 @@ type rsModelMulticastRPConfigQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -51383,14 +50985,10 @@ type rsModelMSTPInstanceQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -51889,14 +51487,10 @@ type rsModelInterfaceQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -51943,14 +51537,10 @@ type rsModelBGPPeerStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -51987,14 +51577,10 @@ type rsModelPathPrefixDistributionAssociationQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -52051,14 +51637,10 @@ type rsModelActiveUserIPQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -52427,14 +52009,10 @@ type rsModelMulticastWanStatusQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -52471,14 +52049,10 @@ type rsModelSecurityPolicyRuleQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -53003,14 +52577,10 @@ type rsModelOspfReachablePrefixesQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -53047,14 +52617,10 @@ type rsModelDeviceIdDictionaryQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -53157,14 +52723,10 @@ type rsModelDirectoryUserQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -53373,14 +52935,10 @@ type rsModelProbeConfigQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
@@ -54283,14 +53841,10 @@ type rsModelAPNProfileQuery struct {
 	Aggregate *rsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
-	// propertyName=getDeleted type=BOOLEAN
-	Getdeleted types.Bool `tfsdk:"getDeleted"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=isReadPreferenceSecondary type=BOOLEAN
-	Isreadpreferencesecondary types.Bool `tfsdk:"isReadPreferenceSecondary"`
 	// propertyName=last_query_ts type=INTEGER
 	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
 	// propertyName=limit type=INTEGER
