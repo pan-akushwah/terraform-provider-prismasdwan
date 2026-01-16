@@ -20,7 +20,7 @@
 #    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
 #    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 #    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.appsvc.paloaltonetworks.com/am/oauth2/access_token"
+#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
 #  }
 #
 #

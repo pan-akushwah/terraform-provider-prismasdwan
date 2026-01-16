@@ -57,7 +57,7 @@ terraform {
   required_providers {
     prismasdwan = {
       source  = "paloaltonetworks/prismasdwan"
-      version = "6.6.1-beta.1"
+      version = "6.6.1-beta.2"
     }
   }
 }
