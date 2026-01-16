@@ -30,8 +30,9 @@ make build
 5. Specify the `dev_overrides` configuration per the next section below. This tells Terraform where to find the provider you just built. The directory to specify is the full path to the cloned provider repo.
 
 
-Developing the Provider
------------------------
+## Developing the Provider
+
+---
 
 With Terraform v1 and later, [development overrides for provider developers](https://www.terraform.io/docs/cli/config/config-file.html#development-overrides-for-provider-developers) can be leveraged in order to use the provider built from source.
 
@@ -54,8 +55,17 @@ terraform {
     required_providers {
         prismasdwan = {
             source = "paloaltonetworks-local/prismasdwan"
-            version = "v6.5.2-ga1"
+            version = "v6.5.2-ga.1"
         }
     }
 }
 ```
+
+## Provider Documentation
+
+---
+
+Terraform Registry: https://registry.terraform.io/providers/PaloAltoNetworks/prismasdwan/latest/docs
+
+Examples: https://github.com/PaloAltoNetworks/terraform-provider-prismasdwan/tree/main/examples
+
