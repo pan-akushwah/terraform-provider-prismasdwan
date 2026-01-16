@@ -17,7 +17,7 @@
 {
   "properties" : {
     "groups" : {
-      "description" : "Groups: Embedded(concreteClass = classOf[Object], value = .) Valid ListObject(allowDuplicate = true, allowEmpty = false, allowNull = false, listMaxSize = 1024, message = MULTICAST_INVALID_RP_CONFIG_GROUP_LIST, required = false) ",
+      "description" : "Groups: Valid ListObject(allowDuplicate = true, allowEmpty = false, allowNull = false, listMaxSize = 1024, message = MULTICAST_INVALID_RP_CONFIG_GROUP_LIST, required = false) ",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -59,7 +59,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

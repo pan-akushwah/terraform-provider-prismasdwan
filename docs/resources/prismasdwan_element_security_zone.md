@@ -17,7 +17,7 @@
 {
   "properties" : {
     "waninterface_ids" : {
-      "description" : "Waninterface Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANINTERFACE_IDS: Specified site wan interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Waninterface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANINTERFACE_IDS: Specified site wan interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
       "type" : "array",
       "items" : {
         "description" : "Waninterface Ids",
@@ -25,7 +25,7 @@
       }
     },
     "wanoverlay_ids" : {
-      "description" : "Wanoverlay Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANOVERLAY_IDS: Specified wanoverlay ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Wanoverlay Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANOVERLAY_IDS: Specified wanoverlay ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
       "type" : "array",
       "items" : {
         "description" : "Wanoverlay Ids",
@@ -33,7 +33,7 @@
       }
     },
     "interface_ids" : {
-      "description" : "Interface Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_INTERFACE_IDS: Specified interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Interface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_INTERFACE_IDS: Specified interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
       "type" : "array",
       "items" : {
         "description" : "Interface Ids",
@@ -41,7 +41,7 @@
       }
     },
     "lannetwork_ids" : {
-      "description" : "Lannetwork Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_LANNETWORK_IDS: Specified lan network ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Lannetwork Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_LANNETWORK_IDS: Specified lan network ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
       "type" : "array",
       "items" : {
         "description" : "Lannetwork Ids",
@@ -53,7 +53,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

@@ -22,14 +22,14 @@ import (
 // | Schema Map Summary (size=goLangStructMap=8)
 // | Computed Resource Name=serviceendpoints
 // +-----------------------------------------------------------------
-// | SaseServiceEndpointProperties HasID=false
 // | HttpProbe HasID=false
 // | IcmpPingProbe HasID=false
-// | SEPLivelinessProbeV2N2 HasID=false
+// | SEPLivelinessProbeV3N1 HasID=false
+// | SaseServiceEndpointProperties HasID=false
 // | Location HasID=false
 // | Address HasID=false
 // | ServiceLinkPeers HasID=false
-// | ServiceEndpointV3 HasID=true
+// | ServiceEndpointV3N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -70,7 +70,7 @@ func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.Schem
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=ServiceEndpointV3
+			// rest all properties to be read from GET API Schema schema=ServiceEndpointV3N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -289,9 +289,17 @@ func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.Schem
 						},
 					},
 					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+					// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
+					"use_tunnel_for_url_dns_resolution": dsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 			// property: name=location, type=REFERENCE macro=rss_schema
 			"location": dsschema.SingleNestedAttribute{
 				Required:  false,
@@ -427,7 +435,7 @@ func (d *serviceEndpointDataSource) Configure(_ context.Context, req datasource.
 
 // Read performs Read for the struct.
 func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelServiceEndpointV3
+	var state dsModelServiceEndpointV3N1
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -454,7 +462,7 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}"
+	read_request.Path = "/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
@@ -479,16 +487,16 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.ServiceEndpointV3
+	var ans sdwan_schema.ServiceEndpointV3N1
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3N1", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=ServiceEndpointV3
+	// lets copy all items into state schema=ServiceEndpointV3N1
 	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -531,8 +539,8 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 	if ans.LivelinessProbe == nil {
 		state.LivelinessProbe = nil
 	} else {
-		state.LivelinessProbe = &dsModelSEPLivelinessProbeV2N2{}
-		// copy_to_state: state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe properties=2
+		state.LivelinessProbe = &dsModelSEPLivelinessProbeV3N1{}
+		// copy_to_state: state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
@@ -580,6 +588,8 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 				resp.Diagnostics.Append(errIpAddresses.Errors()...)
 			}
 		}
+		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_to_state
+		state.LivelinessProbe.UseTunnelForUrlDnsResolution = types.BoolPointerValue(ans.LivelinessProbe.UseTunnelForUrlDnsResolution)
 	}
 	// property: name=location, type=REFERENCE macro=copy_to_state
 	if ans.Location == nil {

@@ -17,11 +17,11 @@
 {
   "properties" : {
     "is_source_site_receiver" : {
-      "description" : "Is Source Site Receiver: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Is Source Site Receiver",
       "type" : "boolean"
     },
     "peer_sites" : {
-      "description" : "Peer Sites: Embedded(concreteClass = classOf[Object], value = .) Valid ListObject(allowDuplicate = true, allowEmpty = false, allowNull = false, listMaxSize = 0, message = MULTICAST_INVALID_PEER_SITE, required = false) ",
+      "description" : "Peer Sites: Valid ListObject(allowDuplicate = true, allowEmpty = false, allowNull = false, listMaxSize = 0, message = MULTICAST_INVALID_PEER_SITE, required = false) ",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -56,7 +56,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

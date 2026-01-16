@@ -48,7 +48,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

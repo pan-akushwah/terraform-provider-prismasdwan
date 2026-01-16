@@ -23,16 +23,16 @@
     "defaultrule_policyset" : {
       "properties" : {
         "policy_rules" : {
-          "description" : "Policy Rules: Transient ",
+          "description" : "Policy Rules",
           "type" : "array",
           "items" : {
             "properties" : {
               "destination_prefixes_id" : {
-                "description" : "Destination Prefixes Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = INVALID_DESTINATION_PREFIXES_ID: Specified destination prefix is invalid.) ",
+                "description" : "Destination Prefixes Id: Digits(fraction = 0, integer = 30, error = INVALID_DESTINATION_PREFIXES_ID: Specified destination prefix is invalid.) ",
                 "type" : "string"
               },
               "source_prefixes_id" : {
-                "description" : "Source Prefixes Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = INVALID_SOURCE_PREFIXES_ID: Specified source prefix is invalid.) ",
+                "description" : "Source Prefixes Id: Digits(fraction = 0, integer = 30, error = INVALID_SOURCE_PREFIXES_ID: Specified source prefix is invalid.) ",
                 "type" : "string"
               },
               "paths_allowed" : {
@@ -97,7 +97,7 @@
               "service_context" : {
                 "properties" : {
                   "backup_service_label_type" : {
-                    "description" : "Backup Service Label Type: Transient ",
+                    "description" : "Backup Service Label Type",
                     "type" : "string",
                     "enum" : [ "CG_TRANSIT", "NON_CG_TRANSIT", "SASE" ]
                   },
@@ -106,7 +106,7 @@
                     "type" : "string"
                   },
                   "active_service_label_type" : {
-                    "description" : "Active Service Label Type: Transient ",
+                    "description" : "Active Service Label Type",
                     "type" : "string",
                     "enum" : [ "CG_TRANSIT", "NON_CG_TRANSIT", "SASE" ]
                   },
@@ -131,11 +131,11 @@
                 "type" : "integer"
               },
               "network_context_id" : {
-                "description" : "Network Context Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = INVALID_NETWORK_CONTEXT_ID: Specified network context is invalid.) ",
+                "description" : "Network Context Id: Digits(fraction = 0, integer = 30, error = INVALID_NETWORK_CONTEXT_ID: Specified network context is invalid.) ",
                 "type" : "string"
               },
               "app_def_ids" : {
-                "description" : "App Def Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_APP_DEF_IDS: Duplicate app ids are specified., noTrim = false, regex = , required = false) Size(max = 256, error = APP_DEF_ID_LIST_SIZE_EXCEEDED: Maximum 256 applications can be specified in a rule., min = 0) ",
+                "description" : "App Def Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_APP_DEF_IDS: Duplicate app ids are specified., noTrim = false, regex = , required = false) Size(max = 256, error = APP_DEF_ID_LIST_SIZE_EXCEEDED: Maximum 256 applications can be specified in a rule., min = 0) ",
                 "type" : "array",
                 "items" : {
                   "description" : "App Def Ids",
@@ -166,7 +166,7 @@
                 "type" : "string"
               },
               "id" : {
-                "description" : "Id: Transient Id ",
+                "description" : "Id",
                 "type" : "string",
                 "additionalProperties" : {
                   "properties" : {
@@ -213,7 +213,7 @@
           "type" : "boolean"
         },
         "send_to_element" : {
-          "description" : "Send To Element: Transient ",
+          "description" : "Send To Element",
           "type" : "boolean"
         },
         "clone_from" : {
@@ -244,7 +244,7 @@
           "type" : "string"
         },
         "region" : {
-          "description" : "Region: Transient ",
+          "description" : "Region",
           "type" : "string"
         },
         "disabled_reason" : {
@@ -309,21 +309,21 @@
       "type" : "string"
     },
     "policyset_ids_update" : {
-      "description" : "Policyset Ids Update: Transient ",
+      "description" : "Policyset Ids Update",
       "type" : "boolean"
     },
     "policysets" : {
-      "description" : "Policysets: Transient ",
+      "description" : "Policysets",
       "type" : "array",
       "items" : {
         "properties" : {
           "policy_rules" : {
-            "description" : "Policy Rules: Transient ",
+            "description" : "Policy Rules",
             "type" : "array",
             "items" : {
               "properties" : {
                 "policyset_id" : {
-                  "description" : "Policyset Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
+                  "description" : "Policyset Id: Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
                   "type" : "string"
                 },
                 "tags" : {
@@ -350,7 +350,7 @@
                   "type" : "string"
                 },
                 "region" : {
-                  "description" : "Region: Transient ",
+                  "description" : "Region",
                   "type" : "string"
                 },
                 "disabled_reason" : {
@@ -408,7 +408,7 @@
             }
           },
           "send_to_element" : {
-            "description" : "Send To Element: Transient ",
+            "description" : "Send To Element",
             "type" : "boolean"
           },
           "clone_from" : {
@@ -439,7 +439,7 @@
             "type" : "string"
           },
           "region" : {
-            "description" : "Region: Transient ",
+            "description" : "Region",
             "type" : "string"
           },
           "disabled_reason" : {
@@ -497,7 +497,7 @@
       }
     },
     "policyset_ids" : {
-      "description" : "Policyset Ids: Size(max = 4, error = POLICYSETSTACK_CONFIG_INVALID_POLICYSETLIST_SIZE: Invalid number of policysets. Should be between 1-4., min = 0) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = POLICYSETSTACK_CONFIG_DUPLICATE_POLICYSETID: PolicySet Stack configuration is not valid. Duplicate policy set id present in the policy set list., noTrim = false, regex = [0-9]{1,30}, required = false) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Policyset Ids: Size(max = 4, error = POLICYSETSTACK_CONFIG_INVALID_POLICYSETLIST_SIZE: Invalid number of policysets. Should be between 1-4., min = 0) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = POLICYSETSTACK_CONFIG_DUPLICATE_POLICYSETID: PolicySet Stack configuration is not valid. Duplicate policy set id present in the policy set list., noTrim = false, regex = [0-9]{1,30}, required = false) ",
       "type" : "array",
       "items" : {
         "description" : "Policyset Ids",
@@ -528,7 +528,7 @@
       "type" : "string"
     },
     "region" : {
-      "description" : "Region: Transient ",
+      "description" : "Region",
       "type" : "string"
     },
     "disabled_reason" : {

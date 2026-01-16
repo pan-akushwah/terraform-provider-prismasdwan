@@ -32,7 +32,7 @@
       "required" : [ "sgi_vendor_id" ]
     },
     "app_acceleration_enabled" : {
-      "description" : "App Acceleration Enabled: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "App Acceleration Enabled",
       "type" : "boolean"
     },
     "prefer_lan_default_over_wan_default_route" : {
@@ -44,7 +44,7 @@
       "type" : "boolean"
     },
     "perfmgmt_policysetstack_id" : {
-      "description" : "Perfmgmt Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PERFMGMT_POLICYSETSTACK_ID: Invalid performance management policy set stack id) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Perfmgmt Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PERFMGMT_POLICYSETSTACK_ID: Invalid performance management policy set stack id) ",
       "type" : "string"
     },
     "vrf_context_profile_id" : {
@@ -59,11 +59,11 @@
       }
     },
     "multicast_peer_group_id" : {
-      "description" : "Multicast Peer Group Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Multicast Peer Group Id",
       "type" : "string"
     },
     "security_policysetstack_id" : {
-      "description" : "Security Policysetstack Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Security Policysetstack Id",
       "type" : "string"
     },
     "extended_tags" : {
@@ -87,7 +87,7 @@
       }
     },
     "nat_policysetstack_id" : {
-      "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) ",
       "type" : "string"
     },
     "priority_policysetstack_id" : {
@@ -99,11 +99,11 @@
       "type" : "string"
     },
     "service_binding" : {
-      "description" : "Service Binding: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Service Binding",
       "type" : "string"
     },
     "security_policyset_id" : {
-      "description" : "Security Policyset Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Security Policyset Id",
       "type" : "string"
     },
     "element_cluster_role" : {
@@ -111,7 +111,7 @@
       "type" : "string"
     },
     "policy_set_id" : {
-      "description" : "Policy Set Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Policy Set Id",
       "type" : "string"
     },
     "location" : {
@@ -188,7 +188,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

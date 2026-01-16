@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_syslog_server` |
-| Get Api  | `/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}` (`SyslogServerScreenV2N2`) |
-| Post Api  | `/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers` (`SyslogServerScreenV2N2`) |
-| Put Api  | `/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}` (`SyslogServerScreenV2N2`) |
-| Delete Api  | `/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}` |
+| Get Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}` (`SyslogServerScreenV2N3`) |
+| Post Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers` (`SyslogServerScreenV2N3`) |
+| Put Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}` (`SyslogServerScreenV2N3`) |
+| Delete Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,18 @@
 ```json
 {
   "properties" : {
+    "enable_url_logging" : {
+      "description" : "Enable Url Logging",
+      "type" : "boolean"
+    },
+    "enable_dns_logging" : {
+      "description" : "Enable Dns Logging",
+      "type" : "boolean"
+    },
+    "enable_threat_logging" : {
+      "description" : "Enable Threat Logging",
+      "type" : "boolean"
+    },
     "enable_flow_logging" : {
       "description" : "Enable Flow Logging",
       "type" : "boolean"
@@ -25,7 +37,7 @@
       "type" : "string"
     },
     "syslog_profile_id" : {
-      "description" : "Syslog Profile Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Syslog Profile Id",
       "type" : "string"
     },
     "server_fqdn" : {
@@ -81,7 +93,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

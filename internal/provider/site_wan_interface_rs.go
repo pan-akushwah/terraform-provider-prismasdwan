@@ -30,7 +30,7 @@ import (
 // | LQMConfig HasID=false
 // | WANL3Reachability HasID=false
 // | VPNLinkConfiguration HasID=false
-// | WANInterfaceScreenV2N9 HasID=true
+// | WANInterfaceScreenV2N10 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -74,7 +74,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=WANInterfaceScreenV2N9
+			// rest all properties to be read from GET API Schema schema=WANInterfaceScreenV2N10
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -98,6 +98,14 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
+			"app_acceleration_enabled": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bfd_mode, type=STRING macro=rss_schema
 			"bfd_mode": rsschema.StringAttribute{
 				Required:  false,
@@ -357,7 +365,7 @@ func (r *siteWanInterfaceResource) GetHttpStatusCode(request *sdwan_client.Sdwan
 	}
 }
 
-func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANInterfaceScreenV2N9, state *rsModelWANInterfaceScreenV2N9, resp *resource.CreateResponse) bool {
+func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANInterfaceScreenV2N10, state *rsModelWANInterfaceScreenV2N10, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_site_wan_interface")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -369,7 +377,7 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_site_wan_interface"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces"
+	create_request.Path = "/sdwan/v2.10/api/sites/{site_id}/waninterfaces"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -379,15 +387,17 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.WANInterfaceScreenV2N9{}
+	var body = &sdwan_schema.WANInterfaceScreenV2N10{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=23
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=24
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
 	body.Schema = Int64ValueOrNil(plan.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_from_plan
+	body.AppAccelerationEnabled = BoolValueOrNil(plan.AppAccelerationEnabled)
 	// property: name=bfd_mode, type=STRING macro=copy_from_plan
 	body.BfdMode = StringValueOrNil(plan.BfdMode)
 	// property: name=bw_config_mode, type=STRING macro=copy_from_plan
@@ -460,7 +470,7 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct WANInterfaceScreenV2N9 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct WANInterfaceScreenV2N10 to JSON:", err.Error())
 		return false
 	}
 
@@ -503,12 +513,12 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceScreenV2N9
+	var ans sdwan_schema.WANInterfaceScreenV2N10
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N9 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N10 in create", json_err.Error())
 		return false
 	}
 
@@ -533,13 +543,15 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_site_wan_interface with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=WANInterfaceScreenV2N9
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
+	// Store the answer to state. schema=WANInterfaceScreenV2N10
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=24
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bfd_mode, type=STRING macro=copy_to_state
 	state.BfdMode = types.StringPointerValue(ans.BfdMode)
 	// property: name=bw_config_mode, type=STRING macro=copy_to_state
@@ -623,7 +635,7 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	return true
 }
 
-func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANInterfaceScreenV2N9, savestate *rsModelWANInterfaceScreenV2N9, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANInterfaceScreenV2N10, savestate *rsModelWANInterfaceScreenV2N10, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -645,7 +657,7 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_site_wan_interface"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
+	read_request.Path = "/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -685,7 +697,7 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=WANInterfaceScreenV2N9
+	// Store the answer to state. schema=WANInterfaceScreenV2N10
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -694,21 +706,23 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceScreenV2N9
+	var ans sdwan_schema.WANInterfaceScreenV2N10
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N9 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N10 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=24
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bfd_mode, type=STRING macro=copy_to_state
 	state.BfdMode = types.StringPointerValue(ans.BfdMode)
 	// property: name=bw_config_mode, type=STRING macro=copy_to_state
@@ -792,7 +806,7 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 	return true
 }
 
-func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANInterfaceScreenV2N9, state *rsModelWANInterfaceScreenV2N9, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANInterfaceScreenV2N10, state *rsModelWANInterfaceScreenV2N10, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -820,7 +834,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_site_wan_interface"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
+	put_request.Path = "/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -837,11 +851,11 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.WANInterfaceScreenV2N9{}
+	var body = &sdwan_schema.WANInterfaceScreenV2N10{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=23
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=24
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -854,6 +868,12 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		body.Schema = ValueInt64PointerFromPlanOrState(plan.Schema, state.Schema)
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
+	}
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.AppAccelerationEnabled = ValueBoolPointerFromPlanOrState(plan.AppAccelerationEnabled, state.AppAccelerationEnabled)
+	} else {
+		body.AppAccelerationEnabled = BoolValueOrNil(plan.AppAccelerationEnabled)
 	}
 	// property: name=bfd_mode, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -1021,7 +1041,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct WANInterfaceScreenV2N9 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct WANInterfaceScreenV2N10 to JSON:", err.Error())
 		return false
 	}
 
@@ -1063,22 +1083,24 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceScreenV2N9
+	var ans sdwan_schema.WANInterfaceScreenV2N10
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N9 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N10 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=WANInterfaceScreenV2N9
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
+	// Store the answer to state. schema=WANInterfaceScreenV2N10
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=24
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bfd_mode, type=STRING macro=copy_to_state
 	state.BfdMode = types.StringPointerValue(ans.BfdMode)
 	// property: name=bw_config_mode, type=STRING macro=copy_to_state
@@ -1162,7 +1184,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 	return true
 }
 
-func (r *siteWanInterfaceResource) doDelete(ctx context.Context, state *rsModelWANInterfaceScreenV2N9, resp *resource.DeleteResponse) bool {
+func (r *siteWanInterfaceResource) doDelete(ctx context.Context, state *rsModelWANInterfaceScreenV2N10, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1183,7 +1205,7 @@ func (r *siteWanInterfaceResource) doDelete(ctx context.Context, state *rsModelW
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_site_wan_interface"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
+	delete_request.Path = "/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1215,14 +1237,14 @@ func (r *siteWanInterfaceResource) doDelete(ctx context.Context, state *rsModelW
 // Path Parameters are encoded into TfID itself
 func (r *siteWanInterfaceResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_site_wan_interface")
-	var plan rsModelWANInterfaceScreenV2N9
+	var plan rsModelWANInterfaceScreenV2N10
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelWANInterfaceScreenV2N9
+	var state rsModelWANInterfaceScreenV2N10
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1234,7 +1256,7 @@ func (r *siteWanInterfaceResource) Create(ctx context.Context, req resource.Crea
 func (r *siteWanInterfaceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_site_wan_interface")
-	var savestate, state rsModelWANInterfaceScreenV2N9
+	var savestate, state rsModelWANInterfaceScreenV2N10
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1253,7 +1275,7 @@ func (r *siteWanInterfaceResource) Read(ctx context.Context, req resource.ReadRe
 func (r *siteWanInterfaceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_site_wan_interface")
-	var plan, state rsModelWANInterfaceScreenV2N9
+	var plan, state rsModelWANInterfaceScreenV2N10
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1277,7 +1299,7 @@ func (r *siteWanInterfaceResource) Update(ctx context.Context, req resource.Upda
 func (r *siteWanInterfaceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_site_wan_interface")
-	var state rsModelWANInterfaceScreenV2N9
+	var state rsModelWANInterfaceScreenV2N10
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

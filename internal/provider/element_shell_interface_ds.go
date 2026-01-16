@@ -19,9 +19,10 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=37)
+// | Schema Map Summary (size=goLangStructMap=38)
 // | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
+// | LoopbackConfig HasID=false
 // | APNConfig HasID=false
 // | CellularInterfaceConfig HasID=false
 // | PortChannelConfig HasID=false
@@ -58,7 +59,7 @@ import (
 // | Ipv4Static HasID=false
 // | Ipv4Config HasID=false
 // | LanNetworkVlanMapping HasID=false
-// | InterfaceScreenV4N20 HasID=true
+// | InterfaceScreenV4N21 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -99,7 +100,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=InterfaceScreenV4N20
+			// rest all properties to be read from GET API Schema schema=InterfaceScreenV4N21
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -452,7 +453,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=directed_broadcast, type=BOOLEAN macro=rss_schema
 			"directed_broadcast": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -483,6 +484,14 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 				},
 			},
 			// key name holder for attribute: name=speed, type=INTEGER macro=rss_schema
+			// property: name=fec_mode, type=STRING macro=rss_schema
+			"fec_mode": dsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=fec_mode, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": dsschema.StringAttribute{
 				Required:  false,
@@ -796,11 +805,29 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=lldp_enabled, type=BOOLEAN macro=rss_schema
 			"lldp_enabled": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=lldp_enabled, type=BOOLEAN macro=rss_schema
+			// property: name=loopback_config, type=REFERENCE macro=rss_schema
+			"loopback_config": dsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				Attributes: map[string]dsschema.Attribute{
+					// property: name=binding_interface_id, type=STRING macro=rss_schema
+					"binding_interface_id": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=binding_interface_id, type=STRING macro=rss_schema
+				},
+			},
+			// key name holder for attribute: name=binding_interface_id, type=STRING macro=rss_schema
 			// property: name=mac_address, type=STRING macro=rss_schema
 			"mac_address": dsschema.StringAttribute{
 				Required:  false,
@@ -812,7 +839,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=mtu, type=INTEGER macro=rss_schema
 			"mtu": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -954,7 +981,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=nat_port, type=INTEGER macro=rss_schema
 			"nat_port": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -962,7 +989,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=nat_port_v6, type=INTEGER macro=rss_schema
 			"nat_port_v6": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -994,7 +1021,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=peer_bypasspair_wan_port_type, type=STRING macro=rss_schema
 			"peer_bypasspair_wan_port_type": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1002,7 +1029,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=poe_enabled, type=BOOLEAN macro=rss_schema
 			"poe_enabled": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1036,7 +1063,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=power_usage_threshold, type=INTEGER macro=rss_schema
 			"power_usage_threshold": dsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1563,7 +1590,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=sgi_apply_static_tag, type=BOOLEAN macro=rss_schema
 			"sgi_apply_static_tag": dsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1776,7 +1803,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1818,7 +1845,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": dsschema.StringAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1837,7 +1864,7 @@ func (d *elementShellInterfaceDataSource) Configure(_ context.Context, req datas
 
 // Read performs Read for the struct.
 func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelInterfaceScreenV4N20
+	var state dsModelInterfaceScreenV4N21
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1864,7 +1891,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
+	read_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
@@ -1891,17 +1918,17 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.InterfaceScreenV4N20
+	var ans sdwan_schema.InterfaceScreenV4N21
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N20", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N21", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=InterfaceScreenV4N20
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=50
+	// lets copy all items into state schema=InterfaceScreenV4N21
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=52
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -2047,6 +2074,8 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
+	// property: name=fec_mode, type=STRING macro=copy_to_state
+	state.FecMode = types.StringPointerValue(ans.FecMode)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=interface_profile_id, type=STRING macro=copy_to_state
@@ -2205,6 +2234,16 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 	}
 	// property: name=lldp_enabled, type=BOOLEAN macro=copy_to_state
 	state.LldpEnabled = types.BoolPointerValue(ans.LldpEnabled)
+	// property: name=loopback_config, type=REFERENCE macro=copy_to_state
+	if ans.LoopbackConfig == nil {
+		state.LoopbackConfig = nil
+	} else {
+		state.LoopbackConfig = &dsModelLoopbackConfig{}
+		// copy_to_state: state=state.LoopbackConfig prefix=dsModel ans=ans.LoopbackConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LoopbackConfig prefix=dsModel ans=ans.LoopbackConfig")
+		// property: name=binding_interface_id, type=STRING macro=copy_to_state
+		state.LoopbackConfig.BindingInterfaceId = types.StringPointerValue(ans.LoopbackConfig.BindingInterfaceId)
+	}
 	// property: name=mac_address, type=STRING macro=copy_to_state
 	state.MacAddress = types.StringPointerValue(ans.MacAddress)
 	// property: name=mtu, type=INTEGER macro=copy_to_state

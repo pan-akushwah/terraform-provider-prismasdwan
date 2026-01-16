@@ -177,33 +177,26 @@ func (d *elementDataSource) Schema(_ context.Context, _ datasource.SchemaRequest
 						Optional:  true,
 						Sensitive: false,
 						Attributes: map[string]dsschema.Attribute{
-							// property: name=destination_ip, type=STRING macro=rss_schema
-							"destination_ip": dsschema.StringAttribute{
+							// property: name=disabled, type=BOOLEAN macro=rss_schema
+							"disabled": dsschema.BoolAttribute{
 								Required:  false,
 								Computed:  false,
 								Optional:  true,
 								Sensitive: false,
 							},
-							// key name holder for attribute: name=destination_ip, type=STRING macro=rss_schema
-							// property: name=source_ip, type=STRING macro=rss_schema
-							"source_ip": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+							// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
+							"source_interfaces": dsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
 							},
-							// key name holder for attribute: name=source_ip, type=STRING macro=rss_schema
-							// property: name=status, type=STRING macro=rss_schema
-							"status": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=status, type=STRING macro=rss_schema
+							// key name holder for attribute: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 						},
 					},
-					// key name holder for attribute: name=status, type=STRING macro=rss_schema
+					// key name holder for attribute: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=track, type=REFERENCE macro=rss_schema
 					"track": dsschema.SingleNestedAttribute{
 						Required:  false,
@@ -728,14 +721,14 @@ func (d *elementDataSource) Read(ctx context.Context, req datasource.ReadRequest
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &dsModelIntraClusterTunnel{}
-			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=dsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
-			// property: name=destination_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
-			// property: name=source_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.SourceIp)
-			// property: name=status, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Status)
+			// property: name=disabled, type=BOOLEAN macro=copy_to_state
+			state.HubClusterConfig.IntraClusterTunnel.Disabled = types.BoolPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Disabled)
+			// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSourceInterfaces, errSourceInterfaces := types.ListValueFrom(ctx, types.StringType, ans.HubClusterConfig.IntraClusterTunnel.SourceInterfaces)
+			state.HubClusterConfig.IntraClusterTunnel.SourceInterfaces = varSourceInterfaces
+			resp.Diagnostics.Append(errSourceInterfaces.Errors()...)
 		}
 		// property: name=track, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.Track == nil {

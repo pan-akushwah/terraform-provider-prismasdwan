@@ -29,7 +29,7 @@ import (
 // +-----------------------------------------------------------------
 // | WANL3Reachability HasID=false
 // | VPNLinkConfiguration HasID=false
-// | WANInterfaceLabelScreenV2N5 HasID=true
+// | WANInterfaceLabelScreenV2N6 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -73,7 +73,7 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=WANInterfaceLabelScreenV2N5
+			// rest all properties to be read from GET API Schema schema=WANInterfaceLabelScreenV2N6
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -97,6 +97,14 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
+			"app_acceleration_enabled": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			"bwc_enabled": rsschema.BoolAttribute{
 				Required:  false,
@@ -265,7 +273,7 @@ func (r *wanInterfaceLabelResource) GetHttpStatusCode(request *sdwan_client.Sdwa
 	}
 }
 
-func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWANInterfaceLabelScreenV2N5, savestate *rsModelWANInterfaceLabelScreenV2N5, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWANInterfaceLabelScreenV2N6, savestate *rsModelWANInterfaceLabelScreenV2N6, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -287,7 +295,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_wan_interface_label"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}"
+	read_request.Path = "/sdwan/v2.6/api/waninterfacelabels/{wantinterface_label_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -327,7 +335,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=WANInterfaceLabelScreenV2N5
+	// Store the answer to state. schema=WANInterfaceLabelScreenV2N6
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -336,21 +344,23 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceLabelScreenV2N5
+	var ans sdwan_schema.WANInterfaceLabelScreenV2N6
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceLabelScreenV2N5 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceLabelScreenV2N6 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bwc_enabled, type=BOOLEAN macro=copy_to_state
 	state.BwcEnabled = types.BoolPointerValue(ans.BwcEnabled)
 	// property: name=description, type=STRING macro=copy_to_state
@@ -404,7 +414,7 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	return true
 }
 
-func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANInterfaceLabelScreenV2N5, state *rsModelWANInterfaceLabelScreenV2N5, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANInterfaceLabelScreenV2N6, state *rsModelWANInterfaceLabelScreenV2N6, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -432,7 +442,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_wan_interface_label"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}"
+	put_request.Path = "/sdwan/v2.6/api/waninterfacelabels/{wantinterface_label_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -449,11 +459,11 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.WANInterfaceLabelScreenV2N5{}
+	var body = &sdwan_schema.WANInterfaceLabelScreenV2N6{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=15
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=16
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -466,6 +476,12 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 		body.Schema = ValueInt64PointerFromPlanOrState(plan.Schema, state.Schema)
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
+	}
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.AppAccelerationEnabled = ValueBoolPointerFromPlanOrState(plan.AppAccelerationEnabled, state.AppAccelerationEnabled)
+	} else {
+		body.AppAccelerationEnabled = BoolValueOrNil(plan.AppAccelerationEnabled)
 	}
 	// property: name=bwc_enabled, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
@@ -569,7 +585,7 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct WANInterfaceLabelScreenV2N5 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct WANInterfaceLabelScreenV2N6 to JSON:", err.Error())
 		return false
 	}
 
@@ -611,22 +627,24 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceLabelScreenV2N5
+	var ans sdwan_schema.WANInterfaceLabelScreenV2N6
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceLabelScreenV2N5 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceLabelScreenV2N6 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=WANInterfaceLabelScreenV2N5
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
+	// Store the answer to state. schema=WANInterfaceLabelScreenV2N6
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bwc_enabled, type=BOOLEAN macro=copy_to_state
 	state.BwcEnabled = types.BoolPointerValue(ans.BwcEnabled)
 	// property: name=description, type=STRING macro=copy_to_state
@@ -685,17 +703,17 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 // Path Parameters are encoded into TfID itself
 func (r *wanInterfaceLabelResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_wan_interface_label")
-	var plan rsModelWANInterfaceLabelScreenV2N5
+	var plan rsModelWANInterfaceLabelScreenV2N6
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// this resource does not have a POST call defined, assuming that the PUT call is present and GET call is present
-	// path=/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}
+	// path=/sdwan/v2.6/api/waninterfacelabels/{wantinterface_label_id}
 
 	// state in api servers
-	var save rsModelWANInterfaceLabelScreenV2N5
+	var save rsModelWANInterfaceLabelScreenV2N6
 
 	// create a new tfid
 	var idBuilder strings.Builder
@@ -736,7 +754,7 @@ func (r *wanInterfaceLabelResource) Create(ctx context.Context, req resource.Cre
 func (r *wanInterfaceLabelResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_wan_interface_label")
-	var savestate, state rsModelWANInterfaceLabelScreenV2N5
+	var savestate, state rsModelWANInterfaceLabelScreenV2N6
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -755,7 +773,7 @@ func (r *wanInterfaceLabelResource) Read(ctx context.Context, req resource.ReadR
 func (r *wanInterfaceLabelResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_wan_interface_label")
-	var plan, state rsModelWANInterfaceLabelScreenV2N5
+	var plan, state rsModelWANInterfaceLabelScreenV2N6
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

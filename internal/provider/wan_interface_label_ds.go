@@ -24,7 +24,7 @@ import (
 // +-----------------------------------------------------------------
 // | WANL3Reachability HasID=false
 // | VPNLinkConfiguration HasID=false
-// | WANInterfaceLabelScreenV2N5 HasID=true
+// | WANInterfaceLabelScreenV2N6 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -65,7 +65,7 @@ func (d *wanInterfaceLabelDataSource) Schema(_ context.Context, _ datasource.Sch
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=WANInterfaceLabelScreenV2N5
+			// rest all properties to be read from GET API Schema schema=WANInterfaceLabelScreenV2N6
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -89,6 +89,14 @@ func (d *wanInterfaceLabelDataSource) Schema(_ context.Context, _ datasource.Sch
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
+			"app_acceleration_enabled": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			"bwc_enabled": dsschema.BoolAttribute{
 				Required:  false,
@@ -245,7 +253,7 @@ func (d *wanInterfaceLabelDataSource) Configure(_ context.Context, req datasourc
 
 // Read performs Read for the struct.
 func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelWANInterfaceLabelScreenV2N5
+	var state dsModelWANInterfaceLabelScreenV2N6
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -272,7 +280,7 @@ func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.R
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}"
+	read_request.Path = "/sdwan/v2.6/api/waninterfacelabels/{wantinterface_label_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
@@ -297,22 +305,24 @@ func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.R
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceLabelScreenV2N5
+	var ans sdwan_schema.WANInterfaceLabelScreenV2N6
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceLabelScreenV2N5", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceLabelScreenV2N6", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=WANInterfaceLabelScreenV2N5
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=15
+	// lets copy all items into state schema=WANInterfaceLabelScreenV2N6
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=16
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bwc_enabled, type=BOOLEAN macro=copy_to_state
 	state.BwcEnabled = types.BoolPointerValue(ans.BwcEnabled)
 	// property: name=description, type=STRING macro=copy_to_state

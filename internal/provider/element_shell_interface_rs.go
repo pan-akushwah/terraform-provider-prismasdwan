@@ -24,9 +24,10 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=37)
+// | Schema Map Summary (size=goLangStructMap=38)
 // | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
+// | LoopbackConfig HasID=false
 // | APNConfig HasID=false
 // | CellularInterfaceConfig HasID=false
 // | PortChannelConfig HasID=false
@@ -63,7 +64,7 @@ import (
 // | Ipv4Static HasID=false
 // | Ipv4Config HasID=false
 // | LanNetworkVlanMapping HasID=false
-// | InterfaceScreenV4N20 HasID=true
+// | InterfaceScreenV4N21 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -107,7 +108,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=InterfaceScreenV4N20
+			// rest all properties to be read from GET API Schema schema=InterfaceScreenV4N21
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -460,7 +461,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=directed_broadcast, type=BOOLEAN macro=rss_schema
 			"directed_broadcast": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -491,6 +492,14 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 				},
 			},
 			// key name holder for attribute: name=speed, type=INTEGER macro=rss_schema
+			// property: name=fec_mode, type=STRING macro=rss_schema
+			"fec_mode": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=fec_mode, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -804,11 +813,29 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=lldp_enabled, type=BOOLEAN macro=rss_schema
 			"lldp_enabled": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=lldp_enabled, type=BOOLEAN macro=rss_schema
+			// property: name=loopback_config, type=REFERENCE macro=rss_schema
+			"loopback_config": rsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				Attributes: map[string]rsschema.Attribute{
+					// property: name=binding_interface_id, type=STRING macro=rss_schema
+					"binding_interface_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=binding_interface_id, type=STRING macro=rss_schema
+				},
+			},
+			// key name holder for attribute: name=binding_interface_id, type=STRING macro=rss_schema
 			// property: name=mac_address, type=STRING macro=rss_schema
 			"mac_address": rsschema.StringAttribute{
 				Required:  false,
@@ -820,7 +847,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=mtu, type=INTEGER macro=rss_schema
 			"mtu": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -962,7 +989,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=nat_port, type=INTEGER macro=rss_schema
 			"nat_port": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -970,7 +997,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=nat_port_v6, type=INTEGER macro=rss_schema
 			"nat_port_v6": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1002,7 +1029,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=peer_bypasspair_wan_port_type, type=STRING macro=rss_schema
 			"peer_bypasspair_wan_port_type": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1010,7 +1037,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=poe_enabled, type=BOOLEAN macro=rss_schema
 			"poe_enabled": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1044,7 +1071,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=power_usage_threshold, type=INTEGER macro=rss_schema
 			"power_usage_threshold": rsschema.Int64Attribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1571,7 +1598,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=sgi_apply_static_tag, type=BOOLEAN macro=rss_schema
 			"sgi_apply_static_tag": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1784,7 +1811,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1826,7 +1853,7 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -1857,7 +1884,7 @@ func (r *elementShellInterfaceResource) GetHttpStatusCode(request *sdwan_client.
 	}
 }
 
-func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsModelInterfaceScreenV4N20, state *rsModelInterfaceScreenV4N20, resp *resource.CreateResponse) bool {
+func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsModelInterfaceScreenV4N21, state *rsModelInterfaceScreenV4N21, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_element_shell_interface")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -1869,7 +1896,7 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_element_shell_interface"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces"
+	create_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -1879,10 +1906,10 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.InterfaceScreenV4N20{}
+	var body = &sdwan_schema.InterfaceScreenV4N21{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=50
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=52
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -2010,6 +2037,8 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 		// property: name=speed, type=INTEGER macro=copy_from_plan
 		body.EthernetPort.Speed = Int64ValueOrNil(plan.EthernetPort.Speed)
 	}
+	// property: name=fec_mode, type=STRING macro=copy_from_plan
+	body.FecMode = StringValueOrNil(plan.FecMode)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
 	// property: name=interface_profile_id, type=STRING macro=copy_from_plan
@@ -2142,6 +2171,14 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	}
 	// property: name=lldp_enabled, type=BOOLEAN macro=copy_from_plan
 	body.LldpEnabled = BoolValueOrNil(plan.LldpEnabled)
+	// property: name=loopback_config, type=REFERENCE macro=copy_from_plan
+	if plan.LoopbackConfig != nil {
+		body.LoopbackConfig = &sdwan_schema.LoopbackConfig{}
+		// copy_from_plan: body=body.LoopbackConfig prefix=rsModel plan=plan.LoopbackConfig properties=1
+		tflog.Debug(ctx, "copy_from_plan body=body.LoopbackConfig prefix=rsModel plan=plan.LoopbackConfig")
+		// property: name=binding_interface_id, type=STRING macro=copy_from_plan
+		body.LoopbackConfig.BindingInterfaceId = StringValueOrNil(plan.LoopbackConfig.BindingInterfaceId)
+	}
 	// property: name=mac_address, type=STRING macro=copy_from_plan
 	body.MacAddress = StringValueOrNil(plan.MacAddress)
 	// property: name=mtu, type=INTEGER macro=copy_from_plan
@@ -2494,7 +2531,7 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct InterfaceScreenV4N20 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct InterfaceScreenV4N21 to JSON:", err.Error())
 		return false
 	}
 
@@ -2537,12 +2574,12 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.InterfaceScreenV4N20
+	var ans sdwan_schema.InterfaceScreenV4N21
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N20 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N21 in create", json_err.Error())
 		return false
 	}
 
@@ -2567,8 +2604,8 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_element_shell_interface with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=InterfaceScreenV4N20
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=50
+	// Store the answer to state. schema=InterfaceScreenV4N21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=52
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -2728,6 +2765,8 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
+	// property: name=fec_mode, type=STRING macro=copy_to_state
+	state.FecMode = types.StringPointerValue(ans.FecMode)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=interface_profile_id, type=STRING macro=copy_to_state
@@ -2886,6 +2925,16 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	}
 	// property: name=lldp_enabled, type=BOOLEAN macro=copy_to_state
 	state.LldpEnabled = types.BoolPointerValue(ans.LldpEnabled)
+	// property: name=loopback_config, type=REFERENCE macro=copy_to_state
+	if ans.LoopbackConfig == nil {
+		state.LoopbackConfig = nil
+	} else {
+		state.LoopbackConfig = &rsModelLoopbackConfig{}
+		// copy_to_state: state=state.LoopbackConfig prefix=rsModel ans=ans.LoopbackConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LoopbackConfig prefix=rsModel ans=ans.LoopbackConfig")
+		// property: name=binding_interface_id, type=STRING macro=copy_to_state
+		state.LoopbackConfig.BindingInterfaceId = types.StringPointerValue(ans.LoopbackConfig.BindingInterfaceId)
+	}
 	// property: name=mac_address, type=STRING macro=copy_to_state
 	state.MacAddress = types.StringPointerValue(ans.MacAddress)
 	// property: name=mtu, type=INTEGER macro=copy_to_state
@@ -3322,7 +3371,7 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 	return true
 }
 
-func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsModelInterfaceScreenV4N20, savestate *rsModelInterfaceScreenV4N20, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsModelInterfaceScreenV4N21, savestate *rsModelInterfaceScreenV4N21, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -3344,7 +3393,7 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_shell_interface"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
+	read_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -3384,7 +3433,7 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=InterfaceScreenV4N20
+	// Store the answer to state. schema=InterfaceScreenV4N21
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -3393,16 +3442,16 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.InterfaceScreenV4N20
+	var ans sdwan_schema.InterfaceScreenV4N21
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N20 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N21 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=50
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=52
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -3558,6 +3607,8 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
+	// property: name=fec_mode, type=STRING macro=copy_to_state
+	state.FecMode = types.StringPointerValue(ans.FecMode)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=interface_profile_id, type=STRING macro=copy_to_state
@@ -3716,6 +3767,16 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 	}
 	// property: name=lldp_enabled, type=BOOLEAN macro=copy_to_state
 	state.LldpEnabled = types.BoolPointerValue(ans.LldpEnabled)
+	// property: name=loopback_config, type=REFERENCE macro=copy_to_state
+	if ans.LoopbackConfig == nil {
+		state.LoopbackConfig = nil
+	} else {
+		state.LoopbackConfig = &rsModelLoopbackConfig{}
+		// copy_to_state: state=state.LoopbackConfig prefix=rsModel ans=ans.LoopbackConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LoopbackConfig prefix=rsModel ans=ans.LoopbackConfig")
+		// property: name=binding_interface_id, type=STRING macro=copy_to_state
+		state.LoopbackConfig.BindingInterfaceId = types.StringPointerValue(ans.LoopbackConfig.BindingInterfaceId)
+	}
 	// property: name=mac_address, type=STRING macro=copy_to_state
 	state.MacAddress = types.StringPointerValue(ans.MacAddress)
 	// property: name=mtu, type=INTEGER macro=copy_to_state
@@ -4138,7 +4199,7 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 	return true
 }
 
-func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModelInterfaceScreenV4N20, state *rsModelInterfaceScreenV4N20, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModelInterfaceScreenV4N21, state *rsModelInterfaceScreenV4N21, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -4166,7 +4227,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_element_shell_interface"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
+	put_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -4183,11 +4244,11 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.InterfaceScreenV4N20{}
+	var body = &sdwan_schema.InterfaceScreenV4N21{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=50
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=52
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -4458,6 +4519,12 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			body.EthernetPort.Speed = Int64ValueOrNil(plan.EthernetPort.Speed)
 		}
 	}
+	// property: name=fec_mode, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.FecMode = ValueStringPointerFromPlanOrState(plan.FecMode, state.FecMode)
+	} else {
+		body.FecMode = StringValueOrNil(plan.FecMode)
+	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Id = ValueStringPointerFromPlanOrState(plan.Id, state.Id)
@@ -4685,6 +4752,20 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		body.LldpEnabled = ValueBoolPointerFromPlanOrState(plan.LldpEnabled, state.LldpEnabled)
 	} else {
 		body.LldpEnabled = BoolValueOrNil(plan.LldpEnabled)
+	}
+	// property: name=loopback_config, type=REFERENCE macro=copy_from_plan_or_state
+	if plan.LoopbackConfig == nil {
+		body.LoopbackConfig = nil
+	} else {
+		body.LoopbackConfig = &sdwan_schema.LoopbackConfig{}
+		// copy_from_plan_or_state: body=body.LoopbackConfig prefix=rsModel state=state.LoopbackConfig plan=plan.LoopbackConfig properties=1
+		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LoopbackConfig prefix=rsModel state=state.LoopbackConfig plan=plan.LoopbackConfig")
+		// property: name=binding_interface_id, type=STRING macro=copy_from_plan_or_state
+		if state.LoopbackConfig != nil {
+			body.LoopbackConfig.BindingInterfaceId = ValueStringPointerFromPlanOrState(plan.LoopbackConfig.BindingInterfaceId, state.LoopbackConfig.BindingInterfaceId)
+		} else {
+			body.LoopbackConfig.BindingInterfaceId = StringValueOrNil(plan.LoopbackConfig.BindingInterfaceId)
+		}
 	}
 	// property: name=mac_address, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -5422,7 +5503,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct InterfaceScreenV4N20 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct InterfaceScreenV4N21 to JSON:", err.Error())
 		return false
 	}
 
@@ -5469,17 +5550,17 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.InterfaceScreenV4N20
+	var ans sdwan_schema.InterfaceScreenV4N21
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N20 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to InterfaceScreenV4N21 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=InterfaceScreenV4N20
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=50
+	// Store the answer to state. schema=InterfaceScreenV4N21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=52
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -5639,6 +5720,8 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// property: name=speed, type=INTEGER macro=copy_to_state
 		state.EthernetPort.Speed = types.Int64PointerValue(ans.EthernetPort.Speed)
 	}
+	// property: name=fec_mode, type=STRING macro=copy_to_state
+	state.FecMode = types.StringPointerValue(ans.FecMode)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=interface_profile_id, type=STRING macro=copy_to_state
@@ -5797,6 +5880,16 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	}
 	// property: name=lldp_enabled, type=BOOLEAN macro=copy_to_state
 	state.LldpEnabled = types.BoolPointerValue(ans.LldpEnabled)
+	// property: name=loopback_config, type=REFERENCE macro=copy_to_state
+	if ans.LoopbackConfig == nil {
+		state.LoopbackConfig = nil
+	} else {
+		state.LoopbackConfig = &rsModelLoopbackConfig{}
+		// copy_to_state: state=state.LoopbackConfig prefix=rsModel ans=ans.LoopbackConfig properties=1
+		tflog.Debug(ctx, "copy_to_state state=state.LoopbackConfig prefix=rsModel ans=ans.LoopbackConfig")
+		// property: name=binding_interface_id, type=STRING macro=copy_to_state
+		state.LoopbackConfig.BindingInterfaceId = types.StringPointerValue(ans.LoopbackConfig.BindingInterfaceId)
+	}
 	// property: name=mac_address, type=STRING macro=copy_to_state
 	state.MacAddress = types.StringPointerValue(ans.MacAddress)
 	// property: name=mtu, type=INTEGER macro=copy_to_state
@@ -6233,7 +6326,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 	return true
 }
 
-func (r *elementShellInterfaceResource) doDelete(ctx context.Context, state *rsModelInterfaceScreenV4N20, resp *resource.DeleteResponse) bool {
+func (r *elementShellInterfaceResource) doDelete(ctx context.Context, state *rsModelInterfaceScreenV4N21, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -6254,7 +6347,7 @@ func (r *elementShellInterfaceResource) doDelete(ctx context.Context, state *rsM
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_element_shell_interface"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
+	delete_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -6286,13 +6379,13 @@ func (r *elementShellInterfaceResource) doDelete(ctx context.Context, state *rsM
 // Path Parameters are encoded into TfID itself
 func (r *elementShellInterfaceResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_element_shell_interface")
-	var plan rsModelInterfaceScreenV4N20
+	var plan rsModelInterfaceScreenV4N21
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	var state rsModelInterfaceScreenV4N20
+	var state rsModelInterfaceScreenV4N21
 	_, objectIdGiven := plan.TfParameters.Elements()["id"]
 	if objectIdGiven {
 		// make get call
@@ -6337,7 +6430,7 @@ func (r *elementShellInterfaceResource) Create(ctx context.Context, req resource
 func (r *elementShellInterfaceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_element_shell_interface")
-	var savestate, state rsModelInterfaceScreenV4N20
+	var savestate, state rsModelInterfaceScreenV4N21
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -6364,7 +6457,7 @@ func (r *elementShellInterfaceResource) Read(ctx context.Context, req resource.R
 func (r *elementShellInterfaceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_element_shell_interface")
-	var plan, state rsModelInterfaceScreenV4N20
+	var plan, state rsModelInterfaceScreenV4N21
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -6398,7 +6491,7 @@ func (r *elementShellInterfaceResource) Update(ctx context.Context, req resource
 func (r *elementShellInterfaceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_element_shell_interface")
-	var state rsModelInterfaceScreenV4N20
+	var state rsModelInterfaceScreenV4N21
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

@@ -33,7 +33,7 @@
                 "type" : "integer"
               },
               "forward_dnsservicerole_id" : {
-                "description" : "Forward Dnsservicerole Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Size(max = 20, error = VALUE_EXCEEDS_LIMIT: value length exceeds maximum limit, min = 0) ",
+                "description" : "Forward Dnsservicerole Id: Size(max = 20, error = VALUE_EXCEEDS_LIMIT: value length exceeds maximum limit, min = 0) ",
                 "type" : "string"
               },
               "dnsserver_port" : {
@@ -425,7 +425,7 @@
           "items" : {
             "properties" : {
               "dnsservicerole_id" : {
-                "description" : "Dnsservicerole Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Size(max = 20, error = VALUE_EXCEEDS_LIMIT: value length exceeds maximum limit, min = 0) ",
+                "description" : "Dnsservicerole Id: Size(max = 20, error = VALUE_EXCEEDS_LIMIT: value length exceeds maximum limit, min = 0) ",
                 "type" : "string"
               },
               "domain_name" : {
@@ -700,7 +700,7 @@
       "type" : "integer"
     },
     "listen_dnsservicerole_id" : {
-      "description" : "Listen Dnsservicerole Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Size(max = 20, error = VALUE_EXCEEDS_LIMIT: value length exceeds maximum limit, min = 0) ",
+      "description" : "Listen Dnsservicerole Id: Size(max = 20, error = VALUE_EXCEEDS_LIMIT: value length exceeds maximum limit, min = 0) ",
       "type" : "string"
     },
     "tags" : {
@@ -727,7 +727,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

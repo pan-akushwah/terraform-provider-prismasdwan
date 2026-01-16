@@ -21,7 +21,7 @@
       "type" : "boolean"
     },
     "link_health_rules" : {
-      "description" : "Link Health Rules: Transient ",
+      "description" : "Link Health Rules",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -173,7 +173,7 @@
             }
           },
           "thresholdprofile_id" : {
-            "description" : "Thresholdprofile Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+            "description" : "Thresholdprofile Id",
             "type" : "string"
           },
           "service_label_ids" : {
@@ -214,7 +214,7 @@
                 }
               },
               "application_ids" : {
-                "description" : "Application Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = PERFMGMT_RULE_DUPLICATE_APPLICATION_IDS: Duplicate application ids are not allowed in app filter for policy rule, noTrim = false, regex = , required = false) Size(max = 64, error = APP_DEF_ID_LIST_SIZE_EXCEEDED_64: Maximum 64 applications can be specified in a rule., min = 0) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+                "description" : "Application Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = PERFMGMT_RULE_DUPLICATE_APPLICATION_IDS: Duplicate application ids are not allowed in app filter for policy rule, noTrim = false, regex = , required = false) Size(max = 64, error = APP_DEF_ID_LIST_SIZE_EXCEEDED_64: Maximum 64 applications can be specified in a rule., min = 0) ",
                 "type" : "array",
                 "items" : {
                   "description" : "Application Ids",
@@ -247,7 +247,7 @@
             "type" : "string"
           },
           "id" : {
-            "description" : "Id: Transient Id ",
+            "description" : "Id",
             "type" : "string",
             "additionalProperties" : {
               "properties" : {
@@ -301,12 +301,12 @@
       }
     },
     "policy_rules" : {
-      "description" : "Policy Rules: Transient ",
+      "description" : "Policy Rules",
       "type" : "array",
       "items" : {
         "properties" : {
           "policyset_id" : {
-            "description" : "Policyset Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
+            "description" : "Policyset Id: Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
             "type" : "string"
           },
           "tags" : {
@@ -333,7 +333,7 @@
             "type" : "string"
           },
           "region" : {
-            "description" : "Region: Transient ",
+            "description" : "Region",
             "type" : "string"
           },
           "disabled_reason" : {
@@ -391,7 +391,7 @@
       }
     },
     "send_to_element" : {
-      "description" : "Send To Element: Transient ",
+      "description" : "Send To Element",
       "type" : "boolean"
     },
     "clone_from" : {
@@ -422,7 +422,7 @@
       "type" : "string"
     },
     "region" : {
-      "description" : "Region: Transient ",
+      "description" : "Region",
       "type" : "string"
     },
     "disabled_reason" : {

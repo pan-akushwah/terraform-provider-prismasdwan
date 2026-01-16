@@ -75,11 +75,11 @@
       "type" : "string"
     },
     "router_id" : {
-      "description" : "Router Id: Size(max = 256, ROUTER_ID_EXCEEDS_LIMIT, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, BGP_CONFIG_INVALID_ROUTER_ID, type = IP) ",
+      "description" : "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
       "type" : "string"
     },
     "vrf_context_id" : {
-      "description" : "Vrf Context Id",
+      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
       "type" : "string"
     },
     "bgp_config" : {
@@ -188,7 +188,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

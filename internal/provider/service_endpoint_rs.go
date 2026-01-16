@@ -27,14 +27,14 @@ import (
 // | Schema Map Summary (size=goLangStructMap=8)
 // | Computed Resource Name=serviceendpoints
 // +-----------------------------------------------------------------
-// | SaseServiceEndpointProperties HasID=false
 // | HttpProbe HasID=false
 // | IcmpPingProbe HasID=false
-// | SEPLivelinessProbeV2N2 HasID=false
+// | SEPLivelinessProbeV3N1 HasID=false
+// | SaseServiceEndpointProperties HasID=false
 // | Location HasID=false
 // | Address HasID=false
 // | ServiceLinkPeers HasID=false
-// | ServiceEndpointV3 HasID=true
+// | ServiceEndpointV3N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -78,7 +78,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=ServiceEndpointV3
+			// rest all properties to be read from GET API Schema schema=ServiceEndpointV3N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -297,9 +297,17 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						},
 					},
 					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+					// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
+					"use_tunnel_for_url_dns_resolution": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 			// property: name=location, type=REFERENCE macro=rss_schema
 			"location": rsschema.SingleNestedAttribute{
 				Required:  false,
@@ -447,7 +455,7 @@ func (r *serviceEndpointResource) GetHttpStatusCode(request *sdwan_client.SdwanC
 	}
 }
 
-func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServiceEndpointV3, state *rsModelServiceEndpointV3, resp *resource.CreateResponse) bool {
+func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServiceEndpointV3N1, state *rsModelServiceEndpointV3N1, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_service_endpoint")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -459,7 +467,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_service_endpoint"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v3.0/api/serviceendpoints"
+	create_request.Path = "/sdwan/v3.1/api/serviceendpoints"
 
 	// copy parameters from plan always
 	params := make(map[string]*string)
@@ -469,7 +477,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.ServiceEndpointV3{}
+	var body = &sdwan_schema.ServiceEndpointV3N1{}
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
@@ -510,8 +518,8 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	body.IsSase = BoolValueOrNil(plan.IsSase)
 	// property: name=liveliness_probe, type=REFERENCE macro=copy_from_plan
 	if plan.LivelinessProbe != nil {
-		body.LivelinessProbe = &sdwan_schema.SEPLivelinessProbeV2N2{}
-		// copy_from_plan: body=body.LivelinessProbe prefix=rsModel plan=plan.LivelinessProbe properties=2
+		body.LivelinessProbe = &sdwan_schema.SEPLivelinessProbeV3N1{}
+		// copy_from_plan: body=body.LivelinessProbe prefix=rsModel plan=plan.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_from_plan body=body.LivelinessProbe prefix=rsModel plan=plan.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_from_plan
 		if plan.LivelinessProbe.Http == nil {
@@ -555,6 +563,8 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 				body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].IpAddresses = ListStringValueOrNil(ctx, varLoopIcmpPing.IpAddresses)
 			}
 		}
+		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_from_plan
+		body.LivelinessProbe.UseTunnelForUrlDnsResolution = BoolValueOrNil(plan.LivelinessProbe.UseTunnelForUrlDnsResolution)
 	}
 	// property: name=location, type=REFERENCE macro=copy_from_plan
 	if plan.Location != nil {
@@ -600,7 +610,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct ServiceEndpointV3 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct ServiceEndpointV3N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -643,12 +653,12 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.ServiceEndpointV3
+	var ans sdwan_schema.ServiceEndpointV3N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3N1 in create", json_err.Error())
 		return false
 	}
 
@@ -673,7 +683,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_service_endpoint with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=ServiceEndpointV3
+	// Store the answer to state. schema=ServiceEndpointV3N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -716,8 +726,8 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	if ans.LivelinessProbe == nil {
 		state.LivelinessProbe = nil
 	} else {
-		state.LivelinessProbe = &rsModelSEPLivelinessProbeV2N2{}
-		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=2
+		state.LivelinessProbe = &rsModelSEPLivelinessProbeV3N1{}
+		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
@@ -765,6 +775,8 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 				resp.Diagnostics.Append(errIpAddresses.Errors()...)
 			}
 		}
+		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_to_state
+		state.LivelinessProbe.UseTunnelForUrlDnsResolution = types.BoolPointerValue(ans.LivelinessProbe.UseTunnelForUrlDnsResolution)
 	}
 	// property: name=location, type=REFERENCE macro=copy_to_state
 	if ans.Location == nil {
@@ -821,7 +833,7 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	return true
 }
 
-func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServiceEndpointV3, savestate *rsModelServiceEndpointV3, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServiceEndpointV3N1, savestate *rsModelServiceEndpointV3N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -843,7 +855,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_service_endpoint"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}"
+	read_request.Path = "/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -883,7 +895,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=ServiceEndpointV3
+	// Store the answer to state. schema=ServiceEndpointV3N1
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -892,12 +904,12 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.ServiceEndpointV3
+	var ans sdwan_schema.ServiceEndpointV3N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3N1 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
@@ -943,8 +955,8 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	if ans.LivelinessProbe == nil {
 		state.LivelinessProbe = nil
 	} else {
-		state.LivelinessProbe = &rsModelSEPLivelinessProbeV2N2{}
-		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=2
+		state.LivelinessProbe = &rsModelSEPLivelinessProbeV3N1{}
+		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
@@ -992,6 +1004,8 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 				resp.Diagnostics.Append(errIpAddresses.Errors()...)
 			}
 		}
+		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_to_state
+		state.LivelinessProbe.UseTunnelForUrlDnsResolution = types.BoolPointerValue(ans.LivelinessProbe.UseTunnelForUrlDnsResolution)
 	}
 	// property: name=location, type=REFERENCE macro=copy_to_state
 	if ans.Location == nil {
@@ -1048,7 +1062,7 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 	return true
 }
 
-func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServiceEndpointV3, state *rsModelServiceEndpointV3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServiceEndpointV3N1, state *rsModelServiceEndpointV3N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -1076,7 +1090,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_service_endpoint"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}"
+	put_request.Path = "/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1093,7 +1107,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.ServiceEndpointV3{}
+	var body = &sdwan_schema.ServiceEndpointV3N1{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
@@ -1195,8 +1209,8 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	if plan.LivelinessProbe == nil {
 		body.LivelinessProbe = nil
 	} else {
-		body.LivelinessProbe = &sdwan_schema.SEPLivelinessProbeV2N2{}
-		// copy_from_plan_or_state: body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe properties=2
+		body.LivelinessProbe = &sdwan_schema.SEPLivelinessProbeV3N1{}
+		// copy_from_plan_or_state: body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 		if plan.LivelinessProbe.Http == nil && (state.LivelinessProbe == nil || state.LivelinessProbe.Http == nil) {
@@ -1249,6 +1263,12 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 				// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan
 				body.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].IpAddresses = ListStringValueOrNil(ctx, varLoopIcmpPing.IpAddresses)
 			}
+		}
+		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.LivelinessProbe != nil {
+			body.LivelinessProbe.UseTunnelForUrlDnsResolution = ValueBoolPointerFromPlanOrState(plan.LivelinessProbe.UseTunnelForUrlDnsResolution, state.LivelinessProbe.UseTunnelForUrlDnsResolution)
+		} else {
+			body.LivelinessProbe.UseTunnelForUrlDnsResolution = BoolValueOrNil(plan.LivelinessProbe.UseTunnelForUrlDnsResolution)
 		}
 	}
 	// property: name=location, type=REFERENCE macro=copy_from_plan_or_state
@@ -1333,7 +1353,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct ServiceEndpointV3 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct ServiceEndpointV3N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -1375,16 +1395,16 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.ServiceEndpointV3
+	var ans sdwan_schema.ServiceEndpointV3N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3N1 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=ServiceEndpointV3
+	// Store the answer to state. schema=ServiceEndpointV3N1
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -1427,8 +1447,8 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	if ans.LivelinessProbe == nil {
 		state.LivelinessProbe = nil
 	} else {
-		state.LivelinessProbe = &rsModelSEPLivelinessProbeV2N2{}
-		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=2
+		state.LivelinessProbe = &rsModelSEPLivelinessProbeV3N1{}
+		// copy_to_state: state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=rsModel ans=ans.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.LivelinessProbe.Http == nil {
@@ -1476,6 +1496,8 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 				resp.Diagnostics.Append(errIpAddresses.Errors()...)
 			}
 		}
+		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_to_state
+		state.LivelinessProbe.UseTunnelForUrlDnsResolution = types.BoolPointerValue(ans.LivelinessProbe.UseTunnelForUrlDnsResolution)
 	}
 	// property: name=location, type=REFERENCE macro=copy_to_state
 	if ans.Location == nil {
@@ -1532,7 +1554,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 	return true
 }
 
-func (r *serviceEndpointResource) doDelete(ctx context.Context, state *rsModelServiceEndpointV3, resp *resource.DeleteResponse) bool {
+func (r *serviceEndpointResource) doDelete(ctx context.Context, state *rsModelServiceEndpointV3N1, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1553,7 +1575,7 @@ func (r *serviceEndpointResource) doDelete(ctx context.Context, state *rsModelSe
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_service_endpoint"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}"
+	delete_request.Path = "/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1585,14 +1607,14 @@ func (r *serviceEndpointResource) doDelete(ctx context.Context, state *rsModelSe
 // Path Parameters are encoded into TfID itself
 func (r *serviceEndpointResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_service_endpoint")
-	var plan rsModelServiceEndpointV3
+	var plan rsModelServiceEndpointV3N1
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelServiceEndpointV3
+	var state rsModelServiceEndpointV3N1
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1604,7 +1626,7 @@ func (r *serviceEndpointResource) Create(ctx context.Context, req resource.Creat
 func (r *serviceEndpointResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_service_endpoint")
-	var savestate, state rsModelServiceEndpointV3
+	var savestate, state rsModelServiceEndpointV3N1
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1623,7 +1645,7 @@ func (r *serviceEndpointResource) Read(ctx context.Context, req resource.ReadReq
 func (r *serviceEndpointResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_service_endpoint")
-	var plan, state rsModelServiceEndpointV3
+	var plan, state rsModelServiceEndpointV3N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1647,7 +1669,7 @@ func (r *serviceEndpointResource) Update(ctx context.Context, req resource.Updat
 func (r *serviceEndpointResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_service_endpoint")
-	var state rsModelServiceEndpointV3
+	var state rsModelServiceEndpointV3N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

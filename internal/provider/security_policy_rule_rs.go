@@ -30,7 +30,7 @@ import (
 // | UserGroup HasID=false
 // | PortRange HasID=false
 // | Service HasID=false
-// | SecurityPolicyV2N2RuleScreen HasID=true
+// | SecurityPolicyV2RuleScreenV2N3 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -74,7 +74,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SecurityPolicyV2N2RuleScreen
+			// rest all properties to be read from GET API Schema schema=SecurityPolicyV2RuleScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -174,6 +174,14 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
+			// property: name=security_profile_group_id, type=STRING macro=rss_schema
+			"security_profile_group_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=security_profile_group_id, type=STRING macro=rss_schema
 			// property: name=services, type=ARRAY_REFERENCE macro=rss_schema
 			"services": rsschema.ListNestedAttribute{
 				Required:  false,
@@ -342,7 +350,7 @@ func (r *securityPolicyRuleResource) GetHttpStatusCode(request *sdwan_client.Sdw
 	}
 }
 
-func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSecurityPolicyV2N2RuleScreen, state *rsModelSecurityPolicyV2N2RuleScreen, resp *resource.CreateResponse) bool {
+func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSecurityPolicyV2RuleScreenV2N3, state *rsModelSecurityPolicyV2RuleScreenV2N3, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_security_policy_rule")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -354,7 +362,7 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_security_policy_rule"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules"
+	create_request.Path = "/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -364,10 +372,10 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SecurityPolicyV2N2RuleScreen{}
+	var body = &sdwan_schema.SecurityPolicyV2RuleScreenV2N3{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=17
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=18
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -391,6 +399,8 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	body.Id = StringValueOrNil(plan.Id)
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
+	// property: name=security_profile_group_id, type=STRING macro=copy_from_plan
+	body.SecurityProfileGroupId = StringValueOrNil(plan.SecurityProfileGroupId)
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_from_plan
 	if plan.Services == nil {
 		body.Services = nil
@@ -465,7 +475,7 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SecurityPolicyV2N2RuleScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SecurityPolicyV2RuleScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -508,12 +518,12 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SecurityPolicyV2N2RuleScreen
+	var ans sdwan_schema.SecurityPolicyV2RuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2N2RuleScreen in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2RuleScreenV2N3 in create", json_err.Error())
 		return false
 	}
 
@@ -538,8 +548,8 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_security_policy_rule with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SecurityPolicyV2N2RuleScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	// Store the answer to state. schema=SecurityPolicyV2RuleScreenV2N3
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -571,6 +581,8 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=security_profile_group_id, type=STRING macro=copy_to_state
+	state.SecurityProfileGroupId = types.StringPointerValue(ans.SecurityProfileGroupId)
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Services == nil {
 		state.Services = nil
@@ -658,7 +670,7 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	return true
 }
 
-func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSecurityPolicyV2N2RuleScreen, savestate *rsModelSecurityPolicyV2N2RuleScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSecurityPolicyV2RuleScreenV2N3, savestate *rsModelSecurityPolicyV2RuleScreenV2N3, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -680,7 +692,7 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_security_policy_rule"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
+	read_request.Path = "/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -720,7 +732,7 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SecurityPolicyV2N2RuleScreen
+	// Store the answer to state. schema=SecurityPolicyV2RuleScreenV2N3
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -729,16 +741,16 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SecurityPolicyV2N2RuleScreen
+	var ans sdwan_schema.SecurityPolicyV2RuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2N2RuleScreen in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2RuleScreenV2N3 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -770,6 +782,8 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=security_profile_group_id, type=STRING macro=copy_to_state
+	state.SecurityProfileGroupId = types.StringPointerValue(ans.SecurityProfileGroupId)
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Services == nil {
 		state.Services = nil
@@ -857,7 +871,7 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	return true
 }
 
-func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSecurityPolicyV2N2RuleScreen, state *rsModelSecurityPolicyV2N2RuleScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSecurityPolicyV2RuleScreenV2N3, state *rsModelSecurityPolicyV2RuleScreenV2N3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -885,7 +899,7 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_security_policy_rule"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
+	put_request.Path = "/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -902,11 +916,11 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SecurityPolicyV2N2RuleScreen{}
+	var body = &sdwan_schema.SecurityPolicyV2RuleScreenV2N3{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=17
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=18
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -957,6 +971,12 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
 	} else {
 		body.Name = StringValueOrNil(plan.Name)
+	}
+	// property: name=security_profile_group_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.SecurityProfileGroupId = ValueStringPointerFromPlanOrState(plan.SecurityProfileGroupId, state.SecurityProfileGroupId)
+	} else {
+		body.SecurityProfileGroupId = StringValueOrNil(plan.SecurityProfileGroupId)
 	}
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 	if plan.Services == nil && (state == nil || state.Services == nil) {
@@ -1039,7 +1059,7 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SecurityPolicyV2N2RuleScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SecurityPolicyV2RuleScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -1081,17 +1101,17 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SecurityPolicyV2N2RuleScreen
+	var ans sdwan_schema.SecurityPolicyV2RuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2N2RuleScreen in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2RuleScreenV2N3 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SecurityPolicyV2N2RuleScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=17
+	// Store the answer to state. schema=SecurityPolicyV2RuleScreenV2N3
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1123,6 +1143,8 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=security_profile_group_id, type=STRING macro=copy_to_state
+	state.SecurityProfileGroupId = types.StringPointerValue(ans.SecurityProfileGroupId)
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Services == nil {
 		state.Services = nil
@@ -1210,7 +1232,7 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	return true
 }
 
-func (r *securityPolicyRuleResource) doDelete(ctx context.Context, state *rsModelSecurityPolicyV2N2RuleScreen, resp *resource.DeleteResponse) bool {
+func (r *securityPolicyRuleResource) doDelete(ctx context.Context, state *rsModelSecurityPolicyV2RuleScreenV2N3, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1231,7 +1253,7 @@ func (r *securityPolicyRuleResource) doDelete(ctx context.Context, state *rsMode
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_security_policy_rule"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
+	delete_request.Path = "/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1263,14 +1285,14 @@ func (r *securityPolicyRuleResource) doDelete(ctx context.Context, state *rsMode
 // Path Parameters are encoded into TfID itself
 func (r *securityPolicyRuleResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_security_policy_rule")
-	var plan rsModelSecurityPolicyV2N2RuleScreen
+	var plan rsModelSecurityPolicyV2RuleScreenV2N3
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSecurityPolicyV2N2RuleScreen
+	var state rsModelSecurityPolicyV2RuleScreenV2N3
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1282,7 +1304,7 @@ func (r *securityPolicyRuleResource) Create(ctx context.Context, req resource.Cr
 func (r *securityPolicyRuleResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_security_policy_rule")
-	var savestate, state rsModelSecurityPolicyV2N2RuleScreen
+	var savestate, state rsModelSecurityPolicyV2RuleScreenV2N3
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1301,7 +1323,7 @@ func (r *securityPolicyRuleResource) Read(ctx context.Context, req resource.Read
 func (r *securityPolicyRuleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_security_policy_rule")
-	var plan, state rsModelSecurityPolicyV2N2RuleScreen
+	var plan, state rsModelSecurityPolicyV2RuleScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1325,7 +1347,7 @@ func (r *securityPolicyRuleResource) Update(ctx context.Context, req resource.Up
 func (r *securityPolicyRuleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_security_policy_rule")
-	var state rsModelSecurityPolicyV2N2RuleScreen
+	var state rsModelSecurityPolicyV2RuleScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

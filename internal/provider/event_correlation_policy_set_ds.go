@@ -19,12 +19,11 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=3)
+// | Schema Map Summary (size=goLangStructMap=2)
 // | Computed Resource Name=eventcorrelationpolicysets
 // +-----------------------------------------------------------------
-// | SeverityPriorityMapping HasID=false
-// | EventCorrelationPolicySetQueryFilter HasID=true
-// | ListQueryResponseEventCorrelationPolicySetQueryFilter HasID=true
+// | Aggregate HasID=false
+// | EventCorrelationPolicySetQuery HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -65,7 +64,7 @@ func (d *eventCorrelationPolicySetDataSource) Schema(_ context.Context, _ dataso
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
+			// rest all properties to be read from GET API Schema schema=EventCorrelationPolicySetQuery
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -89,23 +88,57 @@ func (d *eventCorrelationPolicySetDataSource) Schema(_ context.Context, _ dataso
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=deleted_count, type=INTEGER macro=rss_schema
-			"deleted_count": dsschema.Int64Attribute{
+			// property: name=aggregate, type=REFERENCE macro=rss_schema
+			"aggregate": dsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				Attributes: map[string]dsschema.Attribute{
+					// property: name=field, type=STRING macro=rss_schema
+					"field": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=field, type=STRING macro=rss_schema
+					// property: name=operator, type=STRING macro=rss_schema
+					"operator": dsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=operator, type=STRING macro=rss_schema
+				},
+			},
+			// key name holder for attribute: name=operator, type=STRING macro=rss_schema
+			// property: name=dest_page, type=INTEGER macro=rss_schema
+			"dest_page": dsschema.Int64Attribute{
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
-			// key name holder for attribute: name=deleted_count, type=INTEGER macro=rss_schema
-			// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"deleted_ids": dsschema.ListAttribute{
+			// key name holder for attribute: name=dest_page, type=INTEGER macro=rss_schema
+			// property: name=getDeleted, type=BOOLEAN macro=rss_schema
+			"getDeleted": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=getDeleted, type=BOOLEAN macro=rss_schema
+			// property: name=group_by, type=ARRAY_PRIMITIVE macro=rss_schema
+			"group_by": dsschema.ListAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
 			},
-			// key name holder for attribute: name=deleted_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=group_by, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": dsschema.StringAttribute{
 				Required:  false,
@@ -114,127 +147,30 @@ func (d *eventCorrelationPolicySetDataSource) Schema(_ context.Context, _ dataso
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=items, type=ARRAY_REFERENCE macro=rss_schema
-			"items": dsschema.ListNestedAttribute{
+			// property: name=isReadPreferenceSecondary, type=BOOLEAN macro=rss_schema
+			"isReadPreferenceSecondary": dsschema.BoolAttribute{
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// generic x_parameters is added to accomodate path parameters
-						"x_parameters": dsschema.MapAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							ElementType: types.StringType,
-						},
-						// property: name=_etag, type=INTEGER macro=rss_schema
-						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-						// property: name=_schema, type=INTEGER macro=rss_schema
-						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-						// property: name=active_policyset, type=BOOLEAN macro=rss_schema
-						"active_policyset": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=active_policyset, type=BOOLEAN macro=rss_schema
-						// property: name=clone_from, type=STRING macro=rss_schema
-						"clone_from": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
-						// property: name=description, type=STRING macro=rss_schema
-						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=description, type=STRING macro=rss_schema
-						// property: name=id, type=STRING macro=rss_schema
-						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=id, type=STRING macro=rss_schema
-						// property: name=name, type=STRING macro=rss_schema
-						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=name, type=STRING macro=rss_schema
-						// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
-						"policyrule_order": dsschema.ListAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
-						// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=rss_schema
-						"severity_priority_mapping": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-							NestedObject: dsschema.NestedAttributeObject{
-								Attributes: map[string]dsschema.Attribute{
-									// property: name=priority, type=STRING macro=rss_schema
-									"priority": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=priority, type=STRING macro=rss_schema
-									// property: name=severity, type=STRING macro=rss_schema
-									"severity": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=severity, type=STRING macro=rss_schema
-								},
-							},
-						},
-						// key name holder for attribute: name=severity, type=STRING macro=rss_schema
-						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-						"tags": dsschema.SetAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					},
-				},
 			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=isReadPreferenceSecondary, type=BOOLEAN macro=rss_schema
+			// property: name=last_query_ts, type=INTEGER macro=rss_schema
+			"last_query_ts": dsschema.Int64Attribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=last_query_ts, type=INTEGER macro=rss_schema
+			// property: name=limit, type=INTEGER macro=rss_schema
+			"limit": dsschema.Int64Attribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=limit, type=INTEGER macro=rss_schema
 			// property: name=next_query, type=OBJECT macro=rss_schema
 			"next_query": dsschema.SingleNestedAttribute{
 				Required:  false,
@@ -243,6 +179,47 @@ func (d *eventCorrelationPolicySetDataSource) Schema(_ context.Context, _ dataso
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=next_query, type=OBJECT macro=rss_schema
+			// property: name=query_params, type=OBJECT macro=rss_schema
+			"query_params": dsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=query_params, type=OBJECT macro=rss_schema
+			// property: name=retrieved_fields, type=ARRAY_PRIMITIVE macro=rss_schema
+			"retrieved_fields": dsschema.ListAttribute{
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				ElementType: types.StringType,
+			},
+			// key name holder for attribute: name=retrieved_fields, type=ARRAY_PRIMITIVE macro=rss_schema
+			// property: name=retrieved_fields_mask, type=BOOLEAN macro=rss_schema
+			"retrieved_fields_mask": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=retrieved_fields_mask, type=BOOLEAN macro=rss_schema
+			// property: name=sort_case_insensitive, type=BOOLEAN macro=rss_schema
+			"sort_case_insensitive": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=sort_case_insensitive, type=BOOLEAN macro=rss_schema
+			// property: name=sort_params, type=OBJECT macro=rss_schema
+			"sort_params": dsschema.SingleNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=sort_params, type=OBJECT macro=rss_schema
 			// property: name=total_count, type=INTEGER macro=rss_schema
 			"total_count": dsschema.Int64Attribute{
 				Required:  false,
@@ -265,7 +242,7 @@ func (d *eventCorrelationPolicySetDataSource) Configure(_ context.Context, req d
 
 // Read performs Read for the struct.
 func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelListQueryResponseEventCorrelationPolicySetQueryFilter
+	var state dsModelEventCorrelationPolicySetQuery
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -317,85 +294,61 @@ func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req data
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter
+	var ans sdwan_schema.EventCorrelationPolicySetQuery
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ListQueryResponseEventCorrelationPolicySetQueryFilter", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to EventCorrelationPolicySetQuery", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+	// lets copy all items into state schema=EventCorrelationPolicySetQuery
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=deleted_count, type=INTEGER macro=copy_to_state
-	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
-	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varDeletedIds, errDeletedIds := types.ListValueFrom(ctx, types.StringType, ans.DeletedIds)
-	state.DeletedIds = varDeletedIds
-	resp.Diagnostics.Append(errDeletedIds.Errors()...)
+	// property: name=aggregate, type=REFERENCE macro=copy_to_state
+	if ans.Aggregate == nil {
+		state.Aggregate = nil
+	} else {
+		state.Aggregate = &dsModelAggregate{}
+		// copy_to_state: state=state.Aggregate prefix=dsModel ans=ans.Aggregate properties=2
+		tflog.Debug(ctx, "copy_to_state state=state.Aggregate prefix=dsModel ans=ans.Aggregate")
+		// property: name=field, type=STRING macro=copy_to_state
+		state.Aggregate.Field = types.StringPointerValue(ans.Aggregate.Field)
+		// property: name=operator, type=STRING macro=copy_to_state
+		state.Aggregate.Operator = types.StringPointerValue(ans.Aggregate.Operator)
+	}
+	// property: name=dest_page, type=INTEGER macro=copy_to_state
+	state.DestPage = types.Int64PointerValue(ans.DestPage)
+	// property: name=getDeleted, type=BOOLEAN macro=copy_to_state
+	state.Getdeleted = types.BoolPointerValue(ans.Getdeleted)
+	// property: name=group_by, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varGroupBy, errGroupBy := types.ListValueFrom(ctx, types.StringType, ans.GroupBy)
+	state.GroupBy = varGroupBy
+	resp.Diagnostics.Append(errGroupBy.Errors()...)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=items, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Items == nil {
-		state.Items = nil
-	} else if len(ans.Items) == 0 {
-		state.Items = []dsModelEventCorrelationPolicySetQueryFilter{}
-	} else {
-		state.Items = make([]dsModelEventCorrelationPolicySetQueryFilter, 0, len(ans.Items))
-		for varLoopItemsIndex, varLoopItems := range ans.Items {
-			// add a new item
-			state.Items = append(state.Items, dsModelEventCorrelationPolicySetQueryFilter{})
-			// copy_to_state: state=state.Items[varLoopItemsIndex] prefix=dsModel ans=varLoopItems properties=10
-			tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex] prefix=dsModel ans=varLoopItems")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Etag = types.Int64PointerValue(varLoopItems.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Schema = types.Int64PointerValue(varLoopItems.Schema)
-			// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
-			state.Items[varLoopItemsIndex].ActivePolicyset = types.BoolPointerValue(varLoopItems.ActivePolicyset)
-			// property: name=clone_from, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].CloneFrom = types.StringPointerValue(varLoopItems.CloneFrom)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Description = types.StringPointerValue(varLoopItems.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Id = types.StringPointerValue(varLoopItems.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Name = types.StringPointerValue(varLoopItems.Name)
-			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, varLoopItems.PolicyruleOrder)
-			state.Items[varLoopItemsIndex].PolicyruleOrder = varPolicyruleOrder
-			resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
-			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopItems.SeverityPriorityMapping == nil {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = nil
-			} else if len(varLoopItems.SeverityPriorityMapping) == 0 {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = []dsModelSeverityPriorityMapping{}
-			} else {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = make([]dsModelSeverityPriorityMapping, 0, len(varLoopItems.SeverityPriorityMapping))
-				for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range varLoopItems.SeverityPriorityMapping {
-					// add a new item
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping = append(state.Items[varLoopItemsIndex].SeverityPriorityMapping, dsModelSeverityPriorityMapping{})
-					// copy_to_state: state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=dsModel ans=varLoopSeverityPriorityMapping properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=dsModel ans=varLoopSeverityPriorityMapping")
-					// property: name=priority, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
-					// property: name=severity, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
-				}
-			}
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopItems.Tags)
-			state.Items[varLoopItemsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
-		}
-	}
+	// property: name=isReadPreferenceSecondary, type=BOOLEAN macro=copy_to_state
+	state.Isreadpreferencesecondary = types.BoolPointerValue(ans.Isreadpreferencesecondary)
+	// property: name=last_query_ts, type=INTEGER macro=copy_to_state
+	state.LastQueryTs = types.Int64PointerValue(ans.LastQueryTs)
+	// property: name=limit, type=INTEGER macro=copy_to_state
+	state.Limit = types.Int64PointerValue(ans.Limit)
 	// property: name=next_query, type=OBJECT macro=copy_to_state
+	// property: name=query_params, type=OBJECT macro=copy_to_state
+	// property: name=retrieved_fields, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varRetrievedFields, errRetrievedFields := types.ListValueFrom(ctx, types.StringType, ans.RetrievedFields)
+	state.RetrievedFields = varRetrievedFields
+	resp.Diagnostics.Append(errRetrievedFields.Errors()...)
+	// property: name=retrieved_fields_mask, type=BOOLEAN macro=copy_to_state
+	state.RetrievedFieldsMask = types.BoolPointerValue(ans.RetrievedFieldsMask)
+	// property: name=sort_case_insensitive, type=BOOLEAN macro=copy_to_state
+	state.SortCaseInsensitive = types.BoolPointerValue(ans.SortCaseInsensitive)
+	// property: name=sort_params, type=OBJECT macro=copy_to_state
 	// property: name=total_count, type=INTEGER macro=copy_to_state
 	state.TotalCount = types.Int64PointerValue(ans.TotalCount)
 

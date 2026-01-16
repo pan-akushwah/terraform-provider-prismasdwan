@@ -27,7 +27,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=sites_elements_syslogservers
 // +-----------------------------------------------------------------
-// | SyslogServerScreenV2N2 HasID=true
+// | SyslogServerScreenV2N3 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -71,7 +71,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SyslogServerScreenV2N2
+			// rest all properties to be read from GET API Schema schema=SyslogServerScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -103,6 +103,14 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
+			// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
+			"enable_dns_logging": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			"enable_flow_logging": rsschema.BoolAttribute{
 				Required:  false,
@@ -111,6 +119,22 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
+			// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
+			"enable_threat_logging": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
+			// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
+			"enable_url_logging": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
 				Required:  false,
@@ -234,7 +258,7 @@ func (r *elementSyslogServerResource) GetHttpStatusCode(request *sdwan_client.Sd
 	}
 }
 
-func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelSyslogServerScreenV2N2, state *rsModelSyslogServerScreenV2N2, resp *resource.CreateResponse) bool {
+func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelSyslogServerScreenV2N3, state *rsModelSyslogServerScreenV2N3, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_element_syslog_server")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -246,7 +270,7 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_element_syslog_server"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers"
+	create_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -256,10 +280,10 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SyslogServerScreenV2N2{}
+	var body = &sdwan_schema.SyslogServerScreenV2N3{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=16
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=19
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -267,8 +291,14 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	body.Schema = Int64ValueOrNil(plan.Schema)
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_from_plan
+	body.EnableDnsLogging = BoolValueOrNil(plan.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_from_plan
 	body.EnableFlowLogging = BoolValueOrNil(plan.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_from_plan
+	body.EnableThreatLogging = BoolValueOrNil(plan.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_from_plan
+	body.EnableUrlLogging = BoolValueOrNil(plan.EnableUrlLogging)
 	// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 	body.Enabled = BoolValueOrNil(plan.Enabled)
 	// property: name=id, type=STRING macro=copy_from_plan
@@ -297,7 +327,7 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SyslogServerScreenV2N2 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SyslogServerScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -340,12 +370,12 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerScreenV2N2
+	var ans sdwan_schema.SyslogServerScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N2 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N3 in create", json_err.Error())
 		return false
 	}
 
@@ -370,8 +400,8 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_element_syslog_server with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SyslogServerScreenV2N2
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	// Store the answer to state. schema=SyslogServerScreenV2N3
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -379,8 +409,14 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -410,7 +446,7 @@ func (r *elementSyslogServerResource) doPost(ctx context.Context, plan *rsModelS
 	return true
 }
 
-func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelSyslogServerScreenV2N2, savestate *rsModelSyslogServerScreenV2N2, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelSyslogServerScreenV2N3, savestate *rsModelSyslogServerScreenV2N3, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -432,7 +468,7 @@ func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelS
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_syslog_server"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
+	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -472,7 +508,7 @@ func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelS
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SyslogServerScreenV2N2
+	// Store the answer to state. schema=SyslogServerScreenV2N3
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -481,16 +517,16 @@ func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelS
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerScreenV2N2
+	var ans sdwan_schema.SyslogServerScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N2 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N3 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -498,8 +534,14 @@ func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelS
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -529,7 +571,7 @@ func (r *elementSyslogServerResource) doGet(ctx context.Context, state *rsModelS
 	return true
 }
 
-func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSyslogServerScreenV2N2, state *rsModelSyslogServerScreenV2N2, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSyslogServerScreenV2N3, state *rsModelSyslogServerScreenV2N3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -557,7 +599,7 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_element_syslog_server"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
+	put_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -574,11 +616,11 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SyslogServerScreenV2N2{}
+	var body = &sdwan_schema.SyslogServerScreenV2N3{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=16
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=19
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -598,11 +640,29 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	} else {
 		body.Description = StringValueOrNil(plan.Description)
 	}
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.EnableDnsLogging = ValueBoolPointerFromPlanOrState(plan.EnableDnsLogging, state.EnableDnsLogging)
+	} else {
+		body.EnableDnsLogging = BoolValueOrNil(plan.EnableDnsLogging)
+	}
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.EnableFlowLogging = ValueBoolPointerFromPlanOrState(plan.EnableFlowLogging, state.EnableFlowLogging)
 	} else {
 		body.EnableFlowLogging = BoolValueOrNil(plan.EnableFlowLogging)
+	}
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.EnableThreatLogging = ValueBoolPointerFromPlanOrState(plan.EnableThreatLogging, state.EnableThreatLogging)
+	} else {
+		body.EnableThreatLogging = BoolValueOrNil(plan.EnableThreatLogging)
+	}
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.EnableUrlLogging = ValueBoolPointerFromPlanOrState(plan.EnableUrlLogging, state.EnableUrlLogging)
+	} else {
+		body.EnableUrlLogging = BoolValueOrNil(plan.EnableUrlLogging)
 	}
 	// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
@@ -676,7 +736,7 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SyslogServerScreenV2N2 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SyslogServerScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -718,17 +778,17 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerScreenV2N2
+	var ans sdwan_schema.SyslogServerScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N2 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N3 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SyslogServerScreenV2N2
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	// Store the answer to state. schema=SyslogServerScreenV2N3
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=19
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -736,8 +796,14 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -767,7 +833,7 @@ func (r *elementSyslogServerResource) doPut(ctx context.Context, plan *rsModelSy
 	return true
 }
 
-func (r *elementSyslogServerResource) doDelete(ctx context.Context, state *rsModelSyslogServerScreenV2N2, resp *resource.DeleteResponse) bool {
+func (r *elementSyslogServerResource) doDelete(ctx context.Context, state *rsModelSyslogServerScreenV2N3, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -788,7 +854,7 @@ func (r *elementSyslogServerResource) doDelete(ctx context.Context, state *rsMod
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_element_syslog_server"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
+	delete_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -820,14 +886,14 @@ func (r *elementSyslogServerResource) doDelete(ctx context.Context, state *rsMod
 // Path Parameters are encoded into TfID itself
 func (r *elementSyslogServerResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_element_syslog_server")
-	var plan rsModelSyslogServerScreenV2N2
+	var plan rsModelSyslogServerScreenV2N3
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSyslogServerScreenV2N2
+	var state rsModelSyslogServerScreenV2N3
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -839,7 +905,7 @@ func (r *elementSyslogServerResource) Create(ctx context.Context, req resource.C
 func (r *elementSyslogServerResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_element_syslog_server")
-	var savestate, state rsModelSyslogServerScreenV2N2
+	var savestate, state rsModelSyslogServerScreenV2N3
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -858,7 +924,7 @@ func (r *elementSyslogServerResource) Read(ctx context.Context, req resource.Rea
 func (r *elementSyslogServerResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_element_syslog_server")
-	var plan, state rsModelSyslogServerScreenV2N2
+	var plan, state rsModelSyslogServerScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -882,7 +948,7 @@ func (r *elementSyslogServerResource) Update(ctx context.Context, req resource.U
 func (r *elementSyslogServerResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_element_syslog_server")
-	var state rsModelSyslogServerScreenV2N2
+	var state rsModelSyslogServerScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

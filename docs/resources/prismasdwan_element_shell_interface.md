@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_shell_interface` |
-| Get Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` (`InterfaceScreenV4N20`) |
-| Post Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces` (`InterfaceScreenV4N20`) |
-| Put Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` (`InterfaceScreenV4N20`) |
-| Delete Api  | `/sdwan/v2.3/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` |
+| Get Api  | `/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` (`InterfaceScreenV4N21`) |
+| Post Api  | `/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces` (`InterfaceScreenV4N21`) |
+| Put Api  | `/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` (`InterfaceScreenV4N21`) |
+| Delete Api  | `/sdwan/v2.4/api/sites/{site_id}/elementshells/{element_shell_id}/interfaces/{interface_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,19 @@
 ```json
 {
   "properties" : {
+    "fec_mode" : {
+      "description" : "Fec Mode: JsonIgnoreProperties(allowGetters = false, allowSetters = false, ignoreUnknown = true) JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = ALWAYS, valueFilter = classOf[Void]) ",
+      "type" : "string",
+      "enum" : [ "auto", "rs_fec", "fc_fec", "none" ]
+    },
+    "loopback_config" : {
+      "properties" : {
+        "binding_interface_id" : {
+          "description" : "Binding Interface Id",
+          "type" : "string"
+        }
+      }
+    },
     "cellular_config" : {
       "properties" : {
         "apn_config" : {
@@ -32,11 +45,11 @@
               }
             },
             "clear_password" : {
-              "description" : "Clear Password: Transient ",
+              "description" : "Clear Password",
               "type" : "boolean"
             },
             "password" : {
-              "description" : "Password: Transient ",
+              "description" : "Password",
               "type" : "string",
               "additionalProperties" : {
                 "properties" : {
@@ -83,14 +96,7 @@
     },
     "sgi_apply_static_tag" : {
       "description" : "Sgi Apply Static Tag",
-      "type" : "boolean",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "boolean"
     },
     "port_channel_config" : {
       "properties" : {
@@ -173,7 +179,7 @@
                       }
                     },
                     "xauth_secret" : {
-                      "description" : "Xauth Secret: Length(max = 128, error = IPSECCONFIG_INVALID_XAUTH_SECRET_LEN: Invalid extended authentication secret length.Should be between 4-128., min = 4) Transient ",
+                      "description" : "Xauth Secret: Length(max = 128, error = IPSECCONFIG_INVALID_XAUTH_SECRET_LEN: Invalid extended authentication secret length.Should be between 4-128., min = 4) ",
                       "type" : "string",
                       "additionalProperties" : {
                         "properties" : {
@@ -213,7 +219,7 @@
                   "type" : "string"
                 },
                 "passphrase" : {
-                  "description" : "Passphrase: Transient ",
+                  "description" : "Passphrase",
                   "type" : "string"
                 },
                 "private_key_encrypted" : {
@@ -221,7 +227,7 @@
                   "type" : "string"
                 },
                 "private_key" : {
-                  "description" : "Private Key: Transient ",
+                  "description" : "Private Key",
                   "type" : "string"
                 },
                 "certificate" : {
@@ -263,7 +269,7 @@
                   }
                 },
                 "secret" : {
-                  "description" : "Secret: Transient ",
+                  "description" : "Secret",
                   "type" : "string",
                   "additionalProperties" : {
                     "properties" : {
@@ -311,7 +317,7 @@
           }
         },
         "last_parent" : {
-          "description" : "Last Parent: JsonIgnore(value = true) Transient ",
+          "description" : "Last Parent: JsonIgnore(value = true) ",
           "type" : "string"
         },
         "parent" : {
@@ -365,15 +371,8 @@
       }
     },
     "vrf_context_id" : {
-      "description" : "Vrf Context Id",
-      "type" : "string",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
+      "type" : "string"
     },
     "authentication_config" : {
       "properties" : {
@@ -395,14 +394,7 @@
     "peer_bypasspair_wan_port_type" : {
       "description" : "Peer Bypasspair Wan Port Type: ValidateEnum(enumClass = classOf[PortExtensionType], message = Invalid enum string., nullAllowed = false) ",
       "type" : "string",
-      "enum" : [ "none", "cellular" ],
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "enum" : [ "none", "cellular" ]
     },
     "ipv6_config" : {
       "properties" : {
@@ -586,37 +578,16 @@
     },
     "lldp_enabled" : {
       "description" : "Lldp Enabled",
-      "type" : "boolean",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "boolean"
     },
     "power_usage_threshold" : {
       "description" : "Power Usage Threshold: ValidateDecimal(allowZero = true, increment = 0, max = 0, error = INTERFACE_CONFIG_INVALID_POE_POWER_USAGE_THRESHOLD: Invalid Interface configuration. Invalid PoE alarm threshold value {}. Valid values are in the range 50-100., min = 0) ",
       "format" : "int32",
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "integer"
     },
     "poe_enabled" : {
       "description" : "Poe Enabled",
-      "type" : "boolean",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "boolean"
     },
     "multicast_config" : {
       "properties" : {
@@ -652,14 +623,7 @@
     "nat_port_v6" : {
       "description" : "Nat Port V6: Range(max = 65535L, error = INTERFACE_CONFIG_INVALID_PORT: LAN,WAN,Internet bypass ports cannot be part of logical interface groups., min = 0L) ",
       "format" : "int32",
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "integer"
     },
     "nat_address_v6" : {
       "description" : "Nat Address V6: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = INVALID_IPV6_NAT: IPv6 NAT address is invalid., type = IPV6) ",
@@ -707,22 +671,15 @@
     },
     "directed_broadcast" : {
       "description" : "Directed Broadcast",
-      "type" : "boolean",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "boolean"
     },
     "nat_pools" : {
-      "description" : "Nat Pools: Embedded(concreteClass = classOf[Object], value = .) Valid ",
+      "description" : "Nat Pools: Valid ",
       "type" : "array",
       "items" : {
         "properties" : {
           "ipv4_ranges" : {
-            "description" : "Ipv4 Ranges: Size(max = 4, error = INTERFACE_CONFIG_INVALID_NAT_POOL_IP_RANGE: Minimum 1 and maximum 4 nat pool IP ranges can be specified., min = 1) Valid Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+            "description" : "Ipv4 Ranges: Size(max = 4, error = INTERFACE_CONFIG_INVALID_NAT_POOL_IP_RANGE: Minimum 1 and maximum 4 nat pool IP ranges can be specified., min = 1) Valid ",
             "type" : "array",
             "items" : {
               "properties" : {
@@ -739,18 +696,18 @@
             }
           },
           "nat_pool_id" : {
-            "description" : "Nat Pool Id: Digits(fraction = 0, integer = 30, INVALID_NAT_POLICYPOOL_ID) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+            "description" : "Nat Pool Id: Digits(fraction = 0, integer = 30, INVALID_NAT_POLICYPOOL_ID) ",
             "type" : "string"
           }
         }
       }
     },
     "devicemgmt_policysetstack_id" : {
-      "description" : "Devicemgmt Policysetstack Id: Digits(fraction = 0, integer = 30, INVALID_DEVICEMGMT_POLICYSETSTACK_ID) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Devicemgmt Policysetstack Id: Digits(fraction = 0, integer = 30, INVALID_DEVICEMGMT_POLICYSETSTACK_ID) ",
       "type" : "string"
     },
     "nat_zone_id" : {
-      "description" : "Nat Zone Id: Digits(fraction = 0, integer = 30, INVALID_NAT_POLICY_ZONE) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Nat Zone Id: Digits(fraction = 0, integer = 30, INVALID_NAT_POLICY_ZONE) ",
       "type" : "string"
     },
     "tags" : {
@@ -798,7 +755,7 @@
       "type" : "string"
     },
     "parent" : {
-      "description" : "Parent: Transient ",
+      "description" : "Parent",
       "type" : "string"
     },
     "sub_interface" : {
@@ -820,26 +777,12 @@
     },
     "used_for" : {
       "description" : "Used For: ValidateEnum(enumClass = classOf[UsedFor], error = INTERFACE_CONFIG_INVALID_USEDFOR_VALUE: Invalid used for value specified.The allowed values are public,private_wan,lan,none, nullAllowed = false) ",
-      "type" : "string",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "string"
     },
     "nat_port" : {
       "description" : "Nat Port: Range(max = 65535L, error = INTERFACE_CONFIG_INVALID_PORT: LAN,WAN,Internet bypass ports cannot be part of logical interface groups., min = 0L) ",
       "format" : "int32",
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "integer"
     },
     "nat_address" : {
       "description" : "Nat Address: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = INVALID_NAT_IP: NAT IP address is invalid., type = IP) ",
@@ -1000,14 +943,7 @@
     },
     "mtu" : {
       "description" : "Mtu: Range(max = 9216L, error = INTERFACE_CONFIG_INVALID_MTU: MTU is not in the valid range., min = 0L) ",
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
+      "type" : "integer"
     },
     "mac_address" : {
       "description" : "Mac Address: Pattern(error = INTERFACE_CONFIG_INVALID_MAC: Invalid mac address syntax., regexp = ([0-9a-f]{2}[:]){5}([0-9a-f]{2})) ",
@@ -1051,7 +987,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

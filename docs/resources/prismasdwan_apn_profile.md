@@ -29,7 +29,7 @@
       }
     },
     "clear_password" : {
-      "description" : "Clear Password: Transient ",
+      "description" : "Clear Password",
       "type" : "boolean",
       "additionalProperties" : {
         "properties" : {
@@ -40,7 +40,7 @@
       }
     },
     "password" : {
-      "description" : "Password: Transient Transient ",
+      "description" : "Password",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -89,7 +89,7 @@
       }
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

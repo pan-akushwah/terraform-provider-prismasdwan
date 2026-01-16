@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `security_policy_rule` |
-| Get Api  | `/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}` (`SecurityPolicyV2N2RuleScreen`) |
-| Post Api  | `/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules` (`SecurityPolicyV2N2RuleScreen`) |
-| Put Api  | `/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}` (`SecurityPolicyV2N2RuleScreen`) |
-| Delete Api  | `/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}` |
+| Get Api  | `/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}` (`SecurityPolicyV2RuleScreenV2N3`) |
+| Post Api  | `/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules` (`SecurityPolicyV2RuleScreenV2N3`) |
+| Put Api  | `/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}` (`SecurityPolicyV2RuleScreenV2N3`) |
+| Delete Api  | `/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,10 @@
 ```json
 {
   "properties" : {
+    "security_profile_group_id" : {
+      "description" : "Security Profile Group Id",
+      "type" : "string"
+    },
     "dest_device_ids" : {
       "description" : "Dest Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_DEST_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 10, DEST_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
       "type" : "array",
@@ -35,7 +39,7 @@
     "user_or_group" : {
       "properties" : {
         "user_group_ids" : {
-          "description" : "User Group Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_GROUP_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_GROUP_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "description" : "User Group Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_GROUP_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_GROUP_ID_LIST_SIZE_EXCEEDED, min = 0) ",
           "type" : "array",
           "items" : {
             "description" : "User Group Ids",
@@ -43,7 +47,7 @@
           }
         },
         "user_ids" : {
-          "description" : "User Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "description" : "User Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_ID_LIST_SIZE_EXCEEDED, min = 0) ",
           "type" : "array",
           "items" : {
             "description" : "User Ids",
@@ -138,7 +142,7 @@
       }
     },
     "app_def_ids" : {
-      "description" : "App Def Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_APP_DEF_IDS: Duplicate app ids are specified., noTrim = false, regex = , required = false) Size(max = 16, error = APP_DEF_ID_LIST_SIZE_EXCEEDED_SIZE_16: Maximum 16 applications can be specified in a rule., min = 0) ",
+      "description" : "App Def Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_APP_DEF_IDS: Duplicate app ids are specified., noTrim = false, regex = , required = false) Size(max = 256, error = APP_DEF_ID_LIST_SIZE_EXCEEDED: Maximum 256 applications can be specified in a rule., min = 0) ",
       "type" : "array",
       "items" : {
         "description" : "App Def Ids",
@@ -169,7 +173,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

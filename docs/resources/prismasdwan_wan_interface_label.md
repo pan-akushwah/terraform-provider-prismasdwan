@@ -5,8 +5,8 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `wan_interface_label` |
-| Get Api  | `/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}` (`WANInterfaceLabelScreenV2N5`) |
-| Put Api  | `/sdwan/v2.5/api/waninterfacelabels/{wantinterface_label_id}` (`WANInterfaceLabelScreenV2N5`) |
+| Get Api  | `/sdwan/v2.6/api/waninterfacelabels/{wantinterface_label_id}` (`WANInterfaceLabelScreenV2N6`) |
+| Put Api  | `/sdwan/v2.6/api/waninterfacelabels/{wantinterface_label_id}` (`WANInterfaceLabelScreenV2N6`) |
 
 
 ### JSON Schema
@@ -14,6 +14,10 @@
 ```json
 {
   "properties" : {
+    "app_acceleration_enabled" : {
+      "description" : "App Acceleration Enabled",
+      "type" : "boolean"
+    },
     "probe_profile_id" : {
       "description" : "Probe Profile Id",
       "type" : "string"
@@ -95,7 +99,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

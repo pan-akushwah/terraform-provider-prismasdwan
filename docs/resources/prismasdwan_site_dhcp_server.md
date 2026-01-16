@@ -17,7 +17,7 @@
 {
   "properties" : {
     "vrf_context_id" : {
-      "description" : "Vrf Context Id",
+      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -157,7 +157,7 @@
       "type" : "boolean"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

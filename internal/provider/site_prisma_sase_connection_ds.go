@@ -192,6 +192,14 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=is_enabled, type=BOOLEAN macro=rss_schema
+			// property: name=license_type, type=STRING macro=rss_schema
+			"license_type": dsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=license_type, type=STRING macro=rss_schema
 			// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
 			"prismaaccess_edge_location": dsschema.ListAttribute{
 				Required:    false,
@@ -523,7 +531,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 	}
 
 	// lets copy all items into state schema=SaseConnectionScreenV2N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=14
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -561,6 +569,8 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 	state.IsActive = types.BoolPointerValue(ans.IsActive)
 	// property: name=is_enabled, type=BOOLEAN macro=copy_to_state
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
+	// property: name=license_type, type=STRING macro=copy_to_state
+	state.LicenseType = types.StringPointerValue(ans.LicenseType)
 	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
 	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation

@@ -17,7 +17,7 @@
 {
   "properties" : {
     "vrf_context_id" : {
-      "description" : "Vrf Context Id",
+      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
       "type" : "string"
     },
     "address_family" : {
@@ -38,7 +38,7 @@
       "enum" : [ "GLOBAL", "LOCAL" ]
     },
     "nexthops" : {
-      "description" : "Nexthops: Required(message = required) Size(max = 8, NEXTHOPLIST_SIZE_EXCEEDED, min = 0) Valid ",
+      "description" : "Nexthops: Required(message = required) Valid ",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -89,7 +89,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
