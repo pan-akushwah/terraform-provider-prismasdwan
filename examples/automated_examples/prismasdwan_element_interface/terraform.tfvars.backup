@@ -1,0 +1,130 @@
+# Element Interface Configuration
+interface_name = "Enterprise-WAN-Interface-Primary"
+interface_type = "ethernet"
+used_for = "public"
+scope = "LOCAL"
+peer_bypasspair_wan_port_type = "none"
+
+# Site and Element References (use either ID or name)
+site_name = "HQ-Site-Chicago"
+element_name = "HQ-ION-Device-01"
+
+# Basic Properties
+description = "Primary WAN interface for enterprise connectivity with high availability and traffic management"
+tags = ["terraform", "enterprise", "wan", "primary", "high-priority", "managed"]
+admin_up = true
+mtu = 1500
+
+# IPv4 Configuration
+ipv4_enabled = true
+ipv4_type = "static"
+ipv4_static_address = "203.0.113.10/30"
+ipv4_dns_servers = ["8.8.8.8", "8.8.4.4", "1.1.1.1"]
+ipv4_dns_search_domains = ["company.com", "corp.local"]
+
+# Static Routes
+ipv4_routes = [
+  {
+    destination = "192.168.0.0/16"
+    via = "203.0.113.9"
+  },
+  {
+    destination = "10.0.0.0/8"
+    via = "203.0.113.9"
+  }
+]
+
+# IPv6 Configuration (optional)
+ipv6_enabled = true
+ipv6_type = "static"
+ipv6_static_address = "2001:db8:1234:5678::10/64"
+ipv6_enable_prefix_distribution = false
+ipv6_dns_servers = ["2001:4860:4860::8888", "2001:4860:4860::8844"]
+
+# Ethernet Configuration
+ethernet_speed = 1000
+ethernet_full_duplex = true
+
+# VLAN Configuration (disabled for main WAN interface)
+vlan_enabled = false
+
+# Power Configuration
+power_enabled = true
+power_poe_enabled = false
+
+# Quality of Service
+qos_enabled = true
+qos_egress_traffic_policysetstack_name = "Enterprise-QoS-Egress-Stack"
+qos_ingress_traffic_policysetstack_name = "Enterprise-QoS-Ingress-Stack"
+
+# Security Configuration
+security_enabled = true
+security_zone_name = "WAN-Security-Zone"
+
+# NAT Configuration
+nat_zone_name = "WAN-NAT-Zone"
+
+# Extended Tags
+extended_tags = [
+  {
+    key = "environment"
+    value = "production"
+    value_type = "text"
+  },
+  {
+    key = "cost_center"
+    value = "IT-INFRASTRUCTURE"
+    value_type = "text"
+  },
+  {
+    key = "bandwidth_mbps"
+    value = "1000"
+    value_type = "number"
+  },
+  {
+    key = "critical_interface"
+    value = "true"
+    value_type = "boolean"
+  },
+  {
+    key = "backup_available"
+    value = "true"
+    value_type = "boolean"
+  }
+]
+
+# Monitoring and Management
+monitoring_enabled = true
+snmp_enabled = true
+netflow_enabled = true
+
+# Load Balancing
+load_balancing_enabled = true
+load_balancing_weight = 100
+load_balancing_priority = 100
+
+# BFD Configuration
+bfd_enabled = true
+bfd_interval = 1000
+bfd_multiplier = 3
+
+# Cellular Configuration (disabled for ethernet interface)
+cellular_enabled = false
+
+# PPPoE Configuration (disabled for static IP)
+pppoe_enabled = false
+
+# Service Link Configuration (disabled for regular interface)
+service_link_enabled = false
+
+# Switch Port Configuration (disabled for WAN interface)
+switch_port_enabled = false
+
+# Bypass Pair Configuration (disabled for regular interface)
+bypass_pair_enabled = false
+
+# Port Channel Configuration (disabled for single interface)
+port_channel_enabled = false
+
+# Sub Interface Configuration (disabled for main interface)
+sub_interface_enabled = false

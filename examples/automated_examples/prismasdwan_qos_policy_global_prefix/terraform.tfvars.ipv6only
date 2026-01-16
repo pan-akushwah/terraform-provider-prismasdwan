@@ -1,0 +1,14 @@
+# IPv6-only QoS Policy Global Prefix Configuration
+qos_policy_global_prefix_name = "IPv6-QoS-Global-Prefix"
+description = "IPv6-only QoS policy global prefix for modern network infrastructure"
+tags = ["terraform", "qos", "ipv6-only", "modern"]
+
+# IPv6 Prefixes only
+ipv4_prefixes = []
+
+ipv6_prefixes = [
+  "2001:db8::/32",
+  "fd00::/8",
+  "fe80::/10",
+  "2001:db8:85a3::/48"
+]

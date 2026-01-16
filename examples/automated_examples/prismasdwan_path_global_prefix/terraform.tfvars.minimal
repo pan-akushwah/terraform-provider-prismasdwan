@@ -1,0 +1,6 @@
+# Minimal Path Global Prefix Configuration (only required fields)
+path_global_prefix_name = "Minimal-Path-Global-Prefix"
+description = null
+tags = null
+ipv4_prefixes = []
+ipv6_prefixes = []
