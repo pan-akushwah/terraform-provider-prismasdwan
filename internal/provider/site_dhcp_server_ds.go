@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -52,6 +53,14 @@ type siteDhcpServerDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterSiteDhcpServer struct {
+	Filters      types.Map                      `tfsdk:"filters"`
+	TfParameters types.Map                      `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                    `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                    `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelDHCPServerScreenV2N3 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *siteDhcpServerDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_site_dhcp_server"
@@ -61,12 +70,13 @@ func (d *siteDhcpServerDataSource) Metadata(_ context.Context, req datasource.Me
 func (d *siteDhcpServerDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=DHCPServerScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -84,234 +94,256 @@ func (d *siteDhcpServerDataSource) Schema(_ context.Context, _ datasource.Schema
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=address_family, type=STRING macro=rss_schema
-			"address_family": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=address_family, type=STRING macro=rss_schema
-			// property: name=broadcast_address, type=STRING macro=rss_schema
-			"broadcast_address": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=broadcast_address, type=STRING macro=rss_schema
-			// property: name=custom_options, type=ARRAY_REFERENCE macro=rss_schema
-			"custom_options": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=option_definition, type=STRING macro=rss_schema
-						"option_definition": dsschema.StringAttribute{
+						// rest all properties to be read from GET API Schema schema=DHCPServerScreenV2N3
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=address_family, type=STRING macro=rss_schema
+						"address_family": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=option_definition, type=STRING macro=rss_schema
-						// property: name=option_value, type=STRING macro=rss_schema
-						"option_value": dsschema.StringAttribute{
+						// key name holder for attribute: name=address_family, type=STRING macro=rss_schema
+						// property: name=broadcast_address, type=STRING macro=rss_schema
+						"broadcast_address": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=option_value, type=STRING macro=rss_schema
-						// property: name=vendor_class_identifier, type=STRING macro=rss_schema
-						"vendor_class_identifier": dsschema.StringAttribute{
+						// key name holder for attribute: name=broadcast_address, type=STRING macro=rss_schema
+						// property: name=custom_options, type=ARRAY_REFERENCE macro=rss_schema
+						"custom_options": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=option_definition, type=STRING macro=rss_schema
+									"option_definition": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=option_definition, type=STRING macro=rss_schema
+									// property: name=option_value, type=STRING macro=rss_schema
+									"option_value": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=option_value, type=STRING macro=rss_schema
+									// property: name=vendor_class_identifier, type=STRING macro=rss_schema
+									"vendor_class_identifier": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=vendor_class_identifier, type=STRING macro=rss_schema
+								},
+							},
 						},
 						// key name holder for attribute: name=vendor_class_identifier, type=STRING macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=vendor_class_identifier, type=STRING macro=rss_schema
-			// property: name=default_lease_time, type=INTEGER macro=rss_schema
-			"default_lease_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=default_lease_time, type=INTEGER macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
-			"dns_servers": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=domain_name, type=STRING macro=rss_schema
-			"domain_name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=domain_name, type=STRING macro=rss_schema
-			// property: name=gateway, type=STRING macro=rss_schema
-			"gateway": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=gateway, type=STRING macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=ip_ranges, type=ARRAY_REFERENCE macro=rss_schema
-			"ip_ranges": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=end_ip, type=STRING macro=rss_schema
-						"end_ip": dsschema.StringAttribute{
+						// property: name=default_lease_time, type=INTEGER macro=rss_schema
+						"default_lease_time": dsschema.Int64Attribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=end_ip, type=STRING macro=rss_schema
-						// property: name=start_ip, type=STRING macro=rss_schema
-						"start_ip": dsschema.StringAttribute{
+						// key name holder for attribute: name=default_lease_time, type=INTEGER macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=disabled, type=BOOLEAN macro=rss_schema
+						"disabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+						// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
+						"dns_servers": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=domain_name, type=STRING macro=rss_schema
+						"domain_name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=domain_name, type=STRING macro=rss_schema
+						// property: name=gateway, type=STRING macro=rss_schema
+						"gateway": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=gateway, type=STRING macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=ip_ranges, type=ARRAY_REFERENCE macro=rss_schema
+						"ip_ranges": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=end_ip, type=STRING macro=rss_schema
+									"end_ip": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=end_ip, type=STRING macro=rss_schema
+									// property: name=start_ip, type=STRING macro=rss_schema
+									"start_ip": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
+								},
+							},
 						},
 						// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
-			// property: name=max_lease_time, type=INTEGER macro=rss_schema
-			"max_lease_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=max_lease_time, type=INTEGER macro=rss_schema
-			// property: name=network_context_id, type=STRING macro=rss_schema
-			"network_context_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
-			// property: name=static_mappings, type=ARRAY_REFERENCE macro=rss_schema
-			"static_mappings": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=client_duid, type=STRING macro=rss_schema
-						"client_duid": dsschema.StringAttribute{
+						// property: name=max_lease_time, type=INTEGER macro=rss_schema
+						"max_lease_time": dsschema.Int64Attribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=client_duid, type=STRING macro=rss_schema
-						// property: name=ip_address, type=STRING macro=rss_schema
-						"ip_address": dsschema.StringAttribute{
+						// key name holder for attribute: name=max_lease_time, type=INTEGER macro=rss_schema
+						// property: name=network_context_id, type=STRING macro=rss_schema
+						"network_context_id": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=ip_address, type=STRING macro=rss_schema
-						// property: name=mac, type=STRING macro=rss_schema
-						"mac": dsschema.StringAttribute{
+						// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
+						// property: name=static_mappings, type=ARRAY_REFERENCE macro=rss_schema
+						"static_mappings": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
-						},
-						// key name holder for attribute: name=mac, type=STRING macro=rss_schema
-						// property: name=name, type=STRING macro=rss_schema
-						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=client_duid, type=STRING macro=rss_schema
+									"client_duid": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=client_duid, type=STRING macro=rss_schema
+									// property: name=ip_address, type=STRING macro=rss_schema
+									"ip_address": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=ip_address, type=STRING macro=rss_schema
+									// property: name=mac, type=STRING macro=rss_schema
+									"mac": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=mac, type=STRING macro=rss_schema
+									// property: name=name, type=STRING macro=rss_schema
+									"name": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=name, type=STRING macro=rss_schema
+								},
+							},
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=subnet, type=STRING macro=rss_schema
+						"subnet": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=subnet, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=vrf_context_id, type=STRING macro=rss_schema
+						"vrf_context_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=subnet, type=STRING macro=rss_schema
-			"subnet": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=subnet, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=vrf_context_id, type=STRING macro=rss_schema
-			"vrf_context_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -326,8 +358,9 @@ func (d *siteDhcpServerDataSource) Configure(_ context.Context, req datasource.C
 
 // Read performs Read for the struct.
 func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelDHCPServerScreenV2N3
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterSiteDhcpServer
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -340,154 +373,196 @@ func (d *siteDhcpServerDataSource) Read(ctx context.Context, req datasource.Read
 		"resource_name":               "prismasdwan_site_dhcp_server",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 2 {
-		resp.Diagnostics.AddError("error in prismasdwan_site_dhcp_server ID format", "Expected 2 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/dhcpservers/{dhcp_server_id}"
+	get_path := "/sdwan/v2.3/api/sites/{site_id}/dhcpservers/{dhcp_server_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["dhcp_server_id"] = &tokens[1]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_site_dhcp_server", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_site_dhcp_server", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.DHCPServerScreenV2N3
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to DHCPServerScreenV2N3", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=DHCPServerScreenV2N3
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=19
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=address_family, type=STRING macro=copy_to_state
-	state.AddressFamily = types.StringPointerValue(ans.AddressFamily)
-	// property: name=broadcast_address, type=STRING macro=copy_to_state
-	state.BroadcastAddress = types.StringPointerValue(ans.BroadcastAddress)
-	// property: name=custom_options, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.CustomOptions == nil {
-		state.CustomOptions = nil
-	} else if len(ans.CustomOptions) == 0 {
-		state.CustomOptions = []dsModelCustomDHCPOptions{}
-	} else {
-		state.CustomOptions = make([]dsModelCustomDHCPOptions, 0, len(ans.CustomOptions))
-		for varLoopCustomOptionsIndex, varLoopCustomOptions := range ans.CustomOptions {
-			// add a new item
-			state.CustomOptions = append(state.CustomOptions, dsModelCustomDHCPOptions{})
-			// copy_to_state: state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions properties=3
-			tflog.Debug(ctx, "copy_to_state state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions")
-			// property: name=option_definition, type=STRING macro=copy_to_state
-			state.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
-			// property: name=option_value, type=STRING macro=copy_to_state
-			state.CustomOptions[varLoopCustomOptionsIndex].OptionValue = types.StringPointerValue(varLoopCustomOptions.OptionValue)
-			// property: name=vendor_class_identifier, type=STRING macro=copy_to_state
-			state.CustomOptions[varLoopCustomOptionsIndex].VendorClassIdentifier = types.StringPointerValue(varLoopCustomOptions.VendorClassIdentifier)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
 		}
-	}
-	// property: name=default_lease_time, type=INTEGER macro=copy_to_state
-	state.DefaultLeaseTime = types.Int64PointerValue(ans.DefaultLeaseTime)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varDnsServers, errDnsServers := types.ListValueFrom(ctx, types.StringType, ans.DnsServers)
-	state.DnsServers = varDnsServers
-	resp.Diagnostics.Append(errDnsServers.Errors()...)
-	// property: name=domain_name, type=STRING macro=copy_to_state
-	state.DomainName = types.StringPointerValue(ans.DomainName)
-	// property: name=gateway, type=STRING macro=copy_to_state
-	state.Gateway = types.StringPointerValue(ans.Gateway)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=ip_ranges, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.IpRanges == nil {
-		state.IpRanges = nil
-	} else if len(ans.IpRanges) == 0 {
-		state.IpRanges = []dsModelIPRange{}
-	} else {
-		state.IpRanges = make([]dsModelIPRange, 0, len(ans.IpRanges))
-		for varLoopIpRangesIndex, varLoopIpRanges := range ans.IpRanges {
-			// add a new item
-			state.IpRanges = append(state.IpRanges, dsModelIPRange{})
-			// copy_to_state: state=state.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges")
-			// property: name=end_ip, type=STRING macro=copy_to_state
-			state.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
-			// property: name=start_ip, type=STRING macro=copy_to_state
-			state.IpRanges[varLoopIpRangesIndex].StartIp = types.StringPointerValue(varLoopIpRanges.StartIp)
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
 		}
-	}
-	// property: name=max_lease_time, type=INTEGER macro=copy_to_state
-	state.MaxLeaseTime = types.Int64PointerValue(ans.MaxLeaseTime)
-	// property: name=network_context_id, type=STRING macro=copy_to_state
-	state.NetworkContextId = types.StringPointerValue(ans.NetworkContextId)
-	// property: name=static_mappings, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.StaticMappings == nil {
-		state.StaticMappings = nil
-	} else if len(ans.StaticMappings) == 0 {
-		state.StaticMappings = []dsModelStaticMappingV2{}
-	} else {
-		state.StaticMappings = make([]dsModelStaticMappingV2, 0, len(ans.StaticMappings))
-		for varLoopStaticMappingsIndex, varLoopStaticMappings := range ans.StaticMappings {
-			// add a new item
-			state.StaticMappings = append(state.StaticMappings, dsModelStaticMappingV2{})
-			// copy_to_state: state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings properties=4
-			tflog.Debug(ctx, "copy_to_state state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings")
-			// property: name=client_duid, type=STRING macro=copy_to_state
-			state.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = types.StringPointerValue(varLoopStaticMappings.ClientDuid)
-			// property: name=ip_address, type=STRING macro=copy_to_state
-			state.StaticMappings[varLoopStaticMappingsIndex].IpAddress = types.StringPointerValue(varLoopStaticMappings.IpAddress)
-			// property: name=mac, type=STRING macro=copy_to_state
-			state.StaticMappings[varLoopStaticMappingsIndex].Mac = types.StringPointerValue(varLoopStaticMappings.Mac)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.StaticMappings[varLoopStaticMappingsIndex].Name = types.StringPointerValue(varLoopStaticMappings.Name)
-		}
-	}
-	// property: name=subnet, type=STRING macro=copy_to_state
-	state.Subnet = types.StringPointerValue(ans.Subnet)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=vrf_context_id, type=STRING macro=copy_to_state
-	state.VrfContextId = types.StringPointerValue(ans.VrfContextId)
 
+		// Store the answer to state.
+		var state dsModelDHCPServerScreenV2N3
+
+		// start copying attributes
+		var ans sdwan_schema.DHCPServerScreenV2N3
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to DHCPServerScreenV2N3", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=DHCPServerScreenV2N3
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=19
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=address_family, type=STRING macro=copy_to_state
+		state.AddressFamily = types.StringPointerValue(ans.AddressFamily)
+		// property: name=broadcast_address, type=STRING macro=copy_to_state
+		state.BroadcastAddress = types.StringPointerValue(ans.BroadcastAddress)
+		// property: name=custom_options, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.CustomOptions == nil {
+			state.CustomOptions = nil
+		} else if len(ans.CustomOptions) == 0 {
+			state.CustomOptions = []dsModelCustomDHCPOptions{}
+		} else {
+			state.CustomOptions = make([]dsModelCustomDHCPOptions, 0, len(ans.CustomOptions))
+			for varLoopCustomOptionsIndex, varLoopCustomOptions := range ans.CustomOptions {
+				// add a new item
+				state.CustomOptions = append(state.CustomOptions, dsModelCustomDHCPOptions{})
+				// copy_to_state: state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions")
+				// property: name=option_definition, type=STRING macro=copy_to_state
+				state.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
+				// property: name=option_value, type=STRING macro=copy_to_state
+				state.CustomOptions[varLoopCustomOptionsIndex].OptionValue = types.StringPointerValue(varLoopCustomOptions.OptionValue)
+				// property: name=vendor_class_identifier, type=STRING macro=copy_to_state
+				state.CustomOptions[varLoopCustomOptionsIndex].VendorClassIdentifier = types.StringPointerValue(varLoopCustomOptions.VendorClassIdentifier)
+			}
+		}
+		// property: name=default_lease_time, type=INTEGER macro=copy_to_state
+		state.DefaultLeaseTime = types.Int64PointerValue(ans.DefaultLeaseTime)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=disabled, type=BOOLEAN macro=copy_to_state
+		state.Disabled = types.BoolPointerValue(ans.Disabled)
+		// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varDnsServers, errDnsServers := types.ListValueFrom(ctx, types.StringType, ans.DnsServers)
+		state.DnsServers = varDnsServers
+		resp.Diagnostics.Append(errDnsServers.Errors()...)
+		// property: name=domain_name, type=STRING macro=copy_to_state
+		state.DomainName = types.StringPointerValue(ans.DomainName)
+		// property: name=gateway, type=STRING macro=copy_to_state
+		state.Gateway = types.StringPointerValue(ans.Gateway)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=ip_ranges, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.IpRanges == nil {
+			state.IpRanges = nil
+		} else if len(ans.IpRanges) == 0 {
+			state.IpRanges = []dsModelIPRange{}
+		} else {
+			state.IpRanges = make([]dsModelIPRange, 0, len(ans.IpRanges))
+			for varLoopIpRangesIndex, varLoopIpRanges := range ans.IpRanges {
+				// add a new item
+				state.IpRanges = append(state.IpRanges, dsModelIPRange{})
+				// copy_to_state: state=state.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges")
+				// property: name=end_ip, type=STRING macro=copy_to_state
+				state.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
+				// property: name=start_ip, type=STRING macro=copy_to_state
+				state.IpRanges[varLoopIpRangesIndex].StartIp = types.StringPointerValue(varLoopIpRanges.StartIp)
+			}
+		}
+		// property: name=max_lease_time, type=INTEGER macro=copy_to_state
+		state.MaxLeaseTime = types.Int64PointerValue(ans.MaxLeaseTime)
+		// property: name=network_context_id, type=STRING macro=copy_to_state
+		state.NetworkContextId = types.StringPointerValue(ans.NetworkContextId)
+		// property: name=static_mappings, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.StaticMappings == nil {
+			state.StaticMappings = nil
+		} else if len(ans.StaticMappings) == 0 {
+			state.StaticMappings = []dsModelStaticMappingV2{}
+		} else {
+			state.StaticMappings = make([]dsModelStaticMappingV2, 0, len(ans.StaticMappings))
+			for varLoopStaticMappingsIndex, varLoopStaticMappings := range ans.StaticMappings {
+				// add a new item
+				state.StaticMappings = append(state.StaticMappings, dsModelStaticMappingV2{})
+				// copy_to_state: state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings")
+				// property: name=client_duid, type=STRING macro=copy_to_state
+				state.StaticMappings[varLoopStaticMappingsIndex].ClientDuid = types.StringPointerValue(varLoopStaticMappings.ClientDuid)
+				// property: name=ip_address, type=STRING macro=copy_to_state
+				state.StaticMappings[varLoopStaticMappingsIndex].IpAddress = types.StringPointerValue(varLoopStaticMappings.IpAddress)
+				// property: name=mac, type=STRING macro=copy_to_state
+				state.StaticMappings[varLoopStaticMappingsIndex].Mac = types.StringPointerValue(varLoopStaticMappings.Mac)
+				// property: name=name, type=STRING macro=copy_to_state
+				state.StaticMappings[varLoopStaticMappingsIndex].Name = types.StringPointerValue(varLoopStaticMappings.Name)
+			}
+		}
+		// property: name=subnet, type=STRING macro=copy_to_state
+		state.Subnet = types.StringPointerValue(ans.Subnet)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=vrf_context_id, type=STRING macro=copy_to_state
+		state.VrfContextId = types.StringPointerValue(ans.VrfContextId)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

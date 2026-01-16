@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -50,6 +51,14 @@ type elementBgpConfigDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterElementBgpConfig struct {
+	Filters      types.Map                           `tfsdk:"filters"`
+	TfParameters types.Map                           `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                         `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                         `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelBGPGlobalConfigScreenV2N4 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *elementBgpConfigDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_element_bgp_config"
@@ -59,12 +68,13 @@ func (d *elementBgpConfigDataSource) Metadata(_ context.Context, req datasource.
 func (d *elementBgpConfigDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N4
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -82,192 +92,214 @@ func (d *elementBgpConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=admin_distance, type=INTEGER macro=rss_schema
-			"admin_distance": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
-			// property: name=adv_interval, type=INTEGER macro=rss_schema
-			"adv_interval": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=adv_interval, type=INTEGER macro=rss_schema
-			// property: name=graceful_restart, type=BOOLEAN macro=rss_schema
-			"graceful_restart": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=graceful_restart, type=BOOLEAN macro=rss_schema
-			// property: name=hold_time, type=INTEGER macro=rss_schema
-			"hold_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=hold_time, type=INTEGER macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
-			"ipv6_prefixes_to_adv_to_wan": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=keepalive_time, type=INTEGER macro=rss_schema
-			"keepalive_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=keepalive_time, type=INTEGER macro=rss_schema
-			// property: name=local_as_num, type=STRING macro=rss_schema
-			"local_as_num": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=local_as_num, type=STRING macro=rss_schema
-			// property: name=maximum_paths, type=INTEGER macro=rss_schema
-			"maximum_paths": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=maximum_paths, type=INTEGER macro=rss_schema
-			// property: name=md5_secret, type=STRING macro=rss_schema
-			"md5_secret": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: true,
-			},
-			// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
-			"md5_secret_internal_key_name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
-			"multi_hop_limit": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=multi_hop_limit, type=INTEGER macro=rss_schema
-			// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=rss_schema
-			"ospf_redistribution": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=route_map_id, type=STRING macro=rss_schema
-						"route_map_id": dsschema.StringAttribute{
+						// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N4
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=admin_distance, type=INTEGER macro=rss_schema
+						"admin_distance": dsschema.Int64Attribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=route_map_id, type=STRING macro=rss_schema
-						// property: name=vrf_context_id, type=STRING macro=rss_schema
-						"vrf_context_id": dsschema.StringAttribute{
+						// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
+						// property: name=adv_interval, type=INTEGER macro=rss_schema
+						"adv_interval": dsschema.Int64Attribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
+						},
+						// key name holder for attribute: name=adv_interval, type=INTEGER macro=rss_schema
+						// property: name=graceful_restart, type=BOOLEAN macro=rss_schema
+						"graceful_restart": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=graceful_restart, type=BOOLEAN macro=rss_schema
+						// property: name=hold_time, type=INTEGER macro=rss_schema
+						"hold_time": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=hold_time, type=INTEGER macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
+						"ipv6_prefixes_to_adv_to_wan": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=keepalive_time, type=INTEGER macro=rss_schema
+						"keepalive_time": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=keepalive_time, type=INTEGER macro=rss_schema
+						// property: name=local_as_num, type=STRING macro=rss_schema
+						"local_as_num": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=local_as_num, type=STRING macro=rss_schema
+						// property: name=maximum_paths, type=INTEGER macro=rss_schema
+						"maximum_paths": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=maximum_paths, type=INTEGER macro=rss_schema
+						// property: name=md5_secret, type=STRING macro=rss_schema
+						"md5_secret": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: true,
+						},
+						// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
+						"md5_secret_internal_key_name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
+						"multi_hop_limit": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=multi_hop_limit, type=INTEGER macro=rss_schema
+						// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=rss_schema
+						"ospf_redistribution": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=route_map_id, type=STRING macro=rss_schema
+									"route_map_id": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=route_map_id, type=STRING macro=rss_schema
+									// property: name=vrf_context_id, type=STRING macro=rss_schema
+									"vrf_context_id": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+								},
+							},
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+						// property: name=peer_auth_type, type=STRING macro=rss_schema
+						"peer_auth_type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=peer_auth_type, type=STRING macro=rss_schema
+						// property: name=peer_retry_time, type=INTEGER macro=rss_schema
+						"peer_retry_time": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
+						// property: name=prefix_adv_type, type=STRING macro=rss_schema
+						"prefix_adv_type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=prefix_adv_type, type=STRING macro=rss_schema
+						// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
+						"prefix_adv_type_to_lan": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
+						// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
+						"prefixes_to_adv_to_wan": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=router_id, type=STRING macro=rss_schema
+						"router_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
+						// property: name=stalepath_time, type=INTEGER macro=rss_schema
+						"stalepath_time": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=stalepath_time, type=INTEGER macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
-			// property: name=peer_auth_type, type=STRING macro=rss_schema
-			"peer_auth_type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=peer_auth_type, type=STRING macro=rss_schema
-			// property: name=peer_retry_time, type=INTEGER macro=rss_schema
-			"peer_retry_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
-			// property: name=prefix_adv_type, type=STRING macro=rss_schema
-			"prefix_adv_type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=prefix_adv_type, type=STRING macro=rss_schema
-			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
-			"prefix_adv_type_to_lan": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
-			// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
-			"prefixes_to_adv_to_wan": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=router_id, type=STRING macro=rss_schema
-			"router_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
-			// property: name=stalepath_time, type=INTEGER macro=rss_schema
-			"stalepath_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=stalepath_time, type=INTEGER macro=rss_schema
 		},
 	}
 }
@@ -282,8 +314,9 @@ func (d *elementBgpConfigDataSource) Configure(_ context.Context, req datasource
 
 // Read performs Read for the struct.
 func (d *elementBgpConfigDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelBGPGlobalConfigScreenV2N4
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterElementBgpConfig
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -296,121 +329,162 @@ func (d *elementBgpConfigDataSource) Read(ctx context.Context, req datasource.Re
 		"resource_name":               "prismasdwan_element_bgp_config",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_bgp_config ID format", "Expected 3 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
+	get_path := "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["element_id"] = &tokens[1]
-	params["bgp_config_id"] = &tokens[2]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_bgp_config", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_bgp_config", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.BGPGlobalConfigScreenV2N4
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N4", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-
-	// lets copy all items into state schema=BGPGlobalConfigScreenV2N4
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=21
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=admin_distance, type=INTEGER macro=copy_to_state
-	state.AdminDistance = types.Int64PointerValue(ans.AdminDistance)
-	// property: name=adv_interval, type=INTEGER macro=copy_to_state
-	state.AdvInterval = types.Int64PointerValue(ans.AdvInterval)
-	// property: name=graceful_restart, type=BOOLEAN macro=copy_to_state
-	state.GracefulRestart = types.BoolPointerValue(ans.GracefulRestart)
-	// property: name=hold_time, type=INTEGER macro=copy_to_state
-	state.HoldTime = types.Int64PointerValue(ans.HoldTime)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varIpv6PrefixesToAdvToWan, errIpv6PrefixesToAdvToWan := types.ListValueFrom(ctx, types.StringType, ans.Ipv6PrefixesToAdvToWan)
-	state.Ipv6PrefixesToAdvToWan = varIpv6PrefixesToAdvToWan
-	resp.Diagnostics.Append(errIpv6PrefixesToAdvToWan.Errors()...)
-	// property: name=keepalive_time, type=INTEGER macro=copy_to_state
-	state.KeepaliveTime = types.Int64PointerValue(ans.KeepaliveTime)
-	// property: name=local_as_num, type=STRING macro=copy_to_state
-	state.LocalAsNum = types.StringPointerValue(ans.LocalAsNum)
-	// property: name=maximum_paths, type=INTEGER macro=copy_to_state
-	state.MaximumPaths = types.Int64PointerValue(ans.MaximumPaths)
-	// property: name=md5_secret, type=STRING macro=copy_to_state
-	state.Md5Secret = types.StringPointerValue(ans.Md5Secret)
-	// property: name=multi_hop_limit, type=INTEGER macro=copy_to_state
-	state.MultiHopLimit = types.Int64PointerValue(ans.MultiHopLimit)
-	// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.OspfRedistribution == nil {
-		state.OspfRedistribution = nil
-	} else if len(ans.OspfRedistribution) == 0 {
-		state.OspfRedistribution = []dsModelOspfRedistribution{}
-	} else {
-		state.OspfRedistribution = make([]dsModelOspfRedistribution, 0, len(ans.OspfRedistribution))
-		for varLoopOspfRedistributionIndex, varLoopOspfRedistribution := range ans.OspfRedistribution {
-			// add a new item
-			state.OspfRedistribution = append(state.OspfRedistribution, dsModelOspfRedistribution{})
-			// copy_to_state: state=state.OspfRedistribution[varLoopOspfRedistributionIndex] prefix=dsModel ans=varLoopOspfRedistribution properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.OspfRedistribution[varLoopOspfRedistributionIndex] prefix=dsModel ans=varLoopOspfRedistribution")
-			// property: name=route_map_id, type=STRING macro=copy_to_state
-			state.OspfRedistribution[varLoopOspfRedistributionIndex].RouteMapId = types.StringPointerValue(varLoopOspfRedistribution.RouteMapId)
-			// property: name=vrf_context_id, type=STRING macro=copy_to_state
-			state.OspfRedistribution[varLoopOspfRedistributionIndex].VrfContextId = types.StringPointerValue(varLoopOspfRedistribution.VrfContextId)
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
 		}
-	}
-	// property: name=peer_auth_type, type=STRING macro=copy_to_state
-	state.PeerAuthType = types.StringPointerValue(ans.PeerAuthType)
-	// property: name=peer_retry_time, type=INTEGER macro=copy_to_state
-	state.PeerRetryTime = types.Int64PointerValue(ans.PeerRetryTime)
-	// property: name=prefix_adv_type, type=STRING macro=copy_to_state
-	state.PrefixAdvType = types.StringPointerValue(ans.PrefixAdvType)
-	// property: name=prefix_adv_type_to_lan, type=STRING macro=copy_to_state
-	state.PrefixAdvTypeToLan = types.StringPointerValue(ans.PrefixAdvTypeToLan)
-	// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varPrefixesToAdvToWan, errPrefixesToAdvToWan := types.ListValueFrom(ctx, types.StringType, ans.PrefixesToAdvToWan)
-	state.PrefixesToAdvToWan = varPrefixesToAdvToWan
-	resp.Diagnostics.Append(errPrefixesToAdvToWan.Errors()...)
-	// property: name=router_id, type=STRING macro=copy_to_state
-	state.RouterId = types.StringPointerValue(ans.RouterId)
-	// property: name=stalepath_time, type=INTEGER macro=copy_to_state
-	state.StalepathTime = types.Int64PointerValue(ans.StalepathTime)
 
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelBGPGlobalConfigScreenV2N4
+
+		// start copying attributes
+		var ans sdwan_schema.BGPGlobalConfigScreenV2N4
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N4", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=BGPGlobalConfigScreenV2N4
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=21
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=admin_distance, type=INTEGER macro=copy_to_state
+		state.AdminDistance = types.Int64PointerValue(ans.AdminDistance)
+		// property: name=adv_interval, type=INTEGER macro=copy_to_state
+		state.AdvInterval = types.Int64PointerValue(ans.AdvInterval)
+		// property: name=graceful_restart, type=BOOLEAN macro=copy_to_state
+		state.GracefulRestart = types.BoolPointerValue(ans.GracefulRestart)
+		// property: name=hold_time, type=INTEGER macro=copy_to_state
+		state.HoldTime = types.Int64PointerValue(ans.HoldTime)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varIpv6PrefixesToAdvToWan, errIpv6PrefixesToAdvToWan := types.ListValueFrom(ctx, types.StringType, ans.Ipv6PrefixesToAdvToWan)
+		state.Ipv6PrefixesToAdvToWan = varIpv6PrefixesToAdvToWan
+		resp.Diagnostics.Append(errIpv6PrefixesToAdvToWan.Errors()...)
+		// property: name=keepalive_time, type=INTEGER macro=copy_to_state
+		state.KeepaliveTime = types.Int64PointerValue(ans.KeepaliveTime)
+		// property: name=local_as_num, type=STRING macro=copy_to_state
+		state.LocalAsNum = types.StringPointerValue(ans.LocalAsNum)
+		// property: name=maximum_paths, type=INTEGER macro=copy_to_state
+		state.MaximumPaths = types.Int64PointerValue(ans.MaximumPaths)
+		// property: name=md5_secret, type=STRING macro=copy_to_state
+		state.Md5Secret = types.StringPointerValue(ans.Md5Secret)
+		// property: name=multi_hop_limit, type=INTEGER macro=copy_to_state
+		state.MultiHopLimit = types.Int64PointerValue(ans.MultiHopLimit)
+		// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.OspfRedistribution == nil {
+			state.OspfRedistribution = nil
+		} else if len(ans.OspfRedistribution) == 0 {
+			state.OspfRedistribution = []dsModelOspfRedistribution{}
+		} else {
+			state.OspfRedistribution = make([]dsModelOspfRedistribution, 0, len(ans.OspfRedistribution))
+			for varLoopOspfRedistributionIndex, varLoopOspfRedistribution := range ans.OspfRedistribution {
+				// add a new item
+				state.OspfRedistribution = append(state.OspfRedistribution, dsModelOspfRedistribution{})
+				// copy_to_state: state=state.OspfRedistribution[varLoopOspfRedistributionIndex] prefix=dsModel ans=varLoopOspfRedistribution properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.OspfRedistribution[varLoopOspfRedistributionIndex] prefix=dsModel ans=varLoopOspfRedistribution")
+				// property: name=route_map_id, type=STRING macro=copy_to_state
+				state.OspfRedistribution[varLoopOspfRedistributionIndex].RouteMapId = types.StringPointerValue(varLoopOspfRedistribution.RouteMapId)
+				// property: name=vrf_context_id, type=STRING macro=copy_to_state
+				state.OspfRedistribution[varLoopOspfRedistributionIndex].VrfContextId = types.StringPointerValue(varLoopOspfRedistribution.VrfContextId)
+			}
+		}
+		// property: name=peer_auth_type, type=STRING macro=copy_to_state
+		state.PeerAuthType = types.StringPointerValue(ans.PeerAuthType)
+		// property: name=peer_retry_time, type=INTEGER macro=copy_to_state
+		state.PeerRetryTime = types.Int64PointerValue(ans.PeerRetryTime)
+		// property: name=prefix_adv_type, type=STRING macro=copy_to_state
+		state.PrefixAdvType = types.StringPointerValue(ans.PrefixAdvType)
+		// property: name=prefix_adv_type_to_lan, type=STRING macro=copy_to_state
+		state.PrefixAdvTypeToLan = types.StringPointerValue(ans.PrefixAdvTypeToLan)
+		// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varPrefixesToAdvToWan, errPrefixesToAdvToWan := types.ListValueFrom(ctx, types.StringType, ans.PrefixesToAdvToWan)
+		state.PrefixesToAdvToWan = varPrefixesToAdvToWan
+		resp.Diagnostics.Append(errPrefixesToAdvToWan.Errors()...)
+		// property: name=router_id, type=STRING macro=copy_to_state
+		state.RouterId = types.StringPointerValue(ans.RouterId)
+		// property: name=stalepath_time, type=INTEGER macro=copy_to_state
+		state.StalepathTime = types.Int64PointerValue(ans.StalepathTime)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

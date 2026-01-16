@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -54,6 +55,14 @@ type performancePolicyRuleDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterPerformancePolicyRule struct {
+	Filters      types.Map                              `tfsdk:"filters"`
+	TfParameters types.Map                              `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                            `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                            `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelPerfMgmtPolicyRuleScreenV2N2 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *performancePolicyRuleDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_performance_policy_rule"
@@ -63,12 +72,13 @@ func (d *performancePolicyRuleDataSource) Metadata(_ context.Context, req dataso
 func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=PerfMgmtPolicyRuleScreenV2N2
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -86,391 +96,413 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=actions, type=ARRAY_REFERENCE macro=rss_schema
-			"actions": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=action_type, type=STRING macro=rss_schema
-						"action_type": dsschema.StringAttribute{
+						// rest all properties to be read from GET API Schema schema=PerfMgmtPolicyRuleScreenV2N2
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=actions, type=ARRAY_REFERENCE macro=rss_schema
+						"actions": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=action_type, type=STRING macro=rss_schema
+									"action_type": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=action_type, type=STRING macro=rss_schema
+									// property: name=always_on, type=BOOLEAN macro=rss_schema
+									"always_on": dsschema.BoolAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=always_on, type=BOOLEAN macro=rss_schema
+									// property: name=app_perf, type=REFERENCE macro=rss_schema
+									"app_perf": dsschema.SingleNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
+											"bad_health_thresholds": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=clear_below, type=INTEGER macro=rss_schema
+													"clear_below": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
+													// property: name=raise_above, type=INTEGER macro=rss_schema
+													"raise_above": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// property: name=monitoring_approach, type=STRING macro=rss_schema
+											"monitoring_approach": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+										},
+									},
+									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// property: name=circuit_utilization_perf, type=REFERENCE macro=rss_schema
+									"circuit_utilization_perf": dsschema.SingleNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
+											"bad_health_thresholds": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=clear_below, type=INTEGER macro=rss_schema
+													"clear_below": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
+													// property: name=raise_above, type=INTEGER macro=rss_schema
+													"raise_above": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// property: name=monitoring_approach, type=STRING macro=rss_schema
+											"monitoring_approach": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+										},
+									},
+									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// property: name=lqm_perf, type=REFERENCE macro=rss_schema
+									"lqm_perf": dsschema.SingleNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
+											"bad_health_thresholds": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=clear_below, type=INTEGER macro=rss_schema
+													"clear_below": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
+													// property: name=raise_above, type=INTEGER macro=rss_schema
+													"raise_above": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// property: name=monitoring_approach, type=STRING macro=rss_schema
+											"monitoring_approach": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+										},
+									},
+									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// property: name=probe_perf, type=REFERENCE macro=rss_schema
+									"probe_perf": dsschema.SingleNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
+											"bad_health_thresholds": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=clear_below, type=INTEGER macro=rss_schema
+													"clear_below": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
+													// property: name=raise_above, type=INTEGER macro=rss_schema
+													"raise_above": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// property: name=monitoring_approach, type=STRING macro=rss_schema
+											"monitoring_approach": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+										},
+									},
+									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// property: name=sys_perf, type=REFERENCE macro=rss_schema
+									"sys_perf": dsschema.SingleNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
+											"bad_health_thresholds": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=clear_below, type=INTEGER macro=rss_schema
+													"clear_below": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
+													// property: name=raise_above, type=INTEGER macro=rss_schema
+													"raise_above": dsschema.Int64Attribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// property: name=monitoring_approach, type=STRING macro=rss_schema
+											"monitoring_approach": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+										},
+									},
+									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+								},
+							},
 						},
-						// key name holder for attribute: name=action_type, type=STRING macro=rss_schema
-						// property: name=always_on, type=BOOLEAN macro=rss_schema
-						"always_on": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=always_on, type=BOOLEAN macro=rss_schema
-						// property: name=app_perf, type=REFERENCE macro=rss_schema
-						"app_perf": dsschema.SingleNestedAttribute{
+						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+						// property: name=app_filters, type=REFERENCE macro=rss_schema
+						"app_filters": dsschema.SingleNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 							Attributes: map[string]dsschema.Attribute{
-								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
-								"bad_health_thresholds": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=clear_below, type=INTEGER macro=rss_schema
-										"clear_below": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
-										// property: name=raise_above, type=INTEGER macro=rss_schema
-										"raise_above": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-									},
+								// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
+								"app_transfer_types": dsschema.ListAttribute{
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									ElementType: types.StringType,
 								},
-								// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-								// property: name=monitoring_approach, type=STRING macro=rss_schema
-								"monitoring_approach": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+								// key name holder for attribute: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
+								// property: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+								"application_ids": dsschema.ListAttribute{
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									ElementType: types.StringType,
 								},
-								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+								// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-						// property: name=circuit_utilization_perf, type=REFERENCE macro=rss_schema
-						"circuit_utilization_perf": dsschema.SingleNestedAttribute{
+						// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
-								"bad_health_thresholds": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=clear_below, type=INTEGER macro=rss_schema
-										"clear_below": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
-										// property: name=raise_above, type=INTEGER macro=rss_schema
-										"raise_above": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=enabled, type=BOOLEAN macro=rss_schema
+						"enabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						"network_context_ids": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=path_filters, type=ARRAY_REFERENCE macro=rss_schema
+						"path_filters": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=label, type=STRING macro=rss_schema
+									"label": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
 									},
-								},
-								// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-								// property: name=monitoring_approach, type=STRING macro=rss_schema
-								"monitoring_approach": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-							},
-						},
-						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-						// property: name=lqm_perf, type=REFERENCE macro=rss_schema
-						"lqm_perf": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
-								"bad_health_thresholds": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=clear_below, type=INTEGER macro=rss_schema
-										"clear_below": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
-										// property: name=raise_above, type=INTEGER macro=rss_schema
-										"raise_above": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=label, type=STRING macro=rss_schema
+									// property: name=path_type, type=STRING macro=rss_schema
+									"path_type": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
 									},
+									// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 								},
-								// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-								// property: name=monitoring_approach, type=STRING macro=rss_schema
-								"monitoring_approach": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 							},
-						},
-						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-						// property: name=probe_perf, type=REFERENCE macro=rss_schema
-						"probe_perf": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
-								"bad_health_thresholds": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=clear_below, type=INTEGER macro=rss_schema
-										"clear_below": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
-										// property: name=raise_above, type=INTEGER macro=rss_schema
-										"raise_above": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-									},
-								},
-								// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-								// property: name=monitoring_approach, type=STRING macro=rss_schema
-								"monitoring_approach": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-							},
-						},
-						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-						// property: name=sys_perf, type=REFERENCE macro=rss_schema
-						"sys_perf": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
-								"bad_health_thresholds": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=clear_below, type=INTEGER macro=rss_schema
-										"clear_below": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
-										// property: name=raise_above, type=INTEGER macro=rss_schema
-										"raise_above": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-									},
-								},
-								// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
-								// property: name=monitoring_approach, type=STRING macro=rss_schema
-								"monitoring_approach": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-							},
-						},
-						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
-			// property: name=app_filters, type=REFERENCE macro=rss_schema
-			"app_filters": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
-					"app_transfer_types": dsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-					"application_ids": dsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=enabled, type=BOOLEAN macro=rss_schema
-			"enabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"network_context_ids": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=path_filters, type=ARRAY_REFERENCE macro=rss_schema
-			"path_filters": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=label, type=STRING macro=rss_schema
-						"label": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=label, type=STRING macro=rss_schema
-						// property: name=path_type, type=STRING macro=rss_schema
-						"path_type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
 						},
 						// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+						// property: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						"service_label_ids": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=thresholdprofile_id, type=STRING macro=rss_schema
+						"thresholdprofile_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=thresholdprofile_id, type=STRING macro=rss_schema
+						// property: name=type, type=STRING macro=rss_schema
+						"type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-			// property: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"service_label_ids": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=thresholdprofile_id, type=STRING macro=rss_schema
-			"thresholdprofile_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=thresholdprofile_id, type=STRING macro=rss_schema
-			// property: name=type, type=STRING macro=rss_schema
-			"type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -485,8 +517,9 @@ func (d *performancePolicyRuleDataSource) Configure(_ context.Context, req datas
 
 // Read performs Read for the struct.
 func (d *performancePolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelPerfMgmtPolicyRuleScreenV2N2
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterPerformancePolicyRule
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -499,248 +532,290 @@ func (d *performancePolicyRuleDataSource) Read(ctx context.Context, req datasour
 		"resource_name":               "prismasdwan_performance_policy_rule",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 2 {
-		resp.Diagnostics.AddError("error in prismasdwan_performance_policy_rule ID format", "Expected 2 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
+	get_path := "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["perfmgmtpolicyset_id"] = &tokens[0]
-	params["perfmgmtpolicyrule_id"] = &tokens[1]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_performance_policy_rule", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_performance_policy_rule", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N2
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N2", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=PerfMgmtPolicyRuleScreenV2N2
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=14
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=actions, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Actions == nil {
-		state.Actions = nil
-	} else if len(ans.Actions) == 0 {
-		state.Actions = []dsModelPerfMgmtActionV2N2{}
-	} else {
-		state.Actions = make([]dsModelPerfMgmtActionV2N2, 0, len(ans.Actions))
-		for varLoopActionsIndex, varLoopActions := range ans.Actions {
-			// add a new item
-			state.Actions = append(state.Actions, dsModelPerfMgmtActionV2N2{})
-			// copy_to_state: state=state.Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions properties=7
-			tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions")
-			// property: name=action_type, type=STRING macro=copy_to_state
-			state.Actions[varLoopActionsIndex].ActionType = types.StringPointerValue(varLoopActions.ActionType)
-			// property: name=always_on, type=BOOLEAN macro=copy_to_state
-			state.Actions[varLoopActionsIndex].AlwaysOn = types.BoolPointerValue(varLoopActions.AlwaysOn)
-			// property: name=app_perf, type=REFERENCE macro=copy_to_state
-			if varLoopActions.AppPerf == nil {
-				state.Actions[varLoopActionsIndex].AppPerf = nil
-			} else {
-				state.Actions[varLoopActionsIndex].AppPerf = &dsModelPerfMgmtActionParameters{}
-				// copy_to_state: state=state.Actions[varLoopActionsIndex].AppPerf prefix=dsModel ans=varLoopActions.AppPerf properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].AppPerf prefix=dsModel ans=varLoopActions.AppPerf")
-				// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
-				if varLoopActions.AppPerf.BadHealthThresholds == nil {
-					state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds = nil
-				} else {
-					state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
-					// copy_to_state: state=state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.AppPerf.BadHealthThresholds properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.AppPerf.BadHealthThresholds")
-					// property: name=clear_below, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.AppPerf.BadHealthThresholds.ClearBelow)
-					// property: name=raise_above, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.AppPerf.BadHealthThresholds.RaiseAbove)
-				}
-				// property: name=monitoring_approach, type=STRING macro=copy_to_state
-				state.Actions[varLoopActionsIndex].AppPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.AppPerf.MonitoringApproach)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
 			}
-			// property: name=circuit_utilization_perf, type=REFERENCE macro=copy_to_state
-			if varLoopActions.CircuitUtilizationPerf == nil {
-				state.Actions[varLoopActionsIndex].CircuitUtilizationPerf = nil
-			} else {
-				state.Actions[varLoopActionsIndex].CircuitUtilizationPerf = &dsModelPerfMgmtActionParameters{}
-				// copy_to_state: state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf")
-				// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
-				if varLoopActions.CircuitUtilizationPerf.BadHealthThresholds == nil {
-					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds = nil
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelPerfMgmtPolicyRuleScreenV2N2
+
+		// start copying attributes
+		var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N2
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N2", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=PerfMgmtPolicyRuleScreenV2N2
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=14
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=actions, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.Actions == nil {
+			state.Actions = nil
+		} else if len(ans.Actions) == 0 {
+			state.Actions = []dsModelPerfMgmtActionV2N2{}
+		} else {
+			state.Actions = make([]dsModelPerfMgmtActionV2N2, 0, len(ans.Actions))
+			for varLoopActionsIndex, varLoopActions := range ans.Actions {
+				// add a new item
+				state.Actions = append(state.Actions, dsModelPerfMgmtActionV2N2{})
+				// copy_to_state: state=state.Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex] prefix=dsModel ans=varLoopActions")
+				// property: name=action_type, type=STRING macro=copy_to_state
+				state.Actions[varLoopActionsIndex].ActionType = types.StringPointerValue(varLoopActions.ActionType)
+				// property: name=always_on, type=BOOLEAN macro=copy_to_state
+				state.Actions[varLoopActionsIndex].AlwaysOn = types.BoolPointerValue(varLoopActions.AlwaysOn)
+				// property: name=app_perf, type=REFERENCE macro=copy_to_state
+				if varLoopActions.AppPerf == nil {
+					state.Actions[varLoopActionsIndex].AppPerf = nil
 				} else {
-					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
-					// copy_to_state: state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf.BadHealthThresholds properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf.BadHealthThresholds")
-					// property: name=clear_below, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.CircuitUtilizationPerf.BadHealthThresholds.ClearBelow)
-					// property: name=raise_above, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.CircuitUtilizationPerf.BadHealthThresholds.RaiseAbove)
+					state.Actions[varLoopActionsIndex].AppPerf = &dsModelPerfMgmtActionParameters{}
+					// copy_to_state: state=state.Actions[varLoopActionsIndex].AppPerf prefix=dsModel ans=varLoopActions.AppPerf properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].AppPerf prefix=dsModel ans=varLoopActions.AppPerf")
+					// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
+					if varLoopActions.AppPerf.BadHealthThresholds == nil {
+						state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds = nil
+					} else {
+						state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
+						// copy_to_state: state=state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.AppPerf.BadHealthThresholds properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.AppPerf.BadHealthThresholds")
+						// property: name=clear_below, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.AppPerf.BadHealthThresholds.ClearBelow)
+						// property: name=raise_above, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].AppPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.AppPerf.BadHealthThresholds.RaiseAbove)
+					}
+					// property: name=monitoring_approach, type=STRING macro=copy_to_state
+					state.Actions[varLoopActionsIndex].AppPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.AppPerf.MonitoringApproach)
 				}
-				// property: name=monitoring_approach, type=STRING macro=copy_to_state
-				state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.CircuitUtilizationPerf.MonitoringApproach)
-			}
-			// property: name=lqm_perf, type=REFERENCE macro=copy_to_state
-			if varLoopActions.LqmPerf == nil {
-				state.Actions[varLoopActionsIndex].LqmPerf = nil
-			} else {
-				state.Actions[varLoopActionsIndex].LqmPerf = &dsModelPerfMgmtActionParameters{}
-				// copy_to_state: state=state.Actions[varLoopActionsIndex].LqmPerf prefix=dsModel ans=varLoopActions.LqmPerf properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].LqmPerf prefix=dsModel ans=varLoopActions.LqmPerf")
-				// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
-				if varLoopActions.LqmPerf.BadHealthThresholds == nil {
-					state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds = nil
+				// property: name=circuit_utilization_perf, type=REFERENCE macro=copy_to_state
+				if varLoopActions.CircuitUtilizationPerf == nil {
+					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf = nil
 				} else {
-					state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
-					// copy_to_state: state=state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.LqmPerf.BadHealthThresholds properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.LqmPerf.BadHealthThresholds")
-					// property: name=clear_below, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.LqmPerf.BadHealthThresholds.ClearBelow)
-					// property: name=raise_above, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.LqmPerf.BadHealthThresholds.RaiseAbove)
+					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf = &dsModelPerfMgmtActionParameters{}
+					// copy_to_state: state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf")
+					// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
+					if varLoopActions.CircuitUtilizationPerf.BadHealthThresholds == nil {
+						state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds = nil
+					} else {
+						state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
+						// copy_to_state: state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf.BadHealthThresholds properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.CircuitUtilizationPerf.BadHealthThresholds")
+						// property: name=clear_below, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.CircuitUtilizationPerf.BadHealthThresholds.ClearBelow)
+						// property: name=raise_above, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.CircuitUtilizationPerf.BadHealthThresholds.RaiseAbove)
+					}
+					// property: name=monitoring_approach, type=STRING macro=copy_to_state
+					state.Actions[varLoopActionsIndex].CircuitUtilizationPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.CircuitUtilizationPerf.MonitoringApproach)
 				}
-				// property: name=monitoring_approach, type=STRING macro=copy_to_state
-				state.Actions[varLoopActionsIndex].LqmPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.LqmPerf.MonitoringApproach)
-			}
-			// property: name=probe_perf, type=REFERENCE macro=copy_to_state
-			if varLoopActions.ProbePerf == nil {
-				state.Actions[varLoopActionsIndex].ProbePerf = nil
-			} else {
-				state.Actions[varLoopActionsIndex].ProbePerf = &dsModelPerfMgmtActionParameters{}
-				// copy_to_state: state=state.Actions[varLoopActionsIndex].ProbePerf prefix=dsModel ans=varLoopActions.ProbePerf properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].ProbePerf prefix=dsModel ans=varLoopActions.ProbePerf")
-				// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
-				if varLoopActions.ProbePerf.BadHealthThresholds == nil {
-					state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds = nil
+				// property: name=lqm_perf, type=REFERENCE macro=copy_to_state
+				if varLoopActions.LqmPerf == nil {
+					state.Actions[varLoopActionsIndex].LqmPerf = nil
 				} else {
-					state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
-					// copy_to_state: state=state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.ProbePerf.BadHealthThresholds properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.ProbePerf.BadHealthThresholds")
-					// property: name=clear_below, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.ProbePerf.BadHealthThresholds.ClearBelow)
-					// property: name=raise_above, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.ProbePerf.BadHealthThresholds.RaiseAbove)
+					state.Actions[varLoopActionsIndex].LqmPerf = &dsModelPerfMgmtActionParameters{}
+					// copy_to_state: state=state.Actions[varLoopActionsIndex].LqmPerf prefix=dsModel ans=varLoopActions.LqmPerf properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].LqmPerf prefix=dsModel ans=varLoopActions.LqmPerf")
+					// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
+					if varLoopActions.LqmPerf.BadHealthThresholds == nil {
+						state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds = nil
+					} else {
+						state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
+						// copy_to_state: state=state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.LqmPerf.BadHealthThresholds properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.LqmPerf.BadHealthThresholds")
+						// property: name=clear_below, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.LqmPerf.BadHealthThresholds.ClearBelow)
+						// property: name=raise_above, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].LqmPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.LqmPerf.BadHealthThresholds.RaiseAbove)
+					}
+					// property: name=monitoring_approach, type=STRING macro=copy_to_state
+					state.Actions[varLoopActionsIndex].LqmPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.LqmPerf.MonitoringApproach)
 				}
-				// property: name=monitoring_approach, type=STRING macro=copy_to_state
-				state.Actions[varLoopActionsIndex].ProbePerf.MonitoringApproach = types.StringPointerValue(varLoopActions.ProbePerf.MonitoringApproach)
-			}
-			// property: name=sys_perf, type=REFERENCE macro=copy_to_state
-			if varLoopActions.SysPerf == nil {
-				state.Actions[varLoopActionsIndex].SysPerf = nil
-			} else {
-				state.Actions[varLoopActionsIndex].SysPerf = &dsModelPerfMgmtActionParameters{}
-				// copy_to_state: state=state.Actions[varLoopActionsIndex].SysPerf prefix=dsModel ans=varLoopActions.SysPerf properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].SysPerf prefix=dsModel ans=varLoopActions.SysPerf")
-				// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
-				if varLoopActions.SysPerf.BadHealthThresholds == nil {
-					state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds = nil
+				// property: name=probe_perf, type=REFERENCE macro=copy_to_state
+				if varLoopActions.ProbePerf == nil {
+					state.Actions[varLoopActionsIndex].ProbePerf = nil
 				} else {
-					state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
-					// copy_to_state: state=state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.SysPerf.BadHealthThresholds properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.SysPerf.BadHealthThresholds")
-					// property: name=clear_below, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.SysPerf.BadHealthThresholds.ClearBelow)
-					// property: name=raise_above, type=INTEGER macro=copy_to_state
-					state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.SysPerf.BadHealthThresholds.RaiseAbove)
+					state.Actions[varLoopActionsIndex].ProbePerf = &dsModelPerfMgmtActionParameters{}
+					// copy_to_state: state=state.Actions[varLoopActionsIndex].ProbePerf prefix=dsModel ans=varLoopActions.ProbePerf properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].ProbePerf prefix=dsModel ans=varLoopActions.ProbePerf")
+					// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
+					if varLoopActions.ProbePerf.BadHealthThresholds == nil {
+						state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds = nil
+					} else {
+						state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
+						// copy_to_state: state=state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.ProbePerf.BadHealthThresholds properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.ProbePerf.BadHealthThresholds")
+						// property: name=clear_below, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.ProbePerf.BadHealthThresholds.ClearBelow)
+						// property: name=raise_above, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].ProbePerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.ProbePerf.BadHealthThresholds.RaiseAbove)
+					}
+					// property: name=monitoring_approach, type=STRING macro=copy_to_state
+					state.Actions[varLoopActionsIndex].ProbePerf.MonitoringApproach = types.StringPointerValue(varLoopActions.ProbePerf.MonitoringApproach)
 				}
-				// property: name=monitoring_approach, type=STRING macro=copy_to_state
-				state.Actions[varLoopActionsIndex].SysPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.SysPerf.MonitoringApproach)
+				// property: name=sys_perf, type=REFERENCE macro=copy_to_state
+				if varLoopActions.SysPerf == nil {
+					state.Actions[varLoopActionsIndex].SysPerf = nil
+				} else {
+					state.Actions[varLoopActionsIndex].SysPerf = &dsModelPerfMgmtActionParameters{}
+					// copy_to_state: state=state.Actions[varLoopActionsIndex].SysPerf prefix=dsModel ans=varLoopActions.SysPerf properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].SysPerf prefix=dsModel ans=varLoopActions.SysPerf")
+					// property: name=bad_health_thresholds, type=REFERENCE macro=copy_to_state
+					if varLoopActions.SysPerf.BadHealthThresholds == nil {
+						state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds = nil
+					} else {
+						state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds = &dsModelPerfMgmtHealthThresholds{}
+						// copy_to_state: state=state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.SysPerf.BadHealthThresholds properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds prefix=dsModel ans=varLoopActions.SysPerf.BadHealthThresholds")
+						// property: name=clear_below, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds.ClearBelow = types.Int64PointerValue(varLoopActions.SysPerf.BadHealthThresholds.ClearBelow)
+						// property: name=raise_above, type=INTEGER macro=copy_to_state
+						state.Actions[varLoopActionsIndex].SysPerf.BadHealthThresholds.RaiseAbove = types.Int64PointerValue(varLoopActions.SysPerf.BadHealthThresholds.RaiseAbove)
+					}
+					// property: name=monitoring_approach, type=STRING macro=copy_to_state
+					state.Actions[varLoopActionsIndex].SysPerf.MonitoringApproach = types.StringPointerValue(varLoopActions.SysPerf.MonitoringApproach)
+				}
 			}
 		}
-	}
-	// property: name=app_filters, type=REFERENCE macro=copy_to_state
-	if ans.AppFilters == nil {
-		state.AppFilters = nil
-	} else {
-		state.AppFilters = &dsModelApplicationFilter{}
-		// copy_to_state: state=state.AppFilters prefix=dsModel ans=ans.AppFilters properties=2
-		tflog.Debug(ctx, "copy_to_state state=state.AppFilters prefix=dsModel ans=ans.AppFilters")
-		// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varAppTransferTypes, errAppTransferTypes := types.ListValueFrom(ctx, types.StringType, ans.AppFilters.AppTransferTypes)
-		state.AppFilters.AppTransferTypes = varAppTransferTypes
-		resp.Diagnostics.Append(errAppTransferTypes.Errors()...)
-		// property: name=application_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varApplicationIds, errApplicationIds := types.ListValueFrom(ctx, types.StringType, ans.AppFilters.ApplicationIds)
-		state.AppFilters.ApplicationIds = varApplicationIds
-		resp.Diagnostics.Append(errApplicationIds.Errors()...)
-	}
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=enabled, type=BOOLEAN macro=copy_to_state
-	state.Enabled = types.BoolPointerValue(ans.Enabled)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varNetworkContextIds, errNetworkContextIds := types.ListValueFrom(ctx, types.StringType, ans.NetworkContextIds)
-	state.NetworkContextIds = varNetworkContextIds
-	resp.Diagnostics.Append(errNetworkContextIds.Errors()...)
-	// property: name=path_filters, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.PathFilters == nil {
-		state.PathFilters = nil
-	} else if len(ans.PathFilters) == 0 {
-		state.PathFilters = []dsModelPathFilter{}
-	} else {
-		state.PathFilters = make([]dsModelPathFilter, 0, len(ans.PathFilters))
-		for varLoopPathFiltersIndex, varLoopPathFilters := range ans.PathFilters {
-			// add a new item
-			state.PathFilters = append(state.PathFilters, dsModelPathFilter{})
-			// copy_to_state: state=state.PathFilters[varLoopPathFiltersIndex] prefix=dsModel ans=varLoopPathFilters properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.PathFilters[varLoopPathFiltersIndex] prefix=dsModel ans=varLoopPathFilters")
-			// property: name=label, type=STRING macro=copy_to_state
-			state.PathFilters[varLoopPathFiltersIndex].Label = types.StringPointerValue(varLoopPathFilters.Label)
-			// property: name=path_type, type=STRING macro=copy_to_state
-			state.PathFilters[varLoopPathFiltersIndex].PathType = types.StringPointerValue(varLoopPathFilters.PathType)
+		// property: name=app_filters, type=REFERENCE macro=copy_to_state
+		if ans.AppFilters == nil {
+			state.AppFilters = nil
+		} else {
+			state.AppFilters = &dsModelApplicationFilter{}
+			// copy_to_state: state=state.AppFilters prefix=dsModel ans=ans.AppFilters properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.AppFilters prefix=dsModel ans=ans.AppFilters")
+			// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varAppTransferTypes, errAppTransferTypes := types.ListValueFrom(ctx, types.StringType, ans.AppFilters.AppTransferTypes)
+			state.AppFilters.AppTransferTypes = varAppTransferTypes
+			resp.Diagnostics.Append(errAppTransferTypes.Errors()...)
+			// property: name=application_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varApplicationIds, errApplicationIds := types.ListValueFrom(ctx, types.StringType, ans.AppFilters.ApplicationIds)
+			state.AppFilters.ApplicationIds = varApplicationIds
+			resp.Diagnostics.Append(errApplicationIds.Errors()...)
 		}
-	}
-	// property: name=service_label_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varServiceLabelIds, errServiceLabelIds := types.ListValueFrom(ctx, types.StringType, ans.ServiceLabelIds)
-	state.ServiceLabelIds = varServiceLabelIds
-	resp.Diagnostics.Append(errServiceLabelIds.Errors()...)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=thresholdprofile_id, type=STRING macro=copy_to_state
-	state.ThresholdprofileId = types.StringPointerValue(ans.ThresholdprofileId)
-	// property: name=type, type=STRING macro=copy_to_state
-	state.Type = types.StringPointerValue(ans.Type)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=enabled, type=BOOLEAN macro=copy_to_state
+		state.Enabled = types.BoolPointerValue(ans.Enabled)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varNetworkContextIds, errNetworkContextIds := types.ListValueFrom(ctx, types.StringType, ans.NetworkContextIds)
+		state.NetworkContextIds = varNetworkContextIds
+		resp.Diagnostics.Append(errNetworkContextIds.Errors()...)
+		// property: name=path_filters, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.PathFilters == nil {
+			state.PathFilters = nil
+		} else if len(ans.PathFilters) == 0 {
+			state.PathFilters = []dsModelPathFilter{}
+		} else {
+			state.PathFilters = make([]dsModelPathFilter, 0, len(ans.PathFilters))
+			for varLoopPathFiltersIndex, varLoopPathFilters := range ans.PathFilters {
+				// add a new item
+				state.PathFilters = append(state.PathFilters, dsModelPathFilter{})
+				// copy_to_state: state=state.PathFilters[varLoopPathFiltersIndex] prefix=dsModel ans=varLoopPathFilters properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.PathFilters[varLoopPathFiltersIndex] prefix=dsModel ans=varLoopPathFilters")
+				// property: name=label, type=STRING macro=copy_to_state
+				state.PathFilters[varLoopPathFiltersIndex].Label = types.StringPointerValue(varLoopPathFilters.Label)
+				// property: name=path_type, type=STRING macro=copy_to_state
+				state.PathFilters[varLoopPathFiltersIndex].PathType = types.StringPointerValue(varLoopPathFilters.PathType)
+			}
+		}
+		// property: name=service_label_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varServiceLabelIds, errServiceLabelIds := types.ListValueFrom(ctx, types.StringType, ans.ServiceLabelIds)
+		state.ServiceLabelIds = varServiceLabelIds
+		resp.Diagnostics.Append(errServiceLabelIds.Errors()...)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=thresholdprofile_id, type=STRING macro=copy_to_state
+		state.ThresholdprofileId = types.StringPointerValue(ans.ThresholdprofileId)
+		// property: name=type, type=STRING macro=copy_to_state
+		state.Type = types.StringPointerValue(ans.Type)
 
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

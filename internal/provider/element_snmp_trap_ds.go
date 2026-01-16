@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -52,6 +53,14 @@ type elementSnmpTrapDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterElementSnmpTrap struct {
+	Filters      types.Map          `tfsdk:"filters"`
+	TfParameters types.Map          `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64        `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64        `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelSNMPTrap `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *elementSnmpTrapDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_element_snmp_trap"
@@ -61,12 +70,13 @@ func (d *elementSnmpTrapDataSource) Metadata(_ context.Context, req datasource.M
 func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=SNMPTrap
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -84,175 +94,197 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=enabled, type=BOOLEAN macro=rss_schema
-			"enabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=server_ip, type=STRING macro=rss_schema
-			"server_ip": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
-			// property: name=source_interface, type=STRING macro=rss_schema
-			"source_interface": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=v2_config, type=REFERENCE macro=rss_schema
-			"v2_config": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=community, type=STRING macro=rss_schema
-					"community": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=community, type=STRING macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=community, type=STRING macro=rss_schema
-			// property: name=v3_config, type=REFERENCE macro=rss_schema
-			"v3_config": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=user_access, type=REFERENCE macro=rss_schema
-					"user_access": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=auth_phrase, type=STRING macro=rss_schema
-							"auth_phrase": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: true,
-							},
-							// key name holder for attribute: name=auth_phrase, type=STRING macro=rss_schema
-							"auth_phrase_internal_key_name": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// property: name=auth_type, type=STRING macro=rss_schema
-							"auth_type": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=auth_type, type=STRING macro=rss_schema
-							// property: name=enc_phrase, type=STRING macro=rss_schema
-							"enc_phrase": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: true,
-							},
-							// key name holder for attribute: name=enc_phrase, type=STRING macro=rss_schema
-							"enc_phrase_internal_key_name": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  true,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// property: name=enc_type, type=STRING macro=rss_schema
-							"enc_type": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=enc_type, type=STRING macro=rss_schema
-							// property: name=engine_id, type=STRING macro=rss_schema
-							"engine_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=engine_id, type=STRING macro=rss_schema
-							// property: name=security_level, type=STRING macro=rss_schema
-							"security_level": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=security_level, type=STRING macro=rss_schema
-							// property: name=user_name, type=STRING macro=rss_schema
-							"user_name": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: dsschema.NestedAttributeObject{
+					Attributes: map[string]dsschema.Attribute{
+						// rest all properties to be read from GET API Schema schema=SNMPTrap
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
 						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=enabled, type=BOOLEAN macro=rss_schema
+						"enabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=server_ip, type=STRING macro=rss_schema
+						"server_ip": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
+						// property: name=source_interface, type=STRING macro=rss_schema
+						"source_interface": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=v2_config, type=REFERENCE macro=rss_schema
+						"v2_config": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=community, type=STRING macro=rss_schema
+								"community": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=community, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=community, type=STRING macro=rss_schema
+						// property: name=v3_config, type=REFERENCE macro=rss_schema
+						"v3_config": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=user_access, type=REFERENCE macro=rss_schema
+								"user_access": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=auth_phrase, type=STRING macro=rss_schema
+										"auth_phrase": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: true,
+										},
+										// key name holder for attribute: name=auth_phrase, type=STRING macro=rss_schema
+										"auth_phrase_internal_key_name": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// property: name=auth_type, type=STRING macro=rss_schema
+										"auth_type": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=auth_type, type=STRING macro=rss_schema
+										// property: name=enc_phrase, type=STRING macro=rss_schema
+										"enc_phrase": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: true,
+										},
+										// key name holder for attribute: name=enc_phrase, type=STRING macro=rss_schema
+										"enc_phrase_internal_key_name": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// property: name=enc_type, type=STRING macro=rss_schema
+										"enc_type": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=enc_type, type=STRING macro=rss_schema
+										// property: name=engine_id, type=STRING macro=rss_schema
+										"engine_id": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=engine_id, type=STRING macro=rss_schema
+										// property: name=security_level, type=STRING macro=rss_schema
+										"security_level": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=security_level, type=STRING macro=rss_schema
+										// property: name=user_name, type=STRING macro=rss_schema
+										"user_name": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
+						// property: name=version, type=STRING macro=rss_schema
+						"version": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=version, type=STRING macro=rss_schema
 					},
-					// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
-			// property: name=version, type=STRING macro=rss_schema
-			"version": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=version, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -267,8 +299,9 @@ func (d *elementSnmpTrapDataSource) Configure(_ context.Context, req datasource.
 
 // Read performs Read for the struct.
 func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelSNMPTrap
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterElementSnmpTrap
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -281,119 +314,160 @@ func (d *elementSnmpTrapDataSource) Read(ctx context.Context, req datasource.Rea
 		"resource_name":               "prismasdwan_element_snmp_trap",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_snmp_trap ID format", "Expected 3 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
+	get_path := "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/snmptraps/{snmptrap_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["element_id"] = &tokens[1]
-	params["snmptrap_id"] = &tokens[2]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_snmp_trap", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_snmp_trap", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.SNMPTrap
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SNMPTrap", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-
-	// lets copy all items into state schema=SNMPTrap
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=11
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=enabled, type=BOOLEAN macro=copy_to_state
-	state.Enabled = types.BoolPointerValue(ans.Enabled)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=server_ip, type=STRING macro=copy_to_state
-	state.ServerIp = types.StringPointerValue(ans.ServerIp)
-	// property: name=source_interface, type=STRING macro=copy_to_state
-	state.SourceInterface = types.StringPointerValue(ans.SourceInterface)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=v2_config, type=REFERENCE macro=copy_to_state
-	if ans.V2Config == nil {
-		state.V2Config = nil
-	} else {
-		state.V2Config = &dsModelSNMPTrapV2Config{}
-		// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=1
-		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
-		// property: name=community, type=STRING macro=copy_to_state
-		state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
-	}
-	// property: name=v3_config, type=REFERENCE macro=copy_to_state
-	if ans.V3Config == nil {
-		state.V3Config = nil
-	} else {
-		state.V3Config = &dsModelSNMPTrapV3Config{}
-		// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=1
-		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
-		// property: name=user_access, type=REFERENCE macro=copy_to_state
-		if ans.V3Config.UserAccess == nil {
-			state.V3Config.UserAccess = nil
-		} else {
-			state.V3Config.UserAccess = &dsModelSNMPTrapUserAccess{}
-			// copy_to_state: state=state.V3Config.UserAccess prefix=dsModel ans=ans.V3Config.UserAccess properties=7
-			tflog.Debug(ctx, "copy_to_state state=state.V3Config.UserAccess prefix=dsModel ans=ans.V3Config.UserAccess")
-			// property: name=auth_phrase, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.AuthPhrase = types.StringPointerValue(ans.V3Config.UserAccess.AuthPhrase)
-			// property: name=auth_type, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.AuthType = types.StringPointerValue(ans.V3Config.UserAccess.AuthType)
-			// property: name=enc_phrase, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.EncPhrase = types.StringPointerValue(ans.V3Config.UserAccess.EncPhrase)
-			// property: name=enc_type, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.EncType = types.StringPointerValue(ans.V3Config.UserAccess.EncType)
-			// property: name=engine_id, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.EngineId = types.StringPointerValue(ans.V3Config.UserAccess.EngineId)
-			// property: name=security_level, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.SecurityLevel = types.StringPointerValue(ans.V3Config.UserAccess.SecurityLevel)
-			// property: name=user_name, type=STRING macro=copy_to_state
-			state.V3Config.UserAccess.UserName = types.StringPointerValue(ans.V3Config.UserAccess.UserName)
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
 		}
-	}
-	// property: name=version, type=STRING macro=copy_to_state
-	state.Version = types.StringPointerValue(ans.Version)
 
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelSNMPTrap
+
+		// start copying attributes
+		var ans sdwan_schema.SNMPTrap
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to SNMPTrap", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=SNMPTrap
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=11
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=enabled, type=BOOLEAN macro=copy_to_state
+		state.Enabled = types.BoolPointerValue(ans.Enabled)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=server_ip, type=STRING macro=copy_to_state
+		state.ServerIp = types.StringPointerValue(ans.ServerIp)
+		// property: name=source_interface, type=STRING macro=copy_to_state
+		state.SourceInterface = types.StringPointerValue(ans.SourceInterface)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=v2_config, type=REFERENCE macro=copy_to_state
+		if ans.V2Config == nil {
+			state.V2Config = nil
+		} else {
+			state.V2Config = &dsModelSNMPTrapV2Config{}
+			// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
+			// property: name=community, type=STRING macro=copy_to_state
+			state.V2Config.Community = types.StringPointerValue(ans.V2Config.Community)
+		}
+		// property: name=v3_config, type=REFERENCE macro=copy_to_state
+		if ans.V3Config == nil {
+			state.V3Config = nil
+		} else {
+			state.V3Config = &dsModelSNMPTrapV3Config{}
+			// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
+			// property: name=user_access, type=REFERENCE macro=copy_to_state
+			if ans.V3Config.UserAccess == nil {
+				state.V3Config.UserAccess = nil
+			} else {
+				state.V3Config.UserAccess = &dsModelSNMPTrapUserAccess{}
+				// copy_to_state: state=state.V3Config.UserAccess prefix=dsModel ans=ans.V3Config.UserAccess properties=7
+				tflog.Debug(ctx, "copy_to_state state=state.V3Config.UserAccess prefix=dsModel ans=ans.V3Config.UserAccess")
+				// property: name=auth_phrase, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.AuthPhrase = types.StringPointerValue(ans.V3Config.UserAccess.AuthPhrase)
+				// property: name=auth_type, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.AuthType = types.StringPointerValue(ans.V3Config.UserAccess.AuthType)
+				// property: name=enc_phrase, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.EncPhrase = types.StringPointerValue(ans.V3Config.UserAccess.EncPhrase)
+				// property: name=enc_type, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.EncType = types.StringPointerValue(ans.V3Config.UserAccess.EncType)
+				// property: name=engine_id, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.EngineId = types.StringPointerValue(ans.V3Config.UserAccess.EngineId)
+				// property: name=security_level, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.SecurityLevel = types.StringPointerValue(ans.V3Config.UserAccess.SecurityLevel)
+				// property: name=user_name, type=STRING macro=copy_to_state
+				state.V3Config.UserAccess.UserName = types.StringPointerValue(ans.V3Config.UserAccess.UserName)
+			}
+		}
+		// property: name=version, type=STRING macro=copy_to_state
+		state.Version = types.StringPointerValue(ans.Version)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

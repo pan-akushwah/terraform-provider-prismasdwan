@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -57,6 +58,14 @@ type elementDnsServiceDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterElementDnsService struct {
+	Filters      types.Map            `tfsdk:"filters"`
+	TfParameters types.Map            `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64          `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64          `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelDnsService `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *elementDnsServiceDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_element_dns_service"
@@ -66,12 +75,13 @@ func (d *elementDnsServiceDataSource) Metadata(_ context.Context, req datasource
 func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=DnsService
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -89,150 +99,247 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=cache_config, type=REFERENCE macro=rss_schema
-			"cache_config": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=cache_size, type=INTEGER macro=rss_schema
-					"cache_size": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=dns_queries_metadata, type=REFERENCE macro=rss_schema
-			"dns_queries_metadata": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=add_customer_premises_equipment, type=REFERENCE macro=rss_schema
-					"add_customer_premises_equipment": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=identifier_text, type=STRING macro=rss_schema
-							"identifier_text": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=identifier_text, type=STRING macro=rss_schema
-							// property: name=type, type=STRING macro=rss_schema
-							"type": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=type, type=STRING macro=rss_schema
-						},
-					},
-					// key name holder for attribute: name=type, type=STRING macro=rss_schema
-					// property: name=add_subnets, type=ARRAY_REFERENCE macro=rss_schema
-					"add_subnets": dsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						NestedObject: dsschema.NestedAttributeObject{
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=ipv4_address, type=STRING macro=rss_schema
-								"ipv4_address": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
-								// property: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
-								"ipv4_prefix_length": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
-								// property: name=ipv6_address, type=STRING macro=rss_schema
-								"ipv6_address": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
-								// property: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
-								"ipv6_prefix_length": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
-							},
-						},
-					},
-					// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
-			// property: name=dnsservice_profile_id, type=STRING macro=rss_schema
-			"dnsservice_profile_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=dnsservice_profile_id, type=STRING macro=rss_schema
-			// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=rss_schema
-			"dnsservicerole_bindings": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=dnsservicerole_id, type=STRING macro=rss_schema
-						"dnsservicerole_id": dsschema.StringAttribute{
+						// rest all properties to be read from GET API Schema schema=DnsService
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=cache_config, type=REFERENCE macro=rss_schema
+						"cache_config": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=cache_size, type=INTEGER macro=rss_schema
+								"cache_size": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=dnsservicerole_id, type=STRING macro=rss_schema
-						// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
-						"interfaces": dsschema.ListNestedAttribute{
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=dns_queries_metadata, type=REFERENCE macro=rss_schema
+						"dns_queries_metadata": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=add_customer_premises_equipment, type=REFERENCE macro=rss_schema
+								"add_customer_premises_equipment": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=identifier_text, type=STRING macro=rss_schema
+										"identifier_text": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=identifier_text, type=STRING macro=rss_schema
+										// property: name=type, type=STRING macro=rss_schema
+										"type": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=type, type=STRING macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=type, type=STRING macro=rss_schema
+								// property: name=add_subnets, type=ARRAY_REFERENCE macro=rss_schema
+								"add_subnets": dsschema.ListNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									NestedObject: dsschema.NestedAttributeObject{
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=ipv4_address, type=STRING macro=rss_schema
+											"ipv4_address": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
+											// property: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
+											"ipv4_prefix_length": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
+											// property: name=ipv6_address, type=STRING macro=rss_schema
+											"ipv6_address": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
+											// property: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
+											"ipv6_prefix_length": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
+										},
+									},
+								},
+								// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
+						// property: name=dnsservice_profile_id, type=STRING macro=rss_schema
+						"dnsservice_profile_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=dnsservice_profile_id, type=STRING macro=rss_schema
+						// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=rss_schema
+						"dnsservicerole_bindings": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
+									// property: name=dnsservicerole_id, type=STRING macro=rss_schema
+									"dnsservicerole_id": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=dnsservicerole_id, type=STRING macro=rss_schema
+									// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
+									"interfaces": dsschema.ListNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										NestedObject: dsschema.NestedAttributeObject{
+											Attributes: map[string]dsschema.Attribute{
+												// property: name=interface_id, type=STRING macro=rss_schema
+												"interface_id": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
+												// property: name=interface_ip, type=STRING macro=rss_schema
+												"interface_ip": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
+											},
+										},
+									},
+									// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
+								},
+							},
+						},
+						// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
+						// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=rss_schema
+						"domains_to_addresses": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
+									"domain_names": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.StringType,
+									},
+									// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
+									// property: name=ipv4_address, type=STRING macro=rss_schema
+									"ipv4_address": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
+									// property: name=ipv6_address, type=STRING macro=rss_schema
+									"ipv6_address": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
+								},
+							},
+						},
+						// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
+						// property: name=domains_to_interfaces, type=ARRAY_REFERENCE macro=rss_schema
+						"domains_to_interfaces": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
+									"domain_names": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.StringType,
+									},
+									// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=interface_id, type=STRING macro=rss_schema
 									"interface_id": dsschema.StringAttribute{
 										Required:  false,
@@ -241,137 +348,62 @@ func (d *elementDnsServiceDataSource) Schema(_ context.Context, _ datasource.Sch
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
-									// property: name=interface_ip, type=STRING macro=rss_schema
-									"interface_ip": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
-			// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=rss_schema
-			"domains_to_addresses": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
-						"domain_names": dsschema.ListAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
-						// property: name=ipv4_address, type=STRING macro=rss_schema
-						"ipv4_address": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
-						// property: name=ipv6_address, type=STRING macro=rss_schema
-						"ipv6_address": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
-			// property: name=domains_to_interfaces, type=ARRAY_REFERENCE macro=rss_schema
-			"domains_to_interfaces": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
-						"domain_names": dsschema.ListAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
-						// property: name=interface_id, type=STRING macro=rss_schema
-						"interface_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
 						// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
+						// property: name=element_id, type=STRING macro=rss_schema
+						"element_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
+						// property: name=enabled, type=BOOLEAN macro=rss_schema
+						"enabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
+						"max_concurrent_dns_queries": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
-			// property: name=element_id, type=STRING macro=rss_schema
-			"element_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
-			// property: name=enabled, type=BOOLEAN macro=rss_schema
-			"enabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
-			"max_concurrent_dns_queries": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 		},
 	}
 }
@@ -386,8 +418,9 @@ func (d *elementDnsServiceDataSource) Configure(_ context.Context, req datasourc
 
 // Read performs Read for the struct.
 func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelDnsService
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterElementDnsService
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -400,209 +433,250 @@ func (d *elementDnsServiceDataSource) Read(ctx context.Context, req datasource.R
 		"resource_name":               "prismasdwan_element_dns_service",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_dns_service ID format", "Expected 3 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/dnsservices/{dnsservice_role_id}"
+	get_path := "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/dnsservices/{dnsservice_role_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["element_id"] = &tokens[1]
-	params["dnsservice_role_id"] = &tokens[2]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_dns_service", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_dns_service", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.DnsService
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to DnsService", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=DnsService
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=15
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=cache_config, type=REFERENCE macro=copy_to_state
-	if ans.CacheConfig == nil {
-		state.CacheConfig = nil
-	} else {
-		state.CacheConfig = &dsModelElemCacheConfig{}
-		// copy_to_state: state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig properties=1
-		tflog.Debug(ctx, "copy_to_state state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig")
-		// property: name=cache_size, type=INTEGER macro=copy_to_state
-		state.CacheConfig.CacheSize = types.Int64PointerValue(ans.CacheConfig.CacheSize)
-	}
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=dns_queries_metadata, type=REFERENCE macro=copy_to_state
-	if ans.DnsQueriesMetadata == nil {
-		state.DnsQueriesMetadata = nil
-	} else {
-		state.DnsQueriesMetadata = &dsModelElemDnsQueriesMetadata{}
-		// copy_to_state: state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata properties=2
-		tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata")
-		// property: name=add_customer_premises_equipment, type=REFERENCE macro=copy_to_state
-		if ans.DnsQueriesMetadata.AddCustomerPremisesEquipment == nil {
-			state.DnsQueriesMetadata.AddCustomerPremisesEquipment = nil
-		} else {
-			state.DnsQueriesMetadata.AddCustomerPremisesEquipment = &dsModelElemCustomerPremisesEquipment{}
-			// copy_to_state: state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment")
-			// property: name=identifier_text, type=STRING macro=copy_to_state
-			state.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = types.StringPointerValue(ans.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
-			// property: name=type, type=STRING macro=copy_to_state
-			state.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type = types.StringPointerValue(ans.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type)
-		}
-		// property: name=add_subnets, type=ARRAY_REFERENCE macro=copy_to_state
-		if ans.DnsQueriesMetadata.AddSubnets == nil {
-			state.DnsQueriesMetadata.AddSubnets = nil
-		} else if len(ans.DnsQueriesMetadata.AddSubnets) == 0 {
-			state.DnsQueriesMetadata.AddSubnets = []dsModelSubnet{}
-		} else {
-			state.DnsQueriesMetadata.AddSubnets = make([]dsModelSubnet, 0, len(ans.DnsQueriesMetadata.AddSubnets))
-			for varLoopAddSubnetsIndex, varLoopAddSubnets := range ans.DnsQueriesMetadata.AddSubnets {
-				// add a new item
-				state.DnsQueriesMetadata.AddSubnets = append(state.DnsQueriesMetadata.AddSubnets, dsModelSubnet{})
-				// copy_to_state: state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets properties=4
-				tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets")
-				// property: name=ipv4_address, type=STRING macro=copy_to_state
-				state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv4Address = types.StringPointerValue(varLoopAddSubnets.Ipv4Address)
-				// property: name=ipv4_prefix_length, type=INTEGER macro=copy_to_state
-				state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv4PrefixLength = types.Int64PointerValue(varLoopAddSubnets.Ipv4PrefixLength)
-				// property: name=ipv6_address, type=STRING macro=copy_to_state
-				state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv6Address = types.StringPointerValue(varLoopAddSubnets.Ipv6Address)
-				// property: name=ipv6_prefix_length, type=INTEGER macro=copy_to_state
-				state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv6PrefixLength = types.Int64PointerValue(varLoopAddSubnets.Ipv6PrefixLength)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
 			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
 		}
-	}
-	// property: name=dnsservice_profile_id, type=STRING macro=copy_to_state
-	state.DnsserviceProfileId = types.StringPointerValue(ans.DnsserviceProfileId)
-	// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.DnsserviceroleBindings == nil {
-		state.DnsserviceroleBindings = nil
-	} else if len(ans.DnsserviceroleBindings) == 0 {
-		state.DnsserviceroleBindings = []dsModelDnsServiceroleBindings{}
-	} else {
-		state.DnsserviceroleBindings = make([]dsModelDnsServiceroleBindings, 0, len(ans.DnsserviceroleBindings))
-		for varLoopDnsserviceroleBindingsIndex, varLoopDnsserviceroleBindings := range ans.DnsserviceroleBindings {
-			// add a new item
-			state.DnsserviceroleBindings = append(state.DnsserviceroleBindings, dsModelDnsServiceroleBindings{})
-			// copy_to_state: state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex] prefix=dsModel ans=varLoopDnsserviceroleBindings properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex] prefix=dsModel ans=varLoopDnsserviceroleBindings")
-			// property: name=dnsservicerole_id, type=STRING macro=copy_to_state
-			state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].DnsserviceroleId = types.StringPointerValue(varLoopDnsserviceroleBindings.DnsserviceroleId)
-			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopDnsserviceroleBindings.Interfaces == nil {
-				state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = nil
-			} else if len(varLoopDnsserviceroleBindings.Interfaces) == 0 {
-				state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = []dsModelInterface{}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelDnsService
+
+		// start copying attributes
+		var ans sdwan_schema.DnsService
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to DnsService", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=DnsService
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=15
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=cache_config, type=REFERENCE macro=copy_to_state
+		if ans.CacheConfig == nil {
+			state.CacheConfig = nil
+		} else {
+			state.CacheConfig = &dsModelElemCacheConfig{}
+			// copy_to_state: state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.CacheConfig prefix=dsModel ans=ans.CacheConfig")
+			// property: name=cache_size, type=INTEGER macro=copy_to_state
+			state.CacheConfig.CacheSize = types.Int64PointerValue(ans.CacheConfig.CacheSize)
+		}
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=dns_queries_metadata, type=REFERENCE macro=copy_to_state
+		if ans.DnsQueriesMetadata == nil {
+			state.DnsQueriesMetadata = nil
+		} else {
+			state.DnsQueriesMetadata = &dsModelElemDnsQueriesMetadata{}
+			// copy_to_state: state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata prefix=dsModel ans=ans.DnsQueriesMetadata")
+			// property: name=add_customer_premises_equipment, type=REFERENCE macro=copy_to_state
+			if ans.DnsQueriesMetadata.AddCustomerPremisesEquipment == nil {
+				state.DnsQueriesMetadata.AddCustomerPremisesEquipment = nil
 			} else {
-				state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = make([]dsModelInterface, 0, len(varLoopDnsserviceroleBindings.Interfaces))
-				for varLoopInterfacesIndex, varLoopInterfaces := range varLoopDnsserviceroleBindings.Interfaces {
+				state.DnsQueriesMetadata.AddCustomerPremisesEquipment = &dsModelElemCustomerPremisesEquipment{}
+				// copy_to_state: state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=dsModel ans=ans.DnsQueriesMetadata.AddCustomerPremisesEquipment")
+				// property: name=identifier_text, type=STRING macro=copy_to_state
+				state.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = types.StringPointerValue(ans.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
+				// property: name=type, type=STRING macro=copy_to_state
+				state.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type = types.StringPointerValue(ans.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type)
+			}
+			// property: name=add_subnets, type=ARRAY_REFERENCE macro=copy_to_state
+			if ans.DnsQueriesMetadata.AddSubnets == nil {
+				state.DnsQueriesMetadata.AddSubnets = nil
+			} else if len(ans.DnsQueriesMetadata.AddSubnets) == 0 {
+				state.DnsQueriesMetadata.AddSubnets = []dsModelSubnet{}
+			} else {
+				state.DnsQueriesMetadata.AddSubnets = make([]dsModelSubnet, 0, len(ans.DnsQueriesMetadata.AddSubnets))
+				for varLoopAddSubnetsIndex, varLoopAddSubnets := range ans.DnsQueriesMetadata.AddSubnets {
 					// add a new item
-					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = append(state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces, dsModelInterface{})
-					// copy_to_state: state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces")
-					// property: name=interface_id, type=STRING macro=copy_to_state
-					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
-					// property: name=interface_ip, type=STRING macro=copy_to_state
-					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex].InterfaceIp = types.StringPointerValue(varLoopInterfaces.InterfaceIp)
+					state.DnsQueriesMetadata.AddSubnets = append(state.DnsQueriesMetadata.AddSubnets, dsModelSubnet{})
+					// copy_to_state: state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets properties=4
+					tflog.Debug(ctx, "copy_to_state state=state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex] prefix=dsModel ans=varLoopAddSubnets")
+					// property: name=ipv4_address, type=STRING macro=copy_to_state
+					state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv4Address = types.StringPointerValue(varLoopAddSubnets.Ipv4Address)
+					// property: name=ipv4_prefix_length, type=INTEGER macro=copy_to_state
+					state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv4PrefixLength = types.Int64PointerValue(varLoopAddSubnets.Ipv4PrefixLength)
+					// property: name=ipv6_address, type=STRING macro=copy_to_state
+					state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv6Address = types.StringPointerValue(varLoopAddSubnets.Ipv6Address)
+					// property: name=ipv6_prefix_length, type=INTEGER macro=copy_to_state
+					state.DnsQueriesMetadata.AddSubnets[varLoopAddSubnetsIndex].Ipv6PrefixLength = types.Int64PointerValue(varLoopAddSubnets.Ipv6PrefixLength)
 				}
 			}
 		}
-	}
-	// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.DomainsToAddresses == nil {
-		state.DomainsToAddresses = nil
-	} else if len(ans.DomainsToAddresses) == 0 {
-		state.DomainsToAddresses = []dsModelDomainsToAddress{}
-	} else {
-		state.DomainsToAddresses = make([]dsModelDomainsToAddress, 0, len(ans.DomainsToAddresses))
-		for varLoopDomainsToAddressesIndex, varLoopDomainsToAddresses := range ans.DomainsToAddresses {
-			// add a new item
-			state.DomainsToAddresses = append(state.DomainsToAddresses, dsModelDomainsToAddress{})
-			// copy_to_state: state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses properties=3
-			tflog.Debug(ctx, "copy_to_state state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses")
-			// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToAddresses.DomainNames)
-			state.DomainsToAddresses[varLoopDomainsToAddressesIndex].DomainNames = varDomainNames
-			resp.Diagnostics.Append(errDomainNames.Errors()...)
-			// property: name=ipv4_address, type=STRING macro=copy_to_state
-			state.DomainsToAddresses[varLoopDomainsToAddressesIndex].Ipv4Address = types.StringPointerValue(varLoopDomainsToAddresses.Ipv4Address)
-			// property: name=ipv6_address, type=STRING macro=copy_to_state
-			state.DomainsToAddresses[varLoopDomainsToAddressesIndex].Ipv6Address = types.StringPointerValue(varLoopDomainsToAddresses.Ipv6Address)
+		// property: name=dnsservice_profile_id, type=STRING macro=copy_to_state
+		state.DnsserviceProfileId = types.StringPointerValue(ans.DnsserviceProfileId)
+		// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.DnsserviceroleBindings == nil {
+			state.DnsserviceroleBindings = nil
+		} else if len(ans.DnsserviceroleBindings) == 0 {
+			state.DnsserviceroleBindings = []dsModelDnsServiceroleBindings{}
+		} else {
+			state.DnsserviceroleBindings = make([]dsModelDnsServiceroleBindings, 0, len(ans.DnsserviceroleBindings))
+			for varLoopDnsserviceroleBindingsIndex, varLoopDnsserviceroleBindings := range ans.DnsserviceroleBindings {
+				// add a new item
+				state.DnsserviceroleBindings = append(state.DnsserviceroleBindings, dsModelDnsServiceroleBindings{})
+				// copy_to_state: state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex] prefix=dsModel ans=varLoopDnsserviceroleBindings properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex] prefix=dsModel ans=varLoopDnsserviceroleBindings")
+				// property: name=dnsservicerole_id, type=STRING macro=copy_to_state
+				state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].DnsserviceroleId = types.StringPointerValue(varLoopDnsserviceroleBindings.DnsserviceroleId)
+				// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+				if varLoopDnsserviceroleBindings.Interfaces == nil {
+					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = nil
+				} else if len(varLoopDnsserviceroleBindings.Interfaces) == 0 {
+					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = []dsModelInterface{}
+				} else {
+					state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = make([]dsModelInterface, 0, len(varLoopDnsserviceroleBindings.Interfaces))
+					for varLoopInterfacesIndex, varLoopInterfaces := range varLoopDnsserviceroleBindings.Interfaces {
+						// add a new item
+						state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces = append(state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces, dsModelInterface{})
+						// copy_to_state: state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex] prefix=dsModel ans=varLoopInterfaces")
+						// property: name=interface_id, type=STRING macro=copy_to_state
+						state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopInterfaces.InterfaceId)
+						// property: name=interface_ip, type=STRING macro=copy_to_state
+						state.DnsserviceroleBindings[varLoopDnsserviceroleBindingsIndex].Interfaces[varLoopInterfacesIndex].InterfaceIp = types.StringPointerValue(varLoopInterfaces.InterfaceIp)
+					}
+				}
+			}
 		}
-	}
-	// property: name=domains_to_interfaces, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.DomainsToInterfaces == nil {
-		state.DomainsToInterfaces = nil
-	} else if len(ans.DomainsToInterfaces) == 0 {
-		state.DomainsToInterfaces = []dsModelDomainsToInterface{}
-	} else {
-		state.DomainsToInterfaces = make([]dsModelDomainsToInterface, 0, len(ans.DomainsToInterfaces))
-		for varLoopDomainsToInterfacesIndex, varLoopDomainsToInterfaces := range ans.DomainsToInterfaces {
-			// add a new item
-			state.DomainsToInterfaces = append(state.DomainsToInterfaces, dsModelDomainsToInterface{})
-			// copy_to_state: state=state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex] prefix=dsModel ans=varLoopDomainsToInterfaces properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex] prefix=dsModel ans=varLoopDomainsToInterfaces")
-			// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToInterfaces.DomainNames)
-			state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex].DomainNames = varDomainNames
-			resp.Diagnostics.Append(errDomainNames.Errors()...)
-			// property: name=interface_id, type=STRING macro=copy_to_state
-			state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopDomainsToInterfaces.InterfaceId)
+		// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.DomainsToAddresses == nil {
+			state.DomainsToAddresses = nil
+		} else if len(ans.DomainsToAddresses) == 0 {
+			state.DomainsToAddresses = []dsModelDomainsToAddress{}
+		} else {
+			state.DomainsToAddresses = make([]dsModelDomainsToAddress, 0, len(ans.DomainsToAddresses))
+			for varLoopDomainsToAddressesIndex, varLoopDomainsToAddresses := range ans.DomainsToAddresses {
+				// add a new item
+				state.DomainsToAddresses = append(state.DomainsToAddresses, dsModelDomainsToAddress{})
+				// copy_to_state: state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.DomainsToAddresses[varLoopDomainsToAddressesIndex] prefix=dsModel ans=varLoopDomainsToAddresses")
+				// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToAddresses.DomainNames)
+				state.DomainsToAddresses[varLoopDomainsToAddressesIndex].DomainNames = varDomainNames
+				resp.Diagnostics.Append(errDomainNames.Errors()...)
+				// property: name=ipv4_address, type=STRING macro=copy_to_state
+				state.DomainsToAddresses[varLoopDomainsToAddressesIndex].Ipv4Address = types.StringPointerValue(varLoopDomainsToAddresses.Ipv4Address)
+				// property: name=ipv6_address, type=STRING macro=copy_to_state
+				state.DomainsToAddresses[varLoopDomainsToAddressesIndex].Ipv6Address = types.StringPointerValue(varLoopDomainsToAddresses.Ipv6Address)
+			}
 		}
-	}
-	// property: name=element_id, type=STRING macro=copy_to_state
-	state.ElementId = types.StringPointerValue(ans.ElementId)
-	// property: name=enabled, type=BOOLEAN macro=copy_to_state
-	state.Enabled = types.BoolPointerValue(ans.Enabled)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_to_state
-	state.MaxConcurrentDnsQueries = types.Int64PointerValue(ans.MaxConcurrentDnsQueries)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=domains_to_interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.DomainsToInterfaces == nil {
+			state.DomainsToInterfaces = nil
+		} else if len(ans.DomainsToInterfaces) == 0 {
+			state.DomainsToInterfaces = []dsModelDomainsToInterface{}
+		} else {
+			state.DomainsToInterfaces = make([]dsModelDomainsToInterface, 0, len(ans.DomainsToInterfaces))
+			for varLoopDomainsToInterfacesIndex, varLoopDomainsToInterfaces := range ans.DomainsToInterfaces {
+				// add a new item
+				state.DomainsToInterfaces = append(state.DomainsToInterfaces, dsModelDomainsToInterface{})
+				// copy_to_state: state=state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex] prefix=dsModel ans=varLoopDomainsToInterfaces properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex] prefix=dsModel ans=varLoopDomainsToInterfaces")
+				// property: name=domain_names, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDomainNames, errDomainNames := types.ListValueFrom(ctx, types.StringType, varLoopDomainsToInterfaces.DomainNames)
+				state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex].DomainNames = varDomainNames
+				resp.Diagnostics.Append(errDomainNames.Errors()...)
+				// property: name=interface_id, type=STRING macro=copy_to_state
+				state.DomainsToInterfaces[varLoopDomainsToInterfacesIndex].InterfaceId = types.StringPointerValue(varLoopDomainsToInterfaces.InterfaceId)
+			}
+		}
+		// property: name=element_id, type=STRING macro=copy_to_state
+		state.ElementId = types.StringPointerValue(ans.ElementId)
+		// property: name=enabled, type=BOOLEAN macro=copy_to_state
+		state.Enabled = types.BoolPointerValue(ans.Enabled)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=max_concurrent_dns_queries, type=INTEGER macro=copy_to_state
+		state.MaxConcurrentDnsQueries = types.Int64PointerValue(ans.MaxConcurrentDnsQueries)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
 
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

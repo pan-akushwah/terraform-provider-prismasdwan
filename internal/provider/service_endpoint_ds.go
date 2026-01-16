@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -56,6 +57,14 @@ type serviceEndpointDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterServiceEndpoint struct {
+	Filters      types.Map                     `tfsdk:"filters"`
+	TfParameters types.Map                     `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                   `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                   `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelServiceEndpointV3N1 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *serviceEndpointDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_service_endpoint"
@@ -65,12 +74,13 @@ func (d *serviceEndpointDataSource) Metadata(_ context.Context, req datasource.M
 func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=ServiceEndpointV3N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -88,194 +98,321 @@ func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.Schem
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=address, type=REFERENCE macro=rss_schema
-			"address": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=city, type=STRING macro=rss_schema
-					"city": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=city, type=STRING macro=rss_schema
-					// property: name=country, type=STRING macro=rss_schema
-					"country": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=country, type=STRING macro=rss_schema
-					// property: name=post_code, type=STRING macro=rss_schema
-					"post_code": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=post_code, type=STRING macro=rss_schema
-					// property: name=state, type=STRING macro=rss_schema
-					"state": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=state, type=STRING macro=rss_schema
-					// property: name=street, type=STRING macro=rss_schema
-					"street": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=street, type=STRING macro=rss_schema
-					// property: name=street2, type=STRING macro=rss_schema
-					"street2": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=street2, type=STRING macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=street2, type=STRING macro=rss_schema
-			// property: name=admin_up, type=BOOLEAN macro=rss_schema
-			"admin_up": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=admin_up, type=BOOLEAN macro=rss_schema
-			// property: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
-			"allow_enterprise_traffic": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
-			"disable_tunnel_reoptimization": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=is_sase, type=BOOLEAN macro=rss_schema
-			"is_sase": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=is_sase, type=BOOLEAN macro=rss_schema
-			// property: name=liveliness_probe, type=REFERENCE macro=rss_schema
-			"liveliness_probe": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=http, type=ARRAY_REFERENCE macro=rss_schema
-					"http": dsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						NestedObject: dsschema.NestedAttributeObject{
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: dsschema.NestedAttributeObject{
+					Attributes: map[string]dsschema.Attribute{
+						// rest all properties to be read from GET API Schema schema=ServiceEndpointV3N1
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=address, type=REFERENCE macro=rss_schema
+						"address": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
 							Attributes: map[string]dsschema.Attribute{
-								// property: name=failure_count, type=INTEGER macro=rss_schema
-								"failure_count": dsschema.Int64Attribute{
+								// property: name=city, type=STRING macro=rss_schema
+								"city": dsschema.StringAttribute{
 									Required:  false,
 									Computed:  false,
 									Optional:  true,
 									Sensitive: false,
 								},
-								// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
-								// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
-								"http_status_codes": dsschema.ListAttribute{
+								// key name holder for attribute: name=city, type=STRING macro=rss_schema
+								// property: name=country, type=STRING macro=rss_schema
+								"country": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=country, type=STRING macro=rss_schema
+								// property: name=post_code, type=STRING macro=rss_schema
+								"post_code": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=post_code, type=STRING macro=rss_schema
+								// property: name=state, type=STRING macro=rss_schema
+								"state": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=state, type=STRING macro=rss_schema
+								// property: name=street, type=STRING macro=rss_schema
+								"street": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=street, type=STRING macro=rss_schema
+								// property: name=street2, type=STRING macro=rss_schema
+								"street2": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=street2, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=street2, type=STRING macro=rss_schema
+						// property: name=admin_up, type=BOOLEAN macro=rss_schema
+						"admin_up": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=admin_up, type=BOOLEAN macro=rss_schema
+						// property: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
+						"allow_enterprise_traffic": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
+						"disable_tunnel_reoptimization": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=is_sase, type=BOOLEAN macro=rss_schema
+						"is_sase": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=is_sase, type=BOOLEAN macro=rss_schema
+						// property: name=liveliness_probe, type=REFERENCE macro=rss_schema
+						"liveliness_probe": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=http, type=ARRAY_REFERENCE macro=rss_schema
+								"http": dsschema.ListNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									NestedObject: dsschema.NestedAttributeObject{
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=failure_count, type=INTEGER macro=rss_schema
+											"failure_count": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
+											// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
+											"http_status_codes": dsschema.ListAttribute{
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												ElementType: types.Int64Type,
+											},
+											// key name holder for attribute: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
+											// property: name=interval, type=INTEGER macro=rss_schema
+											"interval": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
+											// property: name=url, type=STRING macro=rss_schema
+											"url": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=url, type=STRING macro=rss_schema
+										},
+									},
+								},
+								// key name holder for attribute: name=url, type=STRING macro=rss_schema
+								// property: name=icmp_ping, type=ARRAY_REFERENCE macro=rss_schema
+								"icmp_ping": dsschema.ListNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									NestedObject: dsschema.NestedAttributeObject{
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=failure_count, type=INTEGER macro=rss_schema
+											"failure_count": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
+											// property: name=interval, type=INTEGER macro=rss_schema
+											"interval": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
+											// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+											"ip_addresses": dsschema.ListAttribute{
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												ElementType: types.StringType,
+											},
+											// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+										},
+									},
+								},
+								// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+								// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
+								"use_tunnel_for_url_dns_resolution": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
+						// property: name=location, type=REFERENCE macro=rss_schema
+						"location": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=description, type=STRING macro=rss_schema
+								"description": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=description, type=STRING macro=rss_schema
+								// property: name=latitude, type=NUMBER macro=rss_schema
+								"latitude": dsschema.Float64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=latitude, type=NUMBER macro=rss_schema
+								// property: name=longitude, type=NUMBER macro=rss_schema
+								"longitude": dsschema.Float64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=sase_properties, type=REFERENCE macro=rss_schema
+						"sase_properties": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=active, type=BOOLEAN macro=rss_schema
+								"active": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=active, type=BOOLEAN macro=rss_schema
+								// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+								"lqm_enabled": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+						// property: name=service_link_peers, type=REFERENCE macro=rss_schema
+						"service_link_peers": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
+								"hostnames": dsschema.ListAttribute{
 									Required:    false,
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									ElementType: types.Int64Type,
+									ElementType: types.StringType,
 								},
-								// key name holder for attribute: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
-								// property: name=interval, type=INTEGER macro=rss_schema
-								"interval": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
-								// property: name=url, type=STRING macro=rss_schema
-								"url": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=url, type=STRING macro=rss_schema
-							},
-						},
-					},
-					// key name holder for attribute: name=url, type=STRING macro=rss_schema
-					// property: name=icmp_ping, type=ARRAY_REFERENCE macro=rss_schema
-					"icmp_ping": dsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						NestedObject: dsschema.NestedAttributeObject{
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=failure_count, type=INTEGER macro=rss_schema
-								"failure_count": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
-								// property: name=interval, type=INTEGER macro=rss_schema
-								"interval": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
+								// key name holder for attribute: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
 								"ip_addresses": dsschema.ListAttribute{
 									Required:    false,
@@ -287,140 +424,35 @@ func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.Schem
 								// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
 							},
 						},
+						// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=site_id, type=STRING macro=rss_schema
+						"site_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=type, type=STRING macro=rss_schema
+						"type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					},
-					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
-					"use_tunnel_for_url_dns_resolution": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
-			// property: name=location, type=REFERENCE macro=rss_schema
-			"location": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=description, type=STRING macro=rss_schema
-					"description": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=latitude, type=NUMBER macro=rss_schema
-					"latitude": dsschema.Float64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=latitude, type=NUMBER macro=rss_schema
-					// property: name=longitude, type=NUMBER macro=rss_schema
-					"longitude": dsschema.Float64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=sase_properties, type=REFERENCE macro=rss_schema
-			"sase_properties": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=active, type=BOOLEAN macro=rss_schema
-					"active": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=active, type=BOOLEAN macro=rss_schema
-					// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
-					"lqm_enabled": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
-			// property: name=service_link_peers, type=REFERENCE macro=rss_schema
-			"service_link_peers": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
-					"hostnames": dsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
-					"ip_addresses": dsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=type, type=STRING macro=rss_schema
-			"type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -435,8 +467,9 @@ func (d *serviceEndpointDataSource) Configure(_ context.Context, req datasource.
 
 // Read performs Read for the struct.
 func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelServiceEndpointV3N1
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterServiceEndpoint
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -449,201 +482,244 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 		"resource_name":               "prismasdwan_service_endpoint",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_service_endpoint ID format", "Expected 1 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}"
+	get_path := "/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["service_endpoint_id"] = &tokens[0]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_service_endpoint", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_service_endpoint", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.ServiceEndpointV3N1
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=ServiceEndpointV3N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=address, type=REFERENCE macro=copy_to_state
-	if ans.Address == nil {
-		state.Address = nil
-	} else {
-		state.Address = &dsModelAddress{}
-		// copy_to_state: state=state.Address prefix=dsModel ans=ans.Address properties=6
-		tflog.Debug(ctx, "copy_to_state state=state.Address prefix=dsModel ans=ans.Address")
-		// property: name=city, type=STRING macro=copy_to_state
-		state.Address.City = types.StringPointerValue(ans.Address.City)
-		// property: name=country, type=STRING macro=copy_to_state
-		state.Address.Country = types.StringPointerValue(ans.Address.Country)
-		// property: name=post_code, type=STRING macro=copy_to_state
-		state.Address.PostCode = types.StringPointerValue(ans.Address.PostCode)
-		// property: name=state, type=STRING macro=copy_to_state
-		state.Address.State = types.StringPointerValue(ans.Address.State)
-		// property: name=street, type=STRING macro=copy_to_state
-		state.Address.Street = types.StringPointerValue(ans.Address.Street)
-		// property: name=street2, type=STRING macro=copy_to_state
-		state.Address.Street2 = types.StringPointerValue(ans.Address.Street2)
-	}
-	// property: name=admin_up, type=BOOLEAN macro=copy_to_state
-	state.AdminUp = types.BoolPointerValue(ans.AdminUp)
-	// property: name=allow_enterprise_traffic, type=BOOLEAN macro=copy_to_state
-	state.AllowEnterpriseTraffic = types.BoolPointerValue(ans.AllowEnterpriseTraffic)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disable_tunnel_reoptimization, type=BOOLEAN macro=copy_to_state
-	state.DisableTunnelReoptimization = types.BoolPointerValue(ans.DisableTunnelReoptimization)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=is_sase, type=BOOLEAN macro=copy_to_state
-	state.IsSase = types.BoolPointerValue(ans.IsSase)
-	// property: name=liveliness_probe, type=REFERENCE macro=copy_to_state
-	if ans.LivelinessProbe == nil {
-		state.LivelinessProbe = nil
-	} else {
-		state.LivelinessProbe = &dsModelSEPLivelinessProbeV3N1{}
-		// copy_to_state: state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe properties=3
-		tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe")
-		// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
-		if ans.LivelinessProbe.Http == nil {
-			state.LivelinessProbe.Http = nil
-		} else if len(ans.LivelinessProbe.Http) == 0 {
-			state.LivelinessProbe.Http = []dsModelHttpProbe{}
-		} else {
-			state.LivelinessProbe.Http = make([]dsModelHttpProbe, 0, len(ans.LivelinessProbe.Http))
-			for varLoopHttpIndex, varLoopHttp := range ans.LivelinessProbe.Http {
-				// add a new item
-				state.LivelinessProbe.Http = append(state.LivelinessProbe.Http, dsModelHttpProbe{})
-				// copy_to_state: state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=dsModel ans=varLoopHttp properties=4
-				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=dsModel ans=varLoopHttp")
-				// property: name=failure_count, type=INTEGER macro=copy_to_state
-				state.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = types.Int64PointerValue(varLoopHttp.FailureCount)
-				// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
-				varHttpStatusCodes, errHttpStatusCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopHttp.HttpStatusCodes)
-				state.LivelinessProbe.Http[varLoopHttpIndex].HttpStatusCodes = varHttpStatusCodes
-				resp.Diagnostics.Append(errHttpStatusCodes.Errors()...)
-				// property: name=interval, type=INTEGER macro=copy_to_state
-				state.LivelinessProbe.Http[varLoopHttpIndex].Interval = types.Int64PointerValue(varLoopHttp.Interval)
-				// property: name=url, type=STRING macro=copy_to_state
-				state.LivelinessProbe.Http[varLoopHttpIndex].Url = types.StringPointerValue(varLoopHttp.Url)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
 			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
 		}
-		// property: name=icmp_ping, type=ARRAY_REFERENCE macro=copy_to_state
-		if ans.LivelinessProbe.IcmpPing == nil {
-			state.LivelinessProbe.IcmpPing = nil
-		} else if len(ans.LivelinessProbe.IcmpPing) == 0 {
-			state.LivelinessProbe.IcmpPing = []dsModelIcmpPingProbe{}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelServiceEndpointV3N1
+
+		// start copying attributes
+		var ans sdwan_schema.ServiceEndpointV3N1
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to ServiceEndpointV3N1", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=ServiceEndpointV3N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=address, type=REFERENCE macro=copy_to_state
+		if ans.Address == nil {
+			state.Address = nil
 		} else {
-			state.LivelinessProbe.IcmpPing = make([]dsModelIcmpPingProbe, 0, len(ans.LivelinessProbe.IcmpPing))
-			for varLoopIcmpPingIndex, varLoopIcmpPing := range ans.LivelinessProbe.IcmpPing {
-				// add a new item
-				state.LivelinessProbe.IcmpPing = append(state.LivelinessProbe.IcmpPing, dsModelIcmpPingProbe{})
-				// copy_to_state: state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=dsModel ans=varLoopIcmpPing properties=3
-				tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=dsModel ans=varLoopIcmpPing")
-				// property: name=failure_count, type=INTEGER macro=copy_to_state
-				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = types.Int64PointerValue(varLoopIcmpPing.FailureCount)
-				// property: name=interval, type=INTEGER macro=copy_to_state
-				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].Interval = types.Int64PointerValue(varLoopIcmpPing.Interval)
-				// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
-				varIpAddresses, errIpAddresses := types.ListValueFrom(ctx, types.StringType, varLoopIcmpPing.IpAddresses)
-				state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].IpAddresses = varIpAddresses
-				resp.Diagnostics.Append(errIpAddresses.Errors()...)
-			}
+			state.Address = &dsModelAddress{}
+			// copy_to_state: state=state.Address prefix=dsModel ans=ans.Address properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.Address prefix=dsModel ans=ans.Address")
+			// property: name=city, type=STRING macro=copy_to_state
+			state.Address.City = types.StringPointerValue(ans.Address.City)
+			// property: name=country, type=STRING macro=copy_to_state
+			state.Address.Country = types.StringPointerValue(ans.Address.Country)
+			// property: name=post_code, type=STRING macro=copy_to_state
+			state.Address.PostCode = types.StringPointerValue(ans.Address.PostCode)
+			// property: name=state, type=STRING macro=copy_to_state
+			state.Address.State = types.StringPointerValue(ans.Address.State)
+			// property: name=street, type=STRING macro=copy_to_state
+			state.Address.Street = types.StringPointerValue(ans.Address.Street)
+			// property: name=street2, type=STRING macro=copy_to_state
+			state.Address.Street2 = types.StringPointerValue(ans.Address.Street2)
 		}
-		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_to_state
-		state.LivelinessProbe.UseTunnelForUrlDnsResolution = types.BoolPointerValue(ans.LivelinessProbe.UseTunnelForUrlDnsResolution)
-	}
-	// property: name=location, type=REFERENCE macro=copy_to_state
-	if ans.Location == nil {
-		state.Location = nil
-	} else {
-		state.Location = &dsModelLocation{}
-		// copy_to_state: state=state.Location prefix=dsModel ans=ans.Location properties=3
-		tflog.Debug(ctx, "copy_to_state state=state.Location prefix=dsModel ans=ans.Location")
+		// property: name=admin_up, type=BOOLEAN macro=copy_to_state
+		state.AdminUp = types.BoolPointerValue(ans.AdminUp)
+		// property: name=allow_enterprise_traffic, type=BOOLEAN macro=copy_to_state
+		state.AllowEnterpriseTraffic = types.BoolPointerValue(ans.AllowEnterpriseTraffic)
 		// property: name=description, type=STRING macro=copy_to_state
-		state.Location.Description = types.StringPointerValue(ans.Location.Description)
-		// property: name=latitude, type=NUMBER macro=copy_to_state
-		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
-		// property: name=longitude, type=NUMBER macro=copy_to_state
-		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
-	}
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=sase_properties, type=REFERENCE macro=copy_to_state
-	if ans.SaseProperties == nil {
-		state.SaseProperties = nil
-	} else {
-		state.SaseProperties = &dsModelSaseServiceEndpointProperties{}
-		// copy_to_state: state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties properties=2
-		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties")
-		// property: name=active, type=BOOLEAN macro=copy_to_state
-		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
-		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
-		state.SaseProperties.LqmEnabled = types.BoolPointerValue(ans.SaseProperties.LqmEnabled)
-	}
-	// property: name=service_link_peers, type=REFERENCE macro=copy_to_state
-	if ans.ServiceLinkPeers == nil {
-		state.ServiceLinkPeers = nil
-	} else {
-		state.ServiceLinkPeers = &dsModelServiceLinkPeers{}
-		// copy_to_state: state=state.ServiceLinkPeers prefix=dsModel ans=ans.ServiceLinkPeers properties=2
-		tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkPeers prefix=dsModel ans=ans.ServiceLinkPeers")
-		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varHostnames, errHostnames := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.Hostnames)
-		state.ServiceLinkPeers.Hostnames = varHostnames
-		resp.Diagnostics.Append(errHostnames.Errors()...)
-		// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpAddresses, errIpAddresses := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.IpAddresses)
-		state.ServiceLinkPeers.IpAddresses = varIpAddresses
-		resp.Diagnostics.Append(errIpAddresses.Errors()...)
-	}
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=type, type=STRING macro=copy_to_state
-	state.Type = types.StringPointerValue(ans.Type)
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=disable_tunnel_reoptimization, type=BOOLEAN macro=copy_to_state
+		state.DisableTunnelReoptimization = types.BoolPointerValue(ans.DisableTunnelReoptimization)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=is_sase, type=BOOLEAN macro=copy_to_state
+		state.IsSase = types.BoolPointerValue(ans.IsSase)
+		// property: name=liveliness_probe, type=REFERENCE macro=copy_to_state
+		if ans.LivelinessProbe == nil {
+			state.LivelinessProbe = nil
+		} else {
+			state.LivelinessProbe = &dsModelSEPLivelinessProbeV3N1{}
+			// copy_to_state: state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe prefix=dsModel ans=ans.LivelinessProbe")
+			// property: name=http, type=ARRAY_REFERENCE macro=copy_to_state
+			if ans.LivelinessProbe.Http == nil {
+				state.LivelinessProbe.Http = nil
+			} else if len(ans.LivelinessProbe.Http) == 0 {
+				state.LivelinessProbe.Http = []dsModelHttpProbe{}
+			} else {
+				state.LivelinessProbe.Http = make([]dsModelHttpProbe, 0, len(ans.LivelinessProbe.Http))
+				for varLoopHttpIndex, varLoopHttp := range ans.LivelinessProbe.Http {
+					// add a new item
+					state.LivelinessProbe.Http = append(state.LivelinessProbe.Http, dsModelHttpProbe{})
+					// copy_to_state: state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=dsModel ans=varLoopHttp properties=4
+					tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.Http[varLoopHttpIndex] prefix=dsModel ans=varLoopHttp")
+					// property: name=failure_count, type=INTEGER macro=copy_to_state
+					state.LivelinessProbe.Http[varLoopHttpIndex].FailureCount = types.Int64PointerValue(varLoopHttp.FailureCount)
+					// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varHttpStatusCodes, errHttpStatusCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopHttp.HttpStatusCodes)
+					state.LivelinessProbe.Http[varLoopHttpIndex].HttpStatusCodes = varHttpStatusCodes
+					resp.Diagnostics.Append(errHttpStatusCodes.Errors()...)
+					// property: name=interval, type=INTEGER macro=copy_to_state
+					state.LivelinessProbe.Http[varLoopHttpIndex].Interval = types.Int64PointerValue(varLoopHttp.Interval)
+					// property: name=url, type=STRING macro=copy_to_state
+					state.LivelinessProbe.Http[varLoopHttpIndex].Url = types.StringPointerValue(varLoopHttp.Url)
+				}
+			}
+			// property: name=icmp_ping, type=ARRAY_REFERENCE macro=copy_to_state
+			if ans.LivelinessProbe.IcmpPing == nil {
+				state.LivelinessProbe.IcmpPing = nil
+			} else if len(ans.LivelinessProbe.IcmpPing) == 0 {
+				state.LivelinessProbe.IcmpPing = []dsModelIcmpPingProbe{}
+			} else {
+				state.LivelinessProbe.IcmpPing = make([]dsModelIcmpPingProbe, 0, len(ans.LivelinessProbe.IcmpPing))
+				for varLoopIcmpPingIndex, varLoopIcmpPing := range ans.LivelinessProbe.IcmpPing {
+					// add a new item
+					state.LivelinessProbe.IcmpPing = append(state.LivelinessProbe.IcmpPing, dsModelIcmpPingProbe{})
+					// copy_to_state: state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=dsModel ans=varLoopIcmpPing properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex] prefix=dsModel ans=varLoopIcmpPing")
+					// property: name=failure_count, type=INTEGER macro=copy_to_state
+					state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].FailureCount = types.Int64PointerValue(varLoopIcmpPing.FailureCount)
+					// property: name=interval, type=INTEGER macro=copy_to_state
+					state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].Interval = types.Int64PointerValue(varLoopIcmpPing.Interval)
+					// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpAddresses, errIpAddresses := types.ListValueFrom(ctx, types.StringType, varLoopIcmpPing.IpAddresses)
+					state.LivelinessProbe.IcmpPing[varLoopIcmpPingIndex].IpAddresses = varIpAddresses
+					resp.Diagnostics.Append(errIpAddresses.Errors()...)
+				}
+			}
+			// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_to_state
+			state.LivelinessProbe.UseTunnelForUrlDnsResolution = types.BoolPointerValue(ans.LivelinessProbe.UseTunnelForUrlDnsResolution)
+		}
+		// property: name=location, type=REFERENCE macro=copy_to_state
+		if ans.Location == nil {
+			state.Location = nil
+		} else {
+			state.Location = &dsModelLocation{}
+			// copy_to_state: state=state.Location prefix=dsModel ans=ans.Location properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.Location prefix=dsModel ans=ans.Location")
+			// property: name=description, type=STRING macro=copy_to_state
+			state.Location.Description = types.StringPointerValue(ans.Location.Description)
+			// property: name=latitude, type=NUMBER macro=copy_to_state
+			state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+			// property: name=longitude, type=NUMBER macro=copy_to_state
+			state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		}
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=sase_properties, type=REFERENCE macro=copy_to_state
+		if ans.SaseProperties == nil {
+			state.SaseProperties = nil
+		} else {
+			state.SaseProperties = &dsModelSaseServiceEndpointProperties{}
+			// copy_to_state: state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties")
+			// property: name=active, type=BOOLEAN macro=copy_to_state
+			state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
+			// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
+			state.SaseProperties.LqmEnabled = types.BoolPointerValue(ans.SaseProperties.LqmEnabled)
+		}
+		// property: name=service_link_peers, type=REFERENCE macro=copy_to_state
+		if ans.ServiceLinkPeers == nil {
+			state.ServiceLinkPeers = nil
+		} else {
+			state.ServiceLinkPeers = &dsModelServiceLinkPeers{}
+			// copy_to_state: state=state.ServiceLinkPeers prefix=dsModel ans=ans.ServiceLinkPeers properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkPeers prefix=dsModel ans=ans.ServiceLinkPeers")
+			// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varHostnames, errHostnames := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.Hostnames)
+			state.ServiceLinkPeers.Hostnames = varHostnames
+			resp.Diagnostics.Append(errHostnames.Errors()...)
+			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpAddresses, errIpAddresses := types.ListValueFrom(ctx, types.StringType, ans.ServiceLinkPeers.IpAddresses)
+			state.ServiceLinkPeers.IpAddresses = varIpAddresses
+			resp.Diagnostics.Append(errIpAddresses.Errors()...)
+		}
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.SiteId = types.StringPointerValue(ans.SiteId)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=type, type=STRING macro=copy_to_state
+		state.Type = types.StringPointerValue(ans.Type)
 
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }
