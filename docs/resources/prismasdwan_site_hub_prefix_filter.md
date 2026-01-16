@@ -17,7 +17,7 @@
 {
   "properties" : {
     "filters" : {
-      "description" : "Filters: Valid Embedded(concreteClass = classOf[Object], value = .) Required(PREFIXFILTER_REQUIRED) Valid ",
+      "description" : "Filters: Valid Required(PREFIXFILTER_REQUIRED) Valid ",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -33,7 +33,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

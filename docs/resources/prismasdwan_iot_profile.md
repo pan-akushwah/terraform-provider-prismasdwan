@@ -17,7 +17,7 @@
 {
   "properties" : {
     "num_associated_sites" : {
-      "description" : "Num Associated Sites: Transient ",
+      "description" : "Num Associated Sites",
       "format" : "int64",
       "type" : "integer",
       "additionalProperties" : {
@@ -35,7 +35,7 @@
           "type" : "string"
         },
         "snmp_privacy_password" : {
-          "description" : "Snmp Privacy Password: Transient Pattern(error = SNMPCONFIG_UNSUPPORTED_ENC_PHRASE: White spaces not allowed in enc phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_ENC_PHRASE_LEN: Enc phrase length should be between 8 and 256, min = 5) ",
+          "description" : "Snmp Privacy Password: Pattern(error = SNMPCONFIG_UNSUPPORTED_ENC_PHRASE: White spaces not allowed in enc phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_ENC_PHRASE_LEN: Enc phrase length should be between 8 and 256, min = 5) ",
           "type" : "string"
         },
         "snmp_privacy_protocol" : {
@@ -55,7 +55,7 @@
           }
         },
         "snmp_auth_password" : {
-          "description" : "Snmp Auth Password: Transient Pattern(error = SNMPCONFIG_UNSUPPORTED_AUTH_PHRASE: White spaces not allowed in auth phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_AUTH_PHRASE_LEN: Auth phrase length should be between 8 and 256, min = 5) ",
+          "description" : "Snmp Auth Password: Pattern(error = SNMPCONFIG_UNSUPPORTED_AUTH_PHRASE: White spaces not allowed in auth phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_AUTH_PHRASE_LEN: Auth phrase length should be between 8 and 256, min = 5) ",
           "type" : "string",
           "additionalProperties" : {
             "properties" : {
@@ -135,7 +135,7 @@
       "type" : "string"
     },
     "region" : {
-      "description" : "Region: Transient ",
+      "description" : "Region",
       "type" : "string"
     },
     "disabled_reason" : {

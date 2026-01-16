@@ -195,33 +195,26 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Optional:  true,
 						Sensitive: false,
 						Attributes: map[string]rsschema.Attribute{
-							// property: name=destination_ip, type=STRING macro=rss_schema
-							"destination_ip": rsschema.StringAttribute{
+							// property: name=disabled, type=BOOLEAN macro=rss_schema
+							"disabled": rsschema.BoolAttribute{
 								Required:  false,
 								Computed:  false,
 								Optional:  true,
 								Sensitive: false,
 							},
-							// key name holder for attribute: name=destination_ip, type=STRING macro=rss_schema
-							// property: name=source_ip, type=STRING macro=rss_schema
-							"source_ip": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+							// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
+							"source_interfaces": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
 							},
-							// key name holder for attribute: name=source_ip, type=STRING macro=rss_schema
-							// property: name=status, type=STRING macro=rss_schema
-							"status": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=status, type=STRING macro=rss_schema
+							// key name holder for attribute: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 						},
 					},
-					// key name holder for attribute: name=status, type=STRING macro=rss_schema
+					// key name holder for attribute: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=track, type=REFERENCE macro=rss_schema
 					"track": rsschema.SingleNestedAttribute{
 						Required:  false,
@@ -805,14 +798,14 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
-			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
-			// property: name=destination_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
-			// property: name=source_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.SourceIp)
-			// property: name=status, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Status)
+			// property: name=disabled, type=BOOLEAN macro=copy_to_state
+			state.HubClusterConfig.IntraClusterTunnel.Disabled = types.BoolPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Disabled)
+			// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSourceInterfaces, errSourceInterfaces := types.ListValueFrom(ctx, types.StringType, ans.HubClusterConfig.IntraClusterTunnel.SourceInterfaces)
+			state.HubClusterConfig.IntraClusterTunnel.SourceInterfaces = varSourceInterfaces
+			resp.Diagnostics.Append(errSourceInterfaces.Errors()...)
 		}
 		// property: name=track, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.Track == nil {
@@ -1111,14 +1104,14 @@ func (r *elementShellResource) doGet(ctx context.Context, state *rsModelElementS
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
-			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
-			// property: name=destination_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
-			// property: name=source_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.SourceIp)
-			// property: name=status, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Status)
+			// property: name=disabled, type=BOOLEAN macro=copy_to_state
+			state.HubClusterConfig.IntraClusterTunnel.Disabled = types.BoolPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Disabled)
+			// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSourceInterfaces, errSourceInterfaces := types.ListValueFrom(ctx, types.StringType, ans.HubClusterConfig.IntraClusterTunnel.SourceInterfaces)
+			state.HubClusterConfig.IntraClusterTunnel.SourceInterfaces = varSourceInterfaces
+			resp.Diagnostics.Append(errSourceInterfaces.Errors()...)
 		}
 		// property: name=track, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.Track == nil {
@@ -1413,26 +1406,16 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSc
 			body.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			body.HubClusterConfig.IntraClusterTunnel = &sdwan_schema.IntraClusterTunnel{}
-			// copy_from_plan_or_state: body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel properties=3
+			// copy_from_plan_or_state: body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel")
-			// property: name=destination_ip, type=STRING macro=copy_from_plan_or_state
+			// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
 			if state.HubClusterConfig.IntraClusterTunnel != nil {
-				body.HubClusterConfig.IntraClusterTunnel.DestinationIp = ValueStringPointerFromPlanOrState(plan.HubClusterConfig.IntraClusterTunnel.DestinationIp, state.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				body.HubClusterConfig.IntraClusterTunnel.Disabled = ValueBoolPointerFromPlanOrState(plan.HubClusterConfig.IntraClusterTunnel.Disabled, state.HubClusterConfig.IntraClusterTunnel.Disabled)
 			} else {
-				body.HubClusterConfig.IntraClusterTunnel.DestinationIp = StringValueOrNil(plan.HubClusterConfig.IntraClusterTunnel.DestinationIp)
+				body.HubClusterConfig.IntraClusterTunnel.Disabled = BoolValueOrNil(plan.HubClusterConfig.IntraClusterTunnel.Disabled)
 			}
-			// property: name=source_ip, type=STRING macro=copy_from_plan_or_state
-			if state.HubClusterConfig.IntraClusterTunnel != nil {
-				body.HubClusterConfig.IntraClusterTunnel.SourceIp = ValueStringPointerFromPlanOrState(plan.HubClusterConfig.IntraClusterTunnel.SourceIp, state.HubClusterConfig.IntraClusterTunnel.SourceIp)
-			} else {
-				body.HubClusterConfig.IntraClusterTunnel.SourceIp = StringValueOrNil(plan.HubClusterConfig.IntraClusterTunnel.SourceIp)
-			}
-			// property: name=status, type=STRING macro=copy_from_plan_or_state
-			if state.HubClusterConfig.IntraClusterTunnel != nil {
-				body.HubClusterConfig.IntraClusterTunnel.Status = ValueStringPointerFromPlanOrState(plan.HubClusterConfig.IntraClusterTunnel.Status, state.HubClusterConfig.IntraClusterTunnel.Status)
-			} else {
-				body.HubClusterConfig.IntraClusterTunnel.Status = StringValueOrNil(plan.HubClusterConfig.IntraClusterTunnel.Status)
-			}
+			// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.HubClusterConfig.IntraClusterTunnel.SourceInterfaces = ListStringValueOrNil(ctx, plan.HubClusterConfig.IntraClusterTunnel.SourceInterfaces)
 		}
 		// property: name=track, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.HubClusterConfig.Track == nil {
@@ -1837,14 +1820,14 @@ func (r *elementShellResource) doPut(ctx context.Context, plan *rsModelElementSc
 			state.HubClusterConfig.IntraClusterTunnel = nil
 		} else {
 			state.HubClusterConfig.IntraClusterTunnel = &rsModelIntraClusterTunnel{}
-			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=3
+			// copy_to_state: state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.HubClusterConfig.IntraClusterTunnel prefix=rsModel ans=ans.HubClusterConfig.IntraClusterTunnel")
-			// property: name=destination_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.DestinationIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.DestinationIp)
-			// property: name=source_ip, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.SourceIp = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.SourceIp)
-			// property: name=status, type=STRING macro=copy_to_state
-			state.HubClusterConfig.IntraClusterTunnel.Status = types.StringPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Status)
+			// property: name=disabled, type=BOOLEAN macro=copy_to_state
+			state.HubClusterConfig.IntraClusterTunnel.Disabled = types.BoolPointerValue(ans.HubClusterConfig.IntraClusterTunnel.Disabled)
+			// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSourceInterfaces, errSourceInterfaces := types.ListValueFrom(ctx, types.StringType, ans.HubClusterConfig.IntraClusterTunnel.SourceInterfaces)
+			state.HubClusterConfig.IntraClusterTunnel.SourceInterfaces = varSourceInterfaces
+			resp.Diagnostics.Append(errSourceInterfaces.Errors()...)
 		}
 		// property: name=track, type=REFERENCE macro=copy_to_state
 		if ans.HubClusterConfig.Track == nil {

@@ -5,9 +5,9 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `app_def` |
-| Get Api  | `/sdwan/v2.6/api/appdefs/{appdef_id}` (`AppDefScreenV2N5`) |
-| Post Api  | `/sdwan/v2.6/api/appdefs` (`AppDefScreenV2N5`) |
-| Put Api  | `/sdwan/v2.6/api/appdefs/{appdef_id}` (`AppDefScreenV2N5`) |
+| Get Api  | `/sdwan/v2.6/api/appdefs/{appdef_id}` (`AppDefScreenV2N6`) |
+| Post Api  | `/sdwan/v2.6/api/appdefs` (`AppDefScreenV2N6`) |
+| Put Api  | `/sdwan/v2.6/api/appdefs/{appdef_id}` (`AppDefScreenV2N6`) |
 | Delete Api  | `/sdwan/v2.6/api/appdefs/{appdef_id}` |
 
 
@@ -16,6 +16,10 @@
 ```json
 {
   "properties" : {
+    "supported_base_software_version" : {
+      "description" : "Supported Base Software Version",
+      "type" : "string"
+    },
     "p_parent_id" : {
       "description" : "P Parent Id",
       "type" : "string"
@@ -160,7 +164,7 @@
       "enum" : [ "none", "weak", "strict" ]
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

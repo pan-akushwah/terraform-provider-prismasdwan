@@ -15,11 +15,11 @@
 {
   "properties" : {
     "pin" : {
-      "description" : "Pin: Transient Size(max = 256, error = SIM_SECURITY_CONFIG_INVALID_PIN: Sim security invalid pin - Null pin allowed. For non-null pin, must be numeric with minimum 4 and maximum 8 digits, and must be sent as a base64 encoded string., min = 0) ",
+      "description" : "Pin: Size(max = 256, error = SIM_SECURITY_CONFIG_INVALID_PIN: Sim security invalid pin - Null pin allowed. For non-null pin, must be numeric with minimum 4 and maximum 8 digits, and must be sent as a base64 encoded string., min = 0) ",
       "type" : "string"
     },
     "remove_pin" : {
-      "description" : "Remove Pin: Required(error = SIM_SECURITY_CONFIG_REMOVE_PIN_REQD: Sim security remove pin required. Must be false when pin is non-null and must be true when pin is null.) Transient ",
+      "description" : "Remove Pin: Required(error = SIM_SECURITY_CONFIG_REMOVE_PIN_REQD: Sim security remove pin required. Must be false when pin is non-null and must be true when pin is null.) ",
       "type" : "boolean"
     },
     "slot_number" : {
@@ -51,7 +51,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

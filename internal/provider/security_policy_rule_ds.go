@@ -25,7 +25,7 @@ import (
 // | UserGroup HasID=false
 // | PortRange HasID=false
 // | Service HasID=false
-// | SecurityPolicyV2N2RuleScreen HasID=true
+// | SecurityPolicyV2RuleScreenV2N3 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -66,7 +66,7 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=SecurityPolicyV2N2RuleScreen
+			// rest all properties to be read from GET API Schema schema=SecurityPolicyV2RuleScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -166,6 +166,14 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
+			// property: name=security_profile_group_id, type=STRING macro=rss_schema
+			"security_profile_group_id": dsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=security_profile_group_id, type=STRING macro=rss_schema
 			// property: name=services, type=ARRAY_REFERENCE macro=rss_schema
 			"services": dsschema.ListNestedAttribute{
 				Required:  false,
@@ -320,7 +328,7 @@ func (d *securityPolicyRuleDataSource) Configure(_ context.Context, req datasour
 
 // Read performs Read for the struct.
 func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelSecurityPolicyV2N2RuleScreen
+	var state dsModelSecurityPolicyV2RuleScreenV2N3
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -347,7 +355,7 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
+	read_request.Path = "/sdwan/v2.3/api/ngfwsecuritypolicysets/{policy_set_id}/ngfwsecuritypolicyrules/{policy_rule_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
@@ -373,17 +381,17 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.SecurityPolicyV2N2RuleScreen
+	var ans sdwan_schema.SecurityPolicyV2RuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2N2RuleScreen", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityPolicyV2RuleScreenV2N3", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=SecurityPolicyV2N2RuleScreen
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+	// lets copy all items into state schema=SecurityPolicyV2RuleScreenV2N3
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -415,6 +423,8 @@ func (d *securityPolicyRuleDataSource) Read(ctx context.Context, req datasource.
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=security_profile_group_id, type=STRING macro=copy_to_state
+	state.SecurityProfileGroupId = types.StringPointerValue(ans.SecurityProfileGroupId)
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Services == nil {
 		state.Services = nil

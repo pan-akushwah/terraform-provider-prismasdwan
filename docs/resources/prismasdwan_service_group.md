@@ -25,7 +25,7 @@
       }
     },
     "type" : {
-      "description" : "Type: ValidateEnum(enumClass = classOf[NetworkServiceType], message = Invalid enum string., nullAllowed = false) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Type: ValidateEnum(enumClass = classOf[NetworkServiceType], message = Invalid enum string., nullAllowed = false) ",
       "type" : "string",
       "enum" : [ "CG_TRANSIT", "NON_CG_TRANSIT", "SASE" ]
     },
@@ -53,7 +53,7 @@
       }
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

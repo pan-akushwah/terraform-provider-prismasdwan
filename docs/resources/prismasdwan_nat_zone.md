@@ -51,7 +51,7 @@
       "type" : "string"
     },
     "region" : {
-      "description" : "Region: Transient ",
+      "description" : "Region",
       "type" : "string"
     },
     "disabled_reason" : {

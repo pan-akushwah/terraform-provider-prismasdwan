@@ -39,7 +39,7 @@
       }
     },
     "peer_auth_type" : {
-      "description" : "Peer Auth Type: Transient ",
+      "description" : "Peer Auth Type",
       "type" : "string",
       "enum" : [ "md5", "none" ]
     },
@@ -119,11 +119,11 @@
       "type" : "string"
     },
     "router_id" : {
-      "description" : "Router Id: Size(max = 256, ROUTER_ID_EXCEEDS_LIMIT, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, BGP_CONFIG_INVALID_ROUTER_ID, type = IP) ",
+      "description" : "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

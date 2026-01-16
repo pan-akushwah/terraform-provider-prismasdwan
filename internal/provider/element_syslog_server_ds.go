@@ -22,7 +22,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=sites_elements_syslogservers
 // +-----------------------------------------------------------------
-// | SyslogServerScreenV2N2 HasID=true
+// | SyslogServerScreenV2N3 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -63,7 +63,7 @@ func (d *elementSyslogServerDataSource) Schema(_ context.Context, _ datasource.S
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=SyslogServerScreenV2N2
+			// rest all properties to be read from GET API Schema schema=SyslogServerScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -95,6 +95,14 @@ func (d *elementSyslogServerDataSource) Schema(_ context.Context, _ datasource.S
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
+			// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
+			"enable_dns_logging": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			"enable_flow_logging": dsschema.BoolAttribute{
 				Required:  false,
@@ -103,6 +111,22 @@ func (d *elementSyslogServerDataSource) Schema(_ context.Context, _ datasource.S
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
+			// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
+			"enable_threat_logging": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
+			// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
+			"enable_url_logging": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": dsschema.BoolAttribute{
 				Required:  false,
@@ -214,7 +238,7 @@ func (d *elementSyslogServerDataSource) Configure(_ context.Context, req datasou
 
 // Read performs Read for the struct.
 func (d *elementSyslogServerDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelSyslogServerScreenV2N2
+	var state dsModelSyslogServerScreenV2N3
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -241,7 +265,7 @@ func (d *elementSyslogServerDataSource) Read(ctx context.Context, req datasource
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
+	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/syslogservers/{syslogserver_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
@@ -268,17 +292,17 @@ func (d *elementSyslogServerDataSource) Read(ctx context.Context, req datasource
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerScreenV2N2
+	var ans sdwan_schema.SyslogServerScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N2", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerScreenV2N3", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=SyslogServerScreenV2N2
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=16
+	// lets copy all items into state schema=SyslogServerScreenV2N3
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=19
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -286,8 +310,14 @@ func (d *elementSyslogServerDataSource) Read(ctx context.Context, req datasource
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state

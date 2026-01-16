@@ -27,7 +27,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=syslogserverprofiles
 // +-----------------------------------------------------------------
-// | SyslogServerProfileScreen HasID=true
+// | SyslogServerProfileScreenV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -71,7 +71,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SyslogServerProfileScreen
+			// rest all properties to be read from GET API Schema schema=SyslogServerProfileScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -103,6 +103,14 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
+			// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
+			"enable_dns_logging": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			"enable_flow_logging": rsschema.BoolAttribute{
 				Required:  false,
@@ -111,6 +119,22 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
+			// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
+			"enable_threat_logging": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
+			// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
+			"enable_url_logging": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -210,7 +234,7 @@ func (r *syslogProfileResource) GetHttpStatusCode(request *sdwan_client.SdwanCli
 	}
 }
 
-func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogServerProfileScreen, state *rsModelSyslogServerProfileScreen, resp *resource.CreateResponse) bool {
+func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogServerProfileScreenV2N1, state *rsModelSyslogServerProfileScreenV2N1, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_syslog_profile")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -222,7 +246,7 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_syslog_profile"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.0/api/syslogserverprofiles"
+	create_request.Path = "/sdwan/v2.1/api/syslogserverprofiles"
 
 	// copy parameters from plan always
 	params := make(map[string]*string)
@@ -232,10 +256,10 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SyslogServerProfileScreen{}
+	var body = &sdwan_schema.SyslogServerProfileScreenV2N1{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=13
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=16
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -243,8 +267,14 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	body.Schema = Int64ValueOrNil(plan.Schema)
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_from_plan
+	body.EnableDnsLogging = BoolValueOrNil(plan.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_from_plan
 	body.EnableFlowLogging = BoolValueOrNil(plan.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_from_plan
+	body.EnableThreatLogging = BoolValueOrNil(plan.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_from_plan
+	body.EnableUrlLogging = BoolValueOrNil(plan.EnableUrlLogging)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
 	// property: name=name, type=STRING macro=copy_from_plan
@@ -267,7 +297,7 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SyslogServerProfileScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SyslogServerProfileScreenV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -310,12 +340,12 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerProfileScreen
+	var ans sdwan_schema.SyslogServerProfileScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerProfileScreen in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerProfileScreenV2N1 in create", json_err.Error())
 		return false
 	}
 
@@ -340,8 +370,8 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_syslog_profile with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SyslogServerProfileScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	// Store the answer to state. schema=SyslogServerProfileScreenV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -349,8 +379,14 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
@@ -374,7 +410,7 @@ func (r *syslogProfileResource) doPost(ctx context.Context, plan *rsModelSyslogS
 	return true
 }
 
-func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogServerProfileScreen, savestate *rsModelSyslogServerProfileScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogServerProfileScreenV2N1, savestate *rsModelSyslogServerProfileScreenV2N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -396,7 +432,7 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_syslog_profile"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/syslogserverprofiles/{profile_id}"
+	read_request.Path = "/sdwan/v2.1/api/syslogserverprofiles/{profile_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -436,7 +472,7 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SyslogServerProfileScreen
+	// Store the answer to state. schema=SyslogServerProfileScreenV2N1
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -445,16 +481,16 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerProfileScreen
+	var ans sdwan_schema.SyslogServerProfileScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerProfileScreen in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerProfileScreenV2N1 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -462,8 +498,14 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
@@ -487,7 +529,7 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 	return true
 }
 
-func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogServerProfileScreen, state *rsModelSyslogServerProfileScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogServerProfileScreenV2N1, state *rsModelSyslogServerProfileScreenV2N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -515,7 +557,7 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_syslog_profile"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.0/api/syslogserverprofiles/{profile_id}"
+	put_request.Path = "/sdwan/v2.1/api/syslogserverprofiles/{profile_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -532,11 +574,11 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SyslogServerProfileScreen{}
+	var body = &sdwan_schema.SyslogServerProfileScreenV2N1{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=13
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=16
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -556,11 +598,29 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	} else {
 		body.Description = StringValueOrNil(plan.Description)
 	}
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.EnableDnsLogging = ValueBoolPointerFromPlanOrState(plan.EnableDnsLogging, state.EnableDnsLogging)
+	} else {
+		body.EnableDnsLogging = BoolValueOrNil(plan.EnableDnsLogging)
+	}
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.EnableFlowLogging = ValueBoolPointerFromPlanOrState(plan.EnableFlowLogging, state.EnableFlowLogging)
 	} else {
 		body.EnableFlowLogging = BoolValueOrNil(plan.EnableFlowLogging)
+	}
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.EnableThreatLogging = ValueBoolPointerFromPlanOrState(plan.EnableThreatLogging, state.EnableThreatLogging)
+	} else {
+		body.EnableThreatLogging = BoolValueOrNil(plan.EnableThreatLogging)
+	}
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.EnableUrlLogging = ValueBoolPointerFromPlanOrState(plan.EnableUrlLogging, state.EnableUrlLogging)
+	} else {
+		body.EnableUrlLogging = BoolValueOrNil(plan.EnableUrlLogging)
 	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -616,7 +676,7 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SyslogServerProfileScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SyslogServerProfileScreenV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -658,17 +718,17 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SyslogServerProfileScreen
+	var ans sdwan_schema.SyslogServerProfileScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerProfileScreen in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SyslogServerProfileScreenV2N1 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SyslogServerProfileScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	// Store the answer to state. schema=SyslogServerProfileScreenV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -676,8 +736,14 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=enable_dns_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableDnsLogging = types.BoolPointerValue(ans.EnableDnsLogging)
 	// property: name=enable_flow_logging, type=BOOLEAN macro=copy_to_state
 	state.EnableFlowLogging = types.BoolPointerValue(ans.EnableFlowLogging)
+	// property: name=enable_threat_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableThreatLogging = types.BoolPointerValue(ans.EnableThreatLogging)
+	// property: name=enable_url_logging, type=BOOLEAN macro=copy_to_state
+	state.EnableUrlLogging = types.BoolPointerValue(ans.EnableUrlLogging)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=name, type=STRING macro=copy_to_state
@@ -701,7 +767,7 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	return true
 }
 
-func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSyslogServerProfileScreen, resp *resource.DeleteResponse) bool {
+func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSyslogServerProfileScreenV2N1, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -722,7 +788,7 @@ func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSysl
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_syslog_profile"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.0/api/syslogserverprofiles/{profile_id}"
+	delete_request.Path = "/sdwan/v2.1/api/syslogserverprofiles/{profile_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -754,14 +820,14 @@ func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSysl
 // Path Parameters are encoded into TfID itself
 func (r *syslogProfileResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_syslog_profile")
-	var plan rsModelSyslogServerProfileScreen
+	var plan rsModelSyslogServerProfileScreenV2N1
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSyslogServerProfileScreen
+	var state rsModelSyslogServerProfileScreenV2N1
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -773,7 +839,7 @@ func (r *syslogProfileResource) Create(ctx context.Context, req resource.CreateR
 func (r *syslogProfileResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_syslog_profile")
-	var savestate, state rsModelSyslogServerProfileScreen
+	var savestate, state rsModelSyslogServerProfileScreenV2N1
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -792,7 +858,7 @@ func (r *syslogProfileResource) Read(ctx context.Context, req resource.ReadReque
 func (r *syslogProfileResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_syslog_profile")
-	var plan, state rsModelSyslogServerProfileScreen
+	var plan, state rsModelSyslogServerProfileScreenV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -816,7 +882,7 @@ func (r *syslogProfileResource) Update(ctx context.Context, req resource.UpdateR
 func (r *syslogProfileResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_syslog_profile")
-	var state rsModelSyslogServerProfileScreen
+	var state rsModelSyslogServerProfileScreenV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

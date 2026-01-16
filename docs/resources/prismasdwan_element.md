@@ -18,17 +18,17 @@
       "properties" : {
         "intra_cluster_tunnel" : {
           "properties" : {
-            "status" : {
-              "description" : "Status",
-              "type" : "string"
+            "disabled" : {
+              "description" : "Disabled",
+              "type" : "boolean"
             },
-            "destination_ip" : {
-              "description" : "Destination Ip",
-              "type" : "string"
-            },
-            "source_ip" : {
-              "description" : "Source Ip",
-              "type" : "string"
+            "source_interfaces" : {
+              "description" : "Source Interfaces",
+              "type" : "array",
+              "items" : {
+                "description" : "Source Interfaces",
+                "type" : "string"
+              }
             }
           }
         },
@@ -138,7 +138,7 @@
       }
     },
     "nat_policysetstack_id" : {
-      "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) ",
       "type" : "string"
     },
     "spoke_ha_config" : {
@@ -271,11 +271,11 @@
       "type" : "string"
     },
     "site_id" : {
-      "description" : "Site Id: Transient Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
+      "description" : "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

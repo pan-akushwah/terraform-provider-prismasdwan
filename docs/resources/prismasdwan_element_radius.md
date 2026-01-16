@@ -33,7 +33,7 @@
       "type" : "string"
     },
     "radius_configuration" : {
-      "description" : "Radius Configuration: ListObject(allowDuplicate = false, allowEmpty = true, allowNull = true, listMaxSize = 2, message = RADIUS_CONFIG_INVALID_CONFIG_PARAMETERS, required = false) Embedded(concreteClass = classOf[Object], value = .) Valid ",
+      "description" : "Radius Configuration: ListObject(allowDuplicate = false, allowEmpty = true, allowNull = true, listMaxSize = 2, message = RADIUS_CONFIG_INVALID_CONFIG_PARAMETERS, required = false) Valid ",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -54,7 +54,7 @@
             }
           },
           "shared_secret" : {
-            "description" : "Shared Secret: Transient ",
+            "description" : "Shared Secret",
             "type" : "string",
             "additionalProperties" : {
               "properties" : {
@@ -65,7 +65,7 @@
             }
           },
           "retain_shared_secret" : {
-            "description" : "Retain Shared Secret: Transient ",
+            "description" : "Retain Shared Secret",
             "type" : "boolean",
             "additionalProperties" : {
               "properties" : {
@@ -121,7 +121,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

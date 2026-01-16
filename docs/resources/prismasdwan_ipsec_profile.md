@@ -87,7 +87,7 @@
               }
             },
             "xauth_secret" : {
-              "description" : "Xauth Secret: Length(max = 128, error = IPSECCONFIG_INVALID_XAUTH_SECRET_LEN: Invalid extended authentication secret length.Should be between 4-128., min = 4) Transient ",
+              "description" : "Xauth Secret: Length(max = 128, error = IPSECCONFIG_INVALID_XAUTH_SECRET_LEN: Invalid extended authentication secret length.Should be between 4-128., min = 4) ",
               "type" : "string",
               "additionalProperties" : {
                 "properties" : {
@@ -127,7 +127,7 @@
           "type" : "string"
         },
         "passphrase" : {
-          "description" : "Passphrase: Transient ",
+          "description" : "Passphrase",
           "type" : "string"
         },
         "private_key_encrypted" : {
@@ -135,7 +135,7 @@
           "type" : "string"
         },
         "private_key" : {
-          "description" : "Private Key: Transient ",
+          "description" : "Private Key",
           "type" : "string"
         },
         "certificate" : {
@@ -177,7 +177,7 @@
           }
         },
         "secret" : {
-          "description" : "Secret: Transient ",
+          "description" : "Secret",
           "type" : "string",
           "additionalProperties" : {
             "properties" : {
@@ -380,7 +380,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

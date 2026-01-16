@@ -26,7 +26,7 @@
       "items" : {
         "properties" : {
           "community_str" : {
-            "description" : "Community Str: NotNull(COMMUNITY_STRING_MISSING) Size(max = 256, COMMUNITY_STRING_EXCEEDS_LIMIT, min = 0) Pattern(message = INVALID_COMMUNITY_STRING, regexp = internet|no-export|no-advertise|local-AS|(0|6553[0-5]|655[0-2][0-9]|65[0-4](\\\\d){2}|6[0-4](\\\\d){3}|[1-5](\\\\d){4}|[1-9](\\\\d){0,3}):(0|6553[0-5]|655[0-2][0-9]\\\\d|65[0-4](\\\\d){2}|6[0-4](\\\\d){3}|[1-5](\\\\d){4}|[1-9](\\\\d){0,3})) ",
+            "description" : "Community Str: NotNull(COMMUNITY_STRING_MISSING) Size(max = 256, COMMUNITY_STRING_EXCEEDS_LIMIT, min = 0) Pattern(message = INVALID_COMMUNITY_STRING, regexp = internet|no-export|no-advertise|local-AS|(0|6553[0-5]|655[0-2][0-9]|65[0-4](\\\\d){2}|6[0-4](\\\\d){3}|[1-5](\\\\d){4}|[1-9](\\\\d){0,3}):(0|6553[0-5]|655[0-2][0-9]|65[0-4](\\\\d){2}|6[0-4](\\\\d){3}|[1-5](\\\\d){4}|[1-9](\\\\d){0,3})) ",
             "type" : "string"
           },
           "permit" : {
@@ -61,7 +61,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

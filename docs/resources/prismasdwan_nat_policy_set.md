@@ -17,11 +17,11 @@
 {
   "properties" : {
     "update_order" : {
-      "description" : "Update Order: Transient ",
+      "description" : "Update Order",
       "type" : "boolean"
     },
     "policy_rules" : {
-      "description" : "Policy Rules: Transient ",
+      "description" : "Policy Rules",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -62,7 +62,7 @@
                 "type" : "string"
               },
               "region" : {
-                "description" : "Region: Transient ",
+                "description" : "Region",
                 "type" : "string"
               },
               "disabled_reason" : {
@@ -155,7 +155,7 @@
                 "type" : "string"
               },
               "region" : {
-                "description" : "Region: Transient ",
+                "description" : "Region",
                 "type" : "string"
               },
               "disabled_reason" : {
@@ -212,7 +212,7 @@
             "required" : [ "name" ]
           },
           "natpolicypools" : {
-            "description" : "Natpolicypools: Transient ",
+            "description" : "Natpolicypools",
             "type" : "array",
             "items" : {
               "properties" : {
@@ -240,7 +240,7 @@
                   }
                 },
                 "id" : {
-                  "description" : "Id: Transient Id ",
+                  "description" : "Id",
                   "type" : "string",
                   "additionalProperties" : {
                     "properties" : {
@@ -320,7 +320,7 @@
                 "type" : "string"
               },
               "id" : {
-                "description" : "Id: Transient ",
+                "description" : "Id",
                 "type" : "string",
                 "additionalProperties" : {
                   "properties" : {
@@ -398,7 +398,7 @@
                 "type" : "string"
               },
               "id" : {
-                "description" : "Id: Transient ",
+                "description" : "Id",
                 "type" : "string",
                 "additionalProperties" : {
                   "properties" : {
@@ -444,7 +444,7 @@
             "items" : {
               "properties" : {
                 "protocols" : {
-                  "description" : "Protocols: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 4, error = NAT_RULE_ACTION_INVALID_ALG_DISABLE_PROTOCOL: Invalid or duplicate protocol specified for alg-disable. Supports max. 4 protocols from 'sip', 'ftp','pptp' and 'tftp'., noTrim = false, regex = sip|ftp|tftp|pptp, required = false) ",
+                  "description" : "Protocols: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 4, error = NAT_RULE_ACTION_INVALID_ALG_DISABLE_PROTOCOL: Invalid or duplicate protocol specified for alg-disable. Supports max. 4 protocols from 'sip', 'ftp','pptp' and 'tftp'., noTrim = false, regex = sip|ftp|tftp|pptp, required = false) ",
                   "type" : "array",
                   "items" : {
                     "description" : "Protocols",
@@ -456,7 +456,7 @@
                   "type" : "integer"
                 },
                 "nat_pool_id" : {
-                  "description" : "Nat Pool Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+                  "description" : "Nat Pool Id",
                   "type" : "string"
                 },
                 "type" : {
@@ -469,7 +469,7 @@
             }
           },
           "protocol" : {
-            "description" : "Protocol: Range(max = 255L, error = NAT_RULE_INVALID_PROTOCOL: NAT protocol must be in range 1-255, min = 1L) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+            "description" : "Protocol: Range(max = 255L, error = NAT_RULE_INVALID_PROTOCOL: NAT protocol must be in range 1-255, min = 1L) ",
             "type" : "integer"
           },
           "destination_ports" : {
@@ -505,23 +505,23 @@
             }
           },
           "destination_zone_id" : {
-            "description" : "Destination Zone Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_DESTINATION_ZONE_ID: Destination zone id is not in valid format.) ",
+            "description" : "Destination Zone Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_DESTINATION_ZONE_ID: Destination zone id is not in valid format.) ",
             "type" : "string"
           },
           "source_zone_id" : {
-            "description" : "Source Zone Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_SOURCE_ZONE_ID: Source zone id is not in valid format.) ",
+            "description" : "Source Zone Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_SOURCE_ZONE_ID: Source zone id is not in valid format.) ",
             "type" : "string"
           },
           "destination_prefixes_id" : {
-            "description" : "Destination Prefixes Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_DESTINATION_PREFIXES_ID: Destination prefixes id is not in valid format.) ",
+            "description" : "Destination Prefixes Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_DESTINATION_PREFIXES_ID: Destination prefixes id is not in valid format.) ",
             "type" : "string"
           },
           "source_prefixes_id" : {
-            "description" : "Source Prefixes Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_SOURCE_PREFIXES_ID: Source prefixes id is not in valid format.) ",
+            "description" : "Source Prefixes Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_SOURCE_PREFIXES_ID: Source prefixes id is not in valid format.) ",
             "type" : "string"
           },
           "policyset_id" : {
-            "description" : "Policyset Id: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
+            "description" : "Policyset Id: Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
             "type" : "string"
           },
           "tags" : {
@@ -548,7 +548,7 @@
             "type" : "string"
           },
           "region" : {
-            "description" : "Region: Transient ",
+            "description" : "Region",
             "type" : "string"
           },
           "disabled_reason" : {
@@ -626,7 +626,7 @@
       "type" : "string"
     },
     "send_to_element" : {
-      "description" : "Send To Element: Transient ",
+      "description" : "Send To Element",
       "type" : "boolean"
     },
     "clone_from" : {
@@ -657,7 +657,7 @@
       "type" : "string"
     },
     "region" : {
-      "description" : "Region: Transient ",
+      "description" : "Region",
       "type" : "string"
     },
     "disabled_reason" : {

@@ -25,7 +25,7 @@ import (
 // | LQMConfig HasID=false
 // | WANL3Reachability HasID=false
 // | VPNLinkConfiguration HasID=false
-// | WANInterfaceScreenV2N9 HasID=true
+// | WANInterfaceScreenV2N10 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -66,7 +66,7 @@ func (d *siteWanInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=WANInterfaceScreenV2N9
+			// rest all properties to be read from GET API Schema schema=WANInterfaceScreenV2N10
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -90,6 +90,14 @@ func (d *siteWanInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
+			"app_acceleration_enabled": dsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bfd_mode, type=STRING macro=rss_schema
 			"bfd_mode": dsschema.StringAttribute{
 				Required:  false,
@@ -337,7 +345,7 @@ func (d *siteWanInterfaceDataSource) Configure(_ context.Context, req datasource
 
 // Read performs Read for the struct.
 func (d *siteWanInterfaceDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelWANInterfaceScreenV2N9
+	var state dsModelWANInterfaceScreenV2N10
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -364,7 +372,7 @@ func (d *siteWanInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 	// Prepare input for the API endpoint.
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
+	read_request.Path = "/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}"
 
 	// handle parameters
 	params := make(map[string]*string)
@@ -390,22 +398,24 @@ func (d *siteWanInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.WANInterfaceScreenV2N9
+	var ans sdwan_schema.WANInterfaceScreenV2N10
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N9", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to WANInterfaceScreenV2N10", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=WANInterfaceScreenV2N9
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=23
+	// lets copy all items into state schema=WANInterfaceScreenV2N10
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=24
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=app_acceleration_enabled, type=BOOLEAN macro=copy_to_state
+	state.AppAccelerationEnabled = types.BoolPointerValue(ans.AppAccelerationEnabled)
 	// property: name=bfd_mode, type=STRING macro=copy_to_state
 	state.BfdMode = types.StringPointerValue(ans.BfdMode)
 	// property: name=bw_config_mode, type=STRING macro=copy_to_state

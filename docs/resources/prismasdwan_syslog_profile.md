@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `syslog_profile` |
-| Get Api  | `/sdwan/v2.0/api/syslogserverprofiles/{profile_id}` (`SyslogServerProfileScreen`) |
-| Post Api  | `/sdwan/v2.0/api/syslogserverprofiles` (`SyslogServerProfileScreen`) |
-| Put Api  | `/sdwan/v2.0/api/syslogserverprofiles/{profile_id}` (`SyslogServerProfileScreen`) |
-| Delete Api  | `/sdwan/v2.0/api/syslogserverprofiles/{profile_id}` |
+| Get Api  | `/sdwan/v2.1/api/syslogserverprofiles/{profile_id}` (`SyslogServerProfileScreenV2N1`) |
+| Post Api  | `/sdwan/v2.1/api/syslogserverprofiles` (`SyslogServerProfileScreenV2N1`) |
+| Put Api  | `/sdwan/v2.1/api/syslogserverprofiles/{profile_id}` (`SyslogServerProfileScreenV2N1`) |
+| Delete Api  | `/sdwan/v2.1/api/syslogserverprofiles/{profile_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,18 @@
 ```json
 {
   "properties" : {
+    "enable_url_logging" : {
+      "description" : "Enable Url Logging",
+      "type" : "boolean"
+    },
+    "enable_dns_logging" : {
+      "description" : "Enable Dns Logging",
+      "type" : "boolean"
+    },
+    "enable_threat_logging" : {
+      "description" : "Enable Threat Logging",
+      "type" : "boolean"
+    },
     "remote_ca_certificate" : {
       "description" : "Remote Ca Certificate",
       "type" : "string"
@@ -69,7 +81,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

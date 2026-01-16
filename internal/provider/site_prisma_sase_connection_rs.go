@@ -200,6 +200,14 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=is_enabled, type=BOOLEAN macro=rss_schema
+			// property: name=license_type, type=STRING macro=rss_schema
+			"license_type": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=license_type, type=STRING macro=rss_schema
 			// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
 			"prismaaccess_edge_location": rsschema.ListAttribute{
 				Required:    false,
@@ -505,7 +513,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	var body = &sdwan_schema.SaseConnectionScreenV2N1{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=13
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=14
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -539,6 +547,8 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	body.IsActive = BoolValueOrNil(plan.IsActive)
 	// property: name=is_enabled, type=BOOLEAN macro=copy_from_plan
 	body.IsEnabled = BoolValueOrNil(plan.IsEnabled)
+	// property: name=license_type, type=STRING macro=copy_from_plan
+	body.LicenseType = StringValueOrNil(plan.LicenseType)
 	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.PrismaaccessEdgeLocation = ListStringValueOrNil(ctx, plan.PrismaaccessEdgeLocation)
 	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_from_plan
@@ -713,7 +723,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	tflog.Info(ctx, "created prismasdwan_site_prisma_sase_connection with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=SaseConnectionScreenV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -751,6 +761,8 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	state.IsActive = types.BoolPointerValue(ans.IsActive)
 	// property: name=is_enabled, type=BOOLEAN macro=copy_to_state
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
+	// property: name=license_type, type=STRING macro=copy_to_state
+	state.LicenseType = types.StringPointerValue(ans.LicenseType)
 	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
 	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
@@ -956,7 +968,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -994,6 +1006,8 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	state.IsActive = types.BoolPointerValue(ans.IsActive)
 	// property: name=is_enabled, type=BOOLEAN macro=copy_to_state
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
+	// property: name=license_type, type=STRING macro=copy_to_state
+	state.LicenseType = types.StringPointerValue(ans.LicenseType)
 	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
 	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
@@ -1164,7 +1178,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=13
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=14
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -1247,6 +1261,12 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 		body.IsEnabled = ValueBoolPointerFromPlanOrState(plan.IsEnabled, state.IsEnabled)
 	} else {
 		body.IsEnabled = BoolValueOrNil(plan.IsEnabled)
+	}
+	// property: name=license_type, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.LicenseType = ValueStringPointerFromPlanOrState(plan.LicenseType, state.LicenseType)
+	} else {
+		body.LicenseType = StringValueOrNil(plan.LicenseType)
 	}
 	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 	body.PrismaaccessEdgeLocation = ListStringValueOrNil(ctx, plan.PrismaaccessEdgeLocation)
@@ -1435,7 +1455,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	}
 
 	// Store the answer to state. schema=SaseConnectionScreenV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1473,6 +1493,8 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	state.IsActive = types.BoolPointerValue(ans.IsActive)
 	// property: name=is_enabled, type=BOOLEAN macro=copy_to_state
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
+	// property: name=license_type, type=STRING macro=copy_to_state
+	state.LicenseType = types.StringPointerValue(ans.LicenseType)
 	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
 	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation

@@ -17,7 +17,7 @@
 {
   "properties" : {
     "probe_config_ids" : {
-      "description" : "Probe Config Ids: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = PROBE_PROFILE_MAX_PROBE_CONFIGS_LIMIT_EXCEEDED_OR_DUPLICATES: More than 8 probe configs or duplicates are not allowed in the probe config ids, noTrim = false, regex = , required = false) Required(error = PROBE_PROFILE_PROBE_CONFIG_IDS_REQUIRED: Probe config ids are required) ",
+      "description" : "Probe Config Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = PROBE_PROFILE_MAX_PROBE_CONFIGS_LIMIT_EXCEEDED_OR_DUPLICATES: More than 8 probe configs or duplicates are not allowed in the probe config ids, noTrim = false, regex = , required = false) Required(error = PROBE_PROFILE_PROBE_CONFIG_IDS_REQUIRED: Probe config ids are required) ",
       "type" : "array",
       "items" : {
         "description" : "Probe Config Ids",
@@ -48,7 +48,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

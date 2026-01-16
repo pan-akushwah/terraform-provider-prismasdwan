@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `site_wan_interface` |
-| Get Api  | `/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}` (`WANInterfaceScreenV2N9`) |
-| Post Api  | `/sdwan/v2.9/api/sites/{site_id}/waninterfaces` (`WANInterfaceScreenV2N9`) |
-| Put Api  | `/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}` (`WANInterfaceScreenV2N9`) |
-| Delete Api  | `/sdwan/v2.9/api/sites/{site_id}/waninterfaces/{wan_interface_id}` |
+| Get Api  | `/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}` (`WANInterfaceScreenV2N10`) |
+| Post Api  | `/sdwan/v2.10/api/sites/{site_id}/waninterfaces` (`WANInterfaceScreenV2N10`) |
+| Put Api  | `/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}` (`WANInterfaceScreenV2N10`) |
+| Delete Api  | `/sdwan/v2.10/api/sites/{site_id}/waninterfaces/{wan_interface_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,10 @@
 ```json
 {
   "properties" : {
+    "app_acceleration_enabled" : {
+      "description" : "App Acceleration Enabled",
+      "type" : "boolean"
+    },
     "lqm_config" : {
       "properties" : {
         "inter_packet_gap" : {
@@ -101,7 +105,7 @@
       "type" : "integer"
     },
     "label_id" : {
-      "description" : "Label Id: NotEmpty(message = WAN_INTERFACE_INVALID_LABEL) Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
+      "description" : "Label Id: NotEmpty(message = WAN_INTERFACE_INVALID_LABEL) ",
       "type" : "string"
     },
     "bfd_mode" : {
@@ -152,7 +156,7 @@
       "type" : "string"
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {

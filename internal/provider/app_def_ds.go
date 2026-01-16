@@ -22,7 +22,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=appdefs
 // +-----------------------------------------------------------------
-// | AppDefScreenV2N5 HasID=true
+// | AppDefScreenV2N6 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -63,7 +63,7 @@ func (d *appDefDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 			"tfid": dsschema.StringAttribute{
 				Computed: true,
 			},
-			// rest all properties to be read from GET API Schema schema=AppDefScreenV2N5
+			// rest all properties to be read from GET API Schema schema=AppDefScreenV2N6
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -264,6 +264,14 @@ func (d *appDefDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=session_timeout, type=INTEGER macro=rss_schema
+			// property: name=supported_base_software_version, type=STRING macro=rss_schema
+			"supported_base_software_version": dsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=supported_base_software_version, type=STRING macro=rss_schema
 			// property: name=supported_engines, type=STRING macro=rss_schema
 			"supported_engines": dsschema.StringAttribute{
 				Required:  false,
@@ -336,7 +344,7 @@ func (d *appDefDataSource) Configure(_ context.Context, req datasource.Configure
 
 // Read performs Read for the struct.
 func (d *appDefDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelAppDefScreenV2N5
+	var state dsModelAppDefScreenV2N6
 	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -388,17 +396,17 @@ func (d *appDefDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 	// Store the answer to state.
 	state.Tfid = types.StringValue(idBuilder.String())
 	// start copying attributes
-	var ans sdwan_schema.AppDefScreenV2N5
+	var ans sdwan_schema.AppDefScreenV2N6
 	// copy from json response
 	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to AppDefScreenV2N5", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to AppDefScreenV2N6", json_err.Error())
 		return
 	}
 
-	// lets copy all items into state schema=AppDefScreenV2N5
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=31
+	// lets copy all items into state schema=AppDefScreenV2N6
+	// copy_to_state: state=state prefix=dsModel ans=ans properties=32
 	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -449,6 +457,8 @@ func (d *appDefDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 	state.PathAffinity = types.StringPointerValue(ans.PathAffinity)
 	// property: name=session_timeout, type=INTEGER macro=copy_to_state
 	state.SessionTimeout = types.Int64PointerValue(ans.SessionTimeout)
+	// property: name=supported_base_software_version, type=STRING macro=copy_to_state
+	state.SupportedBaseSoftwareVersion = types.StringPointerValue(ans.SupportedBaseSoftwareVersion)
 	// property: name=supported_engines, type=STRING macro=copy_to_state
 	state.SupportedEngines = types.StringPointerValue(ans.SupportedEngines)
 	// property: name=system_app_overridden, type=BOOLEAN macro=copy_to_state

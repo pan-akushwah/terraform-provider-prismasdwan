@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `service_endpoint` |
-| Get Api  | `/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}` (`ServiceEndpointV3`) |
-| Post Api  | `/sdwan/v3.0/api/serviceendpoints` (`ServiceEndpointV3`) |
-| Put Api  | `/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}` (`ServiceEndpointV3`) |
-| Delete Api  | `/sdwan/v3.0/api/serviceendpoints/{service_endpoint_id}` |
+| Get Api  | `/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}` (`ServiceEndpointV3N1`) |
+| Post Api  | `/sdwan/v3.1/api/serviceendpoints` (`ServiceEndpointV3N1`) |
+| Put Api  | `/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}` (`ServiceEndpointV3N1`) |
+| Delete Api  | `/sdwan/v3.1/api/serviceendpoints/{service_endpoint_id}` |
 
 
 ### JSON Schema
@@ -16,28 +16,12 @@
 ```json
 {
   "properties" : {
-    "sase_properties" : {
-      "properties" : {
-        "lqm_enabled" : {
-          "description" : "Lqm Enabled",
-          "type" : "boolean"
-        },
-        "active" : {
-          "description" : "Active",
-          "type" : "boolean"
-        }
-      }
-    },
-    "is_sase" : {
-      "description" : "Is Sase: Indexed(background = false, dropDups = false, expireAfterSeconds = -1, name = , options = IndexOptions(background = false, collation = Collation(alternate = NON_IGNORABLE, backwards = false, caseFirst = OFF, caseLevel = false, locale = , maxVariable = PUNCT, normalization = false, numericOrdering = false, strength = TERTIARY), disableValidation = false, dropDups = false, expireAfterSeconds = -1, language = , languageOverride = , name = , partialFilter = , sparse = false, unique = false), sparse = false, unique = false, value = ASC) ",
-      "type" : "boolean"
-    },
-    "disable_tunnel_reoptimization" : {
-      "description" : "Disable Tunnel Reoptimization",
-      "type" : "boolean"
-    },
     "liveliness_probe" : {
       "properties" : {
+        "use_tunnel_for_url_dns_resolution" : {
+          "description" : "Use Tunnel For Url Dns Resolution",
+          "type" : "boolean"
+        },
         "http" : {
           "description" : "Http: Valid ",
           "type" : "array",
@@ -93,6 +77,26 @@
           }
         }
       }
+    },
+    "sase_properties" : {
+      "properties" : {
+        "lqm_enabled" : {
+          "description" : "Lqm Enabled",
+          "type" : "boolean"
+        },
+        "active" : {
+          "description" : "Active",
+          "type" : "boolean"
+        }
+      }
+    },
+    "is_sase" : {
+      "description" : "Is Sase",
+      "type" : "boolean"
+    },
+    "disable_tunnel_reoptimization" : {
+      "description" : "Disable Tunnel Reoptimization",
+      "type" : "boolean"
     },
     "location" : {
       "properties" : {
@@ -201,7 +205,7 @@
       }
     },
     "id" : {
-      "description" : "Id: Transient Id ",
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
