@@ -1,0 +1,23 @@
+# Enterprise Path Global Prefix Configuration
+path_global_prefix_name = "Enterprise-Multi-Site-Path-Global-Prefix"
+description = "Enterprise-grade path global prefix for comprehensive multi-site network policy routing, traffic engineering, and global policy enforcement across all regional datacenters"
+tags = ["terraform", "enterprise", "multi-site", "global-policy", "traffic-engineering", "datacenter"]
+
+# Comprehensive IP Prefixes for Enterprise
+ipv4_prefixes = [
+  "10.0.0.0/8",
+  "172.16.0.0/12",
+  "192.168.0.0/16",
+  "10.100.0.0/16",
+  "10.200.0.0/16",
+  "172.20.0.0/16"
+]
+
+ipv6_prefixes = [
+  "2001:db8::/32",
+  "fd00::/8",
+  "2001:db8:1000::/36",
+  "2001:db8:2000::/36",
+  "fd00:1000::/32",
+  "fd00:2000::/32"
+]

@@ -1,0 +1,492 @@
+# Element Interface Details
+output "element_interface_details" {
+  description = "Complete element interface configuration details"
+  value = {
+    id = prismasdwan_element_interface.element_interface_full.id
+    tfid = prismasdwan_element_interface.element_interface_full.tfid
+    name = var.interface_name
+    type = var.interface_type
+    used_for = var.used_for
+    scope = var.scope
+    site_id = prismasdwan_element_interface.element_interface_full.x_parameters.site_id
+    element_id = prismasdwan_element_interface.element_interface_full.x_parameters.element_id
+    description = var.description
+    tags = var.tags
+    admin_up = var.admin_up
+    mtu = var.mtu
+    mac_address = var.mac_address
+    x_etag = prismasdwan_element_interface.element_interface_full.x_etag
+    x_schema = prismasdwan_element_interface.element_interface_full.x_schema
+  }
+}
+
+# Primary Resource IDs
+output "element_interface_id" {
+  description = "Element interface ID"
+  value = prismasdwan_element_interface.element_interface_full.id
+}
+
+output "element_interface_name" {
+  description = "Element interface name"
+  value = var.interface_name
+}
+
+output "element_interface_tfid" {
+  description = "Element interface Terraform ID"
+  value = prismasdwan_element_interface.element_interface_full.tfid
+}
+
+# Network Configuration
+output "network_configuration" {
+  description = "Network configuration details"
+  value = {
+    interface_type = var.interface_type
+    used_for = var.used_for
+    scope = var.scope
+    admin_up = var.admin_up
+    mtu = var.mtu
+    mac_address = var.mac_address
+    
+    ipv4_config = var.ipv4_enabled ? {
+      enabled = true
+      type = var.ipv4_type
+      static_address = var.ipv4_type == "static" ? var.ipv4_static_address : null
+      dns_servers = var.ipv4_dns_servers
+      routes_count = length(var.ipv4_routes)
+    } : {
+      enabled = false
+      type = null
+      static_address = null
+      dns_servers = []
+      routes_count = 0
+    }
+    
+    ipv6_config = var.ipv6_enabled ? {
+      enabled = true
+      type = var.ipv6_type
+      static_address = var.ipv6_type == "static" ? var.ipv6_static_address : null
+      prefix_distribution = var.ipv6_enable_prefix_distribution
+      dns_servers = var.ipv6_dns_servers
+      routes_count = length(var.ipv6_routes)
+    } : {
+      enabled = false
+      type = null
+      static_address = null
+      prefix_distribution = false
+      dns_servers = []
+      routes_count = 0
+    }
+  }
+}
+
+# IPv4 Configuration Details
+output "ipv4_configuration" {
+  description = "IPv4 configuration details"
+  value = var.ipv4_enabled ? {
+    enabled = true
+    type = var.ipv4_type
+    static_config = var.ipv4_type == "static" ? {
+      address = var.ipv4_static_address
+      dns_servers = var.ipv4_dns_servers
+      dns_search_domains = var.ipv4_dns_search_domains
+      routes = var.ipv4_routes
+    } : null
+    dhcp_config = var.ipv4_type == "dhcp" ? {
+      hostname = var.ipv4_dhcp_hostname
+      client_id = var.ipv4_dhcp_client_id
+    } : null
+  } : {
+    enabled = false
+    type = null
+    static_config = null
+    dhcp_config = null
+  }
+}
+
+# IPv6 Configuration Details
+output "ipv6_configuration" {
+  description = "IPv6 configuration details"
+  value = var.ipv6_enabled ? {
+    enabled = true
+    type = var.ipv6_type
+    prefix_distribution = var.ipv6_enable_prefix_distribution
+    static_config = var.ipv6_type == "static" ? {
+      address = var.ipv6_static_address
+      dns_servers = var.ipv6_dns_servers
+      routes = var.ipv6_routes
+    } : null
+  } : {
+    enabled = false
+    type = null
+    prefix_distribution = false
+    static_config = null
+  }
+}
+
+# Ethernet Configuration
+output "ethernet_configuration" {
+  description = "Ethernet port configuration details"
+  value = var.interface_type == "ethernet" ? {
+    enabled = true
+    speed = var.ethernet_speed
+    full_duplex = var.ethernet_full_duplex
+  } : {
+    enabled = false
+    speed = null
+    full_duplex = null
+  }
+}
+
+# VLAN Configuration
+output "vlan_configuration" {
+  description = "VLAN configuration details"
+  value = var.vlan_enabled ? {
+    enabled = true
+    vlan_id = var.vlan_id
+    voice_enabled = var.vlan_voice_enabled
+    mstp_instance = var.vlan_mstp_instance
+  } : {
+    enabled = false
+    vlan_id = null
+    voice_enabled = false
+    mstp_instance = null
+  }
+}
+
+# Cellular Configuration
+output "cellular_configuration" {
+  description = "Cellular configuration details"
+  value = var.cellular_enabled ? {
+    enabled = true
+    parent_module_id = var.cellular_parent_module_id
+    sim_slot_number = var.cellular_parent_sim_slot_number
+    auto_apn = var.cellular_auto_apn
+    apn_config = !var.cellular_auto_apn ? {
+      name = var.cellular_apn_name
+      authentication = var.cellular_apn_authentication
+      username = var.cellular_apn_username
+      has_password = var.cellular_apn_password != null
+    } : null
+  } : {
+    enabled = false
+    parent_module_id = null
+    sim_slot_number = null
+    auto_apn = null
+    apn_config = null
+  }
+}
+
+# PPPoE Configuration
+output "pppoe_configuration" {
+  description = "PPPoE configuration details"
+  value = var.pppoe_enabled ? {
+    enabled = true
+    username = var.pppoe_username
+    has_password = var.pppoe_password != null
+    service_name = var.pppoe_service_name
+    host_uniq = var.pppoe_host_uniq
+    ac_name = var.pppoe_ac_name
+  } : {
+    enabled = false
+    username = null
+    has_password = false
+    service_name = null
+    host_uniq = null
+    ac_name = null
+  }
+}
+
+# Power Configuration
+output "power_configuration" {
+  description = "Power configuration details"
+  value = var.power_enabled ? {
+    enabled = true
+    poe_enabled = var.power_poe_enabled
+    poe_priority = var.power_poe_enabled ? var.power_poe_priority : null
+  } : {
+    enabled = false
+    poe_enabled = false
+    poe_priority = null
+  }
+}
+
+# QoS Configuration
+output "qos_configuration" {
+  description = "Quality of Service configuration details"
+  value = var.qos_enabled ? {
+    enabled = true
+    egress_policy = {
+      configured = var.qos_egress_traffic_policysetstack_name != null || var.qos_egress_traffic_policysetstack_id != null
+      stack_name = var.qos_egress_traffic_policysetstack_name
+      stack_id = var.qos_egress_traffic_policysetstack_id
+    }
+    ingress_policy = {
+      configured = var.qos_ingress_traffic_policysetstack_name != null || var.qos_ingress_traffic_policysetstack_id != null
+      stack_name = var.qos_ingress_traffic_policysetstack_name
+      stack_id = var.qos_ingress_traffic_policysetstack_id
+    }
+  } : {
+    enabled = false
+    egress_policy = {
+      configured = false
+      stack_name = null
+      stack_id = null
+    }
+    ingress_policy = {
+      configured = false
+      stack_name = null
+      stack_id = null
+    }
+  }
+}
+
+# Security Configuration
+output "security_configuration" {
+  description = "Security configuration details"
+  value = var.security_enabled ? {
+    enabled = true
+    zone_configured = var.security_zone_name != null || var.security_zone_id != null
+    zone_name = var.security_zone_name
+    zone_id = var.security_zone_id
+  } : {
+    enabled = false
+    zone_configured = false
+    zone_name = null
+    zone_id = null
+  }
+}
+
+# NAT Configuration
+output "nat_configuration" {
+  description = "NAT configuration details"
+  value = {
+    policy_configured = var.nat_policy_name != null || var.nat_policy_id != null
+    policy_name = var.nat_policy_name
+    policy_id = var.nat_policy_id
+    zone_configured = var.nat_zone_name != null || var.nat_zone_id != null
+    zone_name = var.nat_zone_name
+    zone_id = var.nat_zone_id
+  }
+}
+
+# Switch Port Configuration
+output "switch_port_configuration" {
+  description = "Switch port configuration details"
+  value = var.switch_port_enabled ? {
+    enabled = true
+    mode = var.switch_port_mode
+    access_vlan_id = var.switch_port_mode == "access" ? var.switch_port_access_vlan_id : null
+    trunk_vlans = var.switch_port_mode == "trunk" ? var.switch_port_trunk_vlans : []
+    trunk_vlans_count = var.switch_port_mode == "trunk" ? length(var.switch_port_trunk_vlans) : 0
+  } : {
+    enabled = false
+    mode = null
+    access_vlan_id = null
+    trunk_vlans = []
+    trunk_vlans_count = 0
+  }
+}
+
+# Bypass Pair Configuration
+output "bypass_pair_configuration" {
+  description = "Bypass pair configuration details"
+  value = var.bypass_pair_enabled ? {
+    enabled = true
+    lan_port_id = var.bypass_pair_lan_port_id
+    wan_port_id = var.bypass_pair_wan_port_id
+    bypass_mode = var.bypass_pair_bypass_mode
+  } : {
+    enabled = false
+    lan_port_id = null
+    wan_port_id = null
+    bypass_mode = null
+  }
+}
+
+# Port Channel Configuration
+output "port_channel_configuration" {
+  description = "Port channel (LAG) configuration details"
+  value = var.port_channel_enabled ? {
+    enabled = true
+    member_interfaces = var.port_channel_member_interfaces
+    member_count = length(var.port_channel_member_interfaces)
+    lacp_enabled = var.port_channel_lacp_enabled
+    lacp_mode = var.port_channel_lacp_enabled ? var.port_channel_lacp_mode : null
+  } : {
+    enabled = false
+    member_interfaces = []
+    member_count = 0
+    lacp_enabled = false
+    lacp_mode = null
+  }
+}
+
+# Sub Interface Configuration
+output "sub_interface_configuration" {
+  description = "Sub-interface configuration details"
+  value = var.sub_interface_enabled ? {
+    enabled = true
+    vlan_id = var.sub_interface_vlan_id
+  } : {
+    enabled = false
+    vlan_id = null
+  }
+}
+
+# Service Link Configuration
+output "service_link_configuration" {
+  description = "Service link configuration details"
+  value = var.service_link_enabled ? {
+    enabled = true
+    wan_port_type = var.service_link_wan_port_type
+  } : {
+    enabled = false
+    wan_port_type = null
+  }
+}
+
+# Monitoring Configuration
+output "monitoring_configuration" {
+  description = "Monitoring configuration details"
+  value = var.monitoring_enabled ? {
+    enabled = true
+    snmp_enabled = var.snmp_enabled
+    netflow_enabled = var.netflow_enabled
+  } : {
+    enabled = false
+    snmp_enabled = false
+    netflow_enabled = false
+  }
+}
+
+# Load Balancing Configuration
+output "load_balancing_configuration" {
+  description = "Load balancing configuration details"
+  value = var.load_balancing_enabled ? {
+    enabled = true
+    weight = var.load_balancing_weight
+    priority = var.load_balancing_priority
+  } : {
+    enabled = false
+    weight = null
+    priority = null
+  }
+}
+
+# BFD Configuration
+output "bfd_configuration" {
+  description = "BFD configuration details"
+  value = var.bfd_enabled ? {
+    enabled = true
+    interval = var.bfd_interval
+    multiplier = var.bfd_multiplier
+  } : {
+    enabled = false
+    interval = null
+    multiplier = null
+  }
+}
+
+# Extended Tags
+output "extended_tags_configuration" {
+  description = "Extended tags configuration"
+  value = length(var.extended_tags) > 0 ? {
+    configured = true
+    tags = [
+      for etag in var.extended_tags : {
+        key = etag.key
+        value = etag.value
+        value_type = etag.value_type
+      }
+    ]
+    total_count = length(var.extended_tags)
+  } : {
+    configured = false
+    tags = []
+    total_count = 0
+  }
+}
+
+# Resource Dependencies
+output "resource_dependencies" {
+  description = "Resource dependency details and IDs"
+  value = {
+    site = {
+      name = var.site_name
+      id = prismasdwan_element_interface.element_interface_full.x_parameters.site_id
+      resolved_from_name = var.site_name != null && var.site_id == null
+    }
+    element = {
+      name = var.element_name
+      id = prismasdwan_element_interface.element_interface_full.x_parameters.element_id
+      resolved_from_name = var.element_name != null && var.element_id == null
+    }
+    vrf_context = {
+      name = var.vrf_context_name
+      id = var.vrf_context_id
+      configured = var.vrf_context_name != null || var.vrf_context_id != null
+    }
+    network_context = {
+      name = var.network_context_name
+      id = var.network_context_id
+      configured = var.network_context_name != null || var.network_context_id != null
+    }
+  }
+}
+
+# Configuration Summary
+output "configuration_summary" {
+  description = "Summary of all configuration categories"
+  value = {
+    interface_config = {
+      name = var.interface_name
+      type = var.interface_type
+      used_for = var.used_for
+      scope = var.scope
+      admin_up = var.admin_up
+    }
+    
+    connectivity = {
+      ipv4_enabled = var.ipv4_enabled
+      ipv6_enabled = var.ipv6_enabled
+      ethernet_configured = var.interface_type == "ethernet"
+      cellular_configured = var.cellular_enabled
+      pppoe_configured = var.pppoe_enabled
+    }
+    
+    advanced_features = {
+      vlan_enabled = var.vlan_enabled
+      qos_enabled = var.qos_enabled
+      security_enabled = var.security_enabled
+      monitoring_enabled = var.monitoring_enabled
+      load_balancing_enabled = var.load_balancing_enabled
+      bfd_enabled = var.bfd_enabled
+    }
+    
+    specialized_configs = {
+      switch_port_enabled = var.switch_port_enabled
+      bypass_pair_enabled = var.bypass_pair_enabled
+      port_channel_enabled = var.port_channel_enabled
+      sub_interface_enabled = var.sub_interface_enabled
+      service_link_enabled = var.service_link_enabled
+    }
+    
+    management = {
+      tags_count = length(var.tags)
+      extended_tags_count = length(var.extended_tags)
+      description_provided = var.description != null && var.description != ""
+      monitoring_enabled = var.monitoring_enabled
+    }
+  }
+}
+
+# Deployment Status
+output "deployment_status" {
+  description = "Deployment status and metadata"
+  value = {
+    deployed_at = timestamp()
+    resource_count = 1
+    resource_type = "element_interface"
+    status = "success"
+  }
+}

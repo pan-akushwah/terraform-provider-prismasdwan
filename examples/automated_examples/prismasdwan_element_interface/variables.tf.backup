@@ -1,0 +1,807 @@
+# Element Interface Basic Properties (Required)
+variable "interface_name" {
+  description = "Name of the element interface"
+  type        = string
+  default     = "WAN-Interface-1"
+  
+  validation {
+    condition     = length(var.interface_name) > 0 && length(var.interface_name) <= 128
+    error_message = "Interface name must be between 1 and 128 characters."
+  }
+}
+
+variable "interface_type" {
+  description = "Type of the interface"
+  type        = string
+  default     = "ethernet"
+  
+  validation {
+    condition = contains([
+      "ethernet", "cellular", "loopback", "vlan", "service_link", 
+      "bypass_pair", "switch_port", "port_channel", "pppoe"
+    ], var.interface_type)
+    error_message = "Interface type must be one of: ethernet, cellular, loopback, vlan, service_link, bypass_pair, switch_port, port_channel, pppoe."
+  }
+}
+
+variable "used_for" {
+  description = "What the interface is used for"
+  type        = string
+  default     = "lan"
+  
+  validation {
+    condition = contains(["public", "private_wan", "lan", "none"], var.used_for)
+    error_message = "Used for must be one of: public, private_wan, lan, none."
+  }
+}
+
+variable "scope" {
+  description = "Scope of the interface"
+  type        = string
+  default     = "LOCAL"
+  
+  validation {
+    condition = contains(["GLOBAL", "LOCAL"], var.scope)
+    error_message = "Scope must be either GLOBAL or LOCAL."
+  }
+}
+
+variable "peer_bypasspair_wan_port_type" {
+  description = "Peer bypass pair WAN port type"
+  type        = string
+  default     = "none"
+  
+  validation {
+    condition = contains(["none", "cellular"], var.peer_bypasspair_wan_port_type)
+    error_message = "Peer bypass pair WAN port type must be either none or cellular."
+  }
+}
+
+# Site and Element References
+variable "site_id" {
+  description = "Site ID where the element interface is located"
+  type        = string
+  default     = null
+}
+
+variable "site_name" {
+  description = "Site name (alternative to site_id)"
+  type        = string
+  default     = null
+}
+
+variable "element_id" {
+  description = "Element ID where the interface is located"
+  type        = string
+  default     = null
+}
+
+variable "element_name" {
+  description = "Element name (alternative to element_id)"
+  type        = string
+  default     = null
+}
+
+# Optional Basic Properties
+variable "description" {
+  description = "Description of the interface"
+  type        = string
+  default     = "Enterprise network interface configured via Terraform"
+  
+  validation {
+    condition     = length(var.description) <= 256
+    error_message = "Description must not exceed 256 characters."
+  }
+}
+
+variable "tags" {
+  description = "Tags for the interface (max 10 tags, max 128 chars each)"
+  type        = list(string)
+  default     = ["terraform", "enterprise", "wan", "connectivity"]
+  
+  validation {
+    condition     = length(var.tags) <= 10
+    error_message = "Maximum 10 tags are allowed."
+  }
+  
+  validation {
+    condition = alltrue([
+      for tag in var.tags : length(tag) <= 128 && can(regex("^[^,\\s]+$", tag))
+    ])
+    error_message = "Each tag must not exceed 128 characters and cannot contain commas or whitespace."
+  }
+}
+
+variable "admin_up" {
+  description = "Whether the interface is administratively up"
+  type        = bool
+  default     = true
+}
+
+variable "mtu" {
+  description = "Maximum Transmission Unit for the interface"
+  type        = number
+  default     = 1500
+  
+  validation {
+    condition     = var.mtu >= 68 && var.mtu <= 9216
+    error_message = "MTU must be between 68 and 9216."
+  }
+}
+
+variable "mac_address" {
+  description = "MAC address of the interface (format: xx:xx:xx:xx:xx:xx)"
+  type        = string
+  default     = null
+  
+  validation {
+    condition = var.mac_address == null || can(regex("^([0-9a-f]{2}:){5}([0-9a-f]{2})$", var.mac_address))
+    error_message = "MAC address must be in format xx:xx:xx:xx:xx:xx (lowercase hex)."
+  }
+}
+
+# Network Configuration References
+variable "vrf_context_id" {
+  description = "VRF context ID for the interface"
+  type        = string
+  default     = null
+}
+
+variable "vrf_context_name" {
+  description = "VRF context name (alternative to vrf_context_id)"
+  type        = string
+  default     = null
+}
+
+variable "network_context_id" {
+  description = "Network context ID for the interface"
+  type        = string
+  default     = null
+}
+
+variable "network_context_name" {
+  description = "Network context name (alternative to network_context_id)"
+  type        = string
+  default     = null
+}
+
+# IPv4 Configuration
+variable "ipv4_enabled" {
+  description = "Enable IPv4 configuration"
+  type        = bool
+  default     = true
+}
+
+variable "ipv4_type" {
+  description = "IPv4 configuration type (static, dhcp, pppoe, none)"
+  type        = string
+  default     = "static"
+  
+  validation {
+    condition = contains(["static", "dhcp", "pppoe", "none"], var.ipv4_type)
+    error_message = "IPv4 type must be one of: static, dhcp, pppoe, none."
+  }
+}
+
+variable "ipv4_static_address" {
+  description = "Static IPv4 address with CIDR (e.g., 192.168.1.1/24)"
+  type        = string
+  default     = "192.168.100.1/24"
+  
+  validation {
+    condition = var.ipv4_static_address == null || can(cidrhost(var.ipv4_static_address, 0))
+    error_message = "IPv4 static address must be a valid CIDR notation."
+  }
+}
+
+variable "ipv4_dhcp_hostname" {
+  description = "DHCP hostname for IPv4 configuration"
+  type        = string
+  default     = null
+}
+
+variable "ipv4_dhcp_client_id" {
+  description = "DHCP client ID for IPv4 configuration"
+  type        = string
+  default     = null
+}
+
+variable "ipv4_dns_servers" {
+  description = "IPv4 DNS servers"
+  type        = list(string)
+  default     = ["8.8.8.8", "8.8.4.4"]
+  
+  validation {
+    condition = alltrue([
+      for dns in var.ipv4_dns_servers : can(regex("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", dns))
+    ])
+    error_message = "All IPv4 DNS servers must be valid IPv4 addresses."
+  }
+}
+
+variable "ipv4_dns_search_domains" {
+  description = "IPv4 DNS search domains"
+  type        = list(string)
+  default     = ["company.local", "corp.local"]
+}
+
+variable "ipv4_routes" {
+  description = "Static IPv4 routes"
+  type = list(object({
+    destination = string
+    via         = string
+  }))
+  default = []
+  
+  validation {
+    condition = alltrue([
+      for route in var.ipv4_routes : 
+      can(cidrhost(route.destination, 0)) && 
+      can(regex("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", route.via))
+    ])
+    error_message = "Route destinations must be valid CIDR and via addresses must be valid IPv4."
+  }
+}
+
+# IPv6 Configuration
+variable "ipv6_enabled" {
+  description = "Enable IPv6 configuration"
+  type        = bool
+  default     = false
+}
+
+variable "ipv6_type" {
+  description = "IPv6 configuration type (static, dhcp, auto, none)"
+  type        = string
+  default     = "none"
+  
+  validation {
+    condition = contains(["static", "dhcp", "auto", "none"], var.ipv6_type)
+    error_message = "IPv6 type must be one of: static, dhcp, auto, none."
+  }
+}
+
+variable "ipv6_static_address" {
+  description = "Static IPv6 address with prefix length"
+  type        = string
+  default     = null
+  
+  validation {
+    condition = var.ipv6_static_address == null || can(regex("^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}/[0-9]{1,3}$", var.ipv6_static_address))
+    error_message = "IPv6 static address must be a valid IPv6 address with prefix length."
+  }
+}
+
+variable "ipv6_enable_prefix_distribution" {
+  description = "Enable IPv6 prefix distribution"
+  type        = bool
+  default     = false
+}
+
+variable "ipv6_dns_servers" {
+  description = "IPv6 DNS servers"
+  type        = list(string)
+  default     = []
+  
+  validation {
+    condition = alltrue([
+      for dns in var.ipv6_dns_servers : can(regex("^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$", dns))
+    ])
+    error_message = "All IPv6 DNS servers must be valid IPv6 addresses."
+  }
+}
+
+variable "ipv6_routes" {
+  description = "Static IPv6 routes"
+  type = list(object({
+    destination = string
+    via         = string
+  }))
+  default = []
+}
+
+# Ethernet Port Configuration
+variable "ethernet_speed" {
+  description = "Ethernet port speed (auto-negotiated if null)"
+  type        = number
+  default     = null
+  
+  validation {
+    condition = var.ethernet_speed == null || contains([10, 100, 1000, 10000], var.ethernet_speed)
+    error_message = "Ethernet speed must be one of: 10, 100, 1000, 10000 (Mbps)."
+  }
+}
+
+variable "ethernet_full_duplex" {
+  description = "Ethernet port full duplex mode"
+  type        = bool
+  default     = true
+}
+
+# VLAN Configuration
+variable "vlan_enabled" {
+  description = "Enable VLAN configuration"
+  type        = bool
+  default     = false
+}
+
+variable "vlan_id" {
+  description = "VLAN ID (1-4095)"
+  type        = number
+  default     = null
+  
+  validation {
+    condition = var.vlan_id == null || (var.vlan_id >= 1 && var.vlan_id <= 4095)
+    error_message = "VLAN ID must be between 1 and 4095."
+  }
+}
+
+variable "vlan_voice_enabled" {
+  description = "Enable voice VLAN"
+  type        = bool
+  default     = false
+}
+
+variable "vlan_mstp_instance" {
+  description = "MSTP instance for VLAN"
+  type        = number
+  default     = null
+}
+
+# Sub Interface Configuration
+variable "sub_interface_enabled" {
+  description = "Enable sub-interface configuration"
+  type        = bool
+  default     = false
+}
+
+variable "sub_interface_vlan_id" {
+  description = "Sub-interface VLAN ID"
+  type        = number
+  default     = null
+  
+  validation {
+    condition = var.sub_interface_vlan_id == null || (var.sub_interface_vlan_id >= 1 && var.sub_interface_vlan_id <= 4095)
+    error_message = "Sub-interface VLAN ID must be between 1 and 4095."
+  }
+}
+
+# Cellular Configuration
+variable "cellular_enabled" {
+  description = "Enable cellular configuration"
+  type        = bool
+  default     = false
+}
+
+variable "cellular_parent_module_id" {
+  description = "Parent cellular module ID"
+  type        = string
+  default     = null
+}
+
+variable "cellular_parent_sim_slot_number" {
+  description = "Parent SIM slot number"
+  type        = number
+  default     = 1
+  
+  validation {
+    condition = var.cellular_parent_sim_slot_number >= 1 && var.cellular_parent_sim_slot_number <= 4
+    error_message = "SIM slot number must be between 1 and 4."
+  }
+}
+
+variable "cellular_auto_apn" {
+  description = "Enable automatic APN configuration"
+  type        = bool
+  default     = true
+}
+
+variable "cellular_apn_name" {
+  description = "APN name for cellular connection"
+  type        = string
+  default     = null
+  
+  validation {
+    condition = var.cellular_apn_name == null || length(var.cellular_apn_name) <= 100
+    error_message = "APN name must not exceed 100 characters."
+  }
+}
+
+variable "cellular_apn_authentication" {
+  description = "APN authentication type"
+  type        = string
+  default     = "none"
+  
+  validation {
+    condition = contains(["none", "pap", "chap", "pap_or_chap"], var.cellular_apn_authentication)
+    error_message = "APN authentication must be one of: none, pap, chap, pap_or_chap."
+  }
+}
+
+variable "cellular_apn_username" {
+  description = "APN username"
+  type        = string
+  default     = null
+  
+  validation {
+    condition = var.cellular_apn_username == null || length(var.cellular_apn_username) <= 100
+    error_message = "APN username must not exceed 100 characters."
+  }
+}
+
+variable "cellular_apn_password" {
+  description = "APN password"
+  type        = string
+  default     = null
+  sensitive   = true
+}
+
+# PPPoE Configuration
+variable "pppoe_enabled" {
+  description = "Enable PPPoE configuration"
+  type        = bool
+  default     = false
+}
+
+variable "pppoe_username" {
+  description = "PPPoE username"
+  type        = string
+  default     = null
+}
+
+variable "pppoe_password" {
+  description = "PPPoE password"
+  type        = string
+  default     = null
+  sensitive   = true
+}
+
+variable "pppoe_service_name" {
+  description = "PPPoE service name"
+  type        = string
+  default     = null
+  
+  validation {
+    condition = var.pppoe_service_name == null || length(var.pppoe_service_name) <= 100
+    error_message = "PPPoE service name must not exceed 100 characters."
+  }
+}
+
+variable "pppoe_host_uniq" {
+  description = "PPPoE host unique identifier"
+  type        = string
+  default     = null
+}
+
+variable "pppoe_ac_name" {
+  description = "PPPoE access concentrator name"
+  type        = string
+  default     = null
+}
+
+# NAT Policy Configuration
+variable "nat_policy_id" {
+  description = "NAT policy ID for the interface"
+  type        = string
+  default     = null
+}
+
+variable "nat_policy_name" {
+  description = "NAT policy name (alternative to nat_policy_id)"
+  type        = string
+  default     = null
+}
+
+variable "nat_zone_id" {
+  description = "NAT zone ID for the interface"
+  type        = string
+  default     = null
+}
+
+variable "nat_zone_name" {
+  description = "NAT zone name (alternative to nat_zone_id)"
+  type        = string
+  default     = null
+}
+
+# Service Link Configuration
+variable "service_link_enabled" {
+  description = "Enable service link configuration"
+  type        = bool
+  default     = false
+}
+
+variable "service_link_wan_port_type" {
+  description = "Service link WAN port type"
+  type        = string
+  default     = "ethernet"
+  
+  validation {
+    condition = contains(["ethernet", "cellular"], var.service_link_wan_port_type)
+    error_message = "Service link WAN port type must be either ethernet or cellular."
+  }
+}
+
+# Power Configuration
+variable "power_enabled" {
+  description = "Enable power configuration"
+  type        = bool
+  default     = true
+}
+
+variable "power_poe_enabled" {
+  description = "Enable Power over Ethernet (PoE)"
+  type        = bool
+  default     = false
+}
+
+variable "power_poe_priority" {
+  description = "PoE priority level"
+  type        = string
+  default     = "low"
+  
+  validation {
+    condition = contains(["low", "high", "critical"], var.power_poe_priority)
+    error_message = "PoE priority must be one of: low, high, critical."
+  }
+}
+
+# Quality of Service Configuration
+variable "qos_enabled" {
+  description = "Enable QoS configuration"
+  type        = bool
+  default     = false
+}
+
+variable "qos_egress_traffic_policysetstack_id" {
+  description = "Egress traffic policy set stack ID for QoS"
+  type        = string
+  default     = null
+}
+
+variable "qos_egress_traffic_policysetstack_name" {
+  description = "Egress traffic policy set stack name (alternative to ID)"
+  type        = string
+  default     = null
+}
+
+variable "qos_ingress_traffic_policysetstack_id" {
+  description = "Ingress traffic policy set stack ID for QoS"
+  type        = string
+  default     = null
+}
+
+variable "qos_ingress_traffic_policysetstack_name" {
+  description = "Ingress traffic policy set stack name (alternative to ID)"
+  type        = string
+  default     = null
+}
+
+# Switch Port Configuration
+variable "switch_port_enabled" {
+  description = "Enable switch port configuration"
+  type        = bool
+  default     = false
+}
+
+variable "switch_port_access_vlan_id" {
+  description = "Access VLAN ID for switch port"
+  type        = number
+  default     = 1
+  
+  validation {
+    condition = var.switch_port_access_vlan_id >= 1 && var.switch_port_access_vlan_id <= 4095
+    error_message = "Access VLAN ID must be between 1 and 4095."
+  }
+}
+
+variable "switch_port_trunk_vlans" {
+  description = "Trunk VLAN IDs for switch port"
+  type        = list(number)
+  default     = []
+  
+  validation {
+    condition = alltrue([
+      for vlan_id in var.switch_port_trunk_vlans : vlan_id >= 1 && vlan_id <= 4095
+    ])
+    error_message = "All trunk VLAN IDs must be between 1 and 4095."
+  }
+}
+
+variable "switch_port_mode" {
+  description = "Switch port mode (access, trunk, auto)"
+  type        = string
+  default     = "access"
+  
+  validation {
+    condition = contains(["access", "trunk", "auto"], var.switch_port_mode)
+    error_message = "Switch port mode must be one of: access, trunk, auto."
+  }
+}
+
+# Bypass Pair Configuration
+variable "bypass_pair_enabled" {
+  description = "Enable bypass pair configuration"
+  type        = bool
+  default     = false
+}
+
+variable "bypass_pair_lan_port_id" {
+  description = "LAN port ID for bypass pair"
+  type        = string
+  default     = null
+}
+
+variable "bypass_pair_wan_port_id" {
+  description = "WAN port ID for bypass pair"
+  type        = string
+  default     = null
+}
+
+variable "bypass_pair_bypass_mode" {
+  description = "Bypass mode (active, passive, fail_to_block, fail_to_wire)"
+  type        = string
+  default     = "active"
+  
+  validation {
+    condition = contains(["active", "passive", "fail_to_block", "fail_to_wire"], var.bypass_pair_bypass_mode)
+    error_message = "Bypass mode must be one of: active, passive, fail_to_block, fail_to_wire."
+  }
+}
+
+# Port Channel Configuration
+variable "port_channel_enabled" {
+  description = "Enable port channel (LAG) configuration"
+  type        = bool
+  default     = false
+}
+
+variable "port_channel_member_interfaces" {
+  description = "Member interface IDs for port channel"
+  type        = list(string)
+  default     = []
+  
+  validation {
+    condition = length(var.port_channel_member_interfaces) <= 8
+    error_message = "Port channel can have maximum 8 member interfaces."
+  }
+}
+
+variable "port_channel_lacp_enabled" {
+  description = "Enable LACP for port channel"
+  type        = bool
+  default     = true
+}
+
+variable "port_channel_lacp_mode" {
+  description = "LACP mode (active, passive)"
+  type        = string
+  default     = "active"
+  
+  validation {
+    condition = contains(["active", "passive"], var.port_channel_lacp_mode)
+    error_message = "LACP mode must be either active or passive."
+  }
+}
+
+# Extended Tags
+variable "extended_tags" {
+  description = "Extended tags for the interface"
+  type = list(object({
+    key        = string
+    value      = string
+    value_type = optional(string, "text")
+  }))
+  default = []
+  
+  validation {
+    condition = length(var.extended_tags) <= 10
+    error_message = "Maximum 10 extended tags are allowed."
+  }
+  
+  validation {
+    condition = alltrue([
+      for etag in var.extended_tags : 
+      length(etag.key) > 0 && length(etag.key) <= 128 &&
+      length(etag.value) <= 256 &&
+      contains(["text", "number", "boolean"], etag.value_type)
+    ])
+    error_message = "Extended tag keys must be 1-128 chars, values max 256 chars, and value_type must be text/number/boolean."
+  }
+}
+
+# Security Configuration
+variable "security_enabled" {
+  description = "Enable security configuration"
+  type        = bool
+  default     = true
+}
+
+variable "security_zone_id" {
+  description = "Security zone ID for the interface"
+  type        = string
+  default     = null
+}
+
+variable "security_zone_name" {
+  description = "Security zone name (alternative to security_zone_id)"
+  type        = string
+  default     = null
+}
+
+# Monitoring and Management
+variable "monitoring_enabled" {
+  description = "Enable interface monitoring"
+  type        = bool
+  default     = true
+}
+
+variable "snmp_enabled" {
+  description = "Enable SNMP monitoring"
+  type        = bool
+  default     = true
+}
+
+variable "netflow_enabled" {
+  description = "Enable NetFlow monitoring"
+  type        = bool
+  default     = false
+}
+
+# Load Balancing Configuration
+variable "load_balancing_enabled" {
+  description = "Enable load balancing"
+  type        = bool
+  default     = false
+}
+
+variable "load_balancing_weight" {
+  description = "Load balancing weight (1-255)"
+  type        = number
+  default     = 100
+  
+  validation {
+    condition = var.load_balancing_weight >= 1 && var.load_balancing_weight <= 255
+    error_message = "Load balancing weight must be between 1 and 255."
+  }
+}
+
+variable "load_balancing_priority" {
+  description = "Load balancing priority (1-65535)"
+  type        = number
+  default     = 100
+  
+  validation {
+    condition = var.load_balancing_priority >= 1 && var.load_balancing_priority <= 65535
+    error_message = "Load balancing priority must be between 1 and 65535."
+  }
+}
+
+# BFD Configuration
+variable "bfd_enabled" {
+  description = "Enable Bidirectional Forwarding Detection (BFD)"
+  type        = bool
+  default     = false
+}
+
+variable "bfd_interval" {
+  description = "BFD interval in milliseconds"
+  type        = number
+  default     = 1000
+  
+  validation {
+    condition = var.bfd_interval >= 100 && var.bfd_interval <= 60000
+    error_message = "BFD interval must be between 100 and 60000 milliseconds."
+  }
+}
+
+variable "bfd_multiplier" {
+  description = "BFD multiplier"
+  type        = number
+  default     = 3
+  
+  validation {
+    condition = var.bfd_multiplier >= 3 && var.bfd_multiplier <= 50
+    error_message = "BFD multiplier must be between 3 and 50."
+  }
+}

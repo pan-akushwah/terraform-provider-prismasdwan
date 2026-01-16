@@ -1,0 +1,272 @@
+# Resource locators for dependencies
+resource "prismasdwan_resource_locator" "site" {
+  count = var.site_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_site"
+  resource_property = "name"
+  resource_property_value = var.site_name
+}
+
+resource "prismasdwan_resource_locator" "element" {
+  count = var.element_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_element"
+  resource_property = "name"
+  resource_property_value = var.element_name
+}
+
+resource "prismasdwan_resource_locator" "vrf_context" {
+  count = var.vrf_context_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_vrf_context_profile"
+  resource_property = "name"
+  resource_property_value = var.vrf_context_name
+}
+
+resource "prismasdwan_resource_locator" "network_context" {
+  count = var.network_context_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_network_context"
+  resource_property = "name"
+  resource_property_value = var.network_context_name
+}
+
+resource "prismasdwan_resource_locator" "nat_policy" {
+  count = var.nat_policy_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_nat_policy"
+  resource_property = "name"
+  resource_property_value = var.nat_policy_name
+}
+
+resource "prismasdwan_resource_locator" "nat_zone" {
+  count = var.nat_zone_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_nat_zone"
+  resource_property = "name"
+  resource_property_value = var.nat_zone_name
+}
+
+resource "prismasdwan_resource_locator" "security_zone" {
+  count = var.security_zone_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_security_zone"
+  resource_property = "name"
+  resource_property_value = var.security_zone_name
+}
+
+resource "prismasdwan_resource_locator" "qos_egress_stack" {
+  count = var.qos_egress_traffic_policysetstack_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_qos_policy_stack"
+  resource_property = "name"
+  resource_property_value = var.qos_egress_traffic_policysetstack_name
+}
+
+resource "prismasdwan_resource_locator" "qos_ingress_stack" {
+  count = var.qos_ingress_traffic_policysetstack_name != null ? 1 : 0
+  
+  resource_type = "prismasdwan_qos_policy_stack"
+  resource_property = "name"
+  resource_property_value = var.qos_ingress_traffic_policysetstack_name
+}
+
+resource "prismasdwan_element_interface" "element_interface_full" {
+  # Required fields
+  name = var.interface_name
+  type = var.interface_type
+  used_for = var.used_for
+  scope = var.scope
+  peer_bypasspair_wan_port_type = var.peer_bypasspair_wan_port_type
+  
+  # X_parameters contains site_id and element_id
+  x_parameters = {
+    site_id = var.site_id != null ? var.site_id : (
+      length(prismasdwan_resource_locator.site) > 0 ? prismasdwan_resource_locator.site[0].result : null
+    )
+    element_id = var.element_id != null ? var.element_id : (
+      length(prismasdwan_resource_locator.element) > 0 ? prismasdwan_resource_locator.element[0].result : null
+    )
+  }
+  
+  # Optional basic fields
+  description = var.description
+  tags = var.tags
+  admin_up = var.admin_up
+  mtu = var.mtu
+  mac_address = var.mac_address
+  
+  
+  # Network Context References
+  vrf_context_id = var.vrf_context_id != null ? var.vrf_context_id : (
+    length(prismasdwan_resource_locator.vrf_context) > 0 ? prismasdwan_resource_locator.vrf_context[0].result : null
+  )
+  
+  network_context_id = var.network_context_id != null ? var.network_context_id : (
+    length(prismasdwan_resource_locator.network_context) > 0 ? prismasdwan_resource_locator.network_context[0].result : null
+  )
+  
+  # IPv4 Configuration (conditional)
+  ipv4_config = var.ipv4_enabled ? {
+    type = var.ipv4_type
+    
+    # Static IP configuration
+    static_config = var.ipv4_type == "static" ? {
+      address = var.ipv4_static_address
+      dns_servers = var.ipv4_dns_servers
+      dns_search_domains = var.ipv4_dns_search_domains
+      routes = [
+        for route in var.ipv4_routes : {
+          destination = route.destination
+          via = route.via
+        }
+      ]
+    } : null
+    
+    # DHCP configuration
+    dhcp_config = var.ipv4_type == "dhcp" ? {
+      hostname = var.ipv4_dhcp_hostname
+      client_id = var.ipv4_dhcp_client_id
+    } : null
+    
+    # PPPoE configuration (handled separately below)
+  } : null
+  
+  # IPv6 Configuration (conditional)
+  ipv6_config = var.ipv6_enabled ? {
+    type = var.ipv6_type
+    enable_prefix_distribution = var.ipv6_enable_prefix_distribution
+    
+    # Static IPv6 configuration
+    static_config = var.ipv6_type == "static" ? {
+      address = var.ipv6_static_address
+      dns_servers = var.ipv6_dns_servers
+      routes = [
+        for route in var.ipv6_routes : {
+          destination = route.destination
+          via = route.via
+        }
+      ]
+    } : null
+  } : null
+  
+  # Ethernet Port Configuration (conditional)
+  ethernet_config = var.interface_type == "ethernet" ? {
+    speed = var.ethernet_speed
+    full_duplex = var.ethernet_full_duplex
+  } : null
+  
+  # VLAN Configuration (conditional)
+  vlan_config = var.vlan_enabled ? {
+    vlan_id = var.vlan_id
+    voice_enabled = var.vlan_voice_enabled
+    mstp_instance = var.vlan_mstp_instance
+  } : null
+  
+  # Sub Interface Configuration (conditional)
+  sub_interface_config = var.sub_interface_enabled ? {
+    vlan_id = var.sub_interface_vlan_id
+  } : null
+  
+  # Cellular Configuration (conditional)
+  cellular_config = var.cellular_enabled ? {
+    parent_module_id = var.cellular_parent_module_id
+    parent_sim_slot_number = var.cellular_parent_sim_slot_number
+    auto_apn = var.cellular_auto_apn
+    
+    apn_config = !var.cellular_auto_apn ? {
+      name = var.cellular_apn_name
+      authentication = var.cellular_apn_authentication
+      username = var.cellular_apn_username
+      password = var.cellular_apn_password
+    } : null
+  } : null
+  
+  # PPPoE Configuration (conditional)
+  pppoe_config = var.pppoe_enabled ? {
+    username = var.pppoe_username
+    password = var.pppoe_password
+    service_name = var.pppoe_service_name
+    host_uniq = var.pppoe_host_uniq
+    ac_name = var.pppoe_ac_name
+  } : null
+  
+  # Service Link Configuration (conditional)
+  service_link_config = var.service_link_enabled ? {
+    wan_port_type = var.service_link_wan_port_type
+  } : null
+  
+  # Power Configuration (conditional)
+  power_config = var.power_enabled ? {
+    poe_enabled = var.power_poe_enabled
+    poe_priority = var.power_poe_enabled ? var.power_poe_priority : null
+  } : null
+  
+  # Switch Port Configuration (conditional)
+  switch_port_config = var.switch_port_enabled ? {
+    mode = var.switch_port_mode
+    access_vlan_id = var.switch_port_mode == "access" ? var.switch_port_access_vlan_id : null
+    trunk_vlans = var.switch_port_mode == "trunk" ? var.switch_port_trunk_vlans : null
+  } : null
+  
+  # Bypass Pair Configuration (conditional)
+  bypass_pair_config = var.bypass_pair_enabled ? {
+    lan_port_id = var.bypass_pair_lan_port_id
+    wan_port_id = var.bypass_pair_wan_port_id
+    bypass_mode = var.bypass_pair_bypass_mode
+  } : null
+  
+  # Port Channel Configuration (conditional)
+  port_channel_config = var.port_channel_enabled ? {
+    member_interfaces = var.port_channel_member_interfaces
+    lacp_enabled = var.port_channel_lacp_enabled
+    lacp_mode = var.port_channel_lacp_enabled ? var.port_channel_lacp_mode : null
+  } : null
+  
+  # NAT Configuration (conditional)
+  nat_policy_id = var.nat_policy_id != null ? var.nat_policy_id : (
+    length(prismasdwan_resource_locator.nat_policy) > 0 ? prismasdwan_resource_locator.nat_policy[0].result : null
+  )
+  
+  nat_zone_id = var.nat_zone_id != null ? var.nat_zone_id : (
+    length(prismasdwan_resource_locator.nat_zone) > 0 ? prismasdwan_resource_locator.nat_zone[0].result : null
+  )
+  
+  # Security Configuration (conditional)
+  security_zone_id = var.security_enabled ? (
+    var.security_zone_id != null ? var.security_zone_id : (
+      length(prismasdwan_resource_locator.security_zone) > 0 ? prismasdwan_resource_locator.security_zone[0].result : null
+    )
+  ) : null
+  
+  # QoS Configuration (conditional)
+  qos_egress_traffic_policysetstack_id = var.qos_enabled ? (
+    var.qos_egress_traffic_policysetstack_id != null ? var.qos_egress_traffic_policysetstack_id : (
+      length(prismasdwan_resource_locator.qos_egress_stack) > 0 ? prismasdwan_resource_locator.qos_egress_stack[0].result : null
+    )
+  ) : null
+  
+  qos_ingress_traffic_policysetstack_id = var.qos_enabled ? (
+    var.qos_ingress_traffic_policysetstack_id != null ? var.qos_ingress_traffic_policysetstack_id : (
+      length(prismasdwan_resource_locator.qos_ingress_stack) > 0 ? prismasdwan_resource_locator.qos_ingress_stack[0].result : null
+    )
+  ) : null
+  
+  # Monitoring Configuration (conditional)
+  monitoring_config = var.monitoring_enabled ? {
+    snmp_enabled = var.snmp_enabled
+    netflow_enabled = var.netflow_enabled
+  } : null
+  
+  # Load Balancing Configuration (conditional)
+  load_balancing_config = var.load_balancing_enabled ? {
+    weight = var.load_balancing_weight
+    priority = var.load_balancing_priority
+  } : null
+  
+  # BFD Configuration (conditional)
+  bfd_config = var.bfd_enabled ? {
+    interval = var.bfd_interval
+    multiplier = var.bfd_multiplier
+  } : null
+}

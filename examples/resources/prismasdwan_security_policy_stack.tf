@@ -25,6 +25,50 @@
 #
 #
 
-resource "prismasdwan_security_policy_stack" "example" {
- // content goes here
+# create a set for development
+resource "prismasdwan_security_policy_set" "development_policy_set" {
+  name                  = "development_security_policy_set"
+  description           = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags                  = ["development", "testing"]
+  defaultrule_policyset = false
+}
+
+# create a set for compliance
+resource "prismasdwan_security_policy_set" "compliance_policy_set" {
+  name                  = "compliance_security_policy_set"
+  description           = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags                  = ["compliance", "audit"]
+  defaultrule_policyset = true
+}
+
+# Resource locator for default rule policy set (required)
+resource "prismasdwan_resource_locator" "default_policy_set" {
+  resource_type           = "prismasdwan_security_policy_set"
+  resource_property       = "name"
+  resource_property_value = "DefaultSet"
+}
+
+# Resource locators for policy sets in the stack (optional, based on policy set names provided)
+resource "prismasdwan_resource_locator" "development_policy_set" {
+  resource_type           = "prismasdwan_security_policy_set"
+  resource_property       = "name"
+  resource_property_value = "development_policy_set"
+}
+
+
+resource "prismasdwan_security_policy_stack" "development_security_policy_stack" {
+  # Required fields
+  name = "development_policy_stack"
+  # copy the ID for default set using locator
+  defaultrule_policyset_id = prismasdwan_resource_locator.defaultrule_policyset.result
+  # Optional fields
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["tag1", "tag2"]
+  # Policy set IDs (0-4 policy sets max, converted from names)
+  policyset_ids = [
+    # read the id using resource locator result
+    prismasdwan_resource_locator.development_policy_set.result,
+    # directly use the id from the managed resource
+    prismasdwan_security_policy_set.compliance_policy_set.id
+  ]
 }

@@ -1,0 +1,14 @@
+# IPv4-only QoS Policy Global Prefix Configuration
+qos_policy_global_prefix_name = "IPv4-QoS-Global-Prefix"
+description = "IPv4-only QoS policy global prefix for legacy network compatibility"
+tags = ["terraform", "qos", "ipv4-only", "legacy"]
+
+# IPv4 Prefixes only
+ipv4_prefixes = [
+  "10.0.0.0/8",
+  "172.16.0.0/12",
+  "192.168.0.0/16",
+  "203.0.113.0/24"
+]
+
+ipv6_prefixes = []

@@ -1,0 +1,15 @@
+# IPv4-only Path Global Prefix Configuration
+path_global_prefix_name = "IPv4-Path-Global-Prefix"
+description = "IPv4-only path global prefix for legacy network routing and policy enforcement"
+tags = ["terraform", "path", "ipv4-only", "legacy", "routing"]
+
+# IPv4 Prefixes only
+ipv4_prefixes = [
+  "10.0.0.0/8",
+  "172.16.0.0/12",
+  "192.168.0.0/16",
+  "203.0.113.0/24",
+  "198.51.100.0/24"
+]
+
+ipv6_prefixes = []

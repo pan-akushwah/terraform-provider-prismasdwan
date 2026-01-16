@@ -1,0 +1,15 @@
+# IPv6-only Path Global Prefix Configuration
+path_global_prefix_name = "IPv6-Path-Global-Prefix"
+description = "IPv6-only path global prefix for modern network infrastructure and future-ready routing"
+tags = ["terraform", "path", "ipv6-only", "modern", "future-ready"]
+
+# IPv6 Prefixes only
+ipv4_prefixes = []
+
+ipv6_prefixes = [
+  "2001:db8::/32",
+  "fd00::/8",
+  "fe80::/10",
+  "2001:db8:85a3::/48",
+  "2001:0db8:1234::/48"
+]
