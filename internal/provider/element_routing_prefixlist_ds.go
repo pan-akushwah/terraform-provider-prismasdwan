@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -50,6 +51,14 @@ type elementRoutingPrefixlistDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterElementRoutingPrefixlist struct {
+	Filters      types.Map                             `tfsdk:"filters"`
+	TfParameters types.Map                             `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                           `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                           `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelRoutingPrefixListScreenV2N1 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *elementRoutingPrefixlistDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_element_routing_prefixlist"
@@ -59,12 +68,13 @@ func (d *elementRoutingPrefixlistDataSource) Metadata(_ context.Context, req dat
 func (d *elementRoutingPrefixlistDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=RoutingPrefixListScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -82,113 +92,135 @@ func (d *elementRoutingPrefixlistDataSource) Schema(_ context.Context, _ datasou
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=auto_generated, type=BOOLEAN macro=rss_schema
-			"auto_generated": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=prefix_filter_list, type=ARRAY_REFERENCE macro=rss_schema
-			"prefix_filter_list": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=ge, type=INTEGER macro=rss_schema
-						"ge": dsschema.Int64Attribute{
+						// rest all properties to be read from GET API Schema schema=RoutingPrefixListScreenV2N1
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=auto_generated, type=BOOLEAN macro=rss_schema
+						"auto_generated": dsschema.BoolAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=ge, type=INTEGER macro=rss_schema
-						// property: name=ipv6_prefix, type=STRING macro=rss_schema
-						"ipv6_prefix": dsschema.StringAttribute{
+						// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=ipv6_prefix, type=STRING macro=rss_schema
-						// property: name=le, type=INTEGER macro=rss_schema
-						"le": dsschema.Int64Attribute{
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=le, type=INTEGER macro=rss_schema
-						// property: name=order, type=INTEGER macro=rss_schema
-						"order": dsschema.Int64Attribute{
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=prefix_filter_list, type=ARRAY_REFERENCE macro=rss_schema
+						"prefix_filter_list": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
-						},
-						// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
-						// property: name=permit, type=BOOLEAN macro=rss_schema
-						"permit": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
-						// property: name=prefix, type=STRING macro=rss_schema
-						"prefix": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=ge, type=INTEGER macro=rss_schema
+									"ge": dsschema.Int64Attribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=ge, type=INTEGER macro=rss_schema
+									// property: name=ipv6_prefix, type=STRING macro=rss_schema
+									"ipv6_prefix": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=ipv6_prefix, type=STRING macro=rss_schema
+									// property: name=le, type=INTEGER macro=rss_schema
+									"le": dsschema.Int64Attribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=le, type=INTEGER macro=rss_schema
+									// property: name=order, type=INTEGER macro=rss_schema
+									"order": dsschema.Int64Attribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
+									// property: name=permit, type=BOOLEAN macro=rss_schema
+									"permit": dsschema.BoolAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
+									// property: name=prefix, type=STRING macro=rss_schema
+									"prefix": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=prefix, type=STRING macro=rss_schema
+								},
+							},
 						},
 						// key name holder for attribute: name=prefix, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=prefix, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 		},
 	}
 }
@@ -203,8 +235,9 @@ func (d *elementRoutingPrefixlistDataSource) Configure(_ context.Context, req da
 
 // Read performs Read for the struct.
 func (d *elementRoutingPrefixlistDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelRoutingPrefixListScreenV2N1
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterElementRoutingPrefixlist
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -217,101 +250,142 @@ func (d *elementRoutingPrefixlistDataSource) Read(ctx context.Context, req datas
 		"resource_name":               "prismasdwan_element_routing_prefixlist",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_routing_prefixlist ID format", "Expected 3 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/routing_prefixlists/{routing_prefixlist_id}"
+	get_path := "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/routing_prefixlists/{routing_prefixlist_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["element_id"] = &tokens[1]
-	params["routing_prefixlist_id"] = &tokens[2]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_routing_prefixlist", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_routing_prefixlist", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.RoutingPrefixListScreenV2N1
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to RoutingPrefixListScreenV2N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-
-	// lets copy all items into state schema=RoutingPrefixListScreenV2N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=8
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=auto_generated, type=BOOLEAN macro=copy_to_state
-	state.AutoGenerated = types.BoolPointerValue(ans.AutoGenerated)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=prefix_filter_list, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.PrefixFilterList == nil {
-		state.PrefixFilterList = nil
-	} else if len(ans.PrefixFilterList) == 0 {
-		state.PrefixFilterList = []dsModelRoutingPrefixFilterV2N1{}
-	} else {
-		state.PrefixFilterList = make([]dsModelRoutingPrefixFilterV2N1, 0, len(ans.PrefixFilterList))
-		for varLoopPrefixFilterListIndex, varLoopPrefixFilterList := range ans.PrefixFilterList {
-			// add a new item
-			state.PrefixFilterList = append(state.PrefixFilterList, dsModelRoutingPrefixFilterV2N1{})
-			// copy_to_state: state=state.PrefixFilterList[varLoopPrefixFilterListIndex] prefix=dsModel ans=varLoopPrefixFilterList properties=6
-			tflog.Debug(ctx, "copy_to_state state=state.PrefixFilterList[varLoopPrefixFilterListIndex] prefix=dsModel ans=varLoopPrefixFilterList")
-			// property: name=ge, type=INTEGER macro=copy_to_state
-			state.PrefixFilterList[varLoopPrefixFilterListIndex].Ge = types.Int64PointerValue(varLoopPrefixFilterList.Ge)
-			// property: name=ipv6_prefix, type=STRING macro=copy_to_state
-			state.PrefixFilterList[varLoopPrefixFilterListIndex].Ipv6Prefix = types.StringPointerValue(varLoopPrefixFilterList.Ipv6Prefix)
-			// property: name=le, type=INTEGER macro=copy_to_state
-			state.PrefixFilterList[varLoopPrefixFilterListIndex].Le = types.Int64PointerValue(varLoopPrefixFilterList.Le)
-			// property: name=order, type=INTEGER macro=copy_to_state
-			state.PrefixFilterList[varLoopPrefixFilterListIndex].Order = types.Int64PointerValue(varLoopPrefixFilterList.Order)
-			// property: name=permit, type=BOOLEAN macro=copy_to_state
-			state.PrefixFilterList[varLoopPrefixFilterListIndex].Permit = types.BoolPointerValue(varLoopPrefixFilterList.Permit)
-			// property: name=prefix, type=STRING macro=copy_to_state
-			state.PrefixFilterList[varLoopPrefixFilterListIndex].Prefix = types.StringPointerValue(varLoopPrefixFilterList.Prefix)
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
 		}
-	}
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
 
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelRoutingPrefixListScreenV2N1
+
+		// start copying attributes
+		var ans sdwan_schema.RoutingPrefixListScreenV2N1
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to RoutingPrefixListScreenV2N1", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=RoutingPrefixListScreenV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=auto_generated, type=BOOLEAN macro=copy_to_state
+		state.AutoGenerated = types.BoolPointerValue(ans.AutoGenerated)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=prefix_filter_list, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.PrefixFilterList == nil {
+			state.PrefixFilterList = nil
+		} else if len(ans.PrefixFilterList) == 0 {
+			state.PrefixFilterList = []dsModelRoutingPrefixFilterV2N1{}
+		} else {
+			state.PrefixFilterList = make([]dsModelRoutingPrefixFilterV2N1, 0, len(ans.PrefixFilterList))
+			for varLoopPrefixFilterListIndex, varLoopPrefixFilterList := range ans.PrefixFilterList {
+				// add a new item
+				state.PrefixFilterList = append(state.PrefixFilterList, dsModelRoutingPrefixFilterV2N1{})
+				// copy_to_state: state=state.PrefixFilterList[varLoopPrefixFilterListIndex] prefix=dsModel ans=varLoopPrefixFilterList properties=6
+				tflog.Debug(ctx, "copy_to_state state=state.PrefixFilterList[varLoopPrefixFilterListIndex] prefix=dsModel ans=varLoopPrefixFilterList")
+				// property: name=ge, type=INTEGER macro=copy_to_state
+				state.PrefixFilterList[varLoopPrefixFilterListIndex].Ge = types.Int64PointerValue(varLoopPrefixFilterList.Ge)
+				// property: name=ipv6_prefix, type=STRING macro=copy_to_state
+				state.PrefixFilterList[varLoopPrefixFilterListIndex].Ipv6Prefix = types.StringPointerValue(varLoopPrefixFilterList.Ipv6Prefix)
+				// property: name=le, type=INTEGER macro=copy_to_state
+				state.PrefixFilterList[varLoopPrefixFilterListIndex].Le = types.Int64PointerValue(varLoopPrefixFilterList.Le)
+				// property: name=order, type=INTEGER macro=copy_to_state
+				state.PrefixFilterList[varLoopPrefixFilterListIndex].Order = types.Int64PointerValue(varLoopPrefixFilterList.Order)
+				// property: name=permit, type=BOOLEAN macro=copy_to_state
+				state.PrefixFilterList[varLoopPrefixFilterListIndex].Permit = types.BoolPointerValue(varLoopPrefixFilterList.Permit)
+				// property: name=prefix, type=STRING macro=copy_to_state
+				state.PrefixFilterList[varLoopPrefixFilterListIndex].Prefix = types.StringPointerValue(varLoopPrefixFilterList.Prefix)
+			}
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

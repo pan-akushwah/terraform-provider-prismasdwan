@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -56,6 +57,14 @@ type performanceProfileDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterPerformanceProfile struct {
+	Filters      types.Map                                    `tfsdk:"filters"`
+	TfParameters types.Map                                    `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                                  `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                                  `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelPerfMgmtThresholdProfileScreenV2N1 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *performanceProfileDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_performance_profile"
@@ -65,12 +74,13 @@ func (d *performanceProfileDataSource) Metadata(_ context.Context, req datasourc
 func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=PerfMgmtThresholdProfileScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -88,365 +98,387 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=circuit_utilization_metrics_thresholds, type=REFERENCE macro=rss_schema
-			"circuit_utilization_metrics_thresholds": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
-					"percentage_circuit_utilization": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=flow_metrics_thresholds, type=REFERENCE macro=rss_schema
-			"flow_metrics_thresholds": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
-					"percentage_flow_utilization": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
-			// property: name=hard_limit_app_metrics, type=REFERENCE macro=rss_schema
-			"hard_limit_app_metrics": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
-					"max_init_failure_rate": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
-					// property: name=max_rtt, type=INTEGER macro=rss_schema
-					"max_rtt": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
-					// property: name=udp_trt, type=INTEGER macro=rss_schema
-					"udp_trt": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=lqm_thresholds, type=REFERENCE macro=rss_schema
-			"lqm_thresholds": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=max_jitter, type=INTEGER macro=rss_schema
-					"max_jitter": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_jitter, type=INTEGER macro=rss_schema
-					// property: name=max_latency, type=INTEGER macro=rss_schema
-					"max_latency": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_latency, type=INTEGER macro=rss_schema
-					// property: name=max_packet_loss, type=INTEGER macro=rss_schema
-					"max_packet_loss": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_packet_loss, type=INTEGER macro=rss_schema
-					// property: name=min_mos, type=INTEGER macro=rss_schema
-					"min_mos": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=soft_limit_app_metrics, type=REFERENCE macro=rss_schema
-			"soft_limit_app_metrics": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
-					"max_init_failure_rate": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
-					// property: name=max_rtt, type=INTEGER macro=rss_schema
-					"max_rtt": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
-					// property: name=udp_trt, type=INTEGER macro=rss_schema
-					"udp_trt": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
-			// property: name=synthetic_probe_thresholds, type=REFERENCE macro=rss_schema
-			"synthetic_probe_thresholds": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=dns_txn_failure_pct, type=REFERENCE macro=rss_schema
-					"dns_txn_failure_pct": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=probe_config_id, type=STRING macro=rss_schema
-							"probe_config_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
-							// property: name=value, type=INTEGER macro=rss_schema
-							"value": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: dsschema.NestedAttributeObject{
+					Attributes: map[string]dsschema.Attribute{
+						// rest all properties to be read from GET API Schema schema=PerfMgmtThresholdProfileScreenV2N1
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
 						},
-					},
-					// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
-					// property: name=init_failure_pct, type=REFERENCE macro=rss_schema
-					"init_failure_pct": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=probe_config_id, type=STRING macro=rss_schema
-							"probe_config_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
-							// property: name=value, type=INTEGER macro=rss_schema
-							"value": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
 						},
-					},
-					// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
-					// property: name=jitter, type=REFERENCE macro=rss_schema
-					"jitter": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=probe_config_id, type=STRING macro=rss_schema
-							"probe_config_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=circuit_utilization_metrics_thresholds, type=REFERENCE macro=rss_schema
+						"circuit_utilization_metrics_thresholds": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
+								"percentage_circuit_utilization": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
 							},
-							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
-							// property: name=value, type=INTEGER macro=rss_schema
-							"value": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
-					},
-					// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
-					// property: name=latency, type=REFERENCE macro=rss_schema
-					"latency": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=probe_config_id, type=STRING macro=rss_schema
-							"probe_config_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
-							// property: name=value, type=INTEGER macro=rss_schema
-							"value": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
 						},
-					},
-					// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
-					// property: name=packet_loss, type=REFERENCE macro=rss_schema
-					"packet_loss": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=probe_config_id, type=STRING macro=rss_schema
-							"probe_config_id": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=flow_metrics_thresholds, type=REFERENCE macro=rss_schema
+						"flow_metrics_thresholds": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
+								"percentage_flow_utilization": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
 							},
-							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
-							// property: name=value, type=INTEGER macro=rss_schema
-							"value": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
+						// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
+						// property: name=hard_limit_app_metrics, type=REFERENCE macro=rss_schema
+						"hard_limit_app_metrics": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
+								"max_init_failure_rate": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
+								// property: name=max_rtt, type=INTEGER macro=rss_schema
+								"max_rtt": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
+								// property: name=udp_trt, type=INTEGER macro=rss_schema
+								"udp_trt": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=lqm_thresholds, type=REFERENCE macro=rss_schema
+						"lqm_thresholds": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=max_jitter, type=INTEGER macro=rss_schema
+								"max_jitter": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_jitter, type=INTEGER macro=rss_schema
+								// property: name=max_latency, type=INTEGER macro=rss_schema
+								"max_latency": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_latency, type=INTEGER macro=rss_schema
+								// property: name=max_packet_loss, type=INTEGER macro=rss_schema
+								"max_packet_loss": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_packet_loss, type=INTEGER macro=rss_schema
+								// property: name=min_mos, type=INTEGER macro=rss_schema
+								"min_mos": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=soft_limit_app_metrics, type=REFERENCE macro=rss_schema
+						"soft_limit_app_metrics": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
+								"max_init_failure_rate": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
+								// property: name=max_rtt, type=INTEGER macro=rss_schema
+								"max_rtt": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
+								// property: name=udp_trt, type=INTEGER macro=rss_schema
+								"udp_trt": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
+						// property: name=synthetic_probe_thresholds, type=REFERENCE macro=rss_schema
+						"synthetic_probe_thresholds": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=dns_txn_failure_pct, type=REFERENCE macro=rss_schema
+								"dns_txn_failure_pct": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=probe_config_id, type=STRING macro=rss_schema
+										"probe_config_id": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+										// property: name=value, type=INTEGER macro=rss_schema
+										"value": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+								// property: name=init_failure_pct, type=REFERENCE macro=rss_schema
+								"init_failure_pct": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=probe_config_id, type=STRING macro=rss_schema
+										"probe_config_id": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+										// property: name=value, type=INTEGER macro=rss_schema
+										"value": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+								// property: name=jitter, type=REFERENCE macro=rss_schema
+								"jitter": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=probe_config_id, type=STRING macro=rss_schema
+										"probe_config_id": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+										// property: name=value, type=INTEGER macro=rss_schema
+										"value": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+								// property: name=latency, type=REFERENCE macro=rss_schema
+								"latency": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=probe_config_id, type=STRING macro=rss_schema
+										"probe_config_id": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+										// property: name=value, type=INTEGER macro=rss_schema
+										"value": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+								// property: name=packet_loss, type=REFERENCE macro=rss_schema
+								"packet_loss": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=probe_config_id, type=STRING macro=rss_schema
+										"probe_config_id": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+										// property: name=value, type=INTEGER macro=rss_schema
+										"value": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+						// property: name=system_health_metrics_thresholds, type=REFERENCE macro=rss_schema
+						"system_health_metrics_thresholds": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=cpu_utilization, type=INTEGER macro=rss_schema
+								"cpu_utilization": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=cpu_utilization, type=INTEGER macro=rss_schema
+								// property: name=disk_utilization, type=INTEGER macro=rss_schema
+								"disk_utilization": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=disk_utilization, type=INTEGER macro=rss_schema
+								// property: name=memory_utilization, type=INTEGER macro=rss_schema
+								"memory_utilization": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=memory_utilization, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=memory_utilization, type=INTEGER macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 					},
-					// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
-			// property: name=system_health_metrics_thresholds, type=REFERENCE macro=rss_schema
-			"system_health_metrics_thresholds": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=cpu_utilization, type=INTEGER macro=rss_schema
-					"cpu_utilization": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=cpu_utilization, type=INTEGER macro=rss_schema
-					// property: name=disk_utilization, type=INTEGER macro=rss_schema
-					"disk_utilization": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disk_utilization, type=INTEGER macro=rss_schema
-					// property: name=memory_utilization, type=INTEGER macro=rss_schema
-					"memory_utilization": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=memory_utilization, type=INTEGER macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=memory_utilization, type=INTEGER macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 		},
 	}
 }
@@ -461,8 +493,9 @@ func (d *performanceProfileDataSource) Configure(_ context.Context, req datasour
 
 // Read performs Read for the struct.
 func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelPerfMgmtThresholdProfileScreenV2N1
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterPerformanceProfile
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -475,217 +508,260 @@ func (d *performanceProfileDataSource) Read(ctx context.Context, req datasource.
 		"resource_name":               "prismasdwan_performance_profile",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_performance_profile ID format", "Expected 1 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.1/api/perfmgmtthresholdprofiles/{profile_id}"
+	get_path := "/sdwan/v2.1/api/perfmgmtthresholdprofiles/{profile_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["profile_id"] = &tokens[0]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_performance_profile", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_performance_profile", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.PerfMgmtThresholdProfileScreenV2N1
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtThresholdProfileScreenV2N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=PerfMgmtThresholdProfileScreenV2N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=circuit_utilization_metrics_thresholds, type=REFERENCE macro=copy_to_state
-	if ans.CircuitUtilizationMetricsThresholds == nil {
-		state.CircuitUtilizationMetricsThresholds = nil
-	} else {
-		state.CircuitUtilizationMetricsThresholds = &dsModelCircuitUtilizationMetricThresholds{}
-		// copy_to_state: state=state.CircuitUtilizationMetricsThresholds prefix=dsModel ans=ans.CircuitUtilizationMetricsThresholds properties=1
-		tflog.Debug(ctx, "copy_to_state state=state.CircuitUtilizationMetricsThresholds prefix=dsModel ans=ans.CircuitUtilizationMetricsThresholds")
-		// property: name=percentage_circuit_utilization, type=INTEGER macro=copy_to_state
-		state.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization = types.Int64PointerValue(ans.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization)
-	}
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=flow_metrics_thresholds, type=REFERENCE macro=copy_to_state
-	if ans.FlowMetricsThresholds == nil {
-		state.FlowMetricsThresholds = nil
-	} else {
-		state.FlowMetricsThresholds = &dsModelFlowMetricThresholds{}
-		// copy_to_state: state=state.FlowMetricsThresholds prefix=dsModel ans=ans.FlowMetricsThresholds properties=1
-		tflog.Debug(ctx, "copy_to_state state=state.FlowMetricsThresholds prefix=dsModel ans=ans.FlowMetricsThresholds")
-		// property: name=percentage_flow_utilization, type=INTEGER macro=copy_to_state
-		state.FlowMetricsThresholds.PercentageFlowUtilization = types.Int64PointerValue(ans.FlowMetricsThresholds.PercentageFlowUtilization)
-	}
-	// property: name=hard_limit_app_metrics, type=REFERENCE macro=copy_to_state
-	if ans.HardLimitAppMetrics == nil {
-		state.HardLimitAppMetrics = nil
-	} else {
-		state.HardLimitAppMetrics = &dsModelStaticAppMetricConfigV2N1{}
-		// copy_to_state: state=state.HardLimitAppMetrics prefix=dsModel ans=ans.HardLimitAppMetrics properties=3
-		tflog.Debug(ctx, "copy_to_state state=state.HardLimitAppMetrics prefix=dsModel ans=ans.HardLimitAppMetrics")
-		// property: name=max_init_failure_rate, type=INTEGER macro=copy_to_state
-		state.HardLimitAppMetrics.MaxInitFailureRate = types.Int64PointerValue(ans.HardLimitAppMetrics.MaxInitFailureRate)
-		// property: name=max_rtt, type=INTEGER macro=copy_to_state
-		state.HardLimitAppMetrics.MaxRtt = types.Int64PointerValue(ans.HardLimitAppMetrics.MaxRtt)
-		// property: name=udp_trt, type=INTEGER macro=copy_to_state
-		state.HardLimitAppMetrics.UdpTrt = types.Int64PointerValue(ans.HardLimitAppMetrics.UdpTrt)
-	}
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=lqm_thresholds, type=REFERENCE macro=copy_to_state
-	if ans.LqmThresholds == nil {
-		state.LqmThresholds = nil
-	} else {
-		state.LqmThresholds = &dsModelLQMThresholdConfigV2N1{}
-		// copy_to_state: state=state.LqmThresholds prefix=dsModel ans=ans.LqmThresholds properties=4
-		tflog.Debug(ctx, "copy_to_state state=state.LqmThresholds prefix=dsModel ans=ans.LqmThresholds")
-		// property: name=max_jitter, type=INTEGER macro=copy_to_state
-		state.LqmThresholds.MaxJitter = types.Int64PointerValue(ans.LqmThresholds.MaxJitter)
-		// property: name=max_latency, type=INTEGER macro=copy_to_state
-		state.LqmThresholds.MaxLatency = types.Int64PointerValue(ans.LqmThresholds.MaxLatency)
-		// property: name=max_packet_loss, type=INTEGER macro=copy_to_state
-		state.LqmThresholds.MaxPacketLoss = types.Int64PointerValue(ans.LqmThresholds.MaxPacketLoss)
-		// property: name=min_mos, type=INTEGER macro=copy_to_state
-		state.LqmThresholds.MinMos = types.Int64PointerValue(ans.LqmThresholds.MinMos)
-	}
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=soft_limit_app_metrics, type=REFERENCE macro=copy_to_state
-	if ans.SoftLimitAppMetrics == nil {
-		state.SoftLimitAppMetrics = nil
-	} else {
-		state.SoftLimitAppMetrics = &dsModelStaticAppMetricConfigV2N1{}
-		// copy_to_state: state=state.SoftLimitAppMetrics prefix=dsModel ans=ans.SoftLimitAppMetrics properties=3
-		tflog.Debug(ctx, "copy_to_state state=state.SoftLimitAppMetrics prefix=dsModel ans=ans.SoftLimitAppMetrics")
-		// property: name=max_init_failure_rate, type=INTEGER macro=copy_to_state
-		state.SoftLimitAppMetrics.MaxInitFailureRate = types.Int64PointerValue(ans.SoftLimitAppMetrics.MaxInitFailureRate)
-		// property: name=max_rtt, type=INTEGER macro=copy_to_state
-		state.SoftLimitAppMetrics.MaxRtt = types.Int64PointerValue(ans.SoftLimitAppMetrics.MaxRtt)
-		// property: name=udp_trt, type=INTEGER macro=copy_to_state
-		state.SoftLimitAppMetrics.UdpTrt = types.Int64PointerValue(ans.SoftLimitAppMetrics.UdpTrt)
-	}
-	// property: name=synthetic_probe_thresholds, type=REFERENCE macro=copy_to_state
-	if ans.SyntheticProbeThresholds == nil {
-		state.SyntheticProbeThresholds = nil
-	} else {
-		state.SyntheticProbeThresholds = &dsModelSyntheticProbeThresholds{}
-		// copy_to_state: state=state.SyntheticProbeThresholds prefix=dsModel ans=ans.SyntheticProbeThresholds properties=5
-		tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds prefix=dsModel ans=ans.SyntheticProbeThresholds")
-		// property: name=dns_txn_failure_pct, type=REFERENCE macro=copy_to_state
-		if ans.SyntheticProbeThresholds.DnsTxnFailurePct == nil {
-			state.SyntheticProbeThresholds.DnsTxnFailurePct = nil
-		} else {
-			state.SyntheticProbeThresholds.DnsTxnFailurePct = &dsModelSyntheticProbeThreshold{}
-			// copy_to_state: state=state.SyntheticProbeThresholds.DnsTxnFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.DnsTxnFailurePct properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.DnsTxnFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.DnsTxnFailurePct")
-			// property: name=probe_config_id, type=STRING macro=copy_to_state
-			state.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId)
-			// property: name=value, type=INTEGER macro=copy_to_state
-			state.SyntheticProbeThresholds.DnsTxnFailurePct.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.DnsTxnFailurePct.Value)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
 		}
-		// property: name=init_failure_pct, type=REFERENCE macro=copy_to_state
-		if ans.SyntheticProbeThresholds.InitFailurePct == nil {
-			state.SyntheticProbeThresholds.InitFailurePct = nil
-		} else {
-			state.SyntheticProbeThresholds.InitFailurePct = &dsModelSyntheticProbeThreshold{}
-			// copy_to_state: state=state.SyntheticProbeThresholds.InitFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.InitFailurePct properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.InitFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.InitFailurePct")
-			// property: name=probe_config_id, type=STRING macro=copy_to_state
-			state.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId)
-			// property: name=value, type=INTEGER macro=copy_to_state
-			state.SyntheticProbeThresholds.InitFailurePct.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.InitFailurePct.Value)
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
 		}
-		// property: name=jitter, type=REFERENCE macro=copy_to_state
-		if ans.SyntheticProbeThresholds.Jitter == nil {
-			state.SyntheticProbeThresholds.Jitter = nil
-		} else {
-			state.SyntheticProbeThresholds.Jitter = &dsModelSyntheticProbeThreshold{}
-			// copy_to_state: state=state.SyntheticProbeThresholds.Jitter prefix=dsModel ans=ans.SyntheticProbeThresholds.Jitter properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.Jitter prefix=dsModel ans=ans.SyntheticProbeThresholds.Jitter")
-			// property: name=probe_config_id, type=STRING macro=copy_to_state
-			state.SyntheticProbeThresholds.Jitter.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.Jitter.ProbeConfigId)
-			// property: name=value, type=INTEGER macro=copy_to_state
-			state.SyntheticProbeThresholds.Jitter.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.Jitter.Value)
-		}
-		// property: name=latency, type=REFERENCE macro=copy_to_state
-		if ans.SyntheticProbeThresholds.Latency == nil {
-			state.SyntheticProbeThresholds.Latency = nil
-		} else {
-			state.SyntheticProbeThresholds.Latency = &dsModelSyntheticProbeThreshold{}
-			// copy_to_state: state=state.SyntheticProbeThresholds.Latency prefix=dsModel ans=ans.SyntheticProbeThresholds.Latency properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.Latency prefix=dsModel ans=ans.SyntheticProbeThresholds.Latency")
-			// property: name=probe_config_id, type=STRING macro=copy_to_state
-			state.SyntheticProbeThresholds.Latency.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.Latency.ProbeConfigId)
-			// property: name=value, type=INTEGER macro=copy_to_state
-			state.SyntheticProbeThresholds.Latency.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.Latency.Value)
-		}
-		// property: name=packet_loss, type=REFERENCE macro=copy_to_state
-		if ans.SyntheticProbeThresholds.PacketLoss == nil {
-			state.SyntheticProbeThresholds.PacketLoss = nil
-		} else {
-			state.SyntheticProbeThresholds.PacketLoss = &dsModelSyntheticProbeThreshold{}
-			// copy_to_state: state=state.SyntheticProbeThresholds.PacketLoss prefix=dsModel ans=ans.SyntheticProbeThresholds.PacketLoss properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.PacketLoss prefix=dsModel ans=ans.SyntheticProbeThresholds.PacketLoss")
-			// property: name=probe_config_id, type=STRING macro=copy_to_state
-			state.SyntheticProbeThresholds.PacketLoss.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.PacketLoss.ProbeConfigId)
-			// property: name=value, type=INTEGER macro=copy_to_state
-			state.SyntheticProbeThresholds.PacketLoss.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.PacketLoss.Value)
-		}
-	}
-	// property: name=system_health_metrics_thresholds, type=REFERENCE macro=copy_to_state
-	if ans.SystemHealthMetricsThresholds == nil {
-		state.SystemHealthMetricsThresholds = nil
-	} else {
-		state.SystemHealthMetricsThresholds = &dsModelSystemHealthMetricsThresholds{}
-		// copy_to_state: state=state.SystemHealthMetricsThresholds prefix=dsModel ans=ans.SystemHealthMetricsThresholds properties=3
-		tflog.Debug(ctx, "copy_to_state state=state.SystemHealthMetricsThresholds prefix=dsModel ans=ans.SystemHealthMetricsThresholds")
-		// property: name=cpu_utilization, type=INTEGER macro=copy_to_state
-		state.SystemHealthMetricsThresholds.CpuUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.CpuUtilization)
-		// property: name=disk_utilization, type=INTEGER macro=copy_to_state
-		state.SystemHealthMetricsThresholds.DiskUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.DiskUtilization)
-		// property: name=memory_utilization, type=INTEGER macro=copy_to_state
-		state.SystemHealthMetricsThresholds.MemoryUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.MemoryUtilization)
-	}
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
 
+		// Store the answer to state.
+		var state dsModelPerfMgmtThresholdProfileScreenV2N1
+
+		// start copying attributes
+		var ans sdwan_schema.PerfMgmtThresholdProfileScreenV2N1
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtThresholdProfileScreenV2N1", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=PerfMgmtThresholdProfileScreenV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=circuit_utilization_metrics_thresholds, type=REFERENCE macro=copy_to_state
+		if ans.CircuitUtilizationMetricsThresholds == nil {
+			state.CircuitUtilizationMetricsThresholds = nil
+		} else {
+			state.CircuitUtilizationMetricsThresholds = &dsModelCircuitUtilizationMetricThresholds{}
+			// copy_to_state: state=state.CircuitUtilizationMetricsThresholds prefix=dsModel ans=ans.CircuitUtilizationMetricsThresholds properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.CircuitUtilizationMetricsThresholds prefix=dsModel ans=ans.CircuitUtilizationMetricsThresholds")
+			// property: name=percentage_circuit_utilization, type=INTEGER macro=copy_to_state
+			state.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization = types.Int64PointerValue(ans.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization)
+		}
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=flow_metrics_thresholds, type=REFERENCE macro=copy_to_state
+		if ans.FlowMetricsThresholds == nil {
+			state.FlowMetricsThresholds = nil
+		} else {
+			state.FlowMetricsThresholds = &dsModelFlowMetricThresholds{}
+			// copy_to_state: state=state.FlowMetricsThresholds prefix=dsModel ans=ans.FlowMetricsThresholds properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.FlowMetricsThresholds prefix=dsModel ans=ans.FlowMetricsThresholds")
+			// property: name=percentage_flow_utilization, type=INTEGER macro=copy_to_state
+			state.FlowMetricsThresholds.PercentageFlowUtilization = types.Int64PointerValue(ans.FlowMetricsThresholds.PercentageFlowUtilization)
+		}
+		// property: name=hard_limit_app_metrics, type=REFERENCE macro=copy_to_state
+		if ans.HardLimitAppMetrics == nil {
+			state.HardLimitAppMetrics = nil
+		} else {
+			state.HardLimitAppMetrics = &dsModelStaticAppMetricConfigV2N1{}
+			// copy_to_state: state=state.HardLimitAppMetrics prefix=dsModel ans=ans.HardLimitAppMetrics properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.HardLimitAppMetrics prefix=dsModel ans=ans.HardLimitAppMetrics")
+			// property: name=max_init_failure_rate, type=INTEGER macro=copy_to_state
+			state.HardLimitAppMetrics.MaxInitFailureRate = types.Int64PointerValue(ans.HardLimitAppMetrics.MaxInitFailureRate)
+			// property: name=max_rtt, type=INTEGER macro=copy_to_state
+			state.HardLimitAppMetrics.MaxRtt = types.Int64PointerValue(ans.HardLimitAppMetrics.MaxRtt)
+			// property: name=udp_trt, type=INTEGER macro=copy_to_state
+			state.HardLimitAppMetrics.UdpTrt = types.Int64PointerValue(ans.HardLimitAppMetrics.UdpTrt)
+		}
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=lqm_thresholds, type=REFERENCE macro=copy_to_state
+		if ans.LqmThresholds == nil {
+			state.LqmThresholds = nil
+		} else {
+			state.LqmThresholds = &dsModelLQMThresholdConfigV2N1{}
+			// copy_to_state: state=state.LqmThresholds prefix=dsModel ans=ans.LqmThresholds properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.LqmThresholds prefix=dsModel ans=ans.LqmThresholds")
+			// property: name=max_jitter, type=INTEGER macro=copy_to_state
+			state.LqmThresholds.MaxJitter = types.Int64PointerValue(ans.LqmThresholds.MaxJitter)
+			// property: name=max_latency, type=INTEGER macro=copy_to_state
+			state.LqmThresholds.MaxLatency = types.Int64PointerValue(ans.LqmThresholds.MaxLatency)
+			// property: name=max_packet_loss, type=INTEGER macro=copy_to_state
+			state.LqmThresholds.MaxPacketLoss = types.Int64PointerValue(ans.LqmThresholds.MaxPacketLoss)
+			// property: name=min_mos, type=INTEGER macro=copy_to_state
+			state.LqmThresholds.MinMos = types.Int64PointerValue(ans.LqmThresholds.MinMos)
+		}
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=soft_limit_app_metrics, type=REFERENCE macro=copy_to_state
+		if ans.SoftLimitAppMetrics == nil {
+			state.SoftLimitAppMetrics = nil
+		} else {
+			state.SoftLimitAppMetrics = &dsModelStaticAppMetricConfigV2N1{}
+			// copy_to_state: state=state.SoftLimitAppMetrics prefix=dsModel ans=ans.SoftLimitAppMetrics properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.SoftLimitAppMetrics prefix=dsModel ans=ans.SoftLimitAppMetrics")
+			// property: name=max_init_failure_rate, type=INTEGER macro=copy_to_state
+			state.SoftLimitAppMetrics.MaxInitFailureRate = types.Int64PointerValue(ans.SoftLimitAppMetrics.MaxInitFailureRate)
+			// property: name=max_rtt, type=INTEGER macro=copy_to_state
+			state.SoftLimitAppMetrics.MaxRtt = types.Int64PointerValue(ans.SoftLimitAppMetrics.MaxRtt)
+			// property: name=udp_trt, type=INTEGER macro=copy_to_state
+			state.SoftLimitAppMetrics.UdpTrt = types.Int64PointerValue(ans.SoftLimitAppMetrics.UdpTrt)
+		}
+		// property: name=synthetic_probe_thresholds, type=REFERENCE macro=copy_to_state
+		if ans.SyntheticProbeThresholds == nil {
+			state.SyntheticProbeThresholds = nil
+		} else {
+			state.SyntheticProbeThresholds = &dsModelSyntheticProbeThresholds{}
+			// copy_to_state: state=state.SyntheticProbeThresholds prefix=dsModel ans=ans.SyntheticProbeThresholds properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds prefix=dsModel ans=ans.SyntheticProbeThresholds")
+			// property: name=dns_txn_failure_pct, type=REFERENCE macro=copy_to_state
+			if ans.SyntheticProbeThresholds.DnsTxnFailurePct == nil {
+				state.SyntheticProbeThresholds.DnsTxnFailurePct = nil
+			} else {
+				state.SyntheticProbeThresholds.DnsTxnFailurePct = &dsModelSyntheticProbeThreshold{}
+				// copy_to_state: state=state.SyntheticProbeThresholds.DnsTxnFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.DnsTxnFailurePct properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.DnsTxnFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.DnsTxnFailurePct")
+				// property: name=probe_config_id, type=STRING macro=copy_to_state
+				state.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId)
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.SyntheticProbeThresholds.DnsTxnFailurePct.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.DnsTxnFailurePct.Value)
+			}
+			// property: name=init_failure_pct, type=REFERENCE macro=copy_to_state
+			if ans.SyntheticProbeThresholds.InitFailurePct == nil {
+				state.SyntheticProbeThresholds.InitFailurePct = nil
+			} else {
+				state.SyntheticProbeThresholds.InitFailurePct = &dsModelSyntheticProbeThreshold{}
+				// copy_to_state: state=state.SyntheticProbeThresholds.InitFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.InitFailurePct properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.InitFailurePct prefix=dsModel ans=ans.SyntheticProbeThresholds.InitFailurePct")
+				// property: name=probe_config_id, type=STRING macro=copy_to_state
+				state.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId)
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.SyntheticProbeThresholds.InitFailurePct.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.InitFailurePct.Value)
+			}
+			// property: name=jitter, type=REFERENCE macro=copy_to_state
+			if ans.SyntheticProbeThresholds.Jitter == nil {
+				state.SyntheticProbeThresholds.Jitter = nil
+			} else {
+				state.SyntheticProbeThresholds.Jitter = &dsModelSyntheticProbeThreshold{}
+				// copy_to_state: state=state.SyntheticProbeThresholds.Jitter prefix=dsModel ans=ans.SyntheticProbeThresholds.Jitter properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.Jitter prefix=dsModel ans=ans.SyntheticProbeThresholds.Jitter")
+				// property: name=probe_config_id, type=STRING macro=copy_to_state
+				state.SyntheticProbeThresholds.Jitter.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.Jitter.ProbeConfigId)
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.SyntheticProbeThresholds.Jitter.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.Jitter.Value)
+			}
+			// property: name=latency, type=REFERENCE macro=copy_to_state
+			if ans.SyntheticProbeThresholds.Latency == nil {
+				state.SyntheticProbeThresholds.Latency = nil
+			} else {
+				state.SyntheticProbeThresholds.Latency = &dsModelSyntheticProbeThreshold{}
+				// copy_to_state: state=state.SyntheticProbeThresholds.Latency prefix=dsModel ans=ans.SyntheticProbeThresholds.Latency properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.Latency prefix=dsModel ans=ans.SyntheticProbeThresholds.Latency")
+				// property: name=probe_config_id, type=STRING macro=copy_to_state
+				state.SyntheticProbeThresholds.Latency.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.Latency.ProbeConfigId)
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.SyntheticProbeThresholds.Latency.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.Latency.Value)
+			}
+			// property: name=packet_loss, type=REFERENCE macro=copy_to_state
+			if ans.SyntheticProbeThresholds.PacketLoss == nil {
+				state.SyntheticProbeThresholds.PacketLoss = nil
+			} else {
+				state.SyntheticProbeThresholds.PacketLoss = &dsModelSyntheticProbeThreshold{}
+				// copy_to_state: state=state.SyntheticProbeThresholds.PacketLoss prefix=dsModel ans=ans.SyntheticProbeThresholds.PacketLoss properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.SyntheticProbeThresholds.PacketLoss prefix=dsModel ans=ans.SyntheticProbeThresholds.PacketLoss")
+				// property: name=probe_config_id, type=STRING macro=copy_to_state
+				state.SyntheticProbeThresholds.PacketLoss.ProbeConfigId = types.StringPointerValue(ans.SyntheticProbeThresholds.PacketLoss.ProbeConfigId)
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.SyntheticProbeThresholds.PacketLoss.Value = types.Int64PointerValue(ans.SyntheticProbeThresholds.PacketLoss.Value)
+			}
+		}
+		// property: name=system_health_metrics_thresholds, type=REFERENCE macro=copy_to_state
+		if ans.SystemHealthMetricsThresholds == nil {
+			state.SystemHealthMetricsThresholds = nil
+		} else {
+			state.SystemHealthMetricsThresholds = &dsModelSystemHealthMetricsThresholds{}
+			// copy_to_state: state=state.SystemHealthMetricsThresholds prefix=dsModel ans=ans.SystemHealthMetricsThresholds properties=3
+			tflog.Debug(ctx, "copy_to_state state=state.SystemHealthMetricsThresholds prefix=dsModel ans=ans.SystemHealthMetricsThresholds")
+			// property: name=cpu_utilization, type=INTEGER macro=copy_to_state
+			state.SystemHealthMetricsThresholds.CpuUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.CpuUtilization)
+			// property: name=disk_utilization, type=INTEGER macro=copy_to_state
+			state.SystemHealthMetricsThresholds.DiskUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.DiskUtilization)
+			// property: name=memory_utilization, type=INTEGER macro=copy_to_state
+			state.SystemHealthMetricsThresholds.MemoryUtilization = types.Int64PointerValue(ans.SystemHealthMetricsThresholds.MemoryUtilization)
+		}
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

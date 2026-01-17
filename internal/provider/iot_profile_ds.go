@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -51,6 +52,14 @@ type iotProfileDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterIotProfile struct {
+	Filters      types.Map                 `tfsdk:"filters"`
+	TfParameters types.Map                 `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64               `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64               `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelDeviceIdProfile `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *iotProfileDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_iot_profile"
@@ -60,12 +69,13 @@ func (d *iotProfileDataSource) Metadata(_ context.Context, req datasource.Metada
 func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=DeviceIdProfile
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -83,237 +93,259 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=num_associated_sites, type=INTEGER macro=rss_schema
-			"num_associated_sites": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=num_associated_sites, type=INTEGER macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
-			// property: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
-			"snmp_discovery_device_refresh_frequency": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
-			// property: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
-			"snmp_discovery_enabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
-			// property: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
-			"snmp_discovery_network_refresh_frequency": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
-			// property: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
-			"snmp_discovery_use_local_neighbours": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
-			// property: name=snmp_version, type=STRING macro=rss_schema
-			"snmp_version": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=snmp_version, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=v2_config, type=REFERENCE macro=rss_schema
-			"v2_config": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=snmp_community_string, type=STRING macro=rss_schema
-					"snmp_community_string": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: dsschema.NestedAttributeObject{
+					Attributes: map[string]dsschema.Attribute{
+						// rest all properties to be read from GET API Schema schema=DeviceIdProfile
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=disabled, type=BOOLEAN macro=rss_schema
+						"disabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+						// property: name=disabled_reason, type=STRING macro=rss_schema
+						"disabled_reason": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=inactive, type=BOOLEAN macro=rss_schema
+						"inactive": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
+						// property: name=inactive_reason, type=STRING macro=rss_schema
+						"inactive_reason": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=num_associated_sites, type=INTEGER macro=rss_schema
+						"num_associated_sites": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=num_associated_sites, type=INTEGER macro=rss_schema
+						// property: name=region, type=STRING macro=rss_schema
+						"region": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=region, type=STRING macro=rss_schema
+						// property: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
+						"snmp_discovery_device_refresh_frequency": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
+						// property: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
+						"snmp_discovery_enabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
+						// property: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
+						"snmp_discovery_network_refresh_frequency": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
+						// property: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
+						"snmp_discovery_use_local_neighbours": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
+						// property: name=snmp_version, type=STRING macro=rss_schema
+						"snmp_version": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=snmp_version, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=v2_config, type=REFERENCE macro=rss_schema
+						"v2_config": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=snmp_community_string, type=STRING macro=rss_schema
+								"snmp_community_string": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
+						// property: name=v3_config, type=REFERENCE macro=rss_schema
+						"v3_config": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=snmp_auth_password, type=STRING macro=rss_schema
+								"snmp_auth_password": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: true,
+								},
+								// key name holder for attribute: name=snmp_auth_password, type=STRING macro=rss_schema
+								"snmp_auth_password_internal_key_name": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  true,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// property: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
+								"snmp_auth_password_encrypted": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: true,
+								},
+								// key name holder for attribute: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
+								"snmp_auth_password_encrypted_internal_key_name": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  true,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// property: name=snmp_auth_protocol, type=STRING macro=rss_schema
+								"snmp_auth_protocol": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_auth_protocol, type=STRING macro=rss_schema
+								// property: name=snmp_privacy_password, type=STRING macro=rss_schema
+								"snmp_privacy_password": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_privacy_password, type=STRING macro=rss_schema
+								// property: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
+								"snmp_privacy_password_encrypted": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
+								// property: name=snmp_privacy_protocol, type=STRING macro=rss_schema
+								"snmp_privacy_protocol": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_privacy_protocol, type=STRING macro=rss_schema
+								// property: name=snmp_security_level, type=STRING macro=rss_schema
+								"snmp_security_level": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_security_level, type=STRING macro=rss_schema
+								// property: name=snmp_username, type=STRING macro=rss_schema
+								"snmp_username": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=snmp_username, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=snmp_username, type=STRING macro=rss_schema
 					},
-					// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
-			// property: name=v3_config, type=REFERENCE macro=rss_schema
-			"v3_config": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=snmp_auth_password, type=STRING macro=rss_schema
-					"snmp_auth_password": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=snmp_auth_password, type=STRING macro=rss_schema
-					"snmp_auth_password_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// property: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
-					"snmp_auth_password_encrypted": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
-					"snmp_auth_password_encrypted_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// property: name=snmp_auth_protocol, type=STRING macro=rss_schema
-					"snmp_auth_protocol": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=snmp_auth_protocol, type=STRING macro=rss_schema
-					// property: name=snmp_privacy_password, type=STRING macro=rss_schema
-					"snmp_privacy_password": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=snmp_privacy_password, type=STRING macro=rss_schema
-					// property: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
-					"snmp_privacy_password_encrypted": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
-					// property: name=snmp_privacy_protocol, type=STRING macro=rss_schema
-					"snmp_privacy_protocol": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=snmp_privacy_protocol, type=STRING macro=rss_schema
-					// property: name=snmp_security_level, type=STRING macro=rss_schema
-					"snmp_security_level": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=snmp_security_level, type=STRING macro=rss_schema
-					// property: name=snmp_username, type=STRING macro=rss_schema
-					"snmp_username": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=snmp_username, type=STRING macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=snmp_username, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -328,8 +360,9 @@ func (d *iotProfileDataSource) Configure(_ context.Context, req datasource.Confi
 
 // Read performs Read for the struct.
 func (d *iotProfileDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelDeviceIdProfile
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterIotProfile
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -342,127 +375,170 @@ func (d *iotProfileDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		"resource_name":               "prismasdwan_iot_profile",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_iot_profile ID format", "Expected 1 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/deviceidprofiles/{profile_id}"
+	get_path := "/sdwan/v2.0/api/deviceidprofiles/{profile_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["profile_id"] = &tokens[0]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_iot_profile", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_iot_profile", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.DeviceIdProfile
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to DeviceIdProfile", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=DeviceIdProfile
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=19
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=num_associated_sites, type=INTEGER macro=copy_to_state
-	state.NumAssociatedSites = types.Int64PointerValue(ans.NumAssociatedSites)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=copy_to_state
-	state.SnmpDiscoveryDeviceRefreshFrequency = types.Int64PointerValue(ans.SnmpDiscoveryDeviceRefreshFrequency)
-	// property: name=snmp_discovery_enabled, type=BOOLEAN macro=copy_to_state
-	state.SnmpDiscoveryEnabled = types.BoolPointerValue(ans.SnmpDiscoveryEnabled)
-	// property: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=copy_to_state
-	state.SnmpDiscoveryNetworkRefreshFrequency = types.Int64PointerValue(ans.SnmpDiscoveryNetworkRefreshFrequency)
-	// property: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=copy_to_state
-	state.SnmpDiscoveryUseLocalNeighbours = types.BoolPointerValue(ans.SnmpDiscoveryUseLocalNeighbours)
-	// property: name=snmp_version, type=STRING macro=copy_to_state
-	state.SnmpVersion = types.StringPointerValue(ans.SnmpVersion)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=v2_config, type=REFERENCE macro=copy_to_state
-	if ans.V2Config == nil {
-		state.V2Config = nil
-	} else {
-		state.V2Config = &dsModelDeviceIdSNMPV2Config{}
-		// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=1
-		tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
-		// property: name=snmp_community_string, type=STRING macro=copy_to_state
-		state.V2Config.SnmpCommunityString = types.StringPointerValue(ans.V2Config.SnmpCommunityString)
-	}
-	// property: name=v3_config, type=REFERENCE macro=copy_to_state
-	if ans.V3Config == nil {
-		state.V3Config = nil
-	} else {
-		state.V3Config = &dsModelDeviceIdSNMPV3Config{}
-		// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
-		// property: name=snmp_auth_password, type=STRING macro=copy_to_state
-		state.V3Config.SnmpAuthPassword = types.StringPointerValue(ans.V3Config.SnmpAuthPassword)
-		// property: name=snmp_auth_password_encrypted, type=STRING macro=copy_to_state
-		state.V3Config.SnmpAuthPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpAuthPasswordEncrypted)
-		// property: name=snmp_auth_protocol, type=STRING macro=copy_to_state
-		state.V3Config.SnmpAuthProtocol = types.StringPointerValue(ans.V3Config.SnmpAuthProtocol)
-		// property: name=snmp_privacy_password, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(ans.V3Config.SnmpPrivacyPassword)
-		// property: name=snmp_privacy_password_encrypted, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpPrivacyPasswordEncrypted)
-		// property: name=snmp_privacy_protocol, type=STRING macro=copy_to_state
-		state.V3Config.SnmpPrivacyProtocol = types.StringPointerValue(ans.V3Config.SnmpPrivacyProtocol)
-		// property: name=snmp_security_level, type=STRING macro=copy_to_state
-		state.V3Config.SnmpSecurityLevel = types.StringPointerValue(ans.V3Config.SnmpSecurityLevel)
-		// property: name=snmp_username, type=STRING macro=copy_to_state
-		state.V3Config.SnmpUsername = types.StringPointerValue(ans.V3Config.SnmpUsername)
-	}
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
 
+		// Store the answer to state.
+		var state dsModelDeviceIdProfile
+
+		// start copying attributes
+		var ans sdwan_schema.DeviceIdProfile
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to DeviceIdProfile", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=DeviceIdProfile
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=19
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=disabled, type=BOOLEAN macro=copy_to_state
+		state.Disabled = types.BoolPointerValue(ans.Disabled)
+		// property: name=disabled_reason, type=STRING macro=copy_to_state
+		state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=inactive, type=BOOLEAN macro=copy_to_state
+		state.Inactive = types.BoolPointerValue(ans.Inactive)
+		// property: name=inactive_reason, type=STRING macro=copy_to_state
+		state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=num_associated_sites, type=INTEGER macro=copy_to_state
+		state.NumAssociatedSites = types.Int64PointerValue(ans.NumAssociatedSites)
+		// property: name=region, type=STRING macro=copy_to_state
+		state.Region = types.StringPointerValue(ans.Region)
+		// property: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=copy_to_state
+		state.SnmpDiscoveryDeviceRefreshFrequency = types.Int64PointerValue(ans.SnmpDiscoveryDeviceRefreshFrequency)
+		// property: name=snmp_discovery_enabled, type=BOOLEAN macro=copy_to_state
+		state.SnmpDiscoveryEnabled = types.BoolPointerValue(ans.SnmpDiscoveryEnabled)
+		// property: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=copy_to_state
+		state.SnmpDiscoveryNetworkRefreshFrequency = types.Int64PointerValue(ans.SnmpDiscoveryNetworkRefreshFrequency)
+		// property: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=copy_to_state
+		state.SnmpDiscoveryUseLocalNeighbours = types.BoolPointerValue(ans.SnmpDiscoveryUseLocalNeighbours)
+		// property: name=snmp_version, type=STRING macro=copy_to_state
+		state.SnmpVersion = types.StringPointerValue(ans.SnmpVersion)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=v2_config, type=REFERENCE macro=copy_to_state
+		if ans.V2Config == nil {
+			state.V2Config = nil
+		} else {
+			state.V2Config = &dsModelDeviceIdSNMPV2Config{}
+			// copy_to_state: state=state.V2Config prefix=dsModel ans=ans.V2Config properties=1
+			tflog.Debug(ctx, "copy_to_state state=state.V2Config prefix=dsModel ans=ans.V2Config")
+			// property: name=snmp_community_string, type=STRING macro=copy_to_state
+			state.V2Config.SnmpCommunityString = types.StringPointerValue(ans.V2Config.SnmpCommunityString)
+		}
+		// property: name=v3_config, type=REFERENCE macro=copy_to_state
+		if ans.V3Config == nil {
+			state.V3Config = nil
+		} else {
+			state.V3Config = &dsModelDeviceIdSNMPV3Config{}
+			// copy_to_state: state=state.V3Config prefix=dsModel ans=ans.V3Config properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.V3Config prefix=dsModel ans=ans.V3Config")
+			// property: name=snmp_auth_password, type=STRING macro=copy_to_state
+			state.V3Config.SnmpAuthPassword = types.StringPointerValue(ans.V3Config.SnmpAuthPassword)
+			// property: name=snmp_auth_password_encrypted, type=STRING macro=copy_to_state
+			state.V3Config.SnmpAuthPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpAuthPasswordEncrypted)
+			// property: name=snmp_auth_protocol, type=STRING macro=copy_to_state
+			state.V3Config.SnmpAuthProtocol = types.StringPointerValue(ans.V3Config.SnmpAuthProtocol)
+			// property: name=snmp_privacy_password, type=STRING macro=copy_to_state
+			state.V3Config.SnmpPrivacyPassword = types.StringPointerValue(ans.V3Config.SnmpPrivacyPassword)
+			// property: name=snmp_privacy_password_encrypted, type=STRING macro=copy_to_state
+			state.V3Config.SnmpPrivacyPasswordEncrypted = types.StringPointerValue(ans.V3Config.SnmpPrivacyPasswordEncrypted)
+			// property: name=snmp_privacy_protocol, type=STRING macro=copy_to_state
+			state.V3Config.SnmpPrivacyProtocol = types.StringPointerValue(ans.V3Config.SnmpPrivacyProtocol)
+			// property: name=snmp_security_level, type=STRING macro=copy_to_state
+			state.V3Config.SnmpSecurityLevel = types.StringPointerValue(ans.V3Config.SnmpSecurityLevel)
+			// property: name=snmp_username, type=STRING macro=copy_to_state
+			state.V3Config.SnmpUsername = types.StringPointerValue(ans.V3Config.SnmpUsername)
+		}
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

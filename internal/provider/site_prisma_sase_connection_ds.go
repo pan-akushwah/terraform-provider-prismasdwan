@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -55,6 +56,14 @@ type sitePrismaSaseConnectionDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterSitePrismaSaseConnection struct {
+	Filters      types.Map                          `tfsdk:"filters"`
+	TfParameters types.Map                          `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                        `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                        `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelSaseConnectionScreenV2N1 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *sitePrismaSaseConnectionDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_site_prisma_sase_connection"
@@ -64,12 +73,13 @@ func (d *sitePrismaSaseConnectionDataSource) Metadata(_ context.Context, req dat
 func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=SaseConnectionScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -87,194 +97,315 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=enabled_wan_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"enabled_wan_interface_ids": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=enabled_wan_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=ipsec_tunnel_configs, type=REFERENCE macro=rss_schema
-			"ipsec_tunnel_configs": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=anti_replay, type=BOOLEAN macro=rss_schema
-					"anti_replay": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=anti_replay, type=BOOLEAN macro=rss_schema
-					// property: name=copy_tos, type=BOOLEAN macro=rss_schema
-					"copy_tos": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=copy_tos, type=BOOLEAN macro=rss_schema
-					// property: name=enable_gre_encapsulation, type=BOOLEAN macro=rss_schema
-					"enable_gre_encapsulation": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=enable_gre_encapsulation, type=BOOLEAN macro=rss_schema
-					// property: name=ike_key_exchange, type=STRING macro=rss_schema
-					"ike_key_exchange": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=ike_key_exchange, type=STRING macro=rss_schema
-					// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=rss_schema
-					"prismaaccess_ike_crypto_profile_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=rss_schema
-					// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=rss_schema
-					"prismaaccess_ipsec_profile_id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=prismaaccess_ipsec_profile_id, type=STRING macro=rss_schema
-					// property: name=tunnel_monitoring, type=BOOLEAN macro=rss_schema
-					"tunnel_monitoring": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=tunnel_monitoring, type=BOOLEAN macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=tunnel_monitoring, type=BOOLEAN macro=rss_schema
-			// property: name=is_active, type=BOOLEAN macro=rss_schema
-			"is_active": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=is_active, type=BOOLEAN macro=rss_schema
-			// property: name=is_enabled, type=BOOLEAN macro=rss_schema
-			"is_enabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=is_enabled, type=BOOLEAN macro=rss_schema
-			// property: name=license_type, type=STRING macro=rss_schema
-			"license_type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=license_type, type=STRING macro=rss_schema
-			// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
-			"prismaaccess_edge_location": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=rss_schema
-			"prismaaccess_qos_cir_mbps": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=rss_schema
-			// property: name=prismaaccess_qos_profile_id, type=STRING macro=rss_schema
-			"prismaaccess_qos_profile_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=prismaaccess_qos_profile_id, type=STRING macro=rss_schema
-			// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=rss_schema
-			"remote_network_groups": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=rss_schema
-						"ipsec_tunnels": dsschema.ListNestedAttribute{
+						// rest all properties to be read from GET API Schema schema=SaseConnectionScreenV2N1
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=enabled_wan_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						"enabled_wan_interface_ids": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=enabled_wan_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=ipsec_tunnel_configs, type=REFERENCE macro=rss_schema
+						"ipsec_tunnel_configs": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=anti_replay, type=BOOLEAN macro=rss_schema
+								"anti_replay": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=anti_replay, type=BOOLEAN macro=rss_schema
+								// property: name=copy_tos, type=BOOLEAN macro=rss_schema
+								"copy_tos": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=copy_tos, type=BOOLEAN macro=rss_schema
+								// property: name=enable_gre_encapsulation, type=BOOLEAN macro=rss_schema
+								"enable_gre_encapsulation": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=enable_gre_encapsulation, type=BOOLEAN macro=rss_schema
+								// property: name=ike_key_exchange, type=STRING macro=rss_schema
+								"ike_key_exchange": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=ike_key_exchange, type=STRING macro=rss_schema
+								// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=rss_schema
+								"prismaaccess_ike_crypto_profile_id": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=rss_schema
+								// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=rss_schema
+								"prismaaccess_ipsec_profile_id": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=prismaaccess_ipsec_profile_id, type=STRING macro=rss_schema
+								// property: name=tunnel_monitoring, type=BOOLEAN macro=rss_schema
+								"tunnel_monitoring": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=tunnel_monitoring, type=BOOLEAN macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=tunnel_monitoring, type=BOOLEAN macro=rss_schema
+						// property: name=is_active, type=BOOLEAN macro=rss_schema
+						"is_active": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=is_active, type=BOOLEAN macro=rss_schema
+						// property: name=is_enabled, type=BOOLEAN macro=rss_schema
+						"is_enabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=is_enabled, type=BOOLEAN macro=rss_schema
+						// property: name=license_type, type=STRING macro=rss_schema
+						"license_type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=license_type, type=STRING macro=rss_schema
+						// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
+						"prismaaccess_edge_location": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=rss_schema
+						"prismaaccess_qos_cir_mbps": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=rss_schema
+						// property: name=prismaaccess_qos_profile_id, type=STRING macro=rss_schema
+						"prismaaccess_qos_profile_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=prismaaccess_qos_profile_id, type=STRING macro=rss_schema
+						// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=rss_schema
+						"remote_network_groups": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
-									// property: name=authentication, type=REFERENCE macro=rss_schema
-									"authentication": dsschema.SingleNestedAttribute{
+									// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=rss_schema
+									"ipsec_tunnels": dsschema.ListNestedAttribute{
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
 										Sensitive: false,
-										Attributes: map[string]dsschema.Attribute{
-											// property: name=branch_ike_identification, type=STRING macro=rss_schema
-											"branch_ike_identification": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+										NestedObject: dsschema.NestedAttributeObject{
+											Attributes: map[string]dsschema.Attribute{
+												// property: name=authentication, type=REFERENCE macro=rss_schema
+												"authentication": dsschema.SingleNestedAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+													Attributes: map[string]dsschema.Attribute{
+														// property: name=branch_ike_identification, type=STRING macro=rss_schema
+														"branch_ike_identification": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=branch_ike_identification, type=STRING macro=rss_schema
+														// property: name=prismaaccess_ike_identification, type=STRING macro=rss_schema
+														"prismaaccess_ike_identification": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=prismaaccess_ike_identification, type=STRING macro=rss_schema
+														// property: name=psk, type=STRING macro=rss_schema
+														"psk": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=psk, type=STRING macro=rss_schema
+													},
+												},
+												// key name holder for attribute: name=psk, type=STRING macro=rss_schema
+												// property: name=name, type=STRING macro=rss_schema
+												"name": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=name, type=STRING macro=rss_schema
+												// property: name=routing, type=REFERENCE macro=rss_schema
+												"routing": dsschema.SingleNestedAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+													Attributes: map[string]dsschema.Attribute{
+														// property: name=branch_as_number, type=STRING macro=rss_schema
+														"branch_as_number": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=branch_as_number, type=STRING macro=rss_schema
+														// property: name=branch_ip_address, type=STRING macro=rss_schema
+														"branch_ip_address": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=branch_ip_address, type=STRING macro=rss_schema
+														// property: name=prismaaccess_ip_address, type=STRING macro=rss_schema
+														"prismaaccess_ip_address": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=prismaaccess_ip_address, type=STRING macro=rss_schema
+													},
+												},
+												// key name holder for attribute: name=prismaaccess_ip_address, type=STRING macro=rss_schema
+												// property: name=routing_configs, type=REFERENCE macro=rss_schema
+												"routing_configs": dsschema.SingleNestedAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+													Attributes: map[string]dsschema.Attribute{
+														// property: name=advertise_default_route, type=BOOLEAN macro=rss_schema
+														"advertise_default_route": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=advertise_default_route, type=BOOLEAN macro=rss_schema
+														// property: name=bgp_secret, type=STRING macro=rss_schema
+														"bgp_secret": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
+														"bgp_secret_internal_key_name": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  true,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// property: name=export_routes, type=BOOLEAN macro=rss_schema
+														"export_routes": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=export_routes, type=BOOLEAN macro=rss_schema
+														// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
+														"summarize_mobile_routes_before_advertise": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
+													},
+												},
+												// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
+												// property: name=wan_interface_id, type=STRING macro=rss_schema
+												"wan_interface_id": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
 											},
-											// key name holder for attribute: name=branch_ike_identification, type=STRING macro=rss_schema
-											// property: name=prismaaccess_ike_identification, type=STRING macro=rss_schema
-											"prismaaccess_ike_identification": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=prismaaccess_ike_identification, type=STRING macro=rss_schema
-											// property: name=psk, type=STRING macro=rss_schema
-											"psk": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=psk, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=psk, type=STRING macro=rss_schema
+									// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
 									// property: name=name, type=STRING macro=rss_schema
 									"name": dsschema.StringAttribute{
 										Required:  false,
@@ -283,177 +414,78 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=name, type=STRING macro=rss_schema
-									// property: name=routing, type=REFERENCE macro=rss_schema
-									"routing": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-										Attributes: map[string]dsschema.Attribute{
-											// property: name=branch_as_number, type=STRING macro=rss_schema
-											"branch_as_number": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=branch_as_number, type=STRING macro=rss_schema
-											// property: name=branch_ip_address, type=STRING macro=rss_schema
-											"branch_ip_address": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=branch_ip_address, type=STRING macro=rss_schema
-											// property: name=prismaaccess_ip_address, type=STRING macro=rss_schema
-											"prismaaccess_ip_address": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=prismaaccess_ip_address, type=STRING macro=rss_schema
-										},
+									// property: name=spn_name, type=ARRAY_PRIMITIVE macro=rss_schema
+									"spn_name": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.StringType,
 									},
-									// key name holder for attribute: name=prismaaccess_ip_address, type=STRING macro=rss_schema
-									// property: name=routing_configs, type=REFERENCE macro=rss_schema
-									"routing_configs": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-										Attributes: map[string]dsschema.Attribute{
-											// property: name=advertise_default_route, type=BOOLEAN macro=rss_schema
-											"advertise_default_route": dsschema.BoolAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=advertise_default_route, type=BOOLEAN macro=rss_schema
-											// property: name=bgp_secret, type=STRING macro=rss_schema
-											"bgp_secret": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: true,
-											},
-											// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
-											"bgp_secret_internal_key_name": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  true,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// property: name=export_routes, type=BOOLEAN macro=rss_schema
-											"export_routes": dsschema.BoolAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=export_routes, type=BOOLEAN macro=rss_schema
-											// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
-											"summarize_mobile_routes_before_advertise": dsschema.BoolAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
-										},
-									},
-									// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
-									// property: name=wan_interface_id, type=STRING macro=rss_schema
-									"wan_interface_id": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
+									// key name holder for attribute: name=spn_name, type=ARRAY_PRIMITIVE macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
-						// property: name=name, type=STRING macro=rss_schema
-						"name": dsschema.StringAttribute{
+						// key name holder for attribute: name=spn_name, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=routing_configs, type=REFERENCE macro=rss_schema
+						"routing_configs": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=advertise_default_route, type=BOOLEAN macro=rss_schema
+								"advertise_default_route": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=advertise_default_route, type=BOOLEAN macro=rss_schema
+								// property: name=bgp_secret, type=STRING macro=rss_schema
+								"bgp_secret": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: true,
+								},
+								// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
+								"bgp_secret_internal_key_name": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  true,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// property: name=export_routes, type=BOOLEAN macro=rss_schema
+								"export_routes": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=export_routes, type=BOOLEAN macro=rss_schema
+								// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
+								"summarize_mobile_routes_before_advertise": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
+						// property: name=site_id, type=STRING macro=rss_schema
+						"site_id": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=name, type=STRING macro=rss_schema
-						// property: name=spn_name, type=ARRAY_PRIMITIVE macro=rss_schema
-						"spn_name": dsschema.ListAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=spn_name, type=ARRAY_PRIMITIVE macro=rss_schema
+						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=spn_name, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=routing_configs, type=REFERENCE macro=rss_schema
-			"routing_configs": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=advertise_default_route, type=BOOLEAN macro=rss_schema
-					"advertise_default_route": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=advertise_default_route, type=BOOLEAN macro=rss_schema
-					// property: name=bgp_secret, type=STRING macro=rss_schema
-					"bgp_secret": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: true,
-					},
-					// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
-					"bgp_secret_internal_key_name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// property: name=export_routes, type=BOOLEAN macro=rss_schema
-					"export_routes": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=export_routes, type=BOOLEAN macro=rss_schema
-					// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
-					"summarize_mobile_routes_before_advertise": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
-			// property: name=site_id, type=STRING macro=rss_schema
-			"site_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -468,8 +500,9 @@ func (d *sitePrismaSaseConnectionDataSource) Configure(_ context.Context, req da
 
 // Read performs Read for the struct.
 func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelSaseConnectionScreenV2N1
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterSitePrismaSaseConnection
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -482,204 +515,246 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 		"resource_name":               "prismasdwan_site_prisma_sase_connection",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 2 {
-		resp.Diagnostics.AddError("error in prismasdwan_site_prisma_sase_connection ID format", "Expected 2 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
+	get_path := "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["prismasase_connection_id"] = &tokens[1]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_site_prisma_sase_connection", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_site_prisma_sase_connection", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.SaseConnectionScreenV2N1
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV2N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-
-	// lets copy all items into state schema=SaseConnectionScreenV2N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=14
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=enabled_wan_interface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varEnabledWanInterfaceIds, errEnabledWanInterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.EnabledWanInterfaceIds)
-	state.EnabledWanInterfaceIds = varEnabledWanInterfaceIds
-	resp.Diagnostics.Append(errEnabledWanInterfaceIds.Errors()...)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=ipsec_tunnel_configs, type=REFERENCE macro=copy_to_state
-	if ans.IpsecTunnelConfigs == nil {
-		state.IpsecTunnelConfigs = nil
-	} else {
-		state.IpsecTunnelConfigs = &dsModelIPSecTunnelConfigs{}
-		// copy_to_state: state=state.IpsecTunnelConfigs prefix=dsModel ans=ans.IpsecTunnelConfigs properties=7
-		tflog.Debug(ctx, "copy_to_state state=state.IpsecTunnelConfigs prefix=dsModel ans=ans.IpsecTunnelConfigs")
-		// property: name=anti_replay, type=BOOLEAN macro=copy_to_state
-		state.IpsecTunnelConfigs.AntiReplay = types.BoolPointerValue(ans.IpsecTunnelConfigs.AntiReplay)
-		// property: name=copy_tos, type=BOOLEAN macro=copy_to_state
-		state.IpsecTunnelConfigs.CopyTos = types.BoolPointerValue(ans.IpsecTunnelConfigs.CopyTos)
-		// property: name=enable_gre_encapsulation, type=BOOLEAN macro=copy_to_state
-		state.IpsecTunnelConfigs.EnableGreEncapsulation = types.BoolPointerValue(ans.IpsecTunnelConfigs.EnableGreEncapsulation)
-		// property: name=ike_key_exchange, type=STRING macro=copy_to_state
-		state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(ans.IpsecTunnelConfigs.IkeKeyExchange)
-		// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=copy_to_state
-		state.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
-		// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=copy_to_state
-		state.IpsecTunnelConfigs.PrismaaccessIpsecProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIpsecProfileId)
-		// property: name=tunnel_monitoring, type=BOOLEAN macro=copy_to_state
-		state.IpsecTunnelConfigs.TunnelMonitoring = types.BoolPointerValue(ans.IpsecTunnelConfigs.TunnelMonitoring)
-	}
-	// property: name=is_active, type=BOOLEAN macro=copy_to_state
-	state.IsActive = types.BoolPointerValue(ans.IsActive)
-	// property: name=is_enabled, type=BOOLEAN macro=copy_to_state
-	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
-	// property: name=license_type, type=STRING macro=copy_to_state
-	state.LicenseType = types.StringPointerValue(ans.LicenseType)
-	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
-	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
-	resp.Diagnostics.Append(errPrismaaccessEdgeLocation.Errors()...)
-	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_to_state
-	state.PrismaaccessQosCirMbps = types.Int64PointerValue(ans.PrismaaccessQosCirMbps)
-	// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_to_state
-	state.PrismaaccessQosProfileId = types.StringPointerValue(ans.PrismaaccessQosProfileId)
-	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.RemoteNetworkGroups == nil {
-		state.RemoteNetworkGroups = nil
-	} else if len(ans.RemoteNetworkGroups) == 0 {
-		state.RemoteNetworkGroups = []dsModelRemoteNetworkGroup{}
-	} else {
-		state.RemoteNetworkGroups = make([]dsModelRemoteNetworkGroup, 0, len(ans.RemoteNetworkGroups))
-		for varLoopRemoteNetworkGroupsIndex, varLoopRemoteNetworkGroups := range ans.RemoteNetworkGroups {
-			// add a new item
-			state.RemoteNetworkGroups = append(state.RemoteNetworkGroups, dsModelRemoteNetworkGroup{})
-			// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=dsModel ans=varLoopRemoteNetworkGroups properties=3
-			tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=dsModel ans=varLoopRemoteNetworkGroups")
-			// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
-				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
-			} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []dsModelIPSecTunnel{}
-			} else {
-				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]dsModelIPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
-				for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
-					// add a new item
-					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, dsModelIPSecTunnel{})
-					// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=dsModel ans=varLoopIpsecTunnels properties=5
-					tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=dsModel ans=varLoopIpsecTunnels")
-					// property: name=authentication, type=REFERENCE macro=copy_to_state
-					if varLoopIpsecTunnels.Authentication == nil {
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = nil
-					} else {
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &dsModelIPSecTunnelAuthentication{}
-						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=dsModel ans=varLoopIpsecTunnels.Authentication properties=3
-						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=dsModel ans=varLoopIpsecTunnels.Authentication")
-						// property: name=branch_ike_identification, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
-						// property: name=prismaaccess_ike_identification, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.PrismaaccessIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.PrismaaccessIkeIdentification)
-						// property: name=psk, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.Psk = types.StringPointerValue(varLoopIpsecTunnels.Authentication.Psk)
-					}
-					// property: name=name, type=STRING macro=copy_to_state
-					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Name = types.StringPointerValue(varLoopIpsecTunnels.Name)
-					// property: name=routing, type=REFERENCE macro=copy_to_state
-					if varLoopIpsecTunnels.Routing == nil {
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = nil
-					} else {
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &dsModelRouting{}
-						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=dsModel ans=varLoopIpsecTunnels.Routing properties=3
-						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=dsModel ans=varLoopIpsecTunnels.Routing")
-						// property: name=branch_as_number, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchAsNumber)
-						// property: name=branch_ip_address, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchIpAddress = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchIpAddress)
-						// property: name=prismaaccess_ip_address, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.PrismaaccessIpAddress = types.StringPointerValue(varLoopIpsecTunnels.Routing.PrismaaccessIpAddress)
-					}
-					// property: name=routing_configs, type=REFERENCE macro=copy_to_state
-					if varLoopIpsecTunnels.RoutingConfigs == nil {
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = nil
-					} else {
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &dsModelRoutingConfigs{}
-						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=dsModel ans=varLoopIpsecTunnels.RoutingConfigs properties=4
-						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=dsModel ans=varLoopIpsecTunnels.RoutingConfigs")
-						// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
-						// property: name=bgp_secret, type=STRING macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.BgpSecret = types.StringPointerValue(varLoopIpsecTunnels.RoutingConfigs.BgpSecret)
-						// property: name=export_routes, type=BOOLEAN macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.ExportRoutes = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.ExportRoutes)
-						// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
-						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
-					}
-					// property: name=wan_interface_id, type=STRING macro=copy_to_state
-					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].WanInterfaceId = types.StringPointerValue(varLoopIpsecTunnels.WanInterfaceId)
-				}
-			}
-			// property: name=name, type=STRING macro=copy_to_state
-			state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].Name = types.StringPointerValue(varLoopRemoteNetworkGroups.Name)
-			// property: name=spn_name, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varSpnName, errSpnName := types.ListValueFrom(ctx, types.StringType, varLoopRemoteNetworkGroups.SpnName)
-			state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].SpnName = varSpnName
-			resp.Diagnostics.Append(errSpnName.Errors()...)
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
 		}
-	}
-	// property: name=routing_configs, type=REFERENCE macro=copy_to_state
-	if ans.RoutingConfigs == nil {
-		state.RoutingConfigs = nil
-	} else {
-		state.RoutingConfigs = &dsModelRoutingConfigs{}
-		// copy_to_state: state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs properties=4
-		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs")
-		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
-		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
-		// property: name=bgp_secret, type=STRING macro=copy_to_state
-		state.RoutingConfigs.BgpSecret = types.StringPointerValue(ans.RoutingConfigs.BgpSecret)
-		// property: name=export_routes, type=BOOLEAN macro=copy_to_state
-		state.RoutingConfigs.ExportRoutes = types.BoolPointerValue(ans.RoutingConfigs.ExportRoutes)
-		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
-		state.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(ans.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
-	}
-	// property: name=site_id, type=STRING macro=copy_to_state
-	state.SiteId = types.StringPointerValue(ans.SiteId)
 
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelSaseConnectionScreenV2N1
+
+		// start copying attributes
+		var ans sdwan_schema.SaseConnectionScreenV2N1
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV2N1", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=SaseConnectionScreenV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=14
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=enabled_wan_interface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varEnabledWanInterfaceIds, errEnabledWanInterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.EnabledWanInterfaceIds)
+		state.EnabledWanInterfaceIds = varEnabledWanInterfaceIds
+		resp.Diagnostics.Append(errEnabledWanInterfaceIds.Errors()...)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=ipsec_tunnel_configs, type=REFERENCE macro=copy_to_state
+		if ans.IpsecTunnelConfigs == nil {
+			state.IpsecTunnelConfigs = nil
+		} else {
+			state.IpsecTunnelConfigs = &dsModelIPSecTunnelConfigs{}
+			// copy_to_state: state=state.IpsecTunnelConfigs prefix=dsModel ans=ans.IpsecTunnelConfigs properties=7
+			tflog.Debug(ctx, "copy_to_state state=state.IpsecTunnelConfigs prefix=dsModel ans=ans.IpsecTunnelConfigs")
+			// property: name=anti_replay, type=BOOLEAN macro=copy_to_state
+			state.IpsecTunnelConfigs.AntiReplay = types.BoolPointerValue(ans.IpsecTunnelConfigs.AntiReplay)
+			// property: name=copy_tos, type=BOOLEAN macro=copy_to_state
+			state.IpsecTunnelConfigs.CopyTos = types.BoolPointerValue(ans.IpsecTunnelConfigs.CopyTos)
+			// property: name=enable_gre_encapsulation, type=BOOLEAN macro=copy_to_state
+			state.IpsecTunnelConfigs.EnableGreEncapsulation = types.BoolPointerValue(ans.IpsecTunnelConfigs.EnableGreEncapsulation)
+			// property: name=ike_key_exchange, type=STRING macro=copy_to_state
+			state.IpsecTunnelConfigs.IkeKeyExchange = types.StringPointerValue(ans.IpsecTunnelConfigs.IkeKeyExchange)
+			// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=copy_to_state
+			state.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
+			// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=copy_to_state
+			state.IpsecTunnelConfigs.PrismaaccessIpsecProfileId = types.StringPointerValue(ans.IpsecTunnelConfigs.PrismaaccessIpsecProfileId)
+			// property: name=tunnel_monitoring, type=BOOLEAN macro=copy_to_state
+			state.IpsecTunnelConfigs.TunnelMonitoring = types.BoolPointerValue(ans.IpsecTunnelConfigs.TunnelMonitoring)
+		}
+		// property: name=is_active, type=BOOLEAN macro=copy_to_state
+		state.IsActive = types.BoolPointerValue(ans.IsActive)
+		// property: name=is_enabled, type=BOOLEAN macro=copy_to_state
+		state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
+		// property: name=license_type, type=STRING macro=copy_to_state
+		state.LicenseType = types.StringPointerValue(ans.LicenseType)
+		// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
+		state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
+		resp.Diagnostics.Append(errPrismaaccessEdgeLocation.Errors()...)
+		// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_to_state
+		state.PrismaaccessQosCirMbps = types.Int64PointerValue(ans.PrismaaccessQosCirMbps)
+		// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_to_state
+		state.PrismaaccessQosProfileId = types.StringPointerValue(ans.PrismaaccessQosProfileId)
+		// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.RemoteNetworkGroups == nil {
+			state.RemoteNetworkGroups = nil
+		} else if len(ans.RemoteNetworkGroups) == 0 {
+			state.RemoteNetworkGroups = []dsModelRemoteNetworkGroup{}
+		} else {
+			state.RemoteNetworkGroups = make([]dsModelRemoteNetworkGroup, 0, len(ans.RemoteNetworkGroups))
+			for varLoopRemoteNetworkGroupsIndex, varLoopRemoteNetworkGroups := range ans.RemoteNetworkGroups {
+				// add a new item
+				state.RemoteNetworkGroups = append(state.RemoteNetworkGroups, dsModelRemoteNetworkGroup{})
+				// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=dsModel ans=varLoopRemoteNetworkGroups properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex] prefix=dsModel ans=varLoopRemoteNetworkGroups")
+				// property: name=ipsec_tunnels, type=ARRAY_REFERENCE macro=copy_to_state
+				if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
+					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
+				} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
+					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []dsModelIPSecTunnel{}
+				} else {
+					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]dsModelIPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
+					for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
+						// add a new item
+						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = append(state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels, dsModelIPSecTunnel{})
+						// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=dsModel ans=varLoopIpsecTunnels properties=5
+						tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex] prefix=dsModel ans=varLoopIpsecTunnels")
+						// property: name=authentication, type=REFERENCE macro=copy_to_state
+						if varLoopIpsecTunnels.Authentication == nil {
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = nil
+						} else {
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication = &dsModelIPSecTunnelAuthentication{}
+							// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=dsModel ans=varLoopIpsecTunnels.Authentication properties=3
+							tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication prefix=dsModel ans=varLoopIpsecTunnels.Authentication")
+							// property: name=branch_ike_identification, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.BranchIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.BranchIkeIdentification)
+							// property: name=prismaaccess_ike_identification, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.PrismaaccessIkeIdentification = types.StringPointerValue(varLoopIpsecTunnels.Authentication.PrismaaccessIkeIdentification)
+							// property: name=psk, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Authentication.Psk = types.StringPointerValue(varLoopIpsecTunnels.Authentication.Psk)
+						}
+						// property: name=name, type=STRING macro=copy_to_state
+						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Name = types.StringPointerValue(varLoopIpsecTunnels.Name)
+						// property: name=routing, type=REFERENCE macro=copy_to_state
+						if varLoopIpsecTunnels.Routing == nil {
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = nil
+						} else {
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing = &dsModelRouting{}
+							// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=dsModel ans=varLoopIpsecTunnels.Routing properties=3
+							tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing prefix=dsModel ans=varLoopIpsecTunnels.Routing")
+							// property: name=branch_as_number, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchAsNumber = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchAsNumber)
+							// property: name=branch_ip_address, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.BranchIpAddress = types.StringPointerValue(varLoopIpsecTunnels.Routing.BranchIpAddress)
+							// property: name=prismaaccess_ip_address, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].Routing.PrismaaccessIpAddress = types.StringPointerValue(varLoopIpsecTunnels.Routing.PrismaaccessIpAddress)
+						}
+						// property: name=routing_configs, type=REFERENCE macro=copy_to_state
+						if varLoopIpsecTunnels.RoutingConfigs == nil {
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = nil
+						} else {
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs = &dsModelRoutingConfigs{}
+							// copy_to_state: state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=dsModel ans=varLoopIpsecTunnels.RoutingConfigs properties=4
+							tflog.Debug(ctx, "copy_to_state state=state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs prefix=dsModel ans=varLoopIpsecTunnels.RoutingConfigs")
+							// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.AdvertiseDefaultRoute)
+							// property: name=bgp_secret, type=STRING macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.BgpSecret = types.StringPointerValue(varLoopIpsecTunnels.RoutingConfigs.BgpSecret)
+							// property: name=export_routes, type=BOOLEAN macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.ExportRoutes = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.ExportRoutes)
+							// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
+							state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(varLoopIpsecTunnels.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
+						}
+						// property: name=wan_interface_id, type=STRING macro=copy_to_state
+						state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].WanInterfaceId = types.StringPointerValue(varLoopIpsecTunnels.WanInterfaceId)
+					}
+				}
+				// property: name=name, type=STRING macro=copy_to_state
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].Name = types.StringPointerValue(varLoopRemoteNetworkGroups.Name)
+				// property: name=spn_name, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varSpnName, errSpnName := types.ListValueFrom(ctx, types.StringType, varLoopRemoteNetworkGroups.SpnName)
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].SpnName = varSpnName
+				resp.Diagnostics.Append(errSpnName.Errors()...)
+			}
+		}
+		// property: name=routing_configs, type=REFERENCE macro=copy_to_state
+		if ans.RoutingConfigs == nil {
+			state.RoutingConfigs = nil
+		} else {
+			state.RoutingConfigs = &dsModelRoutingConfigs{}
+			// copy_to_state: state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs properties=4
+			tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs")
+			// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
+			state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
+			// property: name=bgp_secret, type=STRING macro=copy_to_state
+			state.RoutingConfigs.BgpSecret = types.StringPointerValue(ans.RoutingConfigs.BgpSecret)
+			// property: name=export_routes, type=BOOLEAN macro=copy_to_state
+			state.RoutingConfigs.ExportRoutes = types.BoolPointerValue(ans.RoutingConfigs.ExportRoutes)
+			// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
+			state.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(ans.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
+		}
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.SiteId = types.StringPointerValue(ans.SiteId)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

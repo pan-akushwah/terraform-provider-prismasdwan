@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -50,6 +51,14 @@ type elementStaticRouteDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterElementStaticRoute struct {
+	Filters      types.Map                 `tfsdk:"filters"`
+	TfParameters types.Map                 `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64               `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64               `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelStaticRouteV2N3 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *elementStaticRouteDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_element_static_route"
@@ -59,12 +68,13 @@ func (d *elementStaticRouteDataSource) Metadata(_ context.Context, req datasourc
 func (d *elementStaticRouteDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=StaticRouteV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -82,137 +92,159 @@ func (d *elementStaticRouteDataSource) Schema(_ context.Context, _ datasource.Sc
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=address_family, type=STRING macro=rss_schema
-			"address_family": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=address_family, type=STRING macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=destination_prefix, type=STRING macro=rss_schema
-			"destination_prefix": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=destination_prefix, type=STRING macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=network_context_id, type=STRING macro=rss_schema
-			"network_context_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
-			// property: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
-			"nexthop_reachability_probe": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
-			// property: name=nexthops, type=ARRAY_REFERENCE macro=rss_schema
-			"nexthops": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=admin_distance, type=INTEGER macro=rss_schema
-						"admin_distance": dsschema.Int64Attribute{
+						// rest all properties to be read from GET API Schema schema=StaticRouteV2N3
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=address_family, type=STRING macro=rss_schema
+						"address_family": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
-						// property: name=nexthop_interface_id, type=STRING macro=rss_schema
-						"nexthop_interface_id": dsschema.StringAttribute{
+						// key name holder for attribute: name=address_family, type=STRING macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=nexthop_interface_id, type=STRING macro=rss_schema
-						// property: name=nexthop_ip, type=STRING macro=rss_schema
-						"nexthop_ip": dsschema.StringAttribute{
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=destination_prefix, type=STRING macro=rss_schema
+						"destination_prefix": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=nexthop_ip, type=STRING macro=rss_schema
-						// property: name=self, type=BOOLEAN macro=rss_schema
-						"self": dsschema.BoolAttribute{
+						// key name holder for attribute: name=destination_prefix, type=STRING macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=network_context_id, type=STRING macro=rss_schema
+						"network_context_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
+						// property: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
+						"nexthop_reachability_probe": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
+						// property: name=nexthops, type=ARRAY_REFERENCE macro=rss_schema
+						"nexthops": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=admin_distance, type=INTEGER macro=rss_schema
+									"admin_distance": dsschema.Int64Attribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
+									// property: name=nexthop_interface_id, type=STRING macro=rss_schema
+									"nexthop_interface_id": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=nexthop_interface_id, type=STRING macro=rss_schema
+									// property: name=nexthop_ip, type=STRING macro=rss_schema
+									"nexthop_ip": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=nexthop_ip, type=STRING macro=rss_schema
+									// property: name=self, type=BOOLEAN macro=rss_schema
+									"self": dsschema.BoolAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=self, type=BOOLEAN macro=rss_schema
+								},
+							},
 						},
 						// key name holder for attribute: name=self, type=BOOLEAN macro=rss_schema
+						// property: name=scope, type=STRING macro=rss_schema
+						"scope": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=scope, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=vrf_context_id, type=STRING macro=rss_schema
+						"vrf_context_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=self, type=BOOLEAN macro=rss_schema
-			// property: name=scope, type=STRING macro=rss_schema
-			"scope": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=vrf_context_id, type=STRING macro=rss_schema
-			"vrf_context_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -227,8 +259,9 @@ func (d *elementStaticRouteDataSource) Configure(_ context.Context, req datasour
 
 // Read performs Read for the struct.
 func (d *elementStaticRouteDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelStaticRouteV2N3
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterElementStaticRoute
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -241,107 +274,148 @@ func (d *elementStaticRouteDataSource) Read(ctx context.Context, req datasource.
 		"resource_name":               "prismasdwan_element_static_route",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 3 {
-		resp.Diagnostics.AddError("error in prismasdwan_element_static_route ID format", "Expected 3 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/staticroutes/{static_route_id}"
+	get_path := "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/staticroutes/{static_route_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["site_id"] = &tokens[0]
-	params["element_id"] = &tokens[1]
-	params["static_route_id"] = &tokens[2]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_static_route", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_element_static_route", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.StaticRouteV2N3
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to StaticRouteV2N3", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-
-	// lets copy all items into state schema=StaticRouteV2N3
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=13
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=address_family, type=STRING macro=copy_to_state
-	state.AddressFamily = types.StringPointerValue(ans.AddressFamily)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=destination_prefix, type=STRING macro=copy_to_state
-	state.DestinationPrefix = types.StringPointerValue(ans.DestinationPrefix)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=network_context_id, type=STRING macro=copy_to_state
-	state.NetworkContextId = types.StringPointerValue(ans.NetworkContextId)
-	// property: name=nexthop_reachability_probe, type=BOOLEAN macro=copy_to_state
-	state.NexthopReachabilityProbe = types.BoolPointerValue(ans.NexthopReachabilityProbe)
-	// property: name=nexthops, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Nexthops == nil {
-		state.Nexthops = nil
-	} else if len(ans.Nexthops) == 0 {
-		state.Nexthops = []dsModelNextHop{}
-	} else {
-		state.Nexthops = make([]dsModelNextHop, 0, len(ans.Nexthops))
-		for varLoopNexthopsIndex, varLoopNexthops := range ans.Nexthops {
-			// add a new item
-			state.Nexthops = append(state.Nexthops, dsModelNextHop{})
-			// copy_to_state: state=state.Nexthops[varLoopNexthopsIndex] prefix=dsModel ans=varLoopNexthops properties=4
-			tflog.Debug(ctx, "copy_to_state state=state.Nexthops[varLoopNexthopsIndex] prefix=dsModel ans=varLoopNexthops")
-			// property: name=admin_distance, type=INTEGER macro=copy_to_state
-			state.Nexthops[varLoopNexthopsIndex].AdminDistance = types.Int64PointerValue(varLoopNexthops.AdminDistance)
-			// property: name=nexthop_interface_id, type=STRING macro=copy_to_state
-			state.Nexthops[varLoopNexthopsIndex].NexthopInterfaceId = types.StringPointerValue(varLoopNexthops.NexthopInterfaceId)
-			// property: name=nexthop_ip, type=STRING macro=copy_to_state
-			state.Nexthops[varLoopNexthopsIndex].NexthopIp = types.StringPointerValue(varLoopNexthops.NexthopIp)
-			// property: name=self, type=BOOLEAN macro=copy_to_state
-			state.Nexthops[varLoopNexthopsIndex].Self = types.BoolPointerValue(varLoopNexthops.Self)
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
 		}
-	}
-	// property: name=scope, type=STRING macro=copy_to_state
-	state.Scope = types.StringPointerValue(ans.Scope)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=vrf_context_id, type=STRING macro=copy_to_state
-	state.VrfContextId = types.StringPointerValue(ans.VrfContextId)
 
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelStaticRouteV2N3
+
+		// start copying attributes
+		var ans sdwan_schema.StaticRouteV2N3
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to StaticRouteV2N3", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=StaticRouteV2N3
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=13
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=address_family, type=STRING macro=copy_to_state
+		state.AddressFamily = types.StringPointerValue(ans.AddressFamily)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=destination_prefix, type=STRING macro=copy_to_state
+		state.DestinationPrefix = types.StringPointerValue(ans.DestinationPrefix)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=network_context_id, type=STRING macro=copy_to_state
+		state.NetworkContextId = types.StringPointerValue(ans.NetworkContextId)
+		// property: name=nexthop_reachability_probe, type=BOOLEAN macro=copy_to_state
+		state.NexthopReachabilityProbe = types.BoolPointerValue(ans.NexthopReachabilityProbe)
+		// property: name=nexthops, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.Nexthops == nil {
+			state.Nexthops = nil
+		} else if len(ans.Nexthops) == 0 {
+			state.Nexthops = []dsModelNextHop{}
+		} else {
+			state.Nexthops = make([]dsModelNextHop, 0, len(ans.Nexthops))
+			for varLoopNexthopsIndex, varLoopNexthops := range ans.Nexthops {
+				// add a new item
+				state.Nexthops = append(state.Nexthops, dsModelNextHop{})
+				// copy_to_state: state=state.Nexthops[varLoopNexthopsIndex] prefix=dsModel ans=varLoopNexthops properties=4
+				tflog.Debug(ctx, "copy_to_state state=state.Nexthops[varLoopNexthopsIndex] prefix=dsModel ans=varLoopNexthops")
+				// property: name=admin_distance, type=INTEGER macro=copy_to_state
+				state.Nexthops[varLoopNexthopsIndex].AdminDistance = types.Int64PointerValue(varLoopNexthops.AdminDistance)
+				// property: name=nexthop_interface_id, type=STRING macro=copy_to_state
+				state.Nexthops[varLoopNexthopsIndex].NexthopInterfaceId = types.StringPointerValue(varLoopNexthops.NexthopInterfaceId)
+				// property: name=nexthop_ip, type=STRING macro=copy_to_state
+				state.Nexthops[varLoopNexthopsIndex].NexthopIp = types.StringPointerValue(varLoopNexthops.NexthopIp)
+				// property: name=self, type=BOOLEAN macro=copy_to_state
+				state.Nexthops[varLoopNexthopsIndex].Self = types.BoolPointerValue(varLoopNexthops.Self)
+			}
+		}
+		// property: name=scope, type=STRING macro=copy_to_state
+		state.Scope = types.StringPointerValue(ans.Scope)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=vrf_context_id, type=STRING macro=copy_to_state
+		state.VrfContextId = types.StringPointerValue(ans.VrfContextId)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

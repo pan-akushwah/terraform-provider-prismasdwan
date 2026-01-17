@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -56,6 +57,14 @@ type pathPolicyStackDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterPathPolicyStack struct {
+	Filters      types.Map                       `tfsdk:"filters"`
+	TfParameters types.Map                       `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                     `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                     `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelNetworkPolicySetStack `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *pathPolicyStackDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_path_policy_stack"
@@ -65,12 +74,13 @@ func (d *pathPolicyStackDataSource) Metadata(_ context.Context, req datasource.M
 func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=NetworkPolicySetStack
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -88,523 +98,15 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=default_policysetstack, type=BOOLEAN macro=rss_schema
-			"default_policysetstack": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=default_policysetstack, type=BOOLEAN macro=rss_schema
-			// property: name=defaultrule_policyset, type=REFERENCE macro=rss_schema
-			"defaultrule_policyset": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// generic x_parameters is added to accomodate path parameters
-					"x_parameters": dsschema.MapAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					// property: name=_etag, type=INTEGER macro=rss_schema
-					"x_etag": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-					// property: name=_schema, type=INTEGER macro=rss_schema
-					"x_schema": dsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-					// property: name=clone_from, type=STRING macro=rss_schema
-					"clone_from": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
-					// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
-					"defaultrule_policyset": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
-					// property: name=description, type=STRING macro=rss_schema
-					"description": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=disabled, type=BOOLEAN macro=rss_schema
-					"disabled": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-					// property: name=disabled_reason, type=STRING macro=rss_schema
-					"disabled_reason": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-					// property: name=id, type=STRING macro=rss_schema
-					"id": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=id, type=STRING macro=rss_schema
-					// property: name=inactive, type=BOOLEAN macro=rss_schema
-					"inactive": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-					// property: name=inactive_reason, type=STRING macro=rss_schema
-					"inactive_reason": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-					// property: name=name, type=STRING macro=rss_schema
-					"name": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=name, type=STRING macro=rss_schema
-					// property: name=policy_req_version, type=STRING macro=rss_schema
-					"policy_req_version": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=policy_req_version, type=STRING macro=rss_schema
-					// property: name=policy_rules, type=ARRAY_REFERENCE macro=rss_schema
-					"policy_rules": dsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						NestedObject: dsschema.NestedAttributeObject{
-							Attributes: map[string]dsschema.Attribute{
-								// generic x_parameters is added to accomodate path parameters
-								"x_parameters": dsschema.MapAttribute{
-									Required:    false,
-									Computed:    false,
-									Optional:    true,
-									ElementType: types.StringType,
-								},
-								// property: name=_etag, type=INTEGER macro=rss_schema
-								"x_etag": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-								// property: name=_schema, type=INTEGER macro=rss_schema
-								"x_schema": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-								// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-								"app_def_ids": dsschema.ListAttribute{
-									Required:    false,
-									Computed:    false,
-									Optional:    true,
-									Sensitive:   false,
-									ElementType: types.StringType,
-								},
-								// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-								// property: name=description, type=STRING macro=rss_schema
-								"description": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=description, type=STRING macro=rss_schema
-								// property: name=destination_prefixes_id, type=STRING macro=rss_schema
-								"destination_prefixes_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
-								// property: name=enabled, type=BOOLEAN macro=rss_schema
-								"enabled": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
-								// property: name=id, type=STRING macro=rss_schema
-								"id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=id, type=STRING macro=rss_schema
-								// property: name=name, type=STRING macro=rss_schema
-								"name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=name, type=STRING macro=rss_schema
-								// property: name=network_context_id, type=STRING macro=rss_schema
-								"network_context_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
-								// property: name=order_number, type=INTEGER macro=rss_schema
-								"order_number": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=order_number, type=INTEGER macro=rss_schema
-								// property: name=paths_allowed, type=REFERENCE macro=rss_schema
-								"paths_allowed": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=active_paths, type=ARRAY_REFERENCE macro=rss_schema
-										"active_paths": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-											NestedObject: dsschema.NestedAttributeObject{
-												Attributes: map[string]dsschema.Attribute{
-													// property: name=label, type=STRING macro=rss_schema
-													"label": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=label, type=STRING macro=rss_schema
-													// property: name=path_type, type=STRING macro=rss_schema
-													"path_type": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-												},
-											},
-										},
-										// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-										// property: name=backup_paths, type=ARRAY_REFERENCE macro=rss_schema
-										"backup_paths": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-											NestedObject: dsschema.NestedAttributeObject{
-												Attributes: map[string]dsschema.Attribute{
-													// property: name=label, type=STRING macro=rss_schema
-													"label": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=label, type=STRING macro=rss_schema
-													// property: name=path_type, type=STRING macro=rss_schema
-													"path_type": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-												},
-											},
-										},
-										// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-										// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=rss_schema
-										"l3_failure_paths": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-											NestedObject: dsschema.NestedAttributeObject{
-												Attributes: map[string]dsschema.Attribute{
-													// property: name=label, type=STRING macro=rss_schema
-													"label": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=label, type=STRING macro=rss_schema
-													// property: name=path_type, type=STRING macro=rss_schema
-													"path_type": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-												},
-											},
-										},
-										// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-									},
-								},
-								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
-								// property: name=service_context, type=REFERENCE macro=rss_schema
-								"service_context": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=active_service_label_id, type=STRING macro=rss_schema
-										"active_service_label_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=active_service_label_id, type=STRING macro=rss_schema
-										// property: name=active_service_label_type, type=STRING macro=rss_schema
-										"active_service_label_type": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=active_service_label_type, type=STRING macro=rss_schema
-										// property: name=backup_service_label_id, type=STRING macro=rss_schema
-										"backup_service_label_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=backup_service_label_id, type=STRING macro=rss_schema
-										// property: name=backup_service_label_type, type=STRING macro=rss_schema
-										"backup_service_label_type": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=backup_service_label_type, type=STRING macro=rss_schema
-										// property: name=type, type=STRING macro=rss_schema
-										"type": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=type, type=STRING macro=rss_schema
-									},
-								},
-								// key name holder for attribute: name=type, type=STRING macro=rss_schema
-								// property: name=source_prefixes_id, type=STRING macro=rss_schema
-								"source_prefixes_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
-								// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-								"tags": dsschema.SetAttribute{
-									Required:    false,
-									Computed:    false,
-									Optional:    true,
-									Sensitive:   false,
-									ElementType: types.StringType,
-								},
-								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-							},
-						},
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					// property: name=region, type=STRING macro=rss_schema
-					"region": dsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=region, type=STRING macro=rss_schema
-					// property: name=send_to_element, type=BOOLEAN macro=rss_schema
-					"send_to_element": dsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=send_to_element, type=BOOLEAN macro=rss_schema
-					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					"tags": dsschema.SetAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=defaultrule_policyset_id, type=STRING macro=rss_schema
-			"defaultrule_policyset_id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=defaultrule_policyset_id, type=STRING macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-			// property: name=legacy_policystack, type=BOOLEAN macro=rss_schema
-			"legacy_policystack": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=legacy_policystack, type=BOOLEAN macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=policyset_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"policyset_ids": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=policyset_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=policyset_ids_update, type=BOOLEAN macro=rss_schema
-			"policyset_ids_update": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=policyset_ids_update, type=BOOLEAN macro=rss_schema
-			// property: name=policysets, type=ARRAY_REFERENCE macro=rss_schema
-			"policysets": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// generic x_parameters is added to accomodate path parameters
-						"x_parameters": dsschema.MapAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							ElementType: types.StringType,
-						},
+						// rest all properties to be read from GET API Schema schema=NetworkPolicySetStack
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -621,14 +123,407 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-						// property: name=clone_from, type=STRING macro=rss_schema
-						"clone_from": dsschema.StringAttribute{
+						// property: name=default_policysetstack, type=BOOLEAN macro=rss_schema
+						"default_policysetstack": dsschema.BoolAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
+						// key name holder for attribute: name=default_policysetstack, type=BOOLEAN macro=rss_schema
+						// property: name=defaultrule_policyset, type=REFERENCE macro=rss_schema
+						"defaultrule_policyset": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=_etag, type=INTEGER macro=rss_schema
+								"x_etag": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  true,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+								// property: name=_schema, type=INTEGER macro=rss_schema
+								"x_schema": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  true,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+								// property: name=clone_from, type=STRING macro=rss_schema
+								"clone_from": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
+								// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
+								"defaultrule_policyset": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
+								// property: name=description, type=STRING macro=rss_schema
+								"description": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=description, type=STRING macro=rss_schema
+								// property: name=disabled, type=BOOLEAN macro=rss_schema
+								"disabled": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+								// property: name=disabled_reason, type=STRING macro=rss_schema
+								"disabled_reason": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
+								// property: name=id, type=STRING macro=rss_schema
+								"id": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  true,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=id, type=STRING macro=rss_schema
+								// property: name=inactive, type=BOOLEAN macro=rss_schema
+								"inactive": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
+								// property: name=inactive_reason, type=STRING macro=rss_schema
+								"inactive_reason": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
+								// property: name=name, type=STRING macro=rss_schema
+								"name": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=name, type=STRING macro=rss_schema
+								// property: name=policy_req_version, type=STRING macro=rss_schema
+								"policy_req_version": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=policy_req_version, type=STRING macro=rss_schema
+								// property: name=policy_rules, type=ARRAY_REFERENCE macro=rss_schema
+								"policy_rules": dsschema.ListNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									NestedObject: dsschema.NestedAttributeObject{
+										Attributes: map[string]dsschema.Attribute{
+											// property: name=_etag, type=INTEGER macro=rss_schema
+											"x_etag": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+											// property: name=_schema, type=INTEGER macro=rss_schema
+											"x_schema": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+											// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+											"app_def_ids": dsschema.ListAttribute{
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												ElementType: types.StringType,
+											},
+											// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+											// property: name=description, type=STRING macro=rss_schema
+											"description": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=description, type=STRING macro=rss_schema
+											// property: name=destination_prefixes_id, type=STRING macro=rss_schema
+											"destination_prefixes_id": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
+											// property: name=enabled, type=BOOLEAN macro=rss_schema
+											"enabled": dsschema.BoolAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+											// property: name=id, type=STRING macro=rss_schema
+											"id": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=id, type=STRING macro=rss_schema
+											// property: name=name, type=STRING macro=rss_schema
+											"name": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=name, type=STRING macro=rss_schema
+											// property: name=network_context_id, type=STRING macro=rss_schema
+											"network_context_id": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
+											// property: name=order_number, type=INTEGER macro=rss_schema
+											"order_number": dsschema.Int64Attribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=order_number, type=INTEGER macro=rss_schema
+											// property: name=paths_allowed, type=REFERENCE macro=rss_schema
+											"paths_allowed": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=active_paths, type=ARRAY_REFERENCE macro=rss_schema
+													"active_paths": dsschema.ListNestedAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+														NestedObject: dsschema.NestedAttributeObject{
+															Attributes: map[string]dsschema.Attribute{
+																// property: name=label, type=STRING macro=rss_schema
+																"label": dsschema.StringAttribute{
+																	Required:  false,
+																	Computed:  false,
+																	Optional:  true,
+																	Sensitive: false,
+																},
+																// key name holder for attribute: name=label, type=STRING macro=rss_schema
+																// property: name=path_type, type=STRING macro=rss_schema
+																"path_type": dsschema.StringAttribute{
+																	Required:  false,
+																	Computed:  false,
+																	Optional:  true,
+																	Sensitive: false,
+																},
+																// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+															},
+														},
+													},
+													// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+													// property: name=backup_paths, type=ARRAY_REFERENCE macro=rss_schema
+													"backup_paths": dsschema.ListNestedAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+														NestedObject: dsschema.NestedAttributeObject{
+															Attributes: map[string]dsschema.Attribute{
+																// property: name=label, type=STRING macro=rss_schema
+																"label": dsschema.StringAttribute{
+																	Required:  false,
+																	Computed:  false,
+																	Optional:  true,
+																	Sensitive: false,
+																},
+																// key name holder for attribute: name=label, type=STRING macro=rss_schema
+																// property: name=path_type, type=STRING macro=rss_schema
+																"path_type": dsschema.StringAttribute{
+																	Required:  false,
+																	Computed:  false,
+																	Optional:  true,
+																	Sensitive: false,
+																},
+																// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+															},
+														},
+													},
+													// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+													// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=rss_schema
+													"l3_failure_paths": dsschema.ListNestedAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+														NestedObject: dsschema.NestedAttributeObject{
+															Attributes: map[string]dsschema.Attribute{
+																// property: name=label, type=STRING macro=rss_schema
+																"label": dsschema.StringAttribute{
+																	Required:  false,
+																	Computed:  false,
+																	Optional:  true,
+																	Sensitive: false,
+																},
+																// key name holder for attribute: name=label, type=STRING macro=rss_schema
+																// property: name=path_type, type=STRING macro=rss_schema
+																"path_type": dsschema.StringAttribute{
+																	Required:  false,
+																	Computed:  false,
+																	Optional:  true,
+																	Sensitive: false,
+																},
+																// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+															},
+														},
+													},
+													// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+											// property: name=service_context, type=REFERENCE macro=rss_schema
+											"service_context": dsschema.SingleNestedAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=active_service_label_id, type=STRING macro=rss_schema
+													"active_service_label_id": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=active_service_label_id, type=STRING macro=rss_schema
+													// property: name=active_service_label_type, type=STRING macro=rss_schema
+													"active_service_label_type": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=active_service_label_type, type=STRING macro=rss_schema
+													// property: name=backup_service_label_id, type=STRING macro=rss_schema
+													"backup_service_label_id": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=backup_service_label_id, type=STRING macro=rss_schema
+													// property: name=backup_service_label_type, type=STRING macro=rss_schema
+													"backup_service_label_type": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=backup_service_label_type, type=STRING macro=rss_schema
+													// property: name=type, type=STRING macro=rss_schema
+													"type": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=type, type=STRING macro=rss_schema
+												},
+											},
+											// key name holder for attribute: name=type, type=STRING macro=rss_schema
+											// property: name=source_prefixes_id, type=STRING macro=rss_schema
+											"source_prefixes_id": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
+											// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+											"tags": dsschema.SetAttribute{
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												ElementType: types.StringType,
+											},
+											// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+										},
+									},
+								},
+								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+								// property: name=region, type=STRING macro=rss_schema
+								"region": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=region, type=STRING macro=rss_schema
+								// property: name=send_to_element, type=BOOLEAN macro=rss_schema
+								"send_to_element": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=send_to_element, type=BOOLEAN macro=rss_schema
+								// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+								"tags": dsschema.SetAttribute{
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									ElementType: types.StringType,
+								},
+								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=defaultrule_policyset_id, type=STRING macro=rss_schema
+						"defaultrule_policyset_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=defaultrule_policyset_id, type=STRING macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:  false,
@@ -677,6 +572,14 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
+						// property: name=legacy_policystack, type=BOOLEAN macro=rss_schema
+						"legacy_policystack": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=legacy_policystack, type=BOOLEAN macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:  false,
@@ -685,21 +588,31 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
-						// property: name=policy_rules, type=ARRAY_REFERENCE macro=rss_schema
-						"policy_rules": dsschema.ListNestedAttribute{
+						// property: name=policyset_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						"policyset_ids": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=policyset_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=policyset_ids_update, type=BOOLEAN macro=rss_schema
+						"policyset_ids_update": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=policyset_ids_update, type=BOOLEAN macro=rss_schema
+						// property: name=policysets, type=ARRAY_REFERENCE macro=rss_schema
+						"policysets": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
-									// generic x_parameters is added to accomodate path parameters
-									"x_parameters": dsschema.MapAttribute{
-										Required:    false,
-										Computed:    false,
-										Optional:    true,
-										ElementType: types.StringType,
-									},
 									// property: name=_etag, type=INTEGER macro=rss_schema
 									"x_etag": dsschema.Int64Attribute{
 										Required:  false,
@@ -716,6 +629,14 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+									// property: name=clone_from, type=STRING macro=rss_schema
+									"clone_from": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
 									// property: name=description, type=STRING macro=rss_schema
 									"description": dsschema.StringAttribute{
 										Required:  false,
@@ -772,14 +693,115 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=name, type=STRING macro=rss_schema
-									// property: name=policyset_id, type=STRING macro=rss_schema
-									"policyset_id": dsschema.StringAttribute{
+									// property: name=policy_rules, type=ARRAY_REFERENCE macro=rss_schema
+									"policy_rules": dsschema.ListNestedAttribute{
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
 										Sensitive: false,
+										NestedObject: dsschema.NestedAttributeObject{
+											Attributes: map[string]dsschema.Attribute{
+												// property: name=_etag, type=INTEGER macro=rss_schema
+												"x_etag": dsschema.Int64Attribute{
+													Required:  false,
+													Computed:  true,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+												// property: name=_schema, type=INTEGER macro=rss_schema
+												"x_schema": dsschema.Int64Attribute{
+													Required:  false,
+													Computed:  true,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+												// property: name=description, type=STRING macro=rss_schema
+												"description": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=description, type=STRING macro=rss_schema
+												// property: name=disabled, type=BOOLEAN macro=rss_schema
+												"disabled": dsschema.BoolAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+												// property: name=disabled_reason, type=STRING macro=rss_schema
+												"disabled_reason": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
+												// property: name=id, type=STRING macro=rss_schema
+												"id": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  true,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=id, type=STRING macro=rss_schema
+												// property: name=inactive, type=BOOLEAN macro=rss_schema
+												"inactive": dsschema.BoolAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
+												// property: name=inactive_reason, type=STRING macro=rss_schema
+												"inactive_reason": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
+												// property: name=name, type=STRING macro=rss_schema
+												"name": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=name, type=STRING macro=rss_schema
+												// property: name=policyset_id, type=STRING macro=rss_schema
+												"policyset_id": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=policyset_id, type=STRING macro=rss_schema
+												// property: name=region, type=STRING macro=rss_schema
+												"region": dsschema.StringAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=region, type=STRING macro=rss_schema
+												// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+												"tags": dsschema.SetAttribute{
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													ElementType: types.StringType,
+												},
+												// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+											},
+										},
 									},
-									// key name holder for attribute: name=policyset_id, type=STRING macro=rss_schema
+									// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 									// property: name=region, type=STRING macro=rss_schema
 									"region": dsschema.StringAttribute{
 										Required:  false,
@@ -788,6 +810,14 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=region, type=STRING macro=rss_schema
+									// property: name=send_to_element, type=BOOLEAN macro=rss_schema
+									"send_to_element": dsschema.BoolAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=send_to_element, type=BOOLEAN macro=rss_schema
 									// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 									"tags": dsschema.SetAttribute{
 										Required:    false,
@@ -809,14 +839,6 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=region, type=STRING macro=rss_schema
-						// property: name=send_to_element, type=BOOLEAN macro=rss_schema
-						"send_to_element": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=send_to_element, type=BOOLEAN macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
@@ -829,24 +851,6 @@ func (d *pathPolicyStackDataSource) Schema(_ context.Context, _ datasource.Schem
 					},
 				},
 			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 		},
 	}
 }
@@ -861,8 +865,9 @@ func (d *pathPolicyStackDataSource) Configure(_ context.Context, req datasource.
 
 // Read performs Read for the struct.
 func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelNetworkPolicySetStack
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterPathPolicyStack
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -875,337 +880,380 @@ func (d *pathPolicyStackDataSource) Read(ctx context.Context, req datasource.Rea
 		"resource_name":               "prismasdwan_path_policy_stack",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_path_policy_stack ID format", "Expected 1 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/networkpolicysetstacks/{policy_set_id}"
+	get_path := "/sdwan/v2.0/api/networkpolicysetstacks/{policy_set_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["policy_set_id"] = &tokens[0]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_path_policy_stack", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_path_policy_stack", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.NetworkPolicySetStack
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to NetworkPolicySetStack", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-
-	// lets copy all items into state schema=NetworkPolicySetStack
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=18
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=default_policysetstack, type=BOOLEAN macro=copy_to_state
-	state.DefaultPolicysetstack = types.BoolPointerValue(ans.DefaultPolicysetstack)
-	// property: name=defaultrule_policyset, type=REFERENCE macro=copy_to_state
-	if ans.DefaultrulePolicyset == nil {
-		state.DefaultrulePolicyset = nil
-	} else {
-		state.DefaultrulePolicyset = &dsModelNetworkPolicySet{}
-		// copy_to_state: state=state.DefaultrulePolicyset prefix=dsModel ans=ans.DefaultrulePolicyset properties=16
-		tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset prefix=dsModel ans=ans.DefaultrulePolicyset")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DefaultrulePolicyset.Etag = types.Int64PointerValue(ans.DefaultrulePolicyset.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DefaultrulePolicyset.Schema = types.Int64PointerValue(ans.DefaultrulePolicyset.Schema)
-		// property: name=clone_from, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.CloneFrom = types.StringPointerValue(ans.DefaultrulePolicyset.CloneFrom)
-		// property: name=defaultrule_policyset, type=BOOLEAN macro=copy_to_state
-		state.DefaultrulePolicyset.DefaultrulePolicyset = types.BoolPointerValue(ans.DefaultrulePolicyset.DefaultrulePolicyset)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.Description = types.StringPointerValue(ans.DefaultrulePolicyset.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.DefaultrulePolicyset.Disabled = types.BoolPointerValue(ans.DefaultrulePolicyset.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.DisabledReason = types.StringPointerValue(ans.DefaultrulePolicyset.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.Id = types.StringPointerValue(ans.DefaultrulePolicyset.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.DefaultrulePolicyset.Inactive = types.BoolPointerValue(ans.DefaultrulePolicyset.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.InactiveReason = types.StringPointerValue(ans.DefaultrulePolicyset.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.Name = types.StringPointerValue(ans.DefaultrulePolicyset.Name)
-		// property: name=policy_req_version, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.PolicyReqVersion = types.StringPointerValue(ans.DefaultrulePolicyset.PolicyReqVersion)
-		// property: name=policy_rules, type=ARRAY_REFERENCE macro=copy_to_state
-		if ans.DefaultrulePolicyset.PolicyRules == nil {
-			state.DefaultrulePolicyset.PolicyRules = nil
-		} else if len(ans.DefaultrulePolicyset.PolicyRules) == 0 {
-			state.DefaultrulePolicyset.PolicyRules = []dsModelNetworkPolicyRule{}
-		} else {
-			state.DefaultrulePolicyset.PolicyRules = make([]dsModelNetworkPolicyRule, 0, len(ans.DefaultrulePolicyset.PolicyRules))
-			for varLoopPolicyRulesIndex, varLoopPolicyRules := range ans.DefaultrulePolicyset.PolicyRules {
-				// add a new item
-				state.DefaultrulePolicyset.PolicyRules = append(state.DefaultrulePolicyset.PolicyRules, dsModelNetworkPolicyRule{})
-				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=14
-				tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
-				// property: name=_etag, type=INTEGER macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
-				// property: name=_schema, type=INTEGER macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Schema = types.Int64PointerValue(varLoopPolicyRules.Schema)
-				// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-				varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.AppDefIds)
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = varAppDefIds
-				resp.Diagnostics.Append(errAppDefIds.Errors()...)
-				// property: name=description, type=STRING macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
-				// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
-				// property: name=enabled, type=BOOLEAN macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = types.BoolPointerValue(varLoopPolicyRules.Enabled)
-				// property: name=id, type=STRING macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
-				// property: name=name, type=STRING macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
-				// property: name=network_context_id, type=STRING macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].NetworkContextId = types.StringPointerValue(varLoopPolicyRules.NetworkContextId)
-				// property: name=order_number, type=INTEGER macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].OrderNumber = types.Int64PointerValue(varLoopPolicyRules.OrderNumber)
-				// property: name=paths_allowed, type=REFERENCE macro=copy_to_state
-				if varLoopPolicyRules.PathsAllowed == nil {
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = nil
-				} else {
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &dsModelPathsAllowed{}
-					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=dsModel ans=varLoopPolicyRules.PathsAllowed properties=3
-					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=dsModel ans=varLoopPolicyRules.PathsAllowed")
-					// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
-					if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
-					} else if len(varLoopPolicyRules.PathsAllowed.ActivePaths) == 0 {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = []dsModelWANPath{}
-					} else {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = make([]dsModelWANPath, 0, len(varLoopPolicyRules.PathsAllowed.ActivePaths))
-						for varLoopActivePathsIndex, varLoopActivePaths := range varLoopPolicyRules.PathsAllowed.ActivePaths {
-							// add a new item
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, dsModelWANPath{})
-							// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths properties=2
-							tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths")
-							// property: name=label, type=STRING macro=copy_to_state
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
-							// property: name=path_type, type=STRING macro=copy_to_state
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].PathType = types.StringPointerValue(varLoopActivePaths.PathType)
-						}
-					}
-					// property: name=backup_paths, type=ARRAY_REFERENCE macro=copy_to_state
-					if varLoopPolicyRules.PathsAllowed.BackupPaths == nil {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = nil
-					} else if len(varLoopPolicyRules.PathsAllowed.BackupPaths) == 0 {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = []dsModelWANPath{}
-					} else {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = make([]dsModelWANPath, 0, len(varLoopPolicyRules.PathsAllowed.BackupPaths))
-						for varLoopBackupPathsIndex, varLoopBackupPaths := range varLoopPolicyRules.PathsAllowed.BackupPaths {
-							// add a new item
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, dsModelWANPath{})
-							// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths properties=2
-							tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths")
-							// property: name=label, type=STRING macro=copy_to_state
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
-							// property: name=path_type, type=STRING macro=copy_to_state
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].PathType = types.StringPointerValue(varLoopBackupPaths.PathType)
-						}
-					}
-					// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=copy_to_state
-					if varLoopPolicyRules.PathsAllowed.L3FailurePaths == nil {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = nil
-					} else if len(varLoopPolicyRules.PathsAllowed.L3FailurePaths) == 0 {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = []dsModelWANPath{}
-					} else {
-						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = make([]dsModelWANPath, 0, len(varLoopPolicyRules.PathsAllowed.L3FailurePaths))
-						for varLoopL3FailurePathsIndex, varLoopL3FailurePaths := range varLoopPolicyRules.PathsAllowed.L3FailurePaths {
-							// add a new item
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, dsModelWANPath{})
-							// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths properties=2
-							tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths")
-							// property: name=label, type=STRING macro=copy_to_state
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
-							// property: name=path_type, type=STRING macro=copy_to_state
-							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].PathType = types.StringPointerValue(varLoopL3FailurePaths.PathType)
-						}
-					}
-				}
-				// property: name=service_context, type=REFERENCE macro=copy_to_state
-				if varLoopPolicyRules.ServiceContext == nil {
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = nil
-				} else {
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &dsModelServiceContext{}
-					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=dsModel ans=varLoopPolicyRules.ServiceContext properties=5
-					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=dsModel ans=varLoopPolicyRules.ServiceContext")
-					// property: name=active_service_label_id, type=STRING macro=copy_to_state
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
-					// property: name=active_service_label_type, type=STRING macro=copy_to_state
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelType = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelType)
-					// property: name=backup_service_label_id, type=STRING macro=copy_to_state
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.BackupServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.BackupServiceLabelId)
-					// property: name=backup_service_label_type, type=STRING macro=copy_to_state
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.BackupServiceLabelType = types.StringPointerValue(varLoopPolicyRules.ServiceContext.BackupServiceLabelType)
-					// property: name=type, type=STRING macro=copy_to_state
-					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = types.StringPointerValue(varLoopPolicyRules.ServiceContext.Type)
-				}
-				// property: name=source_prefixes_id, type=STRING macro=copy_to_state
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
-				// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
-				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
-				resp.Diagnostics.Append(errTags.Errors()...)
-			}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
 		}
-		// property: name=region, type=STRING macro=copy_to_state
-		state.DefaultrulePolicyset.Region = types.StringPointerValue(ans.DefaultrulePolicyset.Region)
-		// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
-		state.DefaultrulePolicyset.SendToElement = types.BoolPointerValue(ans.DefaultrulePolicyset.SendToElement)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DefaultrulePolicyset.Tags)
-		state.DefaultrulePolicyset.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
-	// property: name=defaultrule_policyset_id, type=STRING macro=copy_to_state
-	state.DefaultrulePolicysetId = types.StringPointerValue(ans.DefaultrulePolicysetId)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
-	// property: name=legacy_policystack, type=BOOLEAN macro=copy_to_state
-	state.LegacyPolicystack = types.BoolPointerValue(ans.LegacyPolicystack)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=policyset_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varPolicysetIds, errPolicysetIds := types.ListValueFrom(ctx, types.StringType, ans.PolicysetIds)
-	state.PolicysetIds = varPolicysetIds
-	resp.Diagnostics.Append(errPolicysetIds.Errors()...)
-	// property: name=policyset_ids_update, type=BOOLEAN macro=copy_to_state
-	state.PolicysetIdsUpdate = types.BoolPointerValue(ans.PolicysetIdsUpdate)
-	// property: name=policysets, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Policysets == nil {
-		state.Policysets = nil
-	} else if len(ans.Policysets) == 0 {
-		state.Policysets = []dsModelBasePolicySet{}
-	} else {
-		state.Policysets = make([]dsModelBasePolicySet, 0, len(ans.Policysets))
-		for varLoopPolicysetsIndex, varLoopPolicysets := range ans.Policysets {
-			// add a new item
-			state.Policysets = append(state.Policysets, dsModelBasePolicySet{})
-			// copy_to_state: state=state.Policysets[varLoopPolicysetsIndex] prefix=dsModel ans=varLoopPolicysets properties=14
-			tflog.Debug(ctx, "copy_to_state state=state.Policysets[varLoopPolicysetsIndex] prefix=dsModel ans=varLoopPolicysets")
+
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelNetworkPolicySetStack
+
+		// start copying attributes
+		var ans sdwan_schema.NetworkPolicySetStack
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to NetworkPolicySetStack", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=NetworkPolicySetStack
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=18
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=default_policysetstack, type=BOOLEAN macro=copy_to_state
+		state.DefaultPolicysetstack = types.BoolPointerValue(ans.DefaultPolicysetstack)
+		// property: name=defaultrule_policyset, type=REFERENCE macro=copy_to_state
+		if ans.DefaultrulePolicyset == nil {
+			state.DefaultrulePolicyset = nil
+		} else {
+			state.DefaultrulePolicyset = &dsModelNetworkPolicySet{}
+			// copy_to_state: state=state.DefaultrulePolicyset prefix=dsModel ans=ans.DefaultrulePolicyset properties=16
+			tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset prefix=dsModel ans=ans.DefaultrulePolicyset")
 			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Etag = types.Int64PointerValue(varLoopPolicysets.Etag)
+			state.DefaultrulePolicyset.Etag = types.Int64PointerValue(ans.DefaultrulePolicyset.Etag)
 			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Schema = types.Int64PointerValue(varLoopPolicysets.Schema)
+			state.DefaultrulePolicyset.Schema = types.Int64PointerValue(ans.DefaultrulePolicyset.Schema)
 			// property: name=clone_from, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].CloneFrom = types.StringPointerValue(varLoopPolicysets.CloneFrom)
+			state.DefaultrulePolicyset.CloneFrom = types.StringPointerValue(ans.DefaultrulePolicyset.CloneFrom)
+			// property: name=defaultrule_policyset, type=BOOLEAN macro=copy_to_state
+			state.DefaultrulePolicyset.DefaultrulePolicyset = types.BoolPointerValue(ans.DefaultrulePolicyset.DefaultrulePolicyset)
 			// property: name=description, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Description = types.StringPointerValue(varLoopPolicysets.Description)
+			state.DefaultrulePolicyset.Description = types.StringPointerValue(ans.DefaultrulePolicyset.Description)
 			// property: name=disabled, type=BOOLEAN macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Disabled = types.BoolPointerValue(varLoopPolicysets.Disabled)
+			state.DefaultrulePolicyset.Disabled = types.BoolPointerValue(ans.DefaultrulePolicyset.Disabled)
 			// property: name=disabled_reason, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].DisabledReason = types.StringPointerValue(varLoopPolicysets.DisabledReason)
+			state.DefaultrulePolicyset.DisabledReason = types.StringPointerValue(ans.DefaultrulePolicyset.DisabledReason)
 			// property: name=id, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Id = types.StringPointerValue(varLoopPolicysets.Id)
+			state.DefaultrulePolicyset.Id = types.StringPointerValue(ans.DefaultrulePolicyset.Id)
 			// property: name=inactive, type=BOOLEAN macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Inactive = types.BoolPointerValue(varLoopPolicysets.Inactive)
+			state.DefaultrulePolicyset.Inactive = types.BoolPointerValue(ans.DefaultrulePolicyset.Inactive)
 			// property: name=inactive_reason, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].InactiveReason = types.StringPointerValue(varLoopPolicysets.InactiveReason)
+			state.DefaultrulePolicyset.InactiveReason = types.StringPointerValue(ans.DefaultrulePolicyset.InactiveReason)
 			// property: name=name, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Name = types.StringPointerValue(varLoopPolicysets.Name)
+			state.DefaultrulePolicyset.Name = types.StringPointerValue(ans.DefaultrulePolicyset.Name)
+			// property: name=policy_req_version, type=STRING macro=copy_to_state
+			state.DefaultrulePolicyset.PolicyReqVersion = types.StringPointerValue(ans.DefaultrulePolicyset.PolicyReqVersion)
 			// property: name=policy_rules, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopPolicysets.PolicyRules == nil {
-				state.Policysets[varLoopPolicysetsIndex].PolicyRules = nil
-			} else if len(varLoopPolicysets.PolicyRules) == 0 {
-				state.Policysets[varLoopPolicysetsIndex].PolicyRules = []dsModelBasePolicyRule{}
+			if ans.DefaultrulePolicyset.PolicyRules == nil {
+				state.DefaultrulePolicyset.PolicyRules = nil
+			} else if len(ans.DefaultrulePolicyset.PolicyRules) == 0 {
+				state.DefaultrulePolicyset.PolicyRules = []dsModelNetworkPolicyRule{}
 			} else {
-				state.Policysets[varLoopPolicysetsIndex].PolicyRules = make([]dsModelBasePolicyRule, 0, len(varLoopPolicysets.PolicyRules))
-				for varLoopPolicyRulesIndex, varLoopPolicyRules := range varLoopPolicysets.PolicyRules {
+				state.DefaultrulePolicyset.PolicyRules = make([]dsModelNetworkPolicyRule, 0, len(ans.DefaultrulePolicyset.PolicyRules))
+				for varLoopPolicyRulesIndex, varLoopPolicyRules := range ans.DefaultrulePolicyset.PolicyRules {
 					// add a new item
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules = append(state.Policysets[varLoopPolicysetsIndex].PolicyRules, dsModelBasePolicyRule{})
-					// copy_to_state: state=state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=12
-					tflog.Debug(ctx, "copy_to_state state=state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
+					state.DefaultrulePolicyset.PolicyRules = append(state.DefaultrulePolicyset.PolicyRules, dsModelNetworkPolicyRule{})
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=14
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
 					// property: name=_etag, type=INTEGER macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
 					// property: name=_schema, type=INTEGER macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Schema = types.Int64PointerValue(varLoopPolicyRules.Schema)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Schema = types.Int64PointerValue(varLoopPolicyRules.Schema)
+					// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.AppDefIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = varAppDefIds
+					resp.Diagnostics.Append(errAppDefIds.Errors()...)
 					// property: name=description, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
-					// property: name=disabled, type=BOOLEAN macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Disabled = types.BoolPointerValue(varLoopPolicyRules.Disabled)
-					// property: name=disabled_reason, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].DisabledReason = types.StringPointerValue(varLoopPolicyRules.DisabledReason)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
+					// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
+					// property: name=enabled, type=BOOLEAN macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = types.BoolPointerValue(varLoopPolicyRules.Enabled)
 					// property: name=id, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
-					// property: name=inactive, type=BOOLEAN macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Inactive = types.BoolPointerValue(varLoopPolicyRules.Inactive)
-					// property: name=inactive_reason, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].InactiveReason = types.StringPointerValue(varLoopPolicyRules.InactiveReason)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
 					// property: name=name, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
-					// property: name=policyset_id, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].PolicysetId = types.StringPointerValue(varLoopPolicyRules.PolicysetId)
-					// property: name=region, type=STRING macro=copy_to_state
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Region = types.StringPointerValue(varLoopPolicyRules.Region)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
+					// property: name=network_context_id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].NetworkContextId = types.StringPointerValue(varLoopPolicyRules.NetworkContextId)
+					// property: name=order_number, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].OrderNumber = types.Int64PointerValue(varLoopPolicyRules.OrderNumber)
+					// property: name=paths_allowed, type=REFERENCE macro=copy_to_state
+					if varLoopPolicyRules.PathsAllowed == nil {
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = nil
+					} else {
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed = &dsModelPathsAllowed{}
+						// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=dsModel ans=varLoopPolicyRules.PathsAllowed properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed prefix=dsModel ans=varLoopPolicyRules.PathsAllowed")
+						// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
+						if varLoopPolicyRules.PathsAllowed.ActivePaths == nil {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = nil
+						} else if len(varLoopPolicyRules.PathsAllowed.ActivePaths) == 0 {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = []dsModelWANPath{}
+						} else {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = make([]dsModelWANPath, 0, len(varLoopPolicyRules.PathsAllowed.ActivePaths))
+							for varLoopActivePathsIndex, varLoopActivePaths := range varLoopPolicyRules.PathsAllowed.ActivePaths {
+								// add a new item
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths, dsModelWANPath{})
+								// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths properties=2
+								tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths")
+								// property: name=label, type=STRING macro=copy_to_state
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].Label = types.StringPointerValue(varLoopActivePaths.Label)
+								// property: name=path_type, type=STRING macro=copy_to_state
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.ActivePaths[varLoopActivePathsIndex].PathType = types.StringPointerValue(varLoopActivePaths.PathType)
+							}
+						}
+						// property: name=backup_paths, type=ARRAY_REFERENCE macro=copy_to_state
+						if varLoopPolicyRules.PathsAllowed.BackupPaths == nil {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = nil
+						} else if len(varLoopPolicyRules.PathsAllowed.BackupPaths) == 0 {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = []dsModelWANPath{}
+						} else {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = make([]dsModelWANPath, 0, len(varLoopPolicyRules.PathsAllowed.BackupPaths))
+							for varLoopBackupPathsIndex, varLoopBackupPaths := range varLoopPolicyRules.PathsAllowed.BackupPaths {
+								// add a new item
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths, dsModelWANPath{})
+								// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths properties=2
+								tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths")
+								// property: name=label, type=STRING macro=copy_to_state
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].Label = types.StringPointerValue(varLoopBackupPaths.Label)
+								// property: name=path_type, type=STRING macro=copy_to_state
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.BackupPaths[varLoopBackupPathsIndex].PathType = types.StringPointerValue(varLoopBackupPaths.PathType)
+							}
+						}
+						// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=copy_to_state
+						if varLoopPolicyRules.PathsAllowed.L3FailurePaths == nil {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = nil
+						} else if len(varLoopPolicyRules.PathsAllowed.L3FailurePaths) == 0 {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = []dsModelWANPath{}
+						} else {
+							state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = make([]dsModelWANPath, 0, len(varLoopPolicyRules.PathsAllowed.L3FailurePaths))
+							for varLoopL3FailurePathsIndex, varLoopL3FailurePaths := range varLoopPolicyRules.PathsAllowed.L3FailurePaths {
+								// add a new item
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths = append(state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths, dsModelWANPath{})
+								// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths properties=2
+								tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths")
+								// property: name=label, type=STRING macro=copy_to_state
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].Label = types.StringPointerValue(varLoopL3FailurePaths.Label)
+								// property: name=path_type, type=STRING macro=copy_to_state
+								state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex].PathType = types.StringPointerValue(varLoopL3FailurePaths.PathType)
+							}
+						}
+					}
+					// property: name=service_context, type=REFERENCE macro=copy_to_state
+					if varLoopPolicyRules.ServiceContext == nil {
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = nil
+					} else {
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &dsModelServiceContext{}
+						// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=dsModel ans=varLoopPolicyRules.ServiceContext properties=5
+						tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext prefix=dsModel ans=varLoopPolicyRules.ServiceContext")
+						// property: name=active_service_label_id, type=STRING macro=copy_to_state
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelId)
+						// property: name=active_service_label_type, type=STRING macro=copy_to_state
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.ActiveServiceLabelType = types.StringPointerValue(varLoopPolicyRules.ServiceContext.ActiveServiceLabelType)
+						// property: name=backup_service_label_id, type=STRING macro=copy_to_state
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.BackupServiceLabelId = types.StringPointerValue(varLoopPolicyRules.ServiceContext.BackupServiceLabelId)
+						// property: name=backup_service_label_type, type=STRING macro=copy_to_state
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.BackupServiceLabelType = types.StringPointerValue(varLoopPolicyRules.ServiceContext.BackupServiceLabelType)
+						// property: name=type, type=STRING macro=copy_to_state
+						state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = types.StringPointerValue(varLoopPolicyRules.ServiceContext.Type)
+					}
+					// property: name=source_prefixes_id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
 					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
-					state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 					resp.Diagnostics.Append(errTags.Errors()...)
 				}
 			}
 			// property: name=region, type=STRING macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].Region = types.StringPointerValue(varLoopPolicysets.Region)
+			state.DefaultrulePolicyset.Region = types.StringPointerValue(ans.DefaultrulePolicyset.Region)
 			// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
-			state.Policysets[varLoopPolicysetsIndex].SendToElement = types.BoolPointerValue(varLoopPolicysets.SendToElement)
+			state.DefaultrulePolicyset.SendToElement = types.BoolPointerValue(ans.DefaultrulePolicyset.SendToElement)
 			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicysets.Tags)
-			state.Policysets[varLoopPolicysetsIndex].Tags = varTags
+			varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DefaultrulePolicyset.Tags)
+			state.DefaultrulePolicyset.Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
 		}
-	}
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=defaultrule_policyset_id, type=STRING macro=copy_to_state
+		state.DefaultrulePolicysetId = types.StringPointerValue(ans.DefaultrulePolicysetId)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=disabled, type=BOOLEAN macro=copy_to_state
+		state.Disabled = types.BoolPointerValue(ans.Disabled)
+		// property: name=disabled_reason, type=STRING macro=copy_to_state
+		state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=inactive, type=BOOLEAN macro=copy_to_state
+		state.Inactive = types.BoolPointerValue(ans.Inactive)
+		// property: name=inactive_reason, type=STRING macro=copy_to_state
+		state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
+		// property: name=legacy_policystack, type=BOOLEAN macro=copy_to_state
+		state.LegacyPolicystack = types.BoolPointerValue(ans.LegacyPolicystack)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=policyset_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varPolicysetIds, errPolicysetIds := types.ListValueFrom(ctx, types.StringType, ans.PolicysetIds)
+		state.PolicysetIds = varPolicysetIds
+		resp.Diagnostics.Append(errPolicysetIds.Errors()...)
+		// property: name=policyset_ids_update, type=BOOLEAN macro=copy_to_state
+		state.PolicysetIdsUpdate = types.BoolPointerValue(ans.PolicysetIdsUpdate)
+		// property: name=policysets, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.Policysets == nil {
+			state.Policysets = nil
+		} else if len(ans.Policysets) == 0 {
+			state.Policysets = []dsModelBasePolicySet{}
+		} else {
+			state.Policysets = make([]dsModelBasePolicySet, 0, len(ans.Policysets))
+			for varLoopPolicysetsIndex, varLoopPolicysets := range ans.Policysets {
+				// add a new item
+				state.Policysets = append(state.Policysets, dsModelBasePolicySet{})
+				// copy_to_state: state=state.Policysets[varLoopPolicysetsIndex] prefix=dsModel ans=varLoopPolicysets properties=14
+				tflog.Debug(ctx, "copy_to_state state=state.Policysets[varLoopPolicysetsIndex] prefix=dsModel ans=varLoopPolicysets")
+				// property: name=_etag, type=INTEGER macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Etag = types.Int64PointerValue(varLoopPolicysets.Etag)
+				// property: name=_schema, type=INTEGER macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Schema = types.Int64PointerValue(varLoopPolicysets.Schema)
+				// property: name=clone_from, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].CloneFrom = types.StringPointerValue(varLoopPolicysets.CloneFrom)
+				// property: name=description, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Description = types.StringPointerValue(varLoopPolicysets.Description)
+				// property: name=disabled, type=BOOLEAN macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Disabled = types.BoolPointerValue(varLoopPolicysets.Disabled)
+				// property: name=disabled_reason, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].DisabledReason = types.StringPointerValue(varLoopPolicysets.DisabledReason)
+				// property: name=id, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Id = types.StringPointerValue(varLoopPolicysets.Id)
+				// property: name=inactive, type=BOOLEAN macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Inactive = types.BoolPointerValue(varLoopPolicysets.Inactive)
+				// property: name=inactive_reason, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].InactiveReason = types.StringPointerValue(varLoopPolicysets.InactiveReason)
+				// property: name=name, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Name = types.StringPointerValue(varLoopPolicysets.Name)
+				// property: name=policy_rules, type=ARRAY_REFERENCE macro=copy_to_state
+				if varLoopPolicysets.PolicyRules == nil {
+					state.Policysets[varLoopPolicysetsIndex].PolicyRules = nil
+				} else if len(varLoopPolicysets.PolicyRules) == 0 {
+					state.Policysets[varLoopPolicysetsIndex].PolicyRules = []dsModelBasePolicyRule{}
+				} else {
+					state.Policysets[varLoopPolicysetsIndex].PolicyRules = make([]dsModelBasePolicyRule, 0, len(varLoopPolicysets.PolicyRules))
+					for varLoopPolicyRulesIndex, varLoopPolicyRules := range varLoopPolicysets.PolicyRules {
+						// add a new item
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules = append(state.Policysets[varLoopPolicysetsIndex].PolicyRules, dsModelBasePolicyRule{})
+						// copy_to_state: state=state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules properties=12
+						tflog.Debug(ctx, "copy_to_state state=state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex] prefix=dsModel ans=varLoopPolicyRules")
+						// property: name=_etag, type=INTEGER macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
+						// property: name=_schema, type=INTEGER macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Schema = types.Int64PointerValue(varLoopPolicyRules.Schema)
+						// property: name=description, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
+						// property: name=disabled, type=BOOLEAN macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Disabled = types.BoolPointerValue(varLoopPolicyRules.Disabled)
+						// property: name=disabled_reason, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].DisabledReason = types.StringPointerValue(varLoopPolicyRules.DisabledReason)
+						// property: name=id, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
+						// property: name=inactive, type=BOOLEAN macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Inactive = types.BoolPointerValue(varLoopPolicyRules.Inactive)
+						// property: name=inactive_reason, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].InactiveReason = types.StringPointerValue(varLoopPolicyRules.InactiveReason)
+						// property: name=name, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
+						// property: name=policyset_id, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].PolicysetId = types.StringPointerValue(varLoopPolicyRules.PolicysetId)
+						// property: name=region, type=STRING macro=copy_to_state
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Region = types.StringPointerValue(varLoopPolicyRules.Region)
+						// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+						varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
+						state.Policysets[varLoopPolicysetsIndex].PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
+						resp.Diagnostics.Append(errTags.Errors()...)
+					}
+				}
+				// property: name=region, type=STRING macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].Region = types.StringPointerValue(varLoopPolicysets.Region)
+				// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+				state.Policysets[varLoopPolicysetsIndex].SendToElement = types.BoolPointerValue(varLoopPolicysets.SendToElement)
+				// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicysets.Tags)
+				state.Policysets[varLoopPolicysetsIndex].Tags = varTags
+				resp.Diagnostics.Append(errTags.Errors()...)
+			}
+		}
+		// property: name=region, type=STRING macro=copy_to_state
+		state.Region = types.StringPointerValue(ans.Region)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
 
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

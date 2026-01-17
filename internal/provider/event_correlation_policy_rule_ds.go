@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -52,6 +53,14 @@ type eventCorrelationPolicyRuleDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterEventCorrelationPolicyRule struct {
+	Filters      types.Map                                      `tfsdk:"filters"`
+	TfParameters types.Map                                      `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                                    `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                                    `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelEventCorrelationPolicyRuleScreenV2N1 `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *eventCorrelationPolicyRuleDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_event_correlation_policy_rule"
@@ -61,12 +70,13 @@ func (d *eventCorrelationPolicyRuleDataSource) Metadata(_ context.Context, req d
 func (d *eventCorrelationPolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=EventCorrelationPolicyRuleScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -84,189 +94,211 @@ func (d *eventCorrelationPolicyRuleDataSource) Schema(_ context.Context, _ datas
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=dampening_duration, type=INTEGER macro=rss_schema
-			"dampening_duration": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=dampening_duration, type=INTEGER macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=enabled, type=BOOLEAN macro=rss_schema
-			"enabled": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
-			// property: name=end_time, type=INTEGER macro=rss_schema
-			"end_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=end_time, type=INTEGER macro=rss_schema
-			// property: name=escalation_rules, type=REFERENCE macro=rss_schema
-			"escalation_rules": dsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]dsschema.Attribute{
-					// property: name=flap_rule, type=REFERENCE macro=rss_schema
-					"flap_rule": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=flap_duration, type=INTEGER macro=rss_schema
-							"flap_duration": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=flap_duration, type=INTEGER macro=rss_schema
-							// property: name=flap_rate, type=INTEGER macro=rss_schema
-							"flap_rate": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: dsschema.NestedAttributeObject{
+					Attributes: map[string]dsschema.Attribute{
+						// rest all properties to be read from GET API Schema schema=EventCorrelationPolicyRuleScreenV2N1
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
 						},
-					},
-					// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
-					// property: name=standing_rule, type=REFERENCE macro=rss_schema
-					"standing_rule": dsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-						Attributes: map[string]dsschema.Attribute{
-							// property: name=priority, type=STRING macro=rss_schema
-							"priority": dsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=priority, type=STRING macro=rss_schema
-							// property: name=standing_for, type=INTEGER macro=rss_schema
-							"standing_for": dsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
-							},
-							// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
 						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=dampening_duration, type=INTEGER macro=rss_schema
+						"dampening_duration": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=dampening_duration, type=INTEGER macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=enabled, type=BOOLEAN macro=rss_schema
+						"enabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+						// property: name=end_time, type=INTEGER macro=rss_schema
+						"end_time": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=end_time, type=INTEGER macro=rss_schema
+						// property: name=escalation_rules, type=REFERENCE macro=rss_schema
+						"escalation_rules": dsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]dsschema.Attribute{
+								// property: name=flap_rule, type=REFERENCE macro=rss_schema
+								"flap_rule": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=flap_duration, type=INTEGER macro=rss_schema
+										"flap_duration": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=flap_duration, type=INTEGER macro=rss_schema
+										// property: name=flap_rate, type=INTEGER macro=rss_schema
+										"flap_rate": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
+								// property: name=standing_rule, type=REFERENCE macro=rss_schema
+								"standing_rule": dsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]dsschema.Attribute{
+										// property: name=priority, type=STRING macro=rss_schema
+										"priority": dsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=priority, type=STRING macro=rss_schema
+										// property: name=standing_for, type=INTEGER macro=rss_schema
+										"standing_for": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
+						// property: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"event_codes": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=priority, type=STRING macro=rss_schema
+						"priority": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=priority, type=STRING macro=rss_schema
+						// property: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						"resource_ids": dsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=resource_type, type=STRING macro=rss_schema
+						"resource_type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=resource_type, type=STRING macro=rss_schema
+						// property: name=start_time, type=INTEGER macro=rss_schema
+						"start_time": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=start_time, type=INTEGER macro=rss_schema
+						// property: name=sub_resource_type, type=STRING macro=rss_schema
+						"sub_resource_type": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=sub_resource_type, type=STRING macro=rss_schema
+						// property: name=suppress, type=STRING macro=rss_schema
+						"suppress": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=suppress, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 					},
-					// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
-			// property: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
-			"event_codes": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=priority, type=STRING macro=rss_schema
-			"priority": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=priority, type=STRING macro=rss_schema
-			// property: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"resource_ids": dsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			// property: name=resource_type, type=STRING macro=rss_schema
-			"resource_type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=resource_type, type=STRING macro=rss_schema
-			// property: name=start_time, type=INTEGER macro=rss_schema
-			"start_time": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=start_time, type=INTEGER macro=rss_schema
-			// property: name=sub_resource_type, type=STRING macro=rss_schema
-			"sub_resource_type": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=sub_resource_type, type=STRING macro=rss_schema
-			// property: name=suppress, type=STRING macro=rss_schema
-			"suppress": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=suppress, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 		},
 	}
 }
@@ -281,8 +313,9 @@ func (d *eventCorrelationPolicyRuleDataSource) Configure(_ context.Context, req 
 
 // Read performs Read for the struct.
 func (d *eventCorrelationPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelEventCorrelationPolicyRuleScreenV2N1
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterEventCorrelationPolicyRule
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -295,128 +328,170 @@ func (d *eventCorrelationPolicyRuleDataSource) Read(ctx context.Context, req dat
 		"resource_name":               "prismasdwan_event_correlation_policy_rule",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 2 {
-		resp.Diagnostics.AddError("error in prismasdwan_event_correlation_policy_rule ID format", "Expected 2 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.1/api/eventcorrelationpolicysets/{policy_set_id}/eventcorrelationpolicyrules/{policy_rule_id}"
+	get_path := "/sdwan/v2.1/api/eventcorrelationpolicysets/{policy_set_id}/eventcorrelationpolicyrules/{policy_rule_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["policy_set_id"] = &tokens[0]
-	params["policy_rule_id"] = &tokens[1]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_event_correlation_policy_rule", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_event_correlation_policy_rule", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.EventCorrelationPolicyRuleScreenV2N1
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to EventCorrelationPolicyRuleScreenV2N1", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=EventCorrelationPolicyRuleScreenV2N1
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=17
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=dampening_duration, type=INTEGER macro=copy_to_state
-	state.DampeningDuration = types.Int64PointerValue(ans.DampeningDuration)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=enabled, type=BOOLEAN macro=copy_to_state
-	state.Enabled = types.BoolPointerValue(ans.Enabled)
-	// property: name=end_time, type=INTEGER macro=copy_to_state
-	state.EndTime = types.Int64PointerValue(ans.EndTime)
-	// property: name=escalation_rules, type=REFERENCE macro=copy_to_state
-	if ans.EscalationRules == nil {
-		state.EscalationRules = nil
-	} else {
-		state.EscalationRules = &dsModelEscalationRule{}
-		// copy_to_state: state=state.EscalationRules prefix=dsModel ans=ans.EscalationRules properties=2
-		tflog.Debug(ctx, "copy_to_state state=state.EscalationRules prefix=dsModel ans=ans.EscalationRules")
-		// property: name=flap_rule, type=REFERENCE macro=copy_to_state
-		if ans.EscalationRules.FlapRule == nil {
-			state.EscalationRules.FlapRule = nil
-		} else {
-			state.EscalationRules.FlapRule = &dsModelFlapRule{}
-			// copy_to_state: state=state.EscalationRules.FlapRule prefix=dsModel ans=ans.EscalationRules.FlapRule properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.FlapRule prefix=dsModel ans=ans.EscalationRules.FlapRule")
-			// property: name=flap_duration, type=INTEGER macro=copy_to_state
-			state.EscalationRules.FlapRule.FlapDuration = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapDuration)
-			// property: name=flap_rate, type=INTEGER macro=copy_to_state
-			state.EscalationRules.FlapRule.FlapRate = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapRate)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
+			}
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
 		}
-		// property: name=standing_rule, type=REFERENCE macro=copy_to_state
-		if ans.EscalationRules.StandingRule == nil {
-			state.EscalationRules.StandingRule = nil
-		} else {
-			state.EscalationRules.StandingRule = &dsModelStandingRule{}
-			// copy_to_state: state=state.EscalationRules.StandingRule prefix=dsModel ans=ans.EscalationRules.StandingRule properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.StandingRule prefix=dsModel ans=ans.EscalationRules.StandingRule")
-			// property: name=priority, type=STRING macro=copy_to_state
-			state.EscalationRules.StandingRule.Priority = types.StringPointerValue(ans.EscalationRules.StandingRule.Priority)
-			// property: name=standing_for, type=INTEGER macro=copy_to_state
-			state.EscalationRules.StandingRule.StandingFor = types.Int64PointerValue(ans.EscalationRules.StandingRule.StandingFor)
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
 		}
+
+		// Store the answer to state.
+		var state dsModelEventCorrelationPolicyRuleScreenV2N1
+
+		// start copying attributes
+		var ans sdwan_schema.EventCorrelationPolicyRuleScreenV2N1
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to EventCorrelationPolicyRuleScreenV2N1", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=EventCorrelationPolicyRuleScreenV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=17
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=dampening_duration, type=INTEGER macro=copy_to_state
+		state.DampeningDuration = types.Int64PointerValue(ans.DampeningDuration)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=enabled, type=BOOLEAN macro=copy_to_state
+		state.Enabled = types.BoolPointerValue(ans.Enabled)
+		// property: name=end_time, type=INTEGER macro=copy_to_state
+		state.EndTime = types.Int64PointerValue(ans.EndTime)
+		// property: name=escalation_rules, type=REFERENCE macro=copy_to_state
+		if ans.EscalationRules == nil {
+			state.EscalationRules = nil
+		} else {
+			state.EscalationRules = &dsModelEscalationRule{}
+			// copy_to_state: state=state.EscalationRules prefix=dsModel ans=ans.EscalationRules properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.EscalationRules prefix=dsModel ans=ans.EscalationRules")
+			// property: name=flap_rule, type=REFERENCE macro=copy_to_state
+			if ans.EscalationRules.FlapRule == nil {
+				state.EscalationRules.FlapRule = nil
+			} else {
+				state.EscalationRules.FlapRule = &dsModelFlapRule{}
+				// copy_to_state: state=state.EscalationRules.FlapRule prefix=dsModel ans=ans.EscalationRules.FlapRule properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.FlapRule prefix=dsModel ans=ans.EscalationRules.FlapRule")
+				// property: name=flap_duration, type=INTEGER macro=copy_to_state
+				state.EscalationRules.FlapRule.FlapDuration = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapDuration)
+				// property: name=flap_rate, type=INTEGER macro=copy_to_state
+				state.EscalationRules.FlapRule.FlapRate = types.Int64PointerValue(ans.EscalationRules.FlapRule.FlapRate)
+			}
+			// property: name=standing_rule, type=REFERENCE macro=copy_to_state
+			if ans.EscalationRules.StandingRule == nil {
+				state.EscalationRules.StandingRule = nil
+			} else {
+				state.EscalationRules.StandingRule = &dsModelStandingRule{}
+				// copy_to_state: state=state.EscalationRules.StandingRule prefix=dsModel ans=ans.EscalationRules.StandingRule properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.EscalationRules.StandingRule prefix=dsModel ans=ans.EscalationRules.StandingRule")
+				// property: name=priority, type=STRING macro=copy_to_state
+				state.EscalationRules.StandingRule.Priority = types.StringPointerValue(ans.EscalationRules.StandingRule.Priority)
+				// property: name=standing_for, type=INTEGER macro=copy_to_state
+				state.EscalationRules.StandingRule.StandingFor = types.Int64PointerValue(ans.EscalationRules.StandingRule.StandingFor)
+			}
+		}
+		// property: name=event_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varEventCodes, errEventCodes := types.ListValueFrom(ctx, types.StringType, ans.EventCodes)
+		state.EventCodes = varEventCodes
+		resp.Diagnostics.Append(errEventCodes.Errors()...)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=priority, type=STRING macro=copy_to_state
+		state.Priority = types.StringPointerValue(ans.Priority)
+		// property: name=resource_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varResourceIds, errResourceIds := types.ListValueFrom(ctx, types.StringType, ans.ResourceIds)
+		state.ResourceIds = varResourceIds
+		resp.Diagnostics.Append(errResourceIds.Errors()...)
+		// property: name=resource_type, type=STRING macro=copy_to_state
+		state.ResourceType = types.StringPointerValue(ans.ResourceType)
+		// property: name=start_time, type=INTEGER macro=copy_to_state
+		state.StartTime = types.Int64PointerValue(ans.StartTime)
+		// property: name=sub_resource_type, type=STRING macro=copy_to_state
+		state.SubResourceType = types.StringPointerValue(ans.SubResourceType)
+		// property: name=suppress, type=STRING macro=copy_to_state
+		state.Suppress = types.StringPointerValue(ans.Suppress)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
 	}
-	// property: name=event_codes, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varEventCodes, errEventCodes := types.ListValueFrom(ctx, types.StringType, ans.EventCodes)
-	state.EventCodes = varEventCodes
-	resp.Diagnostics.Append(errEventCodes.Errors()...)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=priority, type=STRING macro=copy_to_state
-	state.Priority = types.StringPointerValue(ans.Priority)
-	// property: name=resource_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varResourceIds, errResourceIds := types.ListValueFrom(ctx, types.StringType, ans.ResourceIds)
-	state.ResourceIds = varResourceIds
-	resp.Diagnostics.Append(errResourceIds.Errors()...)
-	// property: name=resource_type, type=STRING macro=copy_to_state
-	state.ResourceType = types.StringPointerValue(ans.ResourceType)
-	// property: name=start_time, type=INTEGER macro=copy_to_state
-	state.StartTime = types.Int64PointerValue(ans.StartTime)
-	// property: name=sub_resource_type, type=STRING macro=copy_to_state
-	state.SubResourceType = types.StringPointerValue(ans.SubResourceType)
-	// property: name=suppress, type=STRING macro=copy_to_state
-	state.Suppress = types.StringPointerValue(ans.Suppress)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }

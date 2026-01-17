@@ -11,6 +11,7 @@ import (
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
 	sdwan_schema "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/schemas"
 	sdwan_client "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/sdwan/services"
+	"github.com/tidwall/gjson"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	dsschema "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -55,6 +56,14 @@ type qosPolicySetDataSource struct {
 	client *sdwan.Client
 }
 
+type dsModelWithFilterQosPolicySet struct {
+	Filters      types.Map                   `tfsdk:"filters"`
+	TfParameters types.Map                   `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                 `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                 `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelPriorityPolicySet `tfsdk:"items"`
+}
+
 // Metadata returns the data source type name.
 func (d *qosPolicySetDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = "prismasdwan_qos_policy_set"
@@ -64,12 +73,13 @@ func (d *qosPolicySetDataSource) Metadata(_ context.Context, req datasource.Meta
 func (d *qosPolicySetDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
 		Description: "Retrieves a config item.",
-
 		Attributes: map[string]dsschema.Attribute{
-			"tfid": dsschema.StringAttribute{
-				Computed: true,
+			"filters": dsschema.MapAttribute{
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				ElementType: types.StringType,
 			},
-			// rest all properties to be read from GET API Schema schema=PriorityPolicySet
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
 				Required:    false,
@@ -87,104 +97,155 @@ func (d *qosPolicySetDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required: false,
+				Computed: true,
+				Optional: true,
 			},
-			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=bandwidth_allocation_schemes, type=ARRAY_REFERENCE macro=rss_schema
-			"bandwidth_allocation_schemes": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+			"items": dsschema.ListNestedAttribute{
+				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// property: name=bandwidth_range, type=REFERENCE macro=rss_schema
-						"bandwidth_range": dsschema.SingleNestedAttribute{
+						// rest all properties to be read from GET API Schema schema=PriorityPolicySet
+						// property: name=_etag, type=INTEGER macro=rss_schema
+						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
-							Attributes: map[string]dsschema.Attribute{
-								// property: name=high, type=NUMBER macro=rss_schema
-								"high": dsschema.Float64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=high, type=NUMBER macro=rss_schema
-								// property: name=low, type=NUMBER macro=rss_schema
-								"low": dsschema.Float64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-								},
-								// key name holder for attribute: name=low, type=NUMBER macro=rss_schema
-							},
 						},
-						// key name holder for attribute: name=low, type=NUMBER macro=rss_schema
-						// property: name=business_priorities, type=ARRAY_REFERENCE macro=rss_schema
-						"business_priorities": dsschema.ListNestedAttribute{
+						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+						// property: name=_schema, type=INTEGER macro=rss_schema
+						"x_schema": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=bandwidth_allocation_schemes, type=ARRAY_REFERENCE macro=rss_schema
+						"bandwidth_allocation_schemes": dsschema.ListNestedAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
-									// property: name=bandwidth_allocation, type=NUMBER macro=rss_schema
-									"bandwidth_allocation": dsschema.Float64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=bandwidth_allocation, type=NUMBER macro=rss_schema
-									// property: name=bandwidth_split_per_type, type=REFERENCE macro=rss_schema
-									"bandwidth_split_per_type": dsschema.SingleNestedAttribute{
+									// property: name=bandwidth_range, type=REFERENCE macro=rss_schema
+									"bandwidth_range": dsschema.SingleNestedAttribute{
 										Required:  false,
 										Computed:  false,
 										Optional:  true,
 										Sensitive: false,
 										Attributes: map[string]dsschema.Attribute{
-											// property: name=bulk, type=NUMBER macro=rss_schema
-											"bulk": dsschema.Float64Attribute{
+											// property: name=high, type=NUMBER macro=rss_schema
+											"high": dsschema.Float64Attribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=bulk, type=NUMBER macro=rss_schema
-											// property: name=rt_audio, type=NUMBER macro=rss_schema
-											"rt_audio": dsschema.Float64Attribute{
+											// key name holder for attribute: name=high, type=NUMBER macro=rss_schema
+											// property: name=low, type=NUMBER macro=rss_schema
+											"low": dsschema.Float64Attribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=rt_audio, type=NUMBER macro=rss_schema
-											// property: name=rt_video, type=NUMBER macro=rss_schema
-											"rt_video": dsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=rt_video, type=NUMBER macro=rss_schema
-											// property: name=transactional, type=NUMBER macro=rss_schema
-											"transactional": dsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
-											},
-											// key name holder for attribute: name=transactional, type=NUMBER macro=rss_schema
+											// key name holder for attribute: name=low, type=NUMBER macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=transactional, type=NUMBER macro=rss_schema
+									// key name holder for attribute: name=low, type=NUMBER macro=rss_schema
+									// property: name=business_priorities, type=ARRAY_REFERENCE macro=rss_schema
+									"business_priorities": dsschema.ListNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										NestedObject: dsschema.NestedAttributeObject{
+											Attributes: map[string]dsschema.Attribute{
+												// property: name=bandwidth_allocation, type=NUMBER macro=rss_schema
+												"bandwidth_allocation": dsschema.Float64Attribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=bandwidth_allocation, type=NUMBER macro=rss_schema
+												// property: name=bandwidth_split_per_type, type=REFERENCE macro=rss_schema
+												"bandwidth_split_per_type": dsschema.SingleNestedAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+													Attributes: map[string]dsschema.Attribute{
+														// property: name=bulk, type=NUMBER macro=rss_schema
+														"bulk": dsschema.Float64Attribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=bulk, type=NUMBER macro=rss_schema
+														// property: name=rt_audio, type=NUMBER macro=rss_schema
+														"rt_audio": dsschema.Float64Attribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=rt_audio, type=NUMBER macro=rss_schema
+														// property: name=rt_video, type=NUMBER macro=rss_schema
+														"rt_video": dsschema.Float64Attribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=rt_video, type=NUMBER macro=rss_schema
+														// property: name=transactional, type=NUMBER macro=rss_schema
+														"transactional": dsschema.Float64Attribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=transactional, type=NUMBER macro=rss_schema
+													},
+												},
+												// key name holder for attribute: name=transactional, type=NUMBER macro=rss_schema
+												// property: name=priority_number, type=INTEGER macro=rss_schema
+												"priority_number": dsschema.Int64Attribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+												},
+												// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
+											},
+										},
+									},
+									// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
+								},
+							},
+						},
+						// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
+						// property: name=business_priority_names, type=ARRAY_REFERENCE macro=rss_schema
+						"business_priority_names": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=priority_name, type=STRING macro=rss_schema
+									"priority_name": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=priority_name, type=STRING macro=rss_schema
 									// property: name=priority_number, type=INTEGER macro=rss_schema
 									"priority_number": dsschema.Int64Attribute{
 										Required:  false,
@@ -197,132 +258,103 @@ func (d *qosPolicySetDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 							},
 						},
 						// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
-			// property: name=business_priority_names, type=ARRAY_REFERENCE macro=rss_schema
-			"business_priority_names": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=priority_name, type=STRING macro=rss_schema
-						"priority_name": dsschema.StringAttribute{
+						// property: name=clone_from, type=STRING macro=rss_schema
+						"clone_from": dsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=priority_name, type=STRING macro=rss_schema
-						// property: name=priority_number, type=INTEGER macro=rss_schema
-						"priority_number": dsschema.Int64Attribute{
+						// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
+						// property: name=default_rule_dscp_mappings, type=ARRAY_REFERENCE macro=rss_schema
+						"default_rule_dscp_mappings": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
+									"dscp": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.Int64Type,
+									},
+									// key name holder for attribute: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
+									// property: name=priority_number, type=INTEGER macro=rss_schema
+									"priority_number": dsschema.Int64Attribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
+									// property: name=transfer_type, type=STRING macro=rss_schema
+									"transfer_type": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
+								},
+							},
+						},
+						// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
+						// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
+						"defaultrule_policyset": dsschema.BoolAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
-			// property: name=clone_from, type=STRING macro=rss_schema
-			"clone_from": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
-			// property: name=default_rule_dscp_mappings, type=ARRAY_REFERENCE macro=rss_schema
-			"default_rule_dscp_mappings": dsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: dsschema.NestedAttributeObject{
-					Attributes: map[string]dsschema.Attribute{
-						// property: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
-						"dscp": dsschema.ListAttribute{
+						// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
+						// property: name=description, type=STRING macro=rss_schema
+						"description": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=id, type=STRING macro=rss_schema
+						"id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  true,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=name, type=STRING macro=rss_schema
+						"name": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						"tags": dsschema.SetAttribute{
 							Required:    false,
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							ElementType: types.Int64Type,
+							ElementType: types.StringType,
 						},
-						// key name holder for attribute: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
-						// property: name=priority_number, type=INTEGER macro=rss_schema
-						"priority_number": dsschema.Int64Attribute{
+						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+						// property: name=template, type=BOOLEAN macro=rss_schema
+						"template": dsschema.BoolAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
-						// property: name=transfer_type, type=STRING macro=rss_schema
-						"transfer_type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
+						// key name holder for attribute: name=template, type=BOOLEAN macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
-			// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
-			"defaultrule_policyset": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
-			// property: name=description, type=STRING macro=rss_schema
-			"description": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=description, type=STRING macro=rss_schema
-			// property: name=id, type=STRING macro=rss_schema
-			"id": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=name, type=STRING macro=rss_schema
-			"name": dsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			"tags": dsschema.SetAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=template, type=BOOLEAN macro=rss_schema
-			"template": dsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=template, type=BOOLEAN macro=rss_schema
 		},
 	}
 }
@@ -337,8 +369,9 @@ func (d *qosPolicySetDataSource) Configure(_ context.Context, req datasource.Con
 
 // Read performs Read for the struct.
 func (d *qosPolicySetDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state dsModelPriorityPolicySet
-	resp.Diagnostics.Append(req.Config.Get(ctx, &state)...)
+
+	var state_with_filter dsModelWithFilterQosPolicySet
+	resp.Diagnostics.Append(req.Config.Get(ctx, &state_with_filter)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -351,177 +384,220 @@ func (d *qosPolicySetDataSource) Read(ctx context.Context, req datasource.ReadRe
 		"resource_name":               "prismasdwan_qos_policy_set",
 	})
 
-	tfid := state.Tfid.ValueString()
-	tokens := strings.Split(tfid, IdSeparator)
-	if len(tokens) < 1 {
-		resp.Diagnostics.AddError("error in prismasdwan_qos_policy_set ID format", "Expected 1 tokens")
-		return
-	}
-
 	// Prepare to read the config.
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	read_request := &sdwan_client.SdwanClientRequestResponse{}
-	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/prioritypolicysets/{policy_set_id}"
+	get_path := "/sdwan/v2.0/api/prioritypolicysets/{policy_set_id}"
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.Method = "GET"
+	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
 
 	// handle parameters
-	params := make(map[string]*string)
-	read_request.PathParameters = &params
-	params["policy_set_id"] = &tokens[0]
+	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
+	list_request.PathParameters = &params
 
 	// Perform the operation.
-	svc.ExecuteSdwanRequest(ctx, read_request)
-	if read_request.ResponseErr != nil {
-		if IsObjectNotFound(*read_request.ResponseErr) {
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		if IsObjectNotFound(*list_request.ResponseErr) {
 			resp.State.RemoveResource(ctx)
 		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_qos_policy_set", (*read_request.ResponseErr).Error())
+			resp.Diagnostics.AddError("error reading prismasdwan_qos_policy_set", (*list_request.ResponseErr).Error())
 		}
 		return
 	}
 
-	// Create the Terraform ID.
-	var idBuilder strings.Builder
-	idBuilder.WriteString("x")
+	// read json string from http response
+	response_body_string := string(*list_request.ResponseBytes)
+	tflog.Info(ctx, "lookup response from server", map[string]any{
+		"path": response_body_string,
+	})
 
-	// Store the answer to state.
-	state.Tfid = types.StringValue(idBuilder.String())
-	// start copying attributes
-	var ans sdwan_schema.PriorityPolicySet
-	// copy from json response
-	json_err := json.Unmarshal(*read_request.ResponseBytes, &ans)
+	// iterate through items and find the first matching item
+	var response listResponse
+	json_err := json.Unmarshal([]byte(response_body_string), &response)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to PriorityPolicySet", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
+	// ensure its as array
+	for _, item := range response.Items {
+		// create json from item
+		item_json, item_err := json.Marshal(item)
+		tflog.Debug(ctx, "converting json to site", map[string]any{
+			"item_json": string(item_json),
+		})
+		if item_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", item_err.Error())
+			return
+		}
 
-	// lets copy all items into state schema=PriorityPolicySet
-	// copy_to_state: state=state prefix=dsModel ans=ans properties=12
-	tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
-	// property: name=_etag, type=INTEGER macro=copy_to_state
-	state.Etag = types.Int64PointerValue(ans.Etag)
-	// property: name=_schema, type=INTEGER macro=copy_to_state
-	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=bandwidth_allocation_schemes, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.BandwidthAllocationSchemes == nil {
-		state.BandwidthAllocationSchemes = nil
-	} else if len(ans.BandwidthAllocationSchemes) == 0 {
-		state.BandwidthAllocationSchemes = []dsModelBandwidthAllocationSchemeV2{}
-	} else {
-		state.BandwidthAllocationSchemes = make([]dsModelBandwidthAllocationSchemeV2, 0, len(ans.BandwidthAllocationSchemes))
-		for varLoopBandwidthAllocationSchemesIndex, varLoopBandwidthAllocationSchemes := range ans.BandwidthAllocationSchemes {
-			// add a new item
-			state.BandwidthAllocationSchemes = append(state.BandwidthAllocationSchemes, dsModelBandwidthAllocationSchemeV2{})
-			// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=dsModel ans=varLoopBandwidthAllocationSchemes properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=dsModel ans=varLoopBandwidthAllocationSchemes")
-			// property: name=bandwidth_range, type=REFERENCE macro=copy_to_state
-			if varLoopBandwidthAllocationSchemes.BandwidthRange == nil {
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = nil
-			} else {
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &dsModelBandwidthRange{}
-				// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=dsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
-				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=dsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
-				// property: name=high, type=NUMBER macro=copy_to_state
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
-				// property: name=low, type=NUMBER macro=copy_to_state
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.Low)
+		value_mismatched := false
+		for filter_key, filter_value := range state_with_filter.Filters.Elements() {
+			// do a path look up
+			path_value := gjson.Get(string(item_json), filter_key).String()
+			path_value = strings.Replace(path_value, "\"", "", 2)
+			// compare
+			if strings.Replace(filter_value.String(), "\"", "", 2) != strings.Replace(path_value, "\"", "", 2) {
+				tflog.Debug(ctx, "filter value mis-matched with item, skipping it", map[string]any{
+					"filter_key":   filter_key,
+					"filter_value": filter_value.String(),
+					"path_value":   path_value,
+				})
+				value_mismatched = true
+				break
 			}
-			// property: name=business_priorities, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopBandwidthAllocationSchemes.BusinessPriorities == nil {
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = nil
-			} else if len(varLoopBandwidthAllocationSchemes.BusinessPriorities) == 0 {
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = []dsModelBusinessPriorityV2{}
-			} else {
-				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = make([]dsModelBusinessPriorityV2, 0, len(varLoopBandwidthAllocationSchemes.BusinessPriorities))
-				for varLoopBusinessPrioritiesIndex, varLoopBusinessPriorities := range varLoopBandwidthAllocationSchemes.BusinessPriorities {
-					// add a new item
-					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, dsModelBusinessPriorityV2{})
-					// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=dsModel ans=varLoopBusinessPriorities properties=3
-					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=dsModel ans=varLoopBusinessPriorities")
-					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
-					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
-					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
-					if varLoopBusinessPriorities.BandwidthSplitPerType == nil {
-						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = nil
-					} else {
-						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &dsModelBandwidthSplit{}
-						// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=dsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
-						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=dsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
-						// property: name=bulk, type=NUMBER macro=copy_to_state
-						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
-						// property: name=rt_audio, type=NUMBER macro=copy_to_state
-						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio)
-						// property: name=rt_video, type=NUMBER macro=copy_to_state
-						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo)
-						// property: name=transactional, type=NUMBER macro=copy_to_state
-						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional)
+			tflog.Debug(ctx, "filter value matched with item", map[string]any{
+				"filter_key": filter_key,
+			})
+		}
+		if value_mismatched {
+			tflog.Debug(ctx, "filter value mis-matched with item, skipping it")
+			continue
+		}
+
+		// Store the answer to state.
+		var state dsModelPriorityPolicySet
+
+		// start copying attributes
+		var ans sdwan_schema.PriorityPolicySet
+		// copy from json response
+		json_err := json.Unmarshal(item_json, &ans)
+		// if found, exit
+		if json_err != nil {
+			resp.Diagnostics.AddError("error in json unmarshal to PriorityPolicySet", json_err.Error())
+			return
+		}
+
+		// lets copy all items into state schema=PriorityPolicySet
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=12
+		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
+		// property: name=_etag, type=INTEGER macro=copy_to_state
+		state.Etag = types.Int64PointerValue(ans.Etag)
+		// property: name=_schema, type=INTEGER macro=copy_to_state
+		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=bandwidth_allocation_schemes, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.BandwidthAllocationSchemes == nil {
+			state.BandwidthAllocationSchemes = nil
+		} else if len(ans.BandwidthAllocationSchemes) == 0 {
+			state.BandwidthAllocationSchemes = []dsModelBandwidthAllocationSchemeV2{}
+		} else {
+			state.BandwidthAllocationSchemes = make([]dsModelBandwidthAllocationSchemeV2, 0, len(ans.BandwidthAllocationSchemes))
+			for varLoopBandwidthAllocationSchemesIndex, varLoopBandwidthAllocationSchemes := range ans.BandwidthAllocationSchemes {
+				// add a new item
+				state.BandwidthAllocationSchemes = append(state.BandwidthAllocationSchemes, dsModelBandwidthAllocationSchemeV2{})
+				// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=dsModel ans=varLoopBandwidthAllocationSchemes properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex] prefix=dsModel ans=varLoopBandwidthAllocationSchemes")
+				// property: name=bandwidth_range, type=REFERENCE macro=copy_to_state
+				if varLoopBandwidthAllocationSchemes.BandwidthRange == nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = nil
+				} else {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange = &dsModelBandwidthRange{}
+					// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=dsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=dsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
+					// property: name=high, type=NUMBER macro=copy_to_state
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
+					// property: name=low, type=NUMBER macro=copy_to_state
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.Low)
+				}
+				// property: name=business_priorities, type=ARRAY_REFERENCE macro=copy_to_state
+				if varLoopBandwidthAllocationSchemes.BusinessPriorities == nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = nil
+				} else if len(varLoopBandwidthAllocationSchemes.BusinessPriorities) == 0 {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = []dsModelBusinessPriorityV2{}
+				} else {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = make([]dsModelBusinessPriorityV2, 0, len(varLoopBandwidthAllocationSchemes.BusinessPriorities))
+					for varLoopBusinessPrioritiesIndex, varLoopBusinessPriorities := range varLoopBandwidthAllocationSchemes.BusinessPriorities {
+						// add a new item
+						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities = append(state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities, dsModelBusinessPriorityV2{})
+						// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=dsModel ans=varLoopBusinessPriorities properties=3
+						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=dsModel ans=varLoopBusinessPriorities")
+						// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
+						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
+						// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
+						if varLoopBusinessPriorities.BandwidthSplitPerType == nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = nil
+						} else {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = &dsModelBandwidthSplit{}
+							// copy_to_state: state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=dsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType properties=4
+							tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=dsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
+							// property: name=bulk, type=NUMBER macro=copy_to_state
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
+							// property: name=rt_audio, type=NUMBER macro=copy_to_state
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio)
+							// property: name=rt_video, type=NUMBER macro=copy_to_state
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo)
+							// property: name=transactional, type=NUMBER macro=copy_to_state
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional)
+						}
+						// property: name=priority_number, type=INTEGER macro=copy_to_state
+						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorities.PriorityNumber)
 					}
-					// property: name=priority_number, type=INTEGER macro=copy_to_state
-					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorities.PriorityNumber)
 				}
 			}
 		}
-	}
-	// property: name=business_priority_names, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.BusinessPriorityNames == nil {
-		state.BusinessPriorityNames = nil
-	} else if len(ans.BusinessPriorityNames) == 0 {
-		state.BusinessPriorityNames = []dsModelBusinessPriorityNameMapper{}
-	} else {
-		state.BusinessPriorityNames = make([]dsModelBusinessPriorityNameMapper, 0, len(ans.BusinessPriorityNames))
-		for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range ans.BusinessPriorityNames {
-			// add a new item
-			state.BusinessPriorityNames = append(state.BusinessPriorityNames, dsModelBusinessPriorityNameMapper{})
-			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames properties=2
-			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames")
-			// property: name=priority_name, type=STRING macro=copy_to_state
-			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
-			// property: name=priority_number, type=INTEGER macro=copy_to_state
-			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNumber)
+		// property: name=business_priority_names, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.BusinessPriorityNames == nil {
+			state.BusinessPriorityNames = nil
+		} else if len(ans.BusinessPriorityNames) == 0 {
+			state.BusinessPriorityNames = []dsModelBusinessPriorityNameMapper{}
+		} else {
+			state.BusinessPriorityNames = make([]dsModelBusinessPriorityNameMapper, 0, len(ans.BusinessPriorityNames))
+			for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range ans.BusinessPriorityNames {
+				// add a new item
+				state.BusinessPriorityNames = append(state.BusinessPriorityNames, dsModelBusinessPriorityNameMapper{})
+				// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames")
+				// property: name=priority_name, type=STRING macro=copy_to_state
+				state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
+				// property: name=priority_number, type=INTEGER macro=copy_to_state
+				state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNumber)
+			}
 		}
-	}
-	// property: name=clone_from, type=STRING macro=copy_to_state
-	state.CloneFrom = types.StringPointerValue(ans.CloneFrom)
-	// property: name=default_rule_dscp_mappings, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.DefaultRuleDscpMappings == nil {
-		state.DefaultRuleDscpMappings = nil
-	} else if len(ans.DefaultRuleDscpMappings) == 0 {
-		state.DefaultRuleDscpMappings = []dsModelDefaultRuleDSCPMapping{}
-	} else {
-		state.DefaultRuleDscpMappings = make([]dsModelDefaultRuleDSCPMapping, 0, len(ans.DefaultRuleDscpMappings))
-		for varLoopDefaultRuleDscpMappingsIndex, varLoopDefaultRuleDscpMappings := range ans.DefaultRuleDscpMappings {
-			// add a new item
-			state.DefaultRuleDscpMappings = append(state.DefaultRuleDscpMappings, dsModelDefaultRuleDSCPMapping{})
-			// copy_to_state: state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=dsModel ans=varLoopDefaultRuleDscpMappings properties=3
-			tflog.Debug(ctx, "copy_to_state state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=dsModel ans=varLoopDefaultRuleDscpMappings")
-			// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varDscp, errDscp := types.ListValueFrom(ctx, types.Int64Type, varLoopDefaultRuleDscpMappings.Dscp)
-			state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = varDscp
-			resp.Diagnostics.Append(errDscp.Errors()...)
-			// property: name=priority_number, type=INTEGER macro=copy_to_state
-			state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].PriorityNumber = types.Int64PointerValue(varLoopDefaultRuleDscpMappings.PriorityNumber)
-			// property: name=transfer_type, type=STRING macro=copy_to_state
-			state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].TransferType = types.StringPointerValue(varLoopDefaultRuleDscpMappings.TransferType)
+		// property: name=clone_from, type=STRING macro=copy_to_state
+		state.CloneFrom = types.StringPointerValue(ans.CloneFrom)
+		// property: name=default_rule_dscp_mappings, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.DefaultRuleDscpMappings == nil {
+			state.DefaultRuleDscpMappings = nil
+		} else if len(ans.DefaultRuleDscpMappings) == 0 {
+			state.DefaultRuleDscpMappings = []dsModelDefaultRuleDSCPMapping{}
+		} else {
+			state.DefaultRuleDscpMappings = make([]dsModelDefaultRuleDSCPMapping, 0, len(ans.DefaultRuleDscpMappings))
+			for varLoopDefaultRuleDscpMappingsIndex, varLoopDefaultRuleDscpMappings := range ans.DefaultRuleDscpMappings {
+				// add a new item
+				state.DefaultRuleDscpMappings = append(state.DefaultRuleDscpMappings, dsModelDefaultRuleDSCPMapping{})
+				// copy_to_state: state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=dsModel ans=varLoopDefaultRuleDscpMappings properties=3
+				tflog.Debug(ctx, "copy_to_state state=state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex] prefix=dsModel ans=varLoopDefaultRuleDscpMappings")
+				// property: name=dscp, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDscp, errDscp := types.ListValueFrom(ctx, types.Int64Type, varLoopDefaultRuleDscpMappings.Dscp)
+				state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].Dscp = varDscp
+				resp.Diagnostics.Append(errDscp.Errors()...)
+				// property: name=priority_number, type=INTEGER macro=copy_to_state
+				state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].PriorityNumber = types.Int64PointerValue(varLoopDefaultRuleDscpMappings.PriorityNumber)
+				// property: name=transfer_type, type=STRING macro=copy_to_state
+				state.DefaultRuleDscpMappings[varLoopDefaultRuleDscpMappingsIndex].TransferType = types.StringPointerValue(varLoopDefaultRuleDscpMappings.TransferType)
+			}
 		}
-	}
-	// property: name=defaultrule_policyset, type=BOOLEAN macro=copy_to_state
-	state.DefaultrulePolicyset = types.BoolPointerValue(ans.DefaultrulePolicyset)
-	// property: name=description, type=STRING macro=copy_to_state
-	state.Description = types.StringPointerValue(ans.Description)
-	// property: name=id, type=STRING macro=copy_to_state
-	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=name, type=STRING macro=copy_to_state
-	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
-	state.Tags = varTags
-	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=template, type=BOOLEAN macro=copy_to_state
-	state.Template = types.BoolPointerValue(ans.Template)
+		// property: name=defaultrule_policyset, type=BOOLEAN macro=copy_to_state
+		state.DefaultrulePolicyset = types.BoolPointerValue(ans.DefaultrulePolicyset)
+		// property: name=description, type=STRING macro=copy_to_state
+		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=id, type=STRING macro=copy_to_state
+		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=name, type=STRING macro=copy_to_state
+		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+		state.Tags = varTags
+		resp.Diagnostics.Append(errTags.Errors()...)
+		// property: name=template, type=BOOLEAN macro=copy_to_state
+		state.Template = types.BoolPointerValue(ans.Template)
 
+		// append the item scanned
+		state_with_filter.Items = append(state_with_filter.Items, &state)
+	}
 	// Done.
-	diagnostics.Append(resp.State.Set(ctx, &state)...)
+	diagnostics.Append(resp.State.Set(ctx, &state_with_filter)...)
 }
