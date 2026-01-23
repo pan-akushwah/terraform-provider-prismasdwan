@@ -208,12 +208,6 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=auth_phrase, type=STRING macro=rss_schema
-										"auth_phrase_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=auth_type, type=STRING macro=rss_schema
 										"auth_type": dsschema.StringAttribute{
 											Required:  false,
@@ -230,12 +224,6 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=enc_phrase, type=STRING macro=rss_schema
-										"enc_phrase_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=enc_type, type=STRING macro=rss_schema
 										"enc_type": dsschema.StringAttribute{
 											Required:  false,

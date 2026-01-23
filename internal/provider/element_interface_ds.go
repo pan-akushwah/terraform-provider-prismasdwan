@@ -320,12 +320,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=password, type=STRING macro=rss_schema
-										"password_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=password_encrypted, type=STRING macro=rss_schema
 										"password_encrypted": dsschema.StringAttribute{
 											Required:  false,
@@ -334,12 +328,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=password_encrypted, type=STRING macro=rss_schema
-										"password_encrypted_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=user_name, type=STRING macro=rss_schema
 										"user_name": dsschema.StringAttribute{
 											Required:  false,
@@ -1128,12 +1116,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=password, type=STRING macro=rss_schema
-								"password_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=reconnection_delay, type=INTEGER macro=rss_schema
 								"reconnection_delay": dsschema.Int64Attribute{
 									Required:  false,
@@ -1307,12 +1289,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 															Sensitive: true,
 														},
 														// key name holder for attribute: name=xauth_secret, type=STRING macro=rss_schema
-														"xauth_secret_internal_key_name": dsschema.StringAttribute{
-															Required:  false,
-															Computed:  true,
-															Optional:  true,
-															Sensitive: false,
-														},
 														// property: name=xauth_secret_encrypted, type=STRING macro=rss_schema
 														"xauth_secret_encrypted": dsschema.StringAttribute{
 															Required:  false,
@@ -1321,12 +1297,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 															Sensitive: true,
 														},
 														// key name holder for attribute: name=xauth_secret_encrypted, type=STRING macro=rss_schema
-														"xauth_secret_encrypted_internal_key_name": dsschema.StringAttribute{
-															Required:  false,
-															Computed:  true,
-															Optional:  true,
-															Sensitive: false,
-														},
 														// property: name=xauth_secret_hash, type=STRING macro=rss_schema
 														"xauth_secret_hash": dsschema.StringAttribute{
 															Required:  false,
@@ -1335,12 +1305,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 															Sensitive: true,
 														},
 														// key name holder for attribute: name=xauth_secret_hash, type=STRING macro=rss_schema
-														"xauth_secret_hash_internal_key_name": dsschema.StringAttribute{
-															Required:  false,
-															Computed:  true,
-															Optional:  true,
-															Sensitive: false,
-														},
 														// property: name=xauth_type, type=STRING macro=rss_schema
 														"xauth_type": dsschema.StringAttribute{
 															Required:  false,
@@ -1464,12 +1428,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 													Sensitive: true,
 												},
 												// key name holder for attribute: name=secret, type=STRING macro=rss_schema
-												"secret_internal_key_name": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  true,
-													Optional:  true,
-													Sensitive: false,
-												},
 												// property: name=secret_encrypted, type=STRING macro=rss_schema
 												"secret_encrypted": dsschema.StringAttribute{
 													Required:  false,
@@ -1478,12 +1436,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 													Sensitive: true,
 												},
 												// key name holder for attribute: name=secret_encrypted, type=STRING macro=rss_schema
-												"secret_encrypted_internal_key_name": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  true,
-													Optional:  true,
-													Sensitive: false,
-												},
 												// property: name=secret_hash, type=STRING macro=rss_schema
 												"secret_hash": dsschema.StringAttribute{
 													Required:  false,
@@ -1492,12 +1444,6 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 													Sensitive: true,
 												},
 												// key name holder for attribute: name=secret_hash, type=STRING macro=rss_schema
-												"secret_hash_internal_key_name": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  true,
-													Optional:  true,
-													Sensitive: false,
-												},
 												// property: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 												"strict_validation_peer_extended_key_use": dsschema.BoolAttribute{
 													Required:  false,

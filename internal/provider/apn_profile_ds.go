@@ -172,12 +172,6 @@ func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Sensitive: true,
 						},
 						// key name holder for attribute: name=password, type=STRING macro=rss_schema
-						"password_internal_key_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,

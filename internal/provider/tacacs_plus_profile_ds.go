@@ -165,12 +165,6 @@ func (d *tacacsPlusProfileDataSource) Schema(_ context.Context, _ datasource.Sch
 										Sensitive: true,
 									},
 									// key name holder for attribute: name=secret, type=STRING macro=rss_schema
-									"secret_internal_key_name": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
-										Sensitive: false,
-									},
 									// property: name=server_fqdn, type=STRING macro=rss_schema
 									"server_fqdn": dsschema.StringAttribute{
 										Required:  false,

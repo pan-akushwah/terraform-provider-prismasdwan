@@ -234,12 +234,6 @@ func (d *elementOspfConfigDataSource) Schema(_ context.Context, _ datasource.Sch
 												Sensitive: true,
 											},
 											// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
-											"md5_secret_internal_key_name": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  true,
-												Optional:  true,
-												Sensitive: false,
-											},
 											// property: name=retransmit_interval, type=INTEGER macro=rss_schema
 											"retransmit_interval": dsschema.Int64Attribute{
 												Required:  false,

@@ -164,12 +164,6 @@ func (d *elementOspfGlobalConfigDataSource) Schema(_ context.Context, _ datasour
 							Sensitive: true,
 						},
 						// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
-						"md5_secret_internal_key_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
 						// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 						"prefix_adv_type_to_lan": dsschema.StringAttribute{
 							Required:  false,

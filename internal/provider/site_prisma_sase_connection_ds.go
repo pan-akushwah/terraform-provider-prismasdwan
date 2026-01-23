@@ -369,12 +369,6 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 															Sensitive: true,
 														},
 														// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
-														"bgp_secret_internal_key_name": dsschema.StringAttribute{
-															Required:  false,
-															Computed:  true,
-															Optional:  true,
-															Sensitive: false,
-														},
 														// property: name=export_routes, type=BOOLEAN macro=rss_schema
 														"export_routes": dsschema.BoolAttribute{
 															Required:  false,
@@ -450,12 +444,6 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
-								"bgp_secret_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=export_routes, type=BOOLEAN macro=rss_schema
 								"export_routes": dsschema.BoolAttribute{
 									Required:  false,

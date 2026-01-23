@@ -198,12 +198,6 @@ func (d *elementRadiusDataSource) Schema(_ context.Context, _ datasource.SchemaR
 										Sensitive: true,
 									},
 									// key name holder for attribute: name=retain_shared_secret, type=BOOLEAN macro=rss_schema
-									"retain_shared_secret_internal_key_name": dsschema.BoolAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
-										Sensitive: false,
-									},
 									// property: name=server_ip_address, type=STRING macro=rss_schema
 									"server_ip_address": dsschema.StringAttribute{
 										Required:  false,
@@ -220,12 +214,6 @@ func (d *elementRadiusDataSource) Schema(_ context.Context, _ datasource.SchemaR
 										Sensitive: true,
 									},
 									// key name holder for attribute: name=shared_secret, type=STRING macro=rss_schema
-									"shared_secret_internal_key_name": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
-										Sensitive: false,
-									},
 									// property: name=shared_secret_encrypted, type=STRING macro=rss_schema
 									"shared_secret_encrypted": dsschema.StringAttribute{
 										Required:  false,
@@ -234,22 +222,10 @@ func (d *elementRadiusDataSource) Schema(_ context.Context, _ datasource.SchemaR
 										Sensitive: true,
 									},
 									// key name holder for attribute: name=shared_secret_encrypted, type=STRING macro=rss_schema
-									"shared_secret_encrypted_internal_key_name": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  true,
-										Optional:  true,
-										Sensitive: false,
-									},
 								},
 							},
 						},
 						// key name holder for attribute: name=shared_secret_encrypted, type=STRING macro=rss_schema
-						"shared_secret_encrypted_internal_key_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
 						// property: name=radius_profile_id, type=STRING macro=rss_schema
 						"radius_profile_id": dsschema.StringAttribute{
 							Required:  false,

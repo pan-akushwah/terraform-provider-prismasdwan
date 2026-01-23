@@ -177,12 +177,6 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=xauth_secret, type=STRING macro=rss_schema
-										"xauth_secret_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=xauth_secret_encrypted, type=STRING macro=rss_schema
 										"xauth_secret_encrypted": dsschema.StringAttribute{
 											Required:  false,
@@ -191,12 +185,6 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=xauth_secret_encrypted, type=STRING macro=rss_schema
-										"xauth_secret_encrypted_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=xauth_secret_hash, type=STRING macro=rss_schema
 										"xauth_secret_hash": dsschema.StringAttribute{
 											Required:  false,
@@ -205,12 +193,6 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Sensitive: true,
 										},
 										// key name holder for attribute: name=xauth_secret_hash, type=STRING macro=rss_schema
-										"xauth_secret_hash_internal_key_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
 										// property: name=xauth_type, type=STRING macro=rss_schema
 										"xauth_type": dsschema.StringAttribute{
 											Required:  false,
@@ -334,12 +316,6 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=secret, type=STRING macro=rss_schema
-								"secret_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=secret_encrypted, type=STRING macro=rss_schema
 								"secret_encrypted": dsschema.StringAttribute{
 									Required:  false,
@@ -348,12 +324,6 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=secret_encrypted, type=STRING macro=rss_schema
-								"secret_encrypted_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=secret_hash, type=STRING macro=rss_schema
 								"secret_hash": dsschema.StringAttribute{
 									Required:  false,
@@ -362,12 +332,6 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=secret_hash, type=STRING macro=rss_schema
-								"secret_hash_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 								"strict_validation_peer_extended_key_use": dsschema.BoolAttribute{
 									Required:  false,
