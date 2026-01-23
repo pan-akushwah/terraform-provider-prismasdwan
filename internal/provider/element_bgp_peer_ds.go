@@ -190,12 +190,6 @@ func (d *elementBgpPeerDataSource) Schema(_ context.Context, _ datasource.Schema
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
-								"md5_secret_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
 								"multi_hop_limit": dsschema.Int64Attribute{
 									Required:  false,

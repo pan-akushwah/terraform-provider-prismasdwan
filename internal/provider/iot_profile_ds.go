@@ -272,12 +272,6 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=snmp_auth_password, type=STRING macro=rss_schema
-								"snmp_auth_password_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
 								"snmp_auth_password_encrypted": dsschema.StringAttribute{
 									Required:  false,
@@ -286,12 +280,6 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
-								"snmp_auth_password_encrypted_internal_key_name": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
-								},
 								// property: name=snmp_auth_protocol, type=STRING macro=rss_schema
 								"snmp_auth_protocol": dsschema.StringAttribute{
 									Required:  false,
