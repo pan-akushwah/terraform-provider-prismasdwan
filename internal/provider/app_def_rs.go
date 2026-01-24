@@ -24,9 +24,14 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=1)
+// | Schema Map Summary (size=goLangStructMap=6)
 // | Computed Resource Name=appdefs
 // +-----------------------------------------------------------------
+// | DSCP HasID=false
+// | IPRuleV2 HasID=false
+// | Port HasID=false
+// | UdpRuleV2 HasID=false
+// | TcpRuleV2 HasID=false
 // | AppDefScreenV2N6 HasID=true
 // +-----------------------------------------------------------------
 
@@ -184,14 +189,80 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=ingress_traffic_pct, type=INTEGER macro=rss_schema
-			// property: name=ip_rules, type=ARRAY_SCHEMA macro=rss_schema
+			// property: name=ip_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"ip_rules": rsschema.ListNestedAttribute{
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
+				NestedObject: rsschema.NestedAttributeObject{
+					Attributes: map[string]rsschema.Attribute{
+						// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						"dest_filters": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=dest_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"dest_ipv6_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"dest_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=dscp, type=REFERENCE macro=rss_schema
+						"dscp": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]rsschema.Attribute{
+								// property: name=value, type=INTEGER macro=rss_schema
+								"value": rsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+						// property: name=protocol, type=STRING macro=rss_schema
+						"protocol": rsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
+						// property: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						"src_filters": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+					},
+				},
 			},
-			// key name holder for attribute: name=ip_rules, type=ARRAY_SCHEMA macro=rss_schema
+			// key name holder for attribute: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=is_deprecated, type=BOOLEAN macro=rss_schema
 			"is_deprecated": rsschema.BoolAttribute{
 				Required:  false,
@@ -305,15 +376,124 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=tcp_rules, type=ARRAY_PRIMITIVE macro=rss_schema
-			"tcp_rules": rsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
+			// property: name=tcp_rules, type=ARRAY_REFERENCE macro=rss_schema
+			"tcp_rules": rsschema.ListNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				NestedObject: rsschema.NestedAttributeObject{
+					Attributes: map[string]rsschema.Attribute{
+						// property: name=client_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						"client_filters": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=client_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=client_port, type=REFERENCE macro=rss_schema
+						"client_port": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]rsschema.Attribute{
+								// property: name=end, type=STRING macro=rss_schema
+								"end": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=end, type=STRING macro=rss_schema
+								// property: name=start, type=STRING macro=rss_schema
+								"start": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=start, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=start, type=STRING macro=rss_schema
+						// property: name=dscp, type=REFERENCE macro=rss_schema
+						"dscp": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]rsschema.Attribute{
+								// property: name=value, type=INTEGER macro=rss_schema
+								"value": rsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+						// property: name=server_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						"server_filters": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=server_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"server_ipv6_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=server_port, type=REFERENCE macro=rss_schema
+						"server_port": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]rsschema.Attribute{
+								// property: name=end, type=STRING macro=rss_schema
+								"end": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=end, type=STRING macro=rss_schema
+								// property: name=start, type=STRING macro=rss_schema
+								"start": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=start, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=start, type=STRING macro=rss_schema
+						// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"server_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+					},
+				},
 			},
-			// key name holder for attribute: name=tcp_rules, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=transfer_type, type=STRING macro=rss_schema
 			"transfer_type": rsschema.StringAttribute{
 				Required:  false,
@@ -322,14 +502,89 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
-			// property: name=udp_rules, type=ARRAY_SCHEMA macro=rss_schema
+			// property: name=udp_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"udp_rules": rsschema.ListNestedAttribute{
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
+				NestedObject: rsschema.NestedAttributeObject{
+					Attributes: map[string]rsschema.Attribute{
+						// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"dest_ipv6_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"dest_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=dscp, type=REFERENCE macro=rss_schema
+						"dscp": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]rsschema.Attribute{
+								// property: name=value, type=INTEGER macro=rss_schema
+								"value": rsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
+						// property: name=udp_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						"udp_filters": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=udp_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=udp_port, type=REFERENCE macro=rss_schema
+						"udp_port": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							Attributes: map[string]rsschema.Attribute{
+								// property: name=end, type=STRING macro=rss_schema
+								"end": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=end, type=STRING macro=rss_schema
+								// property: name=start, type=STRING macro=rss_schema
+								"start": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=start, type=STRING macro=rss_schema
+							},
+						},
+						// key name holder for attribute: name=start, type=STRING macro=rss_schema
+					},
+				},
 			},
-			// key name holder for attribute: name=udp_rules, type=ARRAY_SCHEMA macro=rss_schema
+			// key name holder for attribute: name=start, type=STRING macro=rss_schema
 			// property: name=use_parentapp_network_policy, type=BOOLEAN macro=rss_schema
 			"use_parentapp_network_policy": rsschema.BoolAttribute{
 				Required:  false,
@@ -417,7 +672,38 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	body.Id = StringValueOrNil(plan.Id)
 	// property: name=ingress_traffic_pct, type=INTEGER macro=copy_from_plan
 	body.IngressTrafficPct = Int64ValueOrNil(plan.IngressTrafficPct)
-	// property: name=ip_rules, type=ARRAY_SCHEMA macro=copy_from_plan
+	// property: name=ip_rules, type=ARRAY_REFERENCE macro=copy_from_plan
+	if plan.IpRules == nil {
+		body.IpRules = nil
+	} else if len(plan.IpRules) == 0 {
+		body.IpRules = []sdwan_schema.IPRuleV2{}
+	} else {
+		body.IpRules = make([]sdwan_schema.IPRuleV2, 0, len(plan.IpRules))
+		for varLoopIpRulesIndex, varLoopIpRules := range plan.IpRules {
+			// add a new item
+			body.IpRules = append(body.IpRules, sdwan_schema.IPRuleV2{})
+			// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules")
+			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].DestFilters = ListStringValueOrNil(ctx, varLoopIpRules.DestFilters)
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].DestIpv6Prefixes = ListStringValueOrNil(ctx, varLoopIpRules.DestIpv6Prefixes)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].DestPrefixes = ListStringValueOrNil(ctx, varLoopIpRules.DestPrefixes)
+			// property: name=dscp, type=REFERENCE macro=copy_from_plan
+			if varLoopIpRules.Dscp != nil {
+				body.IpRules[varLoopIpRulesIndex].Dscp = &sdwan_schema.DSCP{}
+				// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_from_plan
+				body.IpRules[varLoopIpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopIpRules.Dscp.Value)
+			}
+			// property: name=protocol, type=STRING macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].Protocol = StringValueOrNil(varLoopIpRules.Protocol)
+			// property: name=src_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].SrcFilters = ListStringValueOrNil(ctx, varLoopIpRules.SrcFilters)
+		}
+	}
 	// property: name=is_deprecated, type=BOOLEAN macro=copy_from_plan
 	body.IsDeprecated = BoolValueOrNil(plan.IsDeprecated)
 	// property: name=network_scan_application, type=BOOLEAN macro=copy_from_plan
@@ -446,11 +732,96 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	body.SystemAppOverridden = BoolValueOrNil(plan.SystemAppOverridden)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
-	// property: name=tcp_rules, type=ARRAY_PRIMITIVE macro=copy_from_plan
-	body.TcpRules = ListStringValueOrNil(ctx, plan.TcpRules)
+	// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_from_plan
+	if plan.TcpRules == nil {
+		body.TcpRules = nil
+	} else if len(plan.TcpRules) == 0 {
+		body.TcpRules = []sdwan_schema.TcpRuleV2{}
+	} else {
+		body.TcpRules = make([]sdwan_schema.TcpRuleV2, 0, len(plan.TcpRules))
+		for varLoopTcpRulesIndex, varLoopTcpRules := range plan.TcpRules {
+			// add a new item
+			body.TcpRules = append(body.TcpRules, sdwan_schema.TcpRuleV2{})
+			// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules properties=7
+			tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules")
+			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ClientFilters = ListStringValueOrNil(ctx, varLoopTcpRules.ClientFilters)
+			// property: name=client_port, type=REFERENCE macro=copy_from_plan
+			if varLoopTcpRules.ClientPort != nil {
+				body.TcpRules[varLoopTcpRulesIndex].ClientPort = &sdwan_schema.Port{}
+				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort")
+				// property: name=end, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ClientPort.End = StringValueOrNil(varLoopTcpRules.ClientPort.End)
+				// property: name=start, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = StringValueOrNil(varLoopTcpRules.ClientPort.Start)
+			}
+			// property: name=dscp, type=REFERENCE macro=copy_from_plan
+			if varLoopTcpRules.Dscp != nil {
+				body.TcpRules[varLoopTcpRulesIndex].Dscp = &sdwan_schema.DSCP{}
+				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopTcpRules.Dscp.Value)
+			}
+			// property: name=server_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ServerFilters = ListStringValueOrNil(ctx, varLoopTcpRules.ServerFilters)
+			// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ServerIpv6Prefixes = ListStringValueOrNil(ctx, varLoopTcpRules.ServerIpv6Prefixes)
+			// property: name=server_port, type=REFERENCE macro=copy_from_plan
+			if varLoopTcpRules.ServerPort != nil {
+				body.TcpRules[varLoopTcpRulesIndex].ServerPort = &sdwan_schema.Port{}
+				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort")
+				// property: name=end, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ServerPort.End = StringValueOrNil(varLoopTcpRules.ServerPort.End)
+				// property: name=start, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = StringValueOrNil(varLoopTcpRules.ServerPort.Start)
+			}
+			// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ServerPrefixes = ListStringValueOrNil(ctx, varLoopTcpRules.ServerPrefixes)
+		}
+	}
 	// property: name=transfer_type, type=STRING macro=copy_from_plan
 	body.TransferType = StringValueOrNil(plan.TransferType)
-	// property: name=udp_rules, type=ARRAY_SCHEMA macro=copy_from_plan
+	// property: name=udp_rules, type=ARRAY_REFERENCE macro=copy_from_plan
+	if plan.UdpRules == nil {
+		body.UdpRules = nil
+	} else if len(plan.UdpRules) == 0 {
+		body.UdpRules = []sdwan_schema.UdpRuleV2{}
+	} else {
+		body.UdpRules = make([]sdwan_schema.UdpRuleV2, 0, len(plan.UdpRules))
+		for varLoopUdpRulesIndex, varLoopUdpRules := range plan.UdpRules {
+			// add a new item
+			body.UdpRules = append(body.UdpRules, sdwan_schema.UdpRuleV2{})
+			// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules")
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.UdpRules[varLoopUdpRulesIndex].DestIpv6Prefixes = ListStringValueOrNil(ctx, varLoopUdpRules.DestIpv6Prefixes)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.UdpRules[varLoopUdpRulesIndex].DestPrefixes = ListStringValueOrNil(ctx, varLoopUdpRules.DestPrefixes)
+			// property: name=dscp, type=REFERENCE macro=copy_from_plan
+			if varLoopUdpRules.Dscp != nil {
+				body.UdpRules[varLoopUdpRulesIndex].Dscp = &sdwan_schema.DSCP{}
+				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_from_plan
+				body.UdpRules[varLoopUdpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopUdpRules.Dscp.Value)
+			}
+			// property: name=udp_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.UdpRules[varLoopUdpRulesIndex].UdpFilters = ListStringValueOrNil(ctx, varLoopUdpRules.UdpFilters)
+			// property: name=udp_port, type=REFERENCE macro=copy_from_plan
+			if varLoopUdpRules.UdpPort != nil {
+				body.UdpRules[varLoopUdpRulesIndex].UdpPort = &sdwan_schema.Port{}
+				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort")
+				// property: name=end, type=STRING macro=copy_from_plan
+				body.UdpRules[varLoopUdpRulesIndex].UdpPort.End = StringValueOrNil(varLoopUdpRules.UdpPort.End)
+				// property: name=start, type=STRING macro=copy_from_plan
+				body.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = StringValueOrNil(varLoopUdpRules.UdpPort.Start)
+			}
+		}
+	}
 	// property: name=use_parentapp_network_policy, type=BOOLEAN macro=copy_from_plan
 	body.UseParentappNetworkPolicy = BoolValueOrNil(plan.UseParentappNetworkPolicy)
 
@@ -561,7 +932,48 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ingress_traffic_pct, type=INTEGER macro=copy_to_state
 	state.IngressTrafficPct = types.Int64PointerValue(ans.IngressTrafficPct)
-	// property: name=ip_rules, type=ARRAY_SCHEMA macro=copy_to_state
+	// property: name=ip_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.IpRules == nil {
+		state.IpRules = nil
+	} else if len(ans.IpRules) == 0 {
+		state.IpRules = []rsModelIPRuleV2{}
+	} else {
+		state.IpRules = make([]rsModelIPRuleV2, 0, len(ans.IpRules))
+		for varLoopIpRulesIndex, varLoopIpRules := range ans.IpRules {
+			// add a new item
+			state.IpRules = append(state.IpRules, rsModelIPRuleV2{})
+			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules")
+			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
+			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
+			resp.Diagnostics.Append(errDestFilters.Errors()...)
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestIpv6Prefixes)
+			state.IpRules[varLoopIpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+			resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestPrefixes)
+			state.IpRules[varLoopIpRulesIndex].DestPrefixes = varDestPrefixes
+			resp.Diagnostics.Append(errDestPrefixes.Errors()...)
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopIpRules.Dscp == nil {
+				state.IpRules[varLoopIpRulesIndex].Dscp = nil
+			} else {
+				state.IpRules[varLoopIpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
+			}
+			// property: name=protocol, type=STRING macro=copy_to_state
+			state.IpRules[varLoopIpRulesIndex].Protocol = types.StringPointerValue(varLoopIpRules.Protocol)
+			// property: name=src_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSrcFilters, errSrcFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.SrcFilters)
+			state.IpRules[varLoopIpRulesIndex].SrcFilters = varSrcFilters
+			resp.Diagnostics.Append(errSrcFilters.Errors()...)
+		}
+	}
 	// property: name=is_deprecated, type=BOOLEAN macro=copy_to_state
 	state.IsDeprecated = types.BoolPointerValue(ans.IsDeprecated)
 	// property: name=network_scan_application, type=BOOLEAN macro=copy_to_state
@@ -592,13 +1004,120 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=tcp_rules, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varTcpRules, errTcpRules := types.ListValueFrom(ctx, types.StringType, ans.TcpRules)
-	state.TcpRules = varTcpRules
-	resp.Diagnostics.Append(errTcpRules.Errors()...)
+	// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.TcpRules == nil {
+		state.TcpRules = nil
+	} else if len(ans.TcpRules) == 0 {
+		state.TcpRules = []rsModelTcpRuleV2{}
+	} else {
+		state.TcpRules = make([]rsModelTcpRuleV2, 0, len(ans.TcpRules))
+		for varLoopTcpRulesIndex, varLoopTcpRules := range ans.TcpRules {
+			// add a new item
+			state.TcpRules = append(state.TcpRules, rsModelTcpRuleV2{})
+			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules properties=7
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules")
+			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
+			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
+			resp.Diagnostics.Append(errClientFilters.Errors()...)
+			// property: name=client_port, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.ClientPort == nil {
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &rsModelPort{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.StringPointerValue(varLoopTcpRules.ClientPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = types.StringPointerValue(varLoopTcpRules.ClientPort.Start)
+			}
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.Dscp == nil {
+				state.TcpRules[varLoopTcpRulesIndex].Dscp = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
+			}
+			// property: name=server_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerFilters, errServerFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerFilters)
+			state.TcpRules[varLoopTcpRulesIndex].ServerFilters = varServerFilters
+			resp.Diagnostics.Append(errServerFilters.Errors()...)
+			// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerIpv6Prefixes, errServerIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerIpv6Prefixes)
+			state.TcpRules[varLoopTcpRulesIndex].ServerIpv6Prefixes = varServerIpv6Prefixes
+			resp.Diagnostics.Append(errServerIpv6Prefixes.Errors()...)
+			// property: name=server_port, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.ServerPort == nil {
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &rsModelPort{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.StringPointerValue(varLoopTcpRules.ServerPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = types.StringPointerValue(varLoopTcpRules.ServerPort.Start)
+			}
+			// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerPrefixes, errServerPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerPrefixes)
+			state.TcpRules[varLoopTcpRulesIndex].ServerPrefixes = varServerPrefixes
+			resp.Diagnostics.Append(errServerPrefixes.Errors()...)
+		}
+	}
 	// property: name=transfer_type, type=STRING macro=copy_to_state
 	state.TransferType = types.StringPointerValue(ans.TransferType)
-	// property: name=udp_rules, type=ARRAY_SCHEMA macro=copy_to_state
+	// property: name=udp_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.UdpRules == nil {
+		state.UdpRules = nil
+	} else if len(ans.UdpRules) == 0 {
+		state.UdpRules = []rsModelUdpRuleV2{}
+	} else {
+		state.UdpRules = make([]rsModelUdpRuleV2, 0, len(ans.UdpRules))
+		for varLoopUdpRulesIndex, varLoopUdpRules := range ans.UdpRules {
+			// add a new item
+			state.UdpRules = append(state.UdpRules, rsModelUdpRuleV2{})
+			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules")
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestIpv6Prefixes)
+			state.UdpRules[varLoopUdpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+			resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
+			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
+			resp.Diagnostics.Append(errDestPrefixes.Errors()...)
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopUdpRules.Dscp == nil {
+				state.UdpRules[varLoopUdpRulesIndex].Dscp = nil
+			} else {
+				state.UdpRules[varLoopUdpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
+			}
+			// property: name=udp_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varUdpFilters, errUdpFilters := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.UdpFilters)
+			state.UdpRules[varLoopUdpRulesIndex].UdpFilters = varUdpFilters
+			resp.Diagnostics.Append(errUdpFilters.Errors()...)
+			// property: name=udp_port, type=REFERENCE macro=copy_to_state
+			if varLoopUdpRules.UdpPort == nil {
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort = nil
+			} else {
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &rsModelPort{}
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.StringPointerValue(varLoopUdpRules.UdpPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = types.StringPointerValue(varLoopUdpRules.UdpPort.Start)
+			}
+		}
+	}
 	// property: name=use_parentapp_network_policy, type=BOOLEAN macro=copy_to_state
 	state.UseParentappNetworkPolicy = types.BoolPointerValue(ans.UseParentappNetworkPolicy)
 	return true
@@ -714,7 +1233,48 @@ func (r *appDefResource) doGet(ctx context.Context, state *rsModelAppDefScreenV2
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ingress_traffic_pct, type=INTEGER macro=copy_to_state
 	state.IngressTrafficPct = types.Int64PointerValue(ans.IngressTrafficPct)
-	// property: name=ip_rules, type=ARRAY_SCHEMA macro=copy_to_state
+	// property: name=ip_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.IpRules == nil {
+		state.IpRules = nil
+	} else if len(ans.IpRules) == 0 {
+		state.IpRules = []rsModelIPRuleV2{}
+	} else {
+		state.IpRules = make([]rsModelIPRuleV2, 0, len(ans.IpRules))
+		for varLoopIpRulesIndex, varLoopIpRules := range ans.IpRules {
+			// add a new item
+			state.IpRules = append(state.IpRules, rsModelIPRuleV2{})
+			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules")
+			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
+			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
+			resp.Diagnostics.Append(errDestFilters.Errors()...)
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestIpv6Prefixes)
+			state.IpRules[varLoopIpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+			resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestPrefixes)
+			state.IpRules[varLoopIpRulesIndex].DestPrefixes = varDestPrefixes
+			resp.Diagnostics.Append(errDestPrefixes.Errors()...)
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopIpRules.Dscp == nil {
+				state.IpRules[varLoopIpRulesIndex].Dscp = nil
+			} else {
+				state.IpRules[varLoopIpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
+			}
+			// property: name=protocol, type=STRING macro=copy_to_state
+			state.IpRules[varLoopIpRulesIndex].Protocol = types.StringPointerValue(varLoopIpRules.Protocol)
+			// property: name=src_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSrcFilters, errSrcFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.SrcFilters)
+			state.IpRules[varLoopIpRulesIndex].SrcFilters = varSrcFilters
+			resp.Diagnostics.Append(errSrcFilters.Errors()...)
+		}
+	}
 	// property: name=is_deprecated, type=BOOLEAN macro=copy_to_state
 	state.IsDeprecated = types.BoolPointerValue(ans.IsDeprecated)
 	// property: name=network_scan_application, type=BOOLEAN macro=copy_to_state
@@ -745,13 +1305,120 @@ func (r *appDefResource) doGet(ctx context.Context, state *rsModelAppDefScreenV2
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=tcp_rules, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varTcpRules, errTcpRules := types.ListValueFrom(ctx, types.StringType, ans.TcpRules)
-	state.TcpRules = varTcpRules
-	resp.Diagnostics.Append(errTcpRules.Errors()...)
+	// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.TcpRules == nil {
+		state.TcpRules = nil
+	} else if len(ans.TcpRules) == 0 {
+		state.TcpRules = []rsModelTcpRuleV2{}
+	} else {
+		state.TcpRules = make([]rsModelTcpRuleV2, 0, len(ans.TcpRules))
+		for varLoopTcpRulesIndex, varLoopTcpRules := range ans.TcpRules {
+			// add a new item
+			state.TcpRules = append(state.TcpRules, rsModelTcpRuleV2{})
+			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules properties=7
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules")
+			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
+			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
+			resp.Diagnostics.Append(errClientFilters.Errors()...)
+			// property: name=client_port, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.ClientPort == nil {
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &rsModelPort{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.StringPointerValue(varLoopTcpRules.ClientPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = types.StringPointerValue(varLoopTcpRules.ClientPort.Start)
+			}
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.Dscp == nil {
+				state.TcpRules[varLoopTcpRulesIndex].Dscp = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
+			}
+			// property: name=server_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerFilters, errServerFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerFilters)
+			state.TcpRules[varLoopTcpRulesIndex].ServerFilters = varServerFilters
+			resp.Diagnostics.Append(errServerFilters.Errors()...)
+			// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerIpv6Prefixes, errServerIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerIpv6Prefixes)
+			state.TcpRules[varLoopTcpRulesIndex].ServerIpv6Prefixes = varServerIpv6Prefixes
+			resp.Diagnostics.Append(errServerIpv6Prefixes.Errors()...)
+			// property: name=server_port, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.ServerPort == nil {
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &rsModelPort{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.StringPointerValue(varLoopTcpRules.ServerPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = types.StringPointerValue(varLoopTcpRules.ServerPort.Start)
+			}
+			// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerPrefixes, errServerPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerPrefixes)
+			state.TcpRules[varLoopTcpRulesIndex].ServerPrefixes = varServerPrefixes
+			resp.Diagnostics.Append(errServerPrefixes.Errors()...)
+		}
+	}
 	// property: name=transfer_type, type=STRING macro=copy_to_state
 	state.TransferType = types.StringPointerValue(ans.TransferType)
-	// property: name=udp_rules, type=ARRAY_SCHEMA macro=copy_to_state
+	// property: name=udp_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.UdpRules == nil {
+		state.UdpRules = nil
+	} else if len(ans.UdpRules) == 0 {
+		state.UdpRules = []rsModelUdpRuleV2{}
+	} else {
+		state.UdpRules = make([]rsModelUdpRuleV2, 0, len(ans.UdpRules))
+		for varLoopUdpRulesIndex, varLoopUdpRules := range ans.UdpRules {
+			// add a new item
+			state.UdpRules = append(state.UdpRules, rsModelUdpRuleV2{})
+			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules")
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestIpv6Prefixes)
+			state.UdpRules[varLoopUdpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+			resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
+			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
+			resp.Diagnostics.Append(errDestPrefixes.Errors()...)
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopUdpRules.Dscp == nil {
+				state.UdpRules[varLoopUdpRulesIndex].Dscp = nil
+			} else {
+				state.UdpRules[varLoopUdpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
+			}
+			// property: name=udp_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varUdpFilters, errUdpFilters := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.UdpFilters)
+			state.UdpRules[varLoopUdpRulesIndex].UdpFilters = varUdpFilters
+			resp.Diagnostics.Append(errUdpFilters.Errors()...)
+			// property: name=udp_port, type=REFERENCE macro=copy_to_state
+			if varLoopUdpRules.UdpPort == nil {
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort = nil
+			} else {
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &rsModelPort{}
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.StringPointerValue(varLoopUdpRules.UdpPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = types.StringPointerValue(varLoopUdpRules.UdpPort.Start)
+			}
+		}
+	}
 	// property: name=use_parentapp_network_policy, type=BOOLEAN macro=copy_to_state
 	state.UseParentappNetworkPolicy = types.BoolPointerValue(ans.UseParentappNetworkPolicy)
 	return true
@@ -882,7 +1549,43 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	} else {
 		body.IngressTrafficPct = Int64ValueOrNil(plan.IngressTrafficPct)
 	}
-	// property: name=ip_rules, type=ARRAY_SCHEMA macro=copy_from_plan_or_state
+	// property: name=ip_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+	if plan.IpRules == nil && (state == nil || state.IpRules == nil) {
+		body.IpRules = nil
+	} else if len(plan.IpRules) == 0 && (state == nil || len(state.IpRules) == 0) {
+		body.IpRules = []sdwan_schema.IPRuleV2{}
+	} else if len(plan.IpRules) != 0 || (state != nil && len(state.IpRules) != 0) {
+		IpRulesToUse := plan.IpRules
+		if len(plan.IpRules) == 0 {
+			IpRulesToUse = state.IpRules
+		}
+		body.IpRules = make([]sdwan_schema.IPRuleV2, 0, len(IpRulesToUse))
+		for varLoopIpRulesIndex, varLoopIpRules := range IpRulesToUse {
+			// add a new item
+			body.IpRules = append(body.IpRules, sdwan_schema.IPRuleV2{})
+			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+			// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules properties=6
+			tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex] prefix=rsModel plan=varLoopIpRules")
+			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].DestFilters = ListStringValueOrNil(ctx, varLoopIpRules.DestFilters)
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].DestIpv6Prefixes = ListStringValueOrNil(ctx, varLoopIpRules.DestIpv6Prefixes)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].DestPrefixes = ListStringValueOrNil(ctx, varLoopIpRules.DestPrefixes)
+			// property: name=dscp, type=REFERENCE macro=copy_from_plan
+			if varLoopIpRules.Dscp != nil {
+				body.IpRules[varLoopIpRulesIndex].Dscp = &sdwan_schema.DSCP{}
+				// copy_from_plan: body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel plan=varLoopIpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_from_plan
+				body.IpRules[varLoopIpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopIpRules.Dscp.Value)
+			}
+			// property: name=protocol, type=STRING macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].Protocol = StringValueOrNil(varLoopIpRules.Protocol)
+			// property: name=src_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IpRules[varLoopIpRulesIndex].SrcFilters = ListStringValueOrNil(ctx, varLoopIpRules.SrcFilters)
+		}
+	}
 	// property: name=is_deprecated, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.IsDeprecated = ValueBoolPointerFromPlanOrState(plan.IsDeprecated, state.IsDeprecated)
@@ -963,15 +1666,110 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
-	// property: name=tcp_rules, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.TcpRules = ListStringValueOrNil(ctx, plan.TcpRules)
+	// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+	if plan.TcpRules == nil && (state == nil || state.TcpRules == nil) {
+		body.TcpRules = nil
+	} else if len(plan.TcpRules) == 0 && (state == nil || len(state.TcpRules) == 0) {
+		body.TcpRules = []sdwan_schema.TcpRuleV2{}
+	} else if len(plan.TcpRules) != 0 || (state != nil && len(state.TcpRules) != 0) {
+		TcpRulesToUse := plan.TcpRules
+		if len(plan.TcpRules) == 0 {
+			TcpRulesToUse = state.TcpRules
+		}
+		body.TcpRules = make([]sdwan_schema.TcpRuleV2, 0, len(TcpRulesToUse))
+		for varLoopTcpRulesIndex, varLoopTcpRules := range TcpRulesToUse {
+			// add a new item
+			body.TcpRules = append(body.TcpRules, sdwan_schema.TcpRuleV2{})
+			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+			// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules properties=7
+			tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex] prefix=rsModel plan=varLoopTcpRules")
+			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ClientFilters = ListStringValueOrNil(ctx, varLoopTcpRules.ClientFilters)
+			// property: name=client_port, type=REFERENCE macro=copy_from_plan
+			if varLoopTcpRules.ClientPort != nil {
+				body.TcpRules[varLoopTcpRulesIndex].ClientPort = &sdwan_schema.Port{}
+				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel plan=varLoopTcpRules.ClientPort")
+				// property: name=end, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ClientPort.End = StringValueOrNil(varLoopTcpRules.ClientPort.End)
+				// property: name=start, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = StringValueOrNil(varLoopTcpRules.ClientPort.Start)
+			}
+			// property: name=dscp, type=REFERENCE macro=copy_from_plan
+			if varLoopTcpRules.Dscp != nil {
+				body.TcpRules[varLoopTcpRulesIndex].Dscp = &sdwan_schema.DSCP{}
+				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel plan=varLoopTcpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopTcpRules.Dscp.Value)
+			}
+			// property: name=server_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ServerFilters = ListStringValueOrNil(ctx, varLoopTcpRules.ServerFilters)
+			// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ServerIpv6Prefixes = ListStringValueOrNil(ctx, varLoopTcpRules.ServerIpv6Prefixes)
+			// property: name=server_port, type=REFERENCE macro=copy_from_plan
+			if varLoopTcpRules.ServerPort != nil {
+				body.TcpRules[varLoopTcpRulesIndex].ServerPort = &sdwan_schema.Port{}
+				// copy_from_plan: body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel plan=varLoopTcpRules.ServerPort")
+				// property: name=end, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ServerPort.End = StringValueOrNil(varLoopTcpRules.ServerPort.End)
+				// property: name=start, type=STRING macro=copy_from_plan
+				body.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = StringValueOrNil(varLoopTcpRules.ServerPort.Start)
+			}
+			// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.TcpRules[varLoopTcpRulesIndex].ServerPrefixes = ListStringValueOrNil(ctx, varLoopTcpRules.ServerPrefixes)
+		}
+	}
 	// property: name=transfer_type, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.TransferType = ValueStringPointerFromPlanOrState(plan.TransferType, state.TransferType)
 	} else {
 		body.TransferType = StringValueOrNil(plan.TransferType)
 	}
-	// property: name=udp_rules, type=ARRAY_SCHEMA macro=copy_from_plan_or_state
+	// property: name=udp_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+	if plan.UdpRules == nil && (state == nil || state.UdpRules == nil) {
+		body.UdpRules = nil
+	} else if len(plan.UdpRules) == 0 && (state == nil || len(state.UdpRules) == 0) {
+		body.UdpRules = []sdwan_schema.UdpRuleV2{}
+	} else if len(plan.UdpRules) != 0 || (state != nil && len(state.UdpRules) != 0) {
+		UdpRulesToUse := plan.UdpRules
+		if len(plan.UdpRules) == 0 {
+			UdpRulesToUse = state.UdpRules
+		}
+		body.UdpRules = make([]sdwan_schema.UdpRuleV2, 0, len(UdpRulesToUse))
+		for varLoopUdpRulesIndex, varLoopUdpRules := range UdpRulesToUse {
+			// add a new item
+			body.UdpRules = append(body.UdpRules, sdwan_schema.UdpRuleV2{})
+			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+			// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules properties=5
+			tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex] prefix=rsModel plan=varLoopUdpRules")
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.UdpRules[varLoopUdpRulesIndex].DestIpv6Prefixes = ListStringValueOrNil(ctx, varLoopUdpRules.DestIpv6Prefixes)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.UdpRules[varLoopUdpRulesIndex].DestPrefixes = ListStringValueOrNil(ctx, varLoopUdpRules.DestPrefixes)
+			// property: name=dscp, type=REFERENCE macro=copy_from_plan
+			if varLoopUdpRules.Dscp != nil {
+				body.UdpRules[varLoopUdpRulesIndex].Dscp = &sdwan_schema.DSCP{}
+				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel plan=varLoopUdpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_from_plan
+				body.UdpRules[varLoopUdpRulesIndex].Dscp.Value = Int64ValueOrNil(varLoopUdpRules.Dscp.Value)
+			}
+			// property: name=udp_filters, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.UdpRules[varLoopUdpRulesIndex].UdpFilters = ListStringValueOrNil(ctx, varLoopUdpRules.UdpFilters)
+			// property: name=udp_port, type=REFERENCE macro=copy_from_plan
+			if varLoopUdpRules.UdpPort != nil {
+				body.UdpRules[varLoopUdpRulesIndex].UdpPort = &sdwan_schema.Port{}
+				// copy_from_plan: body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_from_plan body=body.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel plan=varLoopUdpRules.UdpPort")
+				// property: name=end, type=STRING macro=copy_from_plan
+				body.UdpRules[varLoopUdpRulesIndex].UdpPort.End = StringValueOrNil(varLoopUdpRules.UdpPort.End)
+				// property: name=start, type=STRING macro=copy_from_plan
+				body.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = StringValueOrNil(varLoopUdpRules.UdpPort.Start)
+			}
+		}
+	}
 	// property: name=use_parentapp_network_policy, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.UseParentappNetworkPolicy = ValueBoolPointerFromPlanOrState(plan.UseParentappNetworkPolicy, state.UseParentappNetworkPolicy)
@@ -988,6 +1786,9 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
+	request_body_string, _ = sjson.Set(request_body_string, "_schema", 3)
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 
@@ -1064,7 +1865,48 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ingress_traffic_pct, type=INTEGER macro=copy_to_state
 	state.IngressTrafficPct = types.Int64PointerValue(ans.IngressTrafficPct)
-	// property: name=ip_rules, type=ARRAY_SCHEMA macro=copy_to_state
+	// property: name=ip_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.IpRules == nil {
+		state.IpRules = nil
+	} else if len(ans.IpRules) == 0 {
+		state.IpRules = []rsModelIPRuleV2{}
+	} else {
+		state.IpRules = make([]rsModelIPRuleV2, 0, len(ans.IpRules))
+		for varLoopIpRulesIndex, varLoopIpRules := range ans.IpRules {
+			// add a new item
+			state.IpRules = append(state.IpRules, rsModelIPRuleV2{})
+			// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules properties=6
+			tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=rsModel ans=varLoopIpRules")
+			// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
+			state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
+			resp.Diagnostics.Append(errDestFilters.Errors()...)
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestIpv6Prefixes)
+			state.IpRules[varLoopIpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+			resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestPrefixes)
+			state.IpRules[varLoopIpRulesIndex].DestPrefixes = varDestPrefixes
+			resp.Diagnostics.Append(errDestPrefixes.Errors()...)
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopIpRules.Dscp == nil {
+				state.IpRules[varLoopIpRulesIndex].Dscp = nil
+			} else {
+				state.IpRules[varLoopIpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex].Dscp prefix=rsModel ans=varLoopIpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.IpRules[varLoopIpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopIpRules.Dscp.Value)
+			}
+			// property: name=protocol, type=STRING macro=copy_to_state
+			state.IpRules[varLoopIpRulesIndex].Protocol = types.StringPointerValue(varLoopIpRules.Protocol)
+			// property: name=src_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varSrcFilters, errSrcFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.SrcFilters)
+			state.IpRules[varLoopIpRulesIndex].SrcFilters = varSrcFilters
+			resp.Diagnostics.Append(errSrcFilters.Errors()...)
+		}
+	}
 	// property: name=is_deprecated, type=BOOLEAN macro=copy_to_state
 	state.IsDeprecated = types.BoolPointerValue(ans.IsDeprecated)
 	// property: name=network_scan_application, type=BOOLEAN macro=copy_to_state
@@ -1095,13 +1937,120 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
-	// property: name=tcp_rules, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varTcpRules, errTcpRules := types.ListValueFrom(ctx, types.StringType, ans.TcpRules)
-	state.TcpRules = varTcpRules
-	resp.Diagnostics.Append(errTcpRules.Errors()...)
+	// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.TcpRules == nil {
+		state.TcpRules = nil
+	} else if len(ans.TcpRules) == 0 {
+		state.TcpRules = []rsModelTcpRuleV2{}
+	} else {
+		state.TcpRules = make([]rsModelTcpRuleV2, 0, len(ans.TcpRules))
+		for varLoopTcpRulesIndex, varLoopTcpRules := range ans.TcpRules {
+			// add a new item
+			state.TcpRules = append(state.TcpRules, rsModelTcpRuleV2{})
+			// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules properties=7
+			tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=rsModel ans=varLoopTcpRules")
+			// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
+			state.TcpRules[varLoopTcpRulesIndex].ClientFilters = varClientFilters
+			resp.Diagnostics.Append(errClientFilters.Errors()...)
+			// property: name=client_port, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.ClientPort == nil {
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort = &rsModelPort{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=rsModel ans=varLoopTcpRules.ClientPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.StringPointerValue(varLoopTcpRules.ClientPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = types.StringPointerValue(varLoopTcpRules.ClientPort.Start)
+			}
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.Dscp == nil {
+				state.TcpRules[varLoopTcpRulesIndex].Dscp = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].Dscp prefix=rsModel ans=varLoopTcpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopTcpRules.Dscp.Value)
+			}
+			// property: name=server_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerFilters, errServerFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerFilters)
+			state.TcpRules[varLoopTcpRulesIndex].ServerFilters = varServerFilters
+			resp.Diagnostics.Append(errServerFilters.Errors()...)
+			// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerIpv6Prefixes, errServerIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerIpv6Prefixes)
+			state.TcpRules[varLoopTcpRulesIndex].ServerIpv6Prefixes = varServerIpv6Prefixes
+			resp.Diagnostics.Append(errServerIpv6Prefixes.Errors()...)
+			// property: name=server_port, type=REFERENCE macro=copy_to_state
+			if varLoopTcpRules.ServerPort == nil {
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort = nil
+			} else {
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort = &rsModelPort{}
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=rsModel ans=varLoopTcpRules.ServerPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.StringPointerValue(varLoopTcpRules.ServerPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = types.StringPointerValue(varLoopTcpRules.ServerPort.Start)
+			}
+			// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varServerPrefixes, errServerPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerPrefixes)
+			state.TcpRules[varLoopTcpRulesIndex].ServerPrefixes = varServerPrefixes
+			resp.Diagnostics.Append(errServerPrefixes.Errors()...)
+		}
+	}
 	// property: name=transfer_type, type=STRING macro=copy_to_state
 	state.TransferType = types.StringPointerValue(ans.TransferType)
-	// property: name=udp_rules, type=ARRAY_SCHEMA macro=copy_to_state
+	// property: name=udp_rules, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.UdpRules == nil {
+		state.UdpRules = nil
+	} else if len(ans.UdpRules) == 0 {
+		state.UdpRules = []rsModelUdpRuleV2{}
+	} else {
+		state.UdpRules = make([]rsModelUdpRuleV2, 0, len(ans.UdpRules))
+		for varLoopUdpRulesIndex, varLoopUdpRules := range ans.UdpRules {
+			// add a new item
+			state.UdpRules = append(state.UdpRules, rsModelUdpRuleV2{})
+			// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules properties=5
+			tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=rsModel ans=varLoopUdpRules")
+			// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestIpv6Prefixes)
+			state.UdpRules[varLoopUdpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+			resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
+			// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
+			state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
+			resp.Diagnostics.Append(errDestPrefixes.Errors()...)
+			// property: name=dscp, type=REFERENCE macro=copy_to_state
+			if varLoopUdpRules.Dscp == nil {
+				state.UdpRules[varLoopUdpRulesIndex].Dscp = nil
+			} else {
+				state.UdpRules[varLoopUdpRulesIndex].Dscp = &rsModelDSCP{}
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp properties=1
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].Dscp prefix=rsModel ans=varLoopUdpRules.Dscp")
+				// property: name=value, type=INTEGER macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].Dscp.Value = types.Int64PointerValue(varLoopUdpRules.Dscp.Value)
+			}
+			// property: name=udp_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varUdpFilters, errUdpFilters := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.UdpFilters)
+			state.UdpRules[varLoopUdpRulesIndex].UdpFilters = varUdpFilters
+			resp.Diagnostics.Append(errUdpFilters.Errors()...)
+			// property: name=udp_port, type=REFERENCE macro=copy_to_state
+			if varLoopUdpRules.UdpPort == nil {
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort = nil
+			} else {
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort = &rsModelPort{}
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=rsModel ans=varLoopUdpRules.UdpPort")
+				// property: name=end, type=STRING macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.StringPointerValue(varLoopUdpRules.UdpPort.End)
+				// property: name=start, type=STRING macro=copy_to_state
+				state.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = types.StringPointerValue(varLoopUdpRules.UdpPort.Start)
+			}
+		}
+	}
 	// property: name=use_parentapp_network_policy, type=BOOLEAN macro=copy_to_state
 	state.UseParentappNetworkPolicy = types.BoolPointerValue(ans.UseParentappNetworkPolicy)
 	return true

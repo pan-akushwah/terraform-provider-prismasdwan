@@ -26,5 +26,24 @@
 #
 
 resource "prismasdwan_app_def" "example" {
- // content goes here
+  display_name                 = "tf_managed_app"
+  path_affinity                = "weak"
+  ingress_traffic_pct          = 50
+  conn_idle_timeout            = 0
+  transfer_type                = "transactional"
+  app_type                     = "system"
+  session_timeout              = 0
+  order_number                 = 32768
+  overrides_allowed            = false
+  system_app_overridden        = false
+  is_deprecated                = false
+  app_unreachability_detection = true
+  # look under docs/resources to check available values 
+  p_category = "general-internet"
+  # look under docs/resources to check available values 
+  p_sub_category = "file-sharing"
+  # look under docs/resources to check available values 
+  supported_engines               = "panos-ml7"
+  p_parent_id                     = ""
+  supported_base_software_version = "6.4.1"
 }

@@ -112,24 +112,175 @@
       "type" : "string"
     },
     "ip_rules" : {
-      "description" : "Ip Rules: Valid Size(max = 16, error = APPDEF_CONFIG_MAX_SIZE_EXCEED: Allowed max size is 16 for each of them - tcp_rules, ip_rules and udp_rules., min = 0) ",
       "type" : "array",
       "items" : {
-        "type" : "object"
+        "properties" : {
+          "dest_prefixes" : {
+            "description" : "Dest Prefixes: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, noTrim = false, regex = , required = false) ListIPAddress(bcast = DENY, listMaxSize = 0, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, required = false, type = APP_GATEWAYCIDR) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Dest Prefixes",
+              "type" : "string"
+            }
+          },
+          "dscp" : {
+            "properties" : {
+              "value" : {
+                "description" : "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
+                "format" : "int32",
+                "type" : "integer"
+              }
+            }
+          },
+          "src_filters" : {
+            "description" : "Src Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Src Filters",
+              "type" : "string"
+            }
+          },
+          "dest_filters" : {
+            "description" : "Dest Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Dest Filters",
+              "type" : "string"
+            }
+          },
+          "protocol" : {
+            "description" : "Protocol: ValidateEnum(enumClass = classOf[Protocol], error = APPDEF_CONFIG_INVALID_PROTOCOL: Application protocol is invalid., nullAllowed = false) ",
+            "type" : "string",
+            "enum" : [ "ospf", "ipv6", "is-is-over-ipv4", "ipv6-nonxt", "etherip", "ipv6-icmp", "igmp", "udplite", "ipv6-opts", "icmp", "esp", "crtp", "ipip", "eigrp", "egp", "gre", "l2tpv3", "sctp", "ip-in-ip", "rsvp", "pim", "scps", "mpls-in-ip", "ah", "vrrp", "ipv6-route", "igp", "ipv6-frag" ]
+          },
+          "dest_ipv6_prefixes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "required" : [ "protocol" ]
       }
     },
     "udp_rules" : {
-      "description" : "Udp Rules: Valid Size(max = 16, error = APPDEF_CONFIG_MAX_SIZE_EXCEED: Allowed max size is 16 for each of them - tcp_rules, ip_rules and udp_rules., min = 0) ",
       "type" : "array",
       "items" : {
-        "type" : "object"
+        "properties" : {
+          "dest_prefixes" : {
+            "description" : "Dest Prefixes: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, noTrim = false, regex = , required = false) ListIPAddress(bcast = DENY, listMaxSize = 0, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, required = false, type = APP_GATEWAYCIDR) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Dest Prefixes",
+              "type" : "string"
+            }
+          },
+          "dscp" : {
+            "properties" : {
+              "value" : {
+                "description" : "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
+                "format" : "int32",
+                "type" : "integer"
+              }
+            }
+          },
+          "udp_port" : {
+            "properties" : {
+              "end" : {
+                "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
+                "type" : "string"
+              },
+              "start" : {
+                "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
+                "type" : "string"
+              }
+            }
+          },
+          "udp_filters" : {
+            "description" : "Udp Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Udp Filters",
+              "type" : "string"
+            }
+          },
+          "dest_ipv6_prefixes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
       }
     },
     "tcp_rules" : {
-      "description" : "Tcp Rules: Valid Size(max = 16, error = APPDEF_CONFIG_MAX_SIZE_EXCEED: Allowed max size is 16 for each of them - tcp_rules, ip_rules and udp_rules., min = 0) ",
       "type" : "array",
       "items" : {
-        "type" : "string"
+        "properties" : {
+          "server_prefixes" : {
+            "description" : "Server Prefixes: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, noTrim = false, regex = , required = false) ListIPAddress(bcast = DENY, listMaxSize = 0, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, required = false, type = APP_GATEWAYCIDR) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Server Prefixes",
+              "type" : "string"
+            }
+          },
+          "dscp" : {
+            "properties" : {
+              "value" : {
+                "description" : "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
+                "format" : "int32",
+                "type" : "integer"
+              }
+            }
+          },
+          "client_port" : {
+            "properties" : {
+              "end" : {
+                "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
+                "type" : "string"
+              },
+              "start" : {
+                "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
+                "type" : "string"
+              }
+            }
+          },
+          "server_port" : {
+            "properties" : {
+              "end" : {
+                "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
+                "type" : "string"
+              },
+              "start" : {
+                "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
+                "type" : "string"
+              }
+            }
+          },
+          "client_filters" : {
+            "description" : "Client Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Client Filters",
+              "type" : "string"
+            }
+          },
+          "server_filters" : {
+            "description" : "Server Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Server Filters",
+              "type" : "string"
+            }
+          },
+          "server_ipv6_prefixes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
       }
     },
     "domains" : {

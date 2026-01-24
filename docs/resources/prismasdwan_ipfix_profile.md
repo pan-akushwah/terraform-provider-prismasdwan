@@ -90,11 +90,11 @@
               "properties" : {
                 "end" : {
                   "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                  "type" : "integer"
+                  "type" : "string"
                 },
                 "start" : {
                   "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                  "type" : "integer"
+                  "type" : "string"
                 }
               }
             }
@@ -110,11 +110,11 @@
               "properties" : {
                 "end" : {
                   "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                  "type" : "integer"
+                  "type" : "string"
                 },
                 "start" : {
                   "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                  "type" : "integer"
+                  "type" : "string"
                 }
               }
             }

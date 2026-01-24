@@ -217,6 +217,9 @@ package schemas
 // | DHCPServerScreen HasID=true
 // | IdpV3N2 HasID=true
 // | ListResponseIdpV3N2 HasID=false
+// | IPRuleV2 HasID=false
+// | UdpRuleV2 HasID=false
+// | TcpRuleV2 HasID=false
 // | AppDefScreenV2N6 HasID=true
 // | PriorityPolicySetStack HasID=true
 // | ListResponsePriorityPolicySetStack HasID=false
@@ -1110,7 +1113,6 @@ package schemas
 // | InterfaceStateQueryFilter HasID=true
 // | ListQueryResponseInterfaceStateQueryFilter HasID=true
 // | StaticRoute HasID=true
-// | IPRuleV2 HasID=false
 // | InterfaceScreenV4N17 HasID=true
 // | ElementShellInterfaceScreen HasID=false
 // | VffLicenseStateQuery HasID=true
@@ -1203,12 +1205,10 @@ package schemas
 // | Parameter HasID=false
 // | SDWANAppReleaseInfo HasID=false
 // | SDWANAppReleaseInfoResponse HasID=true
-// | UdpRuleV2 HasID=false
 // | SDWANAppRelease HasID=true
 // | BulkResponseSDWANAppRelease HasID=false
 // | ListQueryResponseMachineSoftwareStateQuery HasID=true
 // | ListResponseServiceLabelV2N1 HasID=false
-// | TcpRuleV2 HasID=false
 // | ListResponseTacacsPlusServer HasID=false
 // | ElementScreenV3N2 HasID=true
 // | StateNextHop HasID=false
@@ -2209,8 +2209,8 @@ type ListQueryResponsePolicyRuleQueryFilter struct {
 // | Auto Generated for Schema `Port`
 // +-----------------------------------------------------------------
 type Port struct {
-	End   *int64 `json:"end"`   // propertyName=end type=INTEGER
-	Start *int64 `json:"start"` // propertyName=start type=INTEGER
+	End   *string `json:"end"`   // propertyName=end type=STRING
+	Start *string `json:"start"` // propertyName=start type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -4689,41 +4689,77 @@ type ListResponseIdpV3N2 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `IPRuleV2`
+// +-----------------------------------------------------------------
+type IPRuleV2 struct {
+	DestFilters      []string `json:"dest_filters"`       // propertyName=dest_filters type=ARRAY_PRIMITIVE
+	DestIpv6Prefixes []string `json:"dest_ipv6_prefixes"` // propertyName=dest_ipv6_prefixes type=ARRAY_PRIMITIVE
+	DestPrefixes     []string `json:"dest_prefixes"`      // propertyName=dest_prefixes type=ARRAY_PRIMITIVE
+	Dscp             *DSCP    `json:"dscp"`               // propertyName=dscp type=REFERENCE
+	Protocol         *string  `json:"protocol"`           // propertyName=protocol type=STRING
+	SrcFilters       []string `json:"src_filters"`        // propertyName=src_filters type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `UdpRuleV2`
+// +-----------------------------------------------------------------
+type UdpRuleV2 struct {
+	DestIpv6Prefixes []string `json:"dest_ipv6_prefixes"` // propertyName=dest_ipv6_prefixes type=ARRAY_PRIMITIVE
+	DestPrefixes     []string `json:"dest_prefixes"`      // propertyName=dest_prefixes type=ARRAY_PRIMITIVE
+	Dscp             *DSCP    `json:"dscp"`               // propertyName=dscp type=REFERENCE
+	UdpFilters       []string `json:"udp_filters"`        // propertyName=udp_filters type=ARRAY_PRIMITIVE
+	UdpPort          *Port    `json:"udp_port"`           // propertyName=udp_port type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `TcpRuleV2`
+// +-----------------------------------------------------------------
+type TcpRuleV2 struct {
+	ClientFilters      []string `json:"client_filters"`       // propertyName=client_filters type=ARRAY_PRIMITIVE
+	ClientPort         *Port    `json:"client_port"`          // propertyName=client_port type=REFERENCE
+	Dscp               *DSCP    `json:"dscp"`                 // propertyName=dscp type=REFERENCE
+	ServerFilters      []string `json:"server_filters"`       // propertyName=server_filters type=ARRAY_PRIMITIVE
+	ServerIpv6Prefixes []string `json:"server_ipv6_prefixes"` // propertyName=server_ipv6_prefixes type=ARRAY_PRIMITIVE
+	ServerPort         *Port    `json:"server_port"`          // propertyName=server_port type=REFERENCE
+	ServerPrefixes     []string `json:"server_prefixes"`      // propertyName=server_prefixes type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `AppDefScreenV2N6`
 // +-----------------------------------------------------------------
 type AppDefScreenV2N6 struct {
-	Etag                         *int64                   `json:"_etag"`                           // propertyName=_etag type=INTEGER
-	Schema                       *int64                   `json:"_schema"`                         // propertyName=_schema type=INTEGER
-	Abbreviation                 *string                  `json:"abbreviation"`                    // propertyName=abbreviation type=STRING
-	AggregateFlows               *bool                    `json:"aggregate_flows"`                 // propertyName=aggregate_flows type=BOOLEAN
-	AppType                      *string                  `json:"app_type"`                        // propertyName=app_type type=STRING
-	AppUnreachabilityDetection   *bool                    `json:"app_unreachability_detection"`    // propertyName=app_unreachability_detection type=BOOLEAN
-	Category                     *string                  `json:"category"`                        // propertyName=category type=STRING
-	ConnIdleTimeout              *int64                   `json:"conn_idle_timeout"`               // propertyName=conn_idle_timeout type=INTEGER
-	Description                  *string                  `json:"description"`                     // propertyName=description type=STRING
-	DisplayName                  *string                  `json:"display_name"`                    // propertyName=display_name type=STRING
-	Domains                      []string                 `json:"domains"`                         // propertyName=domains type=ARRAY_PRIMITIVE
-	Id                           *string                  `json:"id"`                              // propertyName=id type=STRING
-	IngressTrafficPct            *int64                   `json:"ingress_traffic_pct"`             // propertyName=ingress_traffic_pct type=INTEGER
-	IpRules                      []map[string]interface{} `json:"ip_rules"`                        // propertyName=ip_rules type=ARRAY_SCHEMA
-	IsDeprecated                 *bool                    `json:"is_deprecated"`                   // propertyName=is_deprecated type=BOOLEAN
-	NetworkScanApplication       *bool                    `json:"network_scan_application"`        // propertyName=network_scan_application type=BOOLEAN
-	OrderNumber                  *int64                   `json:"order_number"`                    // propertyName=order_number type=INTEGER
-	OverridesAllowed             *bool                    `json:"overrides_allowed"`               // propertyName=overrides_allowed type=BOOLEAN
-	PCategory                    *string                  `json:"p_category"`                      // propertyName=p_category type=STRING
-	PParentId                    *string                  `json:"p_parent_id"`                     // propertyName=p_parent_id type=STRING
-	PSubCategory                 *string                  `json:"p_sub_category"`                  // propertyName=p_sub_category type=STRING
-	ParentId                     *string                  `json:"parent_id"`                       // propertyName=parent_id type=STRING
-	PathAffinity                 *string                  `json:"path_affinity"`                   // propertyName=path_affinity type=STRING
-	SessionTimeout               *int64                   `json:"session_timeout"`                 // propertyName=session_timeout type=INTEGER
-	SupportedBaseSoftwareVersion *string                  `json:"supported_base_software_version"` // propertyName=supported_base_software_version type=STRING
-	SupportedEngines             *string                  `json:"supported_engines"`               // propertyName=supported_engines type=STRING
-	SystemAppOverridden          *bool                    `json:"system_app_overridden"`           // propertyName=system_app_overridden type=BOOLEAN
-	Tags                         []string                 `json:"tags"`                            // propertyName=tags type=SET_PRIMITIVE
-	TcpRules                     []string                 `json:"tcp_rules"`                       // propertyName=tcp_rules type=ARRAY_PRIMITIVE
-	TransferType                 *string                  `json:"transfer_type"`                   // propertyName=transfer_type type=STRING
-	UdpRules                     []map[string]interface{} `json:"udp_rules"`                       // propertyName=udp_rules type=ARRAY_SCHEMA
-	UseParentappNetworkPolicy    *bool                    `json:"use_parentapp_network_policy"`    // propertyName=use_parentapp_network_policy type=BOOLEAN
+	Etag                         *int64      `json:"_etag"`                           // propertyName=_etag type=INTEGER
+	Schema                       *int64      `json:"_schema"`                         // propertyName=_schema type=INTEGER
+	Abbreviation                 *string     `json:"abbreviation"`                    // propertyName=abbreviation type=STRING
+	AggregateFlows               *bool       `json:"aggregate_flows"`                 // propertyName=aggregate_flows type=BOOLEAN
+	AppType                      *string     `json:"app_type"`                        // propertyName=app_type type=STRING
+	AppUnreachabilityDetection   *bool       `json:"app_unreachability_detection"`    // propertyName=app_unreachability_detection type=BOOLEAN
+	Category                     *string     `json:"category"`                        // propertyName=category type=STRING
+	ConnIdleTimeout              *int64      `json:"conn_idle_timeout"`               // propertyName=conn_idle_timeout type=INTEGER
+	Description                  *string     `json:"description"`                     // propertyName=description type=STRING
+	DisplayName                  *string     `json:"display_name"`                    // propertyName=display_name type=STRING
+	Domains                      []string    `json:"domains"`                         // propertyName=domains type=ARRAY_PRIMITIVE
+	Id                           *string     `json:"id"`                              // propertyName=id type=STRING
+	IngressTrafficPct            *int64      `json:"ingress_traffic_pct"`             // propertyName=ingress_traffic_pct type=INTEGER
+	IpRules                      []IPRuleV2  `json:"ip_rules"`                        // propertyName=ip_rules type=ARRAY_REFERENCE
+	IsDeprecated                 *bool       `json:"is_deprecated"`                   // propertyName=is_deprecated type=BOOLEAN
+	NetworkScanApplication       *bool       `json:"network_scan_application"`        // propertyName=network_scan_application type=BOOLEAN
+	OrderNumber                  *int64      `json:"order_number"`                    // propertyName=order_number type=INTEGER
+	OverridesAllowed             *bool       `json:"overrides_allowed"`               // propertyName=overrides_allowed type=BOOLEAN
+	PCategory                    *string     `json:"p_category"`                      // propertyName=p_category type=STRING
+	PParentId                    *string     `json:"p_parent_id"`                     // propertyName=p_parent_id type=STRING
+	PSubCategory                 *string     `json:"p_sub_category"`                  // propertyName=p_sub_category type=STRING
+	ParentId                     *string     `json:"parent_id"`                       // propertyName=parent_id type=STRING
+	PathAffinity                 *string     `json:"path_affinity"`                   // propertyName=path_affinity type=STRING
+	SessionTimeout               *int64      `json:"session_timeout"`                 // propertyName=session_timeout type=INTEGER
+	SupportedBaseSoftwareVersion *string     `json:"supported_base_software_version"` // propertyName=supported_base_software_version type=STRING
+	SupportedEngines             *string     `json:"supported_engines"`               // propertyName=supported_engines type=STRING
+	SystemAppOverridden          *bool       `json:"system_app_overridden"`           // propertyName=system_app_overridden type=BOOLEAN
+	Tags                         []string    `json:"tags"`                            // propertyName=tags type=SET_PRIMITIVE
+	TcpRules                     []TcpRuleV2 `json:"tcp_rules"`                       // propertyName=tcp_rules type=ARRAY_REFERENCE
+	TransferType                 *string     `json:"transfer_type"`                   // propertyName=transfer_type type=STRING
+	UdpRules                     []UdpRuleV2 `json:"udp_rules"`                       // propertyName=udp_rules type=ARRAY_REFERENCE
+	UseParentappNetworkPolicy    *bool       `json:"use_parentapp_network_policy"`    // propertyName=use_parentapp_network_policy type=BOOLEAN
 }
 
 // +-----------------------------------------------------------------
@@ -18900,17 +18936,6 @@ type StaticRoute struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `IPRuleV2`
-// +-----------------------------------------------------------------
-type IPRuleV2 struct {
-	DestFilters  []string `json:"dest_filters"`  // propertyName=dest_filters type=ARRAY_PRIMITIVE
-	DestPrefixes []string `json:"dest_prefixes"` // propertyName=dest_prefixes type=ARRAY_PRIMITIVE
-	Dscp         *DSCP    `json:"dscp"`          // propertyName=dscp type=REFERENCE
-	Protocol     *string  `json:"protocol"`      // propertyName=protocol type=STRING
-	SrcFilters   []string `json:"src_filters"`   // propertyName=src_filters type=ARRAY_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `InterfaceScreenV4N17`
 // +-----------------------------------------------------------------
 type InterfaceScreenV4N17 struct {
@@ -20364,16 +20389,6 @@ type SDWANAppReleaseInfoResponse struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `UdpRuleV2`
-// +-----------------------------------------------------------------
-type UdpRuleV2 struct {
-	DestPrefixes []string `json:"dest_prefixes"` // propertyName=dest_prefixes type=ARRAY_PRIMITIVE
-	Dscp         *DSCP    `json:"dscp"`          // propertyName=dscp type=REFERENCE
-	UdpFilters   []string `json:"udp_filters"`   // propertyName=udp_filters type=ARRAY_PRIMITIVE
-	UdpPort      *Port    `json:"udp_port"`      // propertyName=udp_port type=REFERENCE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SDWANAppRelease`
 // +-----------------------------------------------------------------
 type SDWANAppRelease struct {
@@ -20429,18 +20444,6 @@ type ListQueryResponseMachineSoftwareStateQuery struct {
 type ListResponseServiceLabelV2N1 struct {
 	Count *int64             `json:"count"` // propertyName=count type=INTEGER
 	Items []ServiceLabelV2N1 `json:"items"` // propertyName=items type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `TcpRuleV2`
-// +-----------------------------------------------------------------
-type TcpRuleV2 struct {
-	ClientFilters  []string `json:"client_filters"`  // propertyName=client_filters type=ARRAY_PRIMITIVE
-	ClientPort     *Port    `json:"client_port"`     // propertyName=client_port type=REFERENCE
-	Dscp           *DSCP    `json:"dscp"`            // propertyName=dscp type=REFERENCE
-	ServerFilters  []string `json:"server_filters"`  // propertyName=server_filters type=ARRAY_PRIMITIVE
-	ServerPort     *Port    `json:"server_port"`     // propertyName=server_port type=REFERENCE
-	ServerPrefixes []string `json:"server_prefixes"` // propertyName=server_prefixes type=ARRAY_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------

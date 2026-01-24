@@ -220,6 +220,9 @@ import (
 // | DHCPServerScreen HasID=true
 // | IdpV3N2 HasID=true
 // | ListResponseIdpV3N2 HasID=false
+// | IPRuleV2 HasID=false
+// | UdpRuleV2 HasID=false
+// | TcpRuleV2 HasID=false
 // | AppDefScreenV2N6 HasID=true
 // | PriorityPolicySetStack HasID=true
 // | ListResponsePriorityPolicySetStack HasID=false
@@ -1113,7 +1116,6 @@ import (
 // | InterfaceStateQueryFilter HasID=true
 // | ListQueryResponseInterfaceStateQueryFilter HasID=true
 // | StaticRoute HasID=true
-// | IPRuleV2 HasID=false
 // | InterfaceScreenV4N17 HasID=true
 // | ElementShellInterfaceScreen HasID=false
 // | VffLicenseStateQuery HasID=true
@@ -1206,12 +1208,10 @@ import (
 // | Parameter HasID=false
 // | SDWANAppReleaseInfo HasID=false
 // | SDWANAppReleaseInfoResponse HasID=true
-// | UdpRuleV2 HasID=false
 // | SDWANAppRelease HasID=true
 // | BulkResponseSDWANAppRelease HasID=false
 // | ListQueryResponseMachineSoftwareStateQuery HasID=true
 // | ListResponseServiceLabelV2N1 HasID=false
-// | TcpRuleV2 HasID=false
 // | ListResponseTacacsPlusServer HasID=false
 // | ElementScreenV3N2 HasID=true
 // | StateNextHop HasID=false
@@ -2479,10 +2479,10 @@ type rsModelListQueryResponsePolicyRuleQueryFilter struct {
 // | Auto Generated for Schema `Port`
 // +-----------------------------------------------------------------
 type rsModelPort struct {
-	// propertyName=end type=INTEGER
-	End types.Int64 `tfsdk:"end"`
-	// propertyName=start type=INTEGER
-	Start types.Int64 `tfsdk:"start"`
+	// propertyName=end type=STRING
+	End types.String `tfsdk:"end"`
+	// propertyName=start type=STRING
+	Start types.String `tfsdk:"start"`
 }
 
 // +-----------------------------------------------------------------
@@ -6726,6 +6726,60 @@ type rsModelListResponseIdpV3N2 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `IPRuleV2`
+// +-----------------------------------------------------------------
+type rsModelIPRuleV2 struct {
+	// propertyName=dest_filters type=ARRAY_PRIMITIVE
+	DestFilters types.List `tfsdk:"dest_filters"`
+	// propertyName=dest_ipv6_prefixes type=ARRAY_PRIMITIVE
+	DestIpv6Prefixes types.List `tfsdk:"dest_ipv6_prefixes"`
+	// propertyName=dest_prefixes type=ARRAY_PRIMITIVE
+	DestPrefixes types.List `tfsdk:"dest_prefixes"`
+	// propertyName=dscp type=REFERENCE
+	Dscp *rsModelDSCP `tfsdk:"dscp"`
+	// propertyName=protocol type=STRING
+	Protocol types.String `tfsdk:"protocol"`
+	// propertyName=src_filters type=ARRAY_PRIMITIVE
+	SrcFilters types.List `tfsdk:"src_filters"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `UdpRuleV2`
+// +-----------------------------------------------------------------
+type rsModelUdpRuleV2 struct {
+	// propertyName=dest_ipv6_prefixes type=ARRAY_PRIMITIVE
+	DestIpv6Prefixes types.List `tfsdk:"dest_ipv6_prefixes"`
+	// propertyName=dest_prefixes type=ARRAY_PRIMITIVE
+	DestPrefixes types.List `tfsdk:"dest_prefixes"`
+	// propertyName=dscp type=REFERENCE
+	Dscp *rsModelDSCP `tfsdk:"dscp"`
+	// propertyName=udp_filters type=ARRAY_PRIMITIVE
+	UdpFilters types.List `tfsdk:"udp_filters"`
+	// propertyName=udp_port type=REFERENCE
+	UdpPort *rsModelPort `tfsdk:"udp_port"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `TcpRuleV2`
+// +-----------------------------------------------------------------
+type rsModelTcpRuleV2 struct {
+	// propertyName=client_filters type=ARRAY_PRIMITIVE
+	ClientFilters types.List `tfsdk:"client_filters"`
+	// propertyName=client_port type=REFERENCE
+	ClientPort *rsModelPort `tfsdk:"client_port"`
+	// propertyName=dscp type=REFERENCE
+	Dscp *rsModelDSCP `tfsdk:"dscp"`
+	// propertyName=server_filters type=ARRAY_PRIMITIVE
+	ServerFilters types.List `tfsdk:"server_filters"`
+	// propertyName=server_ipv6_prefixes type=ARRAY_PRIMITIVE
+	ServerIpv6Prefixes types.List `tfsdk:"server_ipv6_prefixes"`
+	// propertyName=server_port type=REFERENCE
+	ServerPort *rsModelPort `tfsdk:"server_port"`
+	// propertyName=server_prefixes type=ARRAY_PRIMITIVE
+	ServerPrefixes types.List `tfsdk:"server_prefixes"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `AppDefScreenV2N6`
 // +-----------------------------------------------------------------
 type rsModelAppDefScreenV2N6 struct {
@@ -6759,8 +6813,8 @@ type rsModelAppDefScreenV2N6 struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=ingress_traffic_pct type=INTEGER
 	IngressTrafficPct types.Int64 `tfsdk:"ingress_traffic_pct"`
-	// propertyName=ip_rules type=ARRAY_SCHEMA
-	IpRules []types.Map `tfsdk:"ip_rules"`
+	// propertyName=ip_rules type=ARRAY_REFERENCE
+	IpRules []rsModelIPRuleV2 `tfsdk:"ip_rules"`
 	// propertyName=is_deprecated type=BOOLEAN
 	IsDeprecated types.Bool `tfsdk:"is_deprecated"`
 	// propertyName=network_scan_application type=BOOLEAN
@@ -6789,12 +6843,12 @@ type rsModelAppDefScreenV2N6 struct {
 	SystemAppOverridden types.Bool `tfsdk:"system_app_overridden"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
-	// propertyName=tcp_rules type=ARRAY_PRIMITIVE
-	TcpRules types.List `tfsdk:"tcp_rules"`
+	// propertyName=tcp_rules type=ARRAY_REFERENCE
+	TcpRules []rsModelTcpRuleV2 `tfsdk:"tcp_rules"`
 	// propertyName=transfer_type type=STRING
 	TransferType types.String `tfsdk:"transfer_type"`
-	// propertyName=udp_rules type=ARRAY_SCHEMA
-	UdpRules []types.Map `tfsdk:"udp_rules"`
+	// propertyName=udp_rules type=ARRAY_REFERENCE
+	UdpRules []rsModelUdpRuleV2 `tfsdk:"udp_rules"`
 	// propertyName=use_parentapp_network_policy type=BOOLEAN
 	UseParentappNetworkPolicy types.Bool `tfsdk:"use_parentapp_network_policy"`
 }
@@ -32028,22 +32082,6 @@ type rsModelStaticRoute struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `IPRuleV2`
-// +-----------------------------------------------------------------
-type rsModelIPRuleV2 struct {
-	// propertyName=dest_filters type=ARRAY_PRIMITIVE
-	DestFilters types.List `tfsdk:"dest_filters"`
-	// propertyName=dest_prefixes type=ARRAY_PRIMITIVE
-	DestPrefixes types.List `tfsdk:"dest_prefixes"`
-	// propertyName=dscp type=REFERENCE
-	Dscp *rsModelDSCP `tfsdk:"dscp"`
-	// propertyName=protocol type=STRING
-	Protocol types.String `tfsdk:"protocol"`
-	// propertyName=src_filters type=ARRAY_PRIMITIVE
-	SrcFilters types.List `tfsdk:"src_filters"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `InterfaceScreenV4N17`
 // +-----------------------------------------------------------------
 type rsModelInterfaceScreenV4N17 struct {
@@ -34668,20 +34706,6 @@ type rsModelSDWANAppReleaseInfoResponse struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `UdpRuleV2`
-// +-----------------------------------------------------------------
-type rsModelUdpRuleV2 struct {
-	// propertyName=dest_prefixes type=ARRAY_PRIMITIVE
-	DestPrefixes types.List `tfsdk:"dest_prefixes"`
-	// propertyName=dscp type=REFERENCE
-	Dscp *rsModelDSCP `tfsdk:"dscp"`
-	// propertyName=udp_filters type=ARRAY_PRIMITIVE
-	UdpFilters types.List `tfsdk:"udp_filters"`
-	// propertyName=udp_port type=REFERENCE
-	UdpPort *rsModelPort `tfsdk:"udp_port"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SDWANAppRelease`
 // +-----------------------------------------------------------------
 type rsModelSDWANAppRelease struct {
@@ -34779,24 +34803,6 @@ type rsModelListResponseServiceLabelV2N1 struct {
 	Count types.Int64 `tfsdk:"count"`
 	// propertyName=items type=ARRAY_REFERENCE
 	Items []rsModelServiceLabelV2N1 `tfsdk:"items"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `TcpRuleV2`
-// +-----------------------------------------------------------------
-type rsModelTcpRuleV2 struct {
-	// propertyName=client_filters type=ARRAY_PRIMITIVE
-	ClientFilters types.List `tfsdk:"client_filters"`
-	// propertyName=client_port type=REFERENCE
-	ClientPort *rsModelPort `tfsdk:"client_port"`
-	// propertyName=dscp type=REFERENCE
-	Dscp *rsModelDSCP `tfsdk:"dscp"`
-	// propertyName=server_filters type=ARRAY_PRIMITIVE
-	ServerFilters types.List `tfsdk:"server_filters"`
-	// propertyName=server_port type=REFERENCE
-	ServerPort *rsModelPort `tfsdk:"server_port"`
-	// propertyName=server_prefixes type=ARRAY_PRIMITIVE
-	ServerPrefixes types.List `tfsdk:"server_prefixes"`
 }
 
 // +-----------------------------------------------------------------

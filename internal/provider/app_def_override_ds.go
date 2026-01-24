@@ -203,6 +203,15 @@ func (d *appDefOverrideDataSource) Schema(_ context.Context, _ datasource.Schema
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=dest_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+									// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+									"dest_ipv6_prefixes": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.StringType,
+									},
+									// key name holder for attribute: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									"dest_prefixes": dsschema.ListAttribute{
 										Required:    false,
@@ -348,25 +357,25 @@ func (d *appDefOverrideDataSource) Schema(_ context.Context, _ datasource.Schema
 										Optional:  true,
 										Sensitive: false,
 										Attributes: map[string]dsschema.Attribute{
-											// property: name=end, type=INTEGER macro=rss_schema
-											"end": dsschema.Int64Attribute{
+											// property: name=end, type=STRING macro=rss_schema
+											"end": dsschema.StringAttribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
-											// property: name=start, type=INTEGER macro=rss_schema
-											"start": dsschema.Int64Attribute{
+											// key name holder for attribute: name=end, type=STRING macro=rss_schema
+											// property: name=start, type=STRING macro=rss_schema
+											"start": dsschema.StringAttribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=start, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=start, type=STRING macro=rss_schema
 									// property: name=dscp, type=REFERENCE macro=rss_schema
 									"dscp": dsschema.SingleNestedAttribute{
 										Required:  false,
@@ -394,6 +403,15 @@ func (d *appDefOverrideDataSource) Schema(_ context.Context, _ datasource.Schema
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=server_filters, type=ARRAY_PRIMITIVE macro=rss_schema
+									// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+									"server_ipv6_prefixes": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.StringType,
+									},
+									// key name holder for attribute: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=server_port, type=REFERENCE macro=rss_schema
 									"server_port": dsschema.SingleNestedAttribute{
 										Required:  false,
@@ -401,25 +419,25 @@ func (d *appDefOverrideDataSource) Schema(_ context.Context, _ datasource.Schema
 										Optional:  true,
 										Sensitive: false,
 										Attributes: map[string]dsschema.Attribute{
-											// property: name=end, type=INTEGER macro=rss_schema
-											"end": dsschema.Int64Attribute{
+											// property: name=end, type=STRING macro=rss_schema
+											"end": dsschema.StringAttribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
-											// property: name=start, type=INTEGER macro=rss_schema
-											"start": dsschema.Int64Attribute{
+											// key name holder for attribute: name=end, type=STRING macro=rss_schema
+											// property: name=start, type=STRING macro=rss_schema
+											"start": dsschema.StringAttribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=start, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=start, type=STRING macro=rss_schema
 									// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									"server_prefixes": dsschema.ListAttribute{
 										Required:    false,
@@ -449,6 +467,15 @@ func (d *appDefOverrideDataSource) Schema(_ context.Context, _ datasource.Schema
 							Sensitive: false,
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
+									// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+									"dest_ipv6_prefixes": dsschema.ListAttribute{
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										ElementType: types.StringType,
+									},
+									// key name holder for attribute: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									"dest_prefixes": dsschema.ListAttribute{
 										Required:    false,
@@ -492,29 +519,29 @@ func (d *appDefOverrideDataSource) Schema(_ context.Context, _ datasource.Schema
 										Optional:  true,
 										Sensitive: false,
 										Attributes: map[string]dsschema.Attribute{
-											// property: name=end, type=INTEGER macro=rss_schema
-											"end": dsschema.Int64Attribute{
+											// property: name=end, type=STRING macro=rss_schema
+											"end": dsschema.StringAttribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
-											// property: name=start, type=INTEGER macro=rss_schema
-											"start": dsschema.Int64Attribute{
+											// key name holder for attribute: name=end, type=STRING macro=rss_schema
+											// property: name=start, type=STRING macro=rss_schema
+											"start": dsschema.StringAttribute{
 												Required:  false,
 												Computed:  false,
 												Optional:  true,
 												Sensitive: false,
 											},
-											// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=start, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=start, type=STRING macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=start, type=STRING macro=rss_schema
 						// property: name=use_parentapp_network_policy, type=BOOLEAN macro=rss_schema
 						"use_parentapp_network_policy": dsschema.BoolAttribute{
 							Required:  false,
@@ -677,12 +704,16 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			for varLoopIpRulesIndex, varLoopIpRules := range ans.IpRules {
 				// add a new item
 				state.IpRules = append(state.IpRules, dsModelIPRuleV2{})
-				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=dsModel ans=varLoopIpRules properties=5
+				// copy_to_state: state=state.IpRules[varLoopIpRulesIndex] prefix=dsModel ans=varLoopIpRules properties=6
 				tflog.Debug(ctx, "copy_to_state state=state.IpRules[varLoopIpRulesIndex] prefix=dsModel ans=varLoopIpRules")
 				// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varDestFilters, errDestFilters := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestFilters)
 				state.IpRules[varLoopIpRulesIndex].DestFilters = varDestFilters
 				resp.Diagnostics.Append(errDestFilters.Errors()...)
+				// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestIpv6Prefixes)
+				state.IpRules[varLoopIpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+				resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
 				// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopIpRules.DestPrefixes)
 				state.IpRules[varLoopIpRulesIndex].DestPrefixes = varDestPrefixes
@@ -735,7 +766,7 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			for varLoopTcpRulesIndex, varLoopTcpRules := range ans.TcpRules {
 				// add a new item
 				state.TcpRules = append(state.TcpRules, dsModelTcpRuleV2{})
-				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=dsModel ans=varLoopTcpRules properties=6
+				// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex] prefix=dsModel ans=varLoopTcpRules properties=7
 				tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex] prefix=dsModel ans=varLoopTcpRules")
 				// property: name=client_filters, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varClientFilters, errClientFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ClientFilters)
@@ -748,10 +779,10 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 					state.TcpRules[varLoopTcpRulesIndex].ClientPort = &dsModelPort{}
 					// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=dsModel ans=varLoopTcpRules.ClientPort properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ClientPort prefix=dsModel ans=varLoopTcpRules.ClientPort")
-					// property: name=end, type=INTEGER macro=copy_to_state
-					state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.Int64PointerValue(varLoopTcpRules.ClientPort.End)
-					// property: name=start, type=INTEGER macro=copy_to_state
-					state.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = types.Int64PointerValue(varLoopTcpRules.ClientPort.Start)
+					// property: name=end, type=STRING macro=copy_to_state
+					state.TcpRules[varLoopTcpRulesIndex].ClientPort.End = types.StringPointerValue(varLoopTcpRules.ClientPort.End)
+					// property: name=start, type=STRING macro=copy_to_state
+					state.TcpRules[varLoopTcpRulesIndex].ClientPort.Start = types.StringPointerValue(varLoopTcpRules.ClientPort.Start)
 				}
 				// property: name=dscp, type=REFERENCE macro=copy_to_state
 				if varLoopTcpRules.Dscp == nil {
@@ -767,6 +798,10 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 				varServerFilters, errServerFilters := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerFilters)
 				state.TcpRules[varLoopTcpRulesIndex].ServerFilters = varServerFilters
 				resp.Diagnostics.Append(errServerFilters.Errors()...)
+				// property: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varServerIpv6Prefixes, errServerIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerIpv6Prefixes)
+				state.TcpRules[varLoopTcpRulesIndex].ServerIpv6Prefixes = varServerIpv6Prefixes
+				resp.Diagnostics.Append(errServerIpv6Prefixes.Errors()...)
 				// property: name=server_port, type=REFERENCE macro=copy_to_state
 				if varLoopTcpRules.ServerPort == nil {
 					state.TcpRules[varLoopTcpRulesIndex].ServerPort = nil
@@ -774,10 +809,10 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 					state.TcpRules[varLoopTcpRulesIndex].ServerPort = &dsModelPort{}
 					// copy_to_state: state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=dsModel ans=varLoopTcpRules.ServerPort properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.TcpRules[varLoopTcpRulesIndex].ServerPort prefix=dsModel ans=varLoopTcpRules.ServerPort")
-					// property: name=end, type=INTEGER macro=copy_to_state
-					state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.Int64PointerValue(varLoopTcpRules.ServerPort.End)
-					// property: name=start, type=INTEGER macro=copy_to_state
-					state.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = types.Int64PointerValue(varLoopTcpRules.ServerPort.Start)
+					// property: name=end, type=STRING macro=copy_to_state
+					state.TcpRules[varLoopTcpRulesIndex].ServerPort.End = types.StringPointerValue(varLoopTcpRules.ServerPort.End)
+					// property: name=start, type=STRING macro=copy_to_state
+					state.TcpRules[varLoopTcpRulesIndex].ServerPort.Start = types.StringPointerValue(varLoopTcpRules.ServerPort.Start)
 				}
 				// property: name=server_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varServerPrefixes, errServerPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopTcpRules.ServerPrefixes)
@@ -797,8 +832,12 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 			for varLoopUdpRulesIndex, varLoopUdpRules := range ans.UdpRules {
 				// add a new item
 				state.UdpRules = append(state.UdpRules, dsModelUdpRuleV2{})
-				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=dsModel ans=varLoopUdpRules properties=4
+				// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex] prefix=dsModel ans=varLoopUdpRules properties=5
 				tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex] prefix=dsModel ans=varLoopUdpRules")
+				// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDestIpv6Prefixes, errDestIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestIpv6Prefixes)
+				state.UdpRules[varLoopUdpRulesIndex].DestIpv6Prefixes = varDestIpv6Prefixes
+				resp.Diagnostics.Append(errDestIpv6Prefixes.Errors()...)
 				// property: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 				varDestPrefixes, errDestPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopUdpRules.DestPrefixes)
 				state.UdpRules[varLoopUdpRulesIndex].DestPrefixes = varDestPrefixes
@@ -824,10 +863,10 @@ func (d *appDefOverrideDataSource) Read(ctx context.Context, req datasource.Read
 					state.UdpRules[varLoopUdpRulesIndex].UdpPort = &dsModelPort{}
 					// copy_to_state: state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=dsModel ans=varLoopUdpRules.UdpPort properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.UdpRules[varLoopUdpRulesIndex].UdpPort prefix=dsModel ans=varLoopUdpRules.UdpPort")
-					// property: name=end, type=INTEGER macro=copy_to_state
-					state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.Int64PointerValue(varLoopUdpRules.UdpPort.End)
-					// property: name=start, type=INTEGER macro=copy_to_state
-					state.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = types.Int64PointerValue(varLoopUdpRules.UdpPort.Start)
+					// property: name=end, type=STRING macro=copy_to_state
+					state.UdpRules[varLoopUdpRulesIndex].UdpPort.End = types.StringPointerValue(varLoopUdpRules.UdpPort.End)
+					// property: name=start, type=STRING macro=copy_to_state
+					state.UdpRules[varLoopUdpRulesIndex].UdpPort.Start = types.StringPointerValue(varLoopUdpRules.UdpPort.Start)
 				}
 			}
 		}

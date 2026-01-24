@@ -213,26 +213,26 @@ func (d *ipfixProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 										Sensitive: false,
 										NestedObject: dsschema.NestedAttributeObject{
 											Attributes: map[string]dsschema.Attribute{
-												// property: name=end, type=INTEGER macro=rss_schema
-												"end": dsschema.Int64Attribute{
+												// property: name=end, type=STRING macro=rss_schema
+												"end": dsschema.StringAttribute{
 													Required:  false,
 													Computed:  false,
 													Optional:  true,
 													Sensitive: false,
 												},
-												// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
-												// property: name=start, type=INTEGER macro=rss_schema
-												"start": dsschema.Int64Attribute{
+												// key name holder for attribute: name=end, type=STRING macro=rss_schema
+												// property: name=start, type=STRING macro=rss_schema
+												"start": dsschema.StringAttribute{
 													Required:  false,
 													Computed:  false,
 													Optional:  true,
 													Sensitive: false,
 												},
-												// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+												// key name holder for attribute: name=start, type=STRING macro=rss_schema
 											},
 										},
 									},
-									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=start, type=STRING macro=rss_schema
 									// property: name=dst_prefixes_id, type=STRING macro=rss_schema
 									"dst_prefixes_id": dsschema.StringAttribute{
 										Required:  false,
@@ -284,26 +284,26 @@ func (d *ipfixProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 										Sensitive: false,
 										NestedObject: dsschema.NestedAttributeObject{
 											Attributes: map[string]dsschema.Attribute{
-												// property: name=end, type=INTEGER macro=rss_schema
-												"end": dsschema.Int64Attribute{
+												// property: name=end, type=STRING macro=rss_schema
+												"end": dsschema.StringAttribute{
 													Required:  false,
 													Computed:  false,
 													Optional:  true,
 													Sensitive: false,
 												},
-												// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
-												// property: name=start, type=INTEGER macro=rss_schema
-												"start": dsschema.Int64Attribute{
+												// key name holder for attribute: name=end, type=STRING macro=rss_schema
+												// property: name=start, type=STRING macro=rss_schema
+												"start": dsschema.StringAttribute{
 													Required:  false,
 													Computed:  false,
 													Optional:  true,
 													Sensitive: false,
 												},
-												// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+												// key name holder for attribute: name=start, type=STRING macro=rss_schema
 											},
 										},
 									},
-									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=start, type=STRING macro=rss_schema
 									// property: name=src_prefixes_id, type=STRING macro=rss_schema
 									"src_prefixes_id": dsschema.StringAttribute{
 										Required:  false,
@@ -573,10 +573,10 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 						state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, dsModelPort{})
 						// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=dsModel ans=varLoopDstPorts properties=2
 						tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=dsModel ans=varLoopDstPorts")
-						// property: name=end, type=INTEGER macro=copy_to_state
-						state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = types.Int64PointerValue(varLoopDstPorts.End)
-						// property: name=start, type=INTEGER macro=copy_to_state
-						state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].Start = types.Int64PointerValue(varLoopDstPorts.Start)
+						// property: name=end, type=STRING macro=copy_to_state
+						state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].End = types.StringPointerValue(varLoopDstPorts.End)
+						// property: name=start, type=STRING macro=copy_to_state
+						state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex].Start = types.StringPointerValue(varLoopDstPorts.Start)
 					}
 				}
 				// property: name=dst_prefixes_id, type=STRING macro=copy_to_state
@@ -607,10 +607,10 @@ func (d *ipfixProfileDataSource) Read(ctx context.Context, req datasource.ReadRe
 						state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, dsModelPort{})
 						// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=dsModel ans=varLoopSrcPorts properties=2
 						tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=dsModel ans=varLoopSrcPorts")
-						// property: name=end, type=INTEGER macro=copy_to_state
-						state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = types.Int64PointerValue(varLoopSrcPorts.End)
-						// property: name=start, type=INTEGER macro=copy_to_state
-						state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].Start = types.Int64PointerValue(varLoopSrcPorts.Start)
+						// property: name=end, type=STRING macro=copy_to_state
+						state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].End = types.StringPointerValue(varLoopSrcPorts.End)
+						// property: name=start, type=STRING macro=copy_to_state
+						state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex].Start = types.StringPointerValue(varLoopSrcPorts.Start)
 					}
 				}
 				// property: name=src_prefixes_id, type=STRING macro=copy_to_state
