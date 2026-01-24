@@ -168,7 +168,7 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 									// property: name=http_response_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 									"http_response_codes": dsschema.ListAttribute{
 										Required:    false,
-										Computed:    false,
+										Computed:    true,
 										Optional:    true,
 										Sensitive:   false,
 										ElementType: types.Int64Type,
@@ -404,6 +404,10 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 				varHttpResponseCodes, errHttpResponseCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopEndpoints.HttpResponseCodes)
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = varHttpResponseCodes
 				resp.Diagnostics.Append(errHttpResponseCodes.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopEndpoints.HttpResponseCodes) == 0 {
+					state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
+				}
 				// property: name=http_response_string, type=STRING macro=copy_to_state
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 				// property: name=ipv4_address, type=STRING macro=copy_to_state

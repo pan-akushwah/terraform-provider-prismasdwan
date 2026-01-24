@@ -25,6 +25,18 @@
 #
 #
 
-resource "prismasdwan_probe_config" "example" {
- // content goes here
+resource "prismasdwan_probe_config" "dns_icmp" {
+  name        = "Terraform Managed ICMP Probe"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled     = true
+  endpoints = [
+    {
+      ipv4_address                    = "1.1.1.1"
+      protocol                        = "icmp"
+      probe_cycle_duration            = 10
+      probe_count                     = 2
+      path_types                      = ["direct", "vpn", "servicelink"]
+      allow_insecure_https_connection = false
+    }
+  ]
 }

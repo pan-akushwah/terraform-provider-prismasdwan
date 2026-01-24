@@ -35,6 +35,16 @@
             "items" : {
               "description" : "Http Response Codes",
               "type" : "integer"
+            },
+            "additionalProperties" : {
+              "properties" : {
+                "x_flag_computed" : {
+                  "type" : "boolean"
+                },
+                "x_flag_null_if_empty" : {
+                  "type" : "boolean"
+                }
+              }
             }
           },
           "allow_insecure_https_connection" : {
