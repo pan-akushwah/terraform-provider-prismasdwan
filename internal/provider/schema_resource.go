@@ -8,7 +8,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | All Schema Map Summary (size=allGoLangStructMap=1,804)
+// | All Schema Map Summary (size=allGoLangStructMap=1,805)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -313,6 +313,7 @@ import (
 // | BaseEventStateV2N1 HasID=true
 // | WANInterfaceQueryFilterV2N1 HasID=true
 // | IPFixSampler HasID=false
+// | IntPort HasID=false
 // | IPFixFilter HasID=false
 // | CollectorConfig HasID=false
 // | IPFixConfigQueryFilter HasID=true
@@ -1816,7 +1817,7 @@ import (
 // | ListQueryResponseSecurityPolicyV2SetStack HasID=true
 // +-----------------------------------------------------------------
 
-// template=schema.resource.model.tpl allGoLangStructMap=1,804
+// template=schema.resource.model.tpl allGoLangStructMap=1,805
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `LedConfig`
 // +-----------------------------------------------------------------
@@ -9344,13 +9345,23 @@ type rsModelIPFixSampler struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `IntPort`
+// +-----------------------------------------------------------------
+type rsModelIntPort struct {
+	// propertyName=end type=INTEGER
+	End types.Int64 `tfsdk:"end"`
+	// propertyName=start type=INTEGER
+	Start types.Int64 `tfsdk:"start"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IPFixFilter`
 // +-----------------------------------------------------------------
 type rsModelIPFixFilter struct {
 	// propertyName=app_def_ids type=ARRAY_PRIMITIVE
 	AppDefIds types.List `tfsdk:"app_def_ids"`
 	// propertyName=dst_ports type=ARRAY_REFERENCE
-	DstPorts []rsModelPort `tfsdk:"dst_ports"`
+	DstPorts []rsModelIntPort `tfsdk:"dst_ports"`
 	// propertyName=dst_prefixes_id type=STRING
 	DstPrefixesId types.String `tfsdk:"dst_prefixes_id"`
 	// propertyName=ipfixfiltercontext_ids type=ARRAY_PRIMITIVE
@@ -9362,7 +9373,7 @@ type rsModelIPFixFilter struct {
 	// propertyName=rtp_transport_type type=STRING
 	RtpTransportType types.String `tfsdk:"rtp_transport_type"`
 	// propertyName=src_ports type=ARRAY_REFERENCE
-	SrcPorts []rsModelPort `tfsdk:"src_ports"`
+	SrcPorts []rsModelIntPort `tfsdk:"src_ports"`
 	// propertyName=src_prefixes_id type=STRING
 	SrcPrefixesId types.String `tfsdk:"src_prefixes_id"`
 	// propertyName=wan_path_direction type=STRING

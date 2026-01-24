@@ -5,7 +5,7 @@ package schemas
 //
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=1,804)
+// | Schema Map Summary (size=goLangStructMap=1,805)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -310,6 +310,7 @@ package schemas
 // | BaseEventStateV2N1 HasID=true
 // | WANInterfaceQueryFilterV2N1 HasID=true
 // | IPFixSampler HasID=false
+// | IntPort HasID=false
 // | IPFixFilter HasID=false
 // | CollectorConfig HasID=false
 // | IPFixConfigQueryFilter HasID=true
@@ -6167,19 +6168,27 @@ type IPFixSampler struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `IntPort`
+// +-----------------------------------------------------------------
+type IntPort struct {
+	End   *int64 `json:"end"`   // propertyName=end type=INTEGER
+	Start *int64 `json:"start"` // propertyName=start type=INTEGER
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IPFixFilter`
 // +-----------------------------------------------------------------
 type IPFixFilter struct {
-	AppDefIds             []string `json:"app_def_ids"`            // propertyName=app_def_ids type=ARRAY_PRIMITIVE
-	DstPorts              []Port   `json:"dst_ports"`              // propertyName=dst_ports type=ARRAY_REFERENCE
-	DstPrefixesId         *string  `json:"dst_prefixes_id"`        // propertyName=dst_prefixes_id type=STRING
-	IpfixfiltercontextIds []string `json:"ipfixfiltercontext_ids"` // propertyName=ipfixfiltercontext_ids type=ARRAY_PRIMITIVE
-	PriorityTrafficTypes  []string `json:"priority_traffic_types"` // propertyName=priority_traffic_types type=ARRAY_PRIMITIVE
-	Protocols             []string `json:"protocols"`              // propertyName=protocols type=ARRAY_PRIMITIVE
-	RtpTransportType      *string  `json:"rtp_transport_type"`     // propertyName=rtp_transport_type type=STRING
-	SrcPorts              []Port   `json:"src_ports"`              // propertyName=src_ports type=ARRAY_REFERENCE
-	SrcPrefixesId         *string  `json:"src_prefixes_id"`        // propertyName=src_prefixes_id type=STRING
-	WanPathDirection      *string  `json:"wan_path_direction"`     // propertyName=wan_path_direction type=STRING
+	AppDefIds             []string  `json:"app_def_ids"`            // propertyName=app_def_ids type=ARRAY_PRIMITIVE
+	DstPorts              []IntPort `json:"dst_ports"`              // propertyName=dst_ports type=ARRAY_REFERENCE
+	DstPrefixesId         *string   `json:"dst_prefixes_id"`        // propertyName=dst_prefixes_id type=STRING
+	IpfixfiltercontextIds []string  `json:"ipfixfiltercontext_ids"` // propertyName=ipfixfiltercontext_ids type=ARRAY_PRIMITIVE
+	PriorityTrafficTypes  []string  `json:"priority_traffic_types"` // propertyName=priority_traffic_types type=ARRAY_PRIMITIVE
+	Protocols             []string  `json:"protocols"`              // propertyName=protocols type=ARRAY_PRIMITIVE
+	RtpTransportType      *string   `json:"rtp_transport_type"`     // propertyName=rtp_transport_type type=STRING
+	SrcPorts              []IntPort `json:"src_ports"`              // propertyName=src_ports type=ARRAY_REFERENCE
+	SrcPrefixesId         *string   `json:"src_prefixes_id"`        // propertyName=src_prefixes_id type=STRING
+	WanPathDirection      *string   `json:"wan_path_direction"`     // propertyName=wan_path_direction type=STRING
 }
 
 // +-----------------------------------------------------------------
