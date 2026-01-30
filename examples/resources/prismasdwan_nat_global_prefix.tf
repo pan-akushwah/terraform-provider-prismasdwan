@@ -26,5 +26,10 @@
 #
 
 resource "prismasdwan_nat_global_prefix" "example" {
- // content goes here
+  name        = "Terraform Managed Global Prefix"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["terraform"]
+  ipv4_prefixes = [
+    "192.169.0.0/16"
+  ]
 }
