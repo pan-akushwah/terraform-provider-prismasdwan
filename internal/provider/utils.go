@@ -138,7 +138,10 @@ func BoolValue(s types.Bool) bool {
 }
 
 func ListInt64ValueOrNil(ctx context.Context, v types.List) []int64 {
-	if v.IsNull() || v.IsUnknown() {
+	if v.IsNull() {
+		return nil
+	}
+	if v.IsUnknown() {
 		return []int64{}
 	}
 	var result []int64
@@ -147,7 +150,10 @@ func ListInt64ValueOrNil(ctx context.Context, v types.List) []int64 {
 }
 
 func SetInt64ValueOrNil(ctx context.Context, v types.Set) []int64 {
-	if v.IsNull() || v.IsUnknown() {
+	if v.IsNull() {
+		return nil
+	}
+	if v.IsUnknown() {
 		return []int64{}
 	}
 	var result []int64

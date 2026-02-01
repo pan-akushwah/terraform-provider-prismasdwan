@@ -24,7 +24,7 @@ import (
 // | Computed Resource Name=sites_elements_ipfix
 // +-----------------------------------------------------------------
 // | IPFixSampler HasID=false
-// | Port HasID=false
+// | IntPort HasID=false
 // | IPFixFilter HasID=false
 // | CollectorConfig HasID=false
 // | IPFixConfigScreen HasID=true
@@ -573,12 +573,12 @@ func (d *elementIpfixDataSource) Read(ctx context.Context, req datasource.ReadRe
 				if varLoopFilters.DstPorts == nil {
 					state.Filters[varLoopFiltersIndex].DstPorts = nil
 				} else if len(varLoopFilters.DstPorts) == 0 {
-					state.Filters[varLoopFiltersIndex].DstPorts = []dsModelPort{}
+					state.Filters[varLoopFiltersIndex].DstPorts = []dsModelIntPort{}
 				} else {
-					state.Filters[varLoopFiltersIndex].DstPorts = make([]dsModelPort, 0, len(varLoopFilters.DstPorts))
+					state.Filters[varLoopFiltersIndex].DstPorts = make([]dsModelIntPort, 0, len(varLoopFilters.DstPorts))
 					for varLoopDstPortsIndex, varLoopDstPorts := range varLoopFilters.DstPorts {
 						// add a new item
-						state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, dsModelPort{})
+						state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, dsModelIntPort{})
 						// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=dsModel ans=varLoopDstPorts properties=2
 						tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=dsModel ans=varLoopDstPorts")
 						// property: name=end, type=INTEGER macro=copy_to_state
@@ -607,12 +607,12 @@ func (d *elementIpfixDataSource) Read(ctx context.Context, req datasource.ReadRe
 				if varLoopFilters.SrcPorts == nil {
 					state.Filters[varLoopFiltersIndex].SrcPorts = nil
 				} else if len(varLoopFilters.SrcPorts) == 0 {
-					state.Filters[varLoopFiltersIndex].SrcPorts = []dsModelPort{}
+					state.Filters[varLoopFiltersIndex].SrcPorts = []dsModelIntPort{}
 				} else {
-					state.Filters[varLoopFiltersIndex].SrcPorts = make([]dsModelPort, 0, len(varLoopFilters.SrcPorts))
+					state.Filters[varLoopFiltersIndex].SrcPorts = make([]dsModelIntPort, 0, len(varLoopFilters.SrcPorts))
 					for varLoopSrcPortsIndex, varLoopSrcPorts := range varLoopFilters.SrcPorts {
 						// add a new item
-						state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, dsModelPort{})
+						state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, dsModelIntPort{})
 						// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=dsModel ans=varLoopSrcPorts properties=2
 						tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=dsModel ans=varLoopSrcPorts")
 						// property: name=end, type=INTEGER macro=copy_to_state

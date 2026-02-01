@@ -28,7 +28,7 @@ import (
 // | Computed Resource Name=sites_elements_ipfix
 // +-----------------------------------------------------------------
 // | IPFixSampler HasID=false
-// | Port HasID=false
+// | IntPort HasID=false
 // | IPFixFilter HasID=false
 // | CollectorConfig HasID=false
 // | IPFixConfigScreen HasID=true
@@ -481,12 +481,12 @@ func (r *elementIpfixResource) doPost(ctx context.Context, plan *rsModelIPFixCon
 			if varLoopFilters.DstPorts == nil {
 				body.Filters[varLoopFiltersIndex].DstPorts = nil
 			} else if len(varLoopFilters.DstPorts) == 0 {
-				body.Filters[varLoopFiltersIndex].DstPorts = []sdwan_schema.Port{}
+				body.Filters[varLoopFiltersIndex].DstPorts = []sdwan_schema.IntPort{}
 			} else {
-				body.Filters[varLoopFiltersIndex].DstPorts = make([]sdwan_schema.Port, 0, len(varLoopFilters.DstPorts))
+				body.Filters[varLoopFiltersIndex].DstPorts = make([]sdwan_schema.IntPort, 0, len(varLoopFilters.DstPorts))
 				for varLoopDstPortsIndex, varLoopDstPorts := range varLoopFilters.DstPorts {
 					// add a new item
-					body.Filters[varLoopFiltersIndex].DstPorts = append(body.Filters[varLoopFiltersIndex].DstPorts, sdwan_schema.Port{})
+					body.Filters[varLoopFiltersIndex].DstPorts = append(body.Filters[varLoopFiltersIndex].DstPorts, sdwan_schema.IntPort{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts properties=2
 					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
@@ -509,12 +509,12 @@ func (r *elementIpfixResource) doPost(ctx context.Context, plan *rsModelIPFixCon
 			if varLoopFilters.SrcPorts == nil {
 				body.Filters[varLoopFiltersIndex].SrcPorts = nil
 			} else if len(varLoopFilters.SrcPorts) == 0 {
-				body.Filters[varLoopFiltersIndex].SrcPorts = []sdwan_schema.Port{}
+				body.Filters[varLoopFiltersIndex].SrcPorts = []sdwan_schema.IntPort{}
 			} else {
-				body.Filters[varLoopFiltersIndex].SrcPorts = make([]sdwan_schema.Port, 0, len(varLoopFilters.SrcPorts))
+				body.Filters[varLoopFiltersIndex].SrcPorts = make([]sdwan_schema.IntPort, 0, len(varLoopFilters.SrcPorts))
 				for varLoopSrcPortsIndex, varLoopSrcPorts := range varLoopFilters.SrcPorts {
 					// add a new item
-					body.Filters[varLoopFiltersIndex].SrcPorts = append(body.Filters[varLoopFiltersIndex].SrcPorts, sdwan_schema.Port{})
+					body.Filters[varLoopFiltersIndex].SrcPorts = append(body.Filters[varLoopFiltersIndex].SrcPorts, sdwan_schema.IntPort{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts properties=2
 					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
@@ -683,12 +683,12 @@ func (r *elementIpfixResource) doPost(ctx context.Context, plan *rsModelIPFixCon
 			if varLoopFilters.DstPorts == nil {
 				state.Filters[varLoopFiltersIndex].DstPorts = nil
 			} else if len(varLoopFilters.DstPorts) == 0 {
-				state.Filters[varLoopFiltersIndex].DstPorts = []rsModelPort{}
+				state.Filters[varLoopFiltersIndex].DstPorts = []rsModelIntPort{}
 			} else {
-				state.Filters[varLoopFiltersIndex].DstPorts = make([]rsModelPort, 0, len(varLoopFilters.DstPorts))
+				state.Filters[varLoopFiltersIndex].DstPorts = make([]rsModelIntPort, 0, len(varLoopFilters.DstPorts))
 				for varLoopDstPortsIndex, varLoopDstPorts := range varLoopFilters.DstPorts {
 					// add a new item
-					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelPort{})
+					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelIntPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
@@ -717,12 +717,12 @@ func (r *elementIpfixResource) doPost(ctx context.Context, plan *rsModelIPFixCon
 			if varLoopFilters.SrcPorts == nil {
 				state.Filters[varLoopFiltersIndex].SrcPorts = nil
 			} else if len(varLoopFilters.SrcPorts) == 0 {
-				state.Filters[varLoopFiltersIndex].SrcPorts = []rsModelPort{}
+				state.Filters[varLoopFiltersIndex].SrcPorts = []rsModelIntPort{}
 			} else {
-				state.Filters[varLoopFiltersIndex].SrcPorts = make([]rsModelPort, 0, len(varLoopFilters.SrcPorts))
+				state.Filters[varLoopFiltersIndex].SrcPorts = make([]rsModelIntPort, 0, len(varLoopFilters.SrcPorts))
 				for varLoopSrcPortsIndex, varLoopSrcPorts := range varLoopFilters.SrcPorts {
 					// add a new item
-					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelPort{})
+					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelIntPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
@@ -900,12 +900,12 @@ func (r *elementIpfixResource) doGet(ctx context.Context, state *rsModelIPFixCon
 			if varLoopFilters.DstPorts == nil {
 				state.Filters[varLoopFiltersIndex].DstPorts = nil
 			} else if len(varLoopFilters.DstPorts) == 0 {
-				state.Filters[varLoopFiltersIndex].DstPorts = []rsModelPort{}
+				state.Filters[varLoopFiltersIndex].DstPorts = []rsModelIntPort{}
 			} else {
-				state.Filters[varLoopFiltersIndex].DstPorts = make([]rsModelPort, 0, len(varLoopFilters.DstPorts))
+				state.Filters[varLoopFiltersIndex].DstPorts = make([]rsModelIntPort, 0, len(varLoopFilters.DstPorts))
 				for varLoopDstPortsIndex, varLoopDstPorts := range varLoopFilters.DstPorts {
 					// add a new item
-					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelPort{})
+					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelIntPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
@@ -934,12 +934,12 @@ func (r *elementIpfixResource) doGet(ctx context.Context, state *rsModelIPFixCon
 			if varLoopFilters.SrcPorts == nil {
 				state.Filters[varLoopFiltersIndex].SrcPorts = nil
 			} else if len(varLoopFilters.SrcPorts) == 0 {
-				state.Filters[varLoopFiltersIndex].SrcPorts = []rsModelPort{}
+				state.Filters[varLoopFiltersIndex].SrcPorts = []rsModelIntPort{}
 			} else {
-				state.Filters[varLoopFiltersIndex].SrcPorts = make([]rsModelPort, 0, len(varLoopFilters.SrcPorts))
+				state.Filters[varLoopFiltersIndex].SrcPorts = make([]rsModelIntPort, 0, len(varLoopFilters.SrcPorts))
 				for varLoopSrcPortsIndex, varLoopSrcPorts := range varLoopFilters.SrcPorts {
 					// add a new item
-					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelPort{})
+					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelIntPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
@@ -1110,12 +1110,12 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 			if varLoopFilters.DstPorts == nil {
 				body.Filters[varLoopFiltersIndex].DstPorts = nil
 			} else if len(varLoopFilters.DstPorts) == 0 {
-				body.Filters[varLoopFiltersIndex].DstPorts = []sdwan_schema.Port{}
+				body.Filters[varLoopFiltersIndex].DstPorts = []sdwan_schema.IntPort{}
 			} else {
-				body.Filters[varLoopFiltersIndex].DstPorts = make([]sdwan_schema.Port, 0, len(varLoopFilters.DstPorts))
+				body.Filters[varLoopFiltersIndex].DstPorts = make([]sdwan_schema.IntPort, 0, len(varLoopFilters.DstPorts))
 				for varLoopDstPortsIndex, varLoopDstPorts := range varLoopFilters.DstPorts {
 					// add a new item
-					body.Filters[varLoopFiltersIndex].DstPorts = append(body.Filters[varLoopFiltersIndex].DstPorts, sdwan_schema.Port{})
+					body.Filters[varLoopFiltersIndex].DstPorts = append(body.Filters[varLoopFiltersIndex].DstPorts, sdwan_schema.IntPort{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts properties=2
 					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel plan=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
@@ -1138,12 +1138,12 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 			if varLoopFilters.SrcPorts == nil {
 				body.Filters[varLoopFiltersIndex].SrcPorts = nil
 			} else if len(varLoopFilters.SrcPorts) == 0 {
-				body.Filters[varLoopFiltersIndex].SrcPorts = []sdwan_schema.Port{}
+				body.Filters[varLoopFiltersIndex].SrcPorts = []sdwan_schema.IntPort{}
 			} else {
-				body.Filters[varLoopFiltersIndex].SrcPorts = make([]sdwan_schema.Port, 0, len(varLoopFilters.SrcPorts))
+				body.Filters[varLoopFiltersIndex].SrcPorts = make([]sdwan_schema.IntPort, 0, len(varLoopFilters.SrcPorts))
 				for varLoopSrcPortsIndex, varLoopSrcPorts := range varLoopFilters.SrcPorts {
 					// add a new item
-					body.Filters[varLoopFiltersIndex].SrcPorts = append(body.Filters[varLoopFiltersIndex].SrcPorts, sdwan_schema.Port{})
+					body.Filters[varLoopFiltersIndex].SrcPorts = append(body.Filters[varLoopFiltersIndex].SrcPorts, sdwan_schema.IntPort{})
 					// copy_from_plan: body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts properties=2
 					tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel plan=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_from_plan
@@ -1320,12 +1320,12 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 			if varLoopFilters.DstPorts == nil {
 				state.Filters[varLoopFiltersIndex].DstPorts = nil
 			} else if len(varLoopFilters.DstPorts) == 0 {
-				state.Filters[varLoopFiltersIndex].DstPorts = []rsModelPort{}
+				state.Filters[varLoopFiltersIndex].DstPorts = []rsModelIntPort{}
 			} else {
-				state.Filters[varLoopFiltersIndex].DstPorts = make([]rsModelPort, 0, len(varLoopFilters.DstPorts))
+				state.Filters[varLoopFiltersIndex].DstPorts = make([]rsModelIntPort, 0, len(varLoopFilters.DstPorts))
 				for varLoopDstPortsIndex, varLoopDstPorts := range varLoopFilters.DstPorts {
 					// add a new item
-					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelPort{})
+					state.Filters[varLoopFiltersIndex].DstPorts = append(state.Filters[varLoopFiltersIndex].DstPorts, rsModelIntPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].DstPorts[varLoopDstPortsIndex] prefix=rsModel ans=varLoopDstPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state
@@ -1354,12 +1354,12 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 			if varLoopFilters.SrcPorts == nil {
 				state.Filters[varLoopFiltersIndex].SrcPorts = nil
 			} else if len(varLoopFilters.SrcPorts) == 0 {
-				state.Filters[varLoopFiltersIndex].SrcPorts = []rsModelPort{}
+				state.Filters[varLoopFiltersIndex].SrcPorts = []rsModelIntPort{}
 			} else {
-				state.Filters[varLoopFiltersIndex].SrcPorts = make([]rsModelPort, 0, len(varLoopFilters.SrcPorts))
+				state.Filters[varLoopFiltersIndex].SrcPorts = make([]rsModelIntPort, 0, len(varLoopFilters.SrcPorts))
 				for varLoopSrcPortsIndex, varLoopSrcPorts := range varLoopFilters.SrcPorts {
 					// add a new item
-					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelPort{})
+					state.Filters[varLoopFiltersIndex].SrcPorts = append(state.Filters[varLoopFiltersIndex].SrcPorts, rsModelIntPort{})
 					// copy_to_state: state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex].SrcPorts[varLoopSrcPortsIndex] prefix=rsModel ans=varLoopSrcPorts")
 					// property: name=end, type=INTEGER macro=copy_to_state

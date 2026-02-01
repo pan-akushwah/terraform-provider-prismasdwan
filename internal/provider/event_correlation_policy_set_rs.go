@@ -24,12 +24,11 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=3)
+// | Schema Map Summary (size=goLangStructMap=2)
 // | Computed Resource Name=eventcorrelationpolicysets
 // +-----------------------------------------------------------------
 // | SeverityPriorityMapping HasID=false
-// | EventCorrelationPolicySetQueryFilter HasID=true
-// | ListQueryResponseEventCorrelationPolicySetQueryFilter HasID=true
+// | EventCorrelationPolicySetScreen HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -73,7 +72,7 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
+			// rest all properties to be read from GET API Schema schema=EventCorrelationPolicySetScreen
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -97,23 +96,30 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-			// property: name=deleted_count, type=INTEGER macro=rss_schema
-			"deleted_count": rsschema.Int64Attribute{
+			// property: name=active_policyset, type=BOOLEAN macro=rss_schema
+			"active_policyset": rsschema.BoolAttribute{
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
-			// key name holder for attribute: name=deleted_count, type=INTEGER macro=rss_schema
-			// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=rss_schema
-			"deleted_ids": rsschema.ListAttribute{
-				Required:    false,
-				Computed:    false,
-				Optional:    true,
-				Sensitive:   false,
-				ElementType: types.StringType,
+			// key name holder for attribute: name=active_policyset, type=BOOLEAN macro=rss_schema
+			// property: name=clone_from, type=STRING macro=rss_schema
+			"clone_from": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
 			},
-			// key name holder for attribute: name=deleted_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
+			// property: name=description, type=STRING macro=rss_schema
+			"description": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -122,143 +128,60 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=items, type=ARRAY_REFERENCE macro=rss_schema
-			"items": rsschema.ListNestedAttribute{
+			// property: name=name, type=STRING macro=rss_schema
+			"name": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=name, type=STRING macro=rss_schema
+			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
+			"policyrule_order": rsschema.ListAttribute{
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				ElementType: types.StringType,
+			},
+			// key name holder for attribute: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
+			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=rss_schema
+			"severity_priority_mapping": rsschema.ListNestedAttribute{
 				Required:  false,
 				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
-						// generic x_parameters is added to accomodate path parameters
-						"x_parameters": rsschema.MapAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							ElementType: types.StringType,
-						},
-						// property: name=_etag, type=INTEGER macro=rss_schema
-						"x_etag": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-						// property: name=_schema, type=INTEGER macro=rss_schema
-						"x_schema": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-						// property: name=active_policyset, type=BOOLEAN macro=rss_schema
-						"active_policyset": rsschema.BoolAttribute{
+						// property: name=priority, type=STRING macro=rss_schema
+						"priority": rsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
-						// key name holder for attribute: name=active_policyset, type=BOOLEAN macro=rss_schema
-						// property: name=clone_from, type=STRING macro=rss_schema
-						"clone_from": rsschema.StringAttribute{
+						// key name holder for attribute: name=priority, type=STRING macro=rss_schema
+						// property: name=severity, type=STRING macro=rss_schema
+						"severity": rsschema.StringAttribute{
 							Required:  false,
 							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
-						},
-						// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
-						// property: name=description, type=STRING macro=rss_schema
-						"description": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=description, type=STRING macro=rss_schema
-						// property: name=id, type=STRING macro=rss_schema
-						"id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=id, type=STRING macro=rss_schema
-						// property: name=name, type=STRING macro=rss_schema
-						"name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=name, type=STRING macro=rss_schema
-						// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
-						"policyrule_order": rsschema.ListAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
-						// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=rss_schema
-						"severity_priority_mapping": rsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-							NestedObject: rsschema.NestedAttributeObject{
-								Attributes: map[string]rsschema.Attribute{
-									// property: name=priority, type=STRING macro=rss_schema
-									"priority": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=priority, type=STRING macro=rss_schema
-									// property: name=severity, type=STRING macro=rss_schema
-									"severity": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
-									},
-									// key name holder for attribute: name=severity, type=STRING macro=rss_schema
-								},
-							},
 						},
 						// key name holder for attribute: name=severity, type=STRING macro=rss_schema
-						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-						"tags": rsschema.SetAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 					},
 				},
 			},
+			// key name holder for attribute: name=severity, type=STRING macro=rss_schema
+			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			"tags": rsschema.SetAttribute{
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				ElementType: types.StringType,
+			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=next_query, type=OBJECT macro=rss_schema
-			"next_query": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=next_query, type=OBJECT macro=rss_schema
-			// property: name=total_count, type=INTEGER macro=rss_schema
-			"total_count": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=total_count, type=INTEGER macro=rss_schema
 		},
 	}
 }
@@ -285,7 +208,7 @@ func (r *eventCorrelationPolicySetResource) GetHttpStatusCode(request *sdwan_cli
 	}
 }
 
-func (r *eventCorrelationPolicySetResource) doPost(ctx context.Context, plan *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, state *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, resp *resource.CreateResponse) bool {
+func (r *eventCorrelationPolicySetResource) doPost(ctx context.Context, plan *rsModelEventCorrelationPolicySetScreen, state *rsModelEventCorrelationPolicySetScreen, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_event_correlation_policy_set")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -307,79 +230,52 @@ func (r *eventCorrelationPolicySetResource) doPost(ctx context.Context, plan *rs
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter{}
+	var body = &sdwan_schema.EventCorrelationPolicySetScreen{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=8
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=10
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
 	body.Schema = Int64ValueOrNil(plan.Schema)
-	// property: name=deleted_count, type=INTEGER macro=copy_from_plan
-	body.DeletedCount = Int64ValueOrNil(plan.DeletedCount)
-	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
-	body.DeletedIds = ListStringValueOrNil(ctx, plan.DeletedIds)
+	// property: name=active_policyset, type=BOOLEAN macro=copy_from_plan
+	body.ActivePolicyset = BoolValueOrNil(plan.ActivePolicyset)
+	// property: name=clone_from, type=STRING macro=copy_from_plan
+	body.CloneFrom = StringValueOrNil(plan.CloneFrom)
+	// property: name=description, type=STRING macro=copy_from_plan
+	body.Description = StringValueOrNil(plan.Description)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
-	// property: name=items, type=ARRAY_REFERENCE macro=copy_from_plan
-	if plan.Items == nil {
-		body.Items = nil
-	} else if len(plan.Items) == 0 {
-		body.Items = []sdwan_schema.EventCorrelationPolicySetQueryFilter{}
+	// property: name=name, type=STRING macro=copy_from_plan
+	body.Name = StringValueOrNil(plan.Name)
+	// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan
+	body.PolicyruleOrder = ListStringValueOrNil(ctx, plan.PolicyruleOrder)
+	// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_from_plan
+	if plan.SeverityPriorityMapping == nil {
+		body.SeverityPriorityMapping = nil
+	} else if len(plan.SeverityPriorityMapping) == 0 {
+		body.SeverityPriorityMapping = []sdwan_schema.SeverityPriorityMapping{}
 	} else {
-		body.Items = make([]sdwan_schema.EventCorrelationPolicySetQueryFilter, 0, len(plan.Items))
-		for varLoopItemsIndex, varLoopItems := range plan.Items {
+		body.SeverityPriorityMapping = make([]sdwan_schema.SeverityPriorityMapping, 0, len(plan.SeverityPriorityMapping))
+		for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range plan.SeverityPriorityMapping {
 			// add a new item
-			body.Items = append(body.Items, sdwan_schema.EventCorrelationPolicySetQueryFilter{})
-			// copy_from_plan: body=body.Items[varLoopItemsIndex] prefix=rsModel plan=varLoopItems properties=10
-			tflog.Debug(ctx, "copy_from_plan body=body.Items[varLoopItemsIndex] prefix=rsModel plan=varLoopItems")
-			// property: name=_etag, type=INTEGER macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Etag = Int64ValueOrNil(varLoopItems.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Schema = Int64ValueOrNil(varLoopItems.Schema)
-			// property: name=active_policyset, type=BOOLEAN macro=copy_from_plan
-			body.Items[varLoopItemsIndex].ActivePolicyset = BoolValueOrNil(varLoopItems.ActivePolicyset)
-			// property: name=clone_from, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].CloneFrom = StringValueOrNil(varLoopItems.CloneFrom)
-			// property: name=description, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Description = StringValueOrNil(varLoopItems.Description)
-			// property: name=id, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Id = StringValueOrNil(varLoopItems.Id)
-			// property: name=name, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Name = StringValueOrNil(varLoopItems.Name)
-			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan
-			body.Items[varLoopItemsIndex].PolicyruleOrder = ListStringValueOrNil(ctx, varLoopItems.PolicyruleOrder)
-			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_from_plan
-			if varLoopItems.SeverityPriorityMapping == nil {
-				body.Items[varLoopItemsIndex].SeverityPriorityMapping = nil
-			} else if len(varLoopItems.SeverityPriorityMapping) == 0 {
-				body.Items[varLoopItemsIndex].SeverityPriorityMapping = []sdwan_schema.SeverityPriorityMapping{}
-			} else {
-				body.Items[varLoopItemsIndex].SeverityPriorityMapping = make([]sdwan_schema.SeverityPriorityMapping, 0, len(varLoopItems.SeverityPriorityMapping))
-				for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range varLoopItems.SeverityPriorityMapping {
-					// add a new item
-					body.Items[varLoopItemsIndex].SeverityPriorityMapping = append(body.Items[varLoopItemsIndex].SeverityPriorityMapping, sdwan_schema.SeverityPriorityMapping{})
-					// copy_from_plan: body=body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping properties=2
-					tflog.Debug(ctx, "copy_from_plan body=body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping")
-					// property: name=priority, type=STRING macro=copy_from_plan
-					body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = StringValueOrNil(varLoopSeverityPriorityMapping.Priority)
-					// property: name=severity, type=STRING macro=copy_from_plan
-					body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = StringValueOrNil(varLoopSeverityPriorityMapping.Severity)
-				}
-			}
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Tags = SetStringValueOrNil(ctx, varLoopItems.Tags)
+			body.SeverityPriorityMapping = append(body.SeverityPriorityMapping, sdwan_schema.SeverityPriorityMapping{})
+			// copy_from_plan: body=body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping")
+			// property: name=priority, type=STRING macro=copy_from_plan
+			body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = StringValueOrNil(varLoopSeverityPriorityMapping.Priority)
+			// property: name=severity, type=STRING macro=copy_from_plan
+			body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = StringValueOrNil(varLoopSeverityPriorityMapping.Severity)
 		}
 	}
-	// property: name=next_query, type=OBJECT macro=copy_from_plan
-	// property: name=total_count, type=INTEGER macro=copy_from_plan
-	body.TotalCount = Int64ValueOrNil(plan.TotalCount)
+	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
+	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct ListQueryResponseEventCorrelationPolicySetQueryFilter to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct EventCorrelationPolicySetScreen to JSON:", err.Error())
 		return false
 	}
 
@@ -422,12 +318,12 @@ func (r *eventCorrelationPolicySetResource) doPost(ctx context.Context, plan *rs
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter
+	var ans sdwan_schema.EventCorrelationPolicySetScreen
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ListQueryResponseEventCorrelationPolicySetQueryFilter in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to EventCorrelationPolicySetScreen in create", json_err.Error())
 		return false
 	}
 
@@ -452,82 +348,53 @@ func (r *eventCorrelationPolicySetResource) doPost(ctx context.Context, plan *rs
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_event_correlation_policy_set with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	// Store the answer to state. schema=EventCorrelationPolicySetScreen
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=10
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=deleted_count, type=INTEGER macro=copy_to_state
-	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
-	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varDeletedIds, errDeletedIds := types.ListValueFrom(ctx, types.StringType, ans.DeletedIds)
-	state.DeletedIds = varDeletedIds
-	resp.Diagnostics.Append(errDeletedIds.Errors()...)
+	// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
+	state.ActivePolicyset = types.BoolPointerValue(ans.ActivePolicyset)
+	// property: name=clone_from, type=STRING macro=copy_to_state
+	state.CloneFrom = types.StringPointerValue(ans.CloneFrom)
+	// property: name=description, type=STRING macro=copy_to_state
+	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=items, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Items == nil {
-		state.Items = nil
-	} else if len(ans.Items) == 0 {
-		state.Items = []rsModelEventCorrelationPolicySetQueryFilter{}
+	// property: name=name, type=STRING macro=copy_to_state
+	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, ans.PolicyruleOrder)
+	state.PolicyruleOrder = varPolicyruleOrder
+	resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
+	// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.SeverityPriorityMapping == nil {
+		state.SeverityPriorityMapping = nil
+	} else if len(ans.SeverityPriorityMapping) == 0 {
+		state.SeverityPriorityMapping = []rsModelSeverityPriorityMapping{}
 	} else {
-		state.Items = make([]rsModelEventCorrelationPolicySetQueryFilter, 0, len(ans.Items))
-		for varLoopItemsIndex, varLoopItems := range ans.Items {
+		state.SeverityPriorityMapping = make([]rsModelSeverityPriorityMapping, 0, len(ans.SeverityPriorityMapping))
+		for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range ans.SeverityPriorityMapping {
 			// add a new item
-			state.Items = append(state.Items, rsModelEventCorrelationPolicySetQueryFilter{})
-			// copy_to_state: state=state.Items[varLoopItemsIndex] prefix=rsModel ans=varLoopItems properties=10
-			tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex] prefix=rsModel ans=varLoopItems")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Etag = types.Int64PointerValue(varLoopItems.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Schema = types.Int64PointerValue(varLoopItems.Schema)
-			// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
-			state.Items[varLoopItemsIndex].ActivePolicyset = types.BoolPointerValue(varLoopItems.ActivePolicyset)
-			// property: name=clone_from, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].CloneFrom = types.StringPointerValue(varLoopItems.CloneFrom)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Description = types.StringPointerValue(varLoopItems.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Id = types.StringPointerValue(varLoopItems.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Name = types.StringPointerValue(varLoopItems.Name)
-			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, varLoopItems.PolicyruleOrder)
-			state.Items[varLoopItemsIndex].PolicyruleOrder = varPolicyruleOrder
-			resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
-			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopItems.SeverityPriorityMapping == nil {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = nil
-			} else if len(varLoopItems.SeverityPriorityMapping) == 0 {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = []rsModelSeverityPriorityMapping{}
-			} else {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = make([]rsModelSeverityPriorityMapping, 0, len(varLoopItems.SeverityPriorityMapping))
-				for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range varLoopItems.SeverityPriorityMapping {
-					// add a new item
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping = append(state.Items[varLoopItemsIndex].SeverityPriorityMapping, rsModelSeverityPriorityMapping{})
-					// copy_to_state: state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping")
-					// property: name=priority, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
-					// property: name=severity, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
-				}
-			}
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopItems.Tags)
-			state.Items[varLoopItemsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
+			state.SeverityPriorityMapping = append(state.SeverityPriorityMapping, rsModelSeverityPriorityMapping{})
+			// copy_to_state: state=state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping")
+			// property: name=priority, type=STRING macro=copy_to_state
+			state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
+			// property: name=severity, type=STRING macro=copy_to_state
+			state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
 		}
 	}
-	// property: name=next_query, type=OBJECT macro=copy_to_state
-	// property: name=total_count, type=INTEGER macro=copy_to_state
-	state.TotalCount = types.Int64PointerValue(ans.TotalCount)
+	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+	state.Tags = varTags
+	resp.Diagnostics.Append(errTags.Errors()...)
 	return true
 }
 
-func (r *eventCorrelationPolicySetResource) doGet(ctx context.Context, state *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, savestate *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *eventCorrelationPolicySetResource) doGet(ctx context.Context, state *rsModelEventCorrelationPolicySetScreen, savestate *rsModelEventCorrelationPolicySetScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -589,7 +456,7 @@ func (r *eventCorrelationPolicySetResource) doGet(ctx context.Context, state *rs
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
+	// Store the answer to state. schema=EventCorrelationPolicySetScreen
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -598,90 +465,61 @@ func (r *eventCorrelationPolicySetResource) doGet(ctx context.Context, state *rs
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter
+	var ans sdwan_schema.EventCorrelationPolicySetScreen
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ListQueryResponseEventCorrelationPolicySetQueryFilter in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to EventCorrelationPolicySetScreen in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=10
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=deleted_count, type=INTEGER macro=copy_to_state
-	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
-	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varDeletedIds, errDeletedIds := types.ListValueFrom(ctx, types.StringType, ans.DeletedIds)
-	state.DeletedIds = varDeletedIds
-	resp.Diagnostics.Append(errDeletedIds.Errors()...)
+	// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
+	state.ActivePolicyset = types.BoolPointerValue(ans.ActivePolicyset)
+	// property: name=clone_from, type=STRING macro=copy_to_state
+	state.CloneFrom = types.StringPointerValue(ans.CloneFrom)
+	// property: name=description, type=STRING macro=copy_to_state
+	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=items, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Items == nil {
-		state.Items = nil
-	} else if len(ans.Items) == 0 {
-		state.Items = []rsModelEventCorrelationPolicySetQueryFilter{}
+	// property: name=name, type=STRING macro=copy_to_state
+	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, ans.PolicyruleOrder)
+	state.PolicyruleOrder = varPolicyruleOrder
+	resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
+	// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.SeverityPriorityMapping == nil {
+		state.SeverityPriorityMapping = nil
+	} else if len(ans.SeverityPriorityMapping) == 0 {
+		state.SeverityPriorityMapping = []rsModelSeverityPriorityMapping{}
 	} else {
-		state.Items = make([]rsModelEventCorrelationPolicySetQueryFilter, 0, len(ans.Items))
-		for varLoopItemsIndex, varLoopItems := range ans.Items {
+		state.SeverityPriorityMapping = make([]rsModelSeverityPriorityMapping, 0, len(ans.SeverityPriorityMapping))
+		for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range ans.SeverityPriorityMapping {
 			// add a new item
-			state.Items = append(state.Items, rsModelEventCorrelationPolicySetQueryFilter{})
-			// copy_to_state: state=state.Items[varLoopItemsIndex] prefix=rsModel ans=varLoopItems properties=10
-			tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex] prefix=rsModel ans=varLoopItems")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Etag = types.Int64PointerValue(varLoopItems.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Schema = types.Int64PointerValue(varLoopItems.Schema)
-			// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
-			state.Items[varLoopItemsIndex].ActivePolicyset = types.BoolPointerValue(varLoopItems.ActivePolicyset)
-			// property: name=clone_from, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].CloneFrom = types.StringPointerValue(varLoopItems.CloneFrom)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Description = types.StringPointerValue(varLoopItems.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Id = types.StringPointerValue(varLoopItems.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Name = types.StringPointerValue(varLoopItems.Name)
-			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, varLoopItems.PolicyruleOrder)
-			state.Items[varLoopItemsIndex].PolicyruleOrder = varPolicyruleOrder
-			resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
-			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopItems.SeverityPriorityMapping == nil {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = nil
-			} else if len(varLoopItems.SeverityPriorityMapping) == 0 {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = []rsModelSeverityPriorityMapping{}
-			} else {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = make([]rsModelSeverityPriorityMapping, 0, len(varLoopItems.SeverityPriorityMapping))
-				for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range varLoopItems.SeverityPriorityMapping {
-					// add a new item
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping = append(state.Items[varLoopItemsIndex].SeverityPriorityMapping, rsModelSeverityPriorityMapping{})
-					// copy_to_state: state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping")
-					// property: name=priority, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
-					// property: name=severity, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
-				}
-			}
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopItems.Tags)
-			state.Items[varLoopItemsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
+			state.SeverityPriorityMapping = append(state.SeverityPriorityMapping, rsModelSeverityPriorityMapping{})
+			// copy_to_state: state=state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping")
+			// property: name=priority, type=STRING macro=copy_to_state
+			state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
+			// property: name=severity, type=STRING macro=copy_to_state
+			state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
 		}
 	}
-	// property: name=next_query, type=OBJECT macro=copy_to_state
-	// property: name=total_count, type=INTEGER macro=copy_to_state
-	state.TotalCount = types.Int64PointerValue(ans.TotalCount)
+	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+	state.Tags = varTags
+	resp.Diagnostics.Append(errTags.Errors()...)
 	return true
 }
 
-func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, state *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsModelEventCorrelationPolicySetScreen, state *rsModelEventCorrelationPolicySetScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -726,11 +564,11 @@ func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsM
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter{}
+	var body = &sdwan_schema.EventCorrelationPolicySetScreen{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=10
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -744,87 +582,68 @@ func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsM
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
-	// property: name=deleted_count, type=INTEGER macro=copy_from_plan_or_state
+	// property: name=active_policyset, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
-		body.DeletedCount = ValueInt64PointerFromPlanOrState(plan.DeletedCount, state.DeletedCount)
+		body.ActivePolicyset = ValueBoolPointerFromPlanOrState(plan.ActivePolicyset, state.ActivePolicyset)
 	} else {
-		body.DeletedCount = Int64ValueOrNil(plan.DeletedCount)
+		body.ActivePolicyset = BoolValueOrNil(plan.ActivePolicyset)
 	}
-	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.DeletedIds = ListStringValueOrNil(ctx, plan.DeletedIds)
+	// property: name=clone_from, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.CloneFrom = ValueStringPointerFromPlanOrState(plan.CloneFrom, state.CloneFrom)
+	} else {
+		body.CloneFrom = StringValueOrNil(plan.CloneFrom)
+	}
+	// property: name=description, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.Description = ValueStringPointerFromPlanOrState(plan.Description, state.Description)
+	} else {
+		body.Description = StringValueOrNil(plan.Description)
+	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Id = ValueStringPointerFromPlanOrState(plan.Id, state.Id)
 	} else {
 		body.Id = StringValueOrNil(plan.Id)
 	}
-	// property: name=items, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Items == nil && (state == nil || state.Items == nil) {
-		body.Items = nil
-	} else if len(plan.Items) == 0 && (state == nil || len(state.Items) == 0) {
-		body.Items = []sdwan_schema.EventCorrelationPolicySetQueryFilter{}
-	} else if len(plan.Items) != 0 || (state != nil && len(state.Items) != 0) {
-		ItemsToUse := plan.Items
-		if len(plan.Items) == 0 {
-			ItemsToUse = state.Items
-		}
-		body.Items = make([]sdwan_schema.EventCorrelationPolicySetQueryFilter, 0, len(ItemsToUse))
-		for varLoopItemsIndex, varLoopItems := range ItemsToUse {
-			// add a new item
-			body.Items = append(body.Items, sdwan_schema.EventCorrelationPolicySetQueryFilter{})
-			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.Items[varLoopItemsIndex] prefix=rsModel plan=varLoopItems properties=10
-			tflog.Debug(ctx, "copy_from_plan body=body.Items[varLoopItemsIndex] prefix=rsModel plan=varLoopItems")
-			// property: name=_etag, type=INTEGER macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Etag = Int64ValueOrNil(varLoopItems.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Schema = Int64ValueOrNil(varLoopItems.Schema)
-			// property: name=active_policyset, type=BOOLEAN macro=copy_from_plan
-			body.Items[varLoopItemsIndex].ActivePolicyset = BoolValueOrNil(varLoopItems.ActivePolicyset)
-			// property: name=clone_from, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].CloneFrom = StringValueOrNil(varLoopItems.CloneFrom)
-			// property: name=description, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Description = StringValueOrNil(varLoopItems.Description)
-			// property: name=id, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Id = StringValueOrNil(varLoopItems.Id)
-			// property: name=name, type=STRING macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Name = StringValueOrNil(varLoopItems.Name)
-			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan
-			body.Items[varLoopItemsIndex].PolicyruleOrder = ListStringValueOrNil(ctx, varLoopItems.PolicyruleOrder)
-			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_from_plan
-			if varLoopItems.SeverityPriorityMapping == nil {
-				body.Items[varLoopItemsIndex].SeverityPriorityMapping = nil
-			} else if len(varLoopItems.SeverityPriorityMapping) == 0 {
-				body.Items[varLoopItemsIndex].SeverityPriorityMapping = []sdwan_schema.SeverityPriorityMapping{}
-			} else {
-				body.Items[varLoopItemsIndex].SeverityPriorityMapping = make([]sdwan_schema.SeverityPriorityMapping, 0, len(varLoopItems.SeverityPriorityMapping))
-				for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range varLoopItems.SeverityPriorityMapping {
-					// add a new item
-					body.Items[varLoopItemsIndex].SeverityPriorityMapping = append(body.Items[varLoopItemsIndex].SeverityPriorityMapping, sdwan_schema.SeverityPriorityMapping{})
-					// copy_from_plan: body=body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping properties=2
-					tflog.Debug(ctx, "copy_from_plan body=body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping")
-					// property: name=priority, type=STRING macro=copy_from_plan
-					body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = StringValueOrNil(varLoopSeverityPriorityMapping.Priority)
-					// property: name=severity, type=STRING macro=copy_from_plan
-					body.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = StringValueOrNil(varLoopSeverityPriorityMapping.Severity)
-				}
-			}
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-			body.Items[varLoopItemsIndex].Tags = SetStringValueOrNil(ctx, varLoopItems.Tags)
-		}
-	}
-	// property: name=next_query, type=OBJECT macro=copy_from_plan_or_state
-	// property: name=total_count, type=INTEGER macro=copy_from_plan_or_state
+	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
-		body.TotalCount = ValueInt64PointerFromPlanOrState(plan.TotalCount, state.TotalCount)
+		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
 	} else {
-		body.TotalCount = Int64ValueOrNil(plan.TotalCount)
+		body.Name = StringValueOrNil(plan.Name)
 	}
+	// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+	body.PolicyruleOrder = ListStringValueOrNil(ctx, plan.PolicyruleOrder)
+	// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+	if plan.SeverityPriorityMapping == nil && (state == nil || state.SeverityPriorityMapping == nil) {
+		body.SeverityPriorityMapping = nil
+	} else if len(plan.SeverityPriorityMapping) == 0 && (state == nil || len(state.SeverityPriorityMapping) == 0) {
+		body.SeverityPriorityMapping = []sdwan_schema.SeverityPriorityMapping{}
+	} else if len(plan.SeverityPriorityMapping) != 0 || (state != nil && len(state.SeverityPriorityMapping) != 0) {
+		SeverityPriorityMappingToUse := plan.SeverityPriorityMapping
+		if len(plan.SeverityPriorityMapping) == 0 {
+			SeverityPriorityMappingToUse = state.SeverityPriorityMapping
+		}
+		body.SeverityPriorityMapping = make([]sdwan_schema.SeverityPriorityMapping, 0, len(SeverityPriorityMappingToUse))
+		for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range SeverityPriorityMappingToUse {
+			// add a new item
+			body.SeverityPriorityMapping = append(body.SeverityPriorityMapping, sdwan_schema.SeverityPriorityMapping{})
+			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+			// copy_from_plan: body=body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel plan=varLoopSeverityPriorityMapping")
+			// property: name=priority, type=STRING macro=copy_from_plan
+			body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = StringValueOrNil(varLoopSeverityPriorityMapping.Priority)
+			// property: name=severity, type=STRING macro=copy_from_plan
+			body.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = StringValueOrNil(varLoopSeverityPriorityMapping.Severity)
+		}
+	}
+	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
+	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct ListQueryResponseEventCorrelationPolicySetQueryFilter to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct EventCorrelationPolicySetScreen to JSON:", err.Error())
 		return false
 	}
 
@@ -866,91 +685,62 @@ func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsM
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.ListQueryResponseEventCorrelationPolicySetQueryFilter
+	var ans sdwan_schema.EventCorrelationPolicySetScreen
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to ListQueryResponseEventCorrelationPolicySetQueryFilter in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to EventCorrelationPolicySetScreen in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=ListQueryResponseEventCorrelationPolicySetQueryFilter
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
+	// Store the answer to state. schema=EventCorrelationPolicySetScreen
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=10
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
-	// property: name=deleted_count, type=INTEGER macro=copy_to_state
-	state.DeletedCount = types.Int64PointerValue(ans.DeletedCount)
-	// property: name=deleted_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varDeletedIds, errDeletedIds := types.ListValueFrom(ctx, types.StringType, ans.DeletedIds)
-	state.DeletedIds = varDeletedIds
-	resp.Diagnostics.Append(errDeletedIds.Errors()...)
+	// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
+	state.ActivePolicyset = types.BoolPointerValue(ans.ActivePolicyset)
+	// property: name=clone_from, type=STRING macro=copy_to_state
+	state.CloneFrom = types.StringPointerValue(ans.CloneFrom)
+	// property: name=description, type=STRING macro=copy_to_state
+	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=items, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Items == nil {
-		state.Items = nil
-	} else if len(ans.Items) == 0 {
-		state.Items = []rsModelEventCorrelationPolicySetQueryFilter{}
+	// property: name=name, type=STRING macro=copy_to_state
+	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, ans.PolicyruleOrder)
+	state.PolicyruleOrder = varPolicyruleOrder
+	resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
+	// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.SeverityPriorityMapping == nil {
+		state.SeverityPriorityMapping = nil
+	} else if len(ans.SeverityPriorityMapping) == 0 {
+		state.SeverityPriorityMapping = []rsModelSeverityPriorityMapping{}
 	} else {
-		state.Items = make([]rsModelEventCorrelationPolicySetQueryFilter, 0, len(ans.Items))
-		for varLoopItemsIndex, varLoopItems := range ans.Items {
+		state.SeverityPriorityMapping = make([]rsModelSeverityPriorityMapping, 0, len(ans.SeverityPriorityMapping))
+		for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range ans.SeverityPriorityMapping {
 			// add a new item
-			state.Items = append(state.Items, rsModelEventCorrelationPolicySetQueryFilter{})
-			// copy_to_state: state=state.Items[varLoopItemsIndex] prefix=rsModel ans=varLoopItems properties=10
-			tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex] prefix=rsModel ans=varLoopItems")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Etag = types.Int64PointerValue(varLoopItems.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Items[varLoopItemsIndex].Schema = types.Int64PointerValue(varLoopItems.Schema)
-			// property: name=active_policyset, type=BOOLEAN macro=copy_to_state
-			state.Items[varLoopItemsIndex].ActivePolicyset = types.BoolPointerValue(varLoopItems.ActivePolicyset)
-			// property: name=clone_from, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].CloneFrom = types.StringPointerValue(varLoopItems.CloneFrom)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Description = types.StringPointerValue(varLoopItems.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Id = types.StringPointerValue(varLoopItems.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Items[varLoopItemsIndex].Name = types.StringPointerValue(varLoopItems.Name)
-			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=copy_to_state
-			varPolicyruleOrder, errPolicyruleOrder := types.ListValueFrom(ctx, types.StringType, varLoopItems.PolicyruleOrder)
-			state.Items[varLoopItemsIndex].PolicyruleOrder = varPolicyruleOrder
-			resp.Diagnostics.Append(errPolicyruleOrder.Errors()...)
-			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_to_state
-			if varLoopItems.SeverityPriorityMapping == nil {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = nil
-			} else if len(varLoopItems.SeverityPriorityMapping) == 0 {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = []rsModelSeverityPriorityMapping{}
-			} else {
-				state.Items[varLoopItemsIndex].SeverityPriorityMapping = make([]rsModelSeverityPriorityMapping, 0, len(varLoopItems.SeverityPriorityMapping))
-				for varLoopSeverityPriorityMappingIndex, varLoopSeverityPriorityMapping := range varLoopItems.SeverityPriorityMapping {
-					// add a new item
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping = append(state.Items[varLoopItemsIndex].SeverityPriorityMapping, rsModelSeverityPriorityMapping{})
-					// copy_to_state: state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping properties=2
-					tflog.Debug(ctx, "copy_to_state state=state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping")
-					// property: name=priority, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
-					// property: name=severity, type=STRING macro=copy_to_state
-					state.Items[varLoopItemsIndex].SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
-				}
-			}
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopItems.Tags)
-			state.Items[varLoopItemsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
+			state.SeverityPriorityMapping = append(state.SeverityPriorityMapping, rsModelSeverityPriorityMapping{})
+			// copy_to_state: state=state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex] prefix=rsModel ans=varLoopSeverityPriorityMapping")
+			// property: name=priority, type=STRING macro=copy_to_state
+			state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Priority = types.StringPointerValue(varLoopSeverityPriorityMapping.Priority)
+			// property: name=severity, type=STRING macro=copy_to_state
+			state.SeverityPriorityMapping[varLoopSeverityPriorityMappingIndex].Severity = types.StringPointerValue(varLoopSeverityPriorityMapping.Severity)
 		}
 	}
-	// property: name=next_query, type=OBJECT macro=copy_to_state
-	// property: name=total_count, type=INTEGER macro=copy_to_state
-	state.TotalCount = types.Int64PointerValue(ans.TotalCount)
+	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
+	state.Tags = varTags
+	resp.Diagnostics.Append(errTags.Errors()...)
 	return true
 }
 
-func (r *eventCorrelationPolicySetResource) doDelete(ctx context.Context, state *rsModelListQueryResponseEventCorrelationPolicySetQueryFilter, resp *resource.DeleteResponse) bool {
+func (r *eventCorrelationPolicySetResource) doDelete(ctx context.Context, state *rsModelEventCorrelationPolicySetScreen, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1003,14 +793,14 @@ func (r *eventCorrelationPolicySetResource) doDelete(ctx context.Context, state 
 // Path Parameters are encoded into TfID itself
 func (r *eventCorrelationPolicySetResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_event_correlation_policy_set")
-	var plan rsModelListQueryResponseEventCorrelationPolicySetQueryFilter
+	var plan rsModelEventCorrelationPolicySetScreen
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelListQueryResponseEventCorrelationPolicySetQueryFilter
+	var state rsModelEventCorrelationPolicySetScreen
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1022,7 +812,7 @@ func (r *eventCorrelationPolicySetResource) Create(ctx context.Context, req reso
 func (r *eventCorrelationPolicySetResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_event_correlation_policy_set")
-	var savestate, state rsModelListQueryResponseEventCorrelationPolicySetQueryFilter
+	var savestate, state rsModelEventCorrelationPolicySetScreen
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1041,7 +831,7 @@ func (r *eventCorrelationPolicySetResource) Read(ctx context.Context, req resour
 func (r *eventCorrelationPolicySetResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_event_correlation_policy_set")
-	var plan, state rsModelListQueryResponseEventCorrelationPolicySetQueryFilter
+	var plan, state rsModelEventCorrelationPolicySetScreen
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1065,7 +855,7 @@ func (r *eventCorrelationPolicySetResource) Update(ctx context.Context, req reso
 func (r *eventCorrelationPolicySetResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_event_correlation_policy_set")
-	var state rsModelListQueryResponseEventCorrelationPolicySetQueryFilter
+	var state rsModelEventCorrelationPolicySetScreen
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

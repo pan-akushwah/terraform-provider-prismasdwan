@@ -147,7 +147,7 @@ func (r *probeConfigResource) Schema(_ context.Context, _ resource.SchemaRequest
 						// property: name=http_response_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 						"http_response_codes": rsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							ElementType: types.Int64Type,
@@ -312,6 +312,10 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 			body.Endpoints[varLoopEndpointsIndex].Fqdn = StringValueOrNil(varLoopEndpoints.Fqdn)
 			// property: name=http_response_codes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = ListInt64ValueOrNil(ctx, varLoopEndpoints.HttpResponseCodes)
+			// api does not accept empty list as missing value
+			if len(body.Endpoints[varLoopEndpointsIndex].HttpResponseCodes) == 0 {
+				body.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = nil
+			}
 			// property: name=http_response_string, type=STRING macro=copy_from_plan
 			body.Endpoints[varLoopEndpointsIndex].HttpResponseString = StringValueOrNil(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_from_plan
@@ -442,6 +446,10 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 			varHttpResponseCodes, errHttpResponseCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopEndpoints.HttpResponseCodes)
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = varHttpResponseCodes
 			resp.Diagnostics.Append(errHttpResponseCodes.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopEndpoints.HttpResponseCodes) == 0 {
+				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
+			}
 			// property: name=http_response_string, type=STRING macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
@@ -581,6 +589,10 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 			varHttpResponseCodes, errHttpResponseCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopEndpoints.HttpResponseCodes)
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = varHttpResponseCodes
 			resp.Diagnostics.Append(errHttpResponseCodes.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopEndpoints.HttpResponseCodes) == 0 {
+				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
+			}
 			// property: name=http_response_string, type=STRING macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
@@ -708,6 +720,10 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 			body.Endpoints[varLoopEndpointsIndex].Fqdn = StringValueOrNil(varLoopEndpoints.Fqdn)
 			// property: name=http_response_codes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 			body.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = ListInt64ValueOrNil(ctx, varLoopEndpoints.HttpResponseCodes)
+			// api does not accept empty list as missing value
+			if len(body.Endpoints[varLoopEndpointsIndex].HttpResponseCodes) == 0 {
+				body.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = nil
+			}
 			// property: name=http_response_string, type=STRING macro=copy_from_plan
 			body.Endpoints[varLoopEndpointsIndex].HttpResponseString = StringValueOrNil(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_from_plan
@@ -824,6 +840,10 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 			varHttpResponseCodes, errHttpResponseCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopEndpoints.HttpResponseCodes)
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = varHttpResponseCodes
 			resp.Diagnostics.Append(errHttpResponseCodes.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopEndpoints.HttpResponseCodes) == 0 {
+				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
+			}
 			// property: name=http_response_string, type=STRING macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_to_state

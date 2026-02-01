@@ -30,7 +30,7 @@
 # alternatively, you can use `resource_locator`
 data "prismasdwan_site" "site_blr" {
   filters = {
-    "name" = "Bangalore"
+    name = "Bangalore"
   }
 }
 

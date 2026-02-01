@@ -63,6 +63,12 @@
             "description" : "Protocol: ValidateEnum(enumClass = classOf[Protocol], error = APPDEF_CONFIG_INVALID_PROTOCOL: Application protocol is invalid., nullAllowed = false) ",
             "type" : "string",
             "enum" : [ "ospf", "ipv6", "is-is-over-ipv4", "ipv6-nonxt", "etherip", "ipv6-icmp", "igmp", "udplite", "ipv6-opts", "icmp", "esp", "crtp", "ipip", "eigrp", "egp", "gre", "l2tpv3", "sctp", "ip-in-ip", "rsvp", "pim", "scps", "mpls-in-ip", "ah", "vrrp", "ipv6-route", "igp", "ipv6-frag" ]
+          },
+          "dest_ipv6_prefixes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
           }
         },
         "required" : [ "protocol" ]
@@ -94,11 +100,11 @@
             "properties" : {
               "end" : {
                 "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                "type" : "integer"
+                "type" : "string"
               },
               "start" : {
                 "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                "type" : "integer"
+                "type" : "string"
               }
             }
           },
@@ -107,6 +113,12 @@
             "type" : "array",
             "items" : {
               "description" : "Udp Filters",
+              "type" : "string"
+            }
+          },
+          "dest_ipv6_prefixes" : {
+            "type" : "array",
+            "items" : {
               "type" : "string"
             }
           }
@@ -139,11 +151,11 @@
             "properties" : {
               "end" : {
                 "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                "type" : "integer"
+                "type" : "string"
               },
               "start" : {
                 "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                "type" : "integer"
+                "type" : "string"
               }
             }
           },
@@ -151,11 +163,11 @@
             "properties" : {
               "end" : {
                 "description" : "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                "type" : "integer"
+                "type" : "string"
               },
               "start" : {
                 "description" : "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
-                "type" : "integer"
+                "type" : "string"
               }
             }
           },
@@ -172,6 +184,12 @@
             "type" : "array",
             "items" : {
               "description" : "Server Filters",
+              "type" : "string"
+            }
+          },
+          "server_ipv6_prefixes" : {
+            "type" : "array",
+            "items" : {
               "type" : "string"
             }
           }
