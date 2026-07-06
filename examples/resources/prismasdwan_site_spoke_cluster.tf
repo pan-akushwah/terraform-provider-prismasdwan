@@ -25,14 +25,6 @@
 #
 #
 
-resource "prismasdwan_site_spoke_cluster" "site_spoke_cluster_1" {
-  # Needed for path parameters
-  x_parameters = {
-    site_id = prismasdwan_site.site_1.id
-  }
-  name = "example_cluster_alpha"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags = ["example", "cluster"]
-  preempt = true
-  advertisement_interval = 0.25
+resource "prismasdwan_site_spoke_cluster" "example" {
+ // content goes here
 }

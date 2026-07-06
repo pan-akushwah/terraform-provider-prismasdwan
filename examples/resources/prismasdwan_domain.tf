@@ -26,19 +26,5 @@
 #
 
 resource "prismasdwan_domain" "example" {
-  name        = "marketing_domain"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  is_default  = false
-}
-
-resource "prismasdwan_domain" "engineering" {
-  name        = "engineering_domain"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  is_default  = false
-}
-
-resource "prismasdwan_domain" "finance" {
-  name        = "finance_domain"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  is_default  = false
+ // content goes here
 }

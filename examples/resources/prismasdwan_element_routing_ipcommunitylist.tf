@@ -25,27 +25,6 @@
 #
 #
 
-resource "prismasdwan_element_routing_ipcommunitylist" "example_routing_ipcommunitylist" {
- x_parameters = {
-    site_id = prismasdwan_site.site_1.id
-    element_id = prismasdwan_element.element_1.id
- }
- name = "1"
- description = "Managed by Prisma SDWAN Terraform IaaC Provider"
- tags = ["lorem", "ipsum"]
- auto_generated = false
- community_list = [
- {
-    permit = false
-    community_str = "no-export"
- },
- {
-    permit = true
-    community_str = "internet"
- },
- {
-    permit = true
-    community_str = "local-AS"
- }
-]
+resource "prismasdwan_element_routing_ipcommunitylist" "example" {
+ // content goes here
 }

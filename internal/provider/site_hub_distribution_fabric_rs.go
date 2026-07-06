@@ -509,24 +509,18 @@ func (r *siteHubDistributionFabricResource) doPut(ctx context.Context, plan *rsM
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, put_request)
 	if put_request.ResponseErr != nil {
-		if IsObjectNotFound(*put_request.ResponseErr) {
-			State.RemoveResource(ctx)
-		} else if r.GetHttpStatusCode(put_request) == 404 {
-			State.RemoveResource(ctx)
-		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_site_hub_distribution_fabric", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_site_hub_distribution_fabric",
-				"path":                        put_request.FinalPath,
-			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_site_hub_distribution_fabric", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_site_hub_distribution_fabric",
-				"path":                        put_request.FinalPath,
-				"request":                     put_request.ToString(),
-			})
-			resp.Diagnostics.AddError("error updating prismasdwan_site_hub_distribution_fabric", (*put_request.ResponseErr).Error())
-		}
+		tflog.Info(ctx, "update request failed for prismasdwan_site_hub_distribution_fabric", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_site_hub_distribution_fabric",
+			"path":                        put_request.FinalPath,
+		})
+		tflog.Debug(ctx, "update request failed for prismasdwan_site_hub_distribution_fabric", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_site_hub_distribution_fabric",
+			"path":                        put_request.FinalPath,
+			"request":                     put_request.ToString(),
+		})
+		resp.Diagnostics.AddError("error updating prismasdwan_site_hub_distribution_fabric", (*put_request.ResponseErr).Error())
 		return false
 	}
 

@@ -26,7 +26,5 @@
 #
 
 resource "prismasdwan_dns_service_role" "example" {
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  name        = "TfManagedDNSServiceRole"
-  tags        = ["Terraform-Managed"]
+ // content goes here
 }

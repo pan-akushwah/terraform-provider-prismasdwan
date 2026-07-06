@@ -1444,24 +1444,18 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, put_request)
 	if put_request.ResponseErr != nil {
-		if IsObjectNotFound(*put_request.ResponseErr) {
-			State.RemoveResource(ctx)
-		} else if r.GetHttpStatusCode(put_request) == 404 {
-			State.RemoveResource(ctx)
-		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_path_policy_set", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_path_policy_set",
-				"path":                        put_request.FinalPath,
-			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_path_policy_set", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_path_policy_set",
-				"path":                        put_request.FinalPath,
-				"request":                     put_request.ToString(),
-			})
-			resp.Diagnostics.AddError("error updating prismasdwan_path_policy_set", (*put_request.ResponseErr).Error())
-		}
+		tflog.Info(ctx, "update request failed for prismasdwan_path_policy_set", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_path_policy_set",
+			"path":                        put_request.FinalPath,
+		})
+		tflog.Debug(ctx, "update request failed for prismasdwan_path_policy_set", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_path_policy_set",
+			"path":                        put_request.FinalPath,
+			"request":                     put_request.ToString(),
+		})
+		resp.Diagnostics.AddError("error updating prismasdwan_path_policy_set", (*put_request.ResponseErr).Error())
 		return false
 	}
 

@@ -25,8 +25,6 @@
 #
 #
 
-resource "prismasdwan_nat_local_prefix" "test_nat_local_prefix_01" {
-  name        = "example_nat_local_prefix_001"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags        = ["example_tag"]
+resource "prismasdwan_nat_local_prefix" "example" {
+ // content goes here
 }

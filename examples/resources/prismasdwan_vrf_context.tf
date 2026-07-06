@@ -25,8 +25,6 @@
 #
 #
 
-resource "prismasdwan_vrf_context" "test_vrf_context_1" {
-  name = "example_vrf_context"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags = ["example", "terraform"]
+resource "prismasdwan_vrf_context" "example" {
+ // content goes here
 }

@@ -25,14 +25,6 @@
 #
 #
 
-resource "prismasdwan_resource_locator" "circuit_category_private_1" {
-  resource_type           = "prismasdwan_wan_interface_label"
-  resource_property       = "label"
-  resource_property_value = "private-1"
-}
-
-resource "prismasdwan_resource_locator" "circuit_category_public_1" {
-  resource_type           = "prismasdwan_wan_interface_label"
-  resource_property       = "label"
-  resource_property_value = "public-1"
+resource "prismasdwan_wan_interface_label" "example" {
+ // content goes here
 }
