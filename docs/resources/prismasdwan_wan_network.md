@@ -22,6 +22,13 @@
       "items" : {
         "description" : "Provider As Numbers",
         "type" : "integer"
+      },
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_null_if_empty" : {
+            "type" : "boolean"
+          }
+        }
       }
     },
     "type" : {

@@ -302,6 +302,10 @@ func (d *wanNetworkDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		varProviderAsNumbers, errProviderAsNumbers := types.ListValueFrom(ctx, types.Int64Type, ans.ProviderAsNumbers)
 		state.ProviderAsNumbers = varProviderAsNumbers
 		resp.Diagnostics.Append(errProviderAsNumbers.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.ProviderAsNumbers) == 0 {
+			state.ProviderAsNumbers = types.ListNull(types.Int64Type)
+		}
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
