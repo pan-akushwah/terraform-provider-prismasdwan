@@ -139,9 +139,9 @@ func (r *wanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": rsschema.StringAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema

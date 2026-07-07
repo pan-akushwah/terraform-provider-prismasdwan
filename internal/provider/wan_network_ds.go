@@ -160,9 +160,9 @@ func (d *wanNetworkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": dsschema.StringAttribute{
-							Required:  false,
+							Required:  true,
 							Computed:  false,
-							Optional:  true,
+							Optional:  false,
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
