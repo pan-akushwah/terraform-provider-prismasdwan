@@ -98,7 +98,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -106,7 +106,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			"enable_dns_logging": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -114,7 +114,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			"enable_flow_logging": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -122,7 +122,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 			"enable_threat_logging": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -130,7 +130,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			"enable_url_logging": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -162,7 +162,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 			"remote_ca_certificate": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -170,7 +170,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 			// property: name=server_fqdn, type=STRING macro=rss_schema
 			"server_fqdn": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},

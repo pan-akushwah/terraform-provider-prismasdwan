@@ -18,23 +18,58 @@
   "properties" : {
     "enable_url_logging" : {
       "description" : "Enable Url Logging",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "enable_dns_logging" : {
       "description" : "Enable Dns Logging",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "enable_threat_logging" : {
       "description" : "Enable Threat Logging",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "remote_ca_certificate" : {
       "description" : "Remote Ca Certificate",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "enable_flow_logging" : {
       "description" : "Enable Flow Logging",
-      "type" : "boolean"
+      "type" : "boolean",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "severity_level" : {
       "description" : "Severity Level: ValidateEnum(enumClass = classOf[SyslogSeverityLevel], error = SYSLOGSERVER_PROFILE_INVALID_SEVERITY_LEVEL: Invalid syslog severity level value.Should be either major, minor or critical, nullAllowed = false) ",
@@ -51,7 +86,14 @@
     },
     "server_fqdn" : {
       "description" : "Server Fqdn",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "server_ip" : {
       "description" : "Server Ip: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = SYSLOGSERVER_PROFILE_INVALID_IP: Invalid IP address for syslog server profile, type = IP) ",
@@ -74,7 +116,14 @@
     },
     "description" : {
       "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
-      "type" : "string"
+      "type" : "string",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "name" : {
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
