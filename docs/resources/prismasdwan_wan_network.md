@@ -25,7 +25,7 @@
       },
       "additionalProperties" : {
         "properties" : {
-          "x_flag_null_if_empty" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
