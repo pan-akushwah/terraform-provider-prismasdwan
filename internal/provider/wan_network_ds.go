@@ -143,7 +143,7 @@ func (d *wanNetworkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// property: name=provider_as_numbers, type=ARRAY_PRIMITIVE macro=rss_schema
 						"provider_as_numbers": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							ElementType: types.Int64Type,
@@ -302,10 +302,6 @@ func (d *wanNetworkDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		varProviderAsNumbers, errProviderAsNumbers := types.ListValueFrom(ctx, types.Int64Type, ans.ProviderAsNumbers)
 		state.ProviderAsNumbers = varProviderAsNumbers
 		resp.Diagnostics.Append(errProviderAsNumbers.Errors()...)
-		// api does not accept empty list as missing value
-		if len(ans.ProviderAsNumbers) == 0 {
-			state.ProviderAsNumbers = types.ListNull(types.Int64Type)
-		}
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags

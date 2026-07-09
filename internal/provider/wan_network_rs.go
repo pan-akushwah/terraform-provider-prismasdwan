@@ -122,7 +122,7 @@ func (r *wanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 			// property: name=provider_as_numbers, type=ARRAY_PRIMITIVE macro=rss_schema
 			"provider_as_numbers": rsschema.ListAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.Int64Type,
@@ -210,10 +210,6 @@ func (r *wanNetworkResource) doPost(ctx context.Context, plan *rsModelWANNetwork
 	body.Name = StringValueOrNil(plan.Name)
 	// property: name=provider_as_numbers, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.ProviderAsNumbers = ListInt64ValueOrNil(ctx, plan.ProviderAsNumbers)
-	// api does not accept empty list as missing value
-	if len(body.ProviderAsNumbers) == 0 {
-		body.ProviderAsNumbers = nil
-	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
 	// property: name=type, type=STRING macro=copy_from_plan
@@ -312,10 +308,6 @@ func (r *wanNetworkResource) doPost(ctx context.Context, plan *rsModelWANNetwork
 	varProviderAsNumbers, errProviderAsNumbers := types.ListValueFrom(ctx, types.Int64Type, ans.ProviderAsNumbers)
 	state.ProviderAsNumbers = varProviderAsNumbers
 	resp.Diagnostics.Append(errProviderAsNumbers.Errors()...)
-	// api does not accept empty list as missing value
-	if len(ans.ProviderAsNumbers) == 0 {
-		state.ProviderAsNumbers = types.ListNull(types.Int64Type)
-	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -421,10 +413,6 @@ func (r *wanNetworkResource) doGet(ctx context.Context, state *rsModelWANNetwork
 	varProviderAsNumbers, errProviderAsNumbers := types.ListValueFrom(ctx, types.Int64Type, ans.ProviderAsNumbers)
 	state.ProviderAsNumbers = varProviderAsNumbers
 	resp.Diagnostics.Append(errProviderAsNumbers.Errors()...)
-	// api does not accept empty list as missing value
-	if len(ans.ProviderAsNumbers) == 0 {
-		state.ProviderAsNumbers = types.ListNull(types.Int64Type)
-	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -591,10 +579,6 @@ func (r *wanNetworkResource) doPut(ctx context.Context, plan *rsModelWANNetworkS
 	varProviderAsNumbers, errProviderAsNumbers := types.ListValueFrom(ctx, types.Int64Type, ans.ProviderAsNumbers)
 	state.ProviderAsNumbers = varProviderAsNumbers
 	resp.Diagnostics.Append(errProviderAsNumbers.Errors()...)
-	// api does not accept empty list as missing value
-	if len(ans.ProviderAsNumbers) == 0 {
-		state.ProviderAsNumbers = types.ListNull(types.Int64Type)
-	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
