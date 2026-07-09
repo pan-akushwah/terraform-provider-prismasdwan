@@ -917,7 +917,7 @@ func (r *elementInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},

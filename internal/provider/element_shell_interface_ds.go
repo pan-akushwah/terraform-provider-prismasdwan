@@ -926,7 +926,7 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
