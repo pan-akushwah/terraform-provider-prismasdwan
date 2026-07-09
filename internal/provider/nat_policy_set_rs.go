@@ -104,7 +104,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=clone_from, type=STRING macro=rss_schema
 			"clone_from": rsschema.StringAttribute{
 				Required:  false,
-				Computed:  false,
+				Computed:  true,
 				Optional:  true,
 				Sensitive: false,
 			},
