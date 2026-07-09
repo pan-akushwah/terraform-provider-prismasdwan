@@ -208,9 +208,11 @@ func (r *elementCellularModuleSimSecurityResource) doGet(ctx context.Context, st
 	// add last parameter as ObjectID
 	(*read_request.PathParameters)["sim_security_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*read_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*read_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Perform the operation.
@@ -319,9 +321,11 @@ func (r *elementCellularModuleSimSecurityResource) doPut(ctx context.Context, pl
 	// add last parameter as ObjectID
 	(*put_request.PathParameters)["sim_security_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*put_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*put_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.

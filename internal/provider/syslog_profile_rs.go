@@ -440,9 +440,11 @@ func (r *syslogProfileResource) doGet(ctx context.Context, state *rsModelSyslogS
 	// add last parameter as ObjectID
 	(*read_request.PathParameters)["profile_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*read_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*read_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Perform the operation.
@@ -565,9 +567,11 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 	// add last parameter as ObjectID
 	(*put_request.PathParameters)["profile_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*put_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*put_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.
@@ -790,9 +794,11 @@ func (r *syslogProfileResource) doDelete(ctx context.Context, state *rsModelSysl
 	// add last parameter as ObjectID
 	(*delete_request.PathParameters)["profile_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*delete_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*delete_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.

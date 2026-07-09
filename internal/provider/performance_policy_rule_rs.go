@@ -993,9 +993,11 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 	// add last parameter as ObjectID
 	(*read_request.PathParameters)["perfmgmtpolicyrule_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*read_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*read_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Perform the operation.
@@ -1274,9 +1276,11 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	// add last parameter as ObjectID
 	(*put_request.PathParameters)["perfmgmtpolicyrule_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*put_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*put_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.
@@ -1765,9 +1769,11 @@ func (r *performancePolicyRuleResource) doDelete(ctx context.Context, state *rsM
 	// add last parameter as ObjectID
 	(*delete_request.PathParameters)["perfmgmtpolicyrule_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*delete_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*delete_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.
