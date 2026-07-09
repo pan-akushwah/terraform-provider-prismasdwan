@@ -239,17 +239,17 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 								"keep_alive_failure_count": dsschema.Int64Attribute{
-									Required:  false,
+									Required:  true,
 									Computed:  false,
-									Optional:  true,
+									Optional:  false,
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 								// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 								"keep_alive_interval": dsschema.Int64Attribute{
-									Required:  false,
+									Required:  true,
 									Computed:  false,
-									Optional:  true,
+									Optional:  false,
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema

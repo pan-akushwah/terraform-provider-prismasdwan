@@ -172,9 +172,9 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 					// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 					"use_element_default": rsschema.BoolAttribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
@@ -322,17 +322,17 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 					"keep_alive_interval": rsschema.Int64Attribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema

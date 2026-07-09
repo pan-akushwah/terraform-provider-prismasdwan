@@ -99,17 +99,17 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			"app_acceleration_enabled": rsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			"bwc_enabled": rsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=bwc_enabled, type=BOOLEAN macro=rss_schema
@@ -131,9 +131,9 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=l3_reachability, type=REFERENCE macro=rss_schema
 			"l3_reachability": rsschema.SingleNestedAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -147,9 +147,9 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 					// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 					"use_element_default": rsschema.BoolAttribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
@@ -158,25 +158,25 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 			// property: name=label, type=STRING macro=rss_schema
 			"label": rsschema.StringAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=label, type=STRING macro=rss_schema
 			// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			"lqm_enabled": rsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
@@ -199,25 +199,25 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			"use_for_application_reachability_probes": rsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			// property: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			"use_for_controller_connections": rsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			// property: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			"use_lqm_for_non_hub_paths": rsschema.BoolAttribute{
-				Required:  false,
+				Required:  true,
 				Computed:  false,
-				Optional:  true,
+				Optional:  false,
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
@@ -230,17 +230,17 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 					"keep_alive_interval": rsschema.Int64Attribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
