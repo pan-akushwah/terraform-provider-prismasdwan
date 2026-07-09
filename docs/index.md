@@ -1,7 +1,6 @@
 ---
-page_title: "Provider: prismasdwan"
-description: |-
-  The Terraform provider for Palo Alto Networks Prisma SD-WAN.
+description: The Terraform provider for Palo Alto Networks Prisma SD-WAN.
+page_title: 'Provider: prismasdwan'
 ---
 
 # Provider `prismasdwan`
@@ -30,13 +29,15 @@ Login to SCM as `superuser` and follow these steps on UI
 1. Navigate to _System Settings_ -> _Identity and Access Management_ from the left navigation panel
 2. Under the _Access Management_ tab click on the button `Add Identity`
 3. On the dialog shown for _Add Identity_,
-    1. Choose _Identity Type => Service Account_
-    2. Give a suitable name for _Service Account Name_ (example, `terraform_client`)
-    3. Give optional _Contact_ and _Description_
-    4. Click on button `Next`
+   1. Choose _Identity Type => Service Account_
+   2. Give a suitable name for _Service Account Name_ (example, `terraform_client`)
+   3. Give optional _Contact_ and _Description_
+   4. Click on button `Next`
+
 4. For the given service account name, client secrets are created. Make a note of _Client ID_ and _Client Secret_
-    1. Optionally, you can choose to download the `CSV` file containing the ID and Secret
-    2. Click `Next` to assign roles to this account
+   1. Optionally, you can choose to download the `CSV` file containing the ID and Secret
+   2. Click `Next` to assign roles to this account
+
 5. Choose `Prisma SD-WAN` under _Apps & Services_ and `Superuser` as the assigned role for this account
 6. Click on `Submit` button to create this role
 7. Use above `Client ID` and `Client Secret` to configure the Terraform Provider as indicated in next sections
@@ -57,7 +58,7 @@ terraform {
   required_providers {
     prismasdwan = {
       source  = "paloaltonetworks/prismasdwan"
-      version = "6.6.1-beta.2"
+      version = "6.6.1-beta.3"
     }
   }
 }
@@ -85,7 +86,7 @@ provider "prismasdwan" {
 
 Run below command to get the provider downloaded to your workspace.
 
-```shell
+```sh
 terraform init
 ```
 
@@ -104,7 +105,7 @@ resource "prismasdwan_resource_locator" "test_site" {
 
 Run below command to read the changes via terraform.
 
-```shell
+```sh
 terraform apply
 ```
 
@@ -136,22 +137,22 @@ then this is the resolution order:
 
 - `auth_file` (String) The file path to the JSON file with auth creds for SCM.
 - `auth_url` (String) The URL to send auth credentials to which will return a JWT.
-  Default: `https://auth.apps.paloaltonetworks.com/auth/v1/oauth2/access_token`. Environment variable: `SCM_AUTH_URL`.
-  JSON config file variable: `auth_url`.
+   Default: `https://auth.apps.paloaltonetworks.com/auth/v1/oauth2/access_token`. Environment variable: `SCM_AUTH_URL`.
+   JSON config file variable: `auth_url`.
 - `client_id` (String) The client ID for the connection. Environment variable: `SCM_CLIENT_ID`. JSON config file
-  variable: `client_id`.
+   variable: `client_id`.
 - `client_secret` (String, Sensitive) The client secret for the connection. Environment variable: `SCM_CLIENT_SECRET`.
-  JSON config file variable: `client_secret`.
+   JSON config file variable: `client_secret`.
 - `headers` (Map of String) Custom HTTP headers to be sent with all API commands. Environment variable: `SCM_HEADERS`.
-  JSON config file variable: `headers`.
+   JSON config file variable: `headers`.
 - `host` (String) The hostname of Strata Cloud Manager API. Default: `api.sase.paloaltonetworks.com`. Environment
-  variable: `SCM_HOST`. JSON config file variable: `host`.
+   variable: `SCM_HOST`. JSON config file variable: `host`.
 - `logging` (String) The logging level of the provider and the underlying communication. Default: `quiet`. Environment
-  variable: `SCM_LOGGING`. JSON config file variable: `logging`.
+   variable: `SCM_LOGGING`. JSON config file variable: `logging`.
 - `port` (Number) The port number to use for API commands, if non-standard for the given protocol. Environment
-  variable: `SCM_PORT`. JSON config file variable: `port`.
+   variable: `SCM_PORT`. JSON config file variable: `port`.
 - `protocol` (String) The protocol to use for SCM. This should be 'http' or 'https'. Default: `https`. Environment
-  variable: `SCM_PROTOCOL`. JSON config file variable: `protocol`.
+   variable: `SCM_PROTOCOL`. JSON config file variable: `protocol`.
 - `scope` (String) The client scope. Environment variable: `SCM_SCOPE`. JSON config file variable: `scope`.
 
 ## Debugging
