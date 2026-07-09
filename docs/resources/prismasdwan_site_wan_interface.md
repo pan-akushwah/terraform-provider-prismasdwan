@@ -58,7 +58,14 @@
         },
         "use_element_default" : {
           "description" : "Use Element Default",
-          "type" : "boolean"
+          "type" : "boolean",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_required" : {
+                "type" : "boolean"
+              }
+            }
+          }
         }
       }
     },
@@ -91,11 +98,25 @@
       "properties" : {
         "keep_alive_failure_count" : {
           "description" : "Keep Alive Failure Count: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30.) Range(max = 30L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30., min = 3L) ",
-          "type" : "integer"
+          "type" : "integer",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_required" : {
+                "type" : "boolean"
+              }
+            }
+          }
         },
         "keep_alive_interval" : {
           "description" : "Keep Alive Interval: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms.) Range(max = 1740000L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms., min = 100L) ",
-          "type" : "integer"
+          "type" : "integer",
+          "additionalProperties" : {
+            "properties" : {
+              "x_flag_required" : {
+                "type" : "boolean"
+              }
+            }
+          }
         }
       },
       "required" : [ "keep_alive_failure_count", "keep_alive_interval" ]

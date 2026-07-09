@@ -26,6 +26,5 @@
 #
 
 resource "prismasdwan_local_prefix_filter" "example" {
-  name        = "Terraform Managed Local Prefix Filter"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+ // content goes here
 }

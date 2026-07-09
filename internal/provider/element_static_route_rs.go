@@ -481,9 +481,11 @@ func (r *elementStaticRouteResource) doGet(ctx context.Context, state *rsModelSt
 	// add last parameter as ObjectID
 	(*read_request.PathParameters)["static_route_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*read_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*read_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Perform the operation.
@@ -620,9 +622,11 @@ func (r *elementStaticRouteResource) doPut(ctx context.Context, plan *rsModelSta
 	// add last parameter as ObjectID
 	(*put_request.PathParameters)["static_route_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*put_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*put_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.
@@ -746,24 +750,18 @@ func (r *elementStaticRouteResource) doPut(ctx context.Context, plan *rsModelSta
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, put_request)
 	if put_request.ResponseErr != nil {
-		if IsObjectNotFound(*put_request.ResponseErr) {
-			State.RemoveResource(ctx)
-		} else if r.GetHttpStatusCode(put_request) == 404 {
-			State.RemoveResource(ctx)
-		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_element_static_route", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_element_static_route",
-				"path":                        put_request.FinalPath,
-			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_element_static_route", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_element_static_route",
-				"path":                        put_request.FinalPath,
-				"request":                     put_request.ToString(),
-			})
-			resp.Diagnostics.AddError("error updating prismasdwan_element_static_route", (*put_request.ResponseErr).Error())
-		}
+		tflog.Info(ctx, "update request failed for prismasdwan_element_static_route", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_element_static_route",
+			"path":                        put_request.FinalPath,
+		})
+		tflog.Debug(ctx, "update request failed for prismasdwan_element_static_route", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_element_static_route",
+			"path":                        put_request.FinalPath,
+			"request":                     put_request.ToString(),
+		})
+		resp.Diagnostics.AddError("error updating prismasdwan_element_static_route", (*put_request.ResponseErr).Error())
 		return false
 	}
 
@@ -868,9 +866,11 @@ func (r *elementStaticRouteResource) doDelete(ctx context.Context, state *rsMode
 	// add last parameter as ObjectID
 	(*delete_request.PathParameters)["static_route_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*delete_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*delete_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.

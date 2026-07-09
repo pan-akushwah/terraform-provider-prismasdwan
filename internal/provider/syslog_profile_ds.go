@@ -119,7 +119,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -127,7 +127,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 						"enable_dns_logging": dsschema.BoolAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -135,7 +135,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 						"enable_flow_logging": dsschema.BoolAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -143,7 +143,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 						"enable_threat_logging": dsschema.BoolAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -151,7 +151,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 						"enable_url_logging": dsschema.BoolAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -183,7 +183,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 						"remote_ca_certificate": dsschema.StringAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -191,7 +191,7 @@ func (d *syslogProfileDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=server_fqdn, type=STRING macro=rss_schema
 						"server_fqdn": dsschema.StringAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},

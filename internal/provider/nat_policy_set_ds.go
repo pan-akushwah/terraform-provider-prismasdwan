@@ -125,7 +125,7 @@ func (d *natPolicySetDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 						// property: name=clone_from, type=STRING macro=rss_schema
 						"clone_from": dsschema.StringAttribute{
 							Required:  false,
-							Computed:  false,
+							Computed:  true,
 							Optional:  true,
 							Sensitive: false,
 						},

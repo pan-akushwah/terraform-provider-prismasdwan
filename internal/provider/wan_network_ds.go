@@ -143,7 +143,7 @@ func (d *wanNetworkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// property: name=provider_as_numbers, type=ARRAY_PRIMITIVE macro=rss_schema
 						"provider_as_numbers": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							ElementType: types.Int64Type,
@@ -160,9 +160,9 @@ func (d *wanNetworkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": dsschema.StringAttribute{
-							Required:  false,
+							Required:  true,
 							Computed:  false,
-							Optional:  true,
+							Optional:  false,
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema

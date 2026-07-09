@@ -193,9 +193,9 @@ func (d *siteWanInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 								// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 								"use_element_default": dsschema.BoolAttribute{
-									Required:  false,
+									Required:  true,
 									Computed:  false,
-									Optional:  true,
+									Optional:  false,
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
@@ -343,17 +343,17 @@ func (d *siteWanInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 								"keep_alive_failure_count": dsschema.Int64Attribute{
-									Required:  false,
+									Required:  true,
 									Computed:  false,
-									Optional:  true,
+									Optional:  false,
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 								// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 								"keep_alive_interval": dsschema.Int64Attribute{
-									Required:  false,
+									Required:  true,
 									Computed:  false,
-									Optional:  true,
+									Optional:  false,
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema

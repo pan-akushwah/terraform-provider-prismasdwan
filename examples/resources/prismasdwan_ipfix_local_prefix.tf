@@ -25,8 +25,6 @@
 #
 #
 
-resource "prismasdwan_ipfix_local_prefix" "example_ipfix_local" {
-  name = "sample_ipfix_local"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags = ["example_tag"]
+resource "prismasdwan_ipfix_local_prefix" "example" {
+ // content goes here
 }

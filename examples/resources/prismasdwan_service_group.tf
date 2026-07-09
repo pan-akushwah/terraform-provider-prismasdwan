@@ -25,7 +25,6 @@
 #
 #
 
-resource "prismasdwan_service_group" "service_group_1" {
-  type = "non-cg-transit"
-  name = "test_group"
+resource "prismasdwan_service_group" "example" {
+ // content goes here
 }

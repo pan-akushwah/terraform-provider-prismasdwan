@@ -346,9 +346,11 @@ func (r *siteWanMulticastConfigurationResource) doGet(ctx context.Context, state
 	// add last parameter as ObjectID
 	(*read_request.PathParameters)["config_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*read_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*read_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Perform the operation.
@@ -461,9 +463,11 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 	// add last parameter as ObjectID
 	(*put_request.PathParameters)["config_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*put_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*put_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.
@@ -533,24 +537,18 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, put_request)
 	if put_request.ResponseErr != nil {
-		if IsObjectNotFound(*put_request.ResponseErr) {
-			State.RemoveResource(ctx)
-		} else if r.GetHttpStatusCode(put_request) == 404 {
-			State.RemoveResource(ctx)
-		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_site_wan_multicast_configuration", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_site_wan_multicast_configuration",
-				"path":                        put_request.FinalPath,
-			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_site_wan_multicast_configuration", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_site_wan_multicast_configuration",
-				"path":                        put_request.FinalPath,
-				"request":                     put_request.ToString(),
-			})
-			resp.Diagnostics.AddError("error updating prismasdwan_site_wan_multicast_configuration", (*put_request.ResponseErr).Error())
-		}
+		tflog.Info(ctx, "update request failed for prismasdwan_site_wan_multicast_configuration", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_site_wan_multicast_configuration",
+			"path":                        put_request.FinalPath,
+		})
+		tflog.Debug(ctx, "update request failed for prismasdwan_site_wan_multicast_configuration", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_site_wan_multicast_configuration",
+			"path":                        put_request.FinalPath,
+			"request":                     put_request.ToString(),
+		})
+		resp.Diagnostics.AddError("error updating prismasdwan_site_wan_multicast_configuration", (*put_request.ResponseErr).Error())
 		return false
 	}
 
@@ -631,9 +629,11 @@ func (r *siteWanMulticastConfigurationResource) doDelete(ctx context.Context, st
 	// add last parameter as ObjectID
 	(*delete_request.PathParameters)["config_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*delete_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*delete_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.

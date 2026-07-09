@@ -218,17 +218,17 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 					"keep_alive_interval": rsschema.Int64Attribute{
-						Required:  false,
+						Required:  true,
 						Computed:  false,
-						Optional:  true,
+						Optional:  false,
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
@@ -492,9 +492,11 @@ func (r *anynetLinkResource) doGet(ctx context.Context, state *rsModelAnynetLink
 	// add last parameter as ObjectID
 	(*read_request.PathParameters)["anynet_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*read_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*read_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Perform the operation.
@@ -629,9 +631,11 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 	// add last parameter as ObjectID
 	(*put_request.PathParameters)["anynet_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*put_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*put_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.
@@ -772,24 +776,18 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, put_request)
 	if put_request.ResponseErr != nil {
-		if IsObjectNotFound(*put_request.ResponseErr) {
-			State.RemoveResource(ctx)
-		} else if r.GetHttpStatusCode(put_request) == 404 {
-			State.RemoveResource(ctx)
-		} else {
-			tflog.Info(ctx, "update request failed for prismasdwan_anynet_link", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_anynet_link",
-				"path":                        put_request.FinalPath,
-			})
-			tflog.Debug(ctx, "update request failed for prismasdwan_anynet_link", map[string]any{
-				"terraform_provider_function": "Update",
-				"resource_name":               "prismasdwan_anynet_link",
-				"path":                        put_request.FinalPath,
-				"request":                     put_request.ToString(),
-			})
-			resp.Diagnostics.AddError("error updating prismasdwan_anynet_link", (*put_request.ResponseErr).Error())
-		}
+		tflog.Info(ctx, "update request failed for prismasdwan_anynet_link", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_anynet_link",
+			"path":                        put_request.FinalPath,
+		})
+		tflog.Debug(ctx, "update request failed for prismasdwan_anynet_link", map[string]any{
+			"terraform_provider_function": "Update",
+			"resource_name":               "prismasdwan_anynet_link",
+			"path":                        put_request.FinalPath,
+			"request":                     put_request.ToString(),
+		})
+		resp.Diagnostics.AddError("error updating prismasdwan_anynet_link", (*put_request.ResponseErr).Error())
 		return false
 	}
 
@@ -892,9 +890,11 @@ func (r *anynetLinkResource) doDelete(ctx context.Context, state *rsModelAnynetL
 	// add last parameter as ObjectID
 	(*delete_request.PathParameters)["anynet_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
-	for _, token := range tokens[1:] {
+	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
-		(*delete_request.PathParameters)[param[0]] = &param[1]
+		if len(param) == 2 {
+			(*delete_request.PathParameters)[param[0]] = &param[1]
+		}
 	}
 
 	// Client that will perform the request.

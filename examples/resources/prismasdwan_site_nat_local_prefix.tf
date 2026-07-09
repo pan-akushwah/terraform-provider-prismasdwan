@@ -25,12 +25,6 @@
 #
 #
 
-resource "prismasdwan_site_nat_local_prefix" "test_site_nat_local_prefix_1" {
-  x_parameters = {
-    site_id = prismasdwan_site.site_1.id
-  }
-  prefix_id = prismasdwan_nat_local_prefix.test_nat_local_prefix_01.id
-  ipv4_prefixes = [
-    "10.11.12.13/32"
-  ]
+resource "prismasdwan_site_nat_local_prefix" "example" {
+ // content goes here
 }
