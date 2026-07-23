@@ -25,6 +25,70 @@
 #
 #
 
-resource "prismasdwan_probe_config" "example" {
- // content goes here
+resource "prismasdwan_probe_config" "dns_icmp" {
+  name        = "Terraform Managed ICMP Probe"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled     = true
+  endpoints = [
+    {
+      ipv4_address                    = "1.1.1.1"
+      protocol                        = "icmp"
+      probe_cycle_duration            = 10
+      probe_count                     = 2
+      path_types                      = ["direct", "vpn", "servicelink"]
+      allow_insecure_https_connection = false
+    }
+  ]
+}
+
+resource "prismasdwan_probe_config" "dns_probe" {
+  name        = "Terraform Managed DNS Probe"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled     = true
+  endpoints = [
+    {
+      fqdn                            = "acme.com"
+      dns_server_ip                   = "8.8.8.8"
+      protocol                        = "dns"
+      probe_cycle_duration            = 10
+      probe_count                     = 2
+      path_types                      = ["direct", "vpn", "servicelink"]
+      allow_insecure_https_connection = false
+    }
+  ]
+}
+
+
+resource "prismasdwan_probe_config" "http_ping" {
+  name        = "Terraform Managed HTTP Probe"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled     = true
+  endpoints = [
+    {
+      fqdn                            = "acme.com"
+      protocol                        = "http"
+      probe_cycle_duration            = 10
+      probe_count                     = 2
+      path_types                      = ["direct", "vpn", "servicelink"]
+      allow_insecure_https_connection = false
+      http_response_codes             = [200, 400]
+    }
+  ]
+}
+
+
+resource "prismasdwan_probe_config" "https_ping" {
+  name        = "Terraform Managed HTTPS Probe"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled     = true
+  endpoints = [
+    {
+      fqdn                            = "ping.com"
+      protocol                        = "https"
+      probe_cycle_duration            = 10
+      probe_count                     = 2
+      path_types                      = ["direct", "vpn", "servicelink"]
+      allow_insecure_https_connection = false
+    }
+  ]
 }

@@ -25,6 +25,8 @@
 #
 #
 
-resource "prismasdwan_qos_policy_local_prefix" "example" {
- // content goes here
+resource "prismasdwan_qos_policy_local_prefix" "test_qos_local_prefix" {
+  name        = "example_qos_policy"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["sample_tag"]
 }
