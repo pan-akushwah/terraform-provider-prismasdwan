@@ -25,6 +25,20 @@
 #
 #
 
-resource "prismasdwan_security_zone" "example" {
- // content goes here
+resource "prismasdwan_security_zone" "production_zone" {
+  name              = "production_security_zone"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tcp_allow_non_syn = false
+}
+
+resource "prismasdwan_security_zone" "development_zone" {
+  name              = "development_security_zone"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tcp_allow_non_syn = true
+}
+
+resource "prismasdwan_security_zone" "dmz_zone" {
+  name              = "dmz_security_zone"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tcp_allow_non_syn = false
 }
