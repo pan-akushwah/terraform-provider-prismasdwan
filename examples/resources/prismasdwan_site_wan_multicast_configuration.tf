@@ -25,6 +25,29 @@
 #
 #
 
-resource "prismasdwan_site_wan_multicast_configuration" "example" {
- // content goes here
+resource "prismasdwan_resource_locator" "first_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "element_shell_site"
+}
+
+#
+# Only one can be created per site.
+# If the configuration already exists, import and then start managing it
+#
+resource "prismasdwan_site_wan_multicast_configuration" "site_wan_multicast_config" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_resource_locator.first_site.result
+  }
+  site_configs = [
+    {
+      group_ipv4_prefix   = "235.0.0.0/16"
+      source_ipv4_address = "13.10.10.2"
+    },
+    {
+      group_ipv4_prefix   = "224.5.0.0/16"
+      source_ipv4_address = "13.10.10.3"
+    }
+  ]
 }

@@ -25,6 +25,8 @@
 #
 #
 
-resource "prismasdwan_nat_policy_pool" "example" {
- // content goes here
+resource "prismasdwan_nat_policy_pool" "example_pool" {
+  name = "example_nat_pool_alpha"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags = ["alpha", "production"]
 }

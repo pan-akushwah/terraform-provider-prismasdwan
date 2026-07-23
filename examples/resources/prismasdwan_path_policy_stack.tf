@@ -25,6 +25,14 @@
 #
 #
 
-resource "prismasdwan_path_policy_stack" "example" {
- // content goes here
+resource "prismasdwan_path_policy_stack" "example_path_policy_stack" {
+  name                   = "example_test_path_policy_stack"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags                   = ["test", "example", "path_policy"]
+  default_policysetstack = false
+  policyset_ids          = [
+    prismasdwan_path_policy_set.example_policy_set_1.id,
+    prismasdwan_path_policy_set.example_policy_set_2.id
+  ]
+  defaultrule_policyset_id = prismasdwan_path_policy_set.example_policy_set.id
 }

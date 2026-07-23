@@ -25,6 +25,20 @@
 #
 #
 
-resource "prismasdwan_multicast_peer_group_profile" "example" {
- // content goes here
+resource "prismasdwan_resource_locator" "dc_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "DataCenter"
+}
+
+resource "prismasdwan_multicast_peer_group_profile" "multicast_peer_group_profile" {
+  name        = "tf managed profile"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["ipsum", "lorem"]
+  peer_sites = [
+    {
+      peer_site_id = prismasdwan_resource_locator.dc_site.result
+    }
+  ]
+  is_source_site_receiver = true
 }

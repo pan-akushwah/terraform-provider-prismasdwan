@@ -25,6 +25,25 @@
 #
 #
 
-resource "prismasdwan_app_def_override" "example" {
- // content goes here
+#
+# find an existing application definition
+# you can use resource_locator as well
+data "prismasdwan_app_def" "app_def" {
+  filters = {
+    display_name = "104apci-supervisory"
+  }
+}
+
+resource "prismasdwan_app_def_override" "app_def_changes" {
+  x_parameters = {
+    appdef_id = data.prismasdwan_app_def.app_def.items[0].id
+  }
+  app_unreachability_detection = true
+  override_default_ip_rules    = false
+  override_default_tcp_rules   = false
+  override_default_udp_rules   = false
+  override_domains             = false
+  overrides_disable            = false
+  path_affinity                = "strict"
+  p_category                   = "saas"
 }

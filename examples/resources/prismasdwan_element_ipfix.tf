@@ -26,5 +26,32 @@
 #
 
 resource "prismasdwan_element_ipfix" "example" {
- // content goes here
+  name             = "TestProfile"
+  ipfixtemplate_id = "1769252467908022596"
+  ipfixprofile_id  = "1769252570956010396"
+
+  collector_config {
+    protocol                 = "udp"
+    ipfixcollectorcontext_id = "1769252432167011196"
+    host                     = "10.11.12.13"
+    host_port                = 1011
+    max_message_size         = 1372
+  }
+
+  filters {
+    dst_prefixes_id = "1706693389496005796"
+    src_prefixes_id = "1706693389496005796"
+
+    dst_ports {
+      start = 130
+      end   = 131
+    }
+
+    src_ports {
+      start = 120
+      end   = 121
+    }
+
+    protocols = ["tcp", "udp"]
+  }
 }
