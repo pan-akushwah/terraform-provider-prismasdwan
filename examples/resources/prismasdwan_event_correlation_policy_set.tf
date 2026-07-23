@@ -25,6 +25,23 @@
 #
 #
 
-resource "prismasdwan_event_correlation_policy_set" "example" {
- // content goes here
+resource "prismasdwan_event_correlation_policy_set" "set001" {
+  name             = "Terraform Managed Policy Set"
+  description      = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags             = ["terraform"]
+  active_policyset = false
+  severity_priority_mapping = [
+    {
+      severity = "critical"
+      priority = "p2"
+    },
+    {
+      severity = "major"
+      priority = "p3"
+    },
+    {
+      severity = "minor"
+      priority = "p4"
+    }
+  ]
 }

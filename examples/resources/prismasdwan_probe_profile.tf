@@ -25,6 +25,17 @@
 #
 #
 
-resource "prismasdwan_probe_profile" "example" {
- // content goes here
+# Resource locators for probe configurations (required)
+resource "prismasdwan_resource_locator" "probe_config" {
+  resource_type           = "prismasdwan_probe_config"
+  resource_property       = "name"
+  resource_property_value = "some existing probe config"
+}
+
+resource "prismasdwan_probe_profile" "development_probe_profile" {
+  # Required fields
+  name             = "development profile"
+  probe_config_ids = [prismasdwan_resource_locator.probe_config.result]
+  description      = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags             = ["development"]
 }

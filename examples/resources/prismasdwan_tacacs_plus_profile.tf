@@ -25,6 +25,32 @@
 #
 #
 
-resource "prismasdwan_tacacs_plus_profile" "example" {
- // content goes here
+resource "prismasdwan_tacacs_plus_profile" "example_tacacs_profile_1" {
+  name        = "example_tacacs_profile_1"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["lorem", "ipsum"]
+  authentication_protocol = "chap"
+  tacacs_plus_servers = [
+  {
+    server_ip = "10.11.12.14"
+    server_port = 51
+    secret = base64encode("abcd1234")
+    timeout = 6
+  }
+]
+}
+
+resource "prismasdwan_tacacs_plus_profile" "example_tacacs_profile_2" {
+  name        = "example_tacacs_profile_2"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["lorem", "ipsum"]
+  authentication_protocol = "pap"
+  tacacs_plus_servers = [
+  {
+    server_fqdn = "google.com"
+    server_port = 50
+    secret = base64encode("abcd1234")
+    timeout = 2
+  }
+]
 }

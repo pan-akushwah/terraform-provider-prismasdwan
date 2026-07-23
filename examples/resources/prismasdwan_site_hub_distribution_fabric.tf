@@ -25,6 +25,12 @@
 #
 #
 
-resource "prismasdwan_site_hub_distribution_fabric" "example" {
- // content goes here
+resource "prismasdwan_site_hub_distribution_fabric" "hub_site_distribution_fabric_1" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_2.id
+  }
+  spoke_site_ids = [
+    prismasdwan_site.site_1.id
+  ]
 }

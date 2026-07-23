@@ -25,6 +25,20 @@
 #
 #
 
-resource "prismasdwan_security_policy_local_prefix" "example" {
- // content goes here
+resource "prismasdwan_security_policy_local_prefix" "test_security_local_prefix" {
+  name        = "corporate_security_local_prefix"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["corporate", "security", "local"]
+}
+
+resource "prismasdwan_security_policy_local_prefix" "development_local_prefix" {
+  name        = "dev_security_local_prefix"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["development", "security", "local"]
+}
+
+resource "prismasdwan_security_policy_local_prefix" "production_local_prefix" {
+  name        = "prod_security_local_prefix"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags        = ["production", "security", "local"]
 }

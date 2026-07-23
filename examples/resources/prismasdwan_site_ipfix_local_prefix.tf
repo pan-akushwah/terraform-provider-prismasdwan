@@ -25,6 +25,12 @@
 #
 #
 
-resource "prismasdwan_site_ipfix_local_prefix" "example" {
- // content goes here
+resource "prismasdwan_site_ipfix_local_prefix" "example_ipfix_local_prefix" {
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  prefix_id = prismasdwan_ipfix_local_prefix.example_ipfix_local.id
+  ipv4_prefixes = [
+    "10.11.12.13/32"
+  ]
 }

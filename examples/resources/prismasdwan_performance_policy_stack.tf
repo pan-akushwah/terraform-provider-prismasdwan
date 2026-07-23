@@ -25,6 +25,13 @@
 #
 #
 
-resource "prismasdwan_performance_policy_stack" "example" {
- // content goes here
+resource "prismasdwan_performance_policy_stack" "performance_policy_stack_1" {
+  name                   = "example_performance_stack_alpha"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags                   = ["terraform"]
+  default_policysetstack = false
+  policyset_ids = [
+    prismasdwan_performance_policy_set.performance_policy_set_1.id
+  ]
+  defaultrule_policyset_id = prismasdwan_performance_policy_set.default_performance_policy_set.id
 }

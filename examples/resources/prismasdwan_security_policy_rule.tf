@@ -25,6 +25,19 @@
 #
 #
 
-resource "prismasdwan_security_policy_rule" "example" {
- // content goes here
+resource "prismasdwan_security_policy_rule" "example_security_policy_rule" {
+  x_parameters = {
+    policy_set_id = prismasdwan_security_policy_set.example_policy_set.id
+  }
+  name                   = "example_security_policy_rule"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags                   = ["production", "firewall"]
+  app_def_ids            = [prismasdwan_appdefs.example_app.id]
+  source_zone_ids        = [prismasdwan_security_zone.example_source_zone.id]
+  source_prefix_ids      = [prismasdwan_security_policy_local_prefix.example_local_prefix.id]
+  destination_prefix_ids = [prismasdwan_security_policy_global_prefix.example_global_prefix.id]
+  destination_zone_ids   = [prismasdwan_security_zone.example_destination_zone.id]
+  action                 = "allow"
+  enabled                = true
+  services               = []
 }

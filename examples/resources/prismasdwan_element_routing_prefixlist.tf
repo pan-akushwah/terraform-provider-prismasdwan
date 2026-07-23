@@ -25,6 +25,31 @@
 #
 #
 
-resource "prismasdwan_element_routing_prefixlist" "example" {
- // content goes here
+resource "prismasdwan_element_routing_prefixlist" "example_routing_prefixlist" {
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+    element_id = prismasdwan_element.element_1.id
+  }
+  name = "example_routing_prefixlist"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  tags = ["lorem", "ipsum"]
+  auto_generated = false
+  prefix_filter_list = [
+    {
+      order = 1,
+      permit = true
+      prefix = "10.11.12.0/24"
+      ipv6_prefix = null
+      ge = 25
+      le = 26
+    },
+    {
+      order = 11,
+      permit = false
+      prefix = "10.11.13.0/24"
+      ipv6_prefix = null
+      ge = 27
+      le = 28
+    }
+  ]
 }

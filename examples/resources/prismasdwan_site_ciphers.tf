@@ -25,6 +25,16 @@
 #
 #
 
-resource "prismasdwan_site_ciphers" "example" {
- // content goes here
+resource "prismasdwan_site_ciphers" "site_ciphers_1" {
+  # Needed for path parameters
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  vpn_ciphers = [
+    "AES_256_GCM",
+    "AES_256_CBC",
+    "AES_128_GCM",
+    "AES_128_CBC"
+  ]
+  controller_connection_cipher = "RSA-AES256-GCM-SHA384"
 }
