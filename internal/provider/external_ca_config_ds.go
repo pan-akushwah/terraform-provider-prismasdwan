@@ -67,13 +67,14 @@ func (d *externalCaConfigDataSource) Metadata(_ context.Context, req datasource.
 // Schema defines the schema for this data source.
 func (d *externalCaConfigDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN External Ca Config items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -81,143 +82,162 @@ func (d *externalCaConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=CertificateAuthorityConfig
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=ca_sign_timeout, type=INTEGER macro=rss_schema
 						"ca_sign_timeout": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ca Sign Timeout: Required(message = required) Range(max = 300L, CA_SIGN_TIMEOUT_OUT_OF_RANGE, min = 10L) ",
 						},
 						// key name holder for attribute: name=ca_sign_timeout, type=INTEGER macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=manual_renew_trigger_threshold, type=INTEGER macro=rss_schema
 						"manual_renew_trigger_threshold": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Manual Renew Trigger Threshold: Required(message = required) Range(max = 1440L, MANUAL_RENEW_TRIGGER_THRESHOLD_OUT_OF_RANGE, min = 5L) ",
 						},
 						// key name holder for attribute: name=manual_renew_trigger_threshold, type=INTEGER macro=rss_schema
 						// property: name=renewal_window_from_expiry, type=INTEGER macro=rss_schema
 						"renewal_window_from_expiry": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Renewal Window From Expiry: Required(message = required) Range(max = 90L, RENEWAL_WINDOW_FROM_EXPIRY_OUT_OF_RANGE, min = 30L) ",
 						},
 						// key name holder for attribute: name=renewal_window_from_expiry, type=INTEGER macro=rss_schema
 						// property: name=scep_config, type=REFERENCE macro=rss_schema
 						"scep_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Scep Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=challenge_uri, type=STRING macro=rss_schema
 								"challenge_uri": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Challenge Uri",
 								},
 								// key name holder for attribute: name=challenge_uri, type=STRING macro=rss_schema
 								// property: name=enrollment_uri, type=STRING macro=rss_schema
 								"enrollment_uri": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Enrollment Uri",
 								},
 								// key name holder for attribute: name=enrollment_uri, type=STRING macro=rss_schema
 								// property: name=https, type=BOOLEAN macro=rss_schema
 								"https": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Https",
 								},
 								// key name holder for attribute: name=https, type=BOOLEAN macro=rss_schema
 								// property: name=num_challenge_passwords, type=INTEGER macro=rss_schema
 								"num_challenge_passwords": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Num Challenge Passwords",
 								},
 								// key name holder for attribute: name=num_challenge_passwords, type=INTEGER macro=rss_schema
 								// property: name=server_certificate, type=STRING macro=rss_schema
 								"server_certificate": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Server Certificate",
 								},
 								// key name holder for attribute: name=server_certificate, type=STRING macro=rss_schema
 								// property: name=server_password, type=STRING macro=rss_schema
 								"server_password": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Server Password",
 								},
 								// key name holder for attribute: name=server_password, type=STRING macro=rss_schema
 								// property: name=server_primary_address, type=STRING macro=rss_schema
 								"server_primary_address": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Server Primary Address",
 								},
 								// key name holder for attribute: name=server_primary_address, type=STRING macro=rss_schema
 								// property: name=server_username, type=STRING macro=rss_schema
 								"server_username": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Server Username",
 								},
 								// key name holder for attribute: name=server_username, type=STRING macro=rss_schema
 							},
@@ -225,10 +245,11 @@ func (d *externalCaConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 						// key name holder for attribute: name=server_username, type=STRING macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Type: Required(message = required) ValidateEnum(enumClass = classOf[CertificateAuthorityConfigType], message = Invalid enum string., nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					},

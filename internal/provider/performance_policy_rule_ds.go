@@ -71,13 +71,14 @@ func (d *performancePolicyRuleDataSource) Metadata(_ context.Context, req dataso
 // Schema defines the schema for this data source.
 func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Performance Policy Rule items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -85,94 +86,107 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=PerfMgmtPolicyRuleScreenV2N3
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=actions, type=ARRAY_REFERENCE macro=rss_schema
 						"actions": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Actions: Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=action_type, type=STRING macro=rss_schema
 									"action_type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Action Type: ValidateEnum(enumClass = classOf[PerfMgmtActionType], error = PERFMGMT_INVALID_ACTION_TYPE: Invalid action type specified in actions, nullAllowed = false) ",
 									},
 									// key name holder for attribute: name=action_type, type=STRING macro=rss_schema
 									// property: name=always_on, type=BOOLEAN macro=rss_schema
 									"always_on": dsschema.BoolAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Always On",
 									},
 									// key name holder for attribute: name=always_on, type=BOOLEAN macro=rss_schema
 									// property: name=app_perf, type=REFERENCE macro=rss_schema
 									"app_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "App Perf: Valid ",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Bad Health Thresholds: Valid ",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
@@ -180,10 +194,11 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
@@ -191,32 +206,36 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 									// property: name=circuit_utilization_perf, type=REFERENCE macro=rss_schema
 									"circuit_utilization_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Circuit Utilization Perf: Valid ",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Bad Health Thresholds: Valid ",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
@@ -224,10 +243,11 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
@@ -235,32 +255,36 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 									// property: name=lqm_perf, type=REFERENCE macro=rss_schema
 									"lqm_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Lqm Perf: Valid ",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Bad Health Thresholds: Valid ",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
@@ -268,10 +292,11 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
@@ -279,32 +304,36 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 									// property: name=probe_perf, type=REFERENCE macro=rss_schema
 									"probe_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Probe Perf: Valid ",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Bad Health Thresholds: Valid ",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
@@ -312,10 +341,11 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
@@ -323,32 +353,36 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 									// property: name=sys_perf, type=REFERENCE macro=rss_schema
 									"sys_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Sys Perf: Valid ",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Bad Health Thresholds: Valid ",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
@@ -356,10 +390,11 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
@@ -371,10 +406,11 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 						// property: name=app_filters, type=REFERENCE macro=rss_schema
 						"app_filters": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "App Filters: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
 								"app_transfer_types": dsschema.ListAttribute{
@@ -382,6 +418,7 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "App Transfer Types: Size(max = 4, error = PERFMGMT_APP_TRANSFER_TYPE_LIST_SIZE_EXCEEDED: Maximum 4 app transfer types supported, min = 0) ValidateEnum(enumClass = classOf[TransferType], error = PERFMGMT_INVALID_APP_TRANSFER_TYPE: Invalid app transfer type specified in app filter, nullAllowed = true) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -391,6 +428,7 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Application Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = PERFMGMT_RULE_DUPLICATE_APPLICATION_IDS: Duplicate application ids are not allowed in app filter for policy rule, noTrim = false, regex = , required = false) Size(max = 64, error = APP_DEF_ID_LIST_SIZE_EXCEEDED_64: Maximum 64 applications can be specified in a rule., min = 0) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -399,34 +437,38 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 						// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -435,31 +477,35 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Network Context Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=path_filters, type=ARRAY_REFERENCE macro=rss_schema
 						"path_filters": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Path Filters: Valid Size(max = 32, error = PERFMGMT_PATH_FILTERS_LIST_SIZE_EXCEEDED: Maximum 32 path filters are supported, min = 0) ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=label, type=STRING macro=rss_schema
 									"label": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Label",
 									},
 									// key name holder for attribute: name=label, type=STRING macro=rss_schema
 									// property: name=path_type, type=STRING macro=rss_schema
 									"path_type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Path Type",
 									},
 									// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 								},
@@ -472,6 +518,7 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Service Label Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = PERFMGMT_RULE_DUPLICATE_SERVICE_LABEL_IDS: Duplicate service label ids are not allowed in policy rule, noTrim = false, regex = , required = false) Size(max = 32, error = SERVICE_LABEL_ID_LIST_SIZE_EXCEEDED: Maximum 32 service labels are supported, min = 0) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -481,23 +528,26 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=thresholdprofile_id, type=STRING macro=rss_schema
 						"thresholdprofile_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Thresholdprofile Id",
 						},
 						// key name holder for attribute: name=thresholdprofile_id, type=STRING macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Type: ValidateEnum(enumClass = classOf[PerfMgmtRuleType], error = PERFMGMT_INVALID_RULE_TYPE: Performance policy rule type is invalid, nullAllowed = false) Required(error = PERFMGMT_RULE_TYPE_REQUIRED: Rule type is required) ",
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					},

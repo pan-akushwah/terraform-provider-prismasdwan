@@ -64,13 +64,14 @@ func (r *externalCaConfigResource) Metadata(_ context.Context, req resource.Meta
 // Schema defines the schema for this data source.
 func (r *externalCaConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN External Ca Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=CertificateAuthorityConfig
 			// generic x_parameters is added to accomodate path parameters
@@ -79,124 +80,140 @@ func (r *externalCaConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=ca_sign_timeout, type=INTEGER macro=rss_schema
 			"ca_sign_timeout": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ca Sign Timeout: Required(message = required) Range(max = 300L, CA_SIGN_TIMEOUT_OUT_OF_RANGE, min = 10L) ",
 			},
 			// key name holder for attribute: name=ca_sign_timeout, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=manual_renew_trigger_threshold, type=INTEGER macro=rss_schema
 			"manual_renew_trigger_threshold": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Manual Renew Trigger Threshold: Required(message = required) Range(max = 1440L, MANUAL_RENEW_TRIGGER_THRESHOLD_OUT_OF_RANGE, min = 5L) ",
 			},
 			// key name holder for attribute: name=manual_renew_trigger_threshold, type=INTEGER macro=rss_schema
 			// property: name=renewal_window_from_expiry, type=INTEGER macro=rss_schema
 			"renewal_window_from_expiry": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Renewal Window From Expiry: Required(message = required) Range(max = 90L, RENEWAL_WINDOW_FROM_EXPIRY_OUT_OF_RANGE, min = 30L) ",
 			},
 			// key name holder for attribute: name=renewal_window_from_expiry, type=INTEGER macro=rss_schema
 			// property: name=scep_config, type=REFERENCE macro=rss_schema
 			"scep_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Scep Config: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=challenge_uri, type=STRING macro=rss_schema
 					"challenge_uri": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Challenge Uri",
 					},
 					// key name holder for attribute: name=challenge_uri, type=STRING macro=rss_schema
 					// property: name=enrollment_uri, type=STRING macro=rss_schema
 					"enrollment_uri": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Enrollment Uri",
 					},
 					// key name holder for attribute: name=enrollment_uri, type=STRING macro=rss_schema
 					// property: name=https, type=BOOLEAN macro=rss_schema
 					"https": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Https",
 					},
 					// key name holder for attribute: name=https, type=BOOLEAN macro=rss_schema
 					// property: name=num_challenge_passwords, type=INTEGER macro=rss_schema
 					"num_challenge_passwords": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Num Challenge Passwords",
 					},
 					// key name holder for attribute: name=num_challenge_passwords, type=INTEGER macro=rss_schema
 					// property: name=server_certificate, type=STRING macro=rss_schema
 					"server_certificate": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Server Certificate",
 					},
 					// key name holder for attribute: name=server_certificate, type=STRING macro=rss_schema
 					// property: name=server_password, type=STRING macro=rss_schema
 					"server_password": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Server Password",
 					},
 					// key name holder for attribute: name=server_password, type=STRING macro=rss_schema
 					// property: name=server_primary_address, type=STRING macro=rss_schema
 					"server_primary_address": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Server Primary Address",
 					},
 					// key name holder for attribute: name=server_primary_address, type=STRING macro=rss_schema
 					// property: name=server_username, type=STRING macro=rss_schema
 					"server_username": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Server Username",
 					},
 					// key name holder for attribute: name=server_username, type=STRING macro=rss_schema
 				},
@@ -204,10 +221,11 @@ func (r *externalCaConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 			// key name holder for attribute: name=server_username, type=STRING macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Type: Required(message = required) ValidateEnum(enumClass = classOf[CertificateAuthorityConfigType], message = Invalid enum string., nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 		},

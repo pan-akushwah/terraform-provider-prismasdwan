@@ -68,13 +68,14 @@ func (d *iotProfileDataSource) Metadata(_ context.Context, req datasource.Metada
 // Schema defines the schema for this data source.
 func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Iot Profile items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -82,152 +83,172 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=DeviceIdProfile
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=disabled, type=BOOLEAN macro=rss_schema
 						"disabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Disabled",
 						},
 						// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
 						// property: name=disabled_reason, type=STRING macro=rss_schema
 						"disabled_reason": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Disabled Reason: Size(max = 5000, DISABLED_REASON_INVALID_0001, min = 0) ",
 						},
 						// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=inactive, type=BOOLEAN macro=rss_schema
 						"inactive": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Inactive",
 						},
 						// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
 						// property: name=inactive_reason, type=STRING macro=rss_schema
 						"inactive_reason": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Inactive Reason: Size(max = 5000, INACTIVE_REASON_INVALID_0001, min = 0) ",
 						},
 						// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=num_associated_sites, type=INTEGER macro=rss_schema
 						"num_associated_sites": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Num Associated Sites",
 						},
 						// key name holder for attribute: name=num_associated_sites, type=INTEGER macro=rss_schema
 						// property: name=region, type=STRING macro=rss_schema
 						"region": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Region",
 						},
 						// key name holder for attribute: name=region, type=STRING macro=rss_schema
 						// property: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
 						"snmp_discovery_device_refresh_frequency": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Snmp Discovery Device Refresh Frequency: Min(error = DEVICEID_DISCOVERY_TIMER_UNSUPPORTED: Unsupported values for device discovery, supported values -  30 minutes or more, value = 30L) ",
 						},
 						// key name holder for attribute: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
 						// property: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
 						"snmp_discovery_enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Snmp Discovery Enabled",
 						},
 						// key name holder for attribute: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
 						// property: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
 						"snmp_discovery_network_refresh_frequency": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Snmp Discovery Network Refresh Frequency",
 						},
 						// key name holder for attribute: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
 						// property: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
 						"snmp_discovery_use_local_neighbours": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Snmp Discovery Use Local Neighbours",
 						},
 						// key name holder for attribute: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
 						// property: name=snmp_version, type=STRING macro=rss_schema
 						"snmp_version": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Snmp Version: ValidateEnum(enumClass = classOf[SNMPVersion], error = DEVICEID_INVALID_SNMP_VERSION: Invalid snmp version, nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=snmp_version, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -236,22 +257,25 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=v2_config, type=REFERENCE macro=rss_schema
 						"v2_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "V2 Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=snmp_community_string, type=STRING macro=rss_schema
 								"snmp_community_string": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Community String: Pattern(error = SNMPCONFIG_UNSUPPORTED_COMMUNITY_NAME: White spaces not allowed in community name, regexp = ^\\\\S+$) Size(max = 32, error = SNMPCONFIG_COMMUNITY_LEN_EXCEEDS_LIMIT: Community length exceeds maximum limit, min = 0) ",
 								},
 								// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
 							},
@@ -259,73 +283,82 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
 						// property: name=v3_config, type=REFERENCE macro=rss_schema
 						"v3_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "V3 Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=snmp_auth_password, type=STRING macro=rss_schema
 								"snmp_auth_password": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Snmp Auth Password: Pattern(error = SNMPCONFIG_UNSUPPORTED_AUTH_PHRASE: White spaces not allowed in auth phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_AUTH_PHRASE_LEN: Auth phrase length should be between 8 and 256, min = 5) ",
 								},
 								// key name holder for attribute: name=snmp_auth_password, type=STRING macro=rss_schema
 								// property: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
 								"snmp_auth_password_encrypted": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Snmp Auth Password Encrypted",
 								},
 								// key name holder for attribute: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
 								// property: name=snmp_auth_protocol, type=STRING macro=rss_schema
 								"snmp_auth_protocol": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Auth Protocol: ValidateEnum(enumClass = classOf[SNMPAuthType], error = DEVICEID_SNMP_AUTH_PROTOCOL_UNSUPPORTED: Unsupported SNMP auth protocol specified, nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=snmp_auth_protocol, type=STRING macro=rss_schema
 								// property: name=snmp_privacy_password, type=STRING macro=rss_schema
 								"snmp_privacy_password": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Privacy Password: Pattern(error = SNMPCONFIG_UNSUPPORTED_ENC_PHRASE: White spaces not allowed in enc phrase, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_ENC_PHRASE_LEN: Enc phrase length should be between 8 and 256, min = 5) ",
 								},
 								// key name holder for attribute: name=snmp_privacy_password, type=STRING macro=rss_schema
 								// property: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
 								"snmp_privacy_password_encrypted": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Privacy Password Encrypted",
 								},
 								// key name holder for attribute: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
 								// property: name=snmp_privacy_protocol, type=STRING macro=rss_schema
 								"snmp_privacy_protocol": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Privacy Protocol: ValidateEnum(enumClass = classOf[SNMPEncType], error = DEVICEID_SNMP_PRIVACY_PROTOCOL_UNSUPPORTED: Unsupported SNMP privacy protocol specified, nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=snmp_privacy_protocol, type=STRING macro=rss_schema
 								// property: name=snmp_security_level, type=STRING macro=rss_schema
 								"snmp_security_level": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Security Level: ValidateEnum(enumClass = classOf[SNMPSecurityLevel], error = DEVICEID_SNMP_SECURITY_LEVEL_UNSUPPORTED: Unsupported SNMP security level specified, nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=snmp_security_level, type=STRING macro=rss_schema
 								// property: name=snmp_username, type=STRING macro=rss_schema
 								"snmp_username": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Snmp Username: NotNull(error = SNMPCONFIG_USER_NAME_MISSING: User name cannot be null) Pattern(error = SNMPCONFIG_UNSUPPORTED_USER_NAME: White spaces not allowed in user name, regexp = ^\\\\S+$) Size(max = 256, error = SNMPCONFIG_INVALID_USER_NAME_LEN: User name length should be between 4 and 256, min = 4) ",
 								},
 								// key name holder for attribute: name=snmp_username, type=STRING macro=rss_schema
 							},

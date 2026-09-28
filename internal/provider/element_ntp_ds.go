@@ -67,13 +67,14 @@ func (d *elementNtpDataSource) Metadata(_ context.Context, req datasource.Metada
 // Schema defines the schema for this data source.
 func (d *elementNtpDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Element Ntp items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -81,104 +82,118 @@ func (d *elementNtpDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=ElementNTPV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = NTP_CONFIG_DESCRIPTION_INVALID: NTP description is invalid. The maximum length is 256., min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: NotEmpty(error = NTP_CONFIG_NAME_REQD: Name is mandatory for NTP configuration.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=ntp_servers, type=ARRAY_REFERENCE macro=rss_schema
 						"ntp_servers": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ntp Servers: NotEmpty(error = NTP_CONFIG_INVALID_SERVER_SIZE: A minimum of 1 and a maximum of 10 NTP servers can be configured.) Size(max = 10, error = NTP_CONFIG_INVALID_SERVER_SIZE: A minimum of 1 and a maximum of 10 NTP servers can be configured., min = 1) Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=host, type=STRING macro=rss_schema
 									"host": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Host: ValidateHostName(allowNull = false, error = NTP_CONFIG_INVALID_HOST: Host can be only domain name or IP address.) ",
 									},
 									// key name holder for attribute: name=host, type=STRING macro=rss_schema
 									// property: name=max_poll, type=INTEGER macro=rss_schema
 									"max_poll": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Max Poll: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_MAXPOLL_VALUE: The range for maximum poll values is between 4-17., min = 0) ",
 									},
 									// key name holder for attribute: name=max_poll, type=INTEGER macro=rss_schema
 									// property: name=min_poll, type=INTEGER macro=rss_schema
 									"min_poll": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Min Poll: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_MINPOLL_VALUE: The range for minimum poll values is between 4-17., min = 0) ",
 									},
 									// key name holder for attribute: name=min_poll, type=INTEGER macro=rss_schema
 									// property: name=version, type=INTEGER macro=rss_schema
 									"version": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Version: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_VERSION: Allowed versions are 2,3 & 4., min = 0) ",
 									},
 									// key name holder for attribute: name=version, type=INTEGER macro=rss_schema
 								},
@@ -191,6 +206,7 @@ func (d *elementNtpDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Source Interface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 10, error = NTP_CONFIG_INVALID_INTERFACE_IDS: Source interface ids cannot be empty and should be valid.Interface ids should not be port that is part of logical interface group like bypass pair., noTrim = false, regex = , required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=source_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -200,6 +216,7 @@ func (d *elementNtpDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

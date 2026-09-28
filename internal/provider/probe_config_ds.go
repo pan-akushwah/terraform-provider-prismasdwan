@@ -67,13 +67,14 @@ func (d *probeConfigDataSource) Metadata(_ context.Context, req datasource.Metad
 // Schema defines the schema for this data source.
 func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Probe Config items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -81,88 +82,100 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=ProbeConfigScreenV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=endpoints, type=ARRAY_REFERENCE macro=rss_schema
 						"endpoints": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Endpoints: Required(error = PROBE_ENDPOINTS_REQUIRED: Probe endpoint configuration is required) Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=allow_insecure_https_connection, type=BOOLEAN macro=rss_schema
 									"allow_insecure_https_connection": dsschema.BoolAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Allow Insecure Https Connection",
 									},
 									// key name holder for attribute: name=allow_insecure_https_connection, type=BOOLEAN macro=rss_schema
 									// property: name=dns_server_ip, type=STRING macro=rss_schema
 									"dns_server_ip": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Dns Server Ip",
 									},
 									// key name holder for attribute: name=dns_server_ip, type=STRING macro=rss_schema
 									// property: name=fqdn, type=STRING macro=rss_schema
 									"fqdn": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Fqdn",
 									},
 									// key name holder for attribute: name=fqdn, type=STRING macro=rss_schema
 									// property: name=http_response_codes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -171,23 +184,26 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Http Response Codes",
 										ElementType: types.Int64Type,
 									},
 									// key name holder for attribute: name=http_response_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=http_response_string, type=STRING macro=rss_schema
 									"http_response_string": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Http Response String",
 									},
 									// key name holder for attribute: name=http_response_string, type=STRING macro=rss_schema
 									// property: name=ipv4_address, type=STRING macro=rss_schema
 									"ipv4_address": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Ipv4 Address",
 									},
 									// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
 									// property: name=path_types, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -196,31 +212,35 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Path Types",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=path_types, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=probe_count, type=INTEGER macro=rss_schema
 									"probe_count": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Probe Count",
 									},
 									// key name holder for attribute: name=probe_count, type=INTEGER macro=rss_schema
 									// property: name=probe_cycle_duration, type=INTEGER macro=rss_schema
 									"probe_cycle_duration": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Probe Cycle Duration",
 									},
 									// key name holder for attribute: name=probe_cycle_duration, type=INTEGER macro=rss_schema
 									// property: name=protocol, type=STRING macro=rss_schema
 									"protocol": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Protocol",
 									},
 									// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 								},
@@ -229,18 +249,20 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 						// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -249,6 +271,7 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

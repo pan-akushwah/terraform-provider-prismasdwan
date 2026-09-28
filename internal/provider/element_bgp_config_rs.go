@@ -65,13 +65,14 @@ func (r *elementBgpConfigResource) Metadata(_ context.Context, req resource.Meta
 // Schema defines the schema for this data source.
 func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Bgp Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N5
 			// generic x_parameters is added to accomodate path parameters
@@ -80,61 +81,69 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=admin_distance, type=INTEGER macro=rss_schema
 			"admin_distance": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Admin Distance: Range(max = 255L, error = BGP_CONFIG_INVALID_ADMIN_DISTANCE: ADMIN DISTANCE should be in the range 1-255, min = 1L) ",
 			},
 			// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
 			// property: name=adv_interval, type=INTEGER macro=rss_schema
 			"adv_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Adv Interval: Range(max = 600L, error = BGP_CONFIG_INVALID_ADV_INTERVAL: ADVERTISE INTERVAL should be in the range 0-600, min = 0L) ",
 			},
 			// key name holder for attribute: name=adv_interval, type=INTEGER macro=rss_schema
 			// property: name=graceful_restart, type=BOOLEAN macro=rss_schema
 			"graceful_restart": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Graceful Restart",
 			},
 			// key name holder for attribute: name=graceful_restart, type=BOOLEAN macro=rss_schema
 			// property: name=hold_time, type=INTEGER macro=rss_schema
 			"hold_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Hold Time: Range(max = 600L, error = BGP_CONFIG_INVALID_HOLD_TIME: Hold TIME should be in the range 3-600, min = 3L) ",
 			},
 			// key name holder for attribute: name=hold_time, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -143,77 +152,87 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Ipv6 Prefixes To Adv To Wan: ListIPv6Address(bcast = DENY, listMaxSize = 0, error = BGP_CONFIG_INVALID_PREFIX: IP prefix is not valid OR is not within the valid prefix range, required = false, type = GATEWAYCIDRV6) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=keepalive_time, type=INTEGER macro=rss_schema
 			"keepalive_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Keepalive Time: Range(max = 200L, error = BGP_CONFIG_INVALID_KEEPALIVE_TIME: KEEPALIVE TIME should be in the range 1-200, min = 1L) ",
 			},
 			// key name holder for attribute: name=keepalive_time, type=INTEGER macro=rss_schema
 			// property: name=local_as_num, type=STRING macro=rss_schema
 			"local_as_num": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Local As Num: Size(max = 256, error = LOCAL_AS_NUM_EXCEEDS_LIMIT: Local as number exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=local_as_num, type=STRING macro=rss_schema
 			// property: name=maximum_paths, type=INTEGER macro=rss_schema
 			"maximum_paths": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Maximum Paths: Range(max = 255L, error = BGP_CONFIG_INVALID_MAXIMUM_PATHS: MAX PATHS should be in the range 1-255, min = 1L) ",
 			},
 			// key name holder for attribute: name=maximum_paths, type=INTEGER macro=rss_schema
 			// property: name=md5_secret, type=STRING macro=rss_schema
 			"md5_secret": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: true,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   true,
+				Description: "Md5 Secret: Size(max = 32, error = BGP_CONFIG_MD5_LENGTH_EXCEEDS: MD5 SECRETE length should not exceed 32 characters, min = 0) ",
 			},
 			// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 			"md5_secret_internal_key_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Internal key name for the sensitive attribute md5_secret, managed automatically by the provider.",
 			},
 			// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
 			"multi_hop_limit": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Multi Hop Limit: Range(max = 255L, error = BGP_CONFIG_INVALID_MULTI_HOP_LIMIT: MULTI HOP LIMIT should be in the range 1-255, min = 1L) ",
 			},
 			// key name holder for attribute: name=multi_hop_limit, type=INTEGER macro=rss_schema
 			// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=rss_schema
 			"ospf_redistribution": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ospf Redistribution",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=route_map_id, type=STRING macro=rss_schema
 						"route_map_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Route Map Id",
 						},
 						// key name holder for attribute: name=route_map_id, type=STRING macro=rss_schema
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Vrf Context Id",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
@@ -222,34 +241,38 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 			// property: name=peer_auth_type, type=STRING macro=rss_schema
 			"peer_auth_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Auth Type",
 			},
 			// key name holder for attribute: name=peer_auth_type, type=STRING macro=rss_schema
 			// property: name=peer_retry_time, type=INTEGER macro=rss_schema
 			"peer_retry_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Retry Time: Range(max = 65535L, error = BGP_CONFIG_INVALID_PEER_RETRY_TIME: PEER RETRY TIME should be in the range 1-65535, min = 1L) ",
 			},
 			// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
 			// property: name=prefix_adv_type, type=STRING macro=rss_schema
 			"prefix_adv_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type",
 			},
 			// key name holder for attribute: name=prefix_adv_type, type=STRING macro=rss_schema
 			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			"prefix_adv_type_to_lan": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type To Lan",
 			},
 			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -258,47 +281,53 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Prefixes To Adv To Wan: ListIPAddress(bcast = DENY, listMaxSize = 0, error = BGP_CONFIG_INVALID_PREFIX: IP prefix is not valid OR is not within the valid prefix range, required = false, type = APP_GATEWAYCIDR) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
 			"router_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=stalepath_time, type=INTEGER macro=rss_schema
 			"stalepath_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Stalepath Time: Range(max = 3600L, error = BGP_CONFIG_INVALID_STALEPATH_TIME: STTALEPATH TIME should be in the range 1-3600, min = 1L) ",
 			},
 			// key name holder for attribute: name=stalepath_time, type=INTEGER macro=rss_schema
 			// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=rss_schema
 			"vrf_router_id_map": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Router Id Map: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=router_id, type=STRING macro=rss_schema
 						"router_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
 						},
 						// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},

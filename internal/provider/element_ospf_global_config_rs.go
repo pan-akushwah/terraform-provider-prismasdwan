@@ -63,13 +63,14 @@ func (r *elementOspfGlobalConfigResource) Metadata(_ context.Context, req resour
 // Schema defines the schema for this data source.
 func (r *elementOspfGlobalConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Ospf Global Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=OSPFGlobalConfigScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -78,107 +79,121 @@ func (r *elementOspfGlobalConfigResource) Schema(_ context.Context, _ resource.S
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=cost, type=INTEGER macro=rss_schema
 			"cost": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Cost: Range(max = 65535L, message = OSPF_CONFIG_INVALID_COST, min = 1L) ",
 			},
 			// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 			// property: name=dead_interval, type=INTEGER macro=rss_schema
 			"dead_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Dead Interval: Range(max = 65535L, error = OSPF_CONFIG_INVALID_DEAD_INTERVAL: Invalid Dead Interval.Value needs to be between 1 and 65535., min = 1L) ",
 			},
 			// key name holder for attribute: name=dead_interval, type=INTEGER macro=rss_schema
 			// property: name=hello_interval, type=INTEGER macro=rss_schema
 			"hello_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Hello Interval: Range(max = 65535L, error = OSPF_CONFIG_INVALID_HELLO_INTERVAL: Invalid Hello Interval.Value needs to be between 1 and 65535., min = 1L) ",
 			},
 			// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=md5_key_id, type=INTEGER macro=rss_schema
 			"md5_key_id": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Md5 Key Id: Range(max = 255L, message = OSPF_CONFIG_MD5_KEY_ID_LENGTH_EXCEEDS, min = 1L) ",
 			},
 			// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
 			// property: name=md5_secret, type=STRING macro=rss_schema
 			"md5_secret": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: true,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   true,
+				Description: "Md5 Secret: Size(max = 16, error = OSPF_CONFIG_MD5_LENGTH_EXCEEDS: Max length of MD5 secret is 16., min = 1) ",
 			},
 			// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 			"md5_secret_internal_key_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Internal key name for the sensitive attribute md5_secret, managed automatically by the provider.",
 			},
 			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			"prefix_adv_type_to_lan": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type To Lan",
 			},
 			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			// property: name=retransmit_interval, type=INTEGER macro=rss_schema
 			"retransmit_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Retransmit Interval: Range(max = 65535L, error = OSPF_CONFIG_INVALID_RETRANSMIT_INTERVAL: Invalid retransmit interval.Value needs to be between 1 and 65535., min = 1L) ",
 			},
 			// key name holder for attribute: name=retransmit_interval, type=INTEGER macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
 			"router_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = OSPF_CONFIG_INVALID_ROUTER_ID: Invalid Router Id, type = IP) ",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=transmit_delay, type=INTEGER macro=rss_schema
 			"transmit_delay": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Transmit Delay: Range(max = 65535L, error = OSPF_CONFIG_INVALID_TRANSMIT_DELAY: Invalid transmit delay.Value needs to be between 1 and 65535., min = 1L) ",
 			},
 			// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
 		},

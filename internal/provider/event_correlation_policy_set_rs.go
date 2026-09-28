@@ -64,13 +64,14 @@ func (r *eventCorrelationPolicySetResource) Metadata(_ context.Context, req reso
 // Schema defines the schema for this data source.
 func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Event Correlation Policy Set.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=EventCorrelationPolicySetScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -79,61 +80,69 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=active_policyset, type=BOOLEAN macro=rss_schema
 			"active_policyset": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Active Policyset",
 			},
 			// key name holder for attribute: name=active_policyset, type=BOOLEAN macro=rss_schema
 			// property: name=clone_from, type=STRING macro=rss_schema
 			"clone_from": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Clone From: Digits(fraction = 0, integer = 20, INVALID_CLONE_FROM) ",
 			},
 			// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -142,31 +151,35 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Policyrule Order: Size(max = 1024, error = EVENT_CORRELATION_SET_CONFIG_RULES_EXCEEDED: Maximum 1024 rules allowed to configure., min = 0) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=rss_schema
 			"severity_priority_mapping": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Severity Priority Mapping: Valid NotEmpty(error = EVENT_CORRELATION_SEVERITY_PRIORITY_MAPPING_REQUIRED: Event correlation severity priority mapping required.) Size(max = 2147483647, error = EVENT_CORRELATION_SEVERITY_PRIORITY_MAPPING_ALL_SEVERITY_REQUIRED: All severity values should be configured., min = 3) ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=priority, type=STRING macro=rss_schema
 						"priority": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Priority: ValidateEnum(enumClass = classOf[EventPriority], error = EVENT_CORRELATION_CONFIG_INVALID_PRIORITY: Invalid priority, valid values are p1,p2,p3,p4,p5, nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=priority, type=STRING macro=rss_schema
 						// property: name=severity, type=STRING macro=rss_schema
 						"severity": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Severity: ValidateEnum(enumClass = classOf[EventSeverity], error = EVENT_CORRELATION_CONFIG_INVALID_SEVERITY: Event correlation invalid severity., nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=severity, type=STRING macro=rss_schema
 					},
@@ -179,6 +192,7 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

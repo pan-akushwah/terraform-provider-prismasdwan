@@ -66,13 +66,14 @@ func (r *elementOspfConfigResource) Metadata(_ context.Context, req resource.Met
 // Schema defines the schema for this data source.
 func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Ospf Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=OspfConfigScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -81,53 +82,60 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			"advertise_fabric_default_route": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Advertise Fabric Default Route",
 			},
 			// key name holder for attribute: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			// property: name=areas, type=ARRAY_REFERENCE macro=rss_schema
 			"areas": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Areas: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=area_id, type=INTEGER macro=rss_schema
 						"area_id": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Area Id",
 						},
 						// key name holder for attribute: name=area_id, type=INTEGER macro=rss_schema
 						// property: name=area_type, type=STRING macro=rss_schema
 						"area_type": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Area Type",
 						},
 						// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
 					},
@@ -136,119 +144,134 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
 			// property: name=cost_for_default_route, type=INTEGER macro=rss_schema
 			"cost_for_default_route": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Cost For Default Route: Range(max = 16777214L, message = OSPF_CONFIG_INVALID_COST_FOR_DEFAULT_ROUTE, min = 0L) JsonDeserialize(as = classOf[Void], builder = classOf[Void], contentAs = classOf[Void], contentConverter = classOf[Converter$None], contentUsing = classOf[JsonDeserializer$None], converter = classOf[Converter$None], keyAs = classOf[Void], keyUsing = classOf[KeyDeserializer$None], using = classOf[OspfConfigDO$StrictIntegerDeserializer]) ",
 			},
 			// key name holder for attribute: name=cost_for_default_route, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
 			"interfaces": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Interfaces: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=area_id, type=INTEGER macro=rss_schema
 						"area_id": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Area Id",
 						},
 						// key name holder for attribute: name=area_id, type=INTEGER macro=rss_schema
 						// property: name=interface_id, type=STRING macro=rss_schema
 						"interface_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Interface Id",
 						},
 						// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 						// property: name=ospf_config_override, type=REFERENCE macro=rss_schema
 						"ospf_config_override": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ospf Config Override",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=cost, type=INTEGER macro=rss_schema
 								"cost": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Cost",
 								},
 								// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 								// property: name=dead_interval, type=INTEGER macro=rss_schema
 								"dead_interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Dead Interval",
 								},
 								// key name holder for attribute: name=dead_interval, type=INTEGER macro=rss_schema
 								// property: name=hello_interval, type=INTEGER macro=rss_schema
 								"hello_interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Hello Interval",
 								},
 								// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 								// property: name=md5_key_id, type=INTEGER macro=rss_schema
 								"md5_key_id": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Md5 Key Id",
 								},
 								// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
 								// property: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Md5 Secret",
 								},
 								// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret_internal_key_name": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    true,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Internal key name for the sensitive attribute md5_secret, managed automatically by the provider.",
 								},
 								// property: name=retransmit_interval, type=INTEGER macro=rss_schema
 								"retransmit_interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Retransmit Interval",
 								},
 								// key name holder for attribute: name=retransmit_interval, type=INTEGER macro=rss_schema
 								// property: name=transmit_delay, type=INTEGER macro=rss_schema
 								"transmit_delay": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Transmit Delay",
 								},
 								// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
 							},
@@ -260,66 +283,74 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=prefix_adv_route_map_id, type=STRING macro=rss_schema
 			"prefix_adv_route_map_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Route Map Id",
 			},
 			// key name holder for attribute: name=prefix_adv_route_map_id, type=STRING macro=rss_schema
 			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			"prefix_adv_type_to_lan": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type To Lan",
 			},
 			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			// property: name=redistribute_bgp, type=BOOLEAN macro=rss_schema
 			"redistribute_bgp": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Redistribute Bgp",
 			},
 			// key name holder for attribute: name=redistribute_bgp, type=BOOLEAN macro=rss_schema
 			// property: name=redistribute_route_map_id, type=STRING macro=rss_schema
 			"redistribute_route_map_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Redistribute Route Map Id",
 			},
 			// key name holder for attribute: name=redistribute_route_map_id, type=STRING macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
 			"router_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, message = OSPF_CONFIG_INVALID_ROUTER_ID, type = IP) ",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=scope, type=STRING macro=rss_schema
 			"scope": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Scope",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=shutdown, type=BOOLEAN macro=rss_schema
 			"shutdown": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Shutdown",
 			},
 			// key name holder for attribute: name=shutdown, type=BOOLEAN macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -328,15 +359,17 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) NotNull(message = OSPF_CONFIG_NO_VRF_CONTEXT) ",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},

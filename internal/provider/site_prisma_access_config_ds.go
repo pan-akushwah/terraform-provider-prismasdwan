@@ -67,13 +67,14 @@ func (d *sitePrismaAccessConfigDataSource) Metadata(_ context.Context, req datas
 // Schema defines the schema for this data source.
 func (d *sitePrismaAccessConfigDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Site Prisma Access Config items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -81,72 +82,82 @@ func (d *sitePrismaAccessConfigDataSource) Schema(_ context.Context, _ datasourc
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=PrismaAccessConfig
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=remote_networks, type=ARRAY_REFERENCE macro=rss_schema
 						"remote_networks": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Remote Networks: Valid Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=edge_location_display, type=STRING macro=rss_schema
 									"edge_location_display": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Edge Location Display: JsonIgnore(value = true) ",
 									},
 									// key name holder for attribute: name=edge_location_display, type=STRING macro=rss_schema
 									// property: name=edge_location_value, type=STRING macro=rss_schema
 									"edge_location_value": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Edge Location Value: JsonIgnore(value = true) ",
 									},
 									// key name holder for attribute: name=edge_location_value, type=STRING macro=rss_schema
 									// property: name=remote_network_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -155,6 +166,7 @@ func (d *sitePrismaAccessConfigDataSource) Schema(_ context.Context, _ datasourc
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Remote Network Names",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=remote_network_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -164,15 +176,17 @@ func (d *sitePrismaAccessConfigDataSource) Schema(_ context.Context, _ datasourc
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Service Link Ids: JsonIgnore(value = true) ",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=service_link_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=spn_name, type=STRING macro=rss_schema
 									"spn_name": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Spn Name",
 									},
 									// key name holder for attribute: name=spn_name, type=STRING macro=rss_schema
 								},
@@ -181,10 +195,11 @@ func (d *sitePrismaAccessConfigDataSource) Schema(_ context.Context, _ datasourc
 						// key name holder for attribute: name=spn_name, type=STRING macro=rss_schema
 						// property: name=site_id, type=STRING macro=rss_schema
 						"site_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
 						},
 						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 					},

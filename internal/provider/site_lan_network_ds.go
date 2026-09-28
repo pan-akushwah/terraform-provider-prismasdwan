@@ -74,13 +74,14 @@ func (d *siteLanNetworkDataSource) Metadata(_ context.Context, req datasource.Me
 // Schema defines the schema for this data source.
 func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Site Lan Network items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -88,64 +89,73 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=LANNetworkScreenV3N3
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=ipv4_config, type=REFERENCE macro=rss_schema
 						"ipv4_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ipv4 Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 								"default_routers": dsschema.ListAttribute{
@@ -153,61 +163,69 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Default Routers: ListIPAddress(bcast = DENY, listMaxSize = 0, error = LAN_CONFIG_INVALID_DEFAULT_ROUTERS: Invalid ip for default routers., required = false, type = IPCIDR_32) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=dhcp_relay, type=REFERENCE macro=rss_schema
 								"dhcp_relay": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Dhcp Relay",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=enabled, type=BOOLEAN macro=rss_schema
 										"enabled": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Enabled",
 										},
 										// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 										// property: name=option_82, type=REFERENCE macro=rss_schema
 										"option_82": dsschema.SingleNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Option_82: Valid ",
 											Attributes: map[string]dsschema.Attribute{
 												// property: name=circuit_id, type=STRING macro=rss_schema
 												"circuit_id": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "Circuit Id: Size(max = 255, error = DHCPRELAY_CIRCUIT_ID_EXCEEDS_LIMIT: Option 82 Circuid ID exceeds maximum length, min = 0) ",
 												},
 												// key name holder for attribute: name=circuit_id, type=STRING macro=rss_schema
 												// property: name=enabled, type=BOOLEAN macro=rss_schema
 												"enabled": dsschema.BoolAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "Enabled",
 												},
 												// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 												// property: name=reforwarding_policy, type=STRING macro=rss_schema
 												"reforwarding_policy": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "Reforwarding Policy: ValidateEnum(enumClass = classOf[DHCPRelayReforwardingPolicy], error = INVALID_DHCP_RELAY_REFWDING_POLICY: Option 82 invalid reforwarding policy, nullAllowed = false) ",
 												},
 												// key name holder for attribute: name=reforwarding_policy, type=STRING macro=rss_schema
 												// property: name=remote_id, type=STRING macro=rss_schema
 												"remote_id": dsschema.StringAttribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "Remote Id: Size(max = 255, error = DHCPRELAY_REMOTE_ID_EXCEEDS_LIMIT: Option 82 Remote ID exceeds maximum length, min = 0) ",
 												},
 												// key name holder for attribute: name=remote_id, type=STRING macro=rss_schema
 											},
@@ -219,15 +237,17 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Server Ips: ListIPAddress(bcast = DENY, listMaxSize = 0, error = INTERFACE_CONFIG_INVALID_DHCP_RELAY_LIST: DHCP Servers IP specified in the list are invalid, required = true, type = IP) Size(max = 16, error = INTERFACE_CONFIG_DHCP_RELAY_LIST_EXCEEDS_LIMIT: DHCP Servers specified in the list exceeds maximum limit, min = 0) ",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=server_ips, type=ARRAY_PRIMITIVE macro=rss_schema
 										// property: name=source_interface, type=STRING macro=rss_schema
 										"source_interface": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Source Interface",
 										},
 										// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 									},
@@ -235,57 +255,64 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 								// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 								// property: name=dhcp_server, type=REFERENCE macro=rss_schema
 								"dhcp_server": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Dhcp Server",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=_etag, type=INTEGER macro=rss_schema
 										"x_etag": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    true,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Etag for this object",
 										},
 										// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 										// property: name=_schema, type=INTEGER macro=rss_schema
 										"x_schema": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    true,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Schema version for this object",
 										},
 										// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 										// property: name=broadcast_address, type=STRING macro=rss_schema
 										"broadcast_address": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Broadcast Address",
 										},
 										// key name holder for attribute: name=broadcast_address, type=STRING macro=rss_schema
 										// property: name=custom_options, type=ARRAY_REFERENCE macro=rss_schema
 										"custom_options": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Custom Options: Valid ",
 											NestedObject: dsschema.NestedAttributeObject{
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=option_definition, type=STRING macro=rss_schema
 													"option_definition": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Option Definition: NotEmpty(groups = [classOf[Definition]], error = DHCPSERVER_CONFIG_CUSTOM_OPTIONS_DEF_UNSUPPORTED: Custom option definition is not supported) Size(groups = [classOf[Definition]], max = 1024, error = DHCPSERVER_CONFIG_OPTION_DEF_EXCEEDS_LIMIT: Custom option definition length exceeeds maximum limit, min = 0) ",
 													},
 													// key name holder for attribute: name=option_definition, type=STRING macro=rss_schema
 													// property: name=option_value, type=STRING macro=rss_schema
 													"option_value": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Option Value: NotEmpty(groups = [classOf[Value]], error = DHCPSERVER_CONFIG_CUSTOM_OPTIONS_VAL_UNSUPPORTED: Custom option value is not supported) Size(groups = [classOf[Value]], max = 8192, error = DHCPSERVER_CONFIG_OPTION_VAL_EXCEEDS_LIMIT: Custom option value length exceeds maximum limit, min = 0) ",
 													},
 													// key name holder for attribute: name=option_value, type=STRING macro=rss_schema
 												},
@@ -294,26 +321,29 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 										// key name holder for attribute: name=option_value, type=STRING macro=rss_schema
 										// property: name=default_lease_time, type=INTEGER macro=rss_schema
 										"default_lease_time": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Default Lease Time: Min(error = DHCPSERVER_CONFIG_UNSUPPORTED_DEFAULT_LEASE_TIME: Default lease time should be between 300 and 2^32-1 seconds respectively., value = 300L) Max(error = DHCPSERVER_CONFIG_UNSUPPORTED_DEFAULT_LEASE_TIME: Default lease time should be between 300 and 2^32-1 seconds respectively., value = 4294967295L) ",
 										},
 										// key name holder for attribute: name=default_lease_time, type=INTEGER macro=rss_schema
 										// property: name=description, type=STRING macro=rss_schema
 										"description": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Description: Size(max = 256, error = DHCPSERVER_CONFIG_DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds the maximum limit., min = 0) ",
 										},
 										// key name holder for attribute: name=description, type=STRING macro=rss_schema
 										// property: name=disabled, type=BOOLEAN macro=rss_schema
 										"disabled": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Disabled",
 										},
 										// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
 										// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -322,55 +352,62 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Dns Servers: Size(max = 3, error = DHCPSERVER_CONFIG_DNS_ENTRIES_EXCEEDS_LIMIT: Name servers count exceeds the maximum limit, min = 0) ",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
 										// property: name=domain_name, type=STRING macro=rss_schema
 										"domain_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Domain Name: Size(max = 256, error = DHCPSERVER_CONFIG_INVALID_DOMAIN_NAME: Domain name exceeds the maximum limit., min = 0) ",
 										},
 										// key name holder for attribute: name=domain_name, type=STRING macro=rss_schema
 										// property: name=gateway, type=STRING macro=rss_schema
 										"gateway": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Gateway",
 										},
 										// key name holder for attribute: name=gateway, type=STRING macro=rss_schema
 										// property: name=id, type=STRING macro=rss_schema
 										"id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    true,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Id",
 										},
 										// key name holder for attribute: name=id, type=STRING macro=rss_schema
 										// property: name=ip_ranges, type=ARRAY_REFERENCE macro=rss_schema
 										"ip_ranges": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Ip Ranges: NotNull(error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet.) Size(max = 2147483647, error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet., min = 1) Valid ",
 											NestedObject: dsschema.NestedAttributeObject{
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=end_ip, type=STRING macro=rss_schema
 													"end_ip": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "End Ip: NotNull(error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet.) ",
 													},
 													// key name holder for attribute: name=end_ip, type=STRING macro=rss_schema
 													// property: name=start_ip, type=STRING macro=rss_schema
 													"start_ip": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Start Ip: NotNull(error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet.) ",
 													},
 													// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
 												},
@@ -379,50 +416,56 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 										// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
 										// property: name=max_lease_time, type=INTEGER macro=rss_schema
 										"max_lease_time": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Max Lease Time: Min(error = DHCPSERVER_CONFIG_UNSUPPORTED_MAX_LEASE_TIME: Max lease time should be between 300 and 2^32-1 seconds respectively., value = 300L) Max(error = DHCPSERVER_CONFIG_UNSUPPORTED_MAX_LEASE_TIME: Max lease time should be between 300 and 2^32-1 seconds respectively., value = 4294967295L) ",
 										},
 										// key name holder for attribute: name=max_lease_time, type=INTEGER macro=rss_schema
 										// property: name=network_context_id, type=STRING macro=rss_schema
 										"network_context_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Network Context Id: Digits(fraction = 0, integer = 50, error = INVALID_NETWORK_CTX_ID: Invalid network ctrx id.) ",
 										},
 										// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 										// property: name=static_mappings, type=ARRAY_REFERENCE macro=rss_schema
 										"static_mappings": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Static Mappings: Valid ",
 											NestedObject: dsschema.NestedAttributeObject{
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=ip_address, type=STRING macro=rss_schema
 													"ip_address": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Ip Address: NotNull(error = DHCPSERVER_CONFIG_STATIC_MAPPING_MISSING: Provide all required attributes for static mappings.) ",
 													},
 													// key name holder for attribute: name=ip_address, type=STRING macro=rss_schema
 													// property: name=mac, type=STRING macro=rss_schema
 													"mac": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Mac: MACAddressFiveColons(error = DHCPSERVER_CONFIG_INVALID_STATIC_MAPPING_MAC_ADDR: Invalid mac address provided for static mapping) ",
 													},
 													// key name holder for attribute: name=mac, type=STRING macro=rss_schema
 													// property: name=name, type=STRING macro=rss_schema
 													"name": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Name: NotNull(error = DHCPSERVER_CONFIG_STATIC_MAPPING_MISSING: Provide all required attributes for static mappings.) Size(max = 256, error = DHCPSERVER_CONFIG_STATIC_MAPPING_NAME_EXCEEDS_LIMIT: Static Mapping name execeeds the maximum limit, min = 0) Pattern(error = DHCPSERVER_CONFIG_STATIC_MAPPING_UNSUPPORTED_NAME: Provide valid static mapping name, regexp = ^[a-zA-Z0-9]+(([a-zA-Z0-9\\\\-_])|(\\\\.?[a-zA-Z0-9\\\\-]))*\\\\.?$) ",
 													},
 													// key name holder for attribute: name=name, type=STRING macro=rss_schema
 												},
@@ -431,10 +474,11 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 										// key name holder for attribute: name=name, type=STRING macro=rss_schema
 										// property: name=subnet, type=STRING macro=rss_schema
 										"subnet": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Subnet: NotNull(error = DHCPSERVER_CONFIG_INVALID_SUBNET_ADDR: Invalid IPv4 subnet address.) ",
 										},
 										// key name holder for attribute: name=subnet, type=STRING macro=rss_schema
 										// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -443,6 +487,7 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = DHCPSERVER_CONFIG_INVALID_TAGS: Tags config is invalid- maximum 10 tags are supported, tag should not exceed maximum limit of 128 characters, it should not have duplicates., noTrim = false, regex = [^,\\\\s]+, required = false) ",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -455,6 +500,7 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Prefixes: ListIPAddress(bcast = DENY, listMaxSize = 0, error = LAN_CONFIG_INVALID_PREFIX: Invalid prefix ip., required = false, type = PREFIXCIDR_32) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -463,10 +509,11 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 						// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=ipv6_config, type=REFERENCE macro=rss_schema
 						"ipv6_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ipv6 Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 								"default_routers": dsschema.ListAttribute{
@@ -474,6 +521,7 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Default Routers: ListIPv6Address(bcast = DENY, listMaxSize = 0, message = LAN_CONFIG_V6_INVALID_DEFAULT_ROUTERS, required = false, type = IPCIDR_128) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -483,6 +531,7 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Prefixes: ListIPv6Address(bcast = DENY, listMaxSize = 0, message = LAN_CONFIG_INVALID_PREFIX_V6, required = false, type = GATEWAYCIDRV6) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -491,26 +540,29 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 						// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=network_context_id, type=STRING macro=rss_schema
 						"network_context_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Network Context Id: Digits(fraction = 0, integer = 30, error = INVALID_NETWORK_CONTEXT_ID: Specified network context is invalid.) ",
 						},
 						// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 						// property: name=scope, type=STRING macro=rss_schema
 						"scope": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Scope: ValidateEnum(enumClass = classOf[NetworkScope], message = Invalid enum string., nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -519,15 +571,17 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},

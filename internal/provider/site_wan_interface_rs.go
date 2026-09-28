@@ -66,13 +66,14 @@ func (r *siteWanInterfaceResource) Metadata(_ context.Context, req resource.Meta
 // Schema defines the schema for this data source.
 func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Wan Interface.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=WANInterfaceScreenV2N10
 			// generic x_parameters is added to accomodate path parameters
@@ -81,85 +82,96 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			"app_acceleration_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "App Acceleration Enabled",
 			},
 			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bfd_mode, type=STRING macro=rss_schema
 			"bfd_mode": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bfd Mode: ValidateEnum(enumClass = classOf[BfdMode], WAN_CONFIG_INVALID_BFD_MODE, nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=bfd_mode, type=STRING macro=rss_schema
 			// property: name=bw_config_mode, type=STRING macro=rss_schema
 			"bw_config_mode": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bw Config Mode: ValidateEnum(enumClass = classOf[BWConfigMode], message = INVALID_BANDWIDTH_CONFIG_MODE, nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=bw_config_mode, type=STRING macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			"bwc_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bwc Enabled",
 			},
 			// key name holder for attribute: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=cost, type=INTEGER macro=rss_schema
 			"cost": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Cost: Range(max = 1024L, error = WANINTERFACE_INVALID_COST_VALUE: Cost value for site WAN interface should be within range 0-1024, min = 0L) ",
 			},
 			// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, WANINTERFACE_CONFIG_DESCRIPTION_EXCEEDS_LIMIT, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=l3_reachability, type=REFERENCE macro=rss_schema
 			"l3_reachability": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "L3 Reachability: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"probe_config_ids": rsschema.ListAttribute{
@@ -167,15 +179,17 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Probe Config Ids",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 					"use_element_default": rsschema.BoolAttribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Use Element Default",
 					},
 					// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 				},
@@ -183,34 +197,38 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 			// property: name=label_id, type=STRING macro=rss_schema
 			"label_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Label Id: NotEmpty(message = WAN_INTERFACE_INVALID_LABEL) ",
 			},
 			// key name holder for attribute: name=label_id, type=STRING macro=rss_schema
 			// property: name=link_bw_down, type=NUMBER macro=rss_schema
 			"link_bw_down": rsschema.Float64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Link Bw Down: JsonIgnore(value = true) ",
 			},
 			// key name holder for attribute: name=link_bw_down, type=NUMBER macro=rss_schema
 			// property: name=link_bw_up, type=NUMBER macro=rss_schema
 			"link_bw_up": rsschema.Float64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Link Bw Up: JsonIgnore(value = true) ",
 			},
 			// key name holder for attribute: name=link_bw_up, type=NUMBER macro=rss_schema
 			// property: name=lqm_config, type=REFERENCE macro=rss_schema
 			"lqm_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Lqm Config",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"hub_site_ids": rsschema.ListAttribute{
@@ -218,23 +236,26 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Hub Site Ids: Size(max = 16, error = WANINTERFACE_LQM_CONFIG_INVALID_HUB_SITE_IDS_SIZE: Maximum 16 hub sites can be configured, min = 0) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = WANINTERFACE_LQM_CONFIG_DUPLICATE_HUB_SITE_IDS: Duplicate hub site ids are not allowed., noTrim = false, regex = , required = false) ",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=inter_packet_gap, type=INTEGER macro=rss_schema
 					"inter_packet_gap": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Inter Packet Gap: Range(max = 300L, error = WANINTERFACE_LQM_CONFIG_INVALID_INTER_PACKET_GAP: inter packet gap should be in the range of 50-300 milliseconds., min = 50L) ",
 					},
 					// key name holder for attribute: name=inter_packet_gap, type=INTEGER macro=rss_schema
 					// property: name=statistic, type=STRING macro=rss_schema
 					"statistic": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Statistic: ValidateEnum(enumClass = classOf[LQMStatistic], error = WANINTERFACE_LQM_CONFIG_INVALID_STATISTIC: Invalid statistic value. Valid values are min, max and avg., nullAllowed = true) ",
 					},
 					// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
 				},
@@ -242,34 +263,38 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 			// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
 			// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			"lqm_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Lqm Enabled",
 			},
 			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Size(max = 128, WANINTERFACE_CONFIG_NAME_EXCEEDS_LIMIT, min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_id, type=STRING macro=rss_schema
 			"network_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Network Id: NotEmpty(message = NETWORK_ID_REQD) ",
 			},
 			// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 			// property: name=probe_profile_id, type=STRING macro=rss_schema
 			"probe_profile_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Probe Profile Id",
 			},
 			// key name holder for attribute: name=probe_profile_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -278,62 +303,70 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Type",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 			// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			"use_for_application_reachability_probes": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use For Application Reachability Probes: Valid ",
 			},
 			// key name holder for attribute: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			// property: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			"use_for_controller_connections": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use For Controller Connections: Valid ",
 			},
 			// key name holder for attribute: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			// property: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			"use_lqm_for_non_hub_paths": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use Lqm For Non Hub Paths",
 			},
 			// key name holder for attribute: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 			"vpnlink_configuration": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vpnlink Configuration: Valid Valid Nullable ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Keep Alive Failure Count: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30.) Range(max = 30L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30., min = 3L) ",
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 					"keep_alive_interval": rsschema.Int64Attribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Keep Alive Interval: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms.) Range(max = 1740000L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms., min = 100L) ",
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
 				},

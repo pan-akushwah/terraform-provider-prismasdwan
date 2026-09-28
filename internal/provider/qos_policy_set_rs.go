@@ -69,13 +69,14 @@ func (r *qosPolicySetResource) Metadata(_ context.Context, req resource.Metadata
 // Schema defines the schema for this data source.
 func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Qos Policy Set.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=PriorityPolicySet
 			// generic x_parameters is added to accomodate path parameters
@@ -84,52 +85,59 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=bandwidth_allocation_schemes, type=ARRAY_REFERENCE macro=rss_schema
 			"bandwidth_allocation_schemes": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bandwidth Allocation Schemes: Required(error = BANDWIDTH_ALLOCATION_SCHEME_REQD: Please provide Bandwidth Allocation scheme for set.) Size(max = 4, error = BANDWIDTH_ALLOCATION_SCHEME_LIST_SIZE_EXCEEDED: Bandwidth Allocation scheme list exceeds the limit of 4., min = 0) Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=bandwidth_range, type=REFERENCE macro=rss_schema
 						"bandwidth_range": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Bandwidth Range",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=high, type=NUMBER macro=rss_schema
 								"high": rsschema.Float64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "High",
 								},
 								// key name holder for attribute: name=high, type=NUMBER macro=rss_schema
 								// property: name=low, type=NUMBER macro=rss_schema
 								"low": rsschema.Float64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Low",
 								},
 								// key name holder for attribute: name=low, type=NUMBER macro=rss_schema
 							},
@@ -137,57 +145,64 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 						// key name holder for attribute: name=low, type=NUMBER macro=rss_schema
 						// property: name=business_priorities, type=ARRAY_REFERENCE macro=rss_schema
 						"business_priorities": rsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Business Priorities",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=bandwidth_allocation, type=NUMBER macro=rss_schema
 									"bandwidth_allocation": rsschema.Float64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Bandwidth Allocation",
 									},
 									// key name holder for attribute: name=bandwidth_allocation, type=NUMBER macro=rss_schema
 									// property: name=bandwidth_split_per_type, type=REFERENCE macro=rss_schema
 									"bandwidth_split_per_type": rsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Bandwidth Split Per Type",
 										Attributes: map[string]rsschema.Attribute{
 											// property: name=bulk, type=NUMBER macro=rss_schema
 											"bulk": rsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Bulk",
 											},
 											// key name holder for attribute: name=bulk, type=NUMBER macro=rss_schema
 											// property: name=rt_audio, type=NUMBER macro=rss_schema
 											"rt_audio": rsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Rt Audio",
 											},
 											// key name holder for attribute: name=rt_audio, type=NUMBER macro=rss_schema
 											// property: name=rt_video, type=NUMBER macro=rss_schema
 											"rt_video": rsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Rt Video",
 											},
 											// key name holder for attribute: name=rt_video, type=NUMBER macro=rss_schema
 											// property: name=transactional, type=NUMBER macro=rss_schema
 											"transactional": rsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Transactional",
 											},
 											// key name holder for attribute: name=transactional, type=NUMBER macro=rss_schema
 										},
@@ -195,10 +210,11 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 									// key name holder for attribute: name=transactional, type=NUMBER macro=rss_schema
 									// property: name=priority_number, type=INTEGER macro=rss_schema
 									"priority_number": rsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Priority Number",
 									},
 									// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
 								},
@@ -211,34 +227,38 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 			// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
 			// property: name=business_priority_names, type=ARRAY_REFERENCE macro=rss_schema
 			"business_priority_names": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Business Priority Names: Required(error = BUSINESS_PRIORITY_NAMES_REQD: Business priority names required.) Size(max = 4, error = BUSINESS_PRIORITY_NAME_LIST_SIZE_EXCEEDED: Business priority name list exceeds the limit of 4., min = 0) Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=priority_name, type=STRING macro=rss_schema
 						"priority_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Priority Name",
 						},
 						// key name holder for attribute: name=priority_name, type=STRING macro=rss_schema
 						// property: name=priority_num, type=INTEGER macro=rss_schema
 						"priority_num": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Priority Num",
 						},
 						// key name holder for attribute: name=priority_num, type=INTEGER macro=rss_schema
 						// property: name=priority_number, type=INTEGER macro=rss_schema
 						"priority_number": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 						},
 						// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
 					},
@@ -247,18 +267,20 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 			// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
 			// property: name=clone_from, type=STRING macro=rss_schema
 			"clone_from": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Clone From: Digits(fraction = 0, integer = 20, INVALID_CLONE_FROM) ",
 			},
 			// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
 			// property: name=default_rule_dscp_mappings, type=ARRAY_REFERENCE macro=rss_schema
 			"default_rule_dscp_mappings": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Default Rule Dscp Mappings: Valid Size(max = 16, message = INVALID_DSCP_MAPPINGS, min = 0) ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -267,23 +289,26 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Dscp",
 							ElementType: types.Int64Type,
 						},
 						// key name holder for attribute: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=priority_number, type=INTEGER macro=rss_schema
 						"priority_number": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Priority Number",
 						},
 						// key name holder for attribute: name=priority_number, type=INTEGER macro=rss_schema
 						// property: name=transfer_type, type=STRING macro=rss_schema
 						"transfer_type": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Transfer Type",
 						},
 						// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
 					},
@@ -292,34 +317,38 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 			// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
 			// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 			"defaultrule_policyset": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Defaultrule Policyset",
 			},
 			// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -328,15 +357,17 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=template, type=BOOLEAN macro=rss_schema
 			"template": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Template",
 			},
 			// key name holder for attribute: name=template, type=BOOLEAN macro=rss_schema
 		},

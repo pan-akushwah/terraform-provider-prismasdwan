@@ -63,13 +63,14 @@ func (r *elementSecurityZoneResource) Metadata(_ context.Context, req resource.M
 // Schema defines the schema for this data source.
 func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Security Zone.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ElementSecurityZoneScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -78,29 +79,33 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -109,6 +114,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Interface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_INTERFACE_IDS: Specified interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -118,23 +124,26 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Lannetwork Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_LANNETWORK_IDS: Specified lan network ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=pa_network_id, type=STRING macro=rss_schema
 			"pa_network_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Pa Network Id",
 			},
 			// key name holder for attribute: name=pa_network_id, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
 			"site_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -143,6 +152,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Waninterface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANINTERFACE_IDS: Specified site wan interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -152,15 +162,17 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Wanoverlay Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANOVERLAY_IDS: Specified wanoverlay ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=wanoverlay_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=zone_id, type=STRING macro=rss_schema
 			"zone_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Zone Id: Required(error = ELEMENT_SECURITYZONE_ZONEID_REQUIRED: Security zone id is required for element level association.) Digits(fraction = 0, integer = 30, ELEMENT_SECURITYZONE_INVALID_ZONEID) ",
 			},
 			// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 		},

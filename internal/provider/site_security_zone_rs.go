@@ -65,13 +65,14 @@ func (r *siteSecurityZoneResource) Metadata(_ context.Context, req resource.Meta
 // Schema defines the schema for this data source.
 func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Security Zone.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=SecurityZoneNetworkAssociationV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -80,37 +81,42 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=element_interfaces, type=ARRAY_REFERENCE macro=rss_schema
 			"element_interfaces": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Element Interfaces: Valid Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=element_id, type=STRING macro=rss_schema
 						"element_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Element Id: NotNull(error = SITESECURITYZONE_ELEMENT_ID_REQUIRED: Element ID is required) ",
 						},
 						// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 						// property: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -119,6 +125,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Interfaces: NotEmpty(error = SITESECURITYZONE_INTERFACES_REQUIRED: Interfaces list cannot be empty) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -128,34 +135,38 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 			// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=networks, type=ARRAY_REFERENCE macro=rss_schema
 			"networks": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Networks: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=network_id, type=STRING macro=rss_schema
 						"network_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Network Id",
 						},
 						// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 						// property: name=network_type, type=STRING macro=rss_schema
 						"network_type": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Network Type",
 						},
 						// key name holder for attribute: name=network_type, type=STRING macro=rss_schema
 					},
@@ -164,10 +175,11 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 			// key name holder for attribute: name=network_type, type=STRING macro=rss_schema
 			// property: name=zone_id, type=STRING macro=rss_schema
 			"zone_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Zone Id: Required(error = SECURITYZONE_INVALID_ZONE: Invalid security zone or zone does not exist.) ",
 			},
 			// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 		},

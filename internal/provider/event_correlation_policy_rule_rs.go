@@ -66,13 +66,14 @@ func (r *eventCorrelationPolicyRuleResource) Metadata(_ context.Context, req res
 // Schema defines the schema for this data source.
 func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Event Correlation Policy Rule.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=EventCorrelationPolicyRuleScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -81,83 +82,94 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=dampening_duration, type=INTEGER macro=rss_schema
 			"dampening_duration": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Dampening Duration: Min(error = EVENT_CORRELATION_RULE_INVALID_DAMPENING_DURATION_MIN_VALUE: Dampening duration cannot be less than 5 minutes, value = 5L) Max(error = EVENT_CORRELATION_RULE_INVALID_DAMPENING_DURATION_MAX_VALUE: Dampening for duration cannot be more than 10080 minutes(a week), value = 10080L) ",
 			},
 			// key name holder for attribute: name=dampening_duration, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enabled",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=end_time, type=INTEGER macro=rss_schema
 			"end_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "End Time",
 			},
 			// key name holder for attribute: name=end_time, type=INTEGER macro=rss_schema
 			// property: name=escalation_rules, type=REFERENCE macro=rss_schema
 			"escalation_rules": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Escalation Rules: Valid Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=flap_rule, type=REFERENCE macro=rss_schema
 					"flap_rule": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Flap Rule: Valid ",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=flap_duration, type=INTEGER macro=rss_schema
 							"flap_duration": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Flap Duration: Min(error = EVENT_CORRELATION_RULE_INVALID_FLAP_DURATION_MIN_VALUE: Flap duration cannot be less than 5 minutes, value = 5L) Max(error = EVENT_CORRELATION_RULE_INVALID_FLAP_DURATION_MAX_VALUE: Flap duration cannot be more than 10080 minutes(a week), value = 10080L) ",
 							},
 							// key name holder for attribute: name=flap_duration, type=INTEGER macro=rss_schema
 							// property: name=flap_rate, type=INTEGER macro=rss_schema
 							"flap_rate": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Flap Rate: Min(error = FLAP_RULE_INVALID_FLAP_COUNT_MIN_VALUE: Flap count cannot be lower than 2., value = 2L) Max(error = FLAP_RULE_INVALID_FLAP_COUNT_MAX_VALUE: Flap count cannot be higher than 512., value = 512L) ",
 							},
 							// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
 						},
@@ -165,25 +177,28 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 					// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
 					// property: name=standing_rule, type=REFERENCE macro=rss_schema
 					"standing_rule": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Standing Rule: Valid ",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=priority, type=STRING macro=rss_schema
 							"priority": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Priority: ValidateEnum(enumClass = classOf[EventPriority], error = EVENT_CORRELATION_RULE_INVALID_STANDING_FOR_PRIORITY: Invalid standing for priority specified for rule., nullAllowed = false) ",
 							},
 							// key name holder for attribute: name=priority, type=STRING macro=rss_schema
 							// property: name=standing_for, type=INTEGER macro=rss_schema
 							"standing_for": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Standing For: Min(error = EVENT_CORRELATION_RULE_INVALID_STANDING_FOR_MIN_VALUE: Standing for duration cannot be less than 5 minutes, value = 5L) Max(error = EVENT_CORRELATION_RULE_INVALID_STANDING_FOR_MAX_VALUE: Standing for duration cannot be more than 10080 minutes(a week), value = 10080L) ",
 							},
 							// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
 						},
@@ -198,31 +213,35 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Event Codes: ListEnum(enumClass = classOf[EventCode], length = 0, listMaxSize = 0, message = Invalid enum string., nullAllowed = true) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=priority, type=STRING macro=rss_schema
 			"priority": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Priority: ValidateEnum(enumClass = classOf[EventPriority], error = EVENT_CORRELATION_RULE_CONFIG_INVALID_PRIORITY: Invalid value for policy rule priority is specified, nullAllowed = false) ValidateEnum(enumClass = classOf[EventPriority], error = EVENT_POLICY_INVALID_PRIORITY: Invalid priority is specified for event policy, nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=priority, type=STRING macro=rss_schema
 			// property: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -231,39 +250,44 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Resource Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, message = EVENT_CORRELATION_RULE_CONFIG_INVALID_RESOURCE_IDS, noTrim = false, regex = [0-9]{1,20}, required = false) Size(max = 2000, error = EVENT_POLICY_RULE_MAX_RESOURCE_IDS: Maximum 128 resources can be configured in a rule, min = 0) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = EVENT_POLICY_INVALID_RESOURCES: Invalid resource(s) is specified for event policy, noTrim = false, regex = [0-9]{1,30}, required = false) Size(max = 2000, error = EVENT_POLICY_RULE_MAX_RESOURCE_IDS: Maximum 128 resources can be configured in a rule, min = 0) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=resource_type, type=STRING macro=rss_schema
 			"resource_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Resource Type: ValidateEnum(enumClass = classOf[ResourceType], error = EVENT_CORRELATION_RULE_CONFIG_INVALID_RESOURCE_TYPE: Invalid resource type specified, nullAllowed = true) ValidateEnum(enumClass = classOf[ResourceType], error = EVENT_POLICY_INVALID_RESOURCE_TYPE: Invalid resource type is specified for event policy, nullAllowed = true) ",
 			},
 			// key name holder for attribute: name=resource_type, type=STRING macro=rss_schema
 			// property: name=start_time, type=INTEGER macro=rss_schema
 			"start_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Start Time",
 			},
 			// key name holder for attribute: name=start_time, type=INTEGER macro=rss_schema
 			// property: name=sub_resource_type, type=STRING macro=rss_schema
 			"sub_resource_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Sub Resource Type: ValidateEnum(enumClass = classOf[SubResourceType], error = EVENT_CORRELATION_RULE_CONFIG_INVALID_SUB_RESOURCE_TYPE: Invalid sub resource type, nullAllowed = true) ValidateEnum(enumClass = classOf[SubResourceType], error = EVENT_POLICY_INVALID_RESOURCE_SUB_TYPE: Invalid sub resource type is specified for event policy, nullAllowed = true) ",
 			},
 			// key name holder for attribute: name=sub_resource_type, type=STRING macro=rss_schema
 			// property: name=suppress, type=STRING macro=rss_schema
 			"suppress": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Suppress: ValidateEnum(enumClass = classOf[Suppress], error = EVENT_CORRELATION_RULE_CONFIG_INVALID_SUPPRESS_VALUE: Invalid suppress value, nullAllowed = false) ValidateEnum(enumClass = classOf[Suppress], error = EVENT_POLICY_INVALID_SUPPRESS: Invalid suppress value is specified for event policy, nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=suppress, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -272,6 +296,7 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

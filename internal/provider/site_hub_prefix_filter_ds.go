@@ -67,13 +67,14 @@ func (d *siteHubPrefixFilterDataSource) Metadata(_ context.Context, req datasour
 // Schema defines the schema for this data source.
 func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Site Hub Prefix Filter items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -81,48 +82,55 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=PrefixFilterAssociation
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=filters, type=ARRAY_REFERENCE macro=rss_schema
 						"filters": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Filters: Valid Required(PREFIXFILTER_REQUIRED) Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=elements, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -131,6 +139,7 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Elements",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=elements, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -140,6 +149,7 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Ip Prefixes: ListIPAddress(bcast = DENY, listMaxSize = 0, error = PREFIXFILTER_INVALID_PREFIX: IP prefix is not valid OR not within the valid prefix range., required = false, type = APP1_GATEWAYCIDR) ",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -149,23 +159,26 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Path",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=path, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=site, type=OBJECT macro=rss_schema
 									"site": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Site",
 									},
 									// key name holder for attribute: name=site, type=OBJECT macro=rss_schema
 									// property: name=type, type=STRING macro=rss_schema
 									"type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Type",
 									},
 									// key name holder for attribute: name=type, type=STRING macro=rss_schema
 									// property: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -174,6 +187,7 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Wn Path",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -183,18 +197,20 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 						// key name holder for attribute: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=prefix_filter_id, type=STRING macro=rss_schema
 						"prefix_filter_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Prefix Filter Id",
 						},
 						// key name holder for attribute: name=prefix_filter_id, type=STRING macro=rss_schema
 					},

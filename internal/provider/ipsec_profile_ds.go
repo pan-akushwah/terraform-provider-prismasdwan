@@ -75,13 +75,14 @@ func (d *ipsecProfileDataSource) Metadata(_ context.Context, req datasource.Meta
 // Schema defines the schema for this data source.
 func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Ipsec Profile items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -89,118 +90,134 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=IPSECProfileScreenV2N3
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=authentication, type=REFERENCE macro=rss_schema
 						"authentication": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Authentication: Required(error = IPSECCONFIG_AUTHENTICATION_REQUIRED: Authentication cannot be null.) Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=certificate, type=STRING macro=rss_schema
 								"certificate": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Certificate",
 								},
 								// key name holder for attribute: name=certificate, type=STRING macro=rss_schema
 								// property: name=certificate_profile_id, type=STRING macro=rss_schema
 								"certificate_profile_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Certificate Profile Id",
 								},
 								// key name holder for attribute: name=certificate_profile_id, type=STRING macro=rss_schema
 								// property: name=comment, type=STRING macro=rss_schema
 								"comment": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Comment",
 								},
 								// key name holder for attribute: name=comment, type=STRING macro=rss_schema
 								// property: name=ikev1_params, type=REFERENCE macro=rss_schema
 								"ikev1_params": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ikev1 Params: Valid ",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=xauth_id, type=STRING macro=rss_schema
 										"xauth_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Xauth Id",
 										},
 										// key name holder for attribute: name=xauth_id, type=STRING macro=rss_schema
 										// property: name=xauth_secret, type=STRING macro=rss_schema
 										"xauth_secret": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Xauth Secret: Length(max = 128, error = IPSECCONFIG_INVALID_XAUTH_SECRET_LEN: Invalid extended authentication secret length.Should be between 4-128., min = 4) ",
 										},
 										// key name holder for attribute: name=xauth_secret, type=STRING macro=rss_schema
 										// property: name=xauth_secret_encrypted, type=STRING macro=rss_schema
 										"xauth_secret_encrypted": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Xauth Secret Encrypted: JsonIgnore(value = true) ",
 										},
 										// key name holder for attribute: name=xauth_secret_encrypted, type=STRING macro=rss_schema
 										// property: name=xauth_secret_hash, type=STRING macro=rss_schema
 										"xauth_secret_hash": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Xauth Secret Hash: JsonIgnore(value = true) ",
 										},
 										// key name holder for attribute: name=xauth_secret_hash, type=STRING macro=rss_schema
 										// property: name=xauth_type, type=STRING macro=rss_schema
 										"xauth_type": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Xauth Type: ValidateEnum(enumClass = classOf[IKEXAuthType], error = IPSECCONFIG_INVALID_XAUTH_TYPE: Invalid extended authentication type specified.Valid type are secret or none., nullAllowed = false) ",
 										},
 										// key name holder for attribute: name=xauth_type, type=STRING macro=rss_schema
 									},
@@ -208,137 +225,154 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=xauth_type, type=STRING macro=rss_schema
 								// property: name=local_ca_certificate, type=STRING macro=rss_schema
 								"local_ca_certificate": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Local Ca Certificate",
 								},
 								// key name holder for attribute: name=local_ca_certificate, type=STRING macro=rss_schema
 								// property: name=local_id, type=STRING macro=rss_schema
 								"local_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Local Id: ValidateEnum(enumClass = classOf[IPSECLocalIdType], error = IPSECCONFIG_INVALID_LOCAL_ID_TYPE: Invalid local id type.Should be either hostname, dn, local_ip or custom, nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=local_id, type=STRING macro=rss_schema
 								// property: name=local_id_custom, type=STRING macro=rss_schema
 								"local_id_custom": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Local Id Custom: Length(max = 255, error = IPSECCONFIG_INVALID_LOCAL_ID_LEN: Invalid local id len.Should be between 2-255., min = 2) ",
 								},
 								// key name holder for attribute: name=local_id_custom, type=STRING macro=rss_schema
 								// property: name=local_pa_certificate_id, type=STRING macro=rss_schema
 								"local_pa_certificate_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Local Pa Certificate Id",
 								},
 								// key name holder for attribute: name=local_pa_certificate_id, type=STRING macro=rss_schema
 								// property: name=pa_master_key_id, type=STRING macro=rss_schema
 								"pa_master_key_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Pa Master Key Id",
 								},
 								// key name holder for attribute: name=pa_master_key_id, type=STRING macro=rss_schema
 								// property: name=passphrase, type=STRING macro=rss_schema
 								"passphrase": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Passphrase",
 								},
 								// key name holder for attribute: name=passphrase, type=STRING macro=rss_schema
 								// property: name=passphrase_encrypted, type=STRING macro=rss_schema
 								"passphrase_encrypted": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Passphrase Encrypted: JsonIgnore(value = true) ",
 								},
 								// key name holder for attribute: name=passphrase_encrypted, type=STRING macro=rss_schema
 								// property: name=peer_id_check, type=STRING macro=rss_schema
 								"peer_id_check": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Peer Id Check",
 								},
 								// key name holder for attribute: name=peer_id_check, type=STRING macro=rss_schema
 								// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
 								"permit_peer_id_mismatch": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Permit Peer Id Mismatch",
 								},
 								// key name holder for attribute: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
 								// property: name=ppk_config, type=REFERENCE macro=rss_schema
 								"ppk_config": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ppk Config: Valid JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=enabled, type=BOOLEAN macro=rss_schema
 										"enabled": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Enabled",
 										},
 										// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 										// property: name=mode, type=STRING macro=rss_schema
 										"mode": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Mode: ValidateEnum(enumClass = classOf[PPKMode], message = Invalid enum string., nullAllowed = true) ",
 										},
 										// key name holder for attribute: name=mode, type=STRING macro=rss_schema
 										// property: name=ppk_key_id, type=STRING macro=rss_schema
 										"ppk_key_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Ppk Key Id",
 										},
 										// key name holder for attribute: name=ppk_key_id, type=STRING macro=rss_schema
 										// property: name=ppk_secret, type=STRING macro=rss_schema
 										"ppk_secret": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Ppk Secret",
 										},
 										// key name holder for attribute: name=ppk_secret, type=STRING macro=rss_schema
 										// property: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
 										"ppk_secret_configured": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Ppk Secret Configured",
 										},
 										// key name holder for attribute: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
 										// property: name=ppk_secret_encrypted, type=STRING macro=rss_schema
 										"ppk_secret_encrypted": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Ppk Secret Encrypted: JsonIgnore(value = true) ",
 										},
 										// key name holder for attribute: name=ppk_secret_encrypted, type=STRING macro=rss_schema
 										// property: name=ppk_secret_hash, type=STRING macro=rss_schema
 										"ppk_secret_hash": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Ppk Secret Hash: JsonIgnore(value = true) ",
 										},
 										// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
 									},
@@ -346,74 +380,83 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
 								// property: name=private_key, type=STRING macro=rss_schema
 								"private_key": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Private Key",
 								},
 								// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
 								// property: name=private_key_encrypted, type=STRING macro=rss_schema
 								"private_key_encrypted": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Private Key Encrypted: JsonIgnore(value = true) ",
 								},
 								// key name holder for attribute: name=private_key_encrypted, type=STRING macro=rss_schema
 								// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 								"remote_ca_certificate": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Remote Ca Certificate",
 								},
 								// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
 								// property: name=remote_id, type=STRING macro=rss_schema
 								"remote_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Remote Id: Length(max = 255, error = IPSECCONFIG_INVALID_REMOTE_ID_LEN: Invalid remote id len.Should be between 2-255., min = 2) ",
 								},
 								// key name holder for attribute: name=remote_id, type=STRING macro=rss_schema
 								// property: name=secret, type=STRING macro=rss_schema
 								"secret": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Secret",
 								},
 								// key name holder for attribute: name=secret, type=STRING macro=rss_schema
 								// property: name=secret_encrypted, type=STRING macro=rss_schema
 								"secret_encrypted": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Secret Encrypted: JsonIgnore(value = true) ",
 								},
 								// key name holder for attribute: name=secret_encrypted, type=STRING macro=rss_schema
 								// property: name=secret_hash, type=STRING macro=rss_schema
 								"secret_hash": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Secret Hash: JsonIgnore(value = true) ",
 								},
 								// key name holder for attribute: name=secret_hash, type=STRING macro=rss_schema
 								// property: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 								"strict_validation_peer_extended_key_use": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Strict Validation Peer Extended Key Use",
 								},
 								// key name holder for attribute: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 								// property: name=type, type=STRING macro=rss_schema
 								"type": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Type: ValidateEnum(enumClass = classOf[IPSECAuthenticationType], error = IPSECCONFIG_INVALID_AUTHENTICATION_TYPE: Invalid authentication type specified.Valid type are x509, psk or none., nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=type, type=STRING macro=rss_schema
 							},
@@ -421,72 +464,81 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=dpd_delay, type=INTEGER macro=rss_schema
 						"dpd_delay": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dpd Delay: Range(max = 60L, error = IPSECCONFIG_INVALID_DPD_DELAY: Invalid dpd delay.Should be between 1-60 seconds., min = 1L) ",
 						},
 						// key name holder for attribute: name=dpd_delay, type=INTEGER macro=rss_schema
 						// property: name=dpd_enable, type=BOOLEAN macro=rss_schema
 						"dpd_enable": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dpd Enable",
 						},
 						// key name holder for attribute: name=dpd_enable, type=BOOLEAN macro=rss_schema
 						// property: name=dpd_timeout, type=INTEGER macro=rss_schema
 						"dpd_timeout": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dpd Timeout: Range(max = 300L, error = IPSECCONFIG_INVALID_DPD_TIMEOUT: Invalid dpd timeout specified.Should be between 2-300 seconds., min = 2L) ",
 						},
 						// key name holder for attribute: name=dpd_timeout, type=INTEGER macro=rss_schema
 						// property: name=esp_group, type=REFERENCE macro=rss_schema
 						"esp_group": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Esp Group: Required(error = IPSECCONFIG_ESPGROUP_REQUIRED: ESP Group cannot be null.) Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=force_encapsulation, type=BOOLEAN macro=rss_schema
 								"force_encapsulation": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Force Encapsulation",
 								},
 								// key name holder for attribute: name=force_encapsulation, type=BOOLEAN macro=rss_schema
 								// property: name=lifesize, type=REFERENCE macro=rss_schema
 								"lifesize": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Lifesize",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=units, type=STRING macro=rss_schema
 										"units": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Units",
 										},
 										// key name holder for attribute: name=units, type=STRING macro=rss_schema
 										// property: name=value, type=INTEGER macro=rss_schema
 										"value": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Value",
 										},
 										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 									},
@@ -494,41 +546,46 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 								// property: name=lifetime, type=INTEGER macro=rss_schema
 								"lifetime": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Lifetime: Range(max = 72L, error = IPSECCONFIG_INVALID_IKE_LIFETIME: Invalid ike lifetime.Should be between 1-72 hours., min = 1L) ",
 								},
 								// key name holder for attribute: name=lifetime, type=INTEGER macro=rss_schema
 								// property: name=lifetime_units, type=STRING macro=rss_schema
 								"lifetime_units": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Lifetime Units",
 								},
 								// key name holder for attribute: name=lifetime_units, type=STRING macro=rss_schema
 								// property: name=mode, type=STRING macro=rss_schema
 								"mode": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Mode: ValidateEnum(enumClass = classOf[ESPTunnelMode], error = IPSECCONFIG_INVALID_ESPTUNNEL_MODE: Invalid esp tunnel mode.Allowed value is tunnel., nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=mode, type=STRING macro=rss_schema
 								// property: name=pqc_kem_config, type=REFERENCE macro=rss_schema
 								"pqc_kem_config": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Pqc Kem Config: JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=enabled, type=BOOLEAN macro=rss_schema
 										"enabled": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Enabled",
 										},
 										// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 										// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -537,6 +594,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_1 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -546,6 +604,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_2 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -555,6 +614,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_3 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -564,6 +624,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_4 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -573,6 +634,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_5 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -582,6 +644,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_6 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -591,6 +654,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_7 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -599,42 +663,47 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=proposals, type=ARRAY_REFERENCE macro=rss_schema
 								"proposals": dsschema.ListNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Proposals: Valid ListObject(allowDuplicate = false, allowEmpty = false, allowNull = false, listMaxSize = 1, IPSECCONFIG_INVALID_PROPOSALS_LIST_LEN, required = false) ",
 									NestedObject: dsschema.NestedAttributeObject{
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=dh_groups, type=STRING macro=rss_schema
 											"dh_groups": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Dh Groups: ValidateEnum(enumClass = classOf[DHGroups], error = IPSECCONFIG_INVALID_DHGROUPS: Invalid DH Group specified., nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=dh_groups, type=STRING macro=rss_schema
 											// property: name=encryption, type=STRING macro=rss_schema
 											"encryption": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Encryption: ValidateEnum(enumClass = classOf[IPSECEncryption], error = IPSECCONFIG_INVALID_ENCRYPTION: Invalid encryption algorithm specified., nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=encryption, type=STRING macro=rss_schema
 											// property: name=hash, type=STRING macro=rss_schema
 											"hash": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Hash: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=hash, type=STRING macro=rss_schema
 											// property: name=prf, type=STRING macro=rss_schema
 											"prf": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Prf: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = true) ",
 											},
 											// key name holder for attribute: name=prf, type=STRING macro=rss_schema
 										},
@@ -643,10 +712,11 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=prf, type=STRING macro=rss_schema
 								// property: name=responder_sase_proposals, type=REFERENCE macro=rss_schema
 								"responder_sase_proposals": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Responder Sase Proposals",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=dh_group, type=ARRAY_PRIMITIVE macro=rss_schema
 										"dh_group": dsschema.ListAttribute{
@@ -654,6 +724,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Dh Group",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=dh_group, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -663,6 +734,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Encryption",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=encryption, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -672,6 +744,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Hash",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=hash, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -683,80 +756,90 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 						// key name holder for attribute: name=hash, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=ike_group, type=REFERENCE macro=rss_schema
 						"ike_group": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ike Group: Required(error = IPSECCONFIG_IKEGROUP_REQUIRED: IKE Group cannot be null.) Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=aggressive, type=BOOLEAN macro=rss_schema
 								"aggressive": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Aggressive",
 								},
 								// key name holder for attribute: name=aggressive, type=BOOLEAN macro=rss_schema
 								// property: name=authentication_multiple, type=INTEGER macro=rss_schema
 								"authentication_multiple": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Authentication Multiple",
 								},
 								// key name holder for attribute: name=authentication_multiple, type=INTEGER macro=rss_schema
 								// property: name=key_exchange, type=STRING macro=rss_schema
 								"key_exchange": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Key Exchange: ValidateEnum(enumClass = classOf[IKEKeyExchange], error = IPSECCONFIG_INVALID_IKEKEY_EXCHANGE: Invalid ike key algorith.Should be either ikev1 or ikev2., nullAllowed = false) ",
 								},
 								// key name holder for attribute: name=key_exchange, type=STRING macro=rss_schema
 								// property: name=lifetime, type=INTEGER macro=rss_schema
 								"lifetime": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Lifetime: Range(max = 72L, error = IPSECCONFIG_INVALID_IKE_LIFETIME: Invalid ike lifetime.Should be between 1-72 hours., min = 1L) ",
 								},
 								// key name holder for attribute: name=lifetime, type=INTEGER macro=rss_schema
 								// property: name=lifetime_units, type=STRING macro=rss_schema
 								"lifetime_units": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Lifetime Units",
 								},
 								// key name holder for attribute: name=lifetime_units, type=STRING macro=rss_schema
 								// property: name=port, type=INTEGER macro=rss_schema
 								"port": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Port: Range(max = 65535L, error = IPSECCONFIG_INVALID_IKE_PORT_RANGE: Invalid ike port range.Should be between 1-65535., min = 1L) ",
 								},
 								// key name holder for attribute: name=port, type=INTEGER macro=rss_schema
 								// property: name=pqc_kem_config, type=REFERENCE macro=rss_schema
 								"pqc_kem_config": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Pqc Kem Config: JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=enabled, type=BOOLEAN macro=rss_schema
 										"enabled": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Enabled",
 										},
 										// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 										// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -765,6 +848,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_1 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -774,6 +858,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_2 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -783,6 +868,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_3 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -792,6 +878,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_4 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -801,6 +888,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_5 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -810,6 +898,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_6 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -819,6 +908,7 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
+											Description: "Round_7 Algorithms",
 											ElementType: types.StringType,
 										},
 										// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -827,42 +917,47 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=proposals, type=ARRAY_REFERENCE macro=rss_schema
 								"proposals": dsschema.ListNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Proposals: Valid ListObject(allowDuplicate = false, allowEmpty = false, allowNull = false, listMaxSize = 1, IPSECCONFIG_INVALID_PROPOSALS_LIST_LEN, required = false) ",
 									NestedObject: dsschema.NestedAttributeObject{
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=dh_groups, type=STRING macro=rss_schema
 											"dh_groups": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Dh Groups: ValidateEnum(enumClass = classOf[DHGroups], error = IPSECCONFIG_INVALID_DHGROUPS: Invalid DH Group specified., nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=dh_groups, type=STRING macro=rss_schema
 											// property: name=encryption, type=STRING macro=rss_schema
 											"encryption": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Encryption: ValidateEnum(enumClass = classOf[IPSECEncryption], error = IPSECCONFIG_INVALID_ENCRYPTION: Invalid encryption algorithm specified., nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=encryption, type=STRING macro=rss_schema
 											// property: name=hash, type=STRING macro=rss_schema
 											"hash": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Hash: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = false) ",
 											},
 											// key name holder for attribute: name=hash, type=STRING macro=rss_schema
 											// property: name=prf, type=STRING macro=rss_schema
 											"prf": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Prf: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = true) ",
 											},
 											// key name holder for attribute: name=prf, type=STRING macro=rss_schema
 										},
@@ -871,10 +966,11 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 								// key name holder for attribute: name=prf, type=STRING macro=rss_schema
 								// property: name=reauth, type=BOOLEAN macro=rss_schema
 								"reauth": dsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Reauth",
 								},
 								// key name holder for attribute: name=reauth, type=BOOLEAN macro=rss_schema
 							},
@@ -882,10 +978,11 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 						// key name holder for attribute: name=reauth, type=BOOLEAN macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -894,15 +991,17 @@ func (d *ipsecProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=used_for, type=STRING macro=rss_schema
 						"used_for": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Used For: JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ",
 						},
 						// key name holder for attribute: name=used_for, type=STRING macro=rss_schema
 					},

@@ -71,13 +71,14 @@ func (r *elementDnsServiceResource) Metadata(_ context.Context, req resource.Met
 // Schema defines the schema for this data source.
 func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Dns Service.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=DnsService
 			// generic x_parameters is added to accomodate path parameters
@@ -86,36 +87,41 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=cache_config, type=REFERENCE macro=rss_schema
 			"cache_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Cache Config: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=cache_size, type=INTEGER macro=rss_schema
 					"cache_size": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Cache Size: Range(max = 9223372036854775807L, error = INVALID_CACHE_SIZE_RANGE: Invalid cache size, must be positive value, min = 0L) ",
 					},
 					// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
 				},
@@ -123,40 +129,45 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=dns_queries_metadata, type=REFERENCE macro=rss_schema
 			"dns_queries_metadata": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Dns Queries Metadata: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=add_customer_premises_equipment, type=REFERENCE macro=rss_schema
 					"add_customer_premises_equipment": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Add Customer Premises Equipment: Valid ",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=identifier_text, type=STRING macro=rss_schema
 							"identifier_text": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Identifier Text",
 							},
 							// key name holder for attribute: name=identifier_text, type=STRING macro=rss_schema
 							// property: name=type, type=STRING macro=rss_schema
 							"type": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Type: ValidateEnum(enumClass = classOf[CustomerPremisesEquipmentType], error = INVALID_CUSTOMER_PREMISES_EQUIPMENT_TYPE: Invalid customer premises equipment type. Allowed values text|element_id|element_name, nullAllowed = false) ",
 							},
 							// key name holder for attribute: name=type, type=STRING macro=rss_schema
 						},
@@ -164,42 +175,47 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 					// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					// property: name=add_subnets, type=ARRAY_REFERENCE macro=rss_schema
 					"add_subnets": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Add Subnets: Valid Size(max = 2, error = DNS_SUBNET_MAXIMUM_LIMITED_EXCEEDED: Maximum 2 subnets are allowed in dns service configuration, min = 0) ",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=ipv4_address, type=STRING macro=rss_schema
 								"ipv4_address": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ipv4 Address: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = DNSQUERYMETADATA_CONFIG_INVALID_IP_ADDRESS: Invalid subnet ipv4 address, type = IP) ",
 								},
 								// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
 								// property: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
 								"ipv4_prefix_length": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ipv4 Prefix Length: Required(message = DNSQUERYMETADATA_CONFIG_INVALID_IP_PREFIX_LENGTH_MISSING) Range(max = 32L, error = DNSQUERYMETADATA_CONFIG_INVALID_IP_PREFIX_LENGTH_RANGE: ipv4 prefix length is not in valid range '0-32', min = 0L) ",
 								},
 								// key name holder for attribute: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
 								// property: name=ipv6_address, type=STRING macro=rss_schema
 								"ipv6_address": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ipv6 Address: IPv6(error = DNSQUERYMETADATA_CONFIG_INVALID_IPV6_ADDRESS: Invalid subnet ipv6 address, regexp = [/0-9a-zA-Z:.]*) ",
 								},
 								// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
 								// property: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
 								"ipv6_prefix_length": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ipv6 Prefix Length: Required(message = DNSQUERYMETADATA_CONFIG_INVALID_IPV6_PREFIX_LENGTH_MISSING) Range(max = 128L, error = DNSQUERYMETADATA_CONFIG_INVALID_IPV6_PREFIX_LENGTH_RANGE: ipv6 prefix length is not in valid range '0-128', min = 0L) ",
 								},
 								// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
 							},
@@ -211,50 +227,56 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
 			// property: name=dnsservice_profile_id, type=STRING macro=rss_schema
 			"dnsservice_profile_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Dnsservice Profile Id",
 			},
 			// key name holder for attribute: name=dnsservice_profile_id, type=STRING macro=rss_schema
 			// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=rss_schema
 			"dnsservicerole_bindings": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Dnsservicerole Bindings: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=dnsservicerole_id, type=STRING macro=rss_schema
 						"dnsservicerole_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dnsservicerole Id",
 						},
 						// key name holder for attribute: name=dnsservicerole_id, type=STRING macro=rss_schema
 						// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
 						"interfaces": rsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Interfaces: Valid NotEmpty(message = DNSSERVICE_ROLE_BINDING_INTERFACES_MISSING) ",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=interface_id, type=STRING macro=rss_schema
 									"interface_id": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Interface Id",
 									},
 									// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 									// property: name=interface_ip, type=STRING macro=rss_schema
 									"interface_ip": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Interface Ip",
 									},
 									// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
 								},
@@ -267,10 +289,11 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
 			// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=rss_schema
 			"domains_to_addresses": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Domains To Addresses: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -279,23 +302,26 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Domain Names: UniqueHostNames(allowNull = true, max = 2147483647, error = DTA_DOMAIN_CONFIG_INVALID_HOST: Invalid domains to address domain names, min = 0) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=ipv4_address, type=STRING macro=rss_schema
 						"ipv4_address": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ipv4 Address: IPv4(error = DOMAINTOADDRESS_IPV4_CONFIG_INVALID_IP: Invalid Domains to address ipv4_address, regexp = [/0-9.]*) ",
 						},
 						// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
 						// property: name=ipv6_address, type=STRING macro=rss_schema
 						"ipv6_address": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ipv6 Address: IPv6(error = DOMAINTOADDRESS_IPV6_CONFIG_INVALID_IP: Invalid Domains to address ipv6_address, regexp = [/0-9a-zA-Z:.]*) ",
 						},
 						// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
 					},
@@ -304,10 +330,11 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
 			// property: name=domains_to_interfaces, type=ARRAY_REFERENCE macro=rss_schema
 			"domains_to_interfaces": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Domains To Interfaces: Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -316,15 +343,17 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Domain Names: NotEmpty(error = DTI_DOMAIN_NAME_MANDATORY: Domains to interfaces domain name missing) UniqueHostNames(allowNull = true, max = 2147483647, error = INVALID_DTI_DOMAIN_NAMES_LIST_CONFIG: Invalid domains to interfaces domain name list, min = 0) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=interface_id, type=STRING macro=rss_schema
 						"interface_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Interface Id: NotEmpty(error = DTI_INTERFACE_ID_MANDATORY: Domains to interfaces interface id missing) ",
 						},
 						// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 					},
@@ -333,42 +362,47 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 			// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 			// property: name=element_id, type=STRING macro=rss_schema
 			"element_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Element Id",
 			},
 			// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enabled",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
 			"max_concurrent_dns_queries": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Max Concurrent Dns Queries: Range(max = 9223372036854775807L, error = INVALID_MAX_CONCURRENT_DNS_QUERIES_RANGE: Max concurrent dns queries is not in valid range '1 - 65535', min = 1L) ",
 			},
 			// key name holder for attribute: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -377,6 +411,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

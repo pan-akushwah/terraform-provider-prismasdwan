@@ -66,13 +66,14 @@ func (r *elementRoutingRoutemapResource) Metadata(_ context.Context, req resourc
 // Schema defines the schema for this data source.
 func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Routing Routemap.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=RoutingRouteMapScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
@@ -81,124 +82,140 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=auto_generated, type=BOOLEAN macro=rss_schema
 			"auto_generated": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Auto Generated",
 			},
 			// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=route_map_entries, type=ARRAY_REFERENCE macro=rss_schema
 			"route_map_entries": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Route Map Entries: Valid Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=continue_entry, type=STRING macro=rss_schema
 						"continue_entry": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Continue Entry: Pattern(ROUTE_MAP_INVALID_CONTINUE_ORDER, regexp = ^(0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$) ",
 						},
 						// key name holder for attribute: name=continue_entry, type=STRING macro=rss_schema
 						// property: name=match, type=REFERENCE macro=rss_schema
 						"match": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Match: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=as_path_id, type=STRING macro=rss_schema
 								"as_path_id": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "As Path Id",
 								},
 								// key name holder for attribute: name=as_path_id, type=STRING macro=rss_schema
 								// property: name=community_list_id, type=STRING macro=rss_schema
 								"community_list_id": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Community List Id",
 								},
 								// key name holder for attribute: name=community_list_id, type=STRING macro=rss_schema
 								// property: name=ip_next_hop_id, type=STRING macro=rss_schema
 								"ip_next_hop_id": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ip Next Hop Id",
 								},
 								// key name holder for attribute: name=ip_next_hop_id, type=STRING macro=rss_schema
 								// property: name=ip_prefix_list_id, type=STRING macro=rss_schema
 								"ip_prefix_list_id": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ip Prefix List Id",
 								},
 								// key name holder for attribute: name=ip_prefix_list_id, type=STRING macro=rss_schema
 								// property: name=metric, type=INTEGER macro=rss_schema
 								"metric": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Metric",
 								},
 								// key name holder for attribute: name=metric, type=INTEGER macro=rss_schema
 								// property: name=tag, type=INTEGER macro=rss_schema
 								"tag": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Tag",
 								},
 								// key name holder for attribute: name=tag, type=INTEGER macro=rss_schema
 							},
@@ -206,105 +223,118 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 						// key name holder for attribute: name=tag, type=INTEGER macro=rss_schema
 						// property: name=order, type=INTEGER macro=rss_schema
 						"order": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Order: Range(max = 65535L, ROUTE_MAP_INVALID_ORDER, min = 1L) ",
 						},
 						// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
 						// property: name=permit, type=BOOLEAN macro=rss_schema
 						"permit": rsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Permit",
 						},
 						// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
 						// property: name=set, type=REFERENCE macro=rss_schema
 						"set": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Set: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=additive_community, type=BOOLEAN macro=rss_schema
 								"additive_community": rsschema.BoolAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Additive Community",
 								},
 								// key name holder for attribute: name=additive_community, type=BOOLEAN macro=rss_schema
 								// property: name=as_path_prepend, type=STRING macro=rss_schema
 								"as_path_prepend": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "As Path Prepend",
 								},
 								// key name holder for attribute: name=as_path_prepend, type=STRING macro=rss_schema
 								// property: name=community, type=STRING macro=rss_schema
 								"community": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Community",
 								},
 								// key name holder for attribute: name=community, type=STRING macro=rss_schema
 								// property: name=ip_next_hop, type=STRING macro=rss_schema
 								"ip_next_hop": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ip Next Hop",
 								},
 								// key name holder for attribute: name=ip_next_hop, type=STRING macro=rss_schema
 								// property: name=ip_v6_next_hop, type=STRING macro=rss_schema
 								"ip_v6_next_hop": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Ip V6 Next Hop",
 								},
 								// key name holder for attribute: name=ip_v6_next_hop, type=STRING macro=rss_schema
 								// property: name=local_preference, type=INTEGER macro=rss_schema
 								"local_preference": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Local Preference",
 								},
 								// key name holder for attribute: name=local_preference, type=INTEGER macro=rss_schema
 								// property: name=metric, type=INTEGER macro=rss_schema
 								"metric": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Metric",
 								},
 								// key name holder for attribute: name=metric, type=INTEGER macro=rss_schema
 								// property: name=tag, type=INTEGER macro=rss_schema
 								"tag": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Tag",
 								},
 								// key name holder for attribute: name=tag, type=INTEGER macro=rss_schema
 								// property: name=type, type=STRING macro=rss_schema
 								"type": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Type",
 								},
 								// key name holder for attribute: name=type, type=STRING macro=rss_schema
 								// property: name=weight, type=INTEGER macro=rss_schema
 								"weight": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Weight",
 								},
 								// key name holder for attribute: name=weight, type=INTEGER macro=rss_schema
 							},
@@ -320,15 +350,17 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Used For",
 			},
 			// key name holder for attribute: name=used_for, type=STRING macro=rss_schema
 		},

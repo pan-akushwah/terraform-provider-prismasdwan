@@ -64,13 +64,14 @@ func (r *elementRadiusResource) Metadata(_ context.Context, req resource.Metadat
 // Schema defines the schema for this data source.
 func (r *elementRadiusResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Radius.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ElementRadiusScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -79,45 +80,51 @@ func (r *elementRadiusResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=override_indicator, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -126,123 +133,139 @@ func (r *elementRadiusResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Override Indicator",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=override_indicator, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=radius_configuration, type=ARRAY_REFERENCE macro=rss_schema
 			"radius_configuration": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Radius Configuration: ListObject(allowDuplicate = false, allowEmpty = true, allowNull = true, listMaxSize = 2, message = RADIUS_CONFIG_INVALID_CONFIG_PARAMETERS, required = false) Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=accounting_port, type=INTEGER macro=rss_schema
 						"accounting_port": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Accounting Port: Range(max = 65535L, message = RADIUS_CONFIG_INVALID_ACCOUNTING_PORT, min = 0L) ",
 						},
 						// key name holder for attribute: name=accounting_port, type=INTEGER macro=rss_schema
 						// property: name=authentication_port, type=INTEGER macro=rss_schema
 						"authentication_port": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Authentication Port: Range(max = 65535L, message = RADIUS_CONFIG_INVALID_AUTH_PORT, min = 0L) ",
 						},
 						// key name holder for attribute: name=authentication_port, type=INTEGER macro=rss_schema
 						// property: name=ip_version, type=INTEGER macro=rss_schema
 						"ip_version": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Ip Version",
 						},
 						// key name holder for attribute: name=ip_version, type=INTEGER macro=rss_schema
 						// property: name=priority, type=INTEGER macro=rss_schema
 						"priority": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Priority: Range(max = 255L, message = RADIUS_CONFIG_INVALID_PRIORITY, min = 0L) ",
 						},
 						// key name holder for attribute: name=priority, type=INTEGER macro=rss_schema
 						// property: name=retain_shared_secret, type=BOOLEAN macro=rss_schema
 						"retain_shared_secret": rsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: true,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   true,
+							Description: "Retain Shared Secret",
 						},
 						// key name holder for attribute: name=retain_shared_secret, type=BOOLEAN macro=rss_schema
 						"retain_shared_secret_internal_key_name": rsschema.BoolAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Internal key name for the sensitive attribute retain_shared_secret, managed automatically by the provider.",
 						},
 						// property: name=server_ip_address, type=STRING macro=rss_schema
 						"server_ip_address": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Ip Address",
 						},
 						// key name holder for attribute: name=server_ip_address, type=STRING macro=rss_schema
 						// property: name=shared_secret, type=STRING macro=rss_schema
 						"shared_secret": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: true,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   true,
+							Description: "Shared Secret",
 						},
 						// key name holder for attribute: name=shared_secret, type=STRING macro=rss_schema
 						"shared_secret_internal_key_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Internal key name for the sensitive attribute shared_secret, managed automatically by the provider.",
 						},
 						// property: name=shared_secret_encrypted, type=STRING macro=rss_schema
 						"shared_secret_encrypted": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: true,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   true,
+							Description: "Shared Secret Encrypted: JsonIgnore(value = true) ",
 						},
 						// key name holder for attribute: name=shared_secret_encrypted, type=STRING macro=rss_schema
 						"shared_secret_encrypted_internal_key_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Internal key name for the sensitive attribute shared_secret_encrypted, managed automatically by the provider.",
 						},
 					},
 				},
 			},
 			// key name holder for attribute: name=shared_secret_encrypted, type=STRING macro=rss_schema
 			"shared_secret_encrypted_internal_key_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Internal key name for the sensitive attribute shared_secret_encrypted, managed automatically by the provider.",
 			},
 			// property: name=radius_profile_id, type=STRING macro=rss_schema
 			"radius_profile_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Radius Profile Id",
 			},
 			// key name holder for attribute: name=radius_profile_id, type=STRING macro=rss_schema
 			// property: name=source_interface_id, type=STRING macro=rss_schema
 			"source_interface_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Source Interface Id",
 			},
 			// key name holder for attribute: name=source_interface_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -251,6 +274,7 @@ func (r *elementRadiusResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

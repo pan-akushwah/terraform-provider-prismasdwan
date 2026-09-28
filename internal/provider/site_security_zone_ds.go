@@ -68,13 +68,14 @@ func (d *siteSecurityZoneDataSource) Metadata(_ context.Context, req datasource.
 // Schema defines the schema for this data source.
 func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Site Security Zone items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -82,56 +83,64 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=SecurityZoneNetworkAssociationV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=element_interfaces, type=ARRAY_REFERENCE macro=rss_schema
 						"element_interfaces": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Element Interfaces: Valid Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=element_id, type=STRING macro=rss_schema
 									"element_id": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Element Id: NotNull(error = SITESECURITYZONE_ELEMENT_ID_REQUIRED: Element ID is required) ",
 									},
 									// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 									// property: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -140,6 +149,7 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Interfaces: NotEmpty(error = SITESECURITYZONE_INTERFACES_REQUIRED: Interfaces list cannot be empty) ",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -149,34 +159,38 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 						// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=networks, type=ARRAY_REFERENCE macro=rss_schema
 						"networks": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Networks: Valid ",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=network_id, type=STRING macro=rss_schema
 									"network_id": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Network Id",
 									},
 									// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 									// property: name=network_type, type=STRING macro=rss_schema
 									"network_type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Network Type",
 									},
 									// key name holder for attribute: name=network_type, type=STRING macro=rss_schema
 								},
@@ -185,10 +199,11 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 						// key name holder for attribute: name=network_type, type=STRING macro=rss_schema
 						// property: name=zone_id, type=STRING macro=rss_schema
 						"zone_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Zone Id: Required(error = SECURITYZONE_INVALID_ZONE: Invalid security zone or zone does not exist.) ",
 						},
 						// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 					},

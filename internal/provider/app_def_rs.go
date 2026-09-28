@@ -68,13 +68,14 @@ func (r *appDefResource) Metadata(_ context.Context, req resource.MetadataReques
 // Schema defines the schema for this data source.
 func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN App Def.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=AppDefScreenV2N6
 			// generic x_parameters is added to accomodate path parameters
@@ -83,85 +84,96 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=abbreviation, type=STRING macro=rss_schema
 			"abbreviation": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Abbreviation: Size(max = 5, error = APPDEF_CONFIG_INVALID_ABBREVIATION: Abbreviation must not exceed 5 characters., min = 0) ",
 			},
 			// key name holder for attribute: name=abbreviation, type=STRING macro=rss_schema
 			// property: name=aggregate_flows, type=BOOLEAN macro=rss_schema
 			"aggregate_flows": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Aggregate Flows",
 			},
 			// key name holder for attribute: name=aggregate_flows, type=BOOLEAN macro=rss_schema
 			// property: name=app_type, type=STRING macro=rss_schema
 			"app_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "App Type",
 			},
 			// key name holder for attribute: name=app_type, type=STRING macro=rss_schema
 			// property: name=app_unreachability_detection, type=BOOLEAN macro=rss_schema
 			"app_unreachability_detection": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "App Unreachability Detection",
 			},
 			// key name holder for attribute: name=app_unreachability_detection, type=BOOLEAN macro=rss_schema
 			// property: name=category, type=STRING macro=rss_schema
 			"category": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Category: ValidateEnum(enumClass = classOf[AppCategory], error = APPDEF_CONFIG_INVALID_CATEGORY: Application category is invalid., nullAllowed = true) ",
 			},
 			// key name holder for attribute: name=category, type=STRING macro=rss_schema
 			// property: name=conn_idle_timeout, type=INTEGER macro=rss_schema
 			"conn_idle_timeout": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Conn Idle Timeout: DecimalMin(inclusive = true, error = APPDEF_CONFIG_INVALID_TIMEOUT: Application connection timeout should be in between 0-44000, value = 0) DecimalMax(inclusive = true, error = APPDEF_CONFIG_INVALID_TIMEOUT: Application connection timeout should be in between 0-44000, value = 44000) ",
 			},
 			// key name holder for attribute: name=conn_idle_timeout, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=display_name, type=STRING macro=rss_schema
 			"display_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Display Name: NotBlank(error = APPDEF_CONFIG_INVALID_DISPLAYNAME: Application display name is required and cannot be null.) Size(max = 64, error = APPDEF_CONFIG_INVALID_DISPLAYNAME: Application display name is required and cannot be null., min = 0) ",
 			},
 			// key name holder for attribute: name=display_name, type=STRING macro=rss_schema
 			// property: name=domains, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -170,31 +182,35 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Domains: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 256, listMaxSize = 16, error = APPDEF_CONFIG_INVALID_DOMAIN_LIST: Application domain list is invalid. Maximum 16 valid domains are allowed and each domain should not exceed 253 characters., noTrim = false, regex = (?=^.{4,253}$)((^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)))|(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\\\.)+)([a-zA-Z]{2,63}))([:])?([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])?$, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=domains, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ingress_traffic_pct, type=INTEGER macro=rss_schema
 			"ingress_traffic_pct": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ingress Traffic Pct: Required(message = required) DecimalMin(inclusive = true, error = APPDEF_CONFIG_INVALID_INGRESS: Application ingress traffic percentage should be in between 1-99, value = 1) DecimalMax(inclusive = true, error = APPDEF_CONFIG_INVALID_INGRESS: Application ingress traffic percentage should be in between 1-99, value = 99) ",
 			},
 			// key name holder for attribute: name=ingress_traffic_pct, type=INTEGER macro=rss_schema
 			// property: name=ip_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"ip_rules": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=dest_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -203,6 +219,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Dest Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -212,6 +229,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -221,22 +239,25 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Dest Prefixes: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, noTrim = false, regex = , required = false) ListIPAddress(bcast = DENY, listMaxSize = 0, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, required = false, type = APP_GATEWAYCIDR) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=dscp, type=REFERENCE macro=rss_schema
 						"dscp": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dscp: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=value, type=INTEGER macro=rss_schema
 								"value": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
 								},
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 							},
@@ -244,10 +265,11 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 						// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						// property: name=protocol, type=STRING macro=rss_schema
 						"protocol": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Protocol: ValidateEnum(enumClass = classOf[Protocol], error = APPDEF_CONFIG_INVALID_PROTOCOL: Application protocol is invalid., nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 						// property: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -256,6 +278,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Src Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -265,106 +288,119 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// key name holder for attribute: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=is_deprecated, type=BOOLEAN macro=rss_schema
 			"is_deprecated": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Is Deprecated",
 			},
 			// key name holder for attribute: name=is_deprecated, type=BOOLEAN macro=rss_schema
 			// property: name=network_scan_application, type=BOOLEAN macro=rss_schema
 			"network_scan_application": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Network Scan Application",
 			},
 			// key name holder for attribute: name=network_scan_application, type=BOOLEAN macro=rss_schema
 			// property: name=order_number, type=INTEGER macro=rss_schema
 			"order_number": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Order Number: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_ORDER_NUMBER: Order number should be between 1-65535, min = 1L) ",
 			},
 			// key name holder for attribute: name=order_number, type=INTEGER macro=rss_schema
 			// property: name=overrides_allowed, type=BOOLEAN macro=rss_schema
 			"overrides_allowed": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Overrides Allowed",
 			},
 			// key name holder for attribute: name=overrides_allowed, type=BOOLEAN macro=rss_schema
 			// property: name=p_category, type=STRING macro=rss_schema
 			"p_category": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "P Category: ValidateEnum(enumClass = classOf[PAppCategory], error = APPDEF_CONFIG_INVALID_CATEGORY: Application category is invalid., nullAllowed = true) ",
 			},
 			// key name holder for attribute: name=p_category, type=STRING macro=rss_schema
 			// property: name=p_parent_id, type=STRING macro=rss_schema
 			"p_parent_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "P Parent Id",
 			},
 			// key name holder for attribute: name=p_parent_id, type=STRING macro=rss_schema
 			// property: name=p_sub_category, type=STRING macro=rss_schema
 			"p_sub_category": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "P Sub Category: ValidateEnum(enumClass = classOf[PAppSubCategory], error = APPDEF_CONFIG_INVALID_CATEGORY: Application category is invalid., nullAllowed = true) ",
 			},
 			// key name holder for attribute: name=p_sub_category, type=STRING macro=rss_schema
 			// property: name=parent_id, type=STRING macro=rss_schema
 			"parent_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Parent Id",
 			},
 			// key name holder for attribute: name=parent_id, type=STRING macro=rss_schema
 			// property: name=path_affinity, type=STRING macro=rss_schema
 			"path_affinity": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Path Affinity: ValidateEnum(enumClass = classOf[PathAffinity], error = APPDEF_CONFIG_INVALID_PATHAFFINITY: Application path affinity is invalid. Only none, weak, strict is allowed., nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=path_affinity, type=STRING macro=rss_schema
 			// property: name=session_timeout, type=INTEGER macro=rss_schema
 			"session_timeout": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Session Timeout: Range(max = 44000L, error = APPDEF_CONFIG_INVALID_SESSION_TIMEOUT: Application session timeout should be in between 0-44000, min = 0L) ",
 			},
 			// key name holder for attribute: name=session_timeout, type=INTEGER macro=rss_schema
 			// property: name=supported_base_software_version, type=STRING macro=rss_schema
 			"supported_base_software_version": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Supported Base Software Version",
 			},
 			// key name holder for attribute: name=supported_base_software_version, type=STRING macro=rss_schema
 			// property: name=supported_engines, type=STRING macro=rss_schema
 			"supported_engines": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Supported Engines: ValidateEnum(enumClass = classOf[SupportedEngines], error = APPDEF_CONFIG_INVALID_CATEGORY: Application category is invalid., nullAllowed = true) ",
 			},
 			// key name holder for attribute: name=supported_engines, type=STRING macro=rss_schema
 			// property: name=system_app_overridden, type=BOOLEAN macro=rss_schema
 			"system_app_overridden": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "System App Overridden",
 			},
 			// key name holder for attribute: name=system_app_overridden, type=BOOLEAN macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -373,15 +409,17 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=tcp_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"tcp_rules": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=client_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -390,30 +428,34 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Client Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=client_filters, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=client_port, type=REFERENCE macro=rss_schema
 						"client_port": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Client Port: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=end, type=STRING macro=rss_schema
 								"end": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
 								},
 								// key name holder for attribute: name=end, type=STRING macro=rss_schema
 								// property: name=start, type=STRING macro=rss_schema
 								"start": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
 								},
 								// key name holder for attribute: name=start, type=STRING macro=rss_schema
 							},
@@ -421,17 +463,19 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 						// key name holder for attribute: name=start, type=STRING macro=rss_schema
 						// property: name=dscp, type=REFERENCE macro=rss_schema
 						"dscp": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dscp: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=value, type=INTEGER macro=rss_schema
 								"value": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
 								},
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 							},
@@ -443,6 +487,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Server Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=server_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -452,30 +497,34 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=server_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=server_port, type=REFERENCE macro=rss_schema
 						"server_port": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Port: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=end, type=STRING macro=rss_schema
 								"end": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
 								},
 								// key name holder for attribute: name=end, type=STRING macro=rss_schema
 								// property: name=start, type=STRING macro=rss_schema
 								"start": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
 								},
 								// key name holder for attribute: name=start, type=STRING macro=rss_schema
 							},
@@ -487,6 +536,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Server Prefixes: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, noTrim = false, regex = , required = false) ListIPAddress(bcast = DENY, listMaxSize = 0, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, required = false, type = APP_GATEWAYCIDR) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -496,18 +546,20 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// key name holder for attribute: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=transfer_type, type=STRING macro=rss_schema
 			"transfer_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Transfer Type",
 			},
 			// key name holder for attribute: name=transfer_type, type=STRING macro=rss_schema
 			// property: name=udp_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"udp_rules": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -516,6 +568,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -525,22 +578,25 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Dest Prefixes: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, noTrim = false, regex = , required = false) ListIPAddress(bcast = DENY, listMaxSize = 0, error = APPDEF_CONFIG_INVALID_PREFIX: Invalid prefix configured, required = false, type = APP_GATEWAYCIDR) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=dscp, type=REFERENCE macro=rss_schema
 						"dscp": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dscp: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=value, type=INTEGER macro=rss_schema
 								"value": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
 								},
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 							},
@@ -552,30 +608,34 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Udp Filters: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 8, error = APPDEF_CONFIG_INVALID_IP_LIST: IP List is not valid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=udp_filters, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=udp_port, type=REFERENCE macro=rss_schema
 						"udp_port": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Udp Port: Valid ",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=end, type=STRING macro=rss_schema
 								"end": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "End: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
 								},
 								// key name holder for attribute: name=end, type=STRING macro=rss_schema
 								// property: name=start, type=STRING macro=rss_schema
 								"start": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Start: Range(max = 65535L, error = APPDEF_CONFIG_INVALID_PORT_RANGE: Port number must be between 1 and 65535, min = 1L) ",
 								},
 								// key name holder for attribute: name=start, type=STRING macro=rss_schema
 							},
@@ -587,10 +647,11 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// key name holder for attribute: name=start, type=STRING macro=rss_schema
 			// property: name=use_parentapp_network_policy, type=BOOLEAN macro=rss_schema
 			"use_parentapp_network_policy": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use Parentapp Network Policy",
 			},
 			// key name holder for attribute: name=use_parentapp_network_policy, type=BOOLEAN macro=rss_schema
 		},

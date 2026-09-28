@@ -70,13 +70,14 @@ func (r *serviceEndpointResource) Metadata(_ context.Context, req resource.Metad
 // Schema defines the schema for this data source.
 func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Service Endpoint.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ServiceEndpointV3N1
 			// generic x_parameters is added to accomodate path parameters
@@ -85,76 +86,86 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=address, type=REFERENCE macro=rss_schema
 			"address": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Address: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=city, type=STRING macro=rss_schema
 					"city": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "City: Length(max = 100, , min = 0) ",
 					},
 					// key name holder for attribute: name=city, type=STRING macro=rss_schema
 					// property: name=country, type=STRING macro=rss_schema
 					"country": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Country: Length(max = 100, , min = 0) ",
 					},
 					// key name holder for attribute: name=country, type=STRING macro=rss_schema
 					// property: name=post_code, type=STRING macro=rss_schema
 					"post_code": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Post Code: Length(max = 100, , min = 0) ",
 					},
 					// key name holder for attribute: name=post_code, type=STRING macro=rss_schema
 					// property: name=state, type=STRING macro=rss_schema
 					"state": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "State: Length(max = 100, , min = 0) ",
 					},
 					// key name holder for attribute: name=state, type=STRING macro=rss_schema
 					// property: name=street, type=STRING macro=rss_schema
 					"street": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Street: Length(max = 100, , min = 0) ",
 					},
 					// key name holder for attribute: name=street, type=STRING macro=rss_schema
 					// property: name=street2, type=STRING macro=rss_schema
 					"street2": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Street2: Length(max = 100, , min = 0) ",
 					},
 					// key name holder for attribute: name=street2, type=STRING macro=rss_schema
 				},
@@ -162,73 +173,82 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 			// key name holder for attribute: name=street2, type=STRING macro=rss_schema
 			// property: name=admin_up, type=BOOLEAN macro=rss_schema
 			"admin_up": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Admin Up: Required(error = ADMIN_UP_REQD: Admin up required.) ",
 			},
 			// key name holder for attribute: name=admin_up, type=BOOLEAN macro=rss_schema
 			// property: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
 			"allow_enterprise_traffic": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Allow Enterprise Traffic",
 			},
 			// key name holder for attribute: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 256, error = DESCRIPTION_SIZE_EXCEEDED: Description size exceeded., min = 0) Valid ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
 			"disable_tunnel_reoptimization": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Disable Tunnel Reoptimization",
 			},
 			// key name holder for attribute: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=is_sase, type=BOOLEAN macro=rss_schema
 			"is_sase": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Is Sase",
 			},
 			// key name holder for attribute: name=is_sase, type=BOOLEAN macro=rss_schema
 			// property: name=liveliness_probe, type=REFERENCE macro=rss_schema
 			"liveliness_probe": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Liveliness Probe: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=http, type=ARRAY_REFERENCE macro=rss_schema
 					"http": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Http: Valid ",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=failure_count, type=INTEGER macro=rss_schema
 								"failure_count": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Failure Count: Required(error = INVALID_HTTP_FAILURE_COUNT_INTERVAL: Invalid http probe failure count.Should be between 3 to 300 seconds.) Range(max = 300L, error = INVALID_HTTP_FAILURE_COUNT_INTERVAL: Invalid http probe failure count.Should be between 3 to 300 seconds., min = 3L) ",
 								},
 								// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
 								// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -237,23 +257,26 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Http Status Codes: ListNumber(duplicate = false, max = 600, error = INVALID_HTTP_STATUS_CODE: Invalid http status code. Should be between 100 to 600 and should not be duplicate., min = 100) Size(max = 8, error = HTTP_STATUS_CODES_EXCEEDS_LIMIT: Maximum 8 status codes can be specified, min = 0) ",
 									ElementType: types.Int64Type,
 								},
 								// key name holder for attribute: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=interval, type=INTEGER macro=rss_schema
 								"interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Interval: Required(error = INVALID_HTTP_PROBE_INTERVAL: Invalid http probe interval. Should be between 10 to 3600 seconds.) Range(max = 3600L, error = INVALID_HTTP_PROBE_INTERVAL: Invalid http probe interval. Should be between 10 to 3600 seconds., min = 10L) ",
 								},
 								// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
 								// property: name=url, type=STRING macro=rss_schema
 								"url": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Url: Required(error = INVALID_HTTP_PROBE_URL: Http probe url required) Size(max = 1024, error = INVALID_HTTP_PROBLE_URL_LEN: Invalid http probe url length.Should be up to 1024., min = 0) ",
 								},
 								// key name holder for attribute: name=url, type=STRING macro=rss_schema
 							},
@@ -262,26 +285,29 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 					// key name holder for attribute: name=url, type=STRING macro=rss_schema
 					// property: name=icmp_ping, type=ARRAY_REFERENCE macro=rss_schema
 					"icmp_ping": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Icmp Ping: Valid ",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=failure_count, type=INTEGER macro=rss_schema
 								"failure_count": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Failure Count: Required(error = INVALID_ICMP_FAILURE_COUNT_INTERVAL: Invalid icmp probe failure count.Should be between 3 to 300 seconds.) Range(max = 300L, error = INVALID_ICMP_FAILURE_COUNT_INTERVAL: Invalid icmp probe failure count.Should be between 3 to 300 seconds., min = 3L) ",
 								},
 								// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
 								// property: name=interval, type=INTEGER macro=rss_schema
 								"interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Interval: Required(error = INVALID_ICMP_PROBE_INTERVAL: Invalid icmp probe interval.Should be between 1 to 30 seconds.) Range(max = 30L, error = INVALID_ICMP_PROBE_INTERVAL: Invalid icmp probe interval.Should be between 1 to 30 seconds., min = 1L) ",
 								},
 								// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
 								// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -290,6 +316,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Ip Addresses: Required(error = INVALID_ICMP_PROBE: Please provide icmp probe.) ListIPAddress(bcast = DENY, listMaxSize = 8, error = INVALID_ICMP_PROBE_ADDRESSES: Please provide valid icmp probe ipv4 addresses., required = false, type = IP) ",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -299,10 +326,11 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 					"use_tunnel_for_url_dns_resolution": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Use Tunnel For Url Dns Resolution",
 					},
 					// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 				},
@@ -310,33 +338,37 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 			// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 			// property: name=location, type=REFERENCE macro=rss_schema
 			"location": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Location: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=description, type=STRING macro=rss_schema
 					"description": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Description",
 					},
 					// key name holder for attribute: name=description, type=STRING macro=rss_schema
 					// property: name=latitude, type=NUMBER macro=rss_schema
 					"latitude": rsschema.Float64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Latitude: Range(max = 90L, INVALID_LATITUDE_VALUE, min = -90L) ",
 					},
 					// key name holder for attribute: name=latitude, type=NUMBER macro=rss_schema
 					// property: name=longitude, type=NUMBER macro=rss_schema
 					"longitude": rsschema.Float64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Longitude: Range(max = 180L, INVALID_LONGITUDE_VALUE, min = -180L) ",
 					},
 					// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
 				},
@@ -344,105 +376,118 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 			// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = SERVICEENDPOINT_NAME_REQD: service endpoint name required.) Size(max = 128, error = SERVICEENDPOINT_NAME_EXCEEDS_LIMIT: Service endpoint name exceeds limit., min = 0) Valid ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=sase_properties, type=REFERENCE macro=rss_schema
 			"sase_properties": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Sase Properties: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=active, type=BOOLEAN macro=rss_schema
 					"active": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Active",
 					},
 					// key name holder for attribute: name=active, type=BOOLEAN macro=rss_schema
 					// property: name=allocated_bandwidth_mbps, type=INTEGER macro=rss_schema
 					"allocated_bandwidth_mbps": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Allocated Bandwidth Mbps",
 					},
 					// key name holder for attribute: name=allocated_bandwidth_mbps, type=INTEGER macro=rss_schema
 					// property: name=allocated_sc_count, type=INTEGER macro=rss_schema
 					"allocated_sc_count": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Allocated Sc Count",
 					},
 					// key name holder for attribute: name=allocated_sc_count, type=INTEGER macro=rss_schema
 					// property: name=compute_region_id, type=STRING macro=rss_schema
 					"compute_region_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Compute Region Id",
 					},
 					// key name holder for attribute: name=compute_region_id, type=STRING macro=rss_schema
 					// property: name=compute_region_provider, type=STRING macro=rss_schema
 					"compute_region_provider": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Compute Region Provider",
 					},
 					// key name holder for attribute: name=compute_region_provider, type=STRING macro=rss_schema
 					// property: name=line_conditioning_enabled, type=BOOLEAN macro=rss_schema
 					"line_conditioning_enabled": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Line Conditioning Enabled",
 					},
 					// key name holder for attribute: name=line_conditioning_enabled, type=BOOLEAN macro=rss_schema
 					// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 					"lqm_enabled": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Lqm Enabled",
 					},
 					// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 					// property: name=pa_compute_region_oid, type=STRING macro=rss_schema
 					"pa_compute_region_oid": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Pa Compute Region Oid",
 					},
 					// key name holder for attribute: name=pa_compute_region_oid, type=STRING macro=rss_schema
 					// property: name=pa_we_br_site_id, type=STRING macro=rss_schema
 					"pa_we_br_site_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Pa We Br Site Id",
 					},
 					// key name holder for attribute: name=pa_we_br_site_id, type=STRING macro=rss_schema
 					// property: name=pa_we_dc_site_id, type=STRING macro=rss_schema
 					"pa_we_dc_site_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Pa We Dc Site Id",
 					},
 					// key name holder for attribute: name=pa_we_dc_site_id, type=STRING macro=rss_schema
 					// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 					"total_sc_bandwidth_mbps": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Total Sc Bandwidth Mbps",
 					},
 					// key name holder for attribute: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 				},
@@ -450,10 +495,11 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 			// key name holder for attribute: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 			// property: name=service_link_peers, type=REFERENCE macro=rss_schema
 			"service_link_peers": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Service Link Peers: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
 					"hostnames": rsschema.ListAttribute{
@@ -461,6 +507,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Hostnames: ListString(allowDuplicate = true, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 128, INVALID_SERVICELINK_PEERS_ADDRESSES, noTrim = false, regex = , required = false) ",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -470,6 +517,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Ip Addresses: ListIPAddress(bcast = DENY, listMaxSize = 128, INVALID_SERVICELINK_PEERS_ADDRESSES, required = false, type = IP) ",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -478,10 +526,11 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 			// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
 			"site_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Site Id",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -490,15 +539,17 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Type: ValidateEnum(enumClass = classOf[NetworkServiceType], message = Invalid enum string., nullAllowed = false) ",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 		},

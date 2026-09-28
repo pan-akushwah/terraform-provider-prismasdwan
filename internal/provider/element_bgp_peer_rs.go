@@ -66,13 +66,14 @@ func (r *elementBgpPeerResource) Metadata(_ context.Context, req resource.Metada
 // Schema defines the schema for this data source.
 func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Bgp Peer.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=BGPPeerConfigScreenV3
 			// generic x_parameters is added to accomodate path parameters
@@ -81,122 +82,138 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=advertise_default_route, type=BOOLEAN macro=rss_schema
 			"advertise_default_route": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Advertise Default Route",
 			},
 			// key name holder for attribute: name=advertise_default_route, type=BOOLEAN macro=rss_schema
 			// property: name=allow_v4_prefixes, type=BOOLEAN macro=rss_schema
 			"allow_v4_prefixes": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Allow V4 Prefixes: Required(message = ALLOW_IPV4_PREFIXES_REQUIRED) ",
 			},
 			// key name holder for attribute: name=allow_v4_prefixes, type=BOOLEAN macro=rss_schema
 			// property: name=allow_v6_prefixes, type=BOOLEAN macro=rss_schema
 			"allow_v6_prefixes": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Allow V6 Prefixes: Required(message = ALLOW_IPV6_PREFIXES_REQUIRED) ",
 			},
 			// key name holder for attribute: name=allow_v6_prefixes, type=BOOLEAN macro=rss_schema
 			// property: name=bgp_config, type=REFERENCE macro=rss_schema
 			"bgp_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bgp Config: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=adv_interval, type=INTEGER macro=rss_schema
 					"adv_interval": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Adv Interval",
 					},
 					// key name holder for attribute: name=adv_interval, type=INTEGER macro=rss_schema
 					// property: name=hold_time, type=INTEGER macro=rss_schema
 					"hold_time": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Hold Time",
 					},
 					// key name holder for attribute: name=hold_time, type=INTEGER macro=rss_schema
 					// property: name=keepalive_time, type=INTEGER macro=rss_schema
 					"keepalive_time": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Keepalive Time",
 					},
 					// key name holder for attribute: name=keepalive_time, type=INTEGER macro=rss_schema
 					// property: name=local_as_num, type=STRING macro=rss_schema
 					"local_as_num": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Local As Num",
 					},
 					// key name holder for attribute: name=local_as_num, type=STRING macro=rss_schema
 					// property: name=md5_secret, type=STRING macro=rss_schema
 					"md5_secret": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: true,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   true,
+						Description: "Md5 Secret",
 					},
 					// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 					"md5_secret_internal_key_name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    true,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Internal key name for the sensitive attribute md5_secret, managed automatically by the provider.",
 					},
 					// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
 					"multi_hop_limit": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Multi Hop Limit",
 					},
 					// key name holder for attribute: name=multi_hop_limit, type=INTEGER macro=rss_schema
 					// property: name=peer_auth_type, type=STRING macro=rss_schema
 					"peer_auth_type": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Peer Auth Type",
 					},
 					// key name holder for attribute: name=peer_auth_type, type=STRING macro=rss_schema
 					// property: name=peer_retry_time, type=INTEGER macro=rss_schema
 					"peer_retry_time": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Peer Retry Time",
 					},
 					// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
 				},
@@ -204,73 +221,82 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=peer_ip, type=STRING macro=rss_schema
 			"peer_ip": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Ip: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = PEER_CONFIG_INVALID_PEER_IP: Invalid IP address for routing peer. Please use a valid IPv4 address., type = IP) ",
 			},
 			// key name holder for attribute: name=peer_ip, type=STRING macro=rss_schema
 			// property: name=peer_ip_v6, type=STRING macro=rss_schema
 			"peer_ip_v6": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Ip V6: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_PEER_IPV6, type = IPV6) ",
 			},
 			// key name holder for attribute: name=peer_ip_v6, type=STRING macro=rss_schema
 			// property: name=peer_type, type=STRING macro=rss_schema
 			"peer_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Type",
 			},
 			// key name holder for attribute: name=peer_type, type=STRING macro=rss_schema
 			// property: name=remote_as_num, type=STRING macro=rss_schema
 			"remote_as_num": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Remote As Num: NotEmpty(REQUIRED_REMOTE_AS_NUM) ",
 			},
 			// key name holder for attribute: name=remote_as_num, type=STRING macro=rss_schema
 			// property: name=route_aggregation, type=REFERENCE macro=rss_schema
 			"route_aggregation": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Route Aggregation",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=rss_schema
 					"aggregate_prefixes": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Aggregate Prefixes",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -279,15 +305,17 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Ip Prefixes",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=type, type=STRING macro=rss_schema
 								"type": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Type",
 								},
 								// key name holder for attribute: name=type, type=STRING macro=rss_schema
 							},
@@ -296,26 +324,29 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 					// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					// property: name=aggregate_type, type=STRING macro=rss_schema
 					"aggregate_type": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Aggregate Type",
 					},
 					// key name holder for attribute: name=aggregate_type, type=STRING macro=rss_schema
 					// property: name=ipv4_prefix_list_id, type=STRING macro=rss_schema
 					"ipv4_prefix_list_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Ipv4 Prefix List Id",
 					},
 					// key name holder for attribute: name=ipv4_prefix_list_id, type=STRING macro=rss_schema
 					// property: name=ipv6_prefix_list_id, type=STRING macro=rss_schema
 					"ipv6_prefix_list_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Ipv6 Prefix List Id",
 					},
 					// key name holder for attribute: name=ipv6_prefix_list_id, type=STRING macro=rss_schema
 				},
@@ -323,42 +354,47 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// key name holder for attribute: name=ipv6_prefix_list_id, type=STRING macro=rss_schema
 			// property: name=route_map_in_id, type=STRING macro=rss_schema
 			"route_map_in_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Route Map In Id",
 			},
 			// key name holder for attribute: name=route_map_in_id, type=STRING macro=rss_schema
 			// property: name=route_map_out_id, type=STRING macro=rss_schema
 			"route_map_out_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Route Map Out Id",
 			},
 			// key name holder for attribute: name=route_map_out_id, type=STRING macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
 			"router_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=scope, type=STRING macro=rss_schema
 			"scope": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Scope",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=shutdown, type=BOOLEAN macro=rss_schema
 			"shutdown": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Shutdown",
 			},
 			// key name holder for attribute: name=shutdown, type=BOOLEAN macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -367,31 +403,35 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=update_source, type=STRING macro=rss_schema
 			"update_source": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Update Source: IPAddress(allowEmpty = false, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IP) ",
 			},
 			// key name holder for attribute: name=update_source, type=STRING macro=rss_schema
 			// property: name=update_source_v6, type=STRING macro=rss_schema
 			"update_source_v6": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Update Source V6: IPAddress(allowEmpty = false, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IPV6) ",
 			},
 			// key name holder for attribute: name=update_source_v6, type=STRING macro=rss_schema
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},

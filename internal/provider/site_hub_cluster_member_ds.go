@@ -68,13 +68,14 @@ func (d *siteHubClusterMemberDataSource) Metadata(_ context.Context, req datasou
 // Schema defines the schema for this data source.
 func (d *siteHubClusterMemberDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Site Hub Cluster Member items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -82,40 +83,46 @@ func (d *siteHubClusterMemberDataSource) Schema(_ context.Context, _ datasource.
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=HubClusterMemberScreen
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=headend1_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -124,6 +131,7 @@ func (d *siteHubClusterMemberDataSource) Schema(_ context.Context, _ datasource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Headend1 Site Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=headend1_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -133,86 +141,97 @@ func (d *siteHubClusterMemberDataSource) Schema(_ context.Context, _ datasource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Headend2 Site Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=headend2_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=hub_element_id, type=STRING macro=rss_schema
 						"hub_element_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Hub Element Id",
 						},
 						// key name holder for attribute: name=hub_element_id, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=load_factors, type=ARRAY_REFERENCE macro=rss_schema
 						"load_factors": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Load Factors",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=alarm_threshold, type=INTEGER macro=rss_schema
 									"alarm_threshold": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Alarm Threshold",
 									},
 									// key name holder for attribute: name=alarm_threshold, type=INTEGER macro=rss_schema
 									// property: name=allocated, type=INTEGER macro=rss_schema
 									"allocated": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Allocated",
 									},
 									// key name holder for attribute: name=allocated, type=INTEGER macro=rss_schema
 									// property: name=subscription_factor, type=NUMBER macro=rss_schema
 									"subscription_factor": dsschema.Float64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Subscription Factor",
 									},
 									// key name holder for attribute: name=subscription_factor, type=NUMBER macro=rss_schema
 									// property: name=threshold, type=REFERENCE macro=rss_schema
 									"threshold": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Threshold",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=critical_alarm, type=INTEGER macro=rss_schema
 											"critical_alarm": dsschema.Int64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Critical Alarm",
 											},
 											// key name holder for attribute: name=critical_alarm, type=INTEGER macro=rss_schema
 											// property: name=major_alarm, type=INTEGER macro=rss_schema
 											"major_alarm": dsschema.Int64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Major Alarm",
 											},
 											// key name holder for attribute: name=major_alarm, type=INTEGER macro=rss_schema
 											// property: name=subscription_factor, type=NUMBER macro=rss_schema
 											"subscription_factor": dsschema.Float64Attribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Subscription Factor",
 											},
 											// key name holder for attribute: name=subscription_factor, type=NUMBER macro=rss_schema
 										},
@@ -220,10 +239,11 @@ func (d *siteHubClusterMemberDataSource) Schema(_ context.Context, _ datasource.
 									// key name holder for attribute: name=subscription_factor, type=NUMBER macro=rss_schema
 									// property: name=type, type=STRING macro=rss_schema
 									"type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Type",
 									},
 									// key name holder for attribute: name=type, type=STRING macro=rss_schema
 								},

@@ -69,13 +69,14 @@ func (d *elementSnmpTrapDataSource) Metadata(_ context.Context, req datasource.M
 // Schema defines the schema for this data source.
 func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Element Snmp Trap items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -83,80 +84,91 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=SNMPTrap
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=server_ip, type=STRING macro=rss_schema
 						"server_ip": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Ip: NotNull(error = SNMPTRAP_CONFIG_SERVER_IP_MISSING: SNMP Server ip cannot be null) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, INVALID_IP_ADDRESS_001, type = IP) ",
 						},
 						// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 						// property: name=source_interface, type=STRING macro=rss_schema
 						"source_interface": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Source Interface",
 						},
 						// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -165,22 +177,25 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=v2_config, type=REFERENCE macro=rss_schema
 						"v2_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "V2 Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=community, type=STRING macro=rss_schema
 								"community": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Community",
 								},
 								// key name holder for attribute: name=community, type=STRING macro=rss_schema
 							},
@@ -188,72 +203,81 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 						// key name holder for attribute: name=community, type=STRING macro=rss_schema
 						// property: name=v3_config, type=REFERENCE macro=rss_schema
 						"v3_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "V3 Config: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=user_access, type=REFERENCE macro=rss_schema
 								"user_access": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "User Access",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=auth_phrase, type=STRING macro=rss_schema
 										"auth_phrase": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Auth Phrase",
 										},
 										// key name holder for attribute: name=auth_phrase, type=STRING macro=rss_schema
 										// property: name=auth_type, type=STRING macro=rss_schema
 										"auth_type": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Auth Type",
 										},
 										// key name holder for attribute: name=auth_type, type=STRING macro=rss_schema
 										// property: name=enc_phrase, type=STRING macro=rss_schema
 										"enc_phrase": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: true,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   true,
+											Description: "Enc Phrase",
 										},
 										// key name holder for attribute: name=enc_phrase, type=STRING macro=rss_schema
 										// property: name=enc_type, type=STRING macro=rss_schema
 										"enc_type": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Enc Type",
 										},
 										// key name holder for attribute: name=enc_type, type=STRING macro=rss_schema
 										// property: name=engine_id, type=STRING macro=rss_schema
 										"engine_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Engine Id",
 										},
 										// key name holder for attribute: name=engine_id, type=STRING macro=rss_schema
 										// property: name=security_level, type=STRING macro=rss_schema
 										"security_level": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Security Level",
 										},
 										// key name holder for attribute: name=security_level, type=STRING macro=rss_schema
 										// property: name=user_name, type=STRING macro=rss_schema
 										"user_name": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "User Name",
 										},
 										// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 									},
@@ -264,10 +288,11 @@ func (d *elementSnmpTrapDataSource) Schema(_ context.Context, _ datasource.Schem
 						// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 						// property: name=version, type=STRING macro=rss_schema
 						"version": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Version: ValidateEnum(enumClass = classOf[SNMPVersion], error = SNMPTRAP_CONFIG_INVALID_VERSION: Unsupported snmp version specified, nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=version, type=STRING macro=rss_schema
 					},

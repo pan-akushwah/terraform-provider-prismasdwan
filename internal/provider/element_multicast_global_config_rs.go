@@ -65,13 +65,14 @@ func (r *elementMulticastGlobalConfigResource) Metadata(_ context.Context, req r
 // Schema defines the schema for this data source.
 func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Multicast Global Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=MulticastGlobalConfigScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -80,84 +81,95 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=bsm_enabled, type=BOOLEAN macro=rss_schema
 			"bsm_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bsm Enabled",
 			},
 			// key name holder for attribute: name=bsm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=dr_priority, type=INTEGER macro=rss_schema
 			"dr_priority": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Dr Priority: Range(max = 4294967295L, message = MULTICAST_INVALID_DR_PRIORITY, min = 1L) ",
 			},
 			// key name holder for attribute: name=dr_priority, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=igmp_protocol_parameters, type=REFERENCE macro=rss_schema
 			"igmp_protocol_parameters": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Igmp Protocol Parameters: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=last_member_query_count, type=INTEGER macro=rss_schema
 					"last_member_query_count": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Last Member Query Count",
 					},
 					// key name holder for attribute: name=last_member_query_count, type=INTEGER macro=rss_schema
 					// property: name=last_member_query_interval, type=INTEGER macro=rss_schema
 					"last_member_query_interval": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Last Member Query Interval",
 					},
 					// key name holder for attribute: name=last_member_query_interval, type=INTEGER macro=rss_schema
 					// property: name=query_interval, type=INTEGER macro=rss_schema
 					"query_interval": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Query Interval",
 					},
 					// key name holder for attribute: name=query_interval, type=INTEGER macro=rss_schema
 					// property: name=query_max_response_time, type=INTEGER macro=rss_schema
 					"query_max_response_time": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Query Max Response Time",
 					},
 					// key name holder for attribute: name=query_max_response_time, type=INTEGER macro=rss_schema
 				},
@@ -165,33 +177,37 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 			// key name holder for attribute: name=query_max_response_time, type=INTEGER macro=rss_schema
 			// property: name=pim_protocol_parameters, type=REFERENCE macro=rss_schema
 			"pim_protocol_parameters": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Pim Protocol Parameters: Valid ",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hello_hold_time, type=INTEGER macro=rss_schema
 					"hello_hold_time": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Hello Hold Time",
 					},
 					// key name holder for attribute: name=hello_hold_time, type=INTEGER macro=rss_schema
 					// property: name=hello_interval, type=INTEGER macro=rss_schema
 					"hello_interval": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Hello Interval",
 					},
 					// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 					// property: name=join_prune_interval, type=INTEGER macro=rss_schema
 					"join_prune_interval": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Join Prune Interval",
 					},
 					// key name holder for attribute: name=join_prune_interval, type=INTEGER macro=rss_schema
 				},
@@ -199,10 +215,11 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 			// key name holder for attribute: name=join_prune_interval, type=INTEGER macro=rss_schema
 			// property: name=spt_switchover_enabled, type=BOOLEAN macro=rss_schema
 			"spt_switchover_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Spt Switchover Enabled",
 			},
 			// key name holder for attribute: name=spt_switchover_enabled, type=BOOLEAN macro=rss_schema
 		},

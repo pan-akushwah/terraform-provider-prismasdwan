@@ -63,13 +63,14 @@ func (r *elementToolkitResource) Metadata(_ context.Context, req resource.Metada
 // Schema defines the schema for this data source.
 func (r *elementToolkitResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Toolkit.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ElementAccessConfigScreenV2N2
 			// generic x_parameters is added to accomodate path parameters
@@ -78,77 +79,87 @@ func (r *elementToolkitResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=account_disable_interval, type=INTEGER macro=rss_schema
 			"account_disable_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Account Disable Interval: Range(max = 60L, error = ELEMENT_ACCESS_CONFIG_INVALID_ACCOUNT_DISABLE_INTERVAL: Invalid account disable interval value, it should be in range 5-60., min = 5L) ",
 			},
 			// key name holder for attribute: name=account_disable_interval, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=inactive_interval, type=INTEGER macro=rss_schema
 			"inactive_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Inactive Interval: Range(max = 60L, error = ELEMENT_ACCESS_CONFIG_INVALID_INACTIVE_INTERVAL: Invalid inactive interval value, it should be in range 15-60., min = 15L) ",
 			},
 			// key name holder for attribute: name=inactive_interval, type=INTEGER macro=rss_schema
 			// property: name=otpkey_version, type=INTEGER macro=rss_schema
 			"otpkey_version": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Otpkey Version",
 			},
 			// key name holder for attribute: name=otpkey_version, type=INTEGER macro=rss_schema
 			// property: name=retry_login_count, type=INTEGER macro=rss_schema
 			"retry_login_count": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Retry Login Count: Range(max = 20L, error = ELEMENT_ACCESS_CONFIG_INVALID_RETRY_LOGIN_COUNT: Invalid retry login count value, it should be in range 5-20., min = 5L) ",
 			},
 			// key name holder for attribute: name=retry_login_count, type=INTEGER macro=rss_schema
 			// property: name=ssh_enabled, type=BOOLEAN macro=rss_schema
 			"ssh_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ssh Enabled",
 			},
 			// key name holder for attribute: name=ssh_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=ssh_outbound_enabled, type=BOOLEAN macro=rss_schema
 			"ssh_outbound_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ssh Outbound Enabled",
 			},
 			// key name holder for attribute: name=ssh_outbound_enabled, type=BOOLEAN macro=rss_schema
 		},

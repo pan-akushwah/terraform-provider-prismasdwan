@@ -73,13 +73,14 @@ func (d *performanceProfileDataSource) Metadata(_ context.Context, req datasourc
 // Schema defines the schema for this data source.
 func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Performance Profile items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -87,55 +88,63 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=PerfMgmtThresholdProfileScreenV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=circuit_utilization_metrics_thresholds, type=REFERENCE macro=rss_schema
 						"circuit_utilization_metrics_thresholds": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Circuit Utilization Metrics Thresholds: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
 								"percentage_circuit_utilization": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Percentage Circuit Utilization",
 								},
 								// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
 							},
@@ -143,25 +152,28 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 						// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=flow_metrics_thresholds, type=REFERENCE macro=rss_schema
 						"flow_metrics_thresholds": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Flow Metrics Thresholds: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
 								"percentage_flow_utilization": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Percentage Flow Utilization: Range(max = 100L, message = PERFMGMT_FLOW_METRICS_THRESHOLD_RANGE_INVALID, min = 1L) ",
 								},
 								// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
 							},
@@ -169,33 +181,37 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 						// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
 						// property: name=hard_limit_app_metrics, type=REFERENCE macro=rss_schema
 						"hard_limit_app_metrics": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Hard Limit App Metrics: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 								"max_init_failure_rate": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Init Failure Rate: Range(max = 100L, message = PERFMGMT_MAX_INIT_FAILURE_RATE_THRESHOLD_RANGE_INVALID, min = 0L) ",
 								},
 								// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 								// property: name=max_rtt, type=INTEGER macro=rss_schema
 								"max_rtt": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Rtt: Range(max = 500L, message = PERFMGMT_MAX_RTT_THRESHOLD_RANGE_INVALID, min = 0L) ",
 								},
 								// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
 								// property: name=udp_trt, type=INTEGER macro=rss_schema
 								"udp_trt": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Udp Trt",
 								},
 								// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
 							},
@@ -203,49 +219,55 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 						// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=lqm_thresholds, type=REFERENCE macro=rss_schema
 						"lqm_thresholds": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Lqm Thresholds: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=max_jitter, type=INTEGER macro=rss_schema
 								"max_jitter": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Jitter",
 								},
 								// key name holder for attribute: name=max_jitter, type=INTEGER macro=rss_schema
 								// property: name=max_latency, type=INTEGER macro=rss_schema
 								"max_latency": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Latency",
 								},
 								// key name holder for attribute: name=max_latency, type=INTEGER macro=rss_schema
 								// property: name=max_packet_loss, type=INTEGER macro=rss_schema
 								"max_packet_loss": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Packet Loss",
 								},
 								// key name holder for attribute: name=max_packet_loss, type=INTEGER macro=rss_schema
 								// property: name=min_mos, type=INTEGER macro=rss_schema
 								"min_mos": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Min Mos",
 								},
 								// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
 							},
@@ -253,41 +275,46 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 						// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=soft_limit_app_metrics, type=REFERENCE macro=rss_schema
 						"soft_limit_app_metrics": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Soft Limit App Metrics: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 								"max_init_failure_rate": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Init Failure Rate: Range(max = 100L, message = PERFMGMT_MAX_INIT_FAILURE_RATE_THRESHOLD_RANGE_INVALID, min = 0L) ",
 								},
 								// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 								// property: name=max_rtt, type=INTEGER macro=rss_schema
 								"max_rtt": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Max Rtt: Range(max = 500L, message = PERFMGMT_MAX_RTT_THRESHOLD_RANGE_INVALID, min = 0L) ",
 								},
 								// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
 								// property: name=udp_trt, type=INTEGER macro=rss_schema
 								"udp_trt": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Udp Trt",
 								},
 								// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
 							},
@@ -295,32 +322,36 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 						// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
 						// property: name=synthetic_probe_thresholds, type=REFERENCE macro=rss_schema
 						"synthetic_probe_thresholds": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Synthetic Probe Thresholds: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=dns_txn_failure_pct, type=REFERENCE macro=rss_schema
 								"dns_txn_failure_pct": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Dns Txn Failure Pct",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=probe_config_id, type=STRING macro=rss_schema
 										"probe_config_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Probe Config Id",
 										},
 										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 										// property: name=value, type=INTEGER macro=rss_schema
 										"value": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Value",
 										},
 										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 									},
@@ -328,25 +359,28 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 								// property: name=init_failure_pct, type=REFERENCE macro=rss_schema
 								"init_failure_pct": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Init Failure Pct",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=probe_config_id, type=STRING macro=rss_schema
 										"probe_config_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Probe Config Id",
 										},
 										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 										// property: name=value, type=INTEGER macro=rss_schema
 										"value": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Value",
 										},
 										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 									},
@@ -354,25 +388,28 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 								// property: name=jitter, type=REFERENCE macro=rss_schema
 								"jitter": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Jitter",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=probe_config_id, type=STRING macro=rss_schema
 										"probe_config_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Probe Config Id",
 										},
 										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 										// property: name=value, type=INTEGER macro=rss_schema
 										"value": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Value",
 										},
 										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 									},
@@ -380,25 +417,28 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 								// property: name=latency, type=REFERENCE macro=rss_schema
 								"latency": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Latency",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=probe_config_id, type=STRING macro=rss_schema
 										"probe_config_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Probe Config Id",
 										},
 										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 										// property: name=value, type=INTEGER macro=rss_schema
 										"value": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Value",
 										},
 										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 									},
@@ -406,25 +446,28 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 								// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 								// property: name=packet_loss, type=REFERENCE macro=rss_schema
 								"packet_loss": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Packet Loss",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=probe_config_id, type=STRING macro=rss_schema
 										"probe_config_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Probe Config Id",
 										},
 										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 										// property: name=value, type=INTEGER macro=rss_schema
 										"value": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Value",
 										},
 										// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 									},
@@ -435,33 +478,37 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 						// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						// property: name=system_health_metrics_thresholds, type=REFERENCE macro=rss_schema
 						"system_health_metrics_thresholds": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "System Health Metrics Thresholds: Valid ",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=cpu_utilization, type=INTEGER macro=rss_schema
 								"cpu_utilization": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Cpu Utilization",
 								},
 								// key name holder for attribute: name=cpu_utilization, type=INTEGER macro=rss_schema
 								// property: name=disk_utilization, type=INTEGER macro=rss_schema
 								"disk_utilization": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Disk Utilization",
 								},
 								// key name holder for attribute: name=disk_utilization, type=INTEGER macro=rss_schema
 								// property: name=memory_utilization, type=INTEGER macro=rss_schema
 								"memory_utilization": dsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Memory Utilization",
 								},
 								// key name holder for attribute: name=memory_utilization, type=INTEGER macro=rss_schema
 							},
@@ -473,6 +520,7 @@ func (d *performanceProfileDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

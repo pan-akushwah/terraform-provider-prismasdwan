@@ -64,13 +64,14 @@ func (r *siteHubPrefixFilterResource) Metadata(_ context.Context, req resource.M
 // Schema defines the schema for this data source.
 func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Hub Prefix Filter.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=PrefixFilterAssociation
 			// generic x_parameters is added to accomodate path parameters
@@ -79,29 +80,33 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=filters, type=ARRAY_REFERENCE macro=rss_schema
 			"filters": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Filters: Valid Required(PREFIXFILTER_REQUIRED) Valid ",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=elements, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -110,6 +115,7 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Elements",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=elements, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -119,6 +125,7 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Ip Prefixes: ListIPAddress(bcast = DENY, listMaxSize = 0, error = PREFIXFILTER_INVALID_PREFIX: IP prefix is not valid OR not within the valid prefix range., required = false, type = APP1_GATEWAYCIDR) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -128,23 +135,26 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Path",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=path, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=site, type=OBJECT macro=rss_schema
 						"site": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Site",
 						},
 						// key name holder for attribute: name=site, type=OBJECT macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Type",
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 						// property: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -153,6 +163,7 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Wn Path",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -162,18 +173,20 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 			// key name holder for attribute: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=prefix_filter_id, type=STRING macro=rss_schema
 			"prefix_filter_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Filter Id",
 			},
 			// key name holder for attribute: name=prefix_filter_id, type=STRING macro=rss_schema
 		},

@@ -66,13 +66,14 @@ func (d *apnProfileDataSource) Metadata(_ context.Context, req datasource.Metada
 // Schema defines the schema for this data source.
 func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Apn Profile items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -80,96 +81,109 @@ func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=APNProfileScreen
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=apn, type=STRING macro=rss_schema
 						"apn": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Apn: Size(max = 100, error = APN_PROFILE_NAME_INVALID: Invalid APN Profile config. APN name is invalid. APN name must be greater than one character and an allowed max length is 100. Valid characters are alphanumeric, hyphen (-), and period (.). Must begin and end with an alphanumeric character., min = 0) ",
 						},
 						// key name holder for attribute: name=apn, type=STRING macro=rss_schema
 						// property: name=authentication, type=STRING macro=rss_schema
 						"authentication": dsschema.StringAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Authentication: ValidateEnum(enumClass = classOf[APNAuthentication], message = APN_PROFILE_INVALID_APN_AUTH, nullAllowed = false) ",
 						},
 						// key name holder for attribute: name=authentication, type=STRING macro=rss_schema
 						// property: name=clear_password, type=BOOLEAN macro=rss_schema
 						"clear_password": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Clear Password",
 						},
 						// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=password, type=STRING macro=rss_schema
 						"password": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: true,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   true,
+							Description: "Password",
 						},
 						// key name holder for attribute: name=password, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -178,15 +192,17 @@ func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=user_name, type=STRING macro=rss_schema
 						"user_name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "User Name: Size(max = 100, error = APN_PROFILE_USERNAME_INVALID: Invalid APN config. APN username is invalid. APN username allowed max length is 100., min = 0) ",
 						},
 						// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 					},
