@@ -17,18 +17,20 @@
 {
   "properties" : {
     "ipv6_prefixes" : {
-      "description" : "Ipv6 Prefixes: ListIPv6Address(bcast = DENY, listMaxSize = 0, error = INVALID_IPV6_PREFIX: Invalid ipv6 prefix, required = false, type = GATEWAYCIDRV6) ",
+      "description" : "Ipv6 Prefixes",
       "type" : "array",
       "items" : {
         "description" : "Ipv6 Prefixes",
+        "format" : "ipv6",
         "type" : "string"
       }
     },
     "ipv4_prefixes" : {
-      "description" : "Ipv4 Prefixes: ListIPAddress(bcast = DENY, listMaxSize = 0, error = INVALID_IPV4_PREFIX: Invalid IPv4 Prefix., required = false, type = APP_GATEWAYCIDR) ",
+      "description" : "Ipv4 Prefixes",
       "type" : "array",
       "items" : {
         "description" : "Ipv4 Prefixes",
+        "format" : "ipv4",
         "type" : "string"
       }
     },
@@ -37,15 +39,31 @@
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
         "properties" : {
           "x_flag_unordered" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -73,20 +91,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "ipv6_prefixes", "ipv4_prefixes", "prefix_id", "tags", "id" ]
 }
 ```
 

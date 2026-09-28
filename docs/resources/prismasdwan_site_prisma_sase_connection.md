@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `site_prisma_sase_connection` |
-| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV2N1`) |
-| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/prismasase_connections` (`SaseConnectionScreenV2N1`) |
-| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV2N1`) |
-| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` |
+| Get Api  | `/sdwan/v3.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV3N1`) |
+| Post Api  | `/sdwan/v3.1/api/sites/{site_id}/prismasase_connections` (`SaseConnectionScreenV3N1`) |
+| Put Api  | `/sdwan/v3.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV3N1`) |
+| Delete Api  | `/sdwan/v3.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` |
 
 
 ### JSON Schema
@@ -55,7 +55,8 @@
                       "description" : "Summarize Mobile Routes Before Advertise",
                       "type" : "boolean"
                     }
-                  }
+                  },
+                  "required" : [ "bgp_secret", "advertise_default_route", "export_routes", "summarize_mobile_routes_before_advertise" ]
                 },
                 "routing" : {
                   "properties" : {
@@ -71,13 +72,16 @@
                       "description" : "Branch Ip Address",
                       "type" : "string"
                     }
-                  }
+                  },
+                  "required" : [ "prismaaccess_ip_address", "branch_as_number", "branch_ip_address" ]
                 },
                 "authentication" : {
                   "properties" : {
                     "psk" : {
-                      "description" : "Psk: JsonIgnore(value = true) ",
-                      "type" : "string"
+                      "description" : "Psk",
+                      "readOnly" : true,
+                      "type" : "string",
+                      "x-json-ignore" : true
                     },
                     "branch_ike_identification" : {
                       "description" : "Branch Ike Identification",
@@ -87,7 +91,8 @@
                       "description" : "Prismaaccess Ike Identification",
                       "type" : "string"
                     }
-                  }
+                  },
+                  "required" : [ "psk", "branch_ike_identification", "prismaaccess_ike_identification" ]
                 },
                 "wan_interface_id" : {
                   "description" : "Wan Interface Id",
@@ -97,7 +102,8 @@
                   "description" : "Name",
                   "type" : "string"
                 }
-              }
+              },
+              "required" : [ "routing_configs", "routing", "authentication", "wan_interface_id", "name" ]
             }
           },
           "spn_name" : {
@@ -112,11 +118,24 @@
             "description" : "Name",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "ipsec_tunnels", "spn_name", "name" ]
       }
     },
     "routing_configs" : {
       "properties" : {
+        "peering_type" : {
+          "description" : "Peering Type",
+          "type" : "string"
+        },
+        "deployment_mode" : {
+          "description" : "Deployment Mode",
+          "type" : "string"
+        },
+        "branch_as_number" : {
+          "description" : "Branch As Number",
+          "type" : "string"
+        },
         "bgp_secret" : {
           "description" : "Bgp Secret",
           "type" : "string",
@@ -140,7 +159,8 @@
           "description" : "Summarize Mobile Routes Before Advertise",
           "type" : "boolean"
         }
-      }
+      },
+      "required" : [ "peering_type", "deployment_mode", "branch_as_number", "bgp_secret", "advertise_default_route", "export_routes", "summarize_mobile_routes_before_advertise" ]
     },
     "ipsec_tunnel_configs" : {
       "properties" : {
@@ -172,7 +192,8 @@
           "description" : "Anti Replay",
           "type" : "boolean"
         }
-      }
+      },
+      "required" : [ "prismaaccess_ipsec_profile_id", "prismaaccess_ike_crypto_profile_id", "ike_key_exchange", "enable_gre_encapsulation", "tunnel_monitoring", "copy_tos", "anti_replay" ]
     },
     "enabled_wan_interface_ids" : {
       "description" : "Enabled Wan Interface Ids",
@@ -198,17 +219,35 @@
       "description" : "Is Active",
       "type" : "boolean"
     },
-    "prismaaccess_edge_location" : {
-      "description" : "Prismaaccess Edge Location",
+    "prismaaccess_edge_location_config" : {
+      "description" : "Prismaaccess Edge Location Config",
       "type" : "array",
       "items" : {
-        "description" : "Prismaaccess Edge Location",
+        "description" : "Prismaaccess Edge Location Config",
         "type" : "string"
       }
     },
-    "site_id" : {
-      "description" : "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
+    "prismasase_connection_id" : {
+      "description" : "Prismasase Connection Id",
       "type" : "string"
+    },
+    "site_id" : {
+      "description" : "Site Id",
+      "maxLength" : 50,
+      "pattern" : "^-?[0-9]{1,50}$",
+      "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -232,21 +271,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "site_id" ]
+  "required" : [ "license_type", "remote_network_groups", "routing_configs", "ipsec_tunnel_configs", "enabled_wan_interface_ids", "prismaaccess_qos_cir_mbps", "prismaaccess_qos_profile_id", "is_enabled", "is_active", "prismaaccess_edge_location_config", "prismasase_connection_id", "site_id", "id" ]
 }
 ```
 

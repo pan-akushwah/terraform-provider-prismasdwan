@@ -124,6 +124,22 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
+						// property: name=disabled, type=BOOLEAN macro=rss_schema
+						"disabled": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+						// property: name=disabled_reason, type=STRING macro=rss_schema
+						"disabled_reason": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:  false,
@@ -132,6 +148,22 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=inactive, type=BOOLEAN macro=rss_schema
+						"inactive": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
+						// property: name=inactive_reason, type=STRING macro=rss_schema
+						"inactive_reason": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:  false,
@@ -140,6 +172,14 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
+						// property: name=region, type=STRING macro=rss_schema
+						"region": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=region, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
@@ -269,7 +309,7 @@ func (d *dnsServiceRoleDataSource) Read(ctx context.Context, req datasource.Read
 		}
 
 		// lets copy all items into state schema=DnsServiceRole
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=6
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=11
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -277,10 +317,20 @@ func (d *dnsServiceRoleDataSource) Read(ctx context.Context, req datasource.Read
 		state.Schema = types.Int64PointerValue(ans.Schema)
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Description = types.StringPointerValue(ans.Description)
+		// property: name=disabled, type=BOOLEAN macro=copy_to_state
+		state.Disabled = types.BoolPointerValue(ans.Disabled)
+		// property: name=disabled_reason, type=STRING macro=copy_to_state
+		state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 		// property: name=id, type=STRING macro=copy_to_state
 		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=inactive, type=BOOLEAN macro=copy_to_state
+		state.Inactive = types.BoolPointerValue(ans.Inactive)
+		// property: name=inactive_reason, type=STRING macro=copy_to_state
+		state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 		// property: name=name, type=STRING macro=copy_to_state
 		state.Name = types.StringPointerValue(ans.Name)
+		// property: name=region, type=STRING macro=copy_to_state
+		state.Region = types.StringPointerValue(ans.Region)
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags

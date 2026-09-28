@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_ospf_config` |
-| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreen`) |
-| Post Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs` (`OspfConfigScreen`) |
-| Put Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreen`) |
-| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` |
+| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreenV2N1`) |
+| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs` (`OspfConfigScreenV2N1`) |
+| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreenV2N1`) |
+| Delete Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` |
 
 
 ### JSON Schema
@@ -16,8 +16,18 @@
 ```json
 {
   "properties" : {
+    "cost_for_default_route" : {
+      "description" : "Cost For Default Route",
+      "maximum" : 16777214,
+      "minimum" : 0,
+      "type" : "integer"
+    },
+    "advertise_fabric_default_route" : {
+      "description" : "Advertise Fabric Default Route",
+      "type" : "boolean"
+    },
     "interfaces" : {
-      "description" : "Interfaces: Valid ",
+      "description" : "Interfaces",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -58,7 +68,8 @@
                 "description" : "Md5 Key Id",
                 "type" : "integer"
               }
-            }
+            },
+            "required" : [ "dead_interval", "hello_interval", "transmit_delay", "retransmit_interval", "cost", "md5_secret", "md5_key_id" ]
           },
           "area_id" : {
             "description" : "Area Id",
@@ -68,11 +79,12 @@
             "description" : "Interface Id",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "ospf_config_override", "area_id", "interface_id" ]
       }
     },
     "areas" : {
-      "description" : "Areas: Valid ",
+      "description" : "Areas",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -85,7 +97,8 @@
             "description" : "Area Id",
             "type" : "integer"
           }
-        }
+        },
+        "required" : [ "area_type", "area_id" ]
       }
     },
     "shutdown" : {
@@ -113,18 +126,25 @@
       "type" : "string"
     },
     "router_id" : {
-      "description" : "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, message = OSPF_CONFIG_INVALID_ROUTER_ID, type = IP) ",
+      "description" : "Router Id",
+      "format" : "ipv4",
       "type" : "string"
     },
     "vrf_context_id" : {
-      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) NotNull(message = OSPF_CONFIG_NO_VRF_CONTEXT) ",
+      "description" : "Vrf Context Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -136,12 +156,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -165,21 +199,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "vrf_context_id", "name" ]
+  "required" : [ "cost_for_default_route", "advertise_fabric_default_route", "interfaces", "areas", "shutdown", "scope", "redistribute_route_map_id", "redistribute_bgp", "prefix_adv_route_map_id", "prefix_adv_type_to_lan", "router_id", "vrf_context_id", "tags", "description", "name", "id" ]
 }
 ```
 

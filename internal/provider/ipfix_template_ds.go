@@ -23,7 +23,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=ipfixtemplates
 // +-----------------------------------------------------------------
-// | IPFixTemplateScreen HasID=true
+// | IPFixTemplate HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -51,11 +51,11 @@ type ipfixTemplateDataSource struct {
 }
 
 type dsModelWithFilterIpfixTemplate struct {
-	Filters      types.Map                     `tfsdk:"filters"`
-	TfParameters types.Map                     `tfsdk:"x_parameters"` // Generic Map for Path Ids
-	Etag         types.Int64                   `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
-	Schema       types.Int64                   `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelIPFixTemplateScreen `tfsdk:"items"`
+	Filters      types.Map               `tfsdk:"filters"`
+	TfParameters types.Map               `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64             `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64             `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelIPFixTemplate `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -99,7 +99,7 @@ func (d *ipfixTemplateDataSource) Schema(_ context.Context, _ datasource.SchemaR
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=IPFixTemplateScreen
+						// rest all properties to be read from GET API Schema schema=IPFixTemplate
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -298,19 +298,19 @@ func (d *ipfixTemplateDataSource) Read(ctx context.Context, req datasource.ReadR
 		}
 
 		// Store the answer to state.
-		var state dsModelIPFixTemplateScreen
+		var state dsModelIPFixTemplate
 
 		// start copying attributes
-		var ans sdwan_schema.IPFixTemplateScreen
+		var ans sdwan_schema.IPFixTemplate
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplateScreen", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplate", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=IPFixTemplateScreen
+		// lets copy all items into state schema=IPFixTemplate
 		// copy_to_state: state=state prefix=dsModel ans=ans properties=11
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state

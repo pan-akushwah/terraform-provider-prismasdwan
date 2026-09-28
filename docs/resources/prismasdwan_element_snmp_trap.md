@@ -65,9 +65,11 @@
               "description" : "User Name",
               "type" : "string"
             }
-          }
+          },
+          "required" : [ "enc_phrase", "enc_type", "auth_phrase", "auth_type", "security_level", "engine_id", "user_name" ]
         }
-      }
+      },
+      "required" : [ "user_access" ]
     },
     "v2_config" : {
       "properties" : {
@@ -75,19 +77,21 @@
           "description" : "Community",
           "type" : "string"
         }
-      }
+      },
+      "required" : [ "community" ]
     },
     "source_interface" : {
       "description" : "Source Interface",
       "type" : "string"
     },
     "version" : {
-      "description" : "Version: ValidateEnum(enumClass = classOf[SNMPVersion], error = SNMPTRAP_CONFIG_INVALID_VERSION: Unsupported snmp version specified, nullAllowed = false) ",
+      "description" : "Version",
       "type" : "string",
-      "enum" : [ "V2", "V3" ]
+      "enum" : [ "v2", "v3" ]
     },
     "server_ip" : {
-      "description" : "Server Ip: NotNull(error = SNMPTRAP_CONFIG_SERVER_IP_MISSING: SNMP Server ip cannot be null) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, INVALID_IP_ADDRESS_001, type = IP) ",
+      "description" : "Server Ip",
+      "format" : "ipv4",
       "type" : "string"
     },
     "enabled" : {
@@ -95,19 +99,36 @@
       "type" : "boolean"
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
         "properties" : {
           "x_flag_unordered" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -135,21 +156,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "version", "server_ip" ]
+  "required" : [ "v3_config", "v2_config", "source_interface", "version", "server_ip", "enabled", "description", "tags", "id" ]
 }
 ```
 

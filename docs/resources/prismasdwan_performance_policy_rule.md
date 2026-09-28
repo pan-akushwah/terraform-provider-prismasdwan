@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `performance_policy_rule` |
-| Get Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N2`) |
-| Post Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules` (`PerfMgmtPolicyRuleScreenV2N2`) |
-| Put Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N2`) |
-| Delete Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` |
+| Get Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N3`) |
+| Post Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules` (`PerfMgmtPolicyRuleScreenV2N3`) |
+| Put Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N3`) |
+| Delete Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,25 @@
 ```json
 {
   "properties" : {
+    "path_filters" : {
+      "description" : "Path Filters",
+      "maxItems" : 32,
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "path_type" : {
+            "description" : "Path Type",
+            "type" : "string",
+            "enum" : [ "vpn", "direct", "servicelink", "pa_vpn", "all" ]
+          },
+          "label" : {
+            "description" : "Label",
+            "type" : "string"
+          }
+        },
+        "required" : [ "path_type", "label" ]
+      }
+    },
     "network_context_ids" : {
       "description" : "Network Context Ids",
       "type" : "array",
@@ -25,7 +44,7 @@
       }
     },
     "actions" : {
-      "description" : "Actions: Valid ",
+      "description" : "Actions",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -34,138 +53,163 @@
             "type" : "boolean"
           },
           "action_type" : {
-            "description" : "Action Type: ValidateEnum(enumClass = classOf[PerfMgmtActionType], error = PERFMGMT_INVALID_ACTION_TYPE: Invalid action type specified in actions, nullAllowed = false) ",
+            "description" : "Action Type",
             "type" : "string",
-            "enum" : [ "RAISE_ALARM", "MOVE_FLOWS", "MOVE_FLOWS_FORCED", "FEC", "VISIBILITY", "APP_ACCELERATION", "PACKET_DUPLICATION" ]
+            "enum" : [ "raise_alarm", "move_flows", "move_flows_forced", "fec", "visibility", "app_acceleration", "packet_duplication" ]
           },
           "circuit_utilization_perf" : {
             "properties" : {
               "monitoring_approach" : {
-                "description" : "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
+                "description" : "Monitoring Approach",
                 "type" : "string",
-                "enum" : [ "AGGRESSIVE", "MODERATE", "CONSERVATIVE" ]
+                "enum" : [ "aggressive", "moderate", "conservative" ]
               },
               "bad_health_thresholds" : {
                 "properties" : {
                   "clear_below" : {
-                    "description" : "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
+                    "description" : "Clear Below",
                     "format" : "int32",
+                    "maximum" : 80,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "raise_above" : {
-                    "description" : "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
+                    "description" : "Raise Above",
                     "format" : "int32",
+                    "maximum" : 100,
+                    "minimum" : 10,
                     "type" : "integer"
                   }
-                }
+                },
+                "required" : [ "clear_below", "raise_above" ]
               }
             },
-            "required" : [ "monitoring_approach" ]
+            "required" : [ "monitoring_approach", "bad_health_thresholds" ]
           },
           "sys_perf" : {
             "properties" : {
               "monitoring_approach" : {
-                "description" : "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
+                "description" : "Monitoring Approach",
                 "type" : "string",
-                "enum" : [ "AGGRESSIVE", "MODERATE", "CONSERVATIVE" ]
+                "enum" : [ "aggressive", "moderate", "conservative" ]
               },
               "bad_health_thresholds" : {
                 "properties" : {
                   "clear_below" : {
-                    "description" : "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
+                    "description" : "Clear Below",
                     "format" : "int32",
+                    "maximum" : 80,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "raise_above" : {
-                    "description" : "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
+                    "description" : "Raise Above",
                     "format" : "int32",
+                    "maximum" : 100,
+                    "minimum" : 10,
                     "type" : "integer"
                   }
-                }
+                },
+                "required" : [ "clear_below", "raise_above" ]
               }
             },
-            "required" : [ "monitoring_approach" ]
+            "required" : [ "monitoring_approach", "bad_health_thresholds" ]
           },
           "probe_perf" : {
             "properties" : {
               "monitoring_approach" : {
-                "description" : "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
+                "description" : "Monitoring Approach",
                 "type" : "string",
-                "enum" : [ "AGGRESSIVE", "MODERATE", "CONSERVATIVE" ]
+                "enum" : [ "aggressive", "moderate", "conservative" ]
               },
               "bad_health_thresholds" : {
                 "properties" : {
                   "clear_below" : {
-                    "description" : "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
+                    "description" : "Clear Below",
                     "format" : "int32",
+                    "maximum" : 80,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "raise_above" : {
-                    "description" : "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
+                    "description" : "Raise Above",
                     "format" : "int32",
+                    "maximum" : 100,
+                    "minimum" : 10,
                     "type" : "integer"
                   }
-                }
+                },
+                "required" : [ "clear_below", "raise_above" ]
               }
             },
-            "required" : [ "monitoring_approach" ]
+            "required" : [ "monitoring_approach", "bad_health_thresholds" ]
           },
           "app_perf" : {
             "properties" : {
               "monitoring_approach" : {
-                "description" : "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
+                "description" : "Monitoring Approach",
                 "type" : "string",
-                "enum" : [ "AGGRESSIVE", "MODERATE", "CONSERVATIVE" ]
+                "enum" : [ "aggressive", "moderate", "conservative" ]
               },
               "bad_health_thresholds" : {
                 "properties" : {
                   "clear_below" : {
-                    "description" : "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
+                    "description" : "Clear Below",
                     "format" : "int32",
+                    "maximum" : 80,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "raise_above" : {
-                    "description" : "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
+                    "description" : "Raise Above",
                     "format" : "int32",
+                    "maximum" : 100,
+                    "minimum" : 10,
                     "type" : "integer"
                   }
-                }
+                },
+                "required" : [ "clear_below", "raise_above" ]
               }
             },
-            "required" : [ "monitoring_approach" ]
+            "required" : [ "monitoring_approach", "bad_health_thresholds" ]
           },
           "lqm_perf" : {
             "properties" : {
               "monitoring_approach" : {
-                "description" : "Monitoring Approach: ValidateEnum(enumClass = classOf[MonitoringApproach], error = PERFMGMT_INVALID_MONITORING_APPROACH: Invalid monitoring approach, nullAllowed = false) ",
+                "description" : "Monitoring Approach",
                 "type" : "string",
-                "enum" : [ "AGGRESSIVE", "MODERATE", "CONSERVATIVE" ]
+                "enum" : [ "aggressive", "moderate", "conservative" ]
               },
               "bad_health_thresholds" : {
                 "properties" : {
                   "clear_below" : {
-                    "description" : "Clear Below: Range(max = 80L, error = PERFMGMT_INVALID_CLEAR_BELOW: Invalid clear below. Value should be between 1-80, min = 1L) ",
+                    "description" : "Clear Below",
                     "format" : "int32",
+                    "maximum" : 80,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "raise_above" : {
-                    "description" : "Raise Above: Range(max = 100L, error = PERFMGMT_INVALID_RAISE_ABOVE: Invalid raise above. Value should be between 10-100, min = 10L) ",
+                    "description" : "Raise Above",
                     "format" : "int32",
+                    "maximum" : 100,
+                    "minimum" : 10,
                     "type" : "integer"
                   }
-                }
+                },
+                "required" : [ "clear_below", "raise_above" ]
               }
             },
-            "required" : [ "monitoring_approach" ]
+            "required" : [ "monitoring_approach", "bad_health_thresholds" ]
           }
         },
-        "required" : [ "action_type" ]
+        "required" : [ "always_on", "action_type", "circuit_utilization_perf", "sys_perf", "probe_perf", "app_perf", "lqm_perf" ]
       }
     },
     "type" : {
-      "description" : "Type: ValidateEnum(enumClass = classOf[PerfMgmtRuleType], error = PERFMGMT_INVALID_RULE_TYPE: Performance policy rule type is invalid, nullAllowed = false) Required(error = PERFMGMT_RULE_TYPE_REQUIRED: Rule type is required) ",
+      "description" : "Type",
       "type" : "string",
-      "enum" : [ "APP_CIRCUIT_HEALTH", "SYSTEM_SITE_HEALTH" ]
+      "enum" : [ "app_circuit_health", "system_site_health" ]
     },
     "enabled" : {
       "description" : "Enabled",
@@ -176,57 +220,49 @@
       "type" : "string"
     },
     "service_label_ids" : {
-      "description" : "Service Label Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = PERFMGMT_RULE_DUPLICATE_SERVICE_LABEL_IDS: Duplicate service label ids are not allowed in policy rule, noTrim = false, regex = , required = false) Size(max = 32, error = SERVICE_LABEL_ID_LIST_SIZE_EXCEEDED: Maximum 32 service labels are supported, min = 0) ",
+      "description" : "Service Label Ids",
+      "maxItems" : 32,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Service Label Ids",
         "type" : "string"
       }
     },
-    "path_filters" : {
-      "description" : "Path Filters: Valid Size(max = 32, error = PERFMGMT_PATH_FILTERS_LIST_SIZE_EXCEEDED: Maximum 32 path filters are supported, min = 0) ",
-      "type" : "array",
-      "items" : {
-        "properties" : {
-          "path_type" : {
-            "description" : "Path Type: ValidateEnum(enumClass = classOf[PathFilterType], error = PERFMGMT_INVALID_PATH_TYPE: Invalid path type specified in path filter, nullAllowed = false) ",
-            "type" : "string",
-            "enum" : [ "vpn", "direct", "servicelink", "all" ]
-          },
-          "label" : {
-            "description" : "Label: Pattern(message = PERFMGMT_RULE_INVALID_PATH_LABELS, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
-            "type" : "string"
-          }
-        },
-        "required" : [ "path_type" ]
-      }
-    },
     "app_filters" : {
       "properties" : {
         "app_transfer_types" : {
-          "description" : "App Transfer Types: Size(max = 4, error = PERFMGMT_APP_TRANSFER_TYPE_LIST_SIZE_EXCEEDED: Maximum 4 app transfer types supported, min = 0) ValidateEnum(enumClass = classOf[TransferType], error = PERFMGMT_INVALID_APP_TRANSFER_TYPE: Invalid app transfer type specified in app filter, nullAllowed = true) ",
+          "description" : "App Transfer Types",
+          "maxItems" : 4,
           "type" : "array",
           "items" : {
             "description" : "App Transfer Types",
             "type" : "string",
-            "enum" : [ "RT_AUDIO", "RT_VIDEO", "TRANSACTIONAL", "BULK" ]
+            "enum" : [ "rt-audio", "rt-video", "transactional", "bulk" ]
           }
         },
         "application_ids" : {
-          "description" : "Application Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = PERFMGMT_RULE_DUPLICATE_APPLICATION_IDS: Duplicate application ids are not allowed in app filter for policy rule, noTrim = false, regex = , required = false) Size(max = 64, error = APP_DEF_ID_LIST_SIZE_EXCEEDED_64: Maximum 64 applications can be specified in a rule., min = 0) ",
+          "description" : "Application Ids",
+          "maxItems" : 64,
           "type" : "array",
+          "uniqueItems" : true,
           "items" : {
             "description" : "Application Ids",
             "type" : "string"
           }
         }
-      }
+      },
+      "required" : [ "app_transfer_types", "application_ids" ]
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -238,12 +274,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -267,21 +317,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "type", "name" ]
+  "required" : [ "path_filters", "network_context_ids", "actions", "type", "enabled", "thresholdprofile_id", "service_label_ids", "app_filters", "tags", "description", "name", "id" ]
 }
 ```
 

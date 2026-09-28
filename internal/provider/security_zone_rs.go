@@ -27,7 +27,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=securityzones
 // +-----------------------------------------------------------------
-// | SecurityZoneV2N1 HasID=true
+// | SecurityZoneV2N2 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -71,7 +71,7 @@ func (r *securityZoneResource) Schema(_ context.Context, _ resource.SchemaReques
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SecurityZoneV2N1
+			// rest all properties to be read from GET API Schema schema=SecurityZoneV2N2
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -111,6 +111,14 @@ func (r *securityZoneResource) Schema(_ context.Context, _ resource.SchemaReques
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
+			// property: name=is_l2, type=BOOLEAN macro=rss_schema
+			"is_l2": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=is_l2, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
 				Required:  false,
@@ -122,7 +130,7 @@ func (r *securityZoneResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=tcp_allow_non_syn, type=BOOLEAN macro=rss_schema
 			"tcp_allow_non_syn": rsschema.BoolAttribute{
 				Required:  false,
-				Computed:  true,
+				Computed:  false,
 				Optional:  true,
 				Sensitive: false,
 			},
@@ -153,7 +161,7 @@ func (r *securityZoneResource) GetHttpStatusCode(request *sdwan_client.SdwanClie
 	}
 }
 
-func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurityZoneV2N1, state *rsModelSecurityZoneV2N1, resp *resource.CreateResponse) bool {
+func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurityZoneV2N2, state *rsModelSecurityZoneV2N2, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_security_zone")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -165,7 +173,7 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_security_zone"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.1/api/securityzones"
+	create_request.Path = "/sdwan/v2.2/api/securityzones"
 
 	// copy parameters from plan always
 	params := make(map[string]*string)
@@ -175,10 +183,10 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SecurityZoneV2N1{}
+	var body = &sdwan_schema.SecurityZoneV2N2{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=6
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=7
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -188,6 +196,8 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	body.Description = StringValueOrNil(plan.Description)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
+	// property: name=is_l2, type=BOOLEAN macro=copy_from_plan
+	body.IsL2 = BoolValueOrNil(plan.IsL2)
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
 	// property: name=tcp_allow_non_syn, type=BOOLEAN macro=copy_from_plan
@@ -196,7 +206,7 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SecurityZoneV2N1 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SecurityZoneV2N2 to JSON:", err.Error())
 		return false
 	}
 
@@ -239,12 +249,12 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SecurityZoneV2N1
+	var ans sdwan_schema.SecurityZoneV2N2
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N1 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N2 in create", json_err.Error())
 		return false
 	}
 
@@ -269,8 +279,8 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_security_zone with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SecurityZoneV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// Store the answer to state. schema=SecurityZoneV2N2
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=7
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -280,6 +290,8 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
+	// property: name=is_l2, type=BOOLEAN macro=copy_to_state
+	state.IsL2 = types.BoolPointerValue(ans.IsL2)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=tcp_allow_non_syn, type=BOOLEAN macro=copy_to_state
@@ -287,7 +299,7 @@ func (r *securityZoneResource) doPost(ctx context.Context, plan *rsModelSecurity
 	return true
 }
 
-func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurityZoneV2N1, savestate *rsModelSecurityZoneV2N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurityZoneV2N2, savestate *rsModelSecurityZoneV2N2, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -309,7 +321,7 @@ func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurity
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_security_zone"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.1/api/securityzones/{zone_id}"
+	read_request.Path = "/sdwan/v2.2/api/securityzones/{zone_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -351,7 +363,7 @@ func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurity
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SecurityZoneV2N1
+	// Store the answer to state. schema=SecurityZoneV2N2
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -360,16 +372,16 @@ func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurity
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SecurityZoneV2N1
+	var ans sdwan_schema.SecurityZoneV2N2
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N1 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N2 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=7
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -379,6 +391,8 @@ func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurity
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
+	// property: name=is_l2, type=BOOLEAN macro=copy_to_state
+	state.IsL2 = types.BoolPointerValue(ans.IsL2)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=tcp_allow_non_syn, type=BOOLEAN macro=copy_to_state
@@ -386,7 +400,7 @@ func (r *securityZoneResource) doGet(ctx context.Context, state *rsModelSecurity
 	return true
 }
 
-func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZoneV2N1, state *rsModelSecurityZoneV2N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZoneV2N2, state *rsModelSecurityZoneV2N2, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -414,7 +428,7 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_security_zone"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.1/api/securityzones/{zone_id}"
+	put_request.Path = "/sdwan/v2.2/api/securityzones/{zone_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -433,11 +447,11 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SecurityZoneV2N1{}
+	var body = &sdwan_schema.SecurityZoneV2N2{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=6
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=7
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -463,6 +477,12 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	} else {
 		body.Id = StringValueOrNil(plan.Id)
 	}
+	// property: name=is_l2, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.IsL2 = ValueBoolPointerFromPlanOrState(plan.IsL2, state.IsL2)
+	} else {
+		body.IsL2 = BoolValueOrNil(plan.IsL2)
+	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
@@ -479,7 +499,7 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SecurityZoneV2N1 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SecurityZoneV2N2 to JSON:", err.Error())
 		return false
 	}
 
@@ -515,17 +535,17 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SecurityZoneV2N1
+	var ans sdwan_schema.SecurityZoneV2N2
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N1 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N2 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SecurityZoneV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// Store the answer to state. schema=SecurityZoneV2N2
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=7
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -535,6 +555,8 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
+	// property: name=is_l2, type=BOOLEAN macro=copy_to_state
+	state.IsL2 = types.BoolPointerValue(ans.IsL2)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=tcp_allow_non_syn, type=BOOLEAN macro=copy_to_state
@@ -542,7 +564,7 @@ func (r *securityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZ
 	return true
 }
 
-func (r *securityZoneResource) doDelete(ctx context.Context, state *rsModelSecurityZoneV2N1, resp *resource.DeleteResponse) bool {
+func (r *securityZoneResource) doDelete(ctx context.Context, state *rsModelSecurityZoneV2N2, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -563,7 +585,7 @@ func (r *securityZoneResource) doDelete(ctx context.Context, state *rsModelSecur
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_security_zone"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.1/api/securityzones/{zone_id}"
+	delete_request.Path = "/sdwan/v2.2/api/securityzones/{zone_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -597,14 +619,14 @@ func (r *securityZoneResource) doDelete(ctx context.Context, state *rsModelSecur
 // Path Parameters are encoded into TfID itself
 func (r *securityZoneResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_security_zone")
-	var plan rsModelSecurityZoneV2N1
+	var plan rsModelSecurityZoneV2N2
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSecurityZoneV2N1
+	var state rsModelSecurityZoneV2N2
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -616,7 +638,7 @@ func (r *securityZoneResource) Create(ctx context.Context, req resource.CreateRe
 func (r *securityZoneResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_security_zone")
-	var savestate, state rsModelSecurityZoneV2N1
+	var savestate, state rsModelSecurityZoneV2N2
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -635,7 +657,7 @@ func (r *securityZoneResource) Read(ctx context.Context, req resource.ReadReques
 func (r *securityZoneResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_security_zone")
-	var plan, state rsModelSecurityZoneV2N1
+	var plan, state rsModelSecurityZoneV2N2
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -659,7 +681,7 @@ func (r *securityZoneResource) Update(ctx context.Context, req resource.UpdateRe
 func (r *securityZoneResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_security_zone")
-	var state rsModelSecurityZoneV2N1
+	var state rsModelSecurityZoneV2N2
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

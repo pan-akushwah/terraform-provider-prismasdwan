@@ -29,26 +29,35 @@
             "description" : "Locked",
             "type" : "boolean"
           }
-        }
+        },
+        "required" : [ "hubClusterElementNumber", "hub_element_id", "locked" ]
       }
     },
     "peer_sites" : {
-      "description" : "Peer Sites: ListString(allowDuplicate = false, allowEmpty = true, allowNull = false, length = 0, listMaxSize = 2147483647, message = INVALID_PEER_SITES_PRESENT, noTrim = false, regex = , required = false) ",
+      "description" : "Peer Sites",
+      "maxItems" : 2147483647,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Peer Sites",
         "type" : "string"
       }
     },
     "site_count_alarm_threshold" : {
-      "description" : "Site Count Alarm Threshold: Positive(message = SITE_COUNT_ALARM_THRESHOLD_NEITHER_NULL_NOR_NON_NEGATIVE) ",
+      "description" : "Site Count Alarm Threshold",
+      "exclusiveMinimum" : true,
+      "minimum" : 0,
       "type" : "integer"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -60,7 +69,8 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 4096, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 4096,
       "type" : "string"
     },
     "default_cluster" : {
@@ -68,8 +78,22 @@
       "type" : "boolean"
     },
     "name" : {
-      "description" : "Name: NotBlank(error = HUB_CLUSTER_NAME_NULL_OR_EMPTY: Hub Cluster name cannot be null or empty.) Size(max = 128, error = HUB_CLUSTER_NAME_EXCEEDS_LIMIT: Hub Cluster name exceeds limit.(128 chars)., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
+      "minLength" : 1,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -93,21 +117,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "peer_sites", "name" ]
+  "required" : [ "elements", "peer_sites", "site_count_alarm_threshold", "tags", "description", "default_cluster", "name", "id" ]
 }
 ```
 

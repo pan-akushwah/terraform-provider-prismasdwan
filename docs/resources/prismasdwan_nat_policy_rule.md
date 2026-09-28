@@ -16,434 +16,56 @@
 ```json
 {
   "properties" : {
-    "destination_zone" : {
-      "properties" : {
-        "default_for_public_interfaces" : {
-          "description" : "Default For Public Interfaces",
-          "type" : "boolean",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "tags" : {
-          "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
-          "type" : "array",
-          "items" : {
-            "description" : "Tags",
-            "type" : "string"
-          },
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_unordered" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "description" : {
-          "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
-          "type" : "string"
-        },
-        "name" : {
-          "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
-          "type" : "string"
-        },
-        "region" : {
-          "description" : "Region",
-          "type" : "string"
-        },
-        "disabled_reason" : {
-          "description" : "Disabled Reason: Size(max = 5000, DISABLED_REASON_INVALID_0001, min = 0) ",
-          "type" : "string"
-        },
-        "disabled" : {
-          "description" : "Disabled",
-          "type" : "boolean"
-        },
-        "inactive_reason" : {
-          "description" : "Inactive Reason: Size(max = 5000, INACTIVE_REASON_INVALID_0001, min = 0) ",
-          "type" : "string"
-        },
-        "inactive" : {
-          "description" : "Inactive",
-          "type" : "boolean"
-        },
-        "id" : {
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_schema" : {
-          "description" : "Schema version for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_etag" : {
-          "description" : "Etag for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        }
-      },
-      "required" : [ "name" ]
-    },
-    "source_zone" : {
-      "properties" : {
-        "default_for_public_interfaces" : {
-          "description" : "Default For Public Interfaces",
-          "type" : "boolean",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "tags" : {
-          "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
-          "type" : "array",
-          "items" : {
-            "description" : "Tags",
-            "type" : "string"
-          },
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_unordered" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "description" : {
-          "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
-          "type" : "string"
-        },
-        "name" : {
-          "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
-          "type" : "string"
-        },
-        "region" : {
-          "description" : "Region",
-          "type" : "string"
-        },
-        "disabled_reason" : {
-          "description" : "Disabled Reason: Size(max = 5000, DISABLED_REASON_INVALID_0001, min = 0) ",
-          "type" : "string"
-        },
-        "disabled" : {
-          "description" : "Disabled",
-          "type" : "boolean"
-        },
-        "inactive_reason" : {
-          "description" : "Inactive Reason: Size(max = 5000, INACTIVE_REASON_INVALID_0001, min = 0) ",
-          "type" : "string"
-        },
-        "inactive" : {
-          "description" : "Inactive",
-          "type" : "boolean"
-        },
-        "id" : {
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_schema" : {
-          "description" : "Schema version for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_etag" : {
-          "description" : "Etag for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        }
-      },
-      "required" : [ "name" ]
-    },
-    "natpolicypools" : {
-      "description" : "Natpolicypools",
-      "type" : "array",
-      "items" : {
-        "properties" : {
-          "description" : {
-            "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
-            "type" : "string"
-          },
-          "name" : {
-            "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
-            "type" : "string"
-          },
-          "tags" : {
-            "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
-            "type" : "array",
-            "items" : {
-              "description" : "Tags",
-              "type" : "string"
-            },
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_unordered" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          },
-          "id" : {
-            "description" : "Id",
-            "type" : "string",
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          },
-          "_schema" : {
-            "description" : "Schema version for this object",
-            "minimum" : 1,
-            "type" : "integer",
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          },
-          "_etag" : {
-            "description" : "Etag for this object",
-            "minimum" : 1,
-            "type" : "integer",
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          }
-        },
-        "required" : [ "name" ]
-      }
-    },
-    "destination_prefixes" : {
-      "properties" : {
-        "ipv6_prefixes" : {
-          "description" : "Ipv6 Prefixes",
-          "type" : "array",
-          "items" : {
-            "description" : "Ipv6 Prefixes",
-            "type" : "string"
-          }
-        },
-        "ipv4_prefixes" : {
-          "description" : "Ipv4 Prefixes",
-          "type" : "array",
-          "items" : {
-            "description" : "Ipv4 Prefixes",
-            "type" : "string"
-          }
-        },
-        "tags" : {
-          "description" : "Tags",
-          "type" : "array",
-          "items" : {
-            "description" : "Tags",
-            "type" : "string"
-          },
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_unordered" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "description" : {
-          "description" : "Description",
-          "type" : "string"
-        },
-        "name" : {
-          "description" : "Name",
-          "type" : "string"
-        },
-        "id" : {
-          "description" : "Id",
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_schema" : {
-          "description" : "Schema version for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_etag" : {
-          "description" : "Etag for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        }
-      }
-    },
-    "source_prefixes" : {
-      "properties" : {
-        "ipv6_prefixes" : {
-          "description" : "Ipv6 Prefixes",
-          "type" : "array",
-          "items" : {
-            "description" : "Ipv6 Prefixes",
-            "type" : "string"
-          }
-        },
-        "ipv4_prefixes" : {
-          "description" : "Ipv4 Prefixes",
-          "type" : "array",
-          "items" : {
-            "description" : "Ipv4 Prefixes",
-            "type" : "string"
-          }
-        },
-        "tags" : {
-          "description" : "Tags",
-          "type" : "array",
-          "items" : {
-            "description" : "Tags",
-            "type" : "string"
-          },
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_unordered" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "description" : {
-          "description" : "Description",
-          "type" : "string"
-        },
-        "name" : {
-          "description" : "Name",
-          "type" : "string"
-        },
-        "id" : {
-          "description" : "Id",
-          "type" : "string",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_schema" : {
-          "description" : "Schema version for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        },
-        "_etag" : {
-          "description" : "Etag for this object",
-          "minimum" : 1,
-          "type" : "integer",
-          "additionalProperties" : {
-            "properties" : {
-              "x_flag_computed" : {
-                "type" : "boolean"
-              }
-            }
-          }
-        }
-      }
-    },
     "enabled" : {
       "description" : "Enabled",
       "type" : "boolean"
     },
+    "destination_zone_id" : {
+      "description" : "Destination Zone Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
+      "type" : "string"
+    },
+    "source_zone_id" : {
+      "description" : "Source Zone Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
+      "type" : "string"
+    },
+    "destination_prefixes_id" : {
+      "description" : "Destination Prefixes Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
+      "type" : "string"
+    },
+    "source_prefixes_id" : {
+      "description" : "Source Prefixes Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
+      "type" : "string"
+    },
     "actions" : {
-      "description" : "Actions: NotNull(error = NAT_RULE_ACTIONS_MISSING: Action is not specified for NAT policy rule.) Size(max = 4, error = NAT_RULE_INVALID_ACTION_LIMIT: Minimum 1 and maximum 4 actions can be specified in a NAT policy rule., min = 1) Valid ",
+      "description" : "Actions",
+      "maxItems" : 4,
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
           "protocols" : {
-            "description" : "Protocols: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 4, error = NAT_RULE_ACTION_INVALID_ALG_DISABLE_PROTOCOL: Invalid or duplicate protocol specified for alg-disable. Supports max. 4 protocols from 'sip', 'ftp','pptp' and 'tftp'., noTrim = false, regex = sip|ftp|tftp|pptp, required = false) ",
+            "description" : "Protocols",
+            "maxItems" : 4,
             "type" : "array",
+            "uniqueItems" : true,
             "items" : {
               "description" : "Protocols",
+              "pattern" : "sip|ftp|tftp|pptp",
               "type" : "string"
             }
           },
           "port" : {
-            "description" : "Port: Range(max = 65535L, error = NAT_RULE_ACTION_INVALID_PORT_NUMBER: NAT action port must be in range 1 - 65535., min = 1L) ",
+            "description" : "Port",
+            "maximum" : 65535,
+            "minimum" : 1,
             "type" : "integer"
           },
           "nat_pool_id" : {
@@ -451,75 +73,73 @@
             "type" : "string"
           },
           "type" : {
-            "description" : "Type: ValidateEnum(enumClass = classOf[NATActionType], error = NAT_RULE_INVALID_ACTION_TYPE: Invalid NAT action is specified., nullAllowed = false) NotNull(error = NAT_RULE_ACTION_TYPE_MISSING: NAT action is not specified.) ",
+            "description" : "Type",
             "type" : "string",
-            "enum" : [ "NO_NAT", "SOURCE_NAT_DYNAMIC", "SOURCE_NAT_STATIC", "DESTINATION_NAT_DYNAMIC", "DESTINATION_NAT_STATIC", "ALG_DISABLE" ]
+            "enum" : [ "no_nat", "source_nat_dynamic", "source_nat_static", "destination_nat_dynamic", "destination_nat_static", "alg_disable" ]
           }
         },
-        "required" : [ "type" ]
+        "required" : [ "protocols", "port", "nat_pool_id", "type" ]
       }
     },
     "protocol" : {
-      "description" : "Protocol: Range(max = 255L, error = NAT_RULE_INVALID_PROTOCOL: NAT protocol must be in range 1-255, min = 1L) ",
+      "description" : "Protocol",
+      "maximum" : 255,
+      "minimum" : 1,
       "type" : "integer"
     },
     "destination_ports" : {
-      "description" : "Destination Ports: Size(max = 16, error = NAT_RULE_DESTINATION_PORTS_EXCEEDS_LIMIT: Maximum 16 port ranges can be specified in destination ports., min = 0) Valid ",
+      "description" : "Destination Ports",
+      "maxItems" : 16,
       "type" : "array",
       "items" : {
         "properties" : {
           "from" : {
-            "description" : "From: Range(max = 65535L, error = INVALID_FROM_PORT_NUMBER: Invalid 'FROM' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+            "description" : "From",
+            "maximum" : 65535,
+            "minimum" : 1,
             "type" : "integer"
           },
           "to" : {
-            "description" : "To: Range(max = 65535L, error = INVALID_TO_PORT_NUMBER: Invalid 'TO' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+            "description" : "To",
+            "maximum" : 65535,
+            "minimum" : 1,
             "type" : "integer"
           }
-        }
+        },
+        "required" : [ "from", "to" ]
       }
     },
     "source_ports" : {
-      "description" : "Source Ports: Size(max = 16, error = NAT_RULE_SOURCE_PORTS_EXCEEDS_LIMIT: Maximum 16 port ranges can be specified in source ports., min = 0) Valid ",
+      "description" : "Source Ports",
+      "maxItems" : 16,
       "type" : "array",
       "items" : {
         "properties" : {
           "from" : {
-            "description" : "From: Range(max = 65535L, error = INVALID_FROM_PORT_NUMBER: Invalid 'FROM' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+            "description" : "From",
+            "maximum" : 65535,
+            "minimum" : 1,
             "type" : "integer"
           },
           "to" : {
-            "description" : "To: Range(max = 65535L, error = INVALID_TO_PORT_NUMBER: Invalid 'TO' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+            "description" : "To",
+            "maximum" : 65535,
+            "minimum" : 1,
             "type" : "integer"
           }
-        }
+        },
+        "required" : [ "from", "to" ]
       }
     },
-    "destination_zone_id" : {
-      "description" : "Destination Zone Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_DESTINATION_ZONE_ID: Destination zone id is not in valid format.) ",
-      "type" : "string"
-    },
-    "source_zone_id" : {
-      "description" : "Source Zone Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_SOURCE_ZONE_ID: Source zone id is not in valid format.) ",
-      "type" : "string"
-    },
-    "destination_prefixes_id" : {
-      "description" : "Destination Prefixes Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_DESTINATION_PREFIXES_ID: Destination prefixes id is not in valid format.) ",
-      "type" : "string"
-    },
-    "source_prefixes_id" : {
-      "description" : "Source Prefixes Id: Digits(fraction = 0, integer = 30, error = NAT_RULE_INVALID_SOURCE_PREFIXES_ID: Source prefixes id is not in valid format.) ",
-      "type" : "string"
-    },
-    "policyset_id" : {
-      "description" : "Policyset Id: Digits(fraction = 0, integer = 30, INVALID_POLICYSET_ID) ",
-      "type" : "string"
-    },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -531,34 +151,29 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
     },
-    "region" : {
-      "description" : "Region",
-      "type" : "string"
-    },
-    "disabled_reason" : {
-      "description" : "Disabled Reason: Size(max = 5000, DISABLED_REASON_INVALID_0001, min = 0) ",
-      "type" : "string"
-    },
-    "disabled" : {
-      "description" : "Disabled",
-      "type" : "boolean"
-    },
-    "inactive_reason" : {
-      "description" : "Inactive Reason: Size(max = 5000, INACTIVE_REASON_INVALID_0001, min = 0) ",
-      "type" : "string"
-    },
-    "inactive" : {
-      "description" : "Inactive",
-      "type" : "boolean"
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
+      "description" : "Id",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -579,21 +194,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "actions", "name" ]
+  "required" : [ "enabled", "destination_zone_id", "source_zone_id", "destination_prefixes_id", "source_prefixes_id", "actions", "protocol", "destination_ports", "source_ports", "tags", "description", "name", "id" ]
 }
 ```
 

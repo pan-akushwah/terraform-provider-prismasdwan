@@ -17,25 +17,31 @@
 {
   "properties" : {
     "remote_networks" : {
-      "description" : "Remote Networks: Valid Valid ",
+      "description" : "Remote Networks",
       "type" : "array",
       "items" : {
         "properties" : {
           "edge_location_display" : {
-            "description" : "Edge Location Display: JsonIgnore(value = true) ",
-            "type" : "string"
+            "description" : "Edge Location Display",
+            "readOnly" : true,
+            "type" : "string",
+            "x-json-ignore" : true
           },
           "edge_location_value" : {
-            "description" : "Edge Location Value: JsonIgnore(value = true) ",
-            "type" : "string"
+            "description" : "Edge Location Value",
+            "readOnly" : true,
+            "type" : "string",
+            "x-json-ignore" : true
           },
           "service_link_ids" : {
-            "description" : "Service Link Ids: JsonIgnore(value = true) ",
+            "description" : "Service Link Ids",
+            "readOnly" : true,
             "type" : "array",
             "items" : {
               "description" : "Service Link Ids",
               "type" : "string"
-            }
+            },
+            "x-json-ignore" : true
           },
           "remote_network_names" : {
             "description" : "Remote Network Names",
@@ -49,12 +55,27 @@
             "description" : "Spn Name",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "edge_location_display", "edge_location_value", "service_link_ids", "remote_network_names", "spn_name" ]
       }
     },
     "site_id" : {
-      "description" : "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
+      "description" : "Site Id",
+      "maxLength" : 50,
+      "pattern" : "^-?[0-9]{1,50}$",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -78,21 +99,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "site_id" ]
+  "required" : [ "remote_networks", "site_id", "id" ]
 }
 ```
 

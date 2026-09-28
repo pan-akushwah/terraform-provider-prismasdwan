@@ -176,7 +176,7 @@ func (d *localPrefixFilterDataSource) Read(ctx context.Context, req datasource.R
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.0/api/localprefixfilters/{id}"
+	get_path := "/sdwan/v2.0/api/localprefixfilters/{localprefixfilter_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]

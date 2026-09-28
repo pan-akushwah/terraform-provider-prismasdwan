@@ -23,7 +23,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=sites_elements_securityzones
 // +-----------------------------------------------------------------
-// | ElementSecurityZoneScreen HasID=true
+// | ElementSecurityZoneScreenV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -51,11 +51,11 @@ type elementSecurityZoneDataSource struct {
 }
 
 type dsModelWithFilterElementSecurityZone struct {
-	Filters      types.Map                           `tfsdk:"filters"`
-	TfParameters types.Map                           `tfsdk:"x_parameters"` // Generic Map for Path Ids
-	Etag         types.Int64                         `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
-	Schema       types.Int64                         `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelElementSecurityZoneScreen `tfsdk:"items"`
+	Filters      types.Map                               `tfsdk:"filters"`
+	TfParameters types.Map                               `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                             `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                             `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelElementSecurityZoneScreenV2N1 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -99,7 +99,7 @@ func (d *elementSecurityZoneDataSource) Schema(_ context.Context, _ datasource.S
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=ElementSecurityZoneScreen
+						// rest all properties to be read from GET API Schema schema=ElementSecurityZoneScreenV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -142,6 +142,22 @@ func (d *elementSecurityZoneDataSource) Schema(_ context.Context, _ datasource.S
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=pa_network_id, type=STRING macro=rss_schema
+						"pa_network_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=pa_network_id, type=STRING macro=rss_schema
+						// property: name=site_id, type=STRING macro=rss_schema
+						"site_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 						// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"waninterface_ids": dsschema.ListAttribute{
 							Required:    false,
@@ -204,7 +220,7 @@ func (d *elementSecurityZoneDataSource) Read(ctx context.Context, req datasource
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}"
+	get_path := "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -275,20 +291,20 @@ func (d *elementSecurityZoneDataSource) Read(ctx context.Context, req datasource
 		}
 
 		// Store the answer to state.
-		var state dsModelElementSecurityZoneScreen
+		var state dsModelElementSecurityZoneScreenV2N1
 
 		// start copying attributes
-		var ans sdwan_schema.ElementSecurityZoneScreen
+		var ans sdwan_schema.ElementSecurityZoneScreenV2N1
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to ElementSecurityZoneScreen", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to ElementSecurityZoneScreenV2N1", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=ElementSecurityZoneScreen
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=8
+		// lets copy all items into state schema=ElementSecurityZoneScreenV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=10
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -304,6 +320,10 @@ func (d *elementSecurityZoneDataSource) Read(ctx context.Context, req datasource
 		varLannetworkIds, errLannetworkIds := types.ListValueFrom(ctx, types.StringType, ans.LannetworkIds)
 		state.LannetworkIds = varLannetworkIds
 		resp.Diagnostics.Append(errLannetworkIds.Errors()...)
+		// property: name=pa_network_id, type=STRING macro=copy_to_state
+		state.PaNetworkId = types.StringPointerValue(ans.PaNetworkId)
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.SiteId = types.StringPointerValue(ans.SiteId)
 		// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varWaninterfaceIds, errWaninterfaceIds := types.ListValueFrom(ctx, types.StringType, ans.WaninterfaceIds)
 		state.WaninterfaceIds = varWaninterfaceIds

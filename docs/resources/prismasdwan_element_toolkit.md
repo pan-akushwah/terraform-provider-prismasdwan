@@ -24,23 +24,41 @@
       "type" : "integer"
     },
     "account_disable_interval" : {
-      "description" : "Account Disable Interval: Range(max = 60L, error = ELEMENT_ACCESS_CONFIG_INVALID_ACCOUNT_DISABLE_INTERVAL: Invalid account disable interval value, it should be in range 5-60., min = 5L) ",
+      "description" : "Account Disable Interval",
       "format" : "int32",
+      "maximum" : 60,
+      "minimum" : 5,
       "type" : "integer"
     },
     "retry_login_count" : {
-      "description" : "Retry Login Count: Range(max = 20L, error = ELEMENT_ACCESS_CONFIG_INVALID_RETRY_LOGIN_COUNT: Invalid retry login count value, it should be in range 5-20., min = 5L) ",
+      "description" : "Retry Login Count",
       "format" : "int32",
+      "maximum" : 20,
+      "minimum" : 5,
       "type" : "integer"
     },
     "inactive_interval" : {
-      "description" : "Inactive Interval: Range(max = 60L, error = ELEMENT_ACCESS_CONFIG_INVALID_INACTIVE_INTERVAL: Invalid inactive interval value, it should be in range 15-60., min = 15L) ",
+      "description" : "Inactive Interval",
       "format" : "int32",
+      "maximum" : 60,
+      "minimum" : 15,
       "type" : "integer"
     },
     "ssh_enabled" : {
       "description" : "Ssh Enabled",
       "type" : "boolean"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -64,20 +82,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "ssh_outbound_enabled", "otpkey_version", "account_disable_interval", "retry_login_count", "inactive_interval", "ssh_enabled", "id" ]
 }
 ```
 

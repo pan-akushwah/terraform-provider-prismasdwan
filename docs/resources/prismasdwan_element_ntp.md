@@ -15,35 +15,46 @@
 {
   "properties" : {
     "source_interface_ids" : {
-      "description" : "Source Interface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 10, error = NTP_CONFIG_INVALID_INTERFACE_IDS: Source interface ids cannot be empty and should be valid.Interface ids should not be port that is part of logical interface group like bypass pair., noTrim = false, regex = , required = false) ",
+      "description" : "Source Interface Ids",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Source Interface Ids",
         "type" : "string"
       }
     },
     "ntp_servers" : {
-      "description" : "Ntp Servers: NotEmpty(error = NTP_CONFIG_INVALID_SERVER_SIZE: A minimum of 1 and a maximum of 10 NTP servers can be configured.) Size(max = 10, error = NTP_CONFIG_INVALID_SERVER_SIZE: A minimum of 1 and a maximum of 10 NTP servers can be configured., min = 1) Valid ",
+      "description" : "Ntp Servers",
+      "maxItems" : 10,
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
           "max_poll" : {
-            "description" : "Max Poll: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_MAXPOLL_VALUE: The range for maximum poll values is between 4-17., min = 0) ",
+            "description" : "Max Poll",
             "format" : "int32",
+            "maximum" : 17,
+            "minimum" : 4,
             "type" : "integer"
           },
           "min_poll" : {
-            "description" : "Min Poll: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_MINPOLL_VALUE: The range for minimum poll values is between 4-17., min = 0) ",
+            "description" : "Min Poll",
             "format" : "int32",
+            "maximum" : 17,
+            "minimum" : 4,
             "type" : "integer"
           },
           "version" : {
-            "description" : "Version: Required(message = required) ValidateDecimal(allowZero = false, increment = 0, max = 0, error = NTP_CONFIG_INVALID_VERSION: Allowed versions are 2,3 & 4., min = 0) ",
+            "description" : "Version",
             "format" : "int32",
+            "maximum" : 4,
+            "minimum" : 2,
             "type" : "integer"
           },
           "host" : {
-            "description" : "Host: ValidateHostName(allowNull = false, error = NTP_CONFIG_INVALID_HOST: Host can be only domain name or IP address.) ",
+            "description" : "Host",
+            "format" : "hostname",
             "type" : "string"
           }
         },
@@ -66,12 +77,27 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = NTP_CONFIG_DESCRIPTION_INVALID: NTP description is invalid. The maximum length is 256., min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: NotEmpty(error = NTP_CONFIG_NAME_REQD: Name is mandatory for NTP configuration.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
+      "minLength" : 1,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -95,21 +121,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "ntp_servers", "name" ]
+  "required" : [ "source_interface_ids", "ntp_servers", "tags", "description", "name", "id" ]
 }
 ```
 

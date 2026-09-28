@@ -24,7 +24,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=7)
+// | Schema Map Summary (size=goLangStructMap=8)
 // | Computed Resource Name=sites_prismasase_connections
 // +-----------------------------------------------------------------
 // | RoutingConfigs HasID=false
@@ -32,8 +32,9 @@ import (
 // | IPSecTunnelAuthentication HasID=false
 // | IPSecTunnel HasID=false
 // | RemoteNetworkGroup HasID=false
+// | RoutingConfigsV3N1 HasID=false
 // | IPSecTunnelConfigs HasID=false
-// | SaseConnectionScreenV2N1 HasID=true
+// | SaseConnectionScreenV3N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -77,7 +78,7 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SaseConnectionScreenV2N1
+			// rest all properties to be read from GET API Schema schema=SaseConnectionScreenV3N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -208,15 +209,15 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=license_type, type=STRING macro=rss_schema
-			// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
-			"prismaaccess_edge_location": rsschema.ListAttribute{
+			// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=rss_schema
+			"prismaaccess_edge_location_config": rsschema.ListAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
 				ElementType: types.StringType,
 			},
-			// key name holder for attribute: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=rss_schema
 			"prismaaccess_qos_cir_mbps": rsschema.Int64Attribute{
 				Required:  false,
@@ -233,6 +234,14 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=prismaaccess_qos_profile_id, type=STRING macro=rss_schema
+			// property: name=prismasase_connection_id, type=STRING macro=rss_schema
+			"prismasase_connection_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=prismasase_connection_id, type=STRING macro=rss_schema
 			// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=rss_schema
 			"remote_network_groups": rsschema.ListNestedAttribute{
 				Required:  false,
@@ -435,6 +444,22 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 						Optional:  true,
 						Sensitive: false,
 					},
+					// property: name=branch_as_number, type=STRING macro=rss_schema
+					"branch_as_number": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=branch_as_number, type=STRING macro=rss_schema
+					// property: name=deployment_mode, type=STRING macro=rss_schema
+					"deployment_mode": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=deployment_mode, type=STRING macro=rss_schema
 					// property: name=export_routes, type=BOOLEAN macro=rss_schema
 					"export_routes": rsschema.BoolAttribute{
 						Required:  false,
@@ -443,6 +468,14 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=export_routes, type=BOOLEAN macro=rss_schema
+					// property: name=peering_type, type=STRING macro=rss_schema
+					"peering_type": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=peering_type, type=STRING macro=rss_schema
 					// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=rss_schema
 					"summarize_mobile_routes_before_advertise": rsschema.BoolAttribute{
 						Required:  false,
@@ -488,7 +521,7 @@ func (r *sitePrismaSaseConnectionResource) GetHttpStatusCode(request *sdwan_clie
 	}
 }
 
-func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsModelSaseConnectionScreenV2N1, state *rsModelSaseConnectionScreenV2N1, resp *resource.CreateResponse) bool {
+func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsModelSaseConnectionScreenV3N1, state *rsModelSaseConnectionScreenV3N1, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_site_prisma_sase_connection")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -500,7 +533,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_site_prisma_sase_connection"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections"
+	create_request.Path = "/sdwan/v3.1/api/sites/{site_id}/prismasase_connections"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -510,10 +543,10 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SaseConnectionScreenV2N1{}
+	var body = &sdwan_schema.SaseConnectionScreenV3N1{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=14
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=15
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -549,12 +582,14 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	body.IsEnabled = BoolValueOrNil(plan.IsEnabled)
 	// property: name=license_type, type=STRING macro=copy_from_plan
 	body.LicenseType = StringValueOrNil(plan.LicenseType)
-	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_from_plan
-	body.PrismaaccessEdgeLocation = ListStringValueOrNil(ctx, plan.PrismaaccessEdgeLocation)
+	// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=copy_from_plan
+	body.PrismaaccessEdgeLocationConfig = ListStringValueOrNil(ctx, plan.PrismaaccessEdgeLocationConfig)
 	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_from_plan
 	body.PrismaaccessQosCirMbps = Int64ValueOrNil(plan.PrismaaccessQosCirMbps)
 	// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_from_plan
 	body.PrismaaccessQosProfileId = StringValueOrNil(plan.PrismaaccessQosProfileId)
+	// property: name=prismasase_connection_id, type=STRING macro=copy_from_plan
+	body.PrismasaseConnectionId = StringValueOrNil(plan.PrismasaseConnectionId)
 	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_from_plan
 	if plan.RemoteNetworkGroups == nil {
 		body.RemoteNetworkGroups = nil
@@ -631,15 +666,21 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	}
 	// property: name=routing_configs, type=REFERENCE macro=copy_from_plan
 	if plan.RoutingConfigs != nil {
-		body.RoutingConfigs = &sdwan_schema.RoutingConfigs{}
-		// copy_from_plan: body=body.RoutingConfigs prefix=rsModel plan=plan.RoutingConfigs properties=4
+		body.RoutingConfigs = &sdwan_schema.RoutingConfigsV3N1{}
+		// copy_from_plan: body=body.RoutingConfigs prefix=rsModel plan=plan.RoutingConfigs properties=7
 		tflog.Debug(ctx, "copy_from_plan body=body.RoutingConfigs prefix=rsModel plan=plan.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan
 		body.RoutingConfigs.AdvertiseDefaultRoute = BoolValueOrNil(plan.RoutingConfigs.AdvertiseDefaultRoute)
 		// property: name=bgp_secret, type=STRING macro=copy_from_plan
 		body.RoutingConfigs.BgpSecret = StringValueOrNil(plan.RoutingConfigs.BgpSecret)
+		// property: name=branch_as_number, type=STRING macro=copy_from_plan
+		body.RoutingConfigs.BranchAsNumber = StringValueOrNil(plan.RoutingConfigs.BranchAsNumber)
+		// property: name=deployment_mode, type=STRING macro=copy_from_plan
+		body.RoutingConfigs.DeploymentMode = StringValueOrNil(plan.RoutingConfigs.DeploymentMode)
 		// property: name=export_routes, type=BOOLEAN macro=copy_from_plan
 		body.RoutingConfigs.ExportRoutes = BoolValueOrNil(plan.RoutingConfigs.ExportRoutes)
+		// property: name=peering_type, type=STRING macro=copy_from_plan
+		body.RoutingConfigs.PeeringType = StringValueOrNil(plan.RoutingConfigs.PeeringType)
 		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_from_plan
 		body.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = BoolValueOrNil(plan.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
 	}
@@ -649,7 +690,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SaseConnectionScreenV2N1 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SaseConnectionScreenV3N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -692,12 +733,12 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SaseConnectionScreenV2N1
+	var ans sdwan_schema.SaseConnectionScreenV3N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV2N1 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV3N1 in create", json_err.Error())
 		return false
 	}
 
@@ -722,8 +763,8 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_site_prisma_sase_connection with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SaseConnectionScreenV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
+	// Store the answer to state. schema=SaseConnectionScreenV3N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -763,14 +804,16 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
 	// property: name=license_type, type=STRING macro=copy_to_state
 	state.LicenseType = types.StringPointerValue(ans.LicenseType)
-	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
-	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
-	resp.Diagnostics.Append(errPrismaaccessEdgeLocation.Errors()...)
+	// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varPrismaaccessEdgeLocationConfig, errPrismaaccessEdgeLocationConfig := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocationConfig)
+	state.PrismaaccessEdgeLocationConfig = varPrismaaccessEdgeLocationConfig
+	resp.Diagnostics.Append(errPrismaaccessEdgeLocationConfig.Errors()...)
 	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_to_state
 	state.PrismaaccessQosCirMbps = types.Int64PointerValue(ans.PrismaaccessQosCirMbps)
 	// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_to_state
 	state.PrismaaccessQosProfileId = types.StringPointerValue(ans.PrismaaccessQosProfileId)
+	// property: name=prismasase_connection_id, type=STRING macro=copy_to_state
+	state.PrismasaseConnectionId = types.StringPointerValue(ans.PrismasaseConnectionId)
 	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.RemoteNetworkGroups == nil {
 		state.RemoteNetworkGroups = nil
@@ -864,8 +907,8 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	if ans.RoutingConfigs == nil {
 		state.RoutingConfigs = nil
 	} else {
-		state.RoutingConfigs = &rsModelRoutingConfigs{}
-		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=4
+		state.RoutingConfigs = &rsModelRoutingConfigsV3N1{}
+		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=7
 		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
@@ -878,8 +921,14 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 			encryptedBgpSecret, _ := Encrypt([]byte(state.RoutingConfigs.BgpSecret.String()))
 			resp.Private.SetKey(ctx, state.RoutingConfigs.BgpSecretInternalKeyName.String(), []byte(encryptedBgpSecret))
 		}
+		// property: name=branch_as_number, type=STRING macro=copy_to_state
+		state.RoutingConfigs.BranchAsNumber = types.StringPointerValue(ans.RoutingConfigs.BranchAsNumber)
+		// property: name=deployment_mode, type=STRING macro=copy_to_state
+		state.RoutingConfigs.DeploymentMode = types.StringPointerValue(ans.RoutingConfigs.DeploymentMode)
 		// property: name=export_routes, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.ExportRoutes = types.BoolPointerValue(ans.RoutingConfigs.ExportRoutes)
+		// property: name=peering_type, type=STRING macro=copy_to_state
+		state.RoutingConfigs.PeeringType = types.StringPointerValue(ans.RoutingConfigs.PeeringType)
 		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(ans.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
 	}
@@ -888,7 +937,7 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	return true
 }
 
-func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsModelSaseConnectionScreenV2N1, savestate *rsModelSaseConnectionScreenV2N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsModelSaseConnectionScreenV3N1, savestate *rsModelSaseConnectionScreenV3N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -910,7 +959,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_site_prisma_sase_connection"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
+	read_request.Path = "/sdwan/v3.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -952,7 +1001,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SaseConnectionScreenV2N1
+	// Store the answer to state. schema=SaseConnectionScreenV3N1
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -961,16 +1010,16 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SaseConnectionScreenV2N1
+	var ans sdwan_schema.SaseConnectionScreenV3N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV2N1 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV3N1 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1010,14 +1059,16 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
 	// property: name=license_type, type=STRING macro=copy_to_state
 	state.LicenseType = types.StringPointerValue(ans.LicenseType)
-	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
-	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
-	resp.Diagnostics.Append(errPrismaaccessEdgeLocation.Errors()...)
+	// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varPrismaaccessEdgeLocationConfig, errPrismaaccessEdgeLocationConfig := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocationConfig)
+	state.PrismaaccessEdgeLocationConfig = varPrismaaccessEdgeLocationConfig
+	resp.Diagnostics.Append(errPrismaaccessEdgeLocationConfig.Errors()...)
 	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_to_state
 	state.PrismaaccessQosCirMbps = types.Int64PointerValue(ans.PrismaaccessQosCirMbps)
 	// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_to_state
 	state.PrismaaccessQosProfileId = types.StringPointerValue(ans.PrismaaccessQosProfileId)
+	// property: name=prismasase_connection_id, type=STRING macro=copy_to_state
+	state.PrismasaseConnectionId = types.StringPointerValue(ans.PrismasaseConnectionId)
 	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.RemoteNetworkGroups == nil {
 		state.RemoteNetworkGroups = nil
@@ -1109,8 +1160,8 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	if ans.RoutingConfigs == nil {
 		state.RoutingConfigs = nil
 	} else {
-		state.RoutingConfigs = &rsModelRoutingConfigs{}
-		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=4
+		state.RoutingConfigs = &rsModelRoutingConfigsV3N1{}
+		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=7
 		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
@@ -1121,8 +1172,14 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 			decryptedBgpSecret, _ := Decrypt(string(encryptedBgpSecretValueBytes))
 			state.RoutingConfigs.BgpSecret = types.StringValue(decryptedBgpSecret)
 		}
+		// property: name=branch_as_number, type=STRING macro=copy_to_state
+		state.RoutingConfigs.BranchAsNumber = types.StringPointerValue(ans.RoutingConfigs.BranchAsNumber)
+		// property: name=deployment_mode, type=STRING macro=copy_to_state
+		state.RoutingConfigs.DeploymentMode = types.StringPointerValue(ans.RoutingConfigs.DeploymentMode)
 		// property: name=export_routes, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.ExportRoutes = types.BoolPointerValue(ans.RoutingConfigs.ExportRoutes)
+		// property: name=peering_type, type=STRING macro=copy_to_state
+		state.RoutingConfigs.PeeringType = types.StringPointerValue(ans.RoutingConfigs.PeeringType)
 		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(ans.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
 	}
@@ -1131,7 +1188,7 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 	return true
 }
 
-func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsModelSaseConnectionScreenV2N1, state *rsModelSaseConnectionScreenV2N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsModelSaseConnectionScreenV3N1, state *rsModelSaseConnectionScreenV3N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -1159,7 +1216,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_site_prisma_sase_connection"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
+	put_request.Path = "/sdwan/v3.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1178,11 +1235,11 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SaseConnectionScreenV2N1{}
+	var body = &sdwan_schema.SaseConnectionScreenV3N1{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=14
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=15
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -1272,8 +1329,8 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	} else {
 		body.LicenseType = StringValueOrNil(plan.LicenseType)
 	}
-	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.PrismaaccessEdgeLocation = ListStringValueOrNil(ctx, plan.PrismaaccessEdgeLocation)
+	// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+	body.PrismaaccessEdgeLocationConfig = ListStringValueOrNil(ctx, plan.PrismaaccessEdgeLocationConfig)
 	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.PrismaaccessQosCirMbps = ValueInt64PointerFromPlanOrState(plan.PrismaaccessQosCirMbps, state.PrismaaccessQosCirMbps)
@@ -1285,6 +1342,12 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 		body.PrismaaccessQosProfileId = ValueStringPointerFromPlanOrState(plan.PrismaaccessQosProfileId, state.PrismaaccessQosProfileId)
 	} else {
 		body.PrismaaccessQosProfileId = StringValueOrNil(plan.PrismaaccessQosProfileId)
+	}
+	// property: name=prismasase_connection_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.PrismasaseConnectionId = ValueStringPointerFromPlanOrState(plan.PrismasaseConnectionId, state.PrismasaseConnectionId)
+	} else {
+		body.PrismasaseConnectionId = StringValueOrNil(plan.PrismasaseConnectionId)
 	}
 	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 	if plan.RemoteNetworkGroups == nil && (state == nil || state.RemoteNetworkGroups == nil) {
@@ -1369,8 +1432,8 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	if plan.RoutingConfigs == nil {
 		body.RoutingConfigs = nil
 	} else {
-		body.RoutingConfigs = &sdwan_schema.RoutingConfigs{}
-		// copy_from_plan_or_state: body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs properties=4
+		body.RoutingConfigs = &sdwan_schema.RoutingConfigsV3N1{}
+		// copy_from_plan_or_state: body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs properties=7
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.RoutingConfigs != nil {
@@ -1384,11 +1447,29 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 		} else {
 			body.RoutingConfigs.BgpSecret = StringValueOrNil(plan.RoutingConfigs.BgpSecret)
 		}
+		// property: name=branch_as_number, type=STRING macro=copy_from_plan_or_state
+		if state.RoutingConfigs != nil {
+			body.RoutingConfigs.BranchAsNumber = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.BranchAsNumber, state.RoutingConfigs.BranchAsNumber)
+		} else {
+			body.RoutingConfigs.BranchAsNumber = StringValueOrNil(plan.RoutingConfigs.BranchAsNumber)
+		}
+		// property: name=deployment_mode, type=STRING macro=copy_from_plan_or_state
+		if state.RoutingConfigs != nil {
+			body.RoutingConfigs.DeploymentMode = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.DeploymentMode, state.RoutingConfigs.DeploymentMode)
+		} else {
+			body.RoutingConfigs.DeploymentMode = StringValueOrNil(plan.RoutingConfigs.DeploymentMode)
+		}
 		// property: name=export_routes, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.RoutingConfigs != nil {
 			body.RoutingConfigs.ExportRoutes = ValueBoolPointerFromPlanOrState(plan.RoutingConfigs.ExportRoutes, state.RoutingConfigs.ExportRoutes)
 		} else {
 			body.RoutingConfigs.ExportRoutes = BoolValueOrNil(plan.RoutingConfigs.ExportRoutes)
+		}
+		// property: name=peering_type, type=STRING macro=copy_from_plan_or_state
+		if state.RoutingConfigs != nil {
+			body.RoutingConfigs.PeeringType = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.PeeringType, state.RoutingConfigs.PeeringType)
+		} else {
+			body.RoutingConfigs.PeeringType = StringValueOrNil(plan.RoutingConfigs.PeeringType)
 		}
 		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.RoutingConfigs != nil {
@@ -1407,7 +1488,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SaseConnectionScreenV2N1 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SaseConnectionScreenV3N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -1443,17 +1524,17 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SaseConnectionScreenV2N1
+	var ans sdwan_schema.SaseConnectionScreenV3N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV2N1 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV3N1 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SaseConnectionScreenV2N1
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
+	// Store the answer to state. schema=SaseConnectionScreenV3N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1493,14 +1574,16 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
 	// property: name=license_type, type=STRING macro=copy_to_state
 	state.LicenseType = types.StringPointerValue(ans.LicenseType)
-	// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
-	varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
-	state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
-	resp.Diagnostics.Append(errPrismaaccessEdgeLocation.Errors()...)
+	// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=copy_to_state
+	varPrismaaccessEdgeLocationConfig, errPrismaaccessEdgeLocationConfig := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocationConfig)
+	state.PrismaaccessEdgeLocationConfig = varPrismaaccessEdgeLocationConfig
+	resp.Diagnostics.Append(errPrismaaccessEdgeLocationConfig.Errors()...)
 	// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_to_state
 	state.PrismaaccessQosCirMbps = types.Int64PointerValue(ans.PrismaaccessQosCirMbps)
 	// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_to_state
 	state.PrismaaccessQosProfileId = types.StringPointerValue(ans.PrismaaccessQosProfileId)
+	// property: name=prismasase_connection_id, type=STRING macro=copy_to_state
+	state.PrismasaseConnectionId = types.StringPointerValue(ans.PrismasaseConnectionId)
 	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.RemoteNetworkGroups == nil {
 		state.RemoteNetworkGroups = nil
@@ -1594,8 +1677,8 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	if ans.RoutingConfigs == nil {
 		state.RoutingConfigs = nil
 	} else {
-		state.RoutingConfigs = &rsModelRoutingConfigs{}
-		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=4
+		state.RoutingConfigs = &rsModelRoutingConfigsV3N1{}
+		// copy_to_state: state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs properties=7
 		tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=rsModel ans=ans.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
@@ -1608,8 +1691,14 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 			encryptedBgpSecret, _ := Encrypt([]byte(state.RoutingConfigs.BgpSecret.String()))
 			resp.Private.SetKey(ctx, state.RoutingConfigs.BgpSecretInternalKeyName.String(), []byte(encryptedBgpSecret))
 		}
+		// property: name=branch_as_number, type=STRING macro=copy_to_state
+		state.RoutingConfigs.BranchAsNumber = types.StringPointerValue(ans.RoutingConfigs.BranchAsNumber)
+		// property: name=deployment_mode, type=STRING macro=copy_to_state
+		state.RoutingConfigs.DeploymentMode = types.StringPointerValue(ans.RoutingConfigs.DeploymentMode)
 		// property: name=export_routes, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.ExportRoutes = types.BoolPointerValue(ans.RoutingConfigs.ExportRoutes)
+		// property: name=peering_type, type=STRING macro=copy_to_state
+		state.RoutingConfigs.PeeringType = types.StringPointerValue(ans.RoutingConfigs.PeeringType)
 		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state
 		state.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = types.BoolPointerValue(ans.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
 	}
@@ -1618,7 +1707,7 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 	return true
 }
 
-func (r *sitePrismaSaseConnectionResource) doDelete(ctx context.Context, state *rsModelSaseConnectionScreenV2N1, resp *resource.DeleteResponse) bool {
+func (r *sitePrismaSaseConnectionResource) doDelete(ctx context.Context, state *rsModelSaseConnectionScreenV3N1, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1639,7 +1728,7 @@ func (r *sitePrismaSaseConnectionResource) doDelete(ctx context.Context, state *
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_site_prisma_sase_connection"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
+	delete_request.Path = "/sdwan/v3.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1673,14 +1762,14 @@ func (r *sitePrismaSaseConnectionResource) doDelete(ctx context.Context, state *
 // Path Parameters are encoded into TfID itself
 func (r *sitePrismaSaseConnectionResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_site_prisma_sase_connection")
-	var plan rsModelSaseConnectionScreenV2N1
+	var plan rsModelSaseConnectionScreenV3N1
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSaseConnectionScreenV2N1
+	var state rsModelSaseConnectionScreenV3N1
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1692,7 +1781,7 @@ func (r *sitePrismaSaseConnectionResource) Create(ctx context.Context, req resou
 func (r *sitePrismaSaseConnectionResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_site_prisma_sase_connection")
-	var savestate, state rsModelSaseConnectionScreenV2N1
+	var savestate, state rsModelSaseConnectionScreenV3N1
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1711,7 +1800,7 @@ func (r *sitePrismaSaseConnectionResource) Read(ctx context.Context, req resourc
 func (r *sitePrismaSaseConnectionResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_site_prisma_sase_connection")
-	var plan, state rsModelSaseConnectionScreenV2N1
+	var plan, state rsModelSaseConnectionScreenV3N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1735,7 +1824,7 @@ func (r *sitePrismaSaseConnectionResource) Update(ctx context.Context, req resou
 func (r *sitePrismaSaseConnectionResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_site_prisma_sase_connection")
-	var state rsModelSaseConnectionScreenV2N1
+	var state rsModelSaseConnectionScreenV3N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

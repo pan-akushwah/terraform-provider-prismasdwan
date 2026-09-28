@@ -28,6 +28,7 @@ import (
 // | CellularInterfaceConfig HasID=false
 // | PortChannelConfig HasID=false
 // | PassiveMode HasID=false
+// | PPKConfig HasID=false
 // | IKEV1Params HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | IPSECConfigV1 HasID=false
@@ -45,7 +46,7 @@ import (
 // | StormControlConfig HasID=false
 // | SwitchPortConfig HasID=false
 // | MulticastIgmpStaticJoin HasID=false
-// | MulticastInterfaceConfig HasID=false
+// | MulticastInterfaceConfigV4N12 HasID=false
 // | StaticARPConfig HasID=false
 // | SecondaryIPConfig HasID=false
 // | IPv4Range HasID=false
@@ -55,7 +56,6 @@ import (
 // | EthernetPort HasID=false
 // | DHCPRelayOption82 HasID=false
 // | DHCPRelay HasID=false
-// | Ipv4Pppoe HasID=false
 // | Ipv4Dhcp HasID=false
 // | Ipv4Static HasID=false
 // | Ipv4Config HasID=false
@@ -355,6 +355,14 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=auto_apn, type=BOOLEAN macro=rss_schema
+								// property: name=ip_address_type, type=STRING macro=rss_schema
+								"ip_address_type": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=ip_address_type, type=STRING macro=rss_schema
 								// property: name=parent_module_id, type=STRING macro=rss_schema
 								"parent_module_id": dsschema.StringAttribute{
 									Required:  false,
@@ -602,40 +610,6 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 									},
 								},
 								// key name holder for attribute: name=search, type=ARRAY_PRIMITIVE macro=rss_schema
-								// property: name=pppoe_config, type=REFERENCE macro=rss_schema
-								"pppoe_config": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
-									Attributes: map[string]dsschema.Attribute{
-										// property: name=chap_passwd, type=STRING macro=rss_schema
-										"chap_passwd": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=chap_passwd, type=STRING macro=rss_schema
-										// property: name=chap_user, type=STRING macro=rss_schema
-										"chap_user": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=chap_user, type=STRING macro=rss_schema
-										// property: name=set_route, type=BOOLEAN macro=rss_schema
-										"set_route": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=set_route, type=BOOLEAN macro=rss_schema
-									},
-								},
-								// key name holder for attribute: name=set_route, type=BOOLEAN macro=rss_schema
 								// property: name=routes, type=ARRAY_REFERENCE macro=rss_schema
 								"routes": dsschema.ListNestedAttribute{
 									Required:  false,
@@ -1388,6 +1362,80 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 													Sensitive: false,
 												},
 												// key name holder for attribute: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
+												// property: name=ppk_config, type=REFERENCE macro=rss_schema
+												"ppk_config": dsschema.SingleNestedAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+													Attributes: map[string]dsschema.Attribute{
+														// property: name=enabled, type=BOOLEAN macro=rss_schema
+														"enabled": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+														// property: name=key_enabled, type=BOOLEAN macro=rss_schema
+														"key_enabled": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=key_enabled, type=BOOLEAN macro=rss_schema
+														// property: name=mode, type=STRING macro=rss_schema
+														"mode": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=mode, type=STRING macro=rss_schema
+														// property: name=ppk_key_id, type=STRING macro=rss_schema
+														"ppk_key_id": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=ppk_key_id, type=STRING macro=rss_schema
+														// property: name=ppk_secret, type=STRING macro=rss_schema
+														"ppk_secret": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret, type=STRING macro=rss_schema
+														// property: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+														"ppk_secret_configured": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+														// property: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+														"ppk_secret_encrypted": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+														// property: name=ppk_secret_hash, type=STRING macro=rss_schema
+														"ppk_secret_hash": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
+													},
+												},
+												// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
 												// property: name=private_key, type=STRING macro=rss_schema
 												"private_key": dsschema.StringAttribute{
 													Required:  false,
@@ -1505,17 +1553,9 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 											Sensitive: false,
 										},
 										// key name holder for attribute: name=enable, type=BOOLEAN macro=rss_schema
-										// property: name=peer_ip_dynamic, type=BOOLEAN macro=rss_schema
-										"peer_ip_dynamic": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=peer_ip_dynamic, type=BOOLEAN macro=rss_schema
 									},
 								},
-								// key name holder for attribute: name=peer_ip_dynamic, type=BOOLEAN macro=rss_schema
+								// key name holder for attribute: name=enable, type=BOOLEAN macro=rss_schema
 								// property: name=peer, type=REFERENCE macro=rss_schema
 								"peer": dsschema.SingleNestedAttribute{
 									Required:  false,
@@ -1614,6 +1654,14 @@ func (d *elementShellInterfaceDataSource) Schema(_ context.Context, _ datasource
 							Optional:  true,
 							Sensitive: false,
 							Attributes: map[string]dsschema.Attribute{
+								// property: name=native_vlan, type=BOOLEAN macro=rss_schema
+								"native_vlan": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=native_vlan, type=BOOLEAN macro=rss_schema
 								// property: name=vlan_id, type=INTEGER macro=rss_schema
 								"vlan_id": dsschema.Int64Attribute{
 									Required:  false,
@@ -2010,7 +2058,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			state.CellularConfig = nil
 		} else {
 			state.CellularConfig = &dsModelCellularInterfaceConfig{}
-			// copy_to_state: state=state.CellularConfig prefix=dsModel ans=ans.CellularConfig properties=5
+			// copy_to_state: state=state.CellularConfig prefix=dsModel ans=ans.CellularConfig properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.CellularConfig prefix=dsModel ans=ans.CellularConfig")
 			// property: name=apn_config, type=REFERENCE macro=copy_to_state
 			if ans.CellularConfig.ApnConfig == nil {
@@ -2036,6 +2084,8 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			state.CellularConfig.ApnprofileId = types.StringPointerValue(ans.CellularConfig.ApnprofileId)
 			// property: name=auto_apn, type=BOOLEAN macro=copy_to_state
 			state.CellularConfig.AutoApn = types.BoolPointerValue(ans.CellularConfig.AutoApn)
+			// property: name=ip_address_type, type=STRING macro=copy_to_state
+			state.CellularConfig.IpAddressType = types.StringPointerValue(ans.CellularConfig.IpAddressType)
 			// property: name=parent_module_id, type=STRING macro=copy_to_state
 			state.CellularConfig.ParentModuleId = types.StringPointerValue(ans.CellularConfig.ParentModuleId)
 			// property: name=parent_sim_slot_number, type=INTEGER macro=copy_to_state
@@ -2106,7 +2156,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			state.Ipv4Config = nil
 		} else {
 			state.Ipv4Config = &dsModelIpv4Config{}
-			// copy_to_state: state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config properties=6
+			// copy_to_state: state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config properties=5
 			tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config prefix=dsModel ans=ans.Ipv4Config")
 			// property: name=dhcp_config, type=REFERENCE macro=copy_to_state
 			if ans.Ipv4Config.DhcpConfig == nil {
@@ -2135,20 +2185,6 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 				varSearch, errSearch := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DnsV4Config.Search)
 				state.Ipv4Config.DnsV4Config.Search = varSearch
 				resp.Diagnostics.Append(errSearch.Errors()...)
-			}
-			// property: name=pppoe_config, type=REFERENCE macro=copy_to_state
-			if ans.Ipv4Config.PppoeConfig == nil {
-				state.Ipv4Config.PppoeConfig = nil
-			} else {
-				state.Ipv4Config.PppoeConfig = &dsModelIpv4Pppoe{}
-				// copy_to_state: state=state.Ipv4Config.PppoeConfig prefix=dsModel ans=ans.Ipv4Config.PppoeConfig properties=3
-				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.PppoeConfig prefix=dsModel ans=ans.Ipv4Config.PppoeConfig")
-				// property: name=chap_passwd, type=STRING macro=copy_to_state
-				state.Ipv4Config.PppoeConfig.ChapPasswd = types.StringPointerValue(ans.Ipv4Config.PppoeConfig.ChapPasswd)
-				// property: name=chap_user, type=STRING macro=copy_to_state
-				state.Ipv4Config.PppoeConfig.ChapUser = types.StringPointerValue(ans.Ipv4Config.PppoeConfig.ChapUser)
-				// property: name=set_route, type=BOOLEAN macro=copy_to_state
-				state.Ipv4Config.PppoeConfig.SetRoute = types.BoolPointerValue(ans.Ipv4Config.PppoeConfig.SetRoute)
 			}
 			// property: name=routes, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.Ipv4Config.Routes == nil {
@@ -2269,7 +2305,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 		if ans.MulticastConfig == nil {
 			state.MulticastConfig = nil
 		} else {
-			state.MulticastConfig = &dsModelMulticastInterfaceConfig{}
+			state.MulticastConfig = &dsModelMulticastInterfaceConfigV4N12{}
 			// copy_to_state: state=state.MulticastConfig prefix=dsModel ans=ans.MulticastConfig properties=4
 			tflog.Debug(ctx, "copy_to_state state=state.MulticastConfig prefix=dsModel ans=ans.MulticastConfig")
 			// property: name=dr_priority, type=INTEGER macro=copy_to_state
@@ -2440,7 +2476,7 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 					state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 				} else {
 					state.ServiceLinkConfig.IpsecConfig.Authentication = &dsModelIPSECAuthenticationV1{}
-					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 					// property: name=certificate, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -2484,6 +2520,30 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 					state.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 					// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+					// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+					if ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig == nil {
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = nil
+					} else {
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &dsModelPPKConfig{}
+						// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=8
+						tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+						// property: name=enabled, type=BOOLEAN macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+						// property: name=key_enabled, type=BOOLEAN macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled)
+						// property: name=mode, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+						// property: name=ppk_key_id, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+						// property: name=ppk_secret, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
+						// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+						// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
+						// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
+					}
 					// property: name=private_key, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 					// property: name=private_key_encrypted, type=STRING macro=copy_to_state
@@ -2515,12 +2575,10 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 				state.ServiceLinkConfig.PassiveMode = nil
 			} else {
 				state.ServiceLinkConfig.PassiveMode = &dsModelPassiveMode{}
-				// copy_to_state: state=state.ServiceLinkConfig.PassiveMode prefix=dsModel ans=ans.ServiceLinkConfig.PassiveMode properties=2
+				// copy_to_state: state=state.ServiceLinkConfig.PassiveMode prefix=dsModel ans=ans.ServiceLinkConfig.PassiveMode properties=1
 				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.PassiveMode prefix=dsModel ans=ans.ServiceLinkConfig.PassiveMode")
 				// property: name=enable, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.PassiveMode.Enable = types.BoolPointerValue(ans.ServiceLinkConfig.PassiveMode.Enable)
-				// property: name=peer_ip_dynamic, type=BOOLEAN macro=copy_to_state
-				state.ServiceLinkConfig.PassiveMode.PeerIpDynamic = types.BoolPointerValue(ans.ServiceLinkConfig.PassiveMode.PeerIpDynamic)
 			}
 			// property: name=peer, type=REFERENCE macro=copy_to_state
 			if ans.ServiceLinkConfig.Peer == nil {
@@ -2570,8 +2628,10 @@ func (d *elementShellInterfaceDataSource) Read(ctx context.Context, req datasour
 			state.SubInterface = nil
 		} else {
 			state.SubInterface = &dsModelSubInterface{}
-			// copy_to_state: state=state.SubInterface prefix=dsModel ans=ans.SubInterface properties=1
+			// copy_to_state: state=state.SubInterface prefix=dsModel ans=ans.SubInterface properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.SubInterface prefix=dsModel ans=ans.SubInterface")
+			// property: name=native_vlan, type=BOOLEAN macro=copy_to_state
+			state.SubInterface.NativeVlan = types.BoolPointerValue(ans.SubInterface.NativeVlan)
 			// property: name=vlan_id, type=INTEGER macro=copy_to_state
 			state.SubInterface.VlanId = types.Int64PointerValue(ans.SubInterface.VlanId)
 		}

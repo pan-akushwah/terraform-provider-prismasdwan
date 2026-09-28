@@ -22,25 +22,33 @@
     },
     "lqm_config" : {
       "properties" : {
+        "use_prisma_access_service_endpoints" : {
+          "description" : "Use Prisma Access Service Endpoints",
+          "type" : "boolean"
+        },
+        "use_hub_sites" : {
+          "description" : "Use Hub Sites",
+          "type" : "boolean"
+        },
         "inter_packet_gap" : {
-          "description" : "Inter Packet Gap: Range(max = 300L, error = WANINTERFACE_LQM_CONFIG_INVALID_INTER_PACKET_GAP: inter packet gap should be in the range of 50-300 milliseconds., min = 50L) ",
+          "description" : "Inter Packet Gap",
           "format" : "int32",
           "type" : "integer"
         },
         "statistic" : {
-          "description" : "Statistic: ValidateEnum(enumClass = classOf[LQMStatistic], error = WANINTERFACE_LQM_CONFIG_INVALID_STATISTIC: Invalid statistic value. Valid values are min, max and avg., nullAllowed = true) ",
-          "type" : "string",
-          "enum" : [ "min", "max", "avg" ]
+          "description" : "Statistic",
+          "type" : "string"
         },
         "hub_site_ids" : {
-          "description" : "Hub Site Ids: Size(max = 16, error = WANINTERFACE_LQM_CONFIG_INVALID_HUB_SITE_IDS_SIZE: Maximum 16 hub sites can be configured, min = 0) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = WANINTERFACE_LQM_CONFIG_DUPLICATE_HUB_SITE_IDS: Duplicate hub site ids are not allowed., noTrim = false, regex = , required = false) ",
+          "description" : "Hub Site Ids",
           "type" : "array",
           "items" : {
             "description" : "Hub Site Ids",
             "type" : "string"
           }
         }
-      }
+      },
+      "required" : [ "use_prisma_access_service_endpoints", "use_hub_sites", "inter_packet_gap", "statistic", "hub_site_ids" ]
     },
     "probe_profile_id" : {
       "description" : "Probe Profile Id",
@@ -67,7 +75,8 @@
             }
           }
         }
-      }
+      },
+      "required" : [ "probe_config_ids", "use_element_default" ]
     },
     "bwc_enabled" : {
       "description" : "Bwc Enabled",
@@ -82,11 +91,11 @@
       "type" : "boolean"
     },
     "use_for_application_reachability_probes" : {
-      "description" : "Use For Application Reachability Probes: Valid ",
+      "description" : "Use For Application Reachability Probes",
       "type" : "boolean"
     },
     "use_for_controller_connections" : {
-      "description" : "Use For Controller Connections: Valid ",
+      "description" : "Use For Controller Connections",
       "type" : "boolean"
     },
     "type" : {
@@ -97,7 +106,9 @@
     "vpnlink_configuration" : {
       "properties" : {
         "keep_alive_failure_count" : {
-          "description" : "Keep Alive Failure Count: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30.) Range(max = 30L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30., min = 3L) ",
+          "description" : "Keep Alive Failure Count",
+          "maximum" : 30,
+          "minimum" : 3,
           "type" : "integer",
           "additionalProperties" : {
             "properties" : {
@@ -108,7 +119,9 @@
           }
         },
         "keep_alive_interval" : {
-          "description" : "Keep Alive Interval: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms.) Range(max = 1740000L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms., min = 100L) ",
+          "description" : "Keep Alive Interval",
+          "maximum" : 1740000,
+          "minimum" : 100,
           "type" : "integer",
           "additionalProperties" : {
             "properties" : {
@@ -122,42 +135,54 @@
       "required" : [ "keep_alive_failure_count", "keep_alive_interval" ]
     },
     "cost" : {
-      "description" : "Cost: Range(max = 1024L, error = WANINTERFACE_INVALID_COST_VALUE: Cost value for site WAN interface should be within range 0-1024, min = 0L) ",
+      "description" : "Cost",
+      "maximum" : 1024,
+      "minimum" : 0,
       "type" : "integer"
     },
     "label_id" : {
-      "description" : "Label Id: NotEmpty(message = WAN_INTERFACE_INVALID_LABEL) ",
+      "description" : "Label Id",
+      "minLength" : 1,
       "type" : "string"
     },
     "bfd_mode" : {
-      "description" : "Bfd Mode: ValidateEnum(enumClass = classOf[BfdMode], WAN_CONFIG_INVALID_BFD_MODE, nullAllowed = false) ",
+      "description" : "Bfd Mode",
       "type" : "string",
       "enum" : [ "aggressive", "non_aggressive" ]
     },
     "bw_config_mode" : {
-      "description" : "Bw Config Mode: ValidateEnum(enumClass = classOf[BWConfigMode], message = INVALID_BANDWIDTH_CONFIG_MODE, nullAllowed = false) ",
+      "description" : "Bw Config Mode",
       "type" : "string",
       "enum" : [ "auto", "manual", "manual_bwm_disabled" ]
     },
     "link_bw_up" : {
-      "description" : "Link Bw Up: JsonIgnore(value = true) ",
+      "description" : "Link Bw Up",
       "format" : "double",
-      "type" : "number"
+      "readOnly" : true,
+      "type" : "number",
+      "x-json-ignore" : true
     },
     "link_bw_down" : {
-      "description" : "Link Bw Down: JsonIgnore(value = true) ",
+      "description" : "Link Bw Down",
       "format" : "double",
-      "type" : "number"
+      "readOnly" : true,
+      "type" : "number",
+      "x-json-ignore" : true
     },
     "network_id" : {
-      "description" : "Network Id: NotEmpty(message = NETWORK_ID_REQD) ",
+      "description" : "Network Id",
+      "minLength" : 1,
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -169,12 +194,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, WANINTERFACE_CONFIG_DESCRIPTION_EXCEEDS_LIMIT, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Size(max = 128, WANINTERFACE_CONFIG_NAME_EXCEEDS_LIMIT, min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -198,21 +237,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "label_id", "bfd_mode", "bw_config_mode", "network_id" ]
+  "required" : [ "app_acceleration_enabled", "lqm_config", "probe_profile_id", "l3_reachability", "bwc_enabled", "use_lqm_for_non_hub_paths", "lqm_enabled", "use_for_application_reachability_probes", "use_for_controller_connections", "type", "cost", "label_id", "bfd_mode", "bw_config_mode", "link_bw_up", "link_bw_down", "network_id", "tags", "description", "name", "id" ]
 }
 ```
 

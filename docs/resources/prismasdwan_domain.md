@@ -28,7 +28,7 @@
       }
     },
     "service_bindings" : {
-      "description" : "Service Bindings: NotNull(error = SERVICEBINDINGMAP_CONFIG_SERVICE_BINDINGS_NULL: Service bindings cannot be null.) Valid ",
+      "description" : "Service Bindings",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -44,15 +44,18 @@
             "description" : "Service Label Id",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "service_endpoint_ids", "service_label_id" ]
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_SIZE_EXCEEDED: Description size exceeded., min = 0) Valid ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = SERVICEBINDINGMAP_NAME_REQD: Service binding map name required.) Size(max = 128, error = SERVICEBINDING_NAME_EXCEEDS_LIMIT: Service binding name exceeds limit., min = 0) Valid ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -63,15 +66,31 @@
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
         "properties" : {
           "x_flag_unordered" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -99,21 +118,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "service_bindings", "name" ]
+  "required" : [ "is_default", "service_bindings", "description", "name", "tags", "id" ]
 }
 ```
 

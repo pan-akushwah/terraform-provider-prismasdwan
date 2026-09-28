@@ -27,12 +27,12 @@ import (
 // | Schema Map Summary (size=goLangStructMap=6)
 // | Computed Resource Name=perfmgmtpolicysets_perfmgmtpolicyrules
 // +-----------------------------------------------------------------
+// | PerfMgmtPathFilterV2N3 HasID=false
 // | PerfMgmtHealthThresholds HasID=false
 // | PerfMgmtActionParameters HasID=false
 // | PerfMgmtActionV2N2 HasID=false
-// | PathFilter HasID=false
 // | ApplicationFilter HasID=false
-// | PerfMgmtPolicyRuleScreenV2N2 HasID=true
+// | PerfMgmtPolicyRuleScreenV2N3 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -76,7 +76,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=PerfMgmtPolicyRuleScreenV2N2
+			// rest all properties to be read from GET API Schema schema=PerfMgmtPolicyRuleScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -505,7 +505,7 @@ func (r *performancePolicyRuleResource) GetHttpStatusCode(request *sdwan_client.
 	}
 }
 
-func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsModelPerfMgmtPolicyRuleScreenV2N2, state *rsModelPerfMgmtPolicyRuleScreenV2N2, resp *resource.CreateResponse) bool {
+func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsModelPerfMgmtPolicyRuleScreenV2N3, state *rsModelPerfMgmtPolicyRuleScreenV2N3, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_performance_policy_rule")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -517,7 +517,7 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_performance_policy_rule"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules"
+	create_request.Path = "/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -527,7 +527,7 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.PerfMgmtPolicyRuleScreenV2N2{}
+	var body = &sdwan_schema.PerfMgmtPolicyRuleScreenV2N3{}
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=14
@@ -668,12 +668,12 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	if plan.PathFilters == nil {
 		body.PathFilters = nil
 	} else if len(plan.PathFilters) == 0 {
-		body.PathFilters = []sdwan_schema.PathFilter{}
+		body.PathFilters = []sdwan_schema.PerfMgmtPathFilterV2N3{}
 	} else {
-		body.PathFilters = make([]sdwan_schema.PathFilter, 0, len(plan.PathFilters))
+		body.PathFilters = make([]sdwan_schema.PerfMgmtPathFilterV2N3, 0, len(plan.PathFilters))
 		for varLoopPathFiltersIndex, varLoopPathFilters := range plan.PathFilters {
 			// add a new item
-			body.PathFilters = append(body.PathFilters, sdwan_schema.PathFilter{})
+			body.PathFilters = append(body.PathFilters, sdwan_schema.PerfMgmtPathFilterV2N3{})
 			// copy_from_plan: body=body.PathFilters[varLoopPathFiltersIndex] prefix=rsModel plan=varLoopPathFilters properties=2
 			tflog.Debug(ctx, "copy_from_plan body=body.PathFilters[varLoopPathFiltersIndex] prefix=rsModel plan=varLoopPathFilters")
 			// property: name=label, type=STRING macro=copy_from_plan
@@ -694,7 +694,7 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct PerfMgmtPolicyRuleScreenV2N2 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct PerfMgmtPolicyRuleScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -737,12 +737,12 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N2
+	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N2 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N3 in create", json_err.Error())
 		return false
 	}
 
@@ -767,7 +767,7 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_performance_policy_rule with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=PerfMgmtPolicyRuleScreenV2N2
+	// Store the answer to state. schema=PerfMgmtPolicyRuleScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -934,12 +934,12 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	if ans.PathFilters == nil {
 		state.PathFilters = nil
 	} else if len(ans.PathFilters) == 0 {
-		state.PathFilters = []rsModelPathFilter{}
+		state.PathFilters = []rsModelPerfMgmtPathFilterV2N3{}
 	} else {
-		state.PathFilters = make([]rsModelPathFilter, 0, len(ans.PathFilters))
+		state.PathFilters = make([]rsModelPerfMgmtPathFilterV2N3, 0, len(ans.PathFilters))
 		for varLoopPathFiltersIndex, varLoopPathFilters := range ans.PathFilters {
 			// add a new item
-			state.PathFilters = append(state.PathFilters, rsModelPathFilter{})
+			state.PathFilters = append(state.PathFilters, rsModelPerfMgmtPathFilterV2N3{})
 			// copy_to_state: state=state.PathFilters[varLoopPathFiltersIndex] prefix=rsModel ans=varLoopPathFilters properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.PathFilters[varLoopPathFiltersIndex] prefix=rsModel ans=varLoopPathFilters")
 			// property: name=label, type=STRING macro=copy_to_state
@@ -963,7 +963,7 @@ func (r *performancePolicyRuleResource) doPost(ctx context.Context, plan *rsMode
 	return true
 }
 
-func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsModelPerfMgmtPolicyRuleScreenV2N2, savestate *rsModelPerfMgmtPolicyRuleScreenV2N2, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsModelPerfMgmtPolicyRuleScreenV2N3, savestate *rsModelPerfMgmtPolicyRuleScreenV2N3, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -985,7 +985,7 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_performance_policy_rule"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
+	read_request.Path = "/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -1027,7 +1027,7 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=PerfMgmtPolicyRuleScreenV2N2
+	// Store the answer to state. schema=PerfMgmtPolicyRuleScreenV2N3
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -1036,12 +1036,12 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N2
+	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N2 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N3 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
@@ -1211,12 +1211,12 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 	if ans.PathFilters == nil {
 		state.PathFilters = nil
 	} else if len(ans.PathFilters) == 0 {
-		state.PathFilters = []rsModelPathFilter{}
+		state.PathFilters = []rsModelPerfMgmtPathFilterV2N3{}
 	} else {
-		state.PathFilters = make([]rsModelPathFilter, 0, len(ans.PathFilters))
+		state.PathFilters = make([]rsModelPerfMgmtPathFilterV2N3, 0, len(ans.PathFilters))
 		for varLoopPathFiltersIndex, varLoopPathFilters := range ans.PathFilters {
 			// add a new item
-			state.PathFilters = append(state.PathFilters, rsModelPathFilter{})
+			state.PathFilters = append(state.PathFilters, rsModelPerfMgmtPathFilterV2N3{})
 			// copy_to_state: state=state.PathFilters[varLoopPathFiltersIndex] prefix=rsModel ans=varLoopPathFilters properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.PathFilters[varLoopPathFiltersIndex] prefix=rsModel ans=varLoopPathFilters")
 			// property: name=label, type=STRING macro=copy_to_state
@@ -1240,7 +1240,7 @@ func (r *performancePolicyRuleResource) doGet(ctx context.Context, state *rsMode
 	return true
 }
 
-func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModelPerfMgmtPolicyRuleScreenV2N2, state *rsModelPerfMgmtPolicyRuleScreenV2N2, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModelPerfMgmtPolicyRuleScreenV2N3, state *rsModelPerfMgmtPolicyRuleScreenV2N3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -1268,7 +1268,7 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_performance_policy_rule"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
+	put_request.Path = "/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1287,7 +1287,7 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.PerfMgmtPolicyRuleScreenV2N2{}
+	var body = &sdwan_schema.PerfMgmtPolicyRuleScreenV2N3{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
@@ -1460,16 +1460,16 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	if plan.PathFilters == nil && (state == nil || state.PathFilters == nil) {
 		body.PathFilters = nil
 	} else if len(plan.PathFilters) == 0 && (state == nil || len(state.PathFilters) == 0) {
-		body.PathFilters = []sdwan_schema.PathFilter{}
+		body.PathFilters = []sdwan_schema.PerfMgmtPathFilterV2N3{}
 	} else if len(plan.PathFilters) != 0 || (state != nil && len(state.PathFilters) != 0) {
 		PathFiltersToUse := plan.PathFilters
 		if len(plan.PathFilters) == 0 {
 			PathFiltersToUse = state.PathFilters
 		}
-		body.PathFilters = make([]sdwan_schema.PathFilter, 0, len(PathFiltersToUse))
+		body.PathFilters = make([]sdwan_schema.PerfMgmtPathFilterV2N3, 0, len(PathFiltersToUse))
 		for varLoopPathFiltersIndex, varLoopPathFilters := range PathFiltersToUse {
 			// add a new item
-			body.PathFilters = append(body.PathFilters, sdwan_schema.PathFilter{})
+			body.PathFilters = append(body.PathFilters, sdwan_schema.PerfMgmtPathFilterV2N3{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.PathFilters[varLoopPathFiltersIndex] prefix=rsModel plan=varLoopPathFilters properties=2
 			tflog.Debug(ctx, "copy_from_plan body=body.PathFilters[varLoopPathFiltersIndex] prefix=rsModel plan=varLoopPathFilters")
@@ -1499,7 +1499,7 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct PerfMgmtPolicyRuleScreenV2N2 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct PerfMgmtPolicyRuleScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -1535,16 +1535,16 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N2
+	var ans sdwan_schema.PerfMgmtPolicyRuleScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N2 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to PerfMgmtPolicyRuleScreenV2N3 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=PerfMgmtPolicyRuleScreenV2N2
+	// Store the answer to state. schema=PerfMgmtPolicyRuleScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=14
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -1711,12 +1711,12 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	if ans.PathFilters == nil {
 		state.PathFilters = nil
 	} else if len(ans.PathFilters) == 0 {
-		state.PathFilters = []rsModelPathFilter{}
+		state.PathFilters = []rsModelPerfMgmtPathFilterV2N3{}
 	} else {
-		state.PathFilters = make([]rsModelPathFilter, 0, len(ans.PathFilters))
+		state.PathFilters = make([]rsModelPerfMgmtPathFilterV2N3, 0, len(ans.PathFilters))
 		for varLoopPathFiltersIndex, varLoopPathFilters := range ans.PathFilters {
 			// add a new item
-			state.PathFilters = append(state.PathFilters, rsModelPathFilter{})
+			state.PathFilters = append(state.PathFilters, rsModelPerfMgmtPathFilterV2N3{})
 			// copy_to_state: state=state.PathFilters[varLoopPathFiltersIndex] prefix=rsModel ans=varLoopPathFilters properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.PathFilters[varLoopPathFiltersIndex] prefix=rsModel ans=varLoopPathFilters")
 			// property: name=label, type=STRING macro=copy_to_state
@@ -1740,7 +1740,7 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 	return true
 }
 
-func (r *performancePolicyRuleResource) doDelete(ctx context.Context, state *rsModelPerfMgmtPolicyRuleScreenV2N2, resp *resource.DeleteResponse) bool {
+func (r *performancePolicyRuleResource) doDelete(ctx context.Context, state *rsModelPerfMgmtPolicyRuleScreenV2N3, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1761,7 +1761,7 @@ func (r *performancePolicyRuleResource) doDelete(ctx context.Context, state *rsM
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_performance_policy_rule"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
+	delete_request.Path = "/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1795,14 +1795,14 @@ func (r *performancePolicyRuleResource) doDelete(ctx context.Context, state *rsM
 // Path Parameters are encoded into TfID itself
 func (r *performancePolicyRuleResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_performance_policy_rule")
-	var plan rsModelPerfMgmtPolicyRuleScreenV2N2
+	var plan rsModelPerfMgmtPolicyRuleScreenV2N3
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelPerfMgmtPolicyRuleScreenV2N2
+	var state rsModelPerfMgmtPolicyRuleScreenV2N3
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1814,7 +1814,7 @@ func (r *performancePolicyRuleResource) Create(ctx context.Context, req resource
 func (r *performancePolicyRuleResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_performance_policy_rule")
-	var savestate, state rsModelPerfMgmtPolicyRuleScreenV2N2
+	var savestate, state rsModelPerfMgmtPolicyRuleScreenV2N3
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1833,7 +1833,7 @@ func (r *performancePolicyRuleResource) Read(ctx context.Context, req resource.R
 func (r *performancePolicyRuleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_performance_policy_rule")
-	var plan, state rsModelPerfMgmtPolicyRuleScreenV2N2
+	var plan, state rsModelPerfMgmtPolicyRuleScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1857,7 +1857,7 @@ func (r *performancePolicyRuleResource) Update(ctx context.Context, req resource
 func (r *performancePolicyRuleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_performance_policy_rule")
-	var state rsModelPerfMgmtPolicyRuleScreenV2N2
+	var state rsModelPerfMgmtPolicyRuleScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

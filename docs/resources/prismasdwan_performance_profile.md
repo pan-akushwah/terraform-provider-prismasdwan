@@ -19,18 +19,24 @@
     "flow_metrics_thresholds" : {
       "properties" : {
         "percentage_flow_utilization" : {
-          "description" : "Percentage Flow Utilization: Range(max = 100L, message = PERFMGMT_FLOW_METRICS_THRESHOLD_RANGE_INVALID, min = 1L) ",
+          "description" : "Percentage Flow Utilization",
+          "maximum" : 100,
+          "minimum" : 1,
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "percentage_flow_utilization" ]
     },
     "circuit_utilization_metrics_thresholds" : {
       "properties" : {
         "percentage_circuit_utilization" : {
           "description" : "Percentage Circuit Utilization",
+          "maximum" : 100,
+          "minimum" : 1,
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "percentage_circuit_utilization" ]
     },
     "system_health_metrics_thresholds" : {
       "properties" : {
@@ -49,7 +55,8 @@
           "format" : "int32",
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "disk_utilization", "memory_utilization", "cpu_utilization" ]
     },
     "synthetic_probe_thresholds" : {
       "properties" : {
@@ -63,7 +70,8 @@
               "description" : "Probe Config Id",
               "type" : "string"
             }
-          }
+          },
+          "required" : [ "value", "probe_config_id" ]
         },
         "packet_loss" : {
           "properties" : {
@@ -75,7 +83,8 @@
               "description" : "Probe Config Id",
               "type" : "string"
             }
-          }
+          },
+          "required" : [ "value", "probe_config_id" ]
         },
         "jitter" : {
           "properties" : {
@@ -87,7 +96,8 @@
               "description" : "Probe Config Id",
               "type" : "string"
             }
-          }
+          },
+          "required" : [ "value", "probe_config_id" ]
         },
         "latency" : {
           "properties" : {
@@ -99,7 +109,8 @@
               "description" : "Probe Config Id",
               "type" : "string"
             }
-          }
+          },
+          "required" : [ "value", "probe_config_id" ]
         },
         "init_failure_pct" : {
           "properties" : {
@@ -111,9 +122,11 @@
               "description" : "Probe Config Id",
               "type" : "string"
             }
-          }
+          },
+          "required" : [ "value", "probe_config_id" ]
         }
-      }
+      },
+      "required" : [ "dns_txn_failure_pct", "packet_loss", "jitter", "latency", "init_failure_pct" ]
     },
     "hard_limit_app_metrics" : {
       "properties" : {
@@ -122,14 +135,19 @@
           "type" : "integer"
         },
         "max_rtt" : {
-          "description" : "Max Rtt: Range(max = 500L, message = PERFMGMT_MAX_RTT_THRESHOLD_RANGE_INVALID, min = 0L) ",
+          "description" : "Max Rtt",
+          "maximum" : 500,
+          "minimum" : 0,
           "type" : "integer"
         },
         "max_init_failure_rate" : {
-          "description" : "Max Init Failure Rate: Range(max = 100L, message = PERFMGMT_MAX_INIT_FAILURE_RATE_THRESHOLD_RANGE_INVALID, min = 0L) ",
+          "description" : "Max Init Failure Rate",
+          "maximum" : 100,
+          "minimum" : 0,
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "udp_trt", "max_rtt", "max_init_failure_rate" ]
     },
     "soft_limit_app_metrics" : {
       "properties" : {
@@ -138,14 +156,19 @@
           "type" : "integer"
         },
         "max_rtt" : {
-          "description" : "Max Rtt: Range(max = 500L, message = PERFMGMT_MAX_RTT_THRESHOLD_RANGE_INVALID, min = 0L) ",
+          "description" : "Max Rtt",
+          "maximum" : 500,
+          "minimum" : 0,
           "type" : "integer"
         },
         "max_init_failure_rate" : {
-          "description" : "Max Init Failure Rate: Range(max = 100L, message = PERFMGMT_MAX_INIT_FAILURE_RATE_THRESHOLD_RANGE_INVALID, min = 0L) ",
+          "description" : "Max Init Failure Rate",
+          "maximum" : 100,
+          "minimum" : 0,
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "udp_trt", "max_rtt", "max_init_failure_rate" ]
     },
     "lqm_thresholds" : {
       "properties" : {
@@ -165,13 +188,18 @@
           "description" : "Max Latency",
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "min_mos", "max_packet_loss", "max_jitter", "max_latency" ]
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -183,12 +211,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -212,21 +254,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "flow_metrics_thresholds", "circuit_utilization_metrics_thresholds", "system_health_metrics_thresholds", "synthetic_probe_thresholds", "hard_limit_app_metrics", "soft_limit_app_metrics", "lqm_thresholds", "tags", "description", "name", "id" ]
 }
 ```
 

@@ -72,16 +72,20 @@
       }
     },
     "severity_level" : {
-      "description" : "Severity Level: ValidateEnum(enumClass = classOf[SyslogSeverityLevel], error = SYSLOGSERVER_PROFILE_INVALID_SEVERITY_LEVEL: Invalid syslog severity level value.Should be either major, minor or critical, nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Severity Level",
+      "type" : "string",
+      "enum" : [ "major", "minor", "critical" ]
     },
     "protocol" : {
-      "description" : "Protocol: ValidateEnum(enumClass = classOf[SyslogProtocol], error = SYSLOGSERVER_PROFILE_INVALID_PROTOCOL: Invalid syslog protocol value. Should be either tcp, udp or tls., nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Protocol",
+      "type" : "string",
+      "enum" : [ "tcp", "udp", "tls" ]
     },
     "server_port" : {
-      "description" : "Server Port: Min(error = SYSLOGSERVER_PROFILE_INVALID_PORT_RANGE: Invalid port range.Should be between 1-65535, value = 1L) Max(error = SYSLOGSERVER_PROFILE_INVALID_PORT_RANGE: Invalid port range.Should be between 1-65535, value = 65535L) ",
+      "description" : "Server Port",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "server_fqdn" : {
@@ -96,14 +100,19 @@
       }
     },
     "server_ip" : {
-      "description" : "Server Ip: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = SYSLOGSERVER_PROFILE_INVALID_IP: Invalid IP address for syslog server profile, type = IP) ",
+      "description" : "Server Ip",
+      "format" : "ipv4",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -115,7 +124,8 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -126,8 +136,21 @@
       }
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -151,21 +174,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "severity_level", "protocol", "name" ]
+  "required" : [ "enable_url_logging", "enable_dns_logging", "enable_threat_logging", "remote_ca_certificate", "enable_flow_logging", "severity_level", "protocol", "server_port", "server_fqdn", "server_ip", "tags", "description", "name", "id" ]
 }
 ```
 

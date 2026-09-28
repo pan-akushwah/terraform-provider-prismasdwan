@@ -17,7 +17,9 @@
 {
   "properties" : {
     "vrf_context_id" : {
-      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
+      "description" : "Vrf Context Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -28,37 +30,42 @@
       }
     },
     "static_mappings" : {
-      "description" : "Static Mappings: Valid ",
+      "description" : "Static Mappings",
       "type" : "array",
       "items" : {
         "properties" : {
           "client_duid" : {
-            "description" : "Client Duid: Pattern(error = DHCPSERVER_CONFIG_INVALID_STATIC_MAPPING_DUID: Invalid Client duid provided for static mapping., regexp = ([0-9a-fA-F]{1,2}:)*[0-9a-fA-F]{1,2}|([0-9a-fA-F]{1,2}:)*(:([0-9a-fA-F]{1,2}:)*)([0-9a-fA-F]{1,2})*) ",
+            "description" : "Client Duid",
+            "pattern" : "([0-9a-fA-F]{1,2}:)*[0-9a-fA-F]{1,2}|([0-9a-fA-F]{1,2}:)*(:([0-9a-fA-F]{1,2}:)*)([0-9a-fA-F]{1,2})*",
             "type" : "string"
           },
           "ip_address" : {
-            "description" : "Ip Address: NotNull(error = DHCPSERVER_CONFIG_STATIC_MAPPING_MISSING: Provide all required attributes for static mappings.) ",
+            "description" : "Ip Address",
             "type" : "string"
           },
           "mac" : {
-            "description" : "Mac: MACAddressFiveColons(error = DHCPSERVER_CONFIG_INVALID_STATIC_MAPPING_MAC_ADDR: Invalid mac address provided for static mapping) ",
+            "description" : "Mac",
+            "format" : "mac-address",
+            "pattern" : "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$",
             "type" : "string"
           },
           "name" : {
-            "description" : "Name: NotNull(error = DHCPSERVER_CONFIG_STATIC_MAPPING_MISSING: Provide all required attributes for static mappings.) Size(max = 256, error = DHCPSERVER_CONFIG_STATIC_MAPPING_NAME_EXCEEDS_LIMIT: Static Mapping name execeeds the maximum limit, min = 0) Pattern(error = DHCPSERVER_CONFIG_STATIC_MAPPING_UNSUPPORTED_NAME: Provide valid static mapping name, regexp = ^[a-zA-Z0-9]+(([a-zA-Z0-9\\\\-_])|(\\\\.?[a-zA-Z0-9\\\\-]))*\\\\.?$) ",
+            "description" : "Name",
+            "maxLength" : 256,
+            "pattern" : "^[a-zA-Z0-9]+(([a-zA-Z0-9\\-_])|(\\.?[a-zA-Z0-9\\-]))*\\.?$",
             "type" : "string"
           }
         },
-        "required" : [ "ip_address", "name" ]
+        "required" : [ "client_duid", "ip_address", "mac", "name" ]
       }
     },
     "address_family" : {
-      "description" : "Address Family: ValidateEnum(enumClass = classOf[IPAddressFamily], DHCP_CONFIG_ADDRESS_FAMILY_INVALID, nullAllowed = false) ",
+      "description" : "Address Family",
       "type" : "string",
-      "enum" : [ "IPV4", "IPV6" ]
+      "enum" : [ "ipv4", "ipv6" ]
     },
     "custom_options" : {
-      "description" : "Custom Options: Valid ",
+      "description" : "Custom Options",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -67,28 +74,33 @@
             "type" : "string"
           },
           "option_value" : {
-            "description" : "Option Value: NotEmpty(groups = [classOf[Value]], error = DHCPSERVER_CONFIG_CUSTOM_OPTIONS_VAL_UNSUPPORTED: Custom option value is not supported) Size(groups = [classOf[Value]], max = 8192, error = DHCPSERVER_CONFIG_OPTION_VAL_EXCEEDS_LIMIT: Custom option value length exceeds maximum limit, min = 0) ",
+            "description" : "Option Value",
+            "maxLength" : 8192,
+            "minLength" : 1,
             "type" : "string"
           },
           "option_definition" : {
-            "description" : "Option Definition: NotEmpty(groups = [classOf[Definition]], error = DHCPSERVER_CONFIG_CUSTOM_OPTIONS_DEF_UNSUPPORTED: Custom option definition is not supported) Size(groups = [classOf[Definition]], max = 1024, error = DHCPSERVER_CONFIG_OPTION_DEF_EXCEEDS_LIMIT: Custom option definition length exceeeds maximum limit, min = 0) ",
+            "description" : "Option Definition",
+            "maxLength" : 1024,
+            "minLength" : 1,
             "type" : "string"
           }
         },
-        "required" : [ "option_value", "option_definition" ]
+        "required" : [ "vendor_class_identifier", "option_value", "option_definition" ]
       }
     },
     "ip_ranges" : {
-      "description" : "Ip Ranges: NotNull(error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet.) Size(max = 2147483647, error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet., min = 1) Valid ",
+      "description" : "Ip Ranges",
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
           "end_ip" : {
-            "description" : "End Ip: NotNull(error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet.) ",
+            "description" : "End Ip",
             "type" : "string"
           },
           "start_ip" : {
-            "description" : "Start Ip: NotNull(error = DHCPSERVER_CONFIG_IP_RANGE_MISSING: Provide valid IPv4/IPv6 address range for defined subnet.) ",
+            "description" : "Start Ip",
             "type" : "string"
           }
         },
@@ -96,17 +108,22 @@
       }
     },
     "max_lease_time" : {
-      "description" : "Max Lease Time: Min(error = DHCPSERVER_CONFIG_UNSUPPORTED_MAX_LEASE_TIME: Max lease time should be between 300 and 2^32-1 seconds respectively., value = 300L) Max(error = DHCPSERVER_CONFIG_UNSUPPORTED_MAX_LEASE_TIME: Max lease time should be between 300 and 2^32-1 seconds respectively., value = 4294967295L) ",
+      "description" : "Max Lease Time",
       "format" : "int64",
+      "maximum" : 4294967295,
+      "minimum" : 300,
       "type" : "integer"
     },
     "default_lease_time" : {
-      "description" : "Default Lease Time: Min(error = DHCPSERVER_CONFIG_UNSUPPORTED_DEFAULT_LEASE_TIME: Default lease time should be between 300 and 2^32-1 seconds respectively., value = 300L) Max(error = DHCPSERVER_CONFIG_UNSUPPORTED_DEFAULT_LEASE_TIME: Default lease time should be between 300 and 2^32-1 seconds respectively., value = 4294967295L) ",
+      "description" : "Default Lease Time",
       "format" : "int64",
+      "maximum" : 4294967295,
+      "minimum" : 300,
       "type" : "integer"
     },
     "dns_servers" : {
-      "description" : "Dns Servers: Size(max = 3, error = DHCPSERVER_CONFIG_DNS_ENTRIES_EXCEEDS_LIMIT: Name servers count exceeds the maximum limit, min = 0) ",
+      "description" : "Dns Servers",
+      "maxItems" : 3,
       "type" : "array",
       "items" : {
         "description" : "Dns Servers",
@@ -114,7 +131,8 @@
       }
     },
     "domain_name" : {
-      "description" : "Domain Name: Size(max = 256, error = DHCPSERVER_CONFIG_INVALID_DOMAIN_NAME: Domain name exceeds the maximum limit., min = 0) ",
+      "description" : "Domain Name",
+      "maxLength" : 256,
       "type" : "string"
     },
     "broadcast_address" : {
@@ -126,22 +144,29 @@
       "type" : "string"
     },
     "subnet" : {
-      "description" : "Subnet: NotNull(error = DHCPSERVER_CONFIG_INVALID_SUBNET_ADDR: Invalid IPv4 subnet address.) ",
+      "description" : "Subnet",
       "type" : "string"
     },
     "network_context_id" : {
-      "description" : "Network Context Id: Digits(fraction = 0, integer = 50, error = INVALID_NETWORK_CTX_ID: Invalid network ctrx id.) ",
+      "description" : "Network Context Id",
+      "maxLength" : 50,
+      "pattern" : "^-?[0-9]{1,50}$",
       "type" : "string"
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DHCPSERVER_CONFIG_DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds the maximum limit., min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = DHCPSERVER_CONFIG_INVALID_TAGS: Tags config is invalid- maximum 10 tags are supported, tag should not exceed maximum limit of 128 characters, it should not have duplicates., noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -155,6 +180,18 @@
     "disabled" : {
       "description" : "Disabled",
       "type" : "boolean"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -178,21 +215,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "address_family", "ip_ranges", "subnet" ]
+  "required" : [ "vrf_context_id", "static_mappings", "address_family", "custom_options", "ip_ranges", "max_lease_time", "default_lease_time", "dns_servers", "domain_name", "broadcast_address", "gateway", "subnet", "network_context_id", "description", "tags", "disabled", "id" ]
 }
 ```
 

@@ -27,7 +27,9 @@
     "vpnlink_configuration" : {
       "properties" : {
         "keep_alive_failure_count" : {
-          "description" : "Keep Alive Failure Count: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30.) Range(max = 30L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30., min = 3L) ",
+          "description" : "Keep Alive Failure Count",
+          "maximum" : 30,
+          "minimum" : 3,
           "type" : "integer",
           "additionalProperties" : {
             "properties" : {
@@ -38,7 +40,9 @@
           }
         },
         "keep_alive_interval" : {
-          "description" : "Keep Alive Interval: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms.) Range(max = 1740000L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms., min = 100L) ",
+          "description" : "Keep Alive Interval",
+          "maximum" : 1740000,
+          "minimum" : 100,
           "type" : "integer",
           "additionalProperties" : {
             "properties" : {
@@ -103,6 +107,18 @@
       "description" : "Name",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -135,20 +151,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "ep2_hub_cluster_id", "ep1_hub_cluster_id", "admin_up", "forced", "type", "ep2_wan_interface_id", "ep2_site_id", "ep1_wan_interface_id", "ep1_site_id", "tags", "description", "name", "id" ]
 }
 ```
 

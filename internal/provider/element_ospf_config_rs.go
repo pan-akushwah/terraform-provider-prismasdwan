@@ -30,7 +30,7 @@ import (
 // | OspfGlobalConfig HasID=false
 // | InterfaceOspfConfig HasID=false
 // | Area HasID=false
-// | OspfConfigScreen HasID=true
+// | OspfConfigScreenV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -74,7 +74,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=OspfConfigScreen
+			// rest all properties to be read from GET API Schema schema=OspfConfigScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -98,6 +98,14 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
+			"advertise_fabric_default_route": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			// property: name=areas, type=ARRAY_REFERENCE macro=rss_schema
 			"areas": rsschema.ListNestedAttribute{
 				Required:  false,
@@ -126,6 +134,14 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				},
 			},
 			// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
+			// property: name=cost_for_default_route, type=INTEGER macro=rss_schema
+			"cost_for_default_route": rsschema.Int64Attribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=cost_for_default_route, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
 				Required:  false,
@@ -349,7 +365,7 @@ func (r *elementOspfConfigResource) GetHttpStatusCode(request *sdwan_client.Sdwa
 	}
 }
 
-func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOspfConfigScreen, state *rsModelOspfConfigScreen, resp *resource.CreateResponse) bool {
+func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOspfConfigScreenV2N1, state *rsModelOspfConfigScreenV2N1, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_element_ospf_config")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -361,7 +377,7 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_element_ospf_config"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs"
+	create_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -371,15 +387,17 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.OspfConfigScreen{}
+	var body = &sdwan_schema.OspfConfigScreenV2N1{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=16
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=18
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
 	body.Schema = Int64ValueOrNil(plan.Schema)
+	// property: name=advertise_fabric_default_route, type=BOOLEAN macro=copy_from_plan
+	body.AdvertiseFabricDefaultRoute = BoolValueOrNil(plan.AdvertiseFabricDefaultRoute)
 	// property: name=areas, type=ARRAY_REFERENCE macro=copy_from_plan
 	if plan.Areas == nil {
 		body.Areas = nil
@@ -398,6 +416,8 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 			body.Areas[varLoopAreasIndex].AreaType = StringValueOrNil(varLoopAreas.AreaType)
 		}
 	}
+	// property: name=cost_for_default_route, type=INTEGER macro=copy_from_plan
+	body.CostForDefaultRoute = Int64ValueOrNil(plan.CostForDefaultRoute)
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
 	// property: name=id, type=STRING macro=copy_from_plan
@@ -464,7 +484,7 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct OspfConfigScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct OspfConfigScreenV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -507,12 +527,12 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.OspfConfigScreen
+	var ans sdwan_schema.OspfConfigScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreen in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreenV2N1 in create", json_err.Error())
 		return false
 	}
 
@@ -537,13 +557,15 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_element_ospf_config with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=OspfConfigScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	// Store the answer to state. schema=OspfConfigScreenV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=advertise_fabric_default_route, type=BOOLEAN macro=copy_to_state
+	state.AdvertiseFabricDefaultRoute = types.BoolPointerValue(ans.AdvertiseFabricDefaultRoute)
 	// property: name=areas, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Areas == nil {
 		state.Areas = nil
@@ -562,6 +584,8 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 			state.Areas[varLoopAreasIndex].AreaType = types.StringPointerValue(varLoopAreas.AreaType)
 		}
 	}
+	// property: name=cost_for_default_route, type=INTEGER macro=copy_to_state
+	state.CostForDefaultRoute = types.Int64PointerValue(ans.CostForDefaultRoute)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -638,7 +662,7 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 	return true
 }
 
-func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOspfConfigScreen, savestate *rsModelOspfConfigScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOspfConfigScreenV2N1, savestate *rsModelOspfConfigScreenV2N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -660,7 +684,7 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_ospf_config"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
+	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -702,7 +726,7 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=OspfConfigScreen
+	// Store the answer to state. schema=OspfConfigScreenV2N1
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -711,21 +735,23 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.OspfConfigScreen
+	var ans sdwan_schema.OspfConfigScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreen in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreenV2N1 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=advertise_fabric_default_route, type=BOOLEAN macro=copy_to_state
+	state.AdvertiseFabricDefaultRoute = types.BoolPointerValue(ans.AdvertiseFabricDefaultRoute)
 	// property: name=areas, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Areas == nil {
 		state.Areas = nil
@@ -744,6 +770,8 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 			state.Areas[varLoopAreasIndex].AreaType = types.StringPointerValue(varLoopAreas.AreaType)
 		}
 	}
+	// property: name=cost_for_default_route, type=INTEGER macro=copy_to_state
+	state.CostForDefaultRoute = types.Int64PointerValue(ans.CostForDefaultRoute)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -818,7 +846,7 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 	return true
 }
 
-func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspfConfigScreen, state *rsModelOspfConfigScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspfConfigScreenV2N1, state *rsModelOspfConfigScreenV2N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -846,7 +874,7 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_element_ospf_config"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
+	put_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -865,11 +893,11 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.OspfConfigScreen{}
+	var body = &sdwan_schema.OspfConfigScreenV2N1{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=16
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=18
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -882,6 +910,12 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 		body.Schema = ValueInt64PointerFromPlanOrState(plan.Schema, state.Schema)
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
+	}
+	// property: name=advertise_fabric_default_route, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.AdvertiseFabricDefaultRoute = ValueBoolPointerFromPlanOrState(plan.AdvertiseFabricDefaultRoute, state.AdvertiseFabricDefaultRoute)
+	} else {
+		body.AdvertiseFabricDefaultRoute = BoolValueOrNil(plan.AdvertiseFabricDefaultRoute)
 	}
 	// property: name=areas, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 	if plan.Areas == nil && (state == nil || state.Areas == nil) {
@@ -905,6 +939,12 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 			// property: name=area_type, type=STRING macro=copy_from_plan
 			body.Areas[varLoopAreasIndex].AreaType = StringValueOrNil(varLoopAreas.AreaType)
 		}
+	}
+	// property: name=cost_for_default_route, type=INTEGER macro=copy_from_plan_or_state
+	if state != nil {
+		body.CostForDefaultRoute = ValueInt64PointerFromPlanOrState(plan.CostForDefaultRoute, state.CostForDefaultRoute)
+	} else {
+		body.CostForDefaultRoute = Int64ValueOrNil(plan.CostForDefaultRoute)
 	}
 	// property: name=description, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -1021,7 +1061,7 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct OspfConfigScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct OspfConfigScreenV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -1057,22 +1097,24 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.OspfConfigScreen
+	var ans sdwan_schema.OspfConfigScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreen in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreenV2N1 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=OspfConfigScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=16
+	// Store the answer to state. schema=OspfConfigScreenV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=18
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=advertise_fabric_default_route, type=BOOLEAN macro=copy_to_state
+	state.AdvertiseFabricDefaultRoute = types.BoolPointerValue(ans.AdvertiseFabricDefaultRoute)
 	// property: name=areas, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Areas == nil {
 		state.Areas = nil
@@ -1091,6 +1133,8 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 			state.Areas[varLoopAreasIndex].AreaType = types.StringPointerValue(varLoopAreas.AreaType)
 		}
 	}
+	// property: name=cost_for_default_route, type=INTEGER macro=copy_to_state
+	state.CostForDefaultRoute = types.Int64PointerValue(ans.CostForDefaultRoute)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -1167,7 +1211,7 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 	return true
 }
 
-func (r *elementOspfConfigResource) doDelete(ctx context.Context, state *rsModelOspfConfigScreen, resp *resource.DeleteResponse) bool {
+func (r *elementOspfConfigResource) doDelete(ctx context.Context, state *rsModelOspfConfigScreenV2N1, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1188,7 +1232,7 @@ func (r *elementOspfConfigResource) doDelete(ctx context.Context, state *rsModel
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_element_ospf_config"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
+	delete_request.Path = "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1222,14 +1266,14 @@ func (r *elementOspfConfigResource) doDelete(ctx context.Context, state *rsModel
 // Path Parameters are encoded into TfID itself
 func (r *elementOspfConfigResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_element_ospf_config")
-	var plan rsModelOspfConfigScreen
+	var plan rsModelOspfConfigScreenV2N1
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelOspfConfigScreen
+	var state rsModelOspfConfigScreenV2N1
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1241,7 +1285,7 @@ func (r *elementOspfConfigResource) Create(ctx context.Context, req resource.Cre
 func (r *elementOspfConfigResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_element_ospf_config")
-	var savestate, state rsModelOspfConfigScreen
+	var savestate, state rsModelOspfConfigScreenV2N1
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1260,7 +1304,7 @@ func (r *elementOspfConfigResource) Read(ctx context.Context, req resource.ReadR
 func (r *elementOspfConfigResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_element_ospf_config")
-	var plan, state rsModelOspfConfigScreen
+	var plan, state rsModelOspfConfigScreenV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1284,7 +1328,7 @@ func (r *elementOspfConfigResource) Update(ctx context.Context, req resource.Upd
 func (r *elementOspfConfigResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_element_ospf_config")
-	var state rsModelOspfConfigScreen
+	var state rsModelOspfConfigScreenV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

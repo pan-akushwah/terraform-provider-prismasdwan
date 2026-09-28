@@ -38,7 +38,8 @@
                 "format" : "int32",
                 "type" : "integer"
               }
-            }
+            },
+            "required" : [ "subscription_factor", "critical_alarm", "major_alarm" ]
           },
           "alarm_threshold" : {
             "description" : "Alarm Threshold",
@@ -60,7 +61,8 @@
             "type" : "string",
             "enum" : [ "forwarding-capacity", "flow" ]
           }
-        }
+        },
+        "required" : [ "threshold", "alarm_threshold", "subscription_factor", "allocated", "type" ]
       }
     },
     "headend2_site_ids" : {
@@ -82,6 +84,18 @@
     "hub_element_id" : {
       "description" : "Hub Element Id",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -105,20 +119,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "load_factors", "headend2_site_ids", "headend1_site_ids", "hub_element_id", "id" ]
 }
 ```
 

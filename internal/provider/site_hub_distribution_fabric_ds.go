@@ -194,7 +194,7 @@ func (d *siteHubDistributionFabricDataSource) Read(ctx context.Context, req data
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{id}"
+	get_path := "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{prefixdistributionspokelist_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]

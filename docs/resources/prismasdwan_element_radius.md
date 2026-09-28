@@ -33,17 +33,22 @@
       "type" : "string"
     },
     "radius_configuration" : {
-      "description" : "Radius Configuration: ListObject(allowDuplicate = false, allowEmpty = true, allowNull = true, listMaxSize = 2, message = RADIUS_CONFIG_INVALID_CONFIG_PARAMETERS, required = false) Valid ",
+      "description" : "Radius Configuration",
+      "maxItems" : 2,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "properties" : {
           "priority" : {
-            "description" : "Priority: Range(max = 255L, message = RADIUS_CONFIG_INVALID_PRIORITY, min = 0L) ",
+            "description" : "Priority",
             "format" : "int32",
+            "maximum" : 255,
+            "minimum" : 0,
             "type" : "integer"
           },
           "shared_secret_encrypted" : {
-            "description" : "Shared Secret Encrypted: JsonIgnore(value = true) ",
+            "description" : "Shared Secret Encrypted",
+            "readOnly" : true,
             "type" : "string",
             "additionalProperties" : {
               "properties" : {
@@ -51,7 +56,8 @@
                   "type" : "boolean"
                 }
               }
-            }
+            },
+            "x-json-ignore" : true
           },
           "shared_secret" : {
             "description" : "Shared Secret",
@@ -76,13 +82,17 @@
             }
           },
           "accounting_port" : {
-            "description" : "Accounting Port: Range(max = 65535L, message = RADIUS_CONFIG_INVALID_ACCOUNTING_PORT, min = 0L) ",
+            "description" : "Accounting Port",
             "format" : "int32",
+            "maximum" : 65535,
+            "minimum" : 0,
             "type" : "integer"
           },
           "authentication_port" : {
-            "description" : "Authentication Port: Range(max = 65535L, message = RADIUS_CONFIG_INVALID_AUTH_PORT, min = 0L) ",
+            "description" : "Authentication Port",
             "format" : "int32",
+            "maximum" : 65535,
+            "minimum" : 0,
             "type" : "integer"
           },
           "server_ip_address" : {
@@ -94,14 +104,19 @@
             "format" : "int32",
             "type" : "integer"
           }
-        }
+        },
+        "required" : [ "priority", "shared_secret_encrypted", "shared_secret", "retain_shared_secret", "accounting_port", "authentication_port", "server_ip_address", "ip_version" ]
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -113,12 +128,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -142,21 +171,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "override_indicator", "radius_profile_id", "source_interface_id", "radius_configuration", "tags", "description", "name", "id" ]
 }
 ```
 

@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `probe_config` |
-| Get Api  | `/sdwan/v2.0/api/probeconfigs/{config_id}` (`ProbeConfigScreen`) |
-| Post Api  | `/sdwan/v2.0/api/probeconfigs` (`ProbeConfigScreen`) |
-| Put Api  | `/sdwan/v2.0/api/probeconfigs/{config_id}` (`ProbeConfigScreen`) |
-| Delete Api  | `/sdwan/v2.0/api/probeconfigs/{config_id}` |
+| Get Api  | `/sdwan/v2.1/api/probeconfigs/{config_id}` (`ProbeConfigScreenV2N1`) |
+| Post Api  | `/sdwan/v2.1/api/probeconfigs` (`ProbeConfigScreenV2N1`) |
+| Put Api  | `/sdwan/v2.1/api/probeconfigs/{config_id}` (`ProbeConfigScreenV2N1`) |
+| Delete Api  | `/sdwan/v2.1/api/probeconfigs/{config_id}` |
 
 
 ### JSON Schema
@@ -21,7 +21,7 @@
       "type" : "boolean"
     },
     "endpoints" : {
-      "description" : "Endpoints: Required(error = PROBE_ENDPOINTS_REQUIRED: Probe endpoint configuration is required) Valid ",
+      "description" : "Endpoints",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -35,16 +35,6 @@
             "items" : {
               "description" : "Http Response Codes",
               "type" : "integer"
-            },
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                },
-                "x_flag_null_if_empty" : {
-                  "type" : "boolean"
-                }
-              }
             }
           },
           "allow_insecure_https_connection" : {
@@ -57,7 +47,7 @@
             "items" : {
               "description" : "Path Types",
               "type" : "string",
-              "enum" : [ "vpn", "direct", "servicelink", "all" ]
+              "enum" : [ "vpn", "direct", "servicelink", "pa_vpn", "all" ]
             }
           },
           "probe_count" : {
@@ -87,14 +77,19 @@
             "description" : "Ipv4 Address",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "http_response_string", "http_response_codes", "allow_insecure_https_connection", "path_types", "probe_count", "probe_cycle_duration", "protocol", "fqdn", "dns_server_ip", "ipv4_address" ]
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -106,12 +101,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -135,21 +144,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "endpoints", "name" ]
+  "required" : [ "enabled", "endpoints", "tags", "description", "name", "id" ]
 }
 ```
 

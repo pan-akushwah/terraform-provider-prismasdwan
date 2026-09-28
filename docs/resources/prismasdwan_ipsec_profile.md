@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `ipsec_profile` |
-| Get Api  | `/sdwan/v2.2/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N2`) |
-| Post Api  | `/sdwan/v2.2/api/ipsecprofiles` (`IPSECProfileScreenV2N2`) |
-| Put Api  | `/sdwan/v2.2/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N2`) |
-| Delete Api  | `/sdwan/v2.2/api/ipsecprofiles/{profile_id}` |
+| Get Api  | `/sdwan/v2.3/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N3`) |
+| Post Api  | `/sdwan/v2.3/api/ipsecprofiles` (`IPSECProfileScreenV2N3`) |
+| Put Api  | `/sdwan/v2.3/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N3`) |
+| Delete Api  | `/sdwan/v2.3/api/ipsecprofiles/{profile_id}` |
 
 
 ### JSON Schema
@@ -17,18 +17,22 @@
 {
   "properties" : {
     "used_for" : {
-      "description" : "Used For: JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ",
+      "description" : "Used For",
       "type" : "string",
       "enum" : [ "fabric_vpn" ]
     },
     "dpd_timeout" : {
-      "description" : "Dpd Timeout: Range(max = 300L, error = IPSECCONFIG_INVALID_DPD_TIMEOUT: Invalid dpd timeout specified.Should be between 2-300 seconds., min = 2L) ",
+      "description" : "Dpd Timeout",
       "format" : "int32",
+      "maximum" : 300,
+      "minimum" : 2,
       "type" : "integer"
     },
     "dpd_delay" : {
-      "description" : "Dpd Delay: Range(max = 60L, error = IPSECCONFIG_INVALID_DPD_DELAY: Invalid dpd delay.Should be between 1-60 seconds., min = 1L) ",
+      "description" : "Dpd Delay",
       "format" : "int32",
+      "maximum" : 60,
+      "minimum" : 1,
       "type" : "integer"
     },
     "dpd_enable" : {
@@ -37,6 +41,79 @@
     },
     "authentication" : {
       "properties" : {
+        "ppk_config" : {
+          "properties" : {
+            "ppk_secret_configured" : {
+              "description" : "Ppk Secret Configured",
+              "type" : "boolean",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            },
+            "ppk_secret_hash" : {
+              "description" : "Ppk Secret Hash",
+              "readOnly" : true,
+              "type" : "string",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              },
+              "x-json-ignore" : true
+            },
+            "ppk_secret_encrypted" : {
+              "description" : "Ppk Secret Encrypted",
+              "readOnly" : true,
+              "type" : "string",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              },
+              "x-json-ignore" : true
+            },
+            "ppk_secret" : {
+              "description" : "Ppk Secret",
+              "type" : "string",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              },
+              "x-json-alias" : "key"
+            },
+            "ppk_key_id" : {
+              "description" : "Ppk Key Id",
+              "type" : "string",
+              "x-json-alias" : "key_name"
+            },
+            "mode" : {
+              "description" : "Mode",
+              "type" : "string",
+              "enum" : [ "preferred", "mandatory" ],
+              "x-json-alias" : "negotiation_mode"
+            },
+            "enabled" : {
+              "description" : "Enabled",
+              "type" : "boolean"
+            },
+            "key_enabled" : {
+              "description" : "Key Enabled",
+              "type" : "boolean"
+            }
+          },
+          "required" : [ "enabled", "ppk_secret", "ppk_secret_configured", "ppk_key_id", "key_enabled", "ppk_secret_encrypted", "ppk_secret_hash", "mode" ]
+        },
         "peer_id_check" : {
           "description" : "Peer Id Check",
           "type" : "string",
@@ -65,7 +142,8 @@
         "ikev1_params" : {
           "properties" : {
             "xauth_secret_encrypted" : {
-              "description" : "Xauth Secret Encrypted: JsonIgnore(value = true) ",
+              "description" : "Xauth Secret Encrypted",
+              "readOnly" : true,
               "type" : "string",
               "additionalProperties" : {
                 "properties" : {
@@ -73,10 +151,12 @@
                     "type" : "boolean"
                   }
                 }
-              }
+              },
+              "x-json-ignore" : true
             },
             "xauth_secret_hash" : {
-              "description" : "Xauth Secret Hash: JsonIgnore(value = true) ",
+              "description" : "Xauth Secret Hash",
+              "readOnly" : true,
               "type" : "string",
               "additionalProperties" : {
                 "properties" : {
@@ -84,10 +164,13 @@
                     "type" : "boolean"
                   }
                 }
-              }
+              },
+              "x-json-ignore" : true
             },
             "xauth_secret" : {
-              "description" : "Xauth Secret: Length(max = 128, error = IPSECCONFIG_INVALID_XAUTH_SECRET_LEN: Invalid extended authentication secret length.Should be between 4-128., min = 4) ",
+              "description" : "Xauth Secret",
+              "maxLength" : 128,
+              "minLength" : 4,
               "type" : "string",
               "additionalProperties" : {
                 "properties" : {
@@ -102,37 +185,45 @@
               "type" : "string"
             },
             "xauth_type" : {
-              "description" : "Xauth Type: ValidateEnum(enumClass = classOf[IKEXAuthType], error = IPSECCONFIG_INVALID_XAUTH_TYPE: Invalid extended authentication type specified.Valid type are secret or none., nullAllowed = false) ",
+              "description" : "Xauth Type",
               "type" : "string",
-              "enum" : [ "NONE", "SECRET" ]
+              "enum" : [ "none", "secret" ]
             }
           },
-          "required" : [ "xauth_type" ]
+          "required" : [ "xauth_secret_encrypted", "xauth_secret_hash", "xauth_secret", "xauth_id", "xauth_type" ]
         },
         "remote_id" : {
-          "description" : "Remote Id: Length(max = 255, error = IPSECCONFIG_INVALID_REMOTE_ID_LEN: Invalid remote id len.Should be between 2-255., min = 2) ",
+          "description" : "Remote Id",
+          "maxLength" : 255,
+          "minLength" : 2,
           "type" : "string"
         },
         "local_id_custom" : {
-          "description" : "Local Id Custom: Length(max = 255, error = IPSECCONFIG_INVALID_LOCAL_ID_LEN: Invalid local id len.Should be between 2-255., min = 2) ",
+          "description" : "Local Id Custom",
+          "maxLength" : 255,
+          "minLength" : 2,
           "type" : "string"
         },
         "local_id" : {
-          "description" : "Local Id: ValidateEnum(enumClass = classOf[IPSECLocalIdType], error = IPSECCONFIG_INVALID_LOCAL_ID_TYPE: Invalid local id type.Should be either hostname, dn, local_ip or custom, nullAllowed = false) ",
+          "description" : "Local Id",
           "type" : "string",
-          "enum" : [ "LOCAL_IP", "DN", "HOSTNAME", "CUSTOM", "NONE" ]
+          "enum" : [ "local_ip", "dn", "hostname", "custom", "none" ]
         },
         "passphrase_encrypted" : {
-          "description" : "Passphrase Encrypted: JsonIgnore(value = true) ",
-          "type" : "string"
+          "description" : "Passphrase Encrypted",
+          "readOnly" : true,
+          "type" : "string",
+          "x-json-ignore" : true
         },
         "passphrase" : {
           "description" : "Passphrase",
           "type" : "string"
         },
         "private_key_encrypted" : {
-          "description" : "Private Key Encrypted: JsonIgnore(value = true) ",
-          "type" : "string"
+          "description" : "Private Key Encrypted",
+          "readOnly" : true,
+          "type" : "string",
+          "x-json-ignore" : true
         },
         "private_key" : {
           "description" : "Private Key",
@@ -155,7 +246,8 @@
           "type" : "string"
         },
         "secret_encrypted" : {
-          "description" : "Secret Encrypted: JsonIgnore(value = true) ",
+          "description" : "Secret Encrypted",
+          "readOnly" : true,
           "type" : "string",
           "additionalProperties" : {
             "properties" : {
@@ -163,10 +255,12 @@
                 "type" : "boolean"
               }
             }
-          }
+          },
+          "x-json-ignore" : true
         },
         "secret_hash" : {
-          "description" : "Secret Hash: JsonIgnore(value = true) ",
+          "description" : "Secret Hash",
+          "readOnly" : true,
           "type" : "string",
           "additionalProperties" : {
             "properties" : {
@@ -174,7 +268,8 @@
                 "type" : "boolean"
               }
             }
-          }
+          },
+          "x-json-ignore" : true
         },
         "secret" : {
           "description" : "Secret",
@@ -188,18 +283,89 @@
           }
         },
         "type" : {
-          "description" : "Type: ValidateEnum(enumClass = classOf[IPSECAuthenticationType], error = IPSECCONFIG_INVALID_AUTHENTICATION_TYPE: Invalid authentication type specified.Valid type are x509, psk or none., nullAllowed = false) ",
+          "description" : "Type",
           "type" : "string",
-          "enum" : [ "NONE", "PSK", "X509" ]
+          "enum" : [ "none", "psk", "x509" ]
         }
       },
-      "required" : [ "local_id", "type" ]
+      "required" : [ "ppk_config", "peer_id_check", "comment", "certificate_profile_id", "local_pa_certificate_id", "strict_validation_peer_extended_key_use", "permit_peer_id_mismatch", "ikev1_params", "remote_id", "local_id_custom", "local_id", "x509Objects", "passphrase_encrypted", "passphrase", "private_key_encrypted", "private_key", "certificate", "local_ca_certificate", "remote_ca_certificate", "pa_master_key_id", "secret_encrypted", "secret_hash", "secret", "type" ]
     },
     "ike_group" : {
       "properties" : {
+        "pqc_kem_config" : {
+          "properties" : {
+            "round_7_algorithms" : {
+              "description" : "Round_7 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 7 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_6_algorithms" : {
+              "description" : "Round_6 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 6 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_5_algorithms" : {
+              "description" : "Round_5 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 5 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_4_algorithms" : {
+              "description" : "Round_4 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 4 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_3_algorithms" : {
+              "description" : "Round_3 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 3 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_2_algorithms" : {
+              "description" : "Round_2 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 2 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_1_algorithms" : {
+              "description" : "Round_1 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 1 Algorithms",
+                "type" : "string"
+              }
+            },
+            "enabled" : {
+              "description" : "Enabled",
+              "type" : "boolean"
+            },
+            "block_vulnerable_cipher" : {
+              "description" : "Block Vulnerable Cipher",
+              "type" : "boolean"
+            }
+          },
+          "required" : [ "block_vulnerable_cipher", "round_4_algorithms", "enabled", "round_3_algorithms", "round_6_algorithms", "round_5_algorithms", "round_1_algorithms", "round_7_algorithms", "round_2_algorithms" ]
+        },
         "port" : {
-          "description" : "Port: Range(max = 65535L, error = IPSECCONFIG_INVALID_IKE_PORT_RANGE: Invalid ike port range.Should be between 1-65535., min = 1L) ",
+          "description" : "Port",
           "format" : "int32",
+          "maximum" : 65535,
+          "minimum" : 1,
           "type" : "integer"
         },
         "reauth" : {
@@ -219,49 +385,123 @@
           "type" : "string"
         },
         "lifetime" : {
-          "description" : "Lifetime: Range(max = 72L, error = IPSECCONFIG_INVALID_IKE_LIFETIME: Invalid ike lifetime.Should be between 1-72 hours., min = 1L) ",
+          "description" : "Lifetime",
           "format" : "int32",
+          "maximum" : 72,
+          "minimum" : 1,
           "type" : "integer"
         },
         "proposals" : {
-          "description" : "Proposals: Valid ListObject(allowDuplicate = false, allowEmpty = false, allowNull = false, listMaxSize = 1, IPSECCONFIG_INVALID_PROPOSALS_LIST_LEN, required = false) ",
+          "description" : "Proposals",
+          "maxItems" : 1,
+          "minItems" : 1,
           "type" : "array",
+          "uniqueItems" : true,
           "items" : {
             "properties" : {
               "prf" : {
-                "description" : "Prf: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = true) ",
+                "description" : "Prf",
                 "type" : "string",
-                "enum" : [ "MD5", "SHA1", "SHA256", "SHA384", "SHA512", "SHA256_96", "AESXCBC", "AES128GMAC", "AES192GMAC", "AES256GMAC", "NONE" ]
+                "enum" : [ "md5", "sha1", "sha256", "sha384", "sha512", "sha256_96", "aesxcbc", "aes128gmac", "aes192gmac", "aes256gmac", "none" ]
               },
               "hash" : {
-                "description" : "Hash: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = false) ",
+                "description" : "Hash",
                 "type" : "string",
-                "enum" : [ "NONE", "AES192GMAC", "SHA1", "AES256GMAC", "SHA512", "AESXCBC", "MD5", "SHA256_96", "AES128GMAC", "SHA384", "SHA256" ]
+                "enum" : [ "sha256", "md5", "sha384", "aesxcbc", "aes128gmac", "none", "sha1", "aes192gmac", "sha512", "sha256_96", "aes256gmac" ]
               },
               "encryption" : {
-                "description" : "Encryption: ValidateEnum(enumClass = classOf[IPSECEncryption], error = IPSECCONFIG_INVALID_ENCRYPTION: Invalid encryption algorithm specified., nullAllowed = false) ",
+                "description" : "Encryption",
                 "type" : "string",
-                "enum" : [ "AES256CCM64", "NONE", "AES192GMAC", "TWOFISH192", "AES256GCM16", "AES192CTR", "AES256CTR", "BLOWFISH256", "AES128CCM128", "AES256CCM128", "AES256GCM128", "AES192GCM128", "AES256CCM96", "AES192CCM64", "CAMELLIA192", "AES128GCM64", "AES256", "AES128GCM96", "TWOFISH256", "AES192GCM64", "AES256GMAC", "SERPENT192", "AES128CCM64", "BLOWFISH192", "AES192CCM128", "TRIPLEDES", "AES192", "AES256GCM64", "SERPENT128", "AES256GCM96", "CAMELLIA128", "AES128GCM128", "AES128CCM16", "AES128", "AES128CTR", "AES192CCM96", "AES192GCM96", "CAMELLIA256", "AES128GMAC", "AES128CCM96", "SERPENT256", "BLOWFISH128", "AES128GCM16", "TWOFISH128" ]
+                "enum" : [ "aes256gcm16", "aes256", "aes128ccm128", "aes128ccm16", "twofish192", "aes128", "aes192", "aes192gcm64", "camellia256", "aes256gcm96", "aes192gcm128", "aes256ctr", "camellia192", "aes192gmac", "aes128gcm96", "blowfish256", "aes192ccm128", "3des", "aes256ccm64", "aes192ccm96", "aes192ccm64", "aes128ccm96", "twofish256", "camellia128", "blowfish128", "serpent256", "blowfish192", "aes128ctr", "twofish128", "aes192gcm96", "aes128ccm64", "aes128gmac", "serpent128", "aes256gcm64", "aes256ccm96", "aes192ctr", "aes128gcm128", "serpent192", "aes256gmac", "aes128gcm64", "aes256ccm128", "none", "aes128gcm16", "aes256gcm128" ]
               },
               "dh_groups" : {
-                "description" : "Dh Groups: ValidateEnum(enumClass = classOf[DHGroups], error = IPSECCONFIG_INVALID_DHGROUPS: Invalid DH Group specified., nullAllowed = false) ",
+                "description" : "Dh Groups",
                 "type" : "string",
-                "enum" : [ "ECP224BP", "ECP256", "NONE", "MODP8192", "MODP1024S160", "MODP3072", "ECP384", "MODP1024", "MODP4096", "MODP2048", "ECP224", "ECP192", "ECP521", "ECP256BP", "ECP384BP", "MODP2048S224", "ECP512BP", "MODP768", "CURVE25519", "MODP2048S256", "MODP6144", "MODP1536" ]
+                "enum" : [ "modp768", "ecp384bp", "modp6144", "modp3072", "modp2048s224", "none", "ecp512bp", "ecp521", "ecp192", "ecp256", "ecp384", "ecp224", "modp1024s160", "modp4096", "modp1536", "ecp224bp", "modp1024", "curve25519", "modp8192", "modp2048", "ecp256bp", "modp2048s256" ]
               }
             },
-            "required" : [ "hash", "encryption", "dh_groups" ]
+            "required" : [ "prf", "hash", "encryption", "dh_groups" ]
           }
         },
         "key_exchange" : {
-          "description" : "Key Exchange: ValidateEnum(enumClass = classOf[IKEKeyExchange], error = IPSECCONFIG_INVALID_IKEKEY_EXCHANGE: Invalid ike key algorith.Should be either ikev1 or ikev2., nullAllowed = false) ",
+          "description" : "Key Exchange",
           "type" : "string",
-          "enum" : [ "IKEV1", "IKEV2" ]
+          "enum" : [ "ikev1", "ikev2" ]
         }
       },
-      "required" : [ "key_exchange", "proposals" ]
+      "required" : [ "lifetime", "reauth", "pqc_kem_config", "port", "key_exchange", "lifetime_units", "aggressive", "proposals", "authentication_multiple" ]
     },
     "esp_group" : {
       "properties" : {
+        "pqc_kem_config" : {
+          "properties" : {
+            "round_7_algorithms" : {
+              "description" : "Round_7 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 7 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_6_algorithms" : {
+              "description" : "Round_6 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 6 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_5_algorithms" : {
+              "description" : "Round_5 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 5 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_4_algorithms" : {
+              "description" : "Round_4 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 4 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_3_algorithms" : {
+              "description" : "Round_3 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 3 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_2_algorithms" : {
+              "description" : "Round_2 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 2 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_1_algorithms" : {
+              "description" : "Round_1 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 1 Algorithms",
+                "type" : "string"
+              }
+            },
+            "enabled" : {
+              "description" : "Enabled",
+              "type" : "boolean"
+            },
+            "block_vulnerable_cipher" : {
+              "description" : "Block Vulnerable Cipher",
+              "type" : "boolean"
+            }
+          },
+          "required" : [ "block_vulnerable_cipher", "round_4_algorithms", "enabled", "round_3_algorithms", "round_6_algorithms", "round_5_algorithms", "round_1_algorithms", "round_7_algorithms", "round_2_algorithms" ]
+        },
         "lifesize" : {
           "properties" : {
             "units" : {
@@ -273,7 +513,8 @@
               "format" : "int32",
               "type" : "integer"
             }
-          }
+          },
+          "required" : [ "units", "value" ]
         },
         "force_encapsulation" : {
           "description" : "Force Encapsulation",
@@ -308,59 +549,69 @@
                 "enum" : [ "NONE", "MODP768", "MODP1024", "MODP1536", "MODP2048", "MODP3072", "MODP4096", "MODP6144", "MODP8192", "MODP1024S160", "MODP2048S224", "MODP2048S256", "ECP192", "ECP224", "ECP256", "ECP384", "ECP521", "ECP224BP", "ECP256BP", "ECP384BP", "ECP512BP", "CURVE25519" ]
               }
             }
-          }
+          },
+          "required" : [ "hash", "encryption", "dh_group" ]
         },
         "proposals" : {
-          "description" : "Proposals: Valid ListObject(allowDuplicate = false, allowEmpty = false, allowNull = false, listMaxSize = 1, IPSECCONFIG_INVALID_PROPOSALS_LIST_LEN, required = false) ",
+          "description" : "Proposals",
+          "maxItems" : 1,
+          "minItems" : 1,
           "type" : "array",
+          "uniqueItems" : true,
           "items" : {
             "properties" : {
               "prf" : {
-                "description" : "Prf: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = true) ",
+                "description" : "Prf",
                 "type" : "string",
-                "enum" : [ "MD5", "SHA1", "SHA256", "SHA384", "SHA512", "SHA256_96", "AESXCBC", "AES128GMAC", "AES192GMAC", "AES256GMAC", "NONE" ]
+                "enum" : [ "md5", "sha1", "sha256", "sha384", "sha512", "sha256_96", "aesxcbc", "aes128gmac", "aes192gmac", "aes256gmac", "none" ]
               },
               "hash" : {
-                "description" : "Hash: ValidateEnum(enumClass = classOf[IPSECHash], error = IPSECCONFIG_INVALID_HASH: Invalid hashing algorithm specified., nullAllowed = false) ",
+                "description" : "Hash",
                 "type" : "string",
-                "enum" : [ "NONE", "AES192GMAC", "SHA1", "AES256GMAC", "SHA512", "AESXCBC", "MD5", "SHA256_96", "AES128GMAC", "SHA384", "SHA256" ]
+                "enum" : [ "sha256", "md5", "sha384", "aesxcbc", "aes128gmac", "none", "sha1", "aes192gmac", "sha512", "sha256_96", "aes256gmac" ]
               },
               "encryption" : {
-                "description" : "Encryption: ValidateEnum(enumClass = classOf[IPSECEncryption], error = IPSECCONFIG_INVALID_ENCRYPTION: Invalid encryption algorithm specified., nullAllowed = false) ",
+                "description" : "Encryption",
                 "type" : "string",
-                "enum" : [ "AES256CCM64", "NONE", "AES192GMAC", "TWOFISH192", "AES256GCM16", "AES192CTR", "AES256CTR", "BLOWFISH256", "AES128CCM128", "AES256CCM128", "AES256GCM128", "AES192GCM128", "AES256CCM96", "AES192CCM64", "CAMELLIA192", "AES128GCM64", "AES256", "AES128GCM96", "TWOFISH256", "AES192GCM64", "AES256GMAC", "SERPENT192", "AES128CCM64", "BLOWFISH192", "AES192CCM128", "TRIPLEDES", "AES192", "AES256GCM64", "SERPENT128", "AES256GCM96", "CAMELLIA128", "AES128GCM128", "AES128CCM16", "AES128", "AES128CTR", "AES192CCM96", "AES192GCM96", "CAMELLIA256", "AES128GMAC", "AES128CCM96", "SERPENT256", "BLOWFISH128", "AES128GCM16", "TWOFISH128" ]
+                "enum" : [ "aes256gcm16", "aes256", "aes128ccm128", "aes128ccm16", "twofish192", "aes128", "aes192", "aes192gcm64", "camellia256", "aes256gcm96", "aes192gcm128", "aes256ctr", "camellia192", "aes192gmac", "aes128gcm96", "blowfish256", "aes192ccm128", "3des", "aes256ccm64", "aes192ccm96", "aes192ccm64", "aes128ccm96", "twofish256", "camellia128", "blowfish128", "serpent256", "blowfish192", "aes128ctr", "twofish128", "aes192gcm96", "aes128ccm64", "aes128gmac", "serpent128", "aes256gcm64", "aes256ccm96", "aes192ctr", "aes128gcm128", "serpent192", "aes256gmac", "aes128gcm64", "aes256ccm128", "none", "aes128gcm16", "aes256gcm128" ]
               },
               "dh_groups" : {
-                "description" : "Dh Groups: ValidateEnum(enumClass = classOf[DHGroups], error = IPSECCONFIG_INVALID_DHGROUPS: Invalid DH Group specified., nullAllowed = false) ",
+                "description" : "Dh Groups",
                 "type" : "string",
-                "enum" : [ "ECP224BP", "ECP256", "NONE", "MODP8192", "MODP1024S160", "MODP3072", "ECP384", "MODP1024", "MODP4096", "MODP2048", "ECP224", "ECP192", "ECP521", "ECP256BP", "ECP384BP", "MODP2048S224", "ECP512BP", "MODP768", "CURVE25519", "MODP2048S256", "MODP6144", "MODP1536" ]
+                "enum" : [ "modp768", "ecp384bp", "modp6144", "modp3072", "modp2048s224", "none", "ecp512bp", "ecp521", "ecp192", "ecp256", "ecp384", "ecp224", "modp1024s160", "modp4096", "modp1536", "ecp224bp", "modp1024", "curve25519", "modp8192", "modp2048", "ecp256bp", "modp2048s256" ]
               }
             },
-            "required" : [ "hash", "encryption", "dh_groups" ]
+            "required" : [ "prf", "hash", "encryption", "dh_groups" ]
           }
         },
         "mode" : {
-          "description" : "Mode: ValidateEnum(enumClass = classOf[ESPTunnelMode], error = IPSECCONFIG_INVALID_ESPTUNNEL_MODE: Invalid esp tunnel mode.Allowed value is tunnel., nullAllowed = false) ",
+          "description" : "Mode",
           "type" : "string",
-          "enum" : [ "TUNNEL", "TRANSPORT" ]
+          "enum" : [ "tunnel", "transport" ]
         },
         "lifetime_units" : {
           "description" : "Lifetime Units",
           "type" : "string"
         },
         "lifetime" : {
-          "description" : "Lifetime: Range(max = 72L, error = IPSECCONFIG_INVALID_IKE_LIFETIME: Invalid ike lifetime.Should be between 1-72 hours., min = 1L) ",
+          "description" : "Lifetime",
           "format" : "int32",
+          "maximum" : 72,
+          "minimum" : 1,
           "type" : "integer"
         }
       },
-      "required" : [ "mode", "proposals" ]
+      "required" : [ "lifetime", "pqc_kem_config", "force_encapsulation", "proposals", "mode", "lifesize", "responder_sase_proposals", "lifetime_units" ]
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -372,12 +623,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -401,21 +666,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "authentication", "ike_group", "esp_group", "name" ]
+  "required" : [ "used_for", "dpd_timeout", "dpd_delay", "dpd_enable", "authentication", "ike_group", "esp_group", "tags", "description", "name", "id" ]
 }
 ```
 

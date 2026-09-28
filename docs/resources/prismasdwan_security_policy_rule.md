@@ -21,16 +21,20 @@
       "type" : "string"
     },
     "dest_device_ids" : {
-      "description" : "Dest Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_DEST_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 10, DEST_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+      "description" : "Dest Device Ids",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Dest Device Ids",
         "type" : "string"
       }
     },
     "src_device_ids" : {
-      "description" : "Src Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_SRC_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 256, SRC_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+      "description" : "Src Device Ids",
+      "maxItems" : 256,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Src Device Ids",
         "type" : "string"
@@ -39,7 +43,7 @@
     "user_or_group" : {
       "properties" : {
         "user_group_ids" : {
-          "description" : "User Group Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_GROUP_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_GROUP_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "description" : "User Group Ids",
           "type" : "array",
           "items" : {
             "description" : "User Group Ids",
@@ -47,14 +51,15 @@
           }
         },
         "user_ids" : {
-          "description" : "User Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "description" : "User Ids",
           "type" : "array",
           "items" : {
             "description" : "User Ids",
             "type" : "string"
           }
         }
-      }
+      },
+      "required" : [ "user_group_ids", "user_ids" ]
     },
     "services" : {
       "description" : "Services",
@@ -67,14 +72,19 @@
             "items" : {
               "properties" : {
                 "from" : {
-                  "description" : "From: Range(max = 65535L, error = INVALID_FROM_PORT_NUMBER: Invalid 'FROM' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+                  "description" : "From",
+                  "maximum" : 65535,
+                  "minimum" : 1,
                   "type" : "integer"
                 },
                 "to" : {
-                  "description" : "To: Range(max = 65535L, error = INVALID_TO_PORT_NUMBER: Invalid 'TO' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+                  "description" : "To",
+                  "maximum" : 65535,
+                  "minimum" : 1,
                   "type" : "integer"
                 }
-              }
+              },
+              "required" : [ "from", "to" ]
             }
           },
           "source_ports" : {
@@ -83,14 +93,19 @@
             "items" : {
               "properties" : {
                 "from" : {
-                  "description" : "From: Range(max = 65535L, error = INVALID_FROM_PORT_NUMBER: Invalid 'FROM' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+                  "description" : "From",
+                  "maximum" : 65535,
+                  "minimum" : 1,
                   "type" : "integer"
                 },
                 "to" : {
-                  "description" : "To: Range(max = 65535L, error = INVALID_TO_PORT_NUMBER: Invalid 'TO' port number in port range. Must be in range 1 - 65535, min = 1L) ",
+                  "description" : "To",
+                  "maximum" : 65535,
+                  "minimum" : 1,
                   "type" : "integer"
                 }
-              }
+              },
+              "required" : [ "from", "to" ]
             }
           },
           "protocol" : {
@@ -98,62 +113,78 @@
             "format" : "int32",
             "type" : "integer"
           }
-        }
+        },
+        "required" : [ "destination_ports", "source_ports", "protocol" ]
       }
     },
     "enabled" : {
-      "description" : "Enabled: NotNull ",
+      "description" : "Enabled",
       "type" : "boolean"
     },
     "action" : {
-      "description" : "Action: ValidateEnum(enumClass = classOf[SecurityAction], message = SECURITY_POLICYRULE_INVALID_ACTION, nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Action",
+      "type" : "string",
+      "enum" : [ "ALLOW", "REJECT", "DENY" ]
     },
     "destination_zone_ids" : {
-      "description" : "Destination Zone Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_DESTINATION_ZONE_IDS: Duplicate destination zone IDs found., noTrim = false, regex = , required = false) Size(max = 16, error = DESTINATION_ZONE_ID_LIST_SIZE_EXCEEDED: Too many destination zone IDs. Max = 16., min = 0) ",
+      "description" : "Destination Zone Ids",
+      "maxItems" : 16,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Destination Zone Ids",
         "type" : "string"
       }
     },
     "destination_prefix_ids" : {
-      "description" : "Destination Prefix Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_DESTINATION_PREFIX_IDS: Duplicate destination prefix IDs found., noTrim = false, regex = , required = false) Size(max = 16, error = DESTINATION_PREFIX_ID_LIST_SIZE_EXCEEDED: Too many destination prefix IDs. Max = 16., min = 0) ",
+      "description" : "Destination Prefix Ids",
+      "maxItems" : 16,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Destination Prefix Ids",
         "type" : "string"
       }
     },
     "source_prefix_ids" : {
-      "description" : "Source Prefix Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_SOURCE_PREFIX_IDS: Duplicate source prefix IDs found., noTrim = false, regex = , required = false) Size(max = 16, error = SOURCE_PREFIX_ID_LIST_SIZE_EXCEEDED: Too many source prefix IDs. Max = 16., min = 0) ",
+      "description" : "Source Prefix Ids",
+      "maxItems" : 16,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Source Prefix Ids",
         "type" : "string"
       }
     },
     "source_zone_ids" : {
-      "description" : "Source Zone Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_SOURCE_ZONE_IDS: Duplicate source zone IDs found., noTrim = false, regex = , required = false) Size(max = 16, error = SOURCE_ZONE_ID_LIST_SIZE_EXCEEDED: Too many source zone IDs. Max = 16., min = 0) ",
+      "description" : "Source Zone Ids",
+      "maxItems" : 16,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Source Zone Ids",
         "type" : "string"
       }
     },
     "app_def_ids" : {
-      "description" : "App Def Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_APP_DEF_IDS: Duplicate app ids are specified., noTrim = false, regex = , required = false) Size(max = 256, error = APP_DEF_ID_LIST_SIZE_EXCEEDED: Maximum 256 applications can be specified in a rule., min = 0) ",
+      "description" : "App Def Ids",
+      "maxItems" : 256,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "App Def Ids",
         "type" : "string"
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -165,12 +196,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -194,21 +239,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "enabled", "action", "name" ]
+  "required" : [ "security_profile_group_id", "dest_device_ids", "src_device_ids", "user_or_group", "services", "enabled", "action", "destination_zone_ids", "destination_prefix_ids", "source_prefix_ids", "source_zone_ids", "app_def_ids", "tags", "description", "name", "id" ]
 }
 ```
 

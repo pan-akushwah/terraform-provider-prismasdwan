@@ -103,6 +103,22 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
+			// property: name=disabled, type=BOOLEAN macro=rss_schema
+			"disabled": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+			// property: name=disabled_reason, type=STRING macro=rss_schema
+			"disabled_reason": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -111,6 +127,22 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
+			// property: name=inactive, type=BOOLEAN macro=rss_schema
+			"inactive": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
+			// property: name=inactive_reason, type=STRING macro=rss_schema
+			"inactive_reason": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
 				Required:  false,
@@ -119,6 +151,14 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
+			// property: name=region, type=STRING macro=rss_schema
+			"region": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=region, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": rsschema.SetAttribute{
 				Required:    false,
@@ -179,7 +219,7 @@ func (r *dnsServiceRoleResource) doPost(ctx context.Context, plan *rsModelDnsSer
 	var body = &sdwan_schema.DnsServiceRole{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=6
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=11
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -187,10 +227,20 @@ func (r *dnsServiceRoleResource) doPost(ctx context.Context, plan *rsModelDnsSer
 	body.Schema = Int64ValueOrNil(plan.Schema)
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
+	// property: name=disabled, type=BOOLEAN macro=copy_from_plan
+	body.Disabled = BoolValueOrNil(plan.Disabled)
+	// property: name=disabled_reason, type=STRING macro=copy_from_plan
+	body.DisabledReason = StringValueOrNil(plan.DisabledReason)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
+	// property: name=inactive, type=BOOLEAN macro=copy_from_plan
+	body.Inactive = BoolValueOrNil(plan.Inactive)
+	// property: name=inactive_reason, type=STRING macro=copy_from_plan
+	body.InactiveReason = StringValueOrNil(plan.InactiveReason)
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
+	// property: name=region, type=STRING macro=copy_from_plan
+	body.Region = StringValueOrNil(plan.Region)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
 
@@ -271,7 +321,7 @@ func (r *dnsServiceRoleResource) doPost(ctx context.Context, plan *rsModelDnsSer
 	tflog.Info(ctx, "created prismasdwan_dns_service_role with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=DnsServiceRole
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -279,10 +329,20 @@ func (r *dnsServiceRoleResource) doPost(ctx context.Context, plan *rsModelDnsSer
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// property: name=disabled_reason, type=STRING macro=copy_to_state
+	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
+	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// property: name=inactive_reason, type=STRING macro=copy_to_state
+	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=region, type=STRING macro=copy_to_state
+	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -372,7 +432,7 @@ func (r *dnsServiceRoleResource) doGet(ctx context.Context, state *rsModelDnsSer
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -380,10 +440,20 @@ func (r *dnsServiceRoleResource) doGet(ctx context.Context, state *rsModelDnsSer
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// property: name=disabled_reason, type=STRING macro=copy_to_state
+	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
+	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// property: name=inactive_reason, type=STRING macro=copy_to_state
+	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=region, type=STRING macro=copy_to_state
+	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -442,7 +512,7 @@ func (r *dnsServiceRoleResource) doPut(ctx context.Context, plan *rsModelDnsServ
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=6
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=11
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -462,17 +532,47 @@ func (r *dnsServiceRoleResource) doPut(ctx context.Context, plan *rsModelDnsServ
 	} else {
 		body.Description = StringValueOrNil(plan.Description)
 	}
+	// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.Disabled = ValueBoolPointerFromPlanOrState(plan.Disabled, state.Disabled)
+	} else {
+		body.Disabled = BoolValueOrNil(plan.Disabled)
+	}
+	// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.DisabledReason = ValueStringPointerFromPlanOrState(plan.DisabledReason, state.DisabledReason)
+	} else {
+		body.DisabledReason = StringValueOrNil(plan.DisabledReason)
+	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Id = ValueStringPointerFromPlanOrState(plan.Id, state.Id)
 	} else {
 		body.Id = StringValueOrNil(plan.Id)
 	}
+	// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.Inactive = ValueBoolPointerFromPlanOrState(plan.Inactive, state.Inactive)
+	} else {
+		body.Inactive = BoolValueOrNil(plan.Inactive)
+	}
+	// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.InactiveReason = ValueStringPointerFromPlanOrState(plan.InactiveReason, state.InactiveReason)
+	} else {
+		body.InactiveReason = StringValueOrNil(plan.InactiveReason)
+	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
 	} else {
 		body.Name = StringValueOrNil(plan.Name)
+	}
+	// property: name=region, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.Region = ValueStringPointerFromPlanOrState(plan.Region, state.Region)
+	} else {
+		body.Region = StringValueOrNil(plan.Region)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
 	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
@@ -526,7 +626,7 @@ func (r *dnsServiceRoleResource) doPut(ctx context.Context, plan *rsModelDnsServ
 	}
 
 	// Store the answer to state. schema=DnsServiceRole
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -534,10 +634,20 @@ func (r *dnsServiceRoleResource) doPut(ctx context.Context, plan *rsModelDnsServ
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
+	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// property: name=disabled_reason, type=STRING macro=copy_to_state
+	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
+	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// property: name=inactive_reason, type=STRING macro=copy_to_state
+	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
+	// property: name=region, type=STRING macro=copy_to_state
+	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags

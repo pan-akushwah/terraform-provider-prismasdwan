@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `site` |
-| Get Api  | `/sdwan/v4.12/api/sites/{site_id}` (`SiteScreenV4N12`) |
-| Post Api  | `/sdwan/v4.12/api/sites` (`SiteScreenV4N12`) |
-| Put Api  | `/sdwan/v4.12/api/sites/{site_id}` (`SiteScreenV4N12`) |
-| Delete Api  | `/sdwan/v4.12/api/sites/{site_id}` |
+| Get Api  | `/sdwan/v4.13/api/sites/{site_id}` (`SiteScreenV4N13`) |
+| Post Api  | `/sdwan/v4.13/api/sites` (`SiteScreenV4N13`) |
+| Put Api  | `/sdwan/v4.13/api/sites/{site_id}` (`SiteScreenV4N13`) |
+| Delete Api  | `/sdwan/v4.13/api/sites/{site_id}` |
 
 
 ### JSON Schema
@@ -16,20 +16,26 @@
 ```json
 {
   "properties" : {
+    "element_system_limit_profile_id" : {
+      "description" : "Element System Limit Profile Id",
+      "type" : "string"
+    },
     "sgi_config" : {
       "properties" : {
         "sgi_tag" : {
-          "description" : "Sgi Tag: Range(max = 65533L, INVALID_SGI_CONFIG, min = 1L) ",
+          "description" : "Sgi Tag",
           "format" : "int32",
+          "maximum" : 65533,
+          "minimum" : 1,
           "type" : "integer"
         },
         "sgi_vendor_id" : {
-          "description" : "Sgi Vendor Id: ValidateEnum(enumClass = classOf[SGI_vendor], INVALID_SGI_CONFIG, nullAllowed = false) ",
+          "description" : "Sgi Vendor Id",
           "type" : "string",
           "enum" : [ "SGI_VENDOR_ID_TYPE_8909" ]
         }
       },
-      "required" : [ "sgi_vendor_id" ]
+      "required" : [ "sgi_tag", "sgi_vendor_id" ]
     },
     "app_acceleration_enabled" : {
       "description" : "App Acceleration Enabled",
@@ -44,7 +50,9 @@
       "type" : "boolean"
     },
     "perfmgmt_policysetstack_id" : {
-      "description" : "Perfmgmt Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PERFMGMT_POLICYSETSTACK_ID: Invalid performance management policy set stack id) ",
+      "description" : "Perfmgmt Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "vrf_context_profile_id" : {
@@ -67,8 +75,10 @@
       "type" : "string"
     },
     "extended_tags" : {
-      "description" : "Extended Tags: Valid ListObject(allowDuplicate = false, allowEmpty = true, allowNull = true, listMaxSize = 10, message = INVALID_EXTENDED_TAG_SIZE_OR_DUPLICATE, required = false) ",
+      "description" : "Extended Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "properties" : {
           "value" : {
@@ -83,19 +93,26 @@
             "description" : "Value Type",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "value", "key", "value_type" ]
       }
     },
     "nat_policysetstack_id" : {
-      "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) ",
+      "description" : "Nat Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "priority_policysetstack_id" : {
-      "description" : "Priority Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PRIORITY_POLICYSETSTACK_ID: Invalid priority policy set stack id) ",
+      "description" : "Priority Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "network_policysetstack_id" : {
-      "description" : "Network Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NETWORK_POLICYSETSTACK_ID: Invalid network policy set stack id) ",
+      "description" : "Network Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "service_binding" : {
@@ -107,8 +124,9 @@
       "type" : "string"
     },
     "element_cluster_role" : {
-      "description" : "Element Cluster Role: Required(error = SITE_ROLE_MISSING: Site role missing.) ValidateEnum(enumClass = classOf[ElementClusterRole], message = Invalid enum string., nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Element Cluster Role",
+      "type" : "string",
+      "enum" : [ "NONE", "HUB", "SPOKE", "PA_WE_BR", "PA_WE_DC", "PA_CONN" ]
     },
     "policy_set_id" : {
       "description" : "Policy Set Id",
@@ -121,54 +139,71 @@
           "type" : "string"
         },
         "latitude" : {
-          "description" : "Latitude: Range(max = 90L, INVALID_LATITUDE_VALUE, min = -90L) ",
+          "description" : "Latitude",
           "format" : "float",
+          "maximum" : 90,
+          "minimum" : -90,
           "type" : "number"
         },
         "longitude" : {
-          "description" : "Longitude: Range(max = 180L, INVALID_LONGITUDE_VALUE, min = -180L) ",
+          "description" : "Longitude",
           "format" : "float",
+          "maximum" : 180,
+          "minimum" : -180,
           "type" : "number"
         }
-      }
+      },
+      "required" : [ "description", "latitude", "longitude" ]
     },
     "address" : {
       "properties" : {
         "country" : {
-          "description" : "Country: Length(max = 100, , min = 0) ",
+          "description" : "Country",
+          "maxLength" : 100,
           "type" : "string"
         },
         "post_code" : {
-          "description" : "Post Code: Length(max = 100, , min = 0) ",
+          "description" : "Post Code",
+          "maxLength" : 100,
           "type" : "string"
         },
         "state" : {
-          "description" : "State: Length(max = 100, , min = 0) ",
+          "description" : "State",
+          "maxLength" : 100,
           "type" : "string"
         },
         "city" : {
-          "description" : "City: Length(max = 100, , min = 0) ",
+          "description" : "City",
+          "maxLength" : 100,
           "type" : "string"
         },
         "street2" : {
-          "description" : "Street2: Length(max = 100, , min = 0) ",
+          "description" : "Street2",
+          "maxLength" : 100,
           "type" : "string"
         },
         "street" : {
-          "description" : "Street: Length(max = 100, , min = 0) ",
+          "description" : "Street",
+          "maxLength" : 100,
           "type" : "string"
         }
-      }
+      },
+      "required" : [ "city", "country", "street2", "state", "street", "post_code" ]
     },
     "admin_state" : {
-      "description" : "Admin State: Required(error = SITE_ADMIN_STATE_MISSING: Site admin state missing.) ValidateEnum(enumClass = classOf[SiteState], message = Invalid enum string., nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Admin State",
+      "type" : "string",
+      "enum" : [ "monitor", "active", "disabled" ]
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -180,12 +215,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -209,21 +258,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "element_cluster_role", "admin_state", "name" ]
+  "required" : [ "element_system_limit_profile_id", "sgi_config", "app_acceleration_enabled", "prefer_lan_default_over_wan_default_route", "branch_gateway", "perfmgmt_policysetstack_id", "vrf_context_profile_id", "multicast_peer_group_id", "security_policysetstack_id", "extended_tags", "nat_policysetstack_id", "priority_policysetstack_id", "network_policysetstack_id", "service_binding", "security_policyset_id", "element_cluster_role", "policy_set_id", "location", "address", "admin_state", "tags", "description", "name", "id" ]
 }
 ```
 

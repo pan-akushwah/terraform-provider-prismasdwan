@@ -27,7 +27,7 @@ import (
 // | ExtendedTag HasID=false
 // | Location HasID=false
 // | Address HasID=false
-// | SiteScreenV4N12 HasID=true
+// | SiteScreenV4N13 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -59,7 +59,7 @@ type dsModelWithFilterSite struct {
 	TfParameters types.Map                 `tfsdk:"x_parameters"` // Generic Map for Path Ids
 	Etag         types.Int64               `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
 	Schema       types.Int64               `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelSiteScreenV4N12 `tfsdk:"items"`
+	Items        []*dsModelSiteScreenV4N13 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -103,7 +103,7 @@ func (d *siteDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, r
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=SiteScreenV4N12
+						// rest all properties to be read from GET API Schema schema=SiteScreenV4N13
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -218,6 +218,14 @@ func (d *siteDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, r
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=element_cluster_role, type=STRING macro=rss_schema
+						// property: name=element_system_limit_profile_id, type=STRING macro=rss_schema
+						"element_system_limit_profile_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=element_system_limit_profile_id, type=STRING macro=rss_schema
 						// property: name=extended_tags, type=ARRAY_REFERENCE macro=rss_schema
 						"extended_tags": dsschema.ListNestedAttribute{
 							Required:  false,
@@ -463,7 +471,7 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v4.12/api/sites/{site_id}"
+	get_path := "/sdwan/v4.13/api/sites/{site_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -534,20 +542,20 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 		}
 
 		// Store the answer to state.
-		var state dsModelSiteScreenV4N12
+		var state dsModelSiteScreenV4N13
 
 		// start copying attributes
-		var ans sdwan_schema.SiteScreenV4N12
+		var ans sdwan_schema.SiteScreenV4N13
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N12", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N13", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=SiteScreenV4N12
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=25
+		// lets copy all items into state schema=SiteScreenV4N13
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=26
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -583,6 +591,8 @@ func (d *siteDataSource) Read(ctx context.Context, req datasource.ReadRequest, r
 		state.Description = types.StringPointerValue(ans.Description)
 		// property: name=element_cluster_role, type=STRING macro=copy_to_state
 		state.ElementClusterRole = types.StringPointerValue(ans.ElementClusterRole)
+		// property: name=element_system_limit_profile_id, type=STRING macro=copy_to_state
+		state.ElementSystemLimitProfileId = types.StringPointerValue(ans.ElementSystemLimitProfileId)
 		// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.ExtendedTags == nil {
 			state.ExtendedTags = nil

@@ -17,20 +17,70 @@
 {
   "properties" : {
     "filters" : {
-      "description" : "Filters: Valid Required(PREFIXFILTER_REQUIRED) Valid ",
+      "description" : "Filters",
       "type" : "array",
       "items" : {
         "properties" : {
+          "ip_prefixes" : {
+            "description" : "Ip Prefixes",
+            "type" : "array",
+            "items" : {
+              "description" : "Ip Prefixes",
+              "format" : "ipv4",
+              "type" : "string"
+            }
+          },
           "type" : {
             "description" : "Type",
             "type" : "string"
+          },
+          "wn_path" : {
+            "description" : "Wn Path",
+            "type" : "array",
+            "items" : {
+              "description" : "Wn Path",
+              "type" : "string"
+            }
+          },
+          "path" : {
+            "description" : "Path",
+            "type" : "array",
+            "items" : {
+              "description" : "Path",
+              "type" : "string"
+            }
+          },
+          "site" : {
+            "description" : "Site",
+            "type" : "object"
+          },
+          "elements" : {
+            "description" : "Elements",
+            "type" : "array",
+            "items" : {
+              "description" : "Elements",
+              "type" : "string"
+            }
           }
-        }
+        },
+        "required" : [ "type", "wn_path", "elements", "ip_prefixes", "site", "path" ]
       }
     },
     "prefix_filter_id" : {
       "description" : "Prefix Filter Id",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -54,21 +104,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "filters" ]
+  "required" : [ "filters", "prefix_filter_id", "id" ]
 }
 ```
 

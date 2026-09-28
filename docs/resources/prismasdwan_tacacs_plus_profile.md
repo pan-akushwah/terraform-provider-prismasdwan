@@ -17,11 +17,14 @@
 {
   "properties" : {
     "authentication_protocol" : {
-      "description" : "Authentication Protocol: ValidateEnum(enumClass = classOf[TacacsAuthenticationProtocolEnum], error = TACACS_PLUS_PROFILE_INVALID_PROTOCOL: Invalid authentication protocol value. Should be either pap or chap., nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Authentication Protocol",
+      "type" : "string",
+      "enum" : [ "chap", "pap" ]
     },
     "tacacs_plus_servers" : {
-      "description" : "Tacacs Plus Servers: Valid ListObject(allowDuplicate = true, allowEmpty = false, allowNull = false, listMaxSize = 4, error = TACACS_PLUS_PROFILE_REQUIRED_SERVERS: Invalid number of TACACS servers configured. Minimum: 1 Maximum 4, required = false) ",
+      "description" : "Tacacs Plus Servers",
+      "maxItems" : 4,
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
@@ -58,14 +61,19 @@
             "description" : "Server Ip",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "secret", "timeout", "server_port", "server_fqdn", "server_ipv6", "server_ip" ]
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -77,12 +85,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -106,21 +128,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "authentication_protocol", "tacacs_plus_servers", "name" ]
+  "required" : [ "authentication_protocol", "tacacs_plus_servers", "tags", "description", "name", "id" ]
 }
 ```
 

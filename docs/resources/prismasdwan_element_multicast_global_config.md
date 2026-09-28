@@ -36,7 +36,8 @@
           "format" : "int64",
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "query_max_response_time", "last_member_query_interval", "last_member_query_count", "query_interval" ]
     },
     "pim_protocol_parameters" : {
       "properties" : {
@@ -55,11 +56,14 @@
           "format" : "int64",
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "join_prune_interval", "hello_hold_time", "hello_interval" ]
     },
     "dr_priority" : {
-      "description" : "Dr Priority: Range(max = 4294967295L, message = MULTICAST_INVALID_DR_PRIORITY, min = 1L) ",
+      "description" : "Dr Priority",
       "format" : "int64",
+      "maximum" : 4294967295,
+      "minimum" : 1,
       "type" : "integer"
     },
     "bsm_enabled" : {
@@ -69,6 +73,18 @@
     "spt_switchover_enabled" : {
       "description" : "Spt Switchover Enabled",
       "type" : "boolean"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -92,20 +108,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "igmp_protocol_parameters", "pim_protocol_parameters", "dr_priority", "bsm_enabled", "spt_switchover_enabled", "id" ]
 }
 ```
 

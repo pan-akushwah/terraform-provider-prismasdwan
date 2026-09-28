@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_bgp_peer` |
-| Get Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV2N6`) |
-| Post Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers` (`BGPPeerConfigScreenV2N6`) |
-| Put Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV2N6`) |
-| Delete Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` |
+| Get Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV3`) |
+| Post Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers` (`BGPPeerConfigScreenV3`) |
+| Put Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV3`) |
+| Delete Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` |
 
 
 ### JSON Schema
@@ -36,7 +36,8 @@
                 "type" : "string",
                 "enum" : [ "ipv4", "ipv6", "ipv4v6" ]
               }
-            }
+            },
+            "required" : [ "ip_prefixes", "type" ]
           }
         },
         "ipv6_prefix_list_id" : {
@@ -52,34 +53,40 @@
           "type" : "string",
           "enum" : [ "unaggregated", "aggregate-auto", "aggregate-manual", "aggregate-manual-summary-only", "default" ]
         }
-      }
+      },
+      "required" : [ "aggregate_prefixes", "ipv6_prefix_list_id", "ipv4_prefix_list_id", "aggregate_type" ]
     },
     "advertise_default_route" : {
       "description" : "Advertise Default Route",
       "type" : "boolean"
     },
     "update_source_v6" : {
-      "description" : "Update Source V6: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IPV6) ",
+      "description" : "Update Source V6",
+      "format" : "ipv6",
       "type" : "string"
     },
     "allow_v6_prefixes" : {
-      "description" : "Allow V6 Prefixes: Required(message = ALLOW_IPV6_PREFIXES_REQUIRED) ",
+      "description" : "Allow V6 Prefixes",
       "type" : "boolean"
     },
     "allow_v4_prefixes" : {
-      "description" : "Allow V4 Prefixes: Required(message = ALLOW_IPV4_PREFIXES_REQUIRED) ",
+      "description" : "Allow V4 Prefixes",
       "type" : "boolean"
     },
     "peer_ip_v6" : {
-      "description" : "Peer Ip V6: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_PEER_IPV6, type = IPV6) ",
+      "description" : "Peer Ip V6",
+      "format" : "ipv6",
       "type" : "string"
     },
     "router_id" : {
-      "description" : "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
+      "description" : "Router Id",
+      "format" : "ipv4",
       "type" : "string"
     },
     "vrf_context_id" : {
-      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
+      "description" : "Vrf Context Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "bgp_config" : {
@@ -129,7 +136,8 @@
           "description" : "Local As Num",
           "type" : "string"
         }
-      }
+      },
+      "required" : [ "peer_auth_type", "multi_hop_limit", "md5_secret", "peer_retry_time", "adv_interval", "hold_time", "keepalive_time", "local_as_num" ]
     },
     "scope" : {
       "description" : "Scope",
@@ -141,7 +149,8 @@
       "type" : "boolean"
     },
     "update_source" : {
-      "description" : "Update Source: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IP) ",
+      "description" : "Update Source",
+      "format" : "ipv4",
       "type" : "string"
     },
     "route_map_out_id" : {
@@ -157,18 +166,24 @@
       "type" : "string"
     },
     "remote_as_num" : {
-      "description" : "Remote As Num: NotEmpty(REQUIRED_REMOTE_AS_NUM) ",
+      "description" : "Remote As Num",
+      "minLength" : 1,
       "type" : "string"
     },
     "peer_ip" : {
-      "description" : "Peer Ip: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = PEER_CONFIG_INVALID_PEER_IP: Invalid IP address for routing peer. Please use a valid IPv4 address., type = IP) ",
+      "description" : "Peer Ip",
+      "format" : "ipv4",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -180,12 +195,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -209,21 +238,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "allow_v6_prefixes", "allow_v4_prefixes", "remote_as_num", "name" ]
+  "required" : [ "route_aggregation", "advertise_default_route", "update_source_v6", "allow_v6_prefixes", "allow_v4_prefixes", "peer_ip_v6", "router_id", "vrf_context_id", "bgp_config", "scope", "shutdown", "update_source", "route_map_out_id", "route_map_in_id", "peer_type", "remote_as_num", "peer_ip", "tags", "description", "name", "id" ]
 }
 ```
 

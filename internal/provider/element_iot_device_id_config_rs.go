@@ -324,13 +324,13 @@ func (r *elementIotDeviceIdConfigResource) doGet(ctx context.Context, state *rsM
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_iot_device_id_config"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{config_id}"
+	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{deviceid_config_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
 	read_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*read_request.PathParameters)["config_id"] = &tokens[0]
+	(*read_request.PathParameters)["deviceid_config_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")

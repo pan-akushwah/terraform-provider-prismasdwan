@@ -24,12 +24,15 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=8)
+// | Schema Map Summary (size=goLangStructMap=11)
 // | Computed Resource Name=networkpolicysetstacks
 // +-----------------------------------------------------------------
+// | BestPathConfig HasID=false
+// | NetworkPolicyPrefixS HasID=true
 // | WANPath HasID=false
 // | PathsAllowed HasID=false
 // | ServiceContext HasID=false
+// | UserGroup HasID=false
 // | NetworkPolicyRule HasID=true
 // | NetworkPolicySet HasID=true
 // | BasePolicyRule HasID=true
@@ -260,6 +263,48 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+								// property: name=best_path_config, type=REFERENCE macro=rss_schema
+								"best_path_config": rsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]rsschema.Attribute{
+										// property: name=metric, type=STRING macro=rss_schema
+										"metric": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=metric, type=STRING macro=rss_schema
+										// property: name=metric_type, type=STRING macro=rss_schema
+										"metric_type": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=metric_type, type=STRING macro=rss_schema
+										// property: name=probe_config_id, type=STRING macro=rss_schema
+										"probe_config_id": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+								// property: name=default_rule, type=BOOLEAN macro=rss_schema
+								"default_rule": rsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=default_rule, type=BOOLEAN macro=rss_schema
 								// property: name=description, type=STRING macro=rss_schema
 								"description": rsschema.StringAttribute{
 									Required:  false,
@@ -268,6 +313,99 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=description, type=STRING macro=rss_schema
+								// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+								"dest_device_ids": rsschema.ListAttribute{
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									ElementType: types.StringType,
+								},
+								// key name holder for attribute: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+								// property: name=destination_prefixes, type=REFERENCE macro=rss_schema
+								"destination_prefixes": rsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]rsschema.Attribute{
+										// generic x_parameters is added to accomodate path parameters
+										"x_parameters": rsschema.MapAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											ElementType: types.StringType,
+										},
+										// property: name=_etag, type=INTEGER macro=rss_schema
+										"x_etag": rsschema.Int64Attribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+										// property: name=_schema, type=INTEGER macro=rss_schema
+										"x_schema": rsschema.Int64Attribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+										// property: name=description, type=STRING macro=rss_schema
+										"description": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=description, type=STRING macro=rss_schema
+										// property: name=id, type=STRING macro=rss_schema
+										"id": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=id, type=STRING macro=rss_schema
+										// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										"ipv4_prefixes": rsschema.ListAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										"ipv6_prefixes": rsschema.ListAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										// property: name=name, type=STRING macro=rss_schema
+										"name": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=name, type=STRING macro=rss_schema
+										// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+										"tags": rsschema.SetAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 								// property: name=destination_prefixes_id, type=STRING macro=rss_schema
 								"destination_prefixes_id": rsschema.StringAttribute{
 									Required:  false,
@@ -276,6 +414,22 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
+								// property: name=disabled, type=BOOLEAN macro=rss_schema
+								"disabled": rsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
+								// property: name=disabled_reason, type=STRING macro=rss_schema
+								"disabled_reason": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 								// property: name=enabled, type=BOOLEAN macro=rss_schema
 								"enabled": rsschema.BoolAttribute{
 									Required:  false,
@@ -292,6 +446,22 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=id, type=STRING macro=rss_schema
+								// property: name=inactive, type=BOOLEAN macro=rss_schema
+								"inactive": rsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
+								// property: name=inactive_reason, type=STRING macro=rss_schema
+								"inactive_reason": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 								// property: name=name, type=STRING macro=rss_schema
 								"name": rsschema.StringAttribute{
 									Required:  false,
@@ -410,6 +580,22 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									},
 								},
 								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+								// property: name=policyset_id, type=STRING macro=rss_schema
+								"policyset_id": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=policyset_id, type=STRING macro=rss_schema
+								// property: name=region, type=STRING macro=rss_schema
+								"region": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=region, type=STRING macro=rss_schema
 								// property: name=service_context, type=REFERENCE macro=rss_schema
 								"service_context": rsschema.SingleNestedAttribute{
 									Required:  false,
@@ -460,6 +646,90 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									},
 								},
 								// key name holder for attribute: name=type, type=STRING macro=rss_schema
+								// property: name=source_prefixes, type=REFERENCE macro=rss_schema
+								"source_prefixes": rsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]rsschema.Attribute{
+										// generic x_parameters is added to accomodate path parameters
+										"x_parameters": rsschema.MapAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											ElementType: types.StringType,
+										},
+										// property: name=_etag, type=INTEGER macro=rss_schema
+										"x_etag": rsschema.Int64Attribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
+										// property: name=_schema, type=INTEGER macro=rss_schema
+										"x_schema": rsschema.Int64Attribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+										// property: name=description, type=STRING macro=rss_schema
+										"description": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=description, type=STRING macro=rss_schema
+										// property: name=id, type=STRING macro=rss_schema
+										"id": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  true,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=id, type=STRING macro=rss_schema
+										// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										"ipv4_prefixes": rsschema.ListAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										"ipv6_prefixes": rsschema.ListAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+										// property: name=name, type=STRING macro=rss_schema
+										"name": rsschema.StringAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=name, type=STRING macro=rss_schema
+										// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
+										"tags": rsschema.SetAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 								// property: name=source_prefixes_id, type=STRING macro=rss_schema
 								"source_prefixes_id": rsschema.StringAttribute{
 									Required:  false,
@@ -468,6 +738,15 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
+								// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+								"src_device_ids": rsschema.ListAttribute{
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									ElementType: types.StringType,
+								},
+								// key name holder for attribute: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 								"tags": rsschema.SetAttribute{
 									Required:    false,
@@ -477,10 +756,38 @@ func (r *pathPolicyStackResource) Schema(_ context.Context, _ resource.SchemaReq
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+								// property: name=user_or_group, type=REFERENCE macro=rss_schema
+								"user_or_group": rsschema.SingleNestedAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+									Attributes: map[string]rsschema.Attribute{
+										// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+										"user_group_ids": rsschema.ListAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+										// property: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+										"user_ids": rsschema.ListAttribute{
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											ElementType: types.StringType,
+										},
+										// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+									},
+								},
+								// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 							},
 						},
 					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+					// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=region, type=STRING macro=rss_schema
 					"region": rsschema.StringAttribute{
 						Required:  false,
@@ -953,7 +1260,7 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 			for varLoopPolicyRulesIndex, varLoopPolicyRules := range plan.DefaultrulePolicyset.PolicyRules {
 				// add a new item
 				body.DefaultrulePolicyset.PolicyRules = append(body.DefaultrulePolicyset.PolicyRules, sdwan_schema.NetworkPolicyRule{})
-				// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules properties=14
+				// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules properties=27
 				tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules")
 				// property: name=_etag, type=INTEGER macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = Int64ValueOrNil(varLoopPolicyRules.Etag)
@@ -961,14 +1268,60 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Schema = Int64ValueOrNil(varLoopPolicyRules.Schema)
 				// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = ListStringValueOrNil(ctx, varLoopPolicyRules.AppDefIds)
+				// property: name=best_path_config, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.BestPathConfig != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = &sdwan_schema.BestPathConfig{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel plan=varLoopPolicyRules.BestPathConfig properties=3
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel plan=varLoopPolicyRules.BestPathConfig")
+					// property: name=metric, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.Metric = StringValueOrNil(varLoopPolicyRules.BestPathConfig.Metric)
+					// property: name=metric_type, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.MetricType = StringValueOrNil(varLoopPolicyRules.BestPathConfig.MetricType)
+					// property: name=probe_config_id, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.ProbeConfigId = StringValueOrNil(varLoopPolicyRules.BestPathConfig.ProbeConfigId)
+				}
+				// property: name=default_rule, type=BOOLEAN macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DefaultRule = BoolValueOrNil(varLoopPolicyRules.DefaultRule)
 				// property: name=description, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = StringValueOrNil(varLoopPolicyRules.Description)
+				// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestDeviceIds = ListStringValueOrNil(ctx, varLoopPolicyRules.DestDeviceIds)
+				// property: name=destination_prefixes, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.DestinationPrefixes != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = &sdwan_schema.NetworkPolicyPrefixS{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel plan=varLoopPolicyRules.DestinationPrefixes properties=8
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel plan=varLoopPolicyRules.DestinationPrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Etag = Int64ValueOrNil(varLoopPolicyRules.DestinationPrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Schema = Int64ValueOrNil(varLoopPolicyRules.DestinationPrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Description = StringValueOrNil(varLoopPolicyRules.DestinationPrefixes.Description)
+					// property: name=id, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Id = StringValueOrNil(varLoopPolicyRules.DestinationPrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.DestinationPrefixes.Ipv4Prefixes)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.DestinationPrefixes.Ipv6Prefixes)
+					// property: name=name, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Name = StringValueOrNil(varLoopPolicyRules.DestinationPrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = SetStringValueOrNil(ctx, varLoopPolicyRules.DestinationPrefixes.Tags)
+				}
 				// property: name=destination_prefixes_id, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = StringValueOrNil(varLoopPolicyRules.DestinationPrefixesId)
+				// property: name=disabled, type=BOOLEAN macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Disabled = BoolValueOrNil(varLoopPolicyRules.Disabled)
+				// property: name=disabled_reason, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DisabledReason = StringValueOrNil(varLoopPolicyRules.DisabledReason)
 				// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = BoolValueOrNil(varLoopPolicyRules.Enabled)
 				// property: name=id, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = StringValueOrNil(varLoopPolicyRules.Id)
+				// property: name=inactive, type=BOOLEAN macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Inactive = BoolValueOrNil(varLoopPolicyRules.Inactive)
+				// property: name=inactive_reason, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].InactiveReason = StringValueOrNil(varLoopPolicyRules.InactiveReason)
 				// property: name=name, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = StringValueOrNil(varLoopPolicyRules.Name)
 				// property: name=network_context_id, type=STRING macro=copy_from_plan
@@ -1035,6 +1388,10 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 						}
 					}
 				}
+				// property: name=policyset_id, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PolicysetId = StringValueOrNil(varLoopPolicyRules.PolicysetId)
+				// property: name=region, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Region = StringValueOrNil(varLoopPolicyRules.Region)
 				// property: name=service_context, type=REFERENCE macro=copy_from_plan
 				if varLoopPolicyRules.ServiceContext != nil {
 					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &sdwan_schema.ServiceContext{}
@@ -1051,10 +1408,44 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 					// property: name=type, type=STRING macro=copy_from_plan
 					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = StringValueOrNil(varLoopPolicyRules.ServiceContext.Type)
 				}
+				// property: name=source_prefixes, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.SourcePrefixes != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = &sdwan_schema.NetworkPolicyPrefixS{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel plan=varLoopPolicyRules.SourcePrefixes properties=8
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel plan=varLoopPolicyRules.SourcePrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Etag = Int64ValueOrNil(varLoopPolicyRules.SourcePrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Schema = Int64ValueOrNil(varLoopPolicyRules.SourcePrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Description = StringValueOrNil(varLoopPolicyRules.SourcePrefixes.Description)
+					// property: name=id, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Id = StringValueOrNil(varLoopPolicyRules.SourcePrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.SourcePrefixes.Ipv4Prefixes)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.SourcePrefixes.Ipv6Prefixes)
+					// property: name=name, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Name = StringValueOrNil(varLoopPolicyRules.SourcePrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = SetStringValueOrNil(ctx, varLoopPolicyRules.SourcePrefixes.Tags)
+				}
 				// property: name=source_prefixes_id, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = StringValueOrNil(varLoopPolicyRules.SourcePrefixesId)
+				// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SrcDeviceIds = ListStringValueOrNil(ctx, varLoopPolicyRules.SrcDeviceIds)
 				// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = SetStringValueOrNil(ctx, varLoopPolicyRules.Tags)
+				// property: name=user_or_group, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.UserOrGroup != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = &sdwan_schema.UserGroup{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel plan=varLoopPolicyRules.UserOrGroup properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel plan=varLoopPolicyRules.UserOrGroup")
+					// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, varLoopPolicyRules.UserOrGroup.UserGroupIds)
+					// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserIds = ListStringValueOrNil(ctx, varLoopPolicyRules.UserOrGroup.UserIds)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_from_plan
@@ -1337,7 +1728,7 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 			for varLoopPolicyRulesIndex, varLoopPolicyRules := range ans.DefaultrulePolicyset.PolicyRules {
 				// add a new item
 				state.DefaultrulePolicyset.PolicyRules = append(state.DefaultrulePolicyset.PolicyRules, rsModelNetworkPolicyRule{})
-				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=14
+				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=27
 				tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules")
 				// property: name=_etag, type=INTEGER macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
@@ -1347,14 +1738,72 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 				varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.AppDefIds)
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = varAppDefIds
 				resp.Diagnostics.Append(errAppDefIds.Errors()...)
+				// property: name=best_path_config, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.BestPathConfig == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = &rsModelBestPathConfig{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel ans=varLoopPolicyRules.BestPathConfig properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel ans=varLoopPolicyRules.BestPathConfig")
+					// property: name=metric, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.Metric = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.Metric)
+					// property: name=metric_type, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.MetricType = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.MetricType)
+					// property: name=probe_config_id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.ProbeConfigId = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.ProbeConfigId)
+				}
+				// property: name=default_rule, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DefaultRule = types.BoolPointerValue(varLoopPolicyRules.DefaultRule)
 				// property: name=description, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
+				// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDestDeviceIds, errDestDeviceIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestDeviceIds)
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestDeviceIds = varDestDeviceIds
+				resp.Diagnostics.Append(errDestDeviceIds.Errors()...)
+				// property: name=destination_prefixes, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.DestinationPrefixes == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = &rsModelNetworkPolicyPrefixS{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel ans=varLoopPolicyRules.DestinationPrefixes properties=8
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel ans=varLoopPolicyRules.DestinationPrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Etag = types.Int64PointerValue(varLoopPolicyRules.DestinationPrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Schema = types.Int64PointerValue(varLoopPolicyRules.DestinationPrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Description = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Description)
+					// property: name=id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Id = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Ipv4Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv4Prefixes = varIpv4Prefixes
+					resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Ipv6Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv6Prefixes = varIpv6Prefixes
+					resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+					// property: name=name, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Name = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
+					resp.Diagnostics.Append(errTags.Errors()...)
+				}
 				// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
+				// property: name=disabled, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Disabled = types.BoolPointerValue(varLoopPolicyRules.Disabled)
+				// property: name=disabled_reason, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DisabledReason = types.StringPointerValue(varLoopPolicyRules.DisabledReason)
 				// property: name=enabled, type=BOOLEAN macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = types.BoolPointerValue(varLoopPolicyRules.Enabled)
 				// property: name=id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
+				// property: name=inactive, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Inactive = types.BoolPointerValue(varLoopPolicyRules.Inactive)
+				// property: name=inactive_reason, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].InactiveReason = types.StringPointerValue(varLoopPolicyRules.InactiveReason)
 				// property: name=name, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
 				// property: name=network_context_id, type=STRING macro=copy_to_state
@@ -1423,6 +1872,10 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 						}
 					}
 				}
+				// property: name=policyset_id, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PolicysetId = types.StringPointerValue(varLoopPolicyRules.PolicysetId)
+				// property: name=region, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Region = types.StringPointerValue(varLoopPolicyRules.Region)
 				// property: name=service_context, type=REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.ServiceContext == nil {
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = nil
@@ -1441,12 +1894,62 @@ func (r *pathPolicyStackResource) doPost(ctx context.Context, plan *rsModelNetwo
 					// property: name=type, type=STRING macro=copy_to_state
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = types.StringPointerValue(varLoopPolicyRules.ServiceContext.Type)
 				}
+				// property: name=source_prefixes, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.SourcePrefixes == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = &rsModelNetworkPolicyPrefixS{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel ans=varLoopPolicyRules.SourcePrefixes properties=8
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel ans=varLoopPolicyRules.SourcePrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Etag = types.Int64PointerValue(varLoopPolicyRules.SourcePrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Schema = types.Int64PointerValue(varLoopPolicyRules.SourcePrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Description = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Description)
+					// property: name=id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Id = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Ipv4Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv4Prefixes = varIpv4Prefixes
+					resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Ipv6Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv6Prefixes = varIpv6Prefixes
+					resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+					// property: name=name, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Name = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
+					resp.Diagnostics.Append(errTags.Errors()...)
+				}
 				// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
+				// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varSrcDeviceIds, errSrcDeviceIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SrcDeviceIds)
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SrcDeviceIds = varSrcDeviceIds
+				resp.Diagnostics.Append(errSrcDeviceIds.Errors()...)
 				// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// property: name=user_or_group, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.UserOrGroup == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = &rsModelUserGroup{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel ans=varLoopPolicyRules.UserOrGroup properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel ans=varLoopPolicyRules.UserOrGroup")
+					// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.UserOrGroup.UserGroupIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserGroupIds = varUserGroupIds
+					resp.Diagnostics.Append(errUserGroupIds.Errors()...)
+					// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varUserIds, errUserIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.UserOrGroup.UserIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserIds = varUserIds
+					resp.Diagnostics.Append(errUserIds.Errors()...)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_to_state
@@ -1704,7 +2207,7 @@ func (r *pathPolicyStackResource) doGet(ctx context.Context, state *rsModelNetwo
 			for varLoopPolicyRulesIndex, varLoopPolicyRules := range ans.DefaultrulePolicyset.PolicyRules {
 				// add a new item
 				state.DefaultrulePolicyset.PolicyRules = append(state.DefaultrulePolicyset.PolicyRules, rsModelNetworkPolicyRule{})
-				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=14
+				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=27
 				tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules")
 				// property: name=_etag, type=INTEGER macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
@@ -1714,14 +2217,72 @@ func (r *pathPolicyStackResource) doGet(ctx context.Context, state *rsModelNetwo
 				varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.AppDefIds)
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = varAppDefIds
 				resp.Diagnostics.Append(errAppDefIds.Errors()...)
+				// property: name=best_path_config, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.BestPathConfig == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = &rsModelBestPathConfig{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel ans=varLoopPolicyRules.BestPathConfig properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel ans=varLoopPolicyRules.BestPathConfig")
+					// property: name=metric, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.Metric = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.Metric)
+					// property: name=metric_type, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.MetricType = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.MetricType)
+					// property: name=probe_config_id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.ProbeConfigId = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.ProbeConfigId)
+				}
+				// property: name=default_rule, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DefaultRule = types.BoolPointerValue(varLoopPolicyRules.DefaultRule)
 				// property: name=description, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
+				// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDestDeviceIds, errDestDeviceIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestDeviceIds)
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestDeviceIds = varDestDeviceIds
+				resp.Diagnostics.Append(errDestDeviceIds.Errors()...)
+				// property: name=destination_prefixes, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.DestinationPrefixes == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = &rsModelNetworkPolicyPrefixS{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel ans=varLoopPolicyRules.DestinationPrefixes properties=8
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel ans=varLoopPolicyRules.DestinationPrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Etag = types.Int64PointerValue(varLoopPolicyRules.DestinationPrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Schema = types.Int64PointerValue(varLoopPolicyRules.DestinationPrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Description = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Description)
+					// property: name=id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Id = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Ipv4Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv4Prefixes = varIpv4Prefixes
+					resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Ipv6Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv6Prefixes = varIpv6Prefixes
+					resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+					// property: name=name, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Name = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
+					resp.Diagnostics.Append(errTags.Errors()...)
+				}
 				// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
+				// property: name=disabled, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Disabled = types.BoolPointerValue(varLoopPolicyRules.Disabled)
+				// property: name=disabled_reason, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DisabledReason = types.StringPointerValue(varLoopPolicyRules.DisabledReason)
 				// property: name=enabled, type=BOOLEAN macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = types.BoolPointerValue(varLoopPolicyRules.Enabled)
 				// property: name=id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
+				// property: name=inactive, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Inactive = types.BoolPointerValue(varLoopPolicyRules.Inactive)
+				// property: name=inactive_reason, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].InactiveReason = types.StringPointerValue(varLoopPolicyRules.InactiveReason)
 				// property: name=name, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
 				// property: name=network_context_id, type=STRING macro=copy_to_state
@@ -1790,6 +2351,10 @@ func (r *pathPolicyStackResource) doGet(ctx context.Context, state *rsModelNetwo
 						}
 					}
 				}
+				// property: name=policyset_id, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PolicysetId = types.StringPointerValue(varLoopPolicyRules.PolicysetId)
+				// property: name=region, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Region = types.StringPointerValue(varLoopPolicyRules.Region)
 				// property: name=service_context, type=REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.ServiceContext == nil {
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = nil
@@ -1808,12 +2373,62 @@ func (r *pathPolicyStackResource) doGet(ctx context.Context, state *rsModelNetwo
 					// property: name=type, type=STRING macro=copy_to_state
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = types.StringPointerValue(varLoopPolicyRules.ServiceContext.Type)
 				}
+				// property: name=source_prefixes, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.SourcePrefixes == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = &rsModelNetworkPolicyPrefixS{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel ans=varLoopPolicyRules.SourcePrefixes properties=8
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel ans=varLoopPolicyRules.SourcePrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Etag = types.Int64PointerValue(varLoopPolicyRules.SourcePrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Schema = types.Int64PointerValue(varLoopPolicyRules.SourcePrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Description = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Description)
+					// property: name=id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Id = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Ipv4Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv4Prefixes = varIpv4Prefixes
+					resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Ipv6Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv6Prefixes = varIpv6Prefixes
+					resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+					// property: name=name, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Name = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
+					resp.Diagnostics.Append(errTags.Errors()...)
+				}
 				// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
+				// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varSrcDeviceIds, errSrcDeviceIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SrcDeviceIds)
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SrcDeviceIds = varSrcDeviceIds
+				resp.Diagnostics.Append(errSrcDeviceIds.Errors()...)
 				// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// property: name=user_or_group, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.UserOrGroup == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = &rsModelUserGroup{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel ans=varLoopPolicyRules.UserOrGroup properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel ans=varLoopPolicyRules.UserOrGroup")
+					// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.UserOrGroup.UserGroupIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserGroupIds = varUserGroupIds
+					resp.Diagnostics.Append(errUserGroupIds.Errors()...)
+					// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varUserIds, errUserIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.UserOrGroup.UserIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserIds = varUserIds
+					resp.Diagnostics.Append(errUserIds.Errors()...)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_to_state
@@ -2105,7 +2720,7 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 				// add a new item
 				body.DefaultrulePolicyset.PolicyRules = append(body.DefaultrulePolicyset.PolicyRules, sdwan_schema.NetworkPolicyRule{})
 				// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-				// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules properties=14
+				// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules properties=27
 				tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel plan=varLoopPolicyRules")
 				// property: name=_etag, type=INTEGER macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = Int64ValueOrNil(varLoopPolicyRules.Etag)
@@ -2113,14 +2728,60 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Schema = Int64ValueOrNil(varLoopPolicyRules.Schema)
 				// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = ListStringValueOrNil(ctx, varLoopPolicyRules.AppDefIds)
+				// property: name=best_path_config, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.BestPathConfig != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = &sdwan_schema.BestPathConfig{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel plan=varLoopPolicyRules.BestPathConfig properties=3
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel plan=varLoopPolicyRules.BestPathConfig")
+					// property: name=metric, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.Metric = StringValueOrNil(varLoopPolicyRules.BestPathConfig.Metric)
+					// property: name=metric_type, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.MetricType = StringValueOrNil(varLoopPolicyRules.BestPathConfig.MetricType)
+					// property: name=probe_config_id, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.ProbeConfigId = StringValueOrNil(varLoopPolicyRules.BestPathConfig.ProbeConfigId)
+				}
+				// property: name=default_rule, type=BOOLEAN macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DefaultRule = BoolValueOrNil(varLoopPolicyRules.DefaultRule)
 				// property: name=description, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = StringValueOrNil(varLoopPolicyRules.Description)
+				// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestDeviceIds = ListStringValueOrNil(ctx, varLoopPolicyRules.DestDeviceIds)
+				// property: name=destination_prefixes, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.DestinationPrefixes != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = &sdwan_schema.NetworkPolicyPrefixS{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel plan=varLoopPolicyRules.DestinationPrefixes properties=8
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel plan=varLoopPolicyRules.DestinationPrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Etag = Int64ValueOrNil(varLoopPolicyRules.DestinationPrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Schema = Int64ValueOrNil(varLoopPolicyRules.DestinationPrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Description = StringValueOrNil(varLoopPolicyRules.DestinationPrefixes.Description)
+					// property: name=id, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Id = StringValueOrNil(varLoopPolicyRules.DestinationPrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.DestinationPrefixes.Ipv4Prefixes)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.DestinationPrefixes.Ipv6Prefixes)
+					// property: name=name, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Name = StringValueOrNil(varLoopPolicyRules.DestinationPrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = SetStringValueOrNil(ctx, varLoopPolicyRules.DestinationPrefixes.Tags)
+				}
 				// property: name=destination_prefixes_id, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = StringValueOrNil(varLoopPolicyRules.DestinationPrefixesId)
+				// property: name=disabled, type=BOOLEAN macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Disabled = BoolValueOrNil(varLoopPolicyRules.Disabled)
+				// property: name=disabled_reason, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DisabledReason = StringValueOrNil(varLoopPolicyRules.DisabledReason)
 				// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = BoolValueOrNil(varLoopPolicyRules.Enabled)
 				// property: name=id, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = StringValueOrNil(varLoopPolicyRules.Id)
+				// property: name=inactive, type=BOOLEAN macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Inactive = BoolValueOrNil(varLoopPolicyRules.Inactive)
+				// property: name=inactive_reason, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].InactiveReason = StringValueOrNil(varLoopPolicyRules.InactiveReason)
 				// property: name=name, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = StringValueOrNil(varLoopPolicyRules.Name)
 				// property: name=network_context_id, type=STRING macro=copy_from_plan
@@ -2187,6 +2848,10 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 						}
 					}
 				}
+				// property: name=policyset_id, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PolicysetId = StringValueOrNil(varLoopPolicyRules.PolicysetId)
+				// property: name=region, type=STRING macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Region = StringValueOrNil(varLoopPolicyRules.Region)
 				// property: name=service_context, type=REFERENCE macro=copy_from_plan
 				if varLoopPolicyRules.ServiceContext != nil {
 					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = &sdwan_schema.ServiceContext{}
@@ -2203,10 +2868,44 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 					// property: name=type, type=STRING macro=copy_from_plan
 					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = StringValueOrNil(varLoopPolicyRules.ServiceContext.Type)
 				}
+				// property: name=source_prefixes, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.SourcePrefixes != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = &sdwan_schema.NetworkPolicyPrefixS{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel plan=varLoopPolicyRules.SourcePrefixes properties=8
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel plan=varLoopPolicyRules.SourcePrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Etag = Int64ValueOrNil(varLoopPolicyRules.SourcePrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Schema = Int64ValueOrNil(varLoopPolicyRules.SourcePrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Description = StringValueOrNil(varLoopPolicyRules.SourcePrefixes.Description)
+					// property: name=id, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Id = StringValueOrNil(varLoopPolicyRules.SourcePrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.SourcePrefixes.Ipv4Prefixes)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, varLoopPolicyRules.SourcePrefixes.Ipv6Prefixes)
+					// property: name=name, type=STRING macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Name = StringValueOrNil(varLoopPolicyRules.SourcePrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = SetStringValueOrNil(ctx, varLoopPolicyRules.SourcePrefixes.Tags)
+				}
 				// property: name=source_prefixes_id, type=STRING macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = StringValueOrNil(varLoopPolicyRules.SourcePrefixesId)
+				// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SrcDeviceIds = ListStringValueOrNil(ctx, varLoopPolicyRules.SrcDeviceIds)
 				// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
 				body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = SetStringValueOrNil(ctx, varLoopPolicyRules.Tags)
+				// property: name=user_or_group, type=REFERENCE macro=copy_from_plan
+				if varLoopPolicyRules.UserOrGroup != nil {
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = &sdwan_schema.UserGroup{}
+					// copy_from_plan: body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel plan=varLoopPolicyRules.UserOrGroup properties=2
+					tflog.Debug(ctx, "copy_from_plan body=body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel plan=varLoopPolicyRules.UserOrGroup")
+					// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, varLoopPolicyRules.UserOrGroup.UserGroupIds)
+					// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
+					body.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserIds = ListStringValueOrNil(ctx, varLoopPolicyRules.UserOrGroup.UserIds)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_from_plan_or_state
@@ -2518,7 +3217,7 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 			for varLoopPolicyRulesIndex, varLoopPolicyRules := range ans.DefaultrulePolicyset.PolicyRules {
 				// add a new item
 				state.DefaultrulePolicyset.PolicyRules = append(state.DefaultrulePolicyset.PolicyRules, rsModelNetworkPolicyRule{})
-				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=14
+				// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules properties=27
 				tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex] prefix=rsModel ans=varLoopPolicyRules")
 				// property: name=_etag, type=INTEGER macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Etag = types.Int64PointerValue(varLoopPolicyRules.Etag)
@@ -2528,14 +3227,72 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 				varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.AppDefIds)
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].AppDefIds = varAppDefIds
 				resp.Diagnostics.Append(errAppDefIds.Errors()...)
+				// property: name=best_path_config, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.BestPathConfig == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig = &rsModelBestPathConfig{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel ans=varLoopPolicyRules.BestPathConfig properties=3
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig prefix=rsModel ans=varLoopPolicyRules.BestPathConfig")
+					// property: name=metric, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.Metric = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.Metric)
+					// property: name=metric_type, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.MetricType = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.MetricType)
+					// property: name=probe_config_id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].BestPathConfig.ProbeConfigId = types.StringPointerValue(varLoopPolicyRules.BestPathConfig.ProbeConfigId)
+				}
+				// property: name=default_rule, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DefaultRule = types.BoolPointerValue(varLoopPolicyRules.DefaultRule)
 				// property: name=description, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Description = types.StringPointerValue(varLoopPolicyRules.Description)
+				// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDestDeviceIds, errDestDeviceIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestDeviceIds)
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestDeviceIds = varDestDeviceIds
+				resp.Diagnostics.Append(errDestDeviceIds.Errors()...)
+				// property: name=destination_prefixes, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.DestinationPrefixes == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes = &rsModelNetworkPolicyPrefixS{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel ans=varLoopPolicyRules.DestinationPrefixes properties=8
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes prefix=rsModel ans=varLoopPolicyRules.DestinationPrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Etag = types.Int64PointerValue(varLoopPolicyRules.DestinationPrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Schema = types.Int64PointerValue(varLoopPolicyRules.DestinationPrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Description = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Description)
+					// property: name=id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Id = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Ipv4Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv4Prefixes = varIpv4Prefixes
+					resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Ipv6Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Ipv6Prefixes = varIpv6Prefixes
+					resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+					// property: name=name, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Name = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
+					resp.Diagnostics.Append(errTags.Errors()...)
+				}
 				// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
+				// property: name=disabled, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Disabled = types.BoolPointerValue(varLoopPolicyRules.Disabled)
+				// property: name=disabled_reason, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].DisabledReason = types.StringPointerValue(varLoopPolicyRules.DisabledReason)
 				// property: name=enabled, type=BOOLEAN macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Enabled = types.BoolPointerValue(varLoopPolicyRules.Enabled)
 				// property: name=id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Id = types.StringPointerValue(varLoopPolicyRules.Id)
+				// property: name=inactive, type=BOOLEAN macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Inactive = types.BoolPointerValue(varLoopPolicyRules.Inactive)
+				// property: name=inactive_reason, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].InactiveReason = types.StringPointerValue(varLoopPolicyRules.InactiveReason)
 				// property: name=name, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Name = types.StringPointerValue(varLoopPolicyRules.Name)
 				// property: name=network_context_id, type=STRING macro=copy_to_state
@@ -2604,6 +3361,10 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 						}
 					}
 				}
+				// property: name=policyset_id, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].PolicysetId = types.StringPointerValue(varLoopPolicyRules.PolicysetId)
+				// property: name=region, type=STRING macro=copy_to_state
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Region = types.StringPointerValue(varLoopPolicyRules.Region)
 				// property: name=service_context, type=REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.ServiceContext == nil {
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext = nil
@@ -2622,12 +3383,62 @@ func (r *pathPolicyStackResource) doPut(ctx context.Context, plan *rsModelNetwor
 					// property: name=type, type=STRING macro=copy_to_state
 					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].ServiceContext.Type = types.StringPointerValue(varLoopPolicyRules.ServiceContext.Type)
 				}
+				// property: name=source_prefixes, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.SourcePrefixes == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes = &rsModelNetworkPolicyPrefixS{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel ans=varLoopPolicyRules.SourcePrefixes properties=8
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes prefix=rsModel ans=varLoopPolicyRules.SourcePrefixes")
+					// property: name=_etag, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Etag = types.Int64PointerValue(varLoopPolicyRules.SourcePrefixes.Etag)
+					// property: name=_schema, type=INTEGER macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Schema = types.Int64PointerValue(varLoopPolicyRules.SourcePrefixes.Schema)
+					// property: name=description, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Description = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Description)
+					// property: name=id, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Id = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Id)
+					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Ipv4Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv4Prefixes = varIpv4Prefixes
+					resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
+					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Ipv6Prefixes)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Ipv6Prefixes = varIpv6Prefixes
+					resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+					// property: name=name, type=STRING macro=copy_to_state
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Name = types.StringPointerValue(varLoopPolicyRules.SourcePrefixes.Name)
+					// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
+					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
+					resp.Diagnostics.Append(errTags.Errors()...)
+				}
 				// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
+				// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varSrcDeviceIds, errSrcDeviceIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.SrcDeviceIds)
+				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].SrcDeviceIds = varSrcDeviceIds
+				resp.Diagnostics.Append(errSrcDeviceIds.Errors()...)
 				// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 				state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// property: name=user_or_group, type=REFERENCE macro=copy_to_state
+				if varLoopPolicyRules.UserOrGroup == nil {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
+				} else {
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = &rsModelUserGroup{}
+					// copy_to_state: state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel ans=varLoopPolicyRules.UserOrGroup properties=2
+					tflog.Debug(ctx, "copy_to_state state=state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup prefix=rsModel ans=varLoopPolicyRules.UserOrGroup")
+					// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varUserGroupIds, errUserGroupIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.UserOrGroup.UserGroupIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserGroupIds = varUserGroupIds
+					resp.Diagnostics.Append(errUserGroupIds.Errors()...)
+					// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
+					varUserIds, errUserIds := types.ListValueFrom(ctx, types.StringType, varLoopPolicyRules.UserOrGroup.UserIds)
+					state.DefaultrulePolicyset.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup.UserIds = varUserIds
+					resp.Diagnostics.Append(errUserIds.Errors()...)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_to_state

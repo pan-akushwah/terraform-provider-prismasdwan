@@ -24,12 +24,9 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=6)
+// | Schema Map Summary (size=goLangStructMap=3)
 // | Computed Resource Name=natpolicysets_natpolicyrules
 // +-----------------------------------------------------------------
-// | NATPolicyZone HasID=true
-// | NATPolicyPool HasID=true
-// | BasePolicyPrefixS HasID=true
 // | NATAction HasID=false
 // | PortRange HasID=false
 // | NATPolicyRule HasID=true
@@ -181,90 +178,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				},
 			},
 			// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
-			// property: name=destination_prefixes, type=REFERENCE macro=rss_schema
-			"destination_prefixes": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]rsschema.Attribute{
-					// generic x_parameters is added to accomodate path parameters
-					"x_parameters": rsschema.MapAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					// property: name=_etag, type=INTEGER macro=rss_schema
-					"x_etag": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-					// property: name=_schema, type=INTEGER macro=rss_schema
-					"x_schema": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-					// property: name=description, type=STRING macro=rss_schema
-					"description": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=id, type=STRING macro=rss_schema
-					"id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=id, type=STRING macro=rss_schema
-					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					"ipv4_prefixes": rsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					"ipv6_prefixes": rsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=name, type=STRING macro=rss_schema
-					"name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=name, type=STRING macro=rss_schema
-					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					"tags": rsschema.SetAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=destination_prefixes_id, type=STRING macro=rss_schema
 			"destination_prefixes_id": rsschema.StringAttribute{
 				Required:  false,
@@ -273,120 +186,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
-			// property: name=destination_zone, type=REFERENCE macro=rss_schema
-			"destination_zone": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]rsschema.Attribute{
-					// generic x_parameters is added to accomodate path parameters
-					"x_parameters": rsschema.MapAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					// property: name=_etag, type=INTEGER macro=rss_schema
-					"x_etag": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-					// property: name=_schema, type=INTEGER macro=rss_schema
-					"x_schema": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-					// property: name=default_for_public_interfaces, type=BOOLEAN macro=rss_schema
-					"default_for_public_interfaces": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=default_for_public_interfaces, type=BOOLEAN macro=rss_schema
-					// property: name=description, type=STRING macro=rss_schema
-					"description": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=disabled, type=BOOLEAN macro=rss_schema
-					"disabled": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-					// property: name=disabled_reason, type=STRING macro=rss_schema
-					"disabled_reason": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-					// property: name=id, type=STRING macro=rss_schema
-					"id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=id, type=STRING macro=rss_schema
-					// property: name=inactive, type=BOOLEAN macro=rss_schema
-					"inactive": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-					// property: name=inactive_reason, type=STRING macro=rss_schema
-					"inactive_reason": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-					// property: name=name, type=STRING macro=rss_schema
-					"name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=name, type=STRING macro=rss_schema
-					// property: name=region, type=STRING macro=rss_schema
-					"region": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=region, type=STRING macro=rss_schema
-					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					"tags": rsschema.SetAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=destination_zone_id, type=STRING macro=rss_schema
 			"destination_zone_id": rsschema.StringAttribute{
 				Required:  false,
@@ -395,22 +194,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=destination_zone_id, type=STRING macro=rss_schema
-			// property: name=disabled, type=BOOLEAN macro=rss_schema
-			"disabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-			// property: name=disabled_reason, type=STRING macro=rss_schema
-			"disabled_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
 				Required:  false,
@@ -427,22 +210,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
-			// property: name=inactive, type=BOOLEAN macro=rss_schema
-			"inactive": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-			// property: name=inactive_reason, type=STRING macro=rss_schema
-			"inactive_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
 				Required:  false,
@@ -451,82 +218,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
-			// property: name=natpolicypools, type=ARRAY_REFERENCE macro=rss_schema
-			"natpolicypools": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				NestedObject: rsschema.NestedAttributeObject{
-					Attributes: map[string]rsschema.Attribute{
-						// generic x_parameters is added to accomodate path parameters
-						"x_parameters": rsschema.MapAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							ElementType: types.StringType,
-						},
-						// property: name=_etag, type=INTEGER macro=rss_schema
-						"x_etag": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-						// property: name=_schema, type=INTEGER macro=rss_schema
-						"x_schema": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-						// property: name=description, type=STRING macro=rss_schema
-						"description": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=description, type=STRING macro=rss_schema
-						// property: name=id, type=STRING macro=rss_schema
-						"id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=id, type=STRING macro=rss_schema
-						// property: name=name, type=STRING macro=rss_schema
-						"name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
-						},
-						// key name holder for attribute: name=name, type=STRING macro=rss_schema
-						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-						"tags": rsschema.SetAttribute{
-							Required:    false,
-							Computed:    false,
-							Optional:    true,
-							Sensitive:   false,
-							ElementType: types.StringType,
-						},
-						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					},
-				},
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-			// property: name=policyset_id, type=STRING macro=rss_schema
-			"policyset_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=policyset_id, type=STRING macro=rss_schema
 			// property: name=protocol, type=INTEGER macro=rss_schema
 			"protocol": rsschema.Int64Attribute{
 				Required:  false,
@@ -535,14 +226,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=protocol, type=INTEGER macro=rss_schema
-			// property: name=region, type=STRING macro=rss_schema
-			"region": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-			},
-			// key name holder for attribute: name=region, type=STRING macro=rss_schema
 			// property: name=source_ports, type=ARRAY_REFERENCE macro=rss_schema
 			"source_ports": rsschema.ListNestedAttribute{
 				Required:  false,
@@ -571,90 +254,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				},
 			},
 			// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
-			// property: name=source_prefixes, type=REFERENCE macro=rss_schema
-			"source_prefixes": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]rsschema.Attribute{
-					// generic x_parameters is added to accomodate path parameters
-					"x_parameters": rsschema.MapAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					// property: name=_etag, type=INTEGER macro=rss_schema
-					"x_etag": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-					// property: name=_schema, type=INTEGER macro=rss_schema
-					"x_schema": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-					// property: name=description, type=STRING macro=rss_schema
-					"description": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=id, type=STRING macro=rss_schema
-					"id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=id, type=STRING macro=rss_schema
-					// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					"ipv4_prefixes": rsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					"ipv6_prefixes": rsschema.ListAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
-					// property: name=name, type=STRING macro=rss_schema
-					"name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=name, type=STRING macro=rss_schema
-					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					"tags": rsschema.SetAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=source_prefixes_id, type=STRING macro=rss_schema
 			"source_prefixes_id": rsschema.StringAttribute{
 				Required:  false,
@@ -663,120 +262,6 @@ func (r *natPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
-			// property: name=source_zone, type=REFERENCE macro=rss_schema
-			"source_zone": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
-				Attributes: map[string]rsschema.Attribute{
-					// generic x_parameters is added to accomodate path parameters
-					"x_parameters": rsschema.MapAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					// property: name=_etag, type=INTEGER macro=rss_schema
-					"x_etag": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-					// property: name=_schema, type=INTEGER macro=rss_schema
-					"x_schema": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-					// property: name=default_for_public_interfaces, type=BOOLEAN macro=rss_schema
-					"default_for_public_interfaces": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=default_for_public_interfaces, type=BOOLEAN macro=rss_schema
-					// property: name=description, type=STRING macro=rss_schema
-					"description": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=description, type=STRING macro=rss_schema
-					// property: name=disabled, type=BOOLEAN macro=rss_schema
-					"disabled": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-					// property: name=disabled_reason, type=STRING macro=rss_schema
-					"disabled_reason": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
-					// property: name=id, type=STRING macro=rss_schema
-					"id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  true,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=id, type=STRING macro=rss_schema
-					// property: name=inactive, type=BOOLEAN macro=rss_schema
-					"inactive": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
-					// property: name=inactive_reason, type=STRING macro=rss_schema
-					"inactive_reason": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
-					// property: name=name, type=STRING macro=rss_schema
-					"name": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=name, type=STRING macro=rss_schema
-					// property: name=region, type=STRING macro=rss_schema
-					"region": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
-					},
-					// key name holder for attribute: name=region, type=STRING macro=rss_schema
-					// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-					"tags": rsschema.SetAttribute{
-						Required:    false,
-						Computed:    false,
-						Optional:    true,
-						Sensitive:   false,
-						ElementType: types.StringType,
-					},
-					// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
-				},
-			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=source_zone_id, type=STRING macro=rss_schema
 			"source_zone_id": rsschema.StringAttribute{
 				Required:  false,
@@ -847,7 +332,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	var body = &sdwan_schema.NATPolicyRule{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=26
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=15
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -895,108 +380,18 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			body.DestinationPorts[varLoopDestinationPortsIndex].To = Int64ValueOrNil(varLoopDestinationPorts.To)
 		}
 	}
-	// property: name=destination_prefixes, type=REFERENCE macro=copy_from_plan
-	if plan.DestinationPrefixes != nil {
-		body.DestinationPrefixes = &sdwan_schema.BasePolicyPrefixS{}
-		// copy_from_plan: body=body.DestinationPrefixes prefix=rsModel plan=plan.DestinationPrefixes properties=8
-		tflog.Debug(ctx, "copy_from_plan body=body.DestinationPrefixes prefix=rsModel plan=plan.DestinationPrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan
-		body.DestinationPrefixes.Etag = Int64ValueOrNil(plan.DestinationPrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_from_plan
-		body.DestinationPrefixes.Schema = Int64ValueOrNil(plan.DestinationPrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_from_plan
-		body.DestinationPrefixes.Description = StringValueOrNil(plan.DestinationPrefixes.Description)
-		// property: name=id, type=STRING macro=copy_from_plan
-		body.DestinationPrefixes.Id = StringValueOrNil(plan.DestinationPrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
-		body.DestinationPrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.DestinationPrefixes.Ipv4Prefixes)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
-		body.DestinationPrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, plan.DestinationPrefixes.Ipv6Prefixes)
-		// property: name=name, type=STRING macro=copy_from_plan
-		body.DestinationPrefixes.Name = StringValueOrNil(plan.DestinationPrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-		body.DestinationPrefixes.Tags = SetStringValueOrNil(ctx, plan.DestinationPrefixes.Tags)
-	}
 	// property: name=destination_prefixes_id, type=STRING macro=copy_from_plan
 	body.DestinationPrefixesId = StringValueOrNil(plan.DestinationPrefixesId)
-	// property: name=destination_zone, type=REFERENCE macro=copy_from_plan
-	if plan.DestinationZone != nil {
-		body.DestinationZone = &sdwan_schema.NATPolicyZone{}
-		// copy_from_plan: body=body.DestinationZone prefix=rsModel plan=plan.DestinationZone properties=12
-		tflog.Debug(ctx, "copy_from_plan body=body.DestinationZone prefix=rsModel plan=plan.DestinationZone")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan
-		body.DestinationZone.Etag = Int64ValueOrNil(plan.DestinationZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_from_plan
-		body.DestinationZone.Schema = Int64ValueOrNil(plan.DestinationZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_from_plan
-		body.DestinationZone.DefaultForPublicInterfaces = BoolValueOrNil(plan.DestinationZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_from_plan
-		body.DestinationZone.Description = StringValueOrNil(plan.DestinationZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-		body.DestinationZone.Disabled = BoolValueOrNil(plan.DestinationZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_from_plan
-		body.DestinationZone.DisabledReason = StringValueOrNil(plan.DestinationZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_from_plan
-		body.DestinationZone.Id = StringValueOrNil(plan.DestinationZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-		body.DestinationZone.Inactive = BoolValueOrNil(plan.DestinationZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_from_plan
-		body.DestinationZone.InactiveReason = StringValueOrNil(plan.DestinationZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_from_plan
-		body.DestinationZone.Name = StringValueOrNil(plan.DestinationZone.Name)
-		// property: name=region, type=STRING macro=copy_from_plan
-		body.DestinationZone.Region = StringValueOrNil(plan.DestinationZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-		body.DestinationZone.Tags = SetStringValueOrNil(ctx, plan.DestinationZone.Tags)
-	}
 	// property: name=destination_zone_id, type=STRING macro=copy_from_plan
 	body.DestinationZoneId = StringValueOrNil(plan.DestinationZoneId)
-	// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-	body.Disabled = BoolValueOrNil(plan.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_from_plan
-	body.DisabledReason = StringValueOrNil(plan.DisabledReason)
 	// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 	body.Enabled = BoolValueOrNil(plan.Enabled)
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-	body.Inactive = BoolValueOrNil(plan.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_from_plan
-	body.InactiveReason = StringValueOrNil(plan.InactiveReason)
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
-	// property: name=natpolicypools, type=ARRAY_REFERENCE macro=copy_from_plan
-	if plan.Natpolicypools == nil {
-		body.Natpolicypools = nil
-	} else if len(plan.Natpolicypools) == 0 {
-		body.Natpolicypools = []sdwan_schema.NATPolicyPool{}
-	} else {
-		body.Natpolicypools = make([]sdwan_schema.NATPolicyPool, 0, len(plan.Natpolicypools))
-		for varLoopNatpolicypoolsIndex, varLoopNatpolicypools := range plan.Natpolicypools {
-			// add a new item
-			body.Natpolicypools = append(body.Natpolicypools, sdwan_schema.NATPolicyPool{})
-			// copy_from_plan: body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools properties=6
-			tflog.Debug(ctx, "copy_from_plan body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools")
-			// property: name=_etag, type=INTEGER macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = Int64ValueOrNil(varLoopNatpolicypools.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Schema = Int64ValueOrNil(varLoopNatpolicypools.Schema)
-			// property: name=description, type=STRING macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Description = StringValueOrNil(varLoopNatpolicypools.Description)
-			// property: name=id, type=STRING macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Id = StringValueOrNil(varLoopNatpolicypools.Id)
-			// property: name=name, type=STRING macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Name = StringValueOrNil(varLoopNatpolicypools.Name)
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Tags = SetStringValueOrNil(ctx, varLoopNatpolicypools.Tags)
-		}
-	}
-	// property: name=policyset_id, type=STRING macro=copy_from_plan
-	body.PolicysetId = StringValueOrNil(plan.PolicysetId)
 	// property: name=protocol, type=INTEGER macro=copy_from_plan
 	body.Protocol = Int64ValueOrNil(plan.Protocol)
-	// property: name=region, type=STRING macro=copy_from_plan
-	body.Region = StringValueOrNil(plan.Region)
 	// property: name=source_ports, type=ARRAY_REFERENCE macro=copy_from_plan
 	if plan.SourcePorts == nil {
 		body.SourcePorts = nil
@@ -1015,60 +410,8 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			body.SourcePorts[varLoopSourcePortsIndex].To = Int64ValueOrNil(varLoopSourcePorts.To)
 		}
 	}
-	// property: name=source_prefixes, type=REFERENCE macro=copy_from_plan
-	if plan.SourcePrefixes != nil {
-		body.SourcePrefixes = &sdwan_schema.BasePolicyPrefixS{}
-		// copy_from_plan: body=body.SourcePrefixes prefix=rsModel plan=plan.SourcePrefixes properties=8
-		tflog.Debug(ctx, "copy_from_plan body=body.SourcePrefixes prefix=rsModel plan=plan.SourcePrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan
-		body.SourcePrefixes.Etag = Int64ValueOrNil(plan.SourcePrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_from_plan
-		body.SourcePrefixes.Schema = Int64ValueOrNil(plan.SourcePrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_from_plan
-		body.SourcePrefixes.Description = StringValueOrNil(plan.SourcePrefixes.Description)
-		// property: name=id, type=STRING macro=copy_from_plan
-		body.SourcePrefixes.Id = StringValueOrNil(plan.SourcePrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
-		body.SourcePrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.SourcePrefixes.Ipv4Prefixes)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
-		body.SourcePrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, plan.SourcePrefixes.Ipv6Prefixes)
-		// property: name=name, type=STRING macro=copy_from_plan
-		body.SourcePrefixes.Name = StringValueOrNil(plan.SourcePrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-		body.SourcePrefixes.Tags = SetStringValueOrNil(ctx, plan.SourcePrefixes.Tags)
-	}
 	// property: name=source_prefixes_id, type=STRING macro=copy_from_plan
 	body.SourcePrefixesId = StringValueOrNil(plan.SourcePrefixesId)
-	// property: name=source_zone, type=REFERENCE macro=copy_from_plan
-	if plan.SourceZone != nil {
-		body.SourceZone = &sdwan_schema.NATPolicyZone{}
-		// copy_from_plan: body=body.SourceZone prefix=rsModel plan=plan.SourceZone properties=12
-		tflog.Debug(ctx, "copy_from_plan body=body.SourceZone prefix=rsModel plan=plan.SourceZone")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan
-		body.SourceZone.Etag = Int64ValueOrNil(plan.SourceZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_from_plan
-		body.SourceZone.Schema = Int64ValueOrNil(plan.SourceZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_from_plan
-		body.SourceZone.DefaultForPublicInterfaces = BoolValueOrNil(plan.SourceZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_from_plan
-		body.SourceZone.Description = StringValueOrNil(plan.SourceZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_from_plan
-		body.SourceZone.Disabled = BoolValueOrNil(plan.SourceZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_from_plan
-		body.SourceZone.DisabledReason = StringValueOrNil(plan.SourceZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_from_plan
-		body.SourceZone.Id = StringValueOrNil(plan.SourceZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_from_plan
-		body.SourceZone.Inactive = BoolValueOrNil(plan.SourceZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_from_plan
-		body.SourceZone.InactiveReason = StringValueOrNil(plan.SourceZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_from_plan
-		body.SourceZone.Name = StringValueOrNil(plan.SourceZone.Name)
-		// property: name=region, type=STRING macro=copy_from_plan
-		body.SourceZone.Region = StringValueOrNil(plan.SourceZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-		body.SourceZone.Tags = SetStringValueOrNil(ctx, plan.SourceZone.Tags)
-	}
 	// property: name=source_zone_id, type=STRING macro=copy_from_plan
 	body.SourceZoneId = StringValueOrNil(plan.SourceZoneId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
@@ -1182,7 +525,7 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 	tflog.Info(ctx, "created prismasdwan_nat_policy_rule with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
 	// Store the answer to state. schema=NATPolicyRule
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1232,122 +575,18 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			state.DestinationPorts[varLoopDestinationPortsIndex].To = types.Int64PointerValue(varLoopDestinationPorts.To)
 		}
 	}
-	// property: name=destination_prefixes, type=REFERENCE macro=copy_to_state
-	if ans.DestinationPrefixes == nil {
-		state.DestinationPrefixes = nil
-	} else {
-		state.DestinationPrefixes = &rsModelBasePolicyPrefixS{}
-		// copy_to_state: state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DestinationPrefixes.Schema = types.Int64PointerValue(ans.DestinationPrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Description = types.StringPointerValue(ans.DestinationPrefixes.Description)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Id = types.StringPointerValue(ans.DestinationPrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Ipv4Prefixes)
-		state.DestinationPrefixes.Ipv4Prefixes = varIpv4Prefixes
-		resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Ipv6Prefixes)
-		state.DestinationPrefixes.Ipv6Prefixes = varIpv6Prefixes
-		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Name = types.StringPointerValue(ans.DestinationPrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Tags)
-		state.DestinationPrefixes.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 	state.DestinationPrefixesId = types.StringPointerValue(ans.DestinationPrefixesId)
-	// property: name=destination_zone, type=REFERENCE macro=copy_to_state
-	if ans.DestinationZone == nil {
-		state.DestinationZone = nil
-	} else {
-		state.DestinationZone = &rsModelNATPolicyZone{}
-		// copy_to_state: state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone properties=12
-		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DestinationZone.Schema = types.Int64PointerValue(ans.DestinationZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.DefaultForPublicInterfaces = types.BoolPointerValue(ans.DestinationZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DestinationZone.Description = types.StringPointerValue(ans.DestinationZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.Disabled = types.BoolPointerValue(ans.DestinationZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.DestinationZone.DisabledReason = types.StringPointerValue(ans.DestinationZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DestinationZone.Id = types.StringPointerValue(ans.DestinationZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.Inactive = types.BoolPointerValue(ans.DestinationZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.DestinationZone.InactiveReason = types.StringPointerValue(ans.DestinationZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DestinationZone.Name = types.StringPointerValue(ans.DestinationZone.Name)
-		// property: name=region, type=STRING macro=copy_to_state
-		state.DestinationZone.Region = types.StringPointerValue(ans.DestinationZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DestinationZone.Tags)
-		state.DestinationZone.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=destination_zone_id, type=STRING macro=copy_to_state
 	state.DestinationZoneId = types.StringPointerValue(ans.DestinationZoneId)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=natpolicypools, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Natpolicypools == nil {
-		state.Natpolicypools = nil
-	} else if len(ans.Natpolicypools) == 0 {
-		state.Natpolicypools = []rsModelNATPolicyPool{}
-	} else {
-		state.Natpolicypools = make([]rsModelNATPolicyPool, 0, len(ans.Natpolicypools))
-		for varLoopNatpolicypoolsIndex, varLoopNatpolicypools := range ans.Natpolicypools {
-			// add a new item
-			state.Natpolicypools = append(state.Natpolicypools, rsModelNATPolicyPool{})
-			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools properties=6
-			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Schema = types.Int64PointerValue(varLoopNatpolicypools.Schema)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Description = types.StringPointerValue(varLoopNatpolicypools.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Id = types.StringPointerValue(varLoopNatpolicypools.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Name = types.StringPointerValue(varLoopNatpolicypools.Name)
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopNatpolicypools.Tags)
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
-		}
-	}
-	// property: name=policyset_id, type=STRING macro=copy_to_state
-	state.PolicysetId = types.StringPointerValue(ans.PolicysetId)
 	// property: name=protocol, type=INTEGER macro=copy_to_state
 	state.Protocol = types.Int64PointerValue(ans.Protocol)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=source_ports, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.SourcePorts == nil {
 		state.SourcePorts = nil
@@ -1366,72 +605,8 @@ func (r *natPolicyRuleResource) doPost(ctx context.Context, plan *rsModelNATPoli
 			state.SourcePorts[varLoopSourcePortsIndex].To = types.Int64PointerValue(varLoopSourcePorts.To)
 		}
 	}
-	// property: name=source_prefixes, type=REFERENCE macro=copy_to_state
-	if ans.SourcePrefixes == nil {
-		state.SourcePrefixes = nil
-	} else {
-		state.SourcePrefixes = &rsModelBasePolicyPrefixS{}
-		// copy_to_state: state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.SourcePrefixes.Schema = types.Int64PointerValue(ans.SourcePrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Description = types.StringPointerValue(ans.SourcePrefixes.Description)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Id = types.StringPointerValue(ans.SourcePrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixes.Ipv4Prefixes)
-		state.SourcePrefixes.Ipv4Prefixes = varIpv4Prefixes
-		resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixes.Ipv6Prefixes)
-		state.SourcePrefixes.Ipv6Prefixes = varIpv6Prefixes
-		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Name = types.StringPointerValue(ans.SourcePrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.SourcePrefixes.Tags)
-		state.SourcePrefixes.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 	state.SourcePrefixesId = types.StringPointerValue(ans.SourcePrefixesId)
-	// property: name=source_zone, type=REFERENCE macro=copy_to_state
-	if ans.SourceZone == nil {
-		state.SourceZone = nil
-	} else {
-		state.SourceZone = &rsModelNATPolicyZone{}
-		// copy_to_state: state=state.SourceZone prefix=rsModel ans=ans.SourceZone properties=12
-		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=rsModel ans=ans.SourceZone")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.SourceZone.Schema = types.Int64PointerValue(ans.SourceZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.DefaultForPublicInterfaces = types.BoolPointerValue(ans.SourceZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.SourceZone.Description = types.StringPointerValue(ans.SourceZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.Disabled = types.BoolPointerValue(ans.SourceZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.SourceZone.DisabledReason = types.StringPointerValue(ans.SourceZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.SourceZone.Id = types.StringPointerValue(ans.SourceZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.Inactive = types.BoolPointerValue(ans.SourceZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.SourceZone.InactiveReason = types.StringPointerValue(ans.SourceZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.SourceZone.Name = types.StringPointerValue(ans.SourceZone.Name)
-		// property: name=region, type=STRING macro=copy_to_state
-		state.SourceZone.Region = types.StringPointerValue(ans.SourceZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.SourceZone.Tags)
-		state.SourceZone.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=source_zone_id, type=STRING macro=copy_to_state
 	state.SourceZoneId = types.StringPointerValue(ans.SourceZoneId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
@@ -1523,7 +698,7 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1573,122 +748,18 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 			state.DestinationPorts[varLoopDestinationPortsIndex].To = types.Int64PointerValue(varLoopDestinationPorts.To)
 		}
 	}
-	// property: name=destination_prefixes, type=REFERENCE macro=copy_to_state
-	if ans.DestinationPrefixes == nil {
-		state.DestinationPrefixes = nil
-	} else {
-		state.DestinationPrefixes = &rsModelBasePolicyPrefixS{}
-		// copy_to_state: state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DestinationPrefixes.Schema = types.Int64PointerValue(ans.DestinationPrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Description = types.StringPointerValue(ans.DestinationPrefixes.Description)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Id = types.StringPointerValue(ans.DestinationPrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Ipv4Prefixes)
-		state.DestinationPrefixes.Ipv4Prefixes = varIpv4Prefixes
-		resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Ipv6Prefixes)
-		state.DestinationPrefixes.Ipv6Prefixes = varIpv6Prefixes
-		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Name = types.StringPointerValue(ans.DestinationPrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Tags)
-		state.DestinationPrefixes.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 	state.DestinationPrefixesId = types.StringPointerValue(ans.DestinationPrefixesId)
-	// property: name=destination_zone, type=REFERENCE macro=copy_to_state
-	if ans.DestinationZone == nil {
-		state.DestinationZone = nil
-	} else {
-		state.DestinationZone = &rsModelNATPolicyZone{}
-		// copy_to_state: state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone properties=12
-		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DestinationZone.Schema = types.Int64PointerValue(ans.DestinationZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.DefaultForPublicInterfaces = types.BoolPointerValue(ans.DestinationZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DestinationZone.Description = types.StringPointerValue(ans.DestinationZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.Disabled = types.BoolPointerValue(ans.DestinationZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.DestinationZone.DisabledReason = types.StringPointerValue(ans.DestinationZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DestinationZone.Id = types.StringPointerValue(ans.DestinationZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.Inactive = types.BoolPointerValue(ans.DestinationZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.DestinationZone.InactiveReason = types.StringPointerValue(ans.DestinationZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DestinationZone.Name = types.StringPointerValue(ans.DestinationZone.Name)
-		// property: name=region, type=STRING macro=copy_to_state
-		state.DestinationZone.Region = types.StringPointerValue(ans.DestinationZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DestinationZone.Tags)
-		state.DestinationZone.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=destination_zone_id, type=STRING macro=copy_to_state
 	state.DestinationZoneId = types.StringPointerValue(ans.DestinationZoneId)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=natpolicypools, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Natpolicypools == nil {
-		state.Natpolicypools = nil
-	} else if len(ans.Natpolicypools) == 0 {
-		state.Natpolicypools = []rsModelNATPolicyPool{}
-	} else {
-		state.Natpolicypools = make([]rsModelNATPolicyPool, 0, len(ans.Natpolicypools))
-		for varLoopNatpolicypoolsIndex, varLoopNatpolicypools := range ans.Natpolicypools {
-			// add a new item
-			state.Natpolicypools = append(state.Natpolicypools, rsModelNATPolicyPool{})
-			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools properties=6
-			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Schema = types.Int64PointerValue(varLoopNatpolicypools.Schema)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Description = types.StringPointerValue(varLoopNatpolicypools.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Id = types.StringPointerValue(varLoopNatpolicypools.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Name = types.StringPointerValue(varLoopNatpolicypools.Name)
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopNatpolicypools.Tags)
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
-		}
-	}
-	// property: name=policyset_id, type=STRING macro=copy_to_state
-	state.PolicysetId = types.StringPointerValue(ans.PolicysetId)
 	// property: name=protocol, type=INTEGER macro=copy_to_state
 	state.Protocol = types.Int64PointerValue(ans.Protocol)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=source_ports, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.SourcePorts == nil {
 		state.SourcePorts = nil
@@ -1707,72 +778,8 @@ func (r *natPolicyRuleResource) doGet(ctx context.Context, state *rsModelNATPoli
 			state.SourcePorts[varLoopSourcePortsIndex].To = types.Int64PointerValue(varLoopSourcePorts.To)
 		}
 	}
-	// property: name=source_prefixes, type=REFERENCE macro=copy_to_state
-	if ans.SourcePrefixes == nil {
-		state.SourcePrefixes = nil
-	} else {
-		state.SourcePrefixes = &rsModelBasePolicyPrefixS{}
-		// copy_to_state: state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.SourcePrefixes.Schema = types.Int64PointerValue(ans.SourcePrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Description = types.StringPointerValue(ans.SourcePrefixes.Description)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Id = types.StringPointerValue(ans.SourcePrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixes.Ipv4Prefixes)
-		state.SourcePrefixes.Ipv4Prefixes = varIpv4Prefixes
-		resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixes.Ipv6Prefixes)
-		state.SourcePrefixes.Ipv6Prefixes = varIpv6Prefixes
-		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Name = types.StringPointerValue(ans.SourcePrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.SourcePrefixes.Tags)
-		state.SourcePrefixes.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 	state.SourcePrefixesId = types.StringPointerValue(ans.SourcePrefixesId)
-	// property: name=source_zone, type=REFERENCE macro=copy_to_state
-	if ans.SourceZone == nil {
-		state.SourceZone = nil
-	} else {
-		state.SourceZone = &rsModelNATPolicyZone{}
-		// copy_to_state: state=state.SourceZone prefix=rsModel ans=ans.SourceZone properties=12
-		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=rsModel ans=ans.SourceZone")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.SourceZone.Schema = types.Int64PointerValue(ans.SourceZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.DefaultForPublicInterfaces = types.BoolPointerValue(ans.SourceZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.SourceZone.Description = types.StringPointerValue(ans.SourceZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.Disabled = types.BoolPointerValue(ans.SourceZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.SourceZone.DisabledReason = types.StringPointerValue(ans.SourceZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.SourceZone.Id = types.StringPointerValue(ans.SourceZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.Inactive = types.BoolPointerValue(ans.SourceZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.SourceZone.InactiveReason = types.StringPointerValue(ans.SourceZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.SourceZone.Name = types.StringPointerValue(ans.SourceZone.Name)
-		// property: name=region, type=STRING macro=copy_to_state
-		state.SourceZone.Region = types.StringPointerValue(ans.SourceZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.SourceZone.Tags)
-		state.SourceZone.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=source_zone_id, type=STRING macro=copy_to_state
 	state.SourceZoneId = types.StringPointerValue(ans.SourceZoneId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
@@ -1833,7 +840,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=26
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=15
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -1903,149 +910,17 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			body.DestinationPorts[varLoopDestinationPortsIndex].To = Int64ValueOrNil(varLoopDestinationPorts.To)
 		}
 	}
-	// property: name=destination_prefixes, type=REFERENCE macro=copy_from_plan_or_state
-	if plan.DestinationPrefixes == nil {
-		body.DestinationPrefixes = nil
-	} else {
-		body.DestinationPrefixes = &sdwan_schema.BasePolicyPrefixS{}
-		// copy_from_plan_or_state: body=body.DestinationPrefixes prefix=rsModel state=state.DestinationPrefixes plan=plan.DestinationPrefixes properties=8
-		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DestinationPrefixes prefix=rsModel state=state.DestinationPrefixes plan=plan.DestinationPrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-		if state.DestinationPrefixes != nil {
-			body.DestinationPrefixes.Etag = ValueInt64PointerFromPlanOrState(plan.DestinationPrefixes.Etag, state.DestinationPrefixes.Etag)
-		} else {
-			body.DestinationPrefixes.Etag = Int64ValueOrNil(plan.DestinationPrefixes.Etag)
-		}
-		// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-		if state.DestinationPrefixes != nil {
-			body.DestinationPrefixes.Schema = ValueInt64PointerFromPlanOrState(plan.DestinationPrefixes.Schema, state.DestinationPrefixes.Schema)
-		} else {
-			body.DestinationPrefixes.Schema = Int64ValueOrNil(plan.DestinationPrefixes.Schema)
-		}
-		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationPrefixes != nil {
-			body.DestinationPrefixes.Description = ValueStringPointerFromPlanOrState(plan.DestinationPrefixes.Description, state.DestinationPrefixes.Description)
-		} else {
-			body.DestinationPrefixes.Description = StringValueOrNil(plan.DestinationPrefixes.Description)
-		}
-		// property: name=id, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationPrefixes != nil {
-			body.DestinationPrefixes.Id = ValueStringPointerFromPlanOrState(plan.DestinationPrefixes.Id, state.DestinationPrefixes.Id)
-		} else {
-			body.DestinationPrefixes.Id = StringValueOrNil(plan.DestinationPrefixes.Id)
-		}
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.DestinationPrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.DestinationPrefixes.Ipv4Prefixes)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.DestinationPrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, plan.DestinationPrefixes.Ipv6Prefixes)
-		// property: name=name, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationPrefixes != nil {
-			body.DestinationPrefixes.Name = ValueStringPointerFromPlanOrState(plan.DestinationPrefixes.Name, state.DestinationPrefixes.Name)
-		} else {
-			body.DestinationPrefixes.Name = StringValueOrNil(plan.DestinationPrefixes.Name)
-		}
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-		body.DestinationPrefixes.Tags = SetStringValueOrNil(ctx, plan.DestinationPrefixes.Tags)
-	}
 	// property: name=destination_prefixes_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.DestinationPrefixesId = ValueStringPointerFromPlanOrState(plan.DestinationPrefixesId, state.DestinationPrefixesId)
 	} else {
 		body.DestinationPrefixesId = StringValueOrNil(plan.DestinationPrefixesId)
 	}
-	// property: name=destination_zone, type=REFERENCE macro=copy_from_plan_or_state
-	if plan.DestinationZone == nil {
-		body.DestinationZone = nil
-	} else {
-		body.DestinationZone = &sdwan_schema.NATPolicyZone{}
-		// copy_from_plan_or_state: body=body.DestinationZone prefix=rsModel state=state.DestinationZone plan=plan.DestinationZone properties=12
-		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DestinationZone prefix=rsModel state=state.DestinationZone plan=plan.DestinationZone")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Etag = ValueInt64PointerFromPlanOrState(plan.DestinationZone.Etag, state.DestinationZone.Etag)
-		} else {
-			body.DestinationZone.Etag = Int64ValueOrNil(plan.DestinationZone.Etag)
-		}
-		// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Schema = ValueInt64PointerFromPlanOrState(plan.DestinationZone.Schema, state.DestinationZone.Schema)
-		} else {
-			body.DestinationZone.Schema = Int64ValueOrNil(plan.DestinationZone.Schema)
-		}
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.DefaultForPublicInterfaces = ValueBoolPointerFromPlanOrState(plan.DestinationZone.DefaultForPublicInterfaces, state.DestinationZone.DefaultForPublicInterfaces)
-		} else {
-			body.DestinationZone.DefaultForPublicInterfaces = BoolValueOrNil(plan.DestinationZone.DefaultForPublicInterfaces)
-		}
-		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Description = ValueStringPointerFromPlanOrState(plan.DestinationZone.Description, state.DestinationZone.Description)
-		} else {
-			body.DestinationZone.Description = StringValueOrNil(plan.DestinationZone.Description)
-		}
-		// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Disabled = ValueBoolPointerFromPlanOrState(plan.DestinationZone.Disabled, state.DestinationZone.Disabled)
-		} else {
-			body.DestinationZone.Disabled = BoolValueOrNil(plan.DestinationZone.Disabled)
-		}
-		// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.DisabledReason = ValueStringPointerFromPlanOrState(plan.DestinationZone.DisabledReason, state.DestinationZone.DisabledReason)
-		} else {
-			body.DestinationZone.DisabledReason = StringValueOrNil(plan.DestinationZone.DisabledReason)
-		}
-		// property: name=id, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Id = ValueStringPointerFromPlanOrState(plan.DestinationZone.Id, state.DestinationZone.Id)
-		} else {
-			body.DestinationZone.Id = StringValueOrNil(plan.DestinationZone.Id)
-		}
-		// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Inactive = ValueBoolPointerFromPlanOrState(plan.DestinationZone.Inactive, state.DestinationZone.Inactive)
-		} else {
-			body.DestinationZone.Inactive = BoolValueOrNil(plan.DestinationZone.Inactive)
-		}
-		// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.InactiveReason = ValueStringPointerFromPlanOrState(plan.DestinationZone.InactiveReason, state.DestinationZone.InactiveReason)
-		} else {
-			body.DestinationZone.InactiveReason = StringValueOrNil(plan.DestinationZone.InactiveReason)
-		}
-		// property: name=name, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Name = ValueStringPointerFromPlanOrState(plan.DestinationZone.Name, state.DestinationZone.Name)
-		} else {
-			body.DestinationZone.Name = StringValueOrNil(plan.DestinationZone.Name)
-		}
-		// property: name=region, type=STRING macro=copy_from_plan_or_state
-		if state.DestinationZone != nil {
-			body.DestinationZone.Region = ValueStringPointerFromPlanOrState(plan.DestinationZone.Region, state.DestinationZone.Region)
-		} else {
-			body.DestinationZone.Region = StringValueOrNil(plan.DestinationZone.Region)
-		}
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-		body.DestinationZone.Tags = SetStringValueOrNil(ctx, plan.DestinationZone.Tags)
-	}
 	// property: name=destination_zone_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.DestinationZoneId = ValueStringPointerFromPlanOrState(plan.DestinationZoneId, state.DestinationZoneId)
 	} else {
 		body.DestinationZoneId = StringValueOrNil(plan.DestinationZoneId)
-	}
-	// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Disabled = ValueBoolPointerFromPlanOrState(plan.Disabled, state.Disabled)
-	} else {
-		body.Disabled = BoolValueOrNil(plan.Disabled)
-	}
-	// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.DisabledReason = ValueStringPointerFromPlanOrState(plan.DisabledReason, state.DisabledReason)
-	} else {
-		body.DisabledReason = StringValueOrNil(plan.DisabledReason)
 	}
 	// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
@@ -2059,72 +934,17 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	} else {
 		body.Id = StringValueOrNil(plan.Id)
 	}
-	// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-	if state != nil {
-		body.Inactive = ValueBoolPointerFromPlanOrState(plan.Inactive, state.Inactive)
-	} else {
-		body.Inactive = BoolValueOrNil(plan.Inactive)
-	}
-	// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.InactiveReason = ValueStringPointerFromPlanOrState(plan.InactiveReason, state.InactiveReason)
-	} else {
-		body.InactiveReason = StringValueOrNil(plan.InactiveReason)
-	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
 	} else {
 		body.Name = StringValueOrNil(plan.Name)
 	}
-	// property: name=natpolicypools, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Natpolicypools == nil && (state == nil || state.Natpolicypools == nil) {
-		body.Natpolicypools = nil
-	} else if len(plan.Natpolicypools) == 0 && (state == nil || len(state.Natpolicypools) == 0) {
-		body.Natpolicypools = []sdwan_schema.NATPolicyPool{}
-	} else if len(plan.Natpolicypools) != 0 || (state != nil && len(state.Natpolicypools) != 0) {
-		NatpolicypoolsToUse := plan.Natpolicypools
-		if len(plan.Natpolicypools) == 0 {
-			NatpolicypoolsToUse = state.Natpolicypools
-		}
-		body.Natpolicypools = make([]sdwan_schema.NATPolicyPool, 0, len(NatpolicypoolsToUse))
-		for varLoopNatpolicypoolsIndex, varLoopNatpolicypools := range NatpolicypoolsToUse {
-			// add a new item
-			body.Natpolicypools = append(body.Natpolicypools, sdwan_schema.NATPolicyPool{})
-			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools properties=6
-			tflog.Debug(ctx, "copy_from_plan body=body.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel plan=varLoopNatpolicypools")
-			// property: name=_etag, type=INTEGER macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = Int64ValueOrNil(varLoopNatpolicypools.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Schema = Int64ValueOrNil(varLoopNatpolicypools.Schema)
-			// property: name=description, type=STRING macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Description = StringValueOrNil(varLoopNatpolicypools.Description)
-			// property: name=id, type=STRING macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Id = StringValueOrNil(varLoopNatpolicypools.Id)
-			// property: name=name, type=STRING macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Name = StringValueOrNil(varLoopNatpolicypools.Name)
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
-			body.Natpolicypools[varLoopNatpolicypoolsIndex].Tags = SetStringValueOrNil(ctx, varLoopNatpolicypools.Tags)
-		}
-	}
-	// property: name=policyset_id, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.PolicysetId = ValueStringPointerFromPlanOrState(plan.PolicysetId, state.PolicysetId)
-	} else {
-		body.PolicysetId = StringValueOrNil(plan.PolicysetId)
-	}
 	// property: name=protocol, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.Protocol = ValueInt64PointerFromPlanOrState(plan.Protocol, state.Protocol)
 	} else {
 		body.Protocol = Int64ValueOrNil(plan.Protocol)
-	}
-	// property: name=region, type=STRING macro=copy_from_plan_or_state
-	if state != nil {
-		body.Region = ValueStringPointerFromPlanOrState(plan.Region, state.Region)
-	} else {
-		body.Region = StringValueOrNil(plan.Region)
 	}
 	// property: name=source_ports, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 	if plan.SourcePorts == nil && (state == nil || state.SourcePorts == nil) {
@@ -2149,131 +969,11 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			body.SourcePorts[varLoopSourcePortsIndex].To = Int64ValueOrNil(varLoopSourcePorts.To)
 		}
 	}
-	// property: name=source_prefixes, type=REFERENCE macro=copy_from_plan_or_state
-	if plan.SourcePrefixes == nil {
-		body.SourcePrefixes = nil
-	} else {
-		body.SourcePrefixes = &sdwan_schema.BasePolicyPrefixS{}
-		// copy_from_plan_or_state: body=body.SourcePrefixes prefix=rsModel state=state.SourcePrefixes plan=plan.SourcePrefixes properties=8
-		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SourcePrefixes prefix=rsModel state=state.SourcePrefixes plan=plan.SourcePrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-		if state.SourcePrefixes != nil {
-			body.SourcePrefixes.Etag = ValueInt64PointerFromPlanOrState(plan.SourcePrefixes.Etag, state.SourcePrefixes.Etag)
-		} else {
-			body.SourcePrefixes.Etag = Int64ValueOrNil(plan.SourcePrefixes.Etag)
-		}
-		// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-		if state.SourcePrefixes != nil {
-			body.SourcePrefixes.Schema = ValueInt64PointerFromPlanOrState(plan.SourcePrefixes.Schema, state.SourcePrefixes.Schema)
-		} else {
-			body.SourcePrefixes.Schema = Int64ValueOrNil(plan.SourcePrefixes.Schema)
-		}
-		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.SourcePrefixes != nil {
-			body.SourcePrefixes.Description = ValueStringPointerFromPlanOrState(plan.SourcePrefixes.Description, state.SourcePrefixes.Description)
-		} else {
-			body.SourcePrefixes.Description = StringValueOrNil(plan.SourcePrefixes.Description)
-		}
-		// property: name=id, type=STRING macro=copy_from_plan_or_state
-		if state.SourcePrefixes != nil {
-			body.SourcePrefixes.Id = ValueStringPointerFromPlanOrState(plan.SourcePrefixes.Id, state.SourcePrefixes.Id)
-		} else {
-			body.SourcePrefixes.Id = StringValueOrNil(plan.SourcePrefixes.Id)
-		}
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.SourcePrefixes.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.SourcePrefixes.Ipv4Prefixes)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.SourcePrefixes.Ipv6Prefixes = ListStringValueOrNil(ctx, plan.SourcePrefixes.Ipv6Prefixes)
-		// property: name=name, type=STRING macro=copy_from_plan_or_state
-		if state.SourcePrefixes != nil {
-			body.SourcePrefixes.Name = ValueStringPointerFromPlanOrState(plan.SourcePrefixes.Name, state.SourcePrefixes.Name)
-		} else {
-			body.SourcePrefixes.Name = StringValueOrNil(plan.SourcePrefixes.Name)
-		}
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-		body.SourcePrefixes.Tags = SetStringValueOrNil(ctx, plan.SourcePrefixes.Tags)
-	}
 	// property: name=source_prefixes_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.SourcePrefixesId = ValueStringPointerFromPlanOrState(plan.SourcePrefixesId, state.SourcePrefixesId)
 	} else {
 		body.SourcePrefixesId = StringValueOrNil(plan.SourcePrefixesId)
-	}
-	// property: name=source_zone, type=REFERENCE macro=copy_from_plan_or_state
-	if plan.SourceZone == nil {
-		body.SourceZone = nil
-	} else {
-		body.SourceZone = &sdwan_schema.NATPolicyZone{}
-		// copy_from_plan_or_state: body=body.SourceZone prefix=rsModel state=state.SourceZone plan=plan.SourceZone properties=12
-		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SourceZone prefix=rsModel state=state.SourceZone plan=plan.SourceZone")
-		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Etag = ValueInt64PointerFromPlanOrState(plan.SourceZone.Etag, state.SourceZone.Etag)
-		} else {
-			body.SourceZone.Etag = Int64ValueOrNil(plan.SourceZone.Etag)
-		}
-		// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Schema = ValueInt64PointerFromPlanOrState(plan.SourceZone.Schema, state.SourceZone.Schema)
-		} else {
-			body.SourceZone.Schema = Int64ValueOrNil(plan.SourceZone.Schema)
-		}
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.DefaultForPublicInterfaces = ValueBoolPointerFromPlanOrState(plan.SourceZone.DefaultForPublicInterfaces, state.SourceZone.DefaultForPublicInterfaces)
-		} else {
-			body.SourceZone.DefaultForPublicInterfaces = BoolValueOrNil(plan.SourceZone.DefaultForPublicInterfaces)
-		}
-		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Description = ValueStringPointerFromPlanOrState(plan.SourceZone.Description, state.SourceZone.Description)
-		} else {
-			body.SourceZone.Description = StringValueOrNil(plan.SourceZone.Description)
-		}
-		// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Disabled = ValueBoolPointerFromPlanOrState(plan.SourceZone.Disabled, state.SourceZone.Disabled)
-		} else {
-			body.SourceZone.Disabled = BoolValueOrNil(plan.SourceZone.Disabled)
-		}
-		// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.DisabledReason = ValueStringPointerFromPlanOrState(plan.SourceZone.DisabledReason, state.SourceZone.DisabledReason)
-		} else {
-			body.SourceZone.DisabledReason = StringValueOrNil(plan.SourceZone.DisabledReason)
-		}
-		// property: name=id, type=STRING macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Id = ValueStringPointerFromPlanOrState(plan.SourceZone.Id, state.SourceZone.Id)
-		} else {
-			body.SourceZone.Id = StringValueOrNil(plan.SourceZone.Id)
-		}
-		// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Inactive = ValueBoolPointerFromPlanOrState(plan.SourceZone.Inactive, state.SourceZone.Inactive)
-		} else {
-			body.SourceZone.Inactive = BoolValueOrNil(plan.SourceZone.Inactive)
-		}
-		// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.InactiveReason = ValueStringPointerFromPlanOrState(plan.SourceZone.InactiveReason, state.SourceZone.InactiveReason)
-		} else {
-			body.SourceZone.InactiveReason = StringValueOrNil(plan.SourceZone.InactiveReason)
-		}
-		// property: name=name, type=STRING macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Name = ValueStringPointerFromPlanOrState(plan.SourceZone.Name, state.SourceZone.Name)
-		} else {
-			body.SourceZone.Name = StringValueOrNil(plan.SourceZone.Name)
-		}
-		// property: name=region, type=STRING macro=copy_from_plan_or_state
-		if state.SourceZone != nil {
-			body.SourceZone.Region = ValueStringPointerFromPlanOrState(plan.SourceZone.Region, state.SourceZone.Region)
-		} else {
-			body.SourceZone.Region = StringValueOrNil(plan.SourceZone.Region)
-		}
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-		body.SourceZone.Tags = SetStringValueOrNil(ctx, plan.SourceZone.Tags)
 	}
 	// property: name=source_zone_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -2364,7 +1064,7 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 	}
 
 	// Store the answer to state. schema=NATPolicyRule
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=15
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -2414,122 +1114,18 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			state.DestinationPorts[varLoopDestinationPortsIndex].To = types.Int64PointerValue(varLoopDestinationPorts.To)
 		}
 	}
-	// property: name=destination_prefixes, type=REFERENCE macro=copy_to_state
-	if ans.DestinationPrefixes == nil {
-		state.DestinationPrefixes = nil
-	} else {
-		state.DestinationPrefixes = &rsModelBasePolicyPrefixS{}
-		// copy_to_state: state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.DestinationPrefixes prefix=rsModel ans=ans.DestinationPrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DestinationPrefixes.Etag = types.Int64PointerValue(ans.DestinationPrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DestinationPrefixes.Schema = types.Int64PointerValue(ans.DestinationPrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Description = types.StringPointerValue(ans.DestinationPrefixes.Description)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Id = types.StringPointerValue(ans.DestinationPrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Ipv4Prefixes)
-		state.DestinationPrefixes.Ipv4Prefixes = varIpv4Prefixes
-		resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Ipv6Prefixes)
-		state.DestinationPrefixes.Ipv6Prefixes = varIpv6Prefixes
-		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DestinationPrefixes.Name = types.StringPointerValue(ans.DestinationPrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DestinationPrefixes.Tags)
-		state.DestinationPrefixes.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 	state.DestinationPrefixesId = types.StringPointerValue(ans.DestinationPrefixesId)
-	// property: name=destination_zone, type=REFERENCE macro=copy_to_state
-	if ans.DestinationZone == nil {
-		state.DestinationZone = nil
-	} else {
-		state.DestinationZone = &rsModelNATPolicyZone{}
-		// copy_to_state: state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone properties=12
-		tflog.Debug(ctx, "copy_to_state state=state.DestinationZone prefix=rsModel ans=ans.DestinationZone")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.DestinationZone.Etag = types.Int64PointerValue(ans.DestinationZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.DestinationZone.Schema = types.Int64PointerValue(ans.DestinationZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.DefaultForPublicInterfaces = types.BoolPointerValue(ans.DestinationZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.DestinationZone.Description = types.StringPointerValue(ans.DestinationZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.Disabled = types.BoolPointerValue(ans.DestinationZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.DestinationZone.DisabledReason = types.StringPointerValue(ans.DestinationZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.DestinationZone.Id = types.StringPointerValue(ans.DestinationZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.DestinationZone.Inactive = types.BoolPointerValue(ans.DestinationZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.DestinationZone.InactiveReason = types.StringPointerValue(ans.DestinationZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.DestinationZone.Name = types.StringPointerValue(ans.DestinationZone.Name)
-		// property: name=region, type=STRING macro=copy_to_state
-		state.DestinationZone.Region = types.StringPointerValue(ans.DestinationZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DestinationZone.Tags)
-		state.DestinationZone.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=destination_zone_id, type=STRING macro=copy_to_state
 	state.DestinationZoneId = types.StringPointerValue(ans.DestinationZoneId)
-	// property: name=disabled, type=BOOLEAN macro=copy_to_state
-	state.Disabled = types.BoolPointerValue(ans.Disabled)
-	// property: name=disabled_reason, type=STRING macro=copy_to_state
-	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
-	// property: name=inactive, type=BOOLEAN macro=copy_to_state
-	state.Inactive = types.BoolPointerValue(ans.Inactive)
-	// property: name=inactive_reason, type=STRING macro=copy_to_state
-	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
-	// property: name=natpolicypools, type=ARRAY_REFERENCE macro=copy_to_state
-	if ans.Natpolicypools == nil {
-		state.Natpolicypools = nil
-	} else if len(ans.Natpolicypools) == 0 {
-		state.Natpolicypools = []rsModelNATPolicyPool{}
-	} else {
-		state.Natpolicypools = make([]rsModelNATPolicyPool, 0, len(ans.Natpolicypools))
-		for varLoopNatpolicypoolsIndex, varLoopNatpolicypools := range ans.Natpolicypools {
-			// add a new item
-			state.Natpolicypools = append(state.Natpolicypools, rsModelNATPolicyPool{})
-			// copy_to_state: state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools properties=6
-			tflog.Debug(ctx, "copy_to_state state=state.Natpolicypools[varLoopNatpolicypoolsIndex] prefix=rsModel ans=varLoopNatpolicypools")
-			// property: name=_etag, type=INTEGER macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Etag = types.Int64PointerValue(varLoopNatpolicypools.Etag)
-			// property: name=_schema, type=INTEGER macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Schema = types.Int64PointerValue(varLoopNatpolicypools.Schema)
-			// property: name=description, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Description = types.StringPointerValue(varLoopNatpolicypools.Description)
-			// property: name=id, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Id = types.StringPointerValue(varLoopNatpolicypools.Id)
-			// property: name=name, type=STRING macro=copy_to_state
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Name = types.StringPointerValue(varLoopNatpolicypools.Name)
-			// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopNatpolicypools.Tags)
-			state.Natpolicypools[varLoopNatpolicypoolsIndex].Tags = varTags
-			resp.Diagnostics.Append(errTags.Errors()...)
-		}
-	}
-	// property: name=policyset_id, type=STRING macro=copy_to_state
-	state.PolicysetId = types.StringPointerValue(ans.PolicysetId)
 	// property: name=protocol, type=INTEGER macro=copy_to_state
 	state.Protocol = types.Int64PointerValue(ans.Protocol)
-	// property: name=region, type=STRING macro=copy_to_state
-	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=source_ports, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.SourcePorts == nil {
 		state.SourcePorts = nil
@@ -2548,72 +1144,8 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 			state.SourcePorts[varLoopSourcePortsIndex].To = types.Int64PointerValue(varLoopSourcePorts.To)
 		}
 	}
-	// property: name=source_prefixes, type=REFERENCE macro=copy_to_state
-	if ans.SourcePrefixes == nil {
-		state.SourcePrefixes = nil
-	} else {
-		state.SourcePrefixes = &rsModelBasePolicyPrefixS{}
-		// copy_to_state: state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes properties=8
-		tflog.Debug(ctx, "copy_to_state state=state.SourcePrefixes prefix=rsModel ans=ans.SourcePrefixes")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.SourcePrefixes.Etag = types.Int64PointerValue(ans.SourcePrefixes.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.SourcePrefixes.Schema = types.Int64PointerValue(ans.SourcePrefixes.Schema)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Description = types.StringPointerValue(ans.SourcePrefixes.Description)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Id = types.StringPointerValue(ans.SourcePrefixes.Id)
-		// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv4Prefixes, errIpv4Prefixes := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixes.Ipv4Prefixes)
-		state.SourcePrefixes.Ipv4Prefixes = varIpv4Prefixes
-		resp.Diagnostics.Append(errIpv4Prefixes.Errors()...)
-		// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixes.Ipv6Prefixes)
-		state.SourcePrefixes.Ipv6Prefixes = varIpv6Prefixes
-		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.SourcePrefixes.Name = types.StringPointerValue(ans.SourcePrefixes.Name)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.SourcePrefixes.Tags)
-		state.SourcePrefixes.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 	state.SourcePrefixesId = types.StringPointerValue(ans.SourcePrefixesId)
-	// property: name=source_zone, type=REFERENCE macro=copy_to_state
-	if ans.SourceZone == nil {
-		state.SourceZone = nil
-	} else {
-		state.SourceZone = &rsModelNATPolicyZone{}
-		// copy_to_state: state=state.SourceZone prefix=rsModel ans=ans.SourceZone properties=12
-		tflog.Debug(ctx, "copy_to_state state=state.SourceZone prefix=rsModel ans=ans.SourceZone")
-		// property: name=_etag, type=INTEGER macro=copy_to_state
-		state.SourceZone.Etag = types.Int64PointerValue(ans.SourceZone.Etag)
-		// property: name=_schema, type=INTEGER macro=copy_to_state
-		state.SourceZone.Schema = types.Int64PointerValue(ans.SourceZone.Schema)
-		// property: name=default_for_public_interfaces, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.DefaultForPublicInterfaces = types.BoolPointerValue(ans.SourceZone.DefaultForPublicInterfaces)
-		// property: name=description, type=STRING macro=copy_to_state
-		state.SourceZone.Description = types.StringPointerValue(ans.SourceZone.Description)
-		// property: name=disabled, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.Disabled = types.BoolPointerValue(ans.SourceZone.Disabled)
-		// property: name=disabled_reason, type=STRING macro=copy_to_state
-		state.SourceZone.DisabledReason = types.StringPointerValue(ans.SourceZone.DisabledReason)
-		// property: name=id, type=STRING macro=copy_to_state
-		state.SourceZone.Id = types.StringPointerValue(ans.SourceZone.Id)
-		// property: name=inactive, type=BOOLEAN macro=copy_to_state
-		state.SourceZone.Inactive = types.BoolPointerValue(ans.SourceZone.Inactive)
-		// property: name=inactive_reason, type=STRING macro=copy_to_state
-		state.SourceZone.InactiveReason = types.StringPointerValue(ans.SourceZone.InactiveReason)
-		// property: name=name, type=STRING macro=copy_to_state
-		state.SourceZone.Name = types.StringPointerValue(ans.SourceZone.Name)
-		// property: name=region, type=STRING macro=copy_to_state
-		state.SourceZone.Region = types.StringPointerValue(ans.SourceZone.Region)
-		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.SourceZone.Tags)
-		state.SourceZone.Tags = varTags
-		resp.Diagnostics.Append(errTags.Errors()...)
-	}
 	// property: name=source_zone_id, type=STRING macro=copy_to_state
 	state.SourceZoneId = types.StringPointerValue(ans.SourceZoneId)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state

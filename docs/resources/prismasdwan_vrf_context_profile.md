@@ -17,7 +17,7 @@
 {
   "properties" : {
     "vrf_context_route_leak_rules" : {
-      "description" : "Vrf Context Route Leak Rules: Valid ",
+      "description" : "Vrf Context Route Leak Rules",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -45,12 +45,14 @@
             "description" : "Name",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "ipv4_prefixes", "dest_vrf_context_id", "src_vrf_context_id", "description", "name" ]
       }
     },
     "vrf_context_ids" : {
-      "description" : "Vrf Context Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, INVALID_STRING, noTrim = false, regex = , required = false) ",
+      "description" : "Vrf Context Ids",
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Vrf Context Ids",
         "type" : "string"
@@ -64,14 +66,20 @@
       }
     },
     "default_vrf_context_profile" : {
-      "description" : "Default Vrf Context Profile: JsonIgnore(value = true) ",
-      "type" : "boolean"
+      "description" : "Default Vrf Context Profile",
+      "readOnly" : true,
+      "type" : "boolean",
+      "x-json-ignore" : true
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -83,12 +91,28 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = VRF_CONTEXT_PROFILE_DESCRIPTION_INVALID: Vrf profile description exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: NotBlank(error = VRF_CONTEXT_PROFILE_NAME_INVALID: Vrf context profile name is invalid) Size(max = 128, error = VRF_CONTEXT_PROFILE_NAME_EXCEEDS_LIMIT: Vrf context profile name exceeds limit, min = 0) Pattern(error = VRF_CONTEXT_PROFILE_NAME_INVALID: Vrf context profile name is invalid, regexp = ^[A-Za-z][A-Za-z0-9_\\\\s-]*$) ",
+      "description" : "Name",
+      "maxLength" : 128,
+      "minLength" : 1,
+      "pattern" : "^[A-Za-z][A-Za-z0-9_\\s-]*$",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -112,21 +136,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "vrf_context_route_leak_rules", "vrf_context_ids", "default_vrf_context_profile", "tags", "description", "name", "id" ]
 }
 ```
 

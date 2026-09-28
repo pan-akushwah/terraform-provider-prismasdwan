@@ -17,12 +17,15 @@
 {
   "properties" : {
     "vrf_context_id" : {
-      "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
+      "description" : "Vrf Context Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "address_family" : {
-      "description" : "Address Family: ValidateEnum(enumClass = classOf[IPAddressFamily], error = STATICROUTE_CONFIG_ADDRESS_FAMILY_INVALID: Static Route address family is invalid., nullAllowed = false) ",
-      "type" : "string"
+      "description" : "Address Family",
+      "type" : "string",
+      "enum" : [ "ipv4", "ipv6" ]
     },
     "nexthop_reachability_probe" : {
       "description" : "Nexthop Reachability Probe",
@@ -33,12 +36,12 @@
       "type" : "string"
     },
     "scope" : {
-      "description" : "Scope: ValidateEnum(enumClass = classOf[NetworkScope], message = Invalid enum string., nullAllowed = false) ",
+      "description" : "Scope",
       "type" : "string",
-      "enum" : [ "GLOBAL", "LOCAL" ]
+      "enum" : [ "global", "local" ]
     },
     "nexthops" : {
-      "description" : "Nexthops: Required(message = required) Valid ",
+      "description" : "Nexthops",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -58,18 +61,23 @@
             "description" : "Nexthop Ip",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "self", "admin_distance", "nexthop_interface_id", "nexthop_ip" ]
       }
     },
     "destination_prefix" : {
-      "description" : "Destination Prefix: Required(DESTINATION_PREFIX_REQD) ",
+      "description" : "Destination Prefix",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -81,12 +89,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_SIZE_EXCEEDED: Description size exceeded., min = 0) Valid ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -110,21 +132,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "address_family", "scope", "nexthops", "destination_prefix" ]
+  "required" : [ "vrf_context_id", "address_family", "nexthop_reachability_probe", "network_context_id", "scope", "nexthops", "destination_prefix", "tags", "description", "name", "id" ]
 }
 ```
 

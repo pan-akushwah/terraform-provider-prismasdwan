@@ -27,10 +27,10 @@ import (
 // | Schema Map Summary (size=goLangStructMap=4)
 // | Computed Resource Name=sites_elements_routing_routemaps
 // +-----------------------------------------------------------------
+// | RoutingRouteMapEntryMatchClauseV2N4 HasID=false
 // | RoutingRouteMapEntrySetClause HasID=false
-// | RoutingRouteMapEntryMatchClause HasID=false
-// | RoutingRouteMapEntryV2N3 HasID=false
-// | RoutingRouteMapScreenV2N3 HasID=true
+// | RoutingRouteMapEntryV2N4 HasID=false
+// | RoutingRouteMapScreenV2N4 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -74,7 +74,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=RoutingRouteMapScreenV2N3
+			// rest all properties to be read from GET API Schema schema=RoutingRouteMapScreenV2N4
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -193,6 +193,14 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=metric, type=INTEGER macro=rss_schema
+								// property: name=service_binding_id, type=STRING macro=rss_schema
+								"service_binding_id": rsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=service_binding_id, type=STRING macro=rss_schema
 								// property: name=tag, type=INTEGER macro=rss_schema
 								"tag": rsschema.Int64Attribute{
 									Required:  false,
@@ -357,7 +365,7 @@ func (r *elementRoutingRoutemapResource) GetHttpStatusCode(request *sdwan_client
 	}
 }
 
-func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsModelRoutingRouteMapScreenV2N3, state *rsModelRoutingRouteMapScreenV2N3, resp *resource.CreateResponse) bool {
+func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsModelRoutingRouteMapScreenV2N4, state *rsModelRoutingRouteMapScreenV2N4, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_element_routing_routemap")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -369,7 +377,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_element_routing_routemap"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps"
+	create_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/routing_routemaps"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -379,7 +387,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.RoutingRouteMapScreenV2N3{}
+	var body = &sdwan_schema.RoutingRouteMapScreenV2N4{}
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=9
@@ -400,20 +408,20 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	if plan.RouteMapEntries == nil {
 		body.RouteMapEntries = nil
 	} else if len(plan.RouteMapEntries) == 0 {
-		body.RouteMapEntries = []sdwan_schema.RoutingRouteMapEntryV2N3{}
+		body.RouteMapEntries = []sdwan_schema.RoutingRouteMapEntryV2N4{}
 	} else {
-		body.RouteMapEntries = make([]sdwan_schema.RoutingRouteMapEntryV2N3, 0, len(plan.RouteMapEntries))
+		body.RouteMapEntries = make([]sdwan_schema.RoutingRouteMapEntryV2N4, 0, len(plan.RouteMapEntries))
 		for varLoopRouteMapEntriesIndex, varLoopRouteMapEntries := range plan.RouteMapEntries {
 			// add a new item
-			body.RouteMapEntries = append(body.RouteMapEntries, sdwan_schema.RoutingRouteMapEntryV2N3{})
+			body.RouteMapEntries = append(body.RouteMapEntries, sdwan_schema.RoutingRouteMapEntryV2N4{})
 			// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries properties=5
 			tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_from_plan
 			body.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = StringValueOrNil(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_from_plan
 			if varLoopRouteMapEntries.Match != nil {
-				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &sdwan_schema.RoutingRouteMapEntryMatchClause{}
-				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match properties=6
+				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &sdwan_schema.RoutingRouteMapEntryMatchClauseV2N4{}
+				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match properties=7
 				tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = StringValueOrNil(varLoopRouteMapEntries.Match.AsPathId)
@@ -425,6 +433,8 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.IpPrefixListId = StringValueOrNil(varLoopRouteMapEntries.Match.IpPrefixListId)
 				// property: name=metric, type=INTEGER macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Metric = Int64ValueOrNil(varLoopRouteMapEntries.Match.Metric)
+				// property: name=service_binding_id, type=STRING macro=copy_from_plan
+				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.ServiceBindingId = StringValueOrNil(varLoopRouteMapEntries.Match.ServiceBindingId)
 				// property: name=tag, type=INTEGER macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Tag = Int64ValueOrNil(varLoopRouteMapEntries.Match.Tag)
 			}
@@ -468,7 +478,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct RoutingRouteMapScreenV2N3 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct RoutingRouteMapScreenV2N4 to JSON:", err.Error())
 		return false
 	}
 
@@ -511,12 +521,12 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.RoutingRouteMapScreenV2N3
+	var ans sdwan_schema.RoutingRouteMapScreenV2N4
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N3 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N4 in create", json_err.Error())
 		return false
 	}
 
@@ -541,7 +551,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_element_routing_routemap with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=RoutingRouteMapScreenV2N3
+	// Store the answer to state. schema=RoutingRouteMapScreenV2N4
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -560,12 +570,12 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	if ans.RouteMapEntries == nil {
 		state.RouteMapEntries = nil
 	} else if len(ans.RouteMapEntries) == 0 {
-		state.RouteMapEntries = []rsModelRoutingRouteMapEntryV2N3{}
+		state.RouteMapEntries = []rsModelRoutingRouteMapEntryV2N4{}
 	} else {
-		state.RouteMapEntries = make([]rsModelRoutingRouteMapEntryV2N3, 0, len(ans.RouteMapEntries))
+		state.RouteMapEntries = make([]rsModelRoutingRouteMapEntryV2N4, 0, len(ans.RouteMapEntries))
 		for varLoopRouteMapEntriesIndex, varLoopRouteMapEntries := range ans.RouteMapEntries {
 			// add a new item
-			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N3{})
+			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N4{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries properties=5
 			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
@@ -574,8 +584,8 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 			if varLoopRouteMapEntries.Match == nil {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = nil
 			} else {
-				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClause{}
-				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=6
+				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClauseV2N4{}
+				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=7
 				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
@@ -587,6 +597,8 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.IpPrefixListId = types.StringPointerValue(varLoopRouteMapEntries.Match.IpPrefixListId)
 				// property: name=metric, type=INTEGER macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Metric = types.Int64PointerValue(varLoopRouteMapEntries.Match.Metric)
+				// property: name=service_binding_id, type=STRING macro=copy_to_state
+				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.ServiceBindingId = types.StringPointerValue(varLoopRouteMapEntries.Match.ServiceBindingId)
 				// property: name=tag, type=INTEGER macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Tag = types.Int64PointerValue(varLoopRouteMapEntries.Match.Tag)
 			}
@@ -633,7 +645,7 @@ func (r *elementRoutingRoutemapResource) doPost(ctx context.Context, plan *rsMod
 	return true
 }
 
-func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsModelRoutingRouteMapScreenV2N3, savestate *rsModelRoutingRouteMapScreenV2N3, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsModelRoutingRouteMapScreenV2N4, savestate *rsModelRoutingRouteMapScreenV2N4, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -697,7 +709,7 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=RoutingRouteMapScreenV2N3
+	// Store the answer to state. schema=RoutingRouteMapScreenV2N4
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -706,12 +718,12 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.RoutingRouteMapScreenV2N3
+	var ans sdwan_schema.RoutingRouteMapScreenV2N4
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N3 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N4 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
@@ -733,12 +745,12 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 	if ans.RouteMapEntries == nil {
 		state.RouteMapEntries = nil
 	} else if len(ans.RouteMapEntries) == 0 {
-		state.RouteMapEntries = []rsModelRoutingRouteMapEntryV2N3{}
+		state.RouteMapEntries = []rsModelRoutingRouteMapEntryV2N4{}
 	} else {
-		state.RouteMapEntries = make([]rsModelRoutingRouteMapEntryV2N3, 0, len(ans.RouteMapEntries))
+		state.RouteMapEntries = make([]rsModelRoutingRouteMapEntryV2N4, 0, len(ans.RouteMapEntries))
 		for varLoopRouteMapEntriesIndex, varLoopRouteMapEntries := range ans.RouteMapEntries {
 			// add a new item
-			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N3{})
+			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N4{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries properties=5
 			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
@@ -747,8 +759,8 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 			if varLoopRouteMapEntries.Match == nil {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = nil
 			} else {
-				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClause{}
-				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=6
+				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClauseV2N4{}
+				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=7
 				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
@@ -760,6 +772,8 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.IpPrefixListId = types.StringPointerValue(varLoopRouteMapEntries.Match.IpPrefixListId)
 				// property: name=metric, type=INTEGER macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Metric = types.Int64PointerValue(varLoopRouteMapEntries.Match.Metric)
+				// property: name=service_binding_id, type=STRING macro=copy_to_state
+				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.ServiceBindingId = types.StringPointerValue(varLoopRouteMapEntries.Match.ServiceBindingId)
 				// property: name=tag, type=INTEGER macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Tag = types.Int64PointerValue(varLoopRouteMapEntries.Match.Tag)
 			}
@@ -806,7 +820,7 @@ func (r *elementRoutingRoutemapResource) doGet(ctx context.Context, state *rsMod
 	return true
 }
 
-func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsModelRoutingRouteMapScreenV2N3, state *rsModelRoutingRouteMapScreenV2N3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsModelRoutingRouteMapScreenV2N4, state *rsModelRoutingRouteMapScreenV2N4, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -853,7 +867,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.RoutingRouteMapScreenV2N3{}
+	var body = &sdwan_schema.RoutingRouteMapScreenV2N4{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
@@ -899,16 +913,16 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	if plan.RouteMapEntries == nil && (state == nil || state.RouteMapEntries == nil) {
 		body.RouteMapEntries = nil
 	} else if len(plan.RouteMapEntries) == 0 && (state == nil || len(state.RouteMapEntries) == 0) {
-		body.RouteMapEntries = []sdwan_schema.RoutingRouteMapEntryV2N3{}
+		body.RouteMapEntries = []sdwan_schema.RoutingRouteMapEntryV2N4{}
 	} else if len(plan.RouteMapEntries) != 0 || (state != nil && len(state.RouteMapEntries) != 0) {
 		RouteMapEntriesToUse := plan.RouteMapEntries
 		if len(plan.RouteMapEntries) == 0 {
 			RouteMapEntriesToUse = state.RouteMapEntries
 		}
-		body.RouteMapEntries = make([]sdwan_schema.RoutingRouteMapEntryV2N3, 0, len(RouteMapEntriesToUse))
+		body.RouteMapEntries = make([]sdwan_schema.RoutingRouteMapEntryV2N4, 0, len(RouteMapEntriesToUse))
 		for varLoopRouteMapEntriesIndex, varLoopRouteMapEntries := range RouteMapEntriesToUse {
 			// add a new item
-			body.RouteMapEntries = append(body.RouteMapEntries, sdwan_schema.RoutingRouteMapEntryV2N3{})
+			body.RouteMapEntries = append(body.RouteMapEntries, sdwan_schema.RoutingRouteMapEntryV2N4{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries properties=5
 			tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel plan=varLoopRouteMapEntries")
@@ -916,8 +930,8 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			body.RouteMapEntries[varLoopRouteMapEntriesIndex].ContinueEntry = StringValueOrNil(varLoopRouteMapEntries.ContinueEntry)
 			// property: name=match, type=REFERENCE macro=copy_from_plan
 			if varLoopRouteMapEntries.Match != nil {
-				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &sdwan_schema.RoutingRouteMapEntryMatchClause{}
-				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match properties=6
+				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &sdwan_schema.RoutingRouteMapEntryMatchClauseV2N4{}
+				// copy_from_plan: body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match properties=7
 				tflog.Debug(ctx, "copy_from_plan body=body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel plan=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = StringValueOrNil(varLoopRouteMapEntries.Match.AsPathId)
@@ -929,6 +943,8 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.IpPrefixListId = StringValueOrNil(varLoopRouteMapEntries.Match.IpPrefixListId)
 				// property: name=metric, type=INTEGER macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Metric = Int64ValueOrNil(varLoopRouteMapEntries.Match.Metric)
+				// property: name=service_binding_id, type=STRING macro=copy_from_plan
+				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.ServiceBindingId = StringValueOrNil(varLoopRouteMapEntries.Match.ServiceBindingId)
 				// property: name=tag, type=INTEGER macro=copy_from_plan
 				body.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Tag = Int64ValueOrNil(varLoopRouteMapEntries.Match.Tag)
 			}
@@ -976,7 +992,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct RoutingRouteMapScreenV2N3 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct RoutingRouteMapScreenV2N4 to JSON:", err.Error())
 		return false
 	}
 
@@ -1012,16 +1028,16 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.RoutingRouteMapScreenV2N3
+	var ans sdwan_schema.RoutingRouteMapScreenV2N4
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N3 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N4 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=RoutingRouteMapScreenV2N3
+	// Store the answer to state. schema=RoutingRouteMapScreenV2N4
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=9
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -1040,12 +1056,12 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	if ans.RouteMapEntries == nil {
 		state.RouteMapEntries = nil
 	} else if len(ans.RouteMapEntries) == 0 {
-		state.RouteMapEntries = []rsModelRoutingRouteMapEntryV2N3{}
+		state.RouteMapEntries = []rsModelRoutingRouteMapEntryV2N4{}
 	} else {
-		state.RouteMapEntries = make([]rsModelRoutingRouteMapEntryV2N3, 0, len(ans.RouteMapEntries))
+		state.RouteMapEntries = make([]rsModelRoutingRouteMapEntryV2N4, 0, len(ans.RouteMapEntries))
 		for varLoopRouteMapEntriesIndex, varLoopRouteMapEntries := range ans.RouteMapEntries {
 			// add a new item
-			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N3{})
+			state.RouteMapEntries = append(state.RouteMapEntries, rsModelRoutingRouteMapEntryV2N4{})
 			// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries properties=5
 			tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=rsModel ans=varLoopRouteMapEntries")
 			// property: name=continue_entry, type=STRING macro=copy_to_state
@@ -1054,8 +1070,8 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 			if varLoopRouteMapEntries.Match == nil {
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = nil
 			} else {
-				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClause{}
-				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=6
+				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &rsModelRoutingRouteMapEntryMatchClauseV2N4{}
+				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match properties=7
 				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=rsModel ans=varLoopRouteMapEntries.Match")
 				// property: name=as_path_id, type=STRING macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
@@ -1067,6 +1083,8 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.IpPrefixListId = types.StringPointerValue(varLoopRouteMapEntries.Match.IpPrefixListId)
 				// property: name=metric, type=INTEGER macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Metric = types.Int64PointerValue(varLoopRouteMapEntries.Match.Metric)
+				// property: name=service_binding_id, type=STRING macro=copy_to_state
+				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.ServiceBindingId = types.StringPointerValue(varLoopRouteMapEntries.Match.ServiceBindingId)
 				// property: name=tag, type=INTEGER macro=copy_to_state
 				state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Tag = types.Int64PointerValue(varLoopRouteMapEntries.Match.Tag)
 			}
@@ -1113,7 +1131,7 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 	return true
 }
 
-func (r *elementRoutingRoutemapResource) doDelete(ctx context.Context, state *rsModelRoutingRouteMapScreenV2N3, resp *resource.DeleteResponse) bool {
+func (r *elementRoutingRoutemapResource) doDelete(ctx context.Context, state *rsModelRoutingRouteMapScreenV2N4, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1168,14 +1186,14 @@ func (r *elementRoutingRoutemapResource) doDelete(ctx context.Context, state *rs
 // Path Parameters are encoded into TfID itself
 func (r *elementRoutingRoutemapResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_element_routing_routemap")
-	var plan rsModelRoutingRouteMapScreenV2N3
+	var plan rsModelRoutingRouteMapScreenV2N4
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelRoutingRouteMapScreenV2N3
+	var state rsModelRoutingRouteMapScreenV2N4
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1187,7 +1205,7 @@ func (r *elementRoutingRoutemapResource) Create(ctx context.Context, req resourc
 func (r *elementRoutingRoutemapResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_element_routing_routemap")
-	var savestate, state rsModelRoutingRouteMapScreenV2N3
+	var savestate, state rsModelRoutingRouteMapScreenV2N4
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1206,7 +1224,7 @@ func (r *elementRoutingRoutemapResource) Read(ctx context.Context, req resource.
 func (r *elementRoutingRoutemapResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_element_routing_routemap")
-	var plan, state rsModelRoutingRouteMapScreenV2N3
+	var plan, state rsModelRoutingRouteMapScreenV2N4
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1230,7 +1248,7 @@ func (r *elementRoutingRoutemapResource) Update(ctx context.Context, req resourc
 func (r *elementRoutingRoutemapResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_element_routing_routemap")
-	var state rsModelRoutingRouteMapScreenV2N3
+	var state rsModelRoutingRouteMapScreenV2N4
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

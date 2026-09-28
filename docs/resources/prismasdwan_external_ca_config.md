@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `external_ca_config` |
-| Get Api  | `/sdwan/v2.0/api/externalcaconfigs/{id}` (`CertificateAuthorityConfig`) |
+| Get Api  | `/sdwan/v2.0/api/externalcaconfigs/{externalcaconfig_id}` (`CertificateAuthorityConfig`) |
 | Post Api  | `/sdwan/v2.0/api/externalcaconfigs` (`CertificateAuthorityConfig`) |
-| Put Api  | `/sdwan/v2.0/api/externalcaconfigs/{id}` (`CertificateAuthorityConfig`) |
-| Delete Api  | `/sdwan/v2.0/api/externalcaconfigs/{id}` |
+| Put Api  | `/sdwan/v2.0/api/externalcaconfigs/{externalcaconfig_id}` (`CertificateAuthorityConfig`) |
+| Delete Api  | `/sdwan/v2.0/api/externalcaconfigs/{externalcaconfig_id}` |
 
 
 ### JSON Schema
@@ -50,27 +50,46 @@
           "description" : "Server Primary Address",
           "type" : "string"
         }
-      }
+      },
+      "required" : [ "https", "enrollment_uri", "challenge_uri", "server_certificate", "num_challenge_passwords", "server_password", "server_username", "server_primary_address" ]
     },
     "ca_sign_timeout" : {
-      "description" : "Ca Sign Timeout: Required(message = required) Range(max = 300L, CA_SIGN_TIMEOUT_OUT_OF_RANGE, min = 10L) ",
+      "description" : "Ca Sign Timeout",
       "format" : "int32",
+      "maximum" : 300,
+      "minimum" : 10,
       "type" : "integer"
     },
     "manual_renew_trigger_threshold" : {
-      "description" : "Manual Renew Trigger Threshold: Required(message = required) Range(max = 1440L, MANUAL_RENEW_TRIGGER_THRESHOLD_OUT_OF_RANGE, min = 5L) ",
+      "description" : "Manual Renew Trigger Threshold",
       "format" : "int32",
+      "maximum" : 1440,
+      "minimum" : 5,
       "type" : "integer"
     },
     "renewal_window_from_expiry" : {
-      "description" : "Renewal Window From Expiry: Required(message = required) Range(max = 90L, RENEWAL_WINDOW_FROM_EXPIRY_OUT_OF_RANGE, min = 30L) ",
+      "description" : "Renewal Window From Expiry",
       "format" : "int32",
+      "maximum" : 90,
+      "minimum" : 30,
       "type" : "integer"
     },
     "type" : {
-      "description" : "Type: Required(message = required) ValidateEnum(enumClass = classOf[CertificateAuthorityConfigType], message = Invalid enum string., nullAllowed = false) ",
+      "description" : "Type",
       "type" : "string",
       "enum" : [ "LOCAL", "SCEP" ]
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -94,21 +113,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "ca_sign_timeout", "manual_renew_trigger_threshold", "renewal_window_from_expiry", "type" ]
+  "required" : [ "scep_config", "ca_sign_timeout", "manual_renew_trigger_threshold", "renewal_window_from_expiry", "type", "id" ]
 }
 ```
 

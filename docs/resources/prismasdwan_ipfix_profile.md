@@ -31,19 +31,23 @@
           "type" : "string",
           "enum" : [ "time_based", "none" ]
         }
-      }
+      },
+      "required" : [ "time_spacing", "time_interval", "algorithm" ]
     },
     "export_cache_timeout" : {
-      "description" : "Export Cache Timeout: Range(max = 600L, error = IPFIX_INVALID_EXPORT_CACHE_TIMEOUT: Export cache timeout should be in range 10-600, min = 10L) ",
+      "description" : "Export Cache Timeout",
       "format" : "int32",
+      "maximum" : 600,
+      "minimum" : 10,
       "type" : "integer"
     },
     "ipfixtemplate_id" : {
-      "description" : "Ipfixtemplate Id: NotNull(error = IPFIX_PROFILE_TEMPLATE_ID_REQUIRED: IPFix template id is required) ",
+      "description" : "Ipfixtemplate Id",
       "type" : "string"
     },
     "filters" : {
-      "description" : "Filters: Valid Size(max = 8, error = IPFIX_FILTERS_MAX_SIZE: Maximum 8 filters can be configured, min = 0) ",
+      "description" : "Filters",
+      "maxItems" : 8,
       "type" : "array",
       "items" : {
         "properties" : {
@@ -127,11 +131,14 @@
               "type" : "string"
             }
           }
-        }
+        },
+        "required" : [ "rtp_transport_type", "app_def_ids", "wan_path_direction", "priority_traffic_types", "protocols", "src_ports", "src_prefixes_id", "dst_ports", "dst_prefixes_id", "ipfixfiltercontext_ids" ]
       }
     },
     "collector_config" : {
-      "description" : "Collector Config: Valid Size(max = 4, error = IPFIX_PROFILE_COLLECTOR_CONFIG_REQUIRED: Minimum 1 and maximum 4 collectors can be configured, min = 1) NotNull(error = IPFIX_PROFILE_COLLECTOR_CONFIG_REQUIRED: Minimum 1 and maximum 4 collectors can be configured) ",
+      "description" : "Collector Config",
+      "maxItems" : 4,
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
@@ -158,14 +165,19 @@
             "description" : "Host",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "max_message_size", "ipfixcollectorcontext_id", "protocol", "host_port", "host" ]
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -177,12 +189,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -206,21 +232,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "ipfixtemplate_id", "collector_config", "name" ]
+  "required" : [ "sampler", "export_cache_timeout", "ipfixtemplate_id", "filters", "collector_config", "tags", "description", "name", "id" ]
 }
 ```
 

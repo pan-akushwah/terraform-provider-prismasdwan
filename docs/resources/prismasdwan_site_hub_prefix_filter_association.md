@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `site_hub_prefix_filter_association` |
-| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation/{id}` (`PathPrefixDistributionFiltersAssociation`) |
+| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation/{pathprefixdistributionfilterassociation_id}` (`PathPrefixDistributionFiltersAssociation`) |
 | Post Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation` (`PathPrefixDistributionFiltersAssociation`) |
-| Put Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation/{id}` (`PathPrefixDistributionFiltersAssociation`) |
-| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation/{id}` |
+| Put Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation/{pathprefixdistributionfilterassociation_id}` (`PathPrefixDistributionFiltersAssociation`) |
+| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/pathprefixdistributionfilterassociation/{pathprefixdistributionfilterassociation_id}` |
 
 
 ### JSON Schema
@@ -51,6 +51,18 @@
       "description" : "Name",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -73,20 +85,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "peer_site_ids", "path_prefix_distribution_filter_id", "tags", "description", "name", "id" ]
 }
 ```
 

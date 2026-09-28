@@ -24,11 +24,12 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=2)
+// | Schema Map Summary (size=goLangStructMap=3)
 // | Computed Resource Name=sites_elements_bgpconfigs
 // +-----------------------------------------------------------------
+// | VRFRouterIDMapping HasID=false
 // | OspfRedistribution HasID=false
-// | BGPGlobalConfigScreenV2N4 HasID=true
+// | BGPGlobalConfigScreenV2N5 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -72,7 +73,7 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N4
+			// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N5
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -276,6 +277,34 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=stalepath_time, type=INTEGER macro=rss_schema
+			// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=rss_schema
+			"vrf_router_id_map": rsschema.ListNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				NestedObject: rsschema.NestedAttributeObject{
+					Attributes: map[string]rsschema.Attribute{
+						// property: name=router_id, type=STRING macro=rss_schema
+						"router_id": rsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
+						// property: name=vrf_context_id, type=STRING macro=rss_schema
+						"vrf_context_id": rsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+					},
+				},
+			},
+			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},
 	}
 }
@@ -302,7 +331,7 @@ func (r *elementBgpConfigResource) GetHttpStatusCode(request *sdwan_client.Sdwan
 	}
 }
 
-func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPGlobalConfigScreenV2N4, savestate *rsModelBGPGlobalConfigScreenV2N4, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPGlobalConfigScreenV2N5, savestate *rsModelBGPGlobalConfigScreenV2N5, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -324,7 +353,7 @@ func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPG
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_bgp_config"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
+	read_request.Path = "/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -366,7 +395,7 @@ func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPG
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=BGPGlobalConfigScreenV2N4
+	// Store the answer to state. schema=BGPGlobalConfigScreenV2N5
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -375,16 +404,16 @@ func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPG
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.BGPGlobalConfigScreenV2N4
+	var ans sdwan_schema.BGPGlobalConfigScreenV2N5
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N4 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N5 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=22
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -453,10 +482,28 @@ func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPG
 	state.RouterId = types.StringPointerValue(ans.RouterId)
 	// property: name=stalepath_time, type=INTEGER macro=copy_to_state
 	state.StalepathTime = types.Int64PointerValue(ans.StalepathTime)
+	// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.VrfRouterIdMap == nil {
+		state.VrfRouterIdMap = nil
+	} else if len(ans.VrfRouterIdMap) == 0 {
+		state.VrfRouterIdMap = []rsModelVRFRouterIDMapping{}
+	} else {
+		state.VrfRouterIdMap = make([]rsModelVRFRouterIDMapping, 0, len(ans.VrfRouterIdMap))
+		for varLoopVrfRouterIdMapIndex, varLoopVrfRouterIdMap := range ans.VrfRouterIdMap {
+			// add a new item
+			state.VrfRouterIdMap = append(state.VrfRouterIdMap, rsModelVRFRouterIDMapping{})
+			// copy_to_state: state=state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=rsModel ans=varLoopVrfRouterIdMap properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=rsModel ans=varLoopVrfRouterIdMap")
+			// property: name=router_id, type=STRING macro=copy_to_state
+			state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].RouterId = types.StringPointerValue(varLoopVrfRouterIdMap.RouterId)
+			// property: name=vrf_context_id, type=STRING macro=copy_to_state
+			state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].VrfContextId = types.StringPointerValue(varLoopVrfRouterIdMap.VrfContextId)
+		}
+	}
 	return true
 }
 
-func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGlobalConfigScreenV2N4, state *rsModelBGPGlobalConfigScreenV2N4, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGlobalConfigScreenV2N5, state *rsModelBGPGlobalConfigScreenV2N5, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -484,7 +531,7 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_element_bgp_config"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
+	put_request.Path = "/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -503,11 +550,11 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.BGPGlobalConfigScreenV2N4{}
+	var body = &sdwan_schema.BGPGlobalConfigScreenV2N5{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=21
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=22
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -644,11 +691,34 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 	} else {
 		body.StalepathTime = Int64ValueOrNil(plan.StalepathTime)
 	}
+	// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+	if plan.VrfRouterIdMap == nil && (state == nil || state.VrfRouterIdMap == nil) {
+		body.VrfRouterIdMap = nil
+	} else if len(plan.VrfRouterIdMap) == 0 && (state == nil || len(state.VrfRouterIdMap) == 0) {
+		body.VrfRouterIdMap = []sdwan_schema.VRFRouterIDMapping{}
+	} else if len(plan.VrfRouterIdMap) != 0 || (state != nil && len(state.VrfRouterIdMap) != 0) {
+		VrfRouterIdMapToUse := plan.VrfRouterIdMap
+		if len(plan.VrfRouterIdMap) == 0 {
+			VrfRouterIdMapToUse = state.VrfRouterIdMap
+		}
+		body.VrfRouterIdMap = make([]sdwan_schema.VRFRouterIDMapping, 0, len(VrfRouterIdMapToUse))
+		for varLoopVrfRouterIdMapIndex, varLoopVrfRouterIdMap := range VrfRouterIdMapToUse {
+			// add a new item
+			body.VrfRouterIdMap = append(body.VrfRouterIdMap, sdwan_schema.VRFRouterIDMapping{})
+			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+			// copy_from_plan: body=body.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=rsModel plan=varLoopVrfRouterIdMap properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=rsModel plan=varLoopVrfRouterIdMap")
+			// property: name=router_id, type=STRING macro=copy_from_plan
+			body.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].RouterId = StringValueOrNil(varLoopVrfRouterIdMap.RouterId)
+			// property: name=vrf_context_id, type=STRING macro=copy_from_plan
+			body.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].VrfContextId = StringValueOrNil(varLoopVrfRouterIdMap.VrfContextId)
+		}
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct BGPGlobalConfigScreenV2N4 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct BGPGlobalConfigScreenV2N5 to JSON:", err.Error())
 		return false
 	}
 
@@ -687,17 +757,17 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.BGPGlobalConfigScreenV2N4
+	var ans sdwan_schema.BGPGlobalConfigScreenV2N5
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N4 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N5 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=BGPGlobalConfigScreenV2N4
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=21
+	// Store the answer to state. schema=BGPGlobalConfigScreenV2N5
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=22
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -768,6 +838,24 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 	state.RouterId = types.StringPointerValue(ans.RouterId)
 	// property: name=stalepath_time, type=INTEGER macro=copy_to_state
 	state.StalepathTime = types.Int64PointerValue(ans.StalepathTime)
+	// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.VrfRouterIdMap == nil {
+		state.VrfRouterIdMap = nil
+	} else if len(ans.VrfRouterIdMap) == 0 {
+		state.VrfRouterIdMap = []rsModelVRFRouterIDMapping{}
+	} else {
+		state.VrfRouterIdMap = make([]rsModelVRFRouterIDMapping, 0, len(ans.VrfRouterIdMap))
+		for varLoopVrfRouterIdMapIndex, varLoopVrfRouterIdMap := range ans.VrfRouterIdMap {
+			// add a new item
+			state.VrfRouterIdMap = append(state.VrfRouterIdMap, rsModelVRFRouterIDMapping{})
+			// copy_to_state: state=state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=rsModel ans=varLoopVrfRouterIdMap properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=rsModel ans=varLoopVrfRouterIdMap")
+			// property: name=router_id, type=STRING macro=copy_to_state
+			state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].RouterId = types.StringPointerValue(varLoopVrfRouterIdMap.RouterId)
+			// property: name=vrf_context_id, type=STRING macro=copy_to_state
+			state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].VrfContextId = types.StringPointerValue(varLoopVrfRouterIdMap.VrfContextId)
+		}
+	}
 	return true
 }
 
@@ -776,17 +864,17 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 // Path Parameters are encoded into TfID itself
 func (r *elementBgpConfigResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_element_bgp_config")
-	var plan rsModelBGPGlobalConfigScreenV2N4
+	var plan rsModelBGPGlobalConfigScreenV2N5
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// this resource does not have a POST call defined, assuming that the PUT call is present and GET call is present
-	// path=/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}
+	// path=/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}
 
 	// state in api servers
-	var save rsModelBGPGlobalConfigScreenV2N4
+	var save rsModelBGPGlobalConfigScreenV2N5
 
 	// create a new tfid
 	var idBuilder strings.Builder
@@ -845,7 +933,7 @@ func (r *elementBgpConfigResource) Create(ctx context.Context, req resource.Crea
 func (r *elementBgpConfigResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_element_bgp_config")
-	var savestate, state rsModelBGPGlobalConfigScreenV2N4
+	var savestate, state rsModelBGPGlobalConfigScreenV2N5
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -864,7 +952,7 @@ func (r *elementBgpConfigResource) Read(ctx context.Context, req resource.ReadRe
 func (r *elementBgpConfigResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_element_bgp_config")
-	var plan, state rsModelBGPGlobalConfigScreenV2N4
+	var plan, state rsModelBGPGlobalConfigScreenV2N5
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_security_zone` |
-| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}` (`ElementSecurityZoneScreen`) |
-| Post Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/securityzones` (`ElementSecurityZoneScreen`) |
-| Put Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}` (`ElementSecurityZoneScreen`) |
-| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}` |
+| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}` (`ElementSecurityZoneScreenV2N1`) |
+| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/securityzones` (`ElementSecurityZoneScreenV2N1`) |
+| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}` (`ElementSecurityZoneScreenV2N1`) |
+| Delete Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/securityzones/{security_zone_id}` |
 
 
 ### JSON Schema
@@ -16,41 +16,73 @@
 ```json
 {
   "properties" : {
+    "pa_network_id" : {
+      "description" : "Pa Network Id",
+      "type" : "string"
+    },
     "waninterface_ids" : {
-      "description" : "Waninterface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANINTERFACE_IDS: Specified site wan interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Waninterface Ids",
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Waninterface Ids",
+        "pattern" : "[0-9]{1,30}",
         "type" : "string"
       }
     },
     "wanoverlay_ids" : {
-      "description" : "Wanoverlay Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_WANOVERLAY_IDS: Specified wanoverlay ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Wanoverlay Ids",
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Wanoverlay Ids",
+        "pattern" : "[0-9]{1,30}",
         "type" : "string"
       }
     },
     "interface_ids" : {
-      "description" : "Interface Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_INTERFACE_IDS: Specified interface ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Interface Ids",
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Interface Ids",
+        "pattern" : "[0-9]{1,30}",
         "type" : "string"
       }
     },
     "lannetwork_ids" : {
-      "description" : "Lannetwork Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = ELEMENT_SECURITYZONE_INVALID_LANNETWORK_IDS: Specified lan network ids are invalid., noTrim = false, regex = [0-9]{1,30}, required = false) ",
+      "description" : "Lannetwork Ids",
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Lannetwork Ids",
+        "pattern" : "[0-9]{1,30}",
         "type" : "string"
       }
     },
     "zone_id" : {
-      "description" : "Zone Id: Required(error = ELEMENT_SECURITYZONE_ZONEID_REQUIRED: Security zone id is required for element level association.) Digits(fraction = 0, integer = 30, ELEMENT_SECURITYZONE_INVALID_ZONEID) ",
+      "description" : "Zone Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
       "type" : "string"
+    },
+    "site_id" : {
+      "description" : "Site Id",
+      "maxLength" : 50,
+      "pattern" : "^-?[0-9]{1,50}$",
+      "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -74,21 +106,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "zone_id", "site_id" ]
+  "required" : [ "pa_network_id", "waninterface_ids", "wanoverlay_ids", "interface_ids", "lannetwork_ids", "zone_id", "site_id", "id" ]
 }
 ```
 

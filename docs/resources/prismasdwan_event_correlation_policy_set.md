@@ -17,17 +17,18 @@
 {
   "properties" : {
     "severity_priority_mapping" : {
-      "description" : "Severity Priority Mapping: Valid NotEmpty(error = EVENT_CORRELATION_SEVERITY_PRIORITY_MAPPING_REQUIRED: Event correlation severity priority mapping required.) Size(max = 2147483647, error = EVENT_CORRELATION_SEVERITY_PRIORITY_MAPPING_ALL_SEVERITY_REQUIRED: All severity values should be configured., min = 3) ",
+      "description" : "Severity Priority Mapping",
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
           "priority" : {
-            "description" : "Priority: ValidateEnum(enumClass = classOf[EventPriority], error = EVENT_CORRELATION_CONFIG_INVALID_PRIORITY: Invalid priority, valid values are p1,p2,p3,p4,p5, nullAllowed = false) ",
+            "description" : "Priority",
             "type" : "string",
             "enum" : [ "p1", "p2", "p3", "p4", "p5", "none" ]
           },
           "severity" : {
-            "description" : "Severity: ValidateEnum(enumClass = classOf[EventSeverity], error = EVENT_CORRELATION_CONFIG_INVALID_SEVERITY: Event correlation invalid severity., nullAllowed = false) ",
+            "description" : "Severity",
             "type" : "string",
             "enum" : [ "major", "minor", "critical" ]
           }
@@ -40,7 +41,8 @@
       "type" : "boolean"
     },
     "policyrule_order" : {
-      "description" : "Policyrule Order: Size(max = 1024, error = EVENT_CORRELATION_SET_CONFIG_RULES_EXCEEDED: Maximum 1024 rules allowed to configure., min = 0) ",
+      "description" : "Policyrule Order",
+      "maxItems" : 1024,
       "type" : "array",
       "items" : {
         "description" : "Policyrule Order",
@@ -55,14 +57,20 @@
       }
     },
     "clone_from" : {
-      "description" : "Clone From: Digits(fraction = 0, integer = 20, INVALID_CLONE_FROM) ",
+      "description" : "Clone From",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -74,12 +82,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -103,21 +125,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "severity_priority_mapping", "name" ]
+  "required" : [ "severity_priority_mapping", "active_policyset", "policyrule_order", "clone_from", "tags", "description", "name", "id" ]
 }
 ```
 

@@ -104,6 +104,41 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 				Sensitive: false,
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
+						// property: name=elements, type=ARRAY_PRIMITIVE macro=rss_schema
+						"elements": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=elements, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						"ip_prefixes": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=path, type=ARRAY_PRIMITIVE macro=rss_schema
+						"path": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=path, type=ARRAY_PRIMITIVE macro=rss_schema
+						// property: name=site, type=OBJECT macro=rss_schema
+						"site": rsschema.SingleNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=site, type=OBJECT macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": rsschema.StringAttribute{
 							Required:  false,
@@ -112,10 +147,19 @@ func (r *siteHubPrefixFilterResource) Schema(_ context.Context, _ resource.Schem
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
+						// property: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
+						"wn_path": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=type, type=STRING macro=rss_schema
+			// key name holder for attribute: name=wn_path, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -199,10 +243,19 @@ func (r *siteHubPrefixFilterResource) doPost(ctx context.Context, plan *rsModelP
 		for varLoopFiltersIndex, varLoopFilters := range plan.Filters {
 			// add a new item
 			body.Filters = append(body.Filters, sdwan_schema.Filter{})
-			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=1
+			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=6
 			tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters")
+			// property: name=elements, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].Elements = ListStringValueOrNil(ctx, varLoopFilters.Elements)
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].IpPrefixes = ListStringValueOrNil(ctx, varLoopFilters.IpPrefixes)
+			// property: name=path, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].Path = ListStringValueOrNil(ctx, varLoopFilters.Path)
+			// property: name=site, type=OBJECT macro=copy_from_plan
 			// property: name=type, type=STRING macro=copy_from_plan
 			body.Filters[varLoopFiltersIndex].Type = StringValueOrNil(varLoopFilters.Type)
+			// property: name=wn_path, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].WnPath = ListStringValueOrNil(ctx, varLoopFilters.WnPath)
 		}
 	}
 	// property: name=id, type=STRING macro=copy_from_plan
@@ -303,10 +356,27 @@ func (r *siteHubPrefixFilterResource) doPost(ctx context.Context, plan *rsModelP
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
 			state.Filters = append(state.Filters, rsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=1
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters")
+			// property: name=elements, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varElements, errElements := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Elements)
+			state.Filters[varLoopFiltersIndex].Elements = varElements
+			resp.Diagnostics.Append(errElements.Errors()...)
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
+			// property: name=path, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varPath, errPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Path)
+			state.Filters[varLoopFiltersIndex].Path = varPath
+			resp.Diagnostics.Append(errPath.Errors()...)
+			// property: name=site, type=OBJECT macro=copy_to_state
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
+			// property: name=wn_path, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varWnPath, errWnPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.WnPath)
+			state.Filters[varLoopFiltersIndex].WnPath = varWnPath
+			resp.Diagnostics.Append(errWnPath.Errors()...)
 		}
 	}
 	// property: name=id, type=STRING macro=copy_to_state
@@ -414,10 +484,27 @@ func (r *siteHubPrefixFilterResource) doGet(ctx context.Context, state *rsModelP
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
 			state.Filters = append(state.Filters, rsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=1
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters")
+			// property: name=elements, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varElements, errElements := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Elements)
+			state.Filters[varLoopFiltersIndex].Elements = varElements
+			resp.Diagnostics.Append(errElements.Errors()...)
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
+			// property: name=path, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varPath, errPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Path)
+			state.Filters[varLoopFiltersIndex].Path = varPath
+			resp.Diagnostics.Append(errPath.Errors()...)
+			// property: name=site, type=OBJECT macro=copy_to_state
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
+			// property: name=wn_path, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varWnPath, errWnPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.WnPath)
+			state.Filters[varLoopFiltersIndex].WnPath = varWnPath
+			resp.Diagnostics.Append(errWnPath.Errors()...)
 		}
 	}
 	// property: name=id, type=STRING macro=copy_to_state
@@ -507,10 +594,19 @@ func (r *siteHubPrefixFilterResource) doPut(ctx context.Context, plan *rsModelPr
 			// add a new item
 			body.Filters = append(body.Filters, sdwan_schema.Filter{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=1
+			// copy_from_plan: body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters properties=6
 			tflog.Debug(ctx, "copy_from_plan body=body.Filters[varLoopFiltersIndex] prefix=rsModel plan=varLoopFilters")
+			// property: name=elements, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].Elements = ListStringValueOrNil(ctx, varLoopFilters.Elements)
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].IpPrefixes = ListStringValueOrNil(ctx, varLoopFilters.IpPrefixes)
+			// property: name=path, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].Path = ListStringValueOrNil(ctx, varLoopFilters.Path)
+			// property: name=site, type=OBJECT macro=copy_from_plan
 			// property: name=type, type=STRING macro=copy_from_plan
 			body.Filters[varLoopFiltersIndex].Type = StringValueOrNil(varLoopFilters.Type)
+			// property: name=wn_path, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.Filters[varLoopFiltersIndex].WnPath = ListStringValueOrNil(ctx, varLoopFilters.WnPath)
 		}
 	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
@@ -591,10 +687,27 @@ func (r *siteHubPrefixFilterResource) doPut(ctx context.Context, plan *rsModelPr
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
 			// add a new item
 			state.Filters = append(state.Filters, rsModelFilter{})
-			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=1
+			// copy_to_state: state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.Filters[varLoopFiltersIndex] prefix=rsModel ans=varLoopFilters")
+			// property: name=elements, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varElements, errElements := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Elements)
+			state.Filters[varLoopFiltersIndex].Elements = varElements
+			resp.Diagnostics.Append(errElements.Errors()...)
+			// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varIpPrefixes, errIpPrefixes := types.ListValueFrom(ctx, types.StringType, varLoopFilters.IpPrefixes)
+			state.Filters[varLoopFiltersIndex].IpPrefixes = varIpPrefixes
+			resp.Diagnostics.Append(errIpPrefixes.Errors()...)
+			// property: name=path, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varPath, errPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Path)
+			state.Filters[varLoopFiltersIndex].Path = varPath
+			resp.Diagnostics.Append(errPath.Errors()...)
+			// property: name=site, type=OBJECT macro=copy_to_state
 			// property: name=type, type=STRING macro=copy_to_state
 			state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
+			// property: name=wn_path, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varWnPath, errWnPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.WnPath)
+			state.Filters[varLoopFiltersIndex].WnPath = varWnPath
+			resp.Diagnostics.Append(errWnPath.Errors()...)
 		}
 	}
 	// property: name=id, type=STRING macro=copy_to_state

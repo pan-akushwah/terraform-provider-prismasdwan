@@ -17,10 +17,12 @@
 {
   "properties" : {
     "provider_as_numbers" : {
-      "description" : "Provider As Numbers: ListNumber(duplicate = true, max = 65535, error = WAN_CONFIG_PROVIDER_AS_OUT_OF_RANGE: AS numbers of the private network is not within 1-65535., min = 1) ",
+      "description" : "Provider As Numbers",
       "type" : "array",
       "items" : {
         "description" : "Provider As Numbers",
+        "maximum" : 65535,
+        "minimum" : 1,
         "type" : "integer"
       },
       "additionalProperties" : {
@@ -32,9 +34,9 @@
       }
     },
     "type" : {
-      "description" : "Type: Required(error = NETWORK_TYPE_REQUIRED: WAN Network type (publicwan | privatewan) is a mandatory attribute.) ValidateEnum(enumClass = classOf[WANNetworkType], message = Invalid enum string., nullAllowed = false) ",
+      "description" : "Type",
       "type" : "string",
-      "enum" : [ "PUBLIC_WAN", "PRIVATE_WAN" ],
+      "enum" : [ "publicwan", "privatewan" ],
       "additionalProperties" : {
         "properties" : {
           "x_flag_required" : {
@@ -44,10 +46,14 @@
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -59,12 +65,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(NAME_REQUIRED) Size(max = 128, WANNETWORK_NAME_INVALID_0001, min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -88,21 +108,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "type", "name" ]
+  "required" : [ "provider_as_numbers", "type", "tags", "description", "name", "id" ]
 }
 ```
 

@@ -17,7 +17,7 @@
 {
   "properties" : {
     "filters" : {
-      "description" : "Filters: Required(PREFIXFILTER_REQUIRED) Valid ",
+      "description" : "Filters",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -36,12 +36,27 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = PREFIXFILTER_INVALID_DESCRIPTION: Prefix filter description exceeds limit., min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Size(max = 128, error = PREFIXFILTER_INVALID_NAME: Prefix filter name exceeds limit., min = 1) Required(error = PREFIXFILTER_NAME_REQUIRED: Prefix filter name required.) ",
+      "description" : "Name",
+      "maxLength" : 128,
+      "minLength" : 1,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -65,21 +80,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "filters", "name" ]
+  "required" : [ "filters", "description", "name", "id" ]
 }
 ```
 

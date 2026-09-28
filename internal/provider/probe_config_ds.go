@@ -23,8 +23,8 @@ import (
 // | Schema Map Summary (size=goLangStructMap=2)
 // | Computed Resource Name=probeconfigs
 // +-----------------------------------------------------------------
-// | ProbeEndpoint HasID=false
-// | ProbeConfigScreen HasID=true
+// | ProbeEndpointV2N1 HasID=false
+// | ProbeConfigScreenV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -52,11 +52,11 @@ type probeConfigDataSource struct {
 }
 
 type dsModelWithFilterProbeConfig struct {
-	Filters      types.Map                   `tfsdk:"filters"`
-	TfParameters types.Map                   `tfsdk:"x_parameters"` // Generic Map for Path Ids
-	Etag         types.Int64                 `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
-	Schema       types.Int64                 `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelProbeConfigScreen `tfsdk:"items"`
+	Filters      types.Map                       `tfsdk:"filters"`
+	TfParameters types.Map                       `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                     `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                     `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelProbeConfigScreenV2N1 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -100,7 +100,7 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=ProbeConfigScreen
+						// rest all properties to be read from GET API Schema schema=ProbeConfigScreenV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -168,7 +168,7 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 									// property: name=http_response_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 									"http_response_codes": dsschema.ListAttribute{
 										Required:    false,
-										Computed:    true,
+										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
 										ElementType: types.Int64Type,
@@ -288,7 +288,7 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.0/api/probeconfigs/{config_id}"
+	get_path := "/sdwan/v2.1/api/probeconfigs/{config_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -359,19 +359,19 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 		}
 
 		// Store the answer to state.
-		var state dsModelProbeConfigScreen
+		var state dsModelProbeConfigScreenV2N1
 
 		// start copying attributes
-		var ans sdwan_schema.ProbeConfigScreen
+		var ans sdwan_schema.ProbeConfigScreenV2N1
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to ProbeConfigScreen", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to ProbeConfigScreenV2N1", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=ProbeConfigScreen
+		// lets copy all items into state schema=ProbeConfigScreenV2N1
 		// copy_to_state: state=state prefix=dsModel ans=ans properties=8
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -386,12 +386,12 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 		if ans.Endpoints == nil {
 			state.Endpoints = nil
 		} else if len(ans.Endpoints) == 0 {
-			state.Endpoints = []dsModelProbeEndpoint{}
+			state.Endpoints = []dsModelProbeEndpointV2N1{}
 		} else {
-			state.Endpoints = make([]dsModelProbeEndpoint, 0, len(ans.Endpoints))
+			state.Endpoints = make([]dsModelProbeEndpointV2N1, 0, len(ans.Endpoints))
 			for varLoopEndpointsIndex, varLoopEndpoints := range ans.Endpoints {
 				// add a new item
-				state.Endpoints = append(state.Endpoints, dsModelProbeEndpoint{})
+				state.Endpoints = append(state.Endpoints, dsModelProbeEndpointV2N1{})
 				// copy_to_state: state=state.Endpoints[varLoopEndpointsIndex] prefix=dsModel ans=varLoopEndpoints properties=10
 				tflog.Debug(ctx, "copy_to_state state=state.Endpoints[varLoopEndpointsIndex] prefix=dsModel ans=varLoopEndpoints")
 				// property: name=allow_insecure_https_connection, type=BOOLEAN macro=copy_to_state
@@ -404,10 +404,6 @@ func (d *probeConfigDataSource) Read(ctx context.Context, req datasource.ReadReq
 				varHttpResponseCodes, errHttpResponseCodes := types.ListValueFrom(ctx, types.Int64Type, varLoopEndpoints.HttpResponseCodes)
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = varHttpResponseCodes
 				resp.Diagnostics.Append(errHttpResponseCodes.Errors()...)
-				// api does not accept empty list as missing value
-				if len(varLoopEndpoints.HttpResponseCodes) == 0 {
-					state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
-				}
 				// property: name=http_response_string, type=STRING macro=copy_to_state
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 				// property: name=ipv4_address, type=STRING macro=copy_to_state

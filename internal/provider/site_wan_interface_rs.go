@@ -237,9 +237,25 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
+					// property: name=use_hub_sites, type=BOOLEAN macro=rss_schema
+					"use_hub_sites": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=use_hub_sites, type=BOOLEAN macro=rss_schema
+					// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
+					"use_prisma_access_service_endpoints": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
+			// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 			// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			"lqm_enabled": rsschema.BoolAttribute{
 				Required:  false,
@@ -429,7 +445,7 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 	// property: name=lqm_config, type=REFERENCE macro=copy_from_plan
 	if plan.LqmConfig != nil {
 		body.LqmConfig = &sdwan_schema.LQMConfig{}
-		// copy_from_plan: body=body.LqmConfig prefix=rsModel plan=plan.LqmConfig properties=3
+		// copy_from_plan: body=body.LqmConfig prefix=rsModel plan=plan.LqmConfig properties=5
 		tflog.Debug(ctx, "copy_from_plan body=body.LqmConfig prefix=rsModel plan=plan.LqmConfig")
 		// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 		body.LqmConfig.HubSiteIds = ListStringValueOrNil(ctx, plan.LqmConfig.HubSiteIds)
@@ -437,6 +453,10 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 		body.LqmConfig.InterPacketGap = Int64ValueOrNil(plan.LqmConfig.InterPacketGap)
 		// property: name=statistic, type=STRING macro=copy_from_plan
 		body.LqmConfig.Statistic = StringValueOrNil(plan.LqmConfig.Statistic)
+		// property: name=use_hub_sites, type=BOOLEAN macro=copy_from_plan
+		body.LqmConfig.UseHubSites = BoolValueOrNil(plan.LqmConfig.UseHubSites)
+		// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=copy_from_plan
+		body.LqmConfig.UsePrismaAccessServiceEndpoints = BoolValueOrNil(plan.LqmConfig.UsePrismaAccessServiceEndpoints)
 	}
 	// property: name=lqm_enabled, type=BOOLEAN macro=copy_from_plan
 	body.LqmEnabled = BoolValueOrNil(plan.LqmEnabled)
@@ -589,7 +609,7 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 		state.LqmConfig = nil
 	} else {
 		state.LqmConfig = &rsModelLQMConfig{}
-		// copy_to_state: state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig properties=3
+		// copy_to_state: state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig properties=5
 		tflog.Debug(ctx, "copy_to_state state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig")
 		// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHubSiteIds, errHubSiteIds := types.ListValueFrom(ctx, types.StringType, ans.LqmConfig.HubSiteIds)
@@ -599,6 +619,10 @@ func (r *siteWanInterfaceResource) doPost(ctx context.Context, plan *rsModelWANI
 		state.LqmConfig.InterPacketGap = types.Int64PointerValue(ans.LqmConfig.InterPacketGap)
 		// property: name=statistic, type=STRING macro=copy_to_state
 		state.LqmConfig.Statistic = types.StringPointerValue(ans.LqmConfig.Statistic)
+		// property: name=use_hub_sites, type=BOOLEAN macro=copy_to_state
+		state.LqmConfig.UseHubSites = types.BoolPointerValue(ans.LqmConfig.UseHubSites)
+		// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=copy_to_state
+		state.LqmConfig.UsePrismaAccessServiceEndpoints = types.BoolPointerValue(ans.LqmConfig.UsePrismaAccessServiceEndpoints)
 	}
 	// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 	state.LqmEnabled = types.BoolPointerValue(ans.LqmEnabled)
@@ -762,7 +786,7 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 		state.LqmConfig = nil
 	} else {
 		state.LqmConfig = &rsModelLQMConfig{}
-		// copy_to_state: state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig properties=3
+		// copy_to_state: state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig properties=5
 		tflog.Debug(ctx, "copy_to_state state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig")
 		// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHubSiteIds, errHubSiteIds := types.ListValueFrom(ctx, types.StringType, ans.LqmConfig.HubSiteIds)
@@ -772,6 +796,10 @@ func (r *siteWanInterfaceResource) doGet(ctx context.Context, state *rsModelWANI
 		state.LqmConfig.InterPacketGap = types.Int64PointerValue(ans.LqmConfig.InterPacketGap)
 		// property: name=statistic, type=STRING macro=copy_to_state
 		state.LqmConfig.Statistic = types.StringPointerValue(ans.LqmConfig.Statistic)
+		// property: name=use_hub_sites, type=BOOLEAN macro=copy_to_state
+		state.LqmConfig.UseHubSites = types.BoolPointerValue(ans.LqmConfig.UseHubSites)
+		// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=copy_to_state
+		state.LqmConfig.UsePrismaAccessServiceEndpoints = types.BoolPointerValue(ans.LqmConfig.UsePrismaAccessServiceEndpoints)
 	}
 	// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 	state.LqmEnabled = types.BoolPointerValue(ans.LqmEnabled)
@@ -954,7 +982,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		body.LqmConfig = nil
 	} else {
 		body.LqmConfig = &sdwan_schema.LQMConfig{}
-		// copy_from_plan_or_state: body=body.LqmConfig prefix=rsModel state=state.LqmConfig plan=plan.LqmConfig properties=3
+		// copy_from_plan_or_state: body=body.LqmConfig prefix=rsModel state=state.LqmConfig plan=plan.LqmConfig properties=5
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LqmConfig prefix=rsModel state=state.LqmConfig plan=plan.LqmConfig")
 		// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 		body.LqmConfig.HubSiteIds = ListStringValueOrNil(ctx, plan.LqmConfig.HubSiteIds)
@@ -969,6 +997,18 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 			body.LqmConfig.Statistic = ValueStringPointerFromPlanOrState(plan.LqmConfig.Statistic, state.LqmConfig.Statistic)
 		} else {
 			body.LqmConfig.Statistic = StringValueOrNil(plan.LqmConfig.Statistic)
+		}
+		// property: name=use_hub_sites, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.LqmConfig != nil {
+			body.LqmConfig.UseHubSites = ValueBoolPointerFromPlanOrState(plan.LqmConfig.UseHubSites, state.LqmConfig.UseHubSites)
+		} else {
+			body.LqmConfig.UseHubSites = BoolValueOrNil(plan.LqmConfig.UseHubSites)
+		}
+		// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.LqmConfig != nil {
+			body.LqmConfig.UsePrismaAccessServiceEndpoints = ValueBoolPointerFromPlanOrState(plan.LqmConfig.UsePrismaAccessServiceEndpoints, state.LqmConfig.UsePrismaAccessServiceEndpoints)
+		} else {
+			body.LqmConfig.UsePrismaAccessServiceEndpoints = BoolValueOrNil(plan.LqmConfig.UsePrismaAccessServiceEndpoints)
 		}
 	}
 	// property: name=lqm_enabled, type=BOOLEAN macro=copy_from_plan_or_state
@@ -1136,7 +1176,7 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		state.LqmConfig = nil
 	} else {
 		state.LqmConfig = &rsModelLQMConfig{}
-		// copy_to_state: state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig properties=3
+		// copy_to_state: state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig properties=5
 		tflog.Debug(ctx, "copy_to_state state=state.LqmConfig prefix=rsModel ans=ans.LqmConfig")
 		// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varHubSiteIds, errHubSiteIds := types.ListValueFrom(ctx, types.StringType, ans.LqmConfig.HubSiteIds)
@@ -1146,6 +1186,10 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		state.LqmConfig.InterPacketGap = types.Int64PointerValue(ans.LqmConfig.InterPacketGap)
 		// property: name=statistic, type=STRING macro=copy_to_state
 		state.LqmConfig.Statistic = types.StringPointerValue(ans.LqmConfig.Statistic)
+		// property: name=use_hub_sites, type=BOOLEAN macro=copy_to_state
+		state.LqmConfig.UseHubSites = types.BoolPointerValue(ans.LqmConfig.UseHubSites)
+		// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=copy_to_state
+		state.LqmConfig.UsePrismaAccessServiceEndpoints = types.BoolPointerValue(ans.LqmConfig.UsePrismaAccessServiceEndpoints)
 	}
 	// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 	state.LqmEnabled = types.BoolPointerValue(ans.LqmEnabled)

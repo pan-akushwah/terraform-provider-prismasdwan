@@ -19,20 +19,28 @@
       "type" : "string"
     },
     "retransmit_interval" : {
-      "description" : "Retransmit Interval: Range(max = 65535L, error = OSPF_CONFIG_INVALID_RETRANSMIT_INTERVAL: Invalid retransmit interval.Value needs to be between 1 and 65535., min = 1L) ",
+      "description" : "Retransmit Interval",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "cost" : {
-      "description" : "Cost: Range(max = 65535L, message = OSPF_CONFIG_INVALID_COST, min = 1L) ",
+      "description" : "Cost",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "md5_key_id" : {
-      "description" : "Md5 Key Id: Range(max = 255L, message = OSPF_CONFIG_MD5_KEY_ID_LENGTH_EXCEEDS, min = 1L) ",
+      "description" : "Md5 Key Id",
+      "maximum" : 255,
+      "minimum" : 1,
       "type" : "integer"
     },
     "md5_secret" : {
-      "description" : "Md5 Secret: Size(max = 16, error = OSPF_CONFIG_MD5_LENGTH_EXCEEDS: Max length of MD5 secret is 16., min = 1) ",
+      "description" : "Md5 Secret",
+      "maxLength" : 16,
+      "minLength" : 1,
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -43,23 +51,42 @@
       }
     },
     "dead_interval" : {
-      "description" : "Dead Interval: Range(max = 65535L, error = OSPF_CONFIG_INVALID_DEAD_INTERVAL: Invalid Dead Interval.Value needs to be between 1 and 65535., min = 1L) ",
+      "description" : "Dead Interval",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "hello_interval" : {
-      "description" : "Hello Interval: Range(max = 65535L, error = OSPF_CONFIG_INVALID_HELLO_INTERVAL: Invalid Hello Interval.Value needs to be between 1 and 65535., min = 1L) ",
+      "description" : "Hello Interval",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "transmit_delay" : {
-      "description" : "Transmit Delay: Range(max = 65535L, error = OSPF_CONFIG_INVALID_TRANSMIT_DELAY: Invalid transmit delay.Value needs to be between 1 and 65535., min = 1L) ",
+      "description" : "Transmit Delay",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "router_id" : {
-      "description" : "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = OSPF_CONFIG_INVALID_ROUTER_ID: Invalid Router Id, type = IP) ",
+      "description" : "Router Id",
+      "format" : "ipv4",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -83,20 +110,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "prefix_adv_type_to_lan", "retransmit_interval", "cost", "md5_key_id", "md5_secret", "dead_interval", "hello_interval", "transmit_delay", "router_id", "id" ]
 }
 ```
 

@@ -50,7 +50,8 @@
             }
           }
         }
-      }
+      },
+      "required" : [ "probe_config_ids", "use_element_default" ]
     },
     "bwc_enabled" : {
       "description" : "Bwc Enabled",
@@ -86,7 +87,7 @@
       }
     },
     "use_for_application_reachability_probes" : {
-      "description" : "Use For Application Reachability Probes: Valid ",
+      "description" : "Use For Application Reachability Probes",
       "type" : "boolean",
       "additionalProperties" : {
         "properties" : {
@@ -97,7 +98,7 @@
       }
     },
     "use_for_controller_connections" : {
-      "description" : "Use For Controller Connections: Valid ",
+      "description" : "Use For Controller Connections",
       "type" : "boolean",
       "additionalProperties" : {
         "properties" : {
@@ -110,7 +111,9 @@
     "vpnlink_configuration" : {
       "properties" : {
         "keep_alive_failure_count" : {
-          "description" : "Keep Alive Failure Count: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30.) Range(max = 30L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_FAILURE_COUNT: VPN Link keep alive failure count must be between 3 and 30., min = 3L) ",
+          "description" : "Keep Alive Failure Count",
+          "maximum" : 30,
+          "minimum" : 3,
           "type" : "integer",
           "additionalProperties" : {
             "properties" : {
@@ -121,7 +124,9 @@
           }
         },
         "keep_alive_interval" : {
-          "description" : "Keep Alive Interval: NotNull(error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms.) Range(max = 1740000L, error = VPNLINK_CONFIG_INVALID_KEEP_ALIVE_INTERVAL: VPN Link keep alive interval must be between 100ms-1740,000ms., min = 100L) ",
+          "description" : "Keep Alive Interval",
+          "maximum" : 1740000,
+          "minimum" : 100,
           "type" : "integer",
           "additionalProperties" : {
             "properties" : {
@@ -135,7 +140,8 @@
       "required" : [ "keep_alive_failure_count", "keep_alive_interval" ]
     },
     "label" : {
-      "description" : "Label: Pattern(message = INVALID_INTERFACE_LABEL, regexp = (public|private)-(([1-9])|([1-2][0-9])|(3[0-2])|(100[0-9]))) ",
+      "description" : "Label",
+      "pattern" : "(public|private)-(([1-9])|([1-2][0-9])|(3[0-2])|(100[0-9]))",
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -146,10 +152,14 @@
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -161,15 +171,29 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, message = PATHGROUP_INVALID_DESCRIPTION, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Size(max = 128, message = PATHGROUP_INVALID_NAME, min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
           "x_flag_required" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -197,20 +221,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "app_acceleration_enabled", "probe_profile_id", "l3_reachability", "bwc_enabled", "use_lqm_for_non_hub_paths", "lqm_enabled", "use_for_application_reachability_probes", "use_for_controller_connections", "vpnlink_configuration", "label", "tags", "description", "name", "id" ]
 }
 ```
 

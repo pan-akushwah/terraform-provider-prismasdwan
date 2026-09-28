@@ -17,41 +17,48 @@
 {
   "properties" : {
     "domains_to_addresses" : {
-      "description" : "Domains To Addresses: Valid ",
+      "description" : "Domains To Addresses",
       "type" : "array",
       "items" : {
         "properties" : {
           "ipv6_address" : {
-            "description" : "Ipv6 Address: IPv6(error = DOMAINTOADDRESS_IPV6_CONFIG_INVALID_IP: Invalid Domains to address ipv6_address, regexp = [/0-9a-zA-Z:.]*) ",
+            "description" : "Ipv6 Address",
+            "format" : "ipv6",
             "type" : "string"
           },
           "ipv4_address" : {
-            "description" : "Ipv4 Address: IPv4(error = DOMAINTOADDRESS_IPV4_CONFIG_INVALID_IP: Invalid Domains to address ipv4_address, regexp = [/0-9.]*) ",
+            "description" : "Ipv4 Address",
+            "format" : "ipv4",
             "type" : "string"
           },
           "domain_names" : {
-            "description" : "Domain Names: UniqueHostNames(allowNull = true, max = 2147483647, error = DTA_DOMAIN_CONFIG_INVALID_HOST: Invalid domains to address domain names, min = 0) ",
+            "description" : "Domain Names",
             "type" : "array",
+            "uniqueItems" : true,
             "items" : {
               "description" : "Domain Names",
               "type" : "string"
             }
           }
-        }
+        },
+        "required" : [ "ipv6_address", "ipv4_address", "domain_names" ]
       }
     },
     "domains_to_interfaces" : {
-      "description" : "Domains To Interfaces: Valid ",
+      "description" : "Domains To Interfaces",
       "type" : "array",
       "items" : {
         "properties" : {
           "interface_id" : {
-            "description" : "Interface Id: NotEmpty(error = DTI_INTERFACE_ID_MANDATORY: Domains to interfaces interface id missing) ",
+            "description" : "Interface Id",
+            "minLength" : 1,
             "type" : "string"
           },
           "domain_names" : {
-            "description" : "Domain Names: NotEmpty(error = DTI_DOMAIN_NAME_MANDATORY: Domains to interfaces domain name missing) UniqueHostNames(allowNull = true, max = 2147483647, error = INVALID_DTI_DOMAIN_NAMES_LIST_CONFIG: Invalid domains to interfaces domain name list, min = 0) ",
+            "description" : "Domain Names",
+            "minItems" : 1,
             "type" : "array",
+            "uniqueItems" : true,
             "items" : {
               "description" : "Domain Names",
               "type" : "string"
@@ -64,30 +71,37 @@
     "dns_queries_metadata" : {
       "properties" : {
         "add_subnets" : {
-          "description" : "Add Subnets: Valid Size(max = 2, error = DNS_SUBNET_MAXIMUM_LIMITED_EXCEEDED: Maximum 2 subnets are allowed in dns service configuration, min = 0) ",
+          "description" : "Add Subnets",
+          "maxItems" : 2,
           "type" : "array",
           "items" : {
             "properties" : {
               "ipv6_prefix_length" : {
-                "description" : "Ipv6 Prefix Length: Required(message = DNSQUERYMETADATA_CONFIG_INVALID_IPV6_PREFIX_LENGTH_MISSING) Range(max = 128L, error = DNSQUERYMETADATA_CONFIG_INVALID_IPV6_PREFIX_LENGTH_RANGE: ipv6 prefix length is not in valid range '0-128', min = 0L) ",
+                "description" : "Ipv6 Prefix Length",
                 "format" : "int32",
+                "maximum" : 128,
+                "minimum" : 0,
                 "type" : "integer"
               },
               "ipv6_address" : {
-                "description" : "Ipv6 Address: IPv6(error = DNSQUERYMETADATA_CONFIG_INVALID_IPV6_ADDRESS: Invalid subnet ipv6 address, regexp = [/0-9a-zA-Z:.]*) ",
+                "description" : "Ipv6 Address",
+                "format" : "ipv6",
                 "type" : "string"
               },
               "ipv4_prefix_length" : {
-                "description" : "Ipv4 Prefix Length: Required(message = DNSQUERYMETADATA_CONFIG_INVALID_IP_PREFIX_LENGTH_MISSING) Range(max = 32L, error = DNSQUERYMETADATA_CONFIG_INVALID_IP_PREFIX_LENGTH_RANGE: ipv4 prefix length is not in valid range '0-32', min = 0L) ",
+                "description" : "Ipv4 Prefix Length",
                 "format" : "int32",
+                "maximum" : 32,
+                "minimum" : 0,
                 "type" : "integer"
               },
               "ipv4_address" : {
-                "description" : "Ipv4 Address: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = DNSQUERYMETADATA_CONFIG_INVALID_IP_ADDRESS: Invalid subnet ipv4 address, type = IP) ",
+                "description" : "Ipv4 Address",
+                "format" : "ipv4",
                 "type" : "string"
               }
             },
-            "required" : [ "ipv6_prefix_length", "ipv4_prefix_length" ]
+            "required" : [ "ipv6_prefix_length", "ipv6_address", "ipv4_prefix_length", "ipv4_address" ]
           }
         },
         "add_customer_premises_equipment" : {
@@ -97,36 +111,41 @@
               "type" : "string"
             },
             "type" : {
-              "description" : "Type: ValidateEnum(enumClass = classOf[CustomerPremisesEquipmentType], error = INVALID_CUSTOMER_PREMISES_EQUIPMENT_TYPE: Invalid customer premises equipment type. Allowed values text|element_id|element_name, nullAllowed = false) ",
+              "description" : "Type",
               "type" : "string",
               "enum" : [ "text", "element_id", "element_name" ]
             }
           },
-          "required" : [ "type" ]
+          "required" : [ "identifier_text", "type" ]
         }
-      }
+      },
+      "required" : [ "add_subnets", "add_customer_premises_equipment" ]
     },
     "cache_config" : {
       "properties" : {
         "cache_size" : {
-          "description" : "Cache Size: Range(max = 9223372036854775807L, error = INVALID_CACHE_SIZE_RANGE: Invalid cache size, must be positive value, min = 0L) ",
+          "description" : "Cache Size",
           "format" : "int32",
+          "minimum" : 0,
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "cache_size" ]
     },
     "max_concurrent_dns_queries" : {
-      "description" : "Max Concurrent Dns Queries: Range(max = 9223372036854775807L, error = INVALID_MAX_CONCURRENT_DNS_QUERIES_RANGE: Max concurrent dns queries is not in valid range '1 - 65535', min = 1L) ",
+      "description" : "Max Concurrent Dns Queries",
       "format" : "int32",
+      "minimum" : 1,
       "type" : "integer"
     },
     "dnsservicerole_bindings" : {
-      "description" : "Dnsservicerole Bindings: Valid ",
+      "description" : "Dnsservicerole Bindings",
       "type" : "array",
       "items" : {
         "properties" : {
           "interfaces" : {
-            "description" : "Interfaces: Valid NotEmpty(message = DNSSERVICE_ROLE_BINDING_INTERFACES_MISSING) ",
+            "description" : "Interfaces",
+            "minItems" : 1,
             "type" : "array",
             "items" : {
               "properties" : {
@@ -138,7 +157,8 @@
                   "description" : "Interface Id",
                   "type" : "string"
                 }
-              }
+              },
+              "required" : [ "interface_ip", "interface_id" ]
             }
           },
           "dnsservicerole_id" : {
@@ -146,7 +166,7 @@
             "type" : "string"
           }
         },
-        "required" : [ "interfaces" ]
+        "required" : [ "interfaces", "dnsservicerole_id" ]
       }
     },
     "dnsservice_profile_id" : {
@@ -169,10 +189,14 @@
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -184,12 +208,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "type" : "string",
@@ -212,21 +250,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "name", "site_id" ]
+  "required" : [ "domains_to_addresses", "domains_to_interfaces", "dns_queries_metadata", "cache_config", "max_concurrent_dns_queries", "dnsservicerole_bindings", "dnsservice_profile_id", "enabled", "element_id", "tags", "description", "upperCaseName", "name", "site_id", "region", "disabled_reason", "disabled", "inactive_reason", "inactive", "id" ]
 }
 ```
 

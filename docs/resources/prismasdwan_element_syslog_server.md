@@ -61,19 +61,26 @@
       "type" : "string"
     },
     "server_port" : {
-      "description" : "Server Port: Range(max = 65535L, error = SYSLOGSERVER_CONFIG_INVALID_RANGE: Invalid port range.Should be between 1-65535., min = 1L) ",
+      "description" : "Server Port",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "server_ip" : {
-      "description" : "Server Ip: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = SYSLOGSERVER_CONFIG_INVALID_IP: Invalid IP address for syslog server, type = IP) ",
+      "description" : "Server Ip",
+      "format" : "ipv4",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -85,12 +92,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -114,21 +135,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "enable_url_logging", "enable_dns_logging", "enable_threat_logging", "enable_flow_logging", "remote_ca_certificate", "syslog_profile_id", "server_fqdn", "severity_level", "source_interface", "enabled", "protocol", "server_port", "server_ip", "tags", "description", "name", "id" ]
 }
 ```
 

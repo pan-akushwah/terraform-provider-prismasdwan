@@ -17,7 +17,9 @@
 {
   "properties" : {
     "site_configs" : {
-      "description" : "Site Configs: Valid NotNull(message = MULTICAST_INVALID_SOURCE_SITE_CONFIG) ListObject(allowDuplicate = true, allowEmpty = false, allowNull = false, listMaxSize = 64, message = MULTICAST_INVALID_SITE_CONFIG_LIST, required = false) ",
+      "description" : "Site Configs",
+      "maxItems" : 64,
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
@@ -28,6 +30,19 @@
           "group_ipv4_prefix" : {
             "description" : "Group Ipv4 Prefix",
             "type" : "string"
+          }
+        },
+        "required" : [ "source_ipv4_address", "group_ipv4_prefix" ]
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
           }
         }
       }
@@ -54,21 +69,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "site_configs" ]
+  "required" : [ "site_configs", "id" ]
 }
 ```
 

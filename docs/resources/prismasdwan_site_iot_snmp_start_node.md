@@ -17,7 +17,9 @@
 {
   "properties" : {
     "scope" : {
-      "description" : "Scope: Size(max = 8, error = DEVICEID_START_NODE_SCOPE_MAX_LIMIT: Exceeds the maximum number of scope prefix per start node entry (8), min = 1) ",
+      "description" : "Scope",
+      "maxItems" : 8,
+      "minItems" : 1,
       "type" : "array",
       "items" : {
         "properties" : {
@@ -25,18 +27,25 @@
             "description" : "Ipv4 Prefix",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "ipv4_prefix" ]
       }
     },
     "ipv4_address" : {
-      "description" : "Ipv4 Address: NotNull(message = {STARTNODE_IPv4_MISSING}) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, INVALID_IP_ADDRESS_001, type = IP) NotEmpty(STARTNODE_IPV4_CONFIG_INVALID_IP) IPv4(STARTNODE_IPV4_CONFIG_INVALID_IP, regexp = [/0-9.]*) ",
+      "description" : "Ipv4 Address",
+      "format" : "ipv4",
+      "minLength" : 1,
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -48,12 +57,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -77,21 +100,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "ipv4_address", "name" ]
+  "required" : [ "scope", "ipv4_address", "tags", "description", "name", "id" ]
 }
 ```
 

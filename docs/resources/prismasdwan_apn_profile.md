@@ -17,7 +17,7 @@
 {
   "properties" : {
     "authentication" : {
-      "description" : "Authentication: ValidateEnum(enumClass = classOf[APNAuthentication], message = APN_PROFILE_INVALID_APN_AUTH, nullAllowed = false) ",
+      "description" : "Authentication",
       "type" : "string",
       "enum" : [ "none", "pap", "chap", "pap_or_chap" ],
       "additionalProperties" : {
@@ -51,18 +51,24 @@
       }
     },
     "user_name" : {
-      "description" : "User Name: Size(max = 100, error = APN_PROFILE_USERNAME_INVALID: Invalid APN config. APN username is invalid. APN username allowed max length is 100., min = 0) ",
+      "description" : "User Name",
+      "maxLength" : 100,
       "type" : "string"
     },
     "apn" : {
-      "description" : "Apn: Size(max = 100, error = APN_PROFILE_NAME_INVALID: Invalid APN Profile config. APN name is invalid. APN name must be greater than one character and an allowed max length is 100. Valid characters are alphanumeric, hyphen (-), and period (.). Must begin and end with an alphanumeric character., min = 0) ",
+      "description" : "Apn",
+      "maxLength" : 100,
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -74,15 +80,29 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
           "x_flag_required" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -110,21 +130,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "authentication", "name" ]
+  "required" : [ "authentication", "clear_password", "password", "user_name", "apn", "tags", "description", "name", "id" ]
 }
 ```
 

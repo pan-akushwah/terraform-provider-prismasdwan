@@ -32,12 +32,13 @@
                 "type" : "string"
               }
             }
-          }
+          },
+          "required" : [ "disabled", "source_interfaces" ]
         },
         "track" : {
           "properties" : {
             "hosts" : {
-              "description" : "Hosts: Size(max = 1, message = HUB_CLUSTER_CONFIG_TRACK_HOST_SIZE_EXCEEDS_LIMIT, min = 0) ",
+              "description" : "Hosts",
               "type" : "array",
               "items" : {
                 "properties" : {
@@ -53,12 +54,15 @@
                     "description" : "Vrf Context Id",
                     "type" : "string"
                   }
-                }
+                },
+                "required" : [ "address_v6", "address_v4", "vrf_context_id" ]
               }
             }
-          }
+          },
+          "required" : [ "hosts" ]
         }
-      }
+      },
+      "required" : [ "intra_cluster_tunnel", "track" ]
     },
     "led_config" : {
       "properties" : {
@@ -66,43 +70,56 @@
           "description" : "Service Led On",
           "type" : "boolean"
         }
-      }
+      },
+      "required" : [ "service_led_on" ]
     },
     "switch_config" : {
       "properties" : {
         "stp_priority" : {
-          "description" : "Stp Priority: Range(max = 61440L, error = INVALID_STP_PRIORITY: Invalid STP priority. Value should be in the multiples of 4096., min = 0L) ",
+          "description" : "Stp Priority",
           "format" : "int32",
+          "maximum" : 61440,
+          "minimum" : 0,
           "type" : "integer"
         },
         "stp_forward_delay" : {
-          "description" : "Stp Forward Delay: Range(max = 30L, error = INVALID_STP_FORWARD_DELAY: Invalid STP forward delay. Allowed range is 4-30 and given value should also meet the criteria: (2 * (stp_forward_delay - 1)) >= stp_max_age., min = 4L) ",
+          "description" : "Stp Forward Delay",
           "format" : "int32",
+          "maximum" : 30,
+          "minimum" : 4,
           "type" : "integer"
         },
         "stp_hello_time" : {
-          "description" : "Stp Hello Time: Range(max = 10L, error = INVALID_STP_HELLO_TIME: Invalid STP hello time. Allowed range is 1-10., min = 1L) ",
+          "description" : "Stp Hello Time",
           "format" : "int32",
+          "maximum" : 10,
+          "minimum" : 1,
           "type" : "integer"
         },
         "stp_aging_timer" : {
-          "description" : "Stp Aging Timer: Range(max = 1000000L, error = INVALID_STP_AGING_TIMER: Invalid STP aging timer. Allowed range is 10-1000000., min = 10L) ",
+          "description" : "Stp Aging Timer",
           "format" : "int32",
+          "maximum" : 1000000,
+          "minimum" : 10,
           "type" : "integer"
         },
         "stp_max_age" : {
-          "description" : "Stp Max Age: Range(max = 40L, error = INVALID_STP_MAX_AGE: Invalid STP max age. Allowed range is 6-40., min = 6L) ",
+          "description" : "Stp Max Age",
           "format" : "int32",
+          "maximum" : 40,
+          "minimum" : 6,
           "type" : "integer"
         },
         "stp_mode" : {
-          "description" : "Stp Mode: ValidateEnum(enumClass = classOf[STPMode], error = INVALID_STP_MODE: Invalid STP mode. Allowed values are stp, rstp or mstp., nullAllowed = false) ",
+          "description" : "Stp Mode",
           "type" : "string",
-          "enum" : [ "RSTP" ]
+          "enum" : [ "rstp" ]
         },
         "default_vlan_id" : {
-          "description" : "Default Vlan Id: Range(max = 4000L, error = INVALID_VLAN_ID: Invalid VLAN id. VLAN id must be between 1-4000., min = 1L) ",
+          "description" : "Default Vlan Id",
           "format" : "int32",
+          "maximum" : 4000,
+          "minimum" : 1,
           "type" : "integer"
         },
         "mstp_enabled" : {
@@ -110,15 +127,17 @@
           "type" : "boolean"
         }
       },
-      "required" : [ "stp_mode" ]
+      "required" : [ "stp_priority", "stp_forward_delay", "stp_hello_time", "stp_aging_timer", "stp_max_age", "stp_mode", "default_vlan_id", "mstp_enabled" ]
     },
     "device_profile_id" : {
       "description" : "Device Profile Id",
       "type" : "string"
     },
     "main_power_usage_threshold" : {
-      "description" : "Main Power Usage Threshold: ValidateDecimal(allowZero = true, increment = 0, max = 0, error = INVALID_MAIN_POWER_USAGE_THRESHOLD: Invalid main power usage threshold. Allowed range is 50-100., min = 0) ",
+      "description" : "Main Power Usage Threshold",
       "format" : "int32",
+      "maximum" : 100,
+      "minimum" : 50,
       "type" : "integer",
       "additionalProperties" : {
         "properties" : {
@@ -140,7 +159,9 @@
       }
     },
     "nat_policysetstack_id" : {
-      "description" : "Nat Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NAT_POLICYSETSTACK_ID: Invalid nat policy set stack id.) ",
+      "description" : "Nat Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "spoke_ha_config" : {
@@ -148,60 +169,69 @@
         "track" : {
           "properties" : {
             "waninterfaces" : {
-              "description" : "Waninterfaces: Valid ",
+              "description" : "Waninterfaces",
               "type" : "array",
               "items" : {
                 "properties" : {
                   "reduce_priority" : {
-                    "description" : "Reduce Priority: Range(max = 254L, SPOKEHA_CONFIG_INVALID_REDUCE_PRIORITY, min = 1L) ",
+                    "description" : "Reduce Priority",
                     "format" : "int32",
+                    "maximum" : 254,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "wan_interface_id" : {
                     "description" : "Wan Interface Id",
                     "type" : "string"
                   }
-                }
+                },
+                "required" : [ "reduce_priority", "wan_interface_id" ]
               }
             },
             "interfaces" : {
-              "description" : "Interfaces: Valid ",
+              "description" : "Interfaces",
               "type" : "array",
               "items" : {
                 "properties" : {
                   "reduce_priority" : {
-                    "description" : "Reduce Priority: Range(max = 254L, SPOKEHA_CONFIG_INVALID_REDUCE_PRIORITY, min = 1L) ",
+                    "description" : "Reduce Priority",
                     "format" : "int32",
+                    "maximum" : 254,
+                    "minimum" : 1,
                     "type" : "integer"
                   },
                   "interface_id" : {
                     "description" : "Interface Id",
                     "type" : "string"
                   }
-                }
+                },
+                "required" : [ "reduce_priority", "interface_id" ]
               }
             }
-          }
+          },
+          "required" : [ "waninterfaces", "interfaces" ]
         },
         "source_interface" : {
-          "description" : "Source Interface: Required(SPOKEHA_CONFIG_SOURCE_INTERFACE_ID_REQD) ",
+          "description" : "Source Interface",
           "type" : "string"
         },
         "priority" : {
-          "description" : "Priority: Required(SPOKEHA_CONFIG_PRIORITY_REQD) Range(max = 254L, SPOKEHA_CONFIG_INVALID_PRIORITY, min = 1L) ",
+          "description" : "Priority",
           "format" : "int32",
+          "maximum" : 254,
+          "minimum" : 1,
           "type" : "integer"
         },
         "enable" : {
-          "description" : "Enable: Required(SPOKEHA_CONFIG_ENABLE_REQD) ",
+          "description" : "Enable",
           "type" : "boolean"
         },
         "cluster_id" : {
-          "description" : "Cluster Id: Required(SPOKEHA_CONFIG_CLUSTER_ID_REQD) ",
+          "description" : "Cluster Id",
           "type" : "string"
         }
       },
-      "required" : [ "source_interface", "priority", "enable", "cluster_id" ]
+      "required" : [ "track", "source_interface", "priority", "enable", "cluster_id" ]
     },
     "l3_lan_forwarding" : {
       "description" : "L3 Lan Forwarding",
@@ -226,11 +256,15 @@
       }
     },
     "priority_policysetstack_id" : {
-      "description" : "Priority Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_PRIORITY_POLICYSETSTACK_ID: Invalid priority policy set stack id) ",
+      "description" : "Priority Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "network_policysetstack_id" : {
-      "description" : "Network Policysetstack Id: Digits(fraction = 0, integer = 20, error = INVALID_NETWORK_POLICYSETSTACK_ID: Invalid network policy set stack id) ",
+      "description" : "Network Policysetstack Id",
+      "maxLength" : 20,
+      "pattern" : "^-?[0-9]{1,20}$",
       "type" : "string"
     },
     "cluster_id" : {
@@ -247,13 +281,18 @@
           "description" : "Version",
           "type" : "string"
         }
-      }
+      },
+      "required" : [ "location", "version" ]
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -265,16 +304,32 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
     },
     "site_id" : {
-      "description" : "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
+      "description" : "Site Id",
+      "maxLength" : 50,
+      "pattern" : "^-?[0-9]{1,50}$",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -289,18 +344,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {
@@ -411,7 +454,7 @@
       }
     }
   },
-  "required" : [ "site_id" ]
+  "required" : [ "hub_cluster_config", "led_config", "switch_config", "device_profile_id", "main_power_usage_threshold", "vpn_to_vpn_forwarding", "nat_policysetstack_id", "spoke_ha_config", "l3_lan_forwarding", "l3_direct_private_wan_forwarding", "priority_policysetstack_id", "network_policysetstack_id", "cluster_id", "sw_obj", "tags", "description", "name", "site_id", "id" ]
 }
 ```
 

@@ -20,13 +20,25 @@
       "type" : "object"
     },
     "state" : {
-      "description" : "State: Required(SDWAN_APP_CONFIG_STATE_REQUIRED) ValidateEnum(enumClass = classOf[AppConfigState], message = SDWAN_APP_INVALID_APP_CONFIG_STATE, nullAllowed = false) ",
+      "description" : "State",
       "type" : "string",
-      "enum" : [ "ENABLED", "DISABLED", "PAUSED" ]
+      "enum" : [ "enabled", "disabled", "paused" ]
     },
     "version" : {
       "description" : "Version",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -50,21 +62,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "state" ]
+  "required" : [ "user_config", "state", "version", "id" ]
 }
 ```
 

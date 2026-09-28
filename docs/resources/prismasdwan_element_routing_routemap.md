@@ -5,9 +5,9 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_routing_routemap` |
-| Get Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps/{config_id}` (`RoutingRouteMapScreenV2N3`) |
-| Post Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps` (`RoutingRouteMapScreenV2N3`) |
-| Put Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps/{config_id}` (`RoutingRouteMapScreenV2N3`) |
+| Get Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps/{config_id}` (`RoutingRouteMapScreenV2N4`) |
+| Post Api  | `/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/routing_routemaps` (`RoutingRouteMapScreenV2N4`) |
+| Put Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps/{config_id}` (`RoutingRouteMapScreenV2N4`) |
 | Delete Api  | `/sdwan/v2.3/api/sites/{site_id}/elements/{element_id}/routing_routemaps/{config_id}` |
 
 
@@ -17,10 +17,45 @@
 {
   "properties" : {
     "route_map_entries" : {
-      "description" : "Route Map Entries: Valid Valid ",
+      "description" : "Route Map Entries",
       "type" : "array",
       "items" : {
         "properties" : {
+          "match" : {
+            "properties" : {
+              "service_binding_id" : {
+                "description" : "Service Binding Id",
+                "type" : "string"
+              },
+              "metric" : {
+                "description" : "Metric",
+                "format" : "int64",
+                "type" : "integer"
+              },
+              "tag" : {
+                "description" : "Tag",
+                "format" : "int32",
+                "type" : "integer"
+              },
+              "community_list_id" : {
+                "description" : "Community List Id",
+                "type" : "string"
+              },
+              "ip_next_hop_id" : {
+                "description" : "Ip Next Hop Id",
+                "type" : "string"
+              },
+              "ip_prefix_list_id" : {
+                "description" : "Ip Prefix List Id",
+                "type" : "string"
+              },
+              "as_path_id" : {
+                "description" : "As Path Id",
+                "type" : "string"
+              }
+            },
+            "required" : [ "service_binding_id", "metric", "tag", "community_list_id", "ip_next_hop_id", "ip_prefix_list_id", "as_path_id" ]
+          },
           "set" : {
             "properties" : {
               "metric" : {
@@ -68,40 +103,12 @@
                 "description" : "As Path Prepend",
                 "type" : "string"
               }
-            }
-          },
-          "match" : {
-            "properties" : {
-              "metric" : {
-                "description" : "Metric",
-                "format" : "int64",
-                "type" : "integer"
-              },
-              "tag" : {
-                "description" : "Tag",
-                "format" : "int32",
-                "type" : "integer"
-              },
-              "community_list_id" : {
-                "description" : "Community List Id",
-                "type" : "string"
-              },
-              "ip_next_hop_id" : {
-                "description" : "Ip Next Hop Id",
-                "type" : "string"
-              },
-              "ip_prefix_list_id" : {
-                "description" : "Ip Prefix List Id",
-                "type" : "string"
-              },
-              "as_path_id" : {
-                "description" : "As Path Id",
-                "type" : "string"
-              }
-            }
+            },
+            "required" : [ "metric", "type", "additive_community", "tag", "ip_v6_next_hop", "ip_next_hop", "community", "weight", "local_preference", "as_path_prepend" ]
           },
           "continue_entry" : {
-            "description" : "Continue Entry: Pattern(ROUTE_MAP_INVALID_CONTINUE_ORDER, regexp = ^(0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$) ",
+            "description" : "Continue Entry",
+            "pattern" : "^(0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$",
             "type" : "string"
           },
           "permit" : {
@@ -109,11 +116,14 @@
             "type" : "boolean"
           },
           "order" : {
-            "description" : "Order: Range(max = 65535L, ROUTE_MAP_INVALID_ORDER, min = 1L) ",
+            "description" : "Order",
             "format" : "int32",
+            "maximum" : 65535,
+            "minimum" : 1,
             "type" : "integer"
           }
-        }
+        },
+        "required" : [ "match", "set", "continue_entry", "permit", "order" ]
       }
     },
     "used_for" : {
@@ -126,10 +136,14 @@
       "type" : "boolean"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 1024, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 1024,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -141,12 +155,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 1024, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 1024,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -170,21 +198,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "route_map_entries", "used_for", "auto_generated", "tags", "description", "name", "id" ]
 }
 ```
 

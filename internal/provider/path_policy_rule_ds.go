@@ -23,12 +23,12 @@ import (
 // | Schema Map Summary (size=goLangStructMap=6)
 // | Computed Resource Name=networkpolicysets_networkpolicyrules
 // +-----------------------------------------------------------------
-// | BestPathConfig HasID=false
-// | UserGroup HasID=false
-// | WANPath HasID=false
-// | PathsAllowedV2N1 HasID=false
+// | WANPathV2N5 HasID=false
+// | PathsAllowedV2N5 HasID=false
 // | ServiceContext HasID=false
-// | NetworkPolicyRuleScreenV2N4 HasID=true
+// | UserGroup HasID=false
+// | ProbeMetricInfo HasID=false
+// | NetworkPolicyRuleScreenV2N5 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -60,7 +60,7 @@ type dsModelWithFilterPathPolicyRule struct {
 	TfParameters types.Map                             `tfsdk:"x_parameters"` // Generic Map for Path Ids
 	Etag         types.Int64                           `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
 	Schema       types.Int64                           `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelNetworkPolicyRuleScreenV2N4 `tfsdk:"items"`
+	Items        []*dsModelNetworkPolicyRuleScreenV2N5 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -104,7 +104,7 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=NetworkPolicyRuleScreenV2N4
+						// rest all properties to be read from GET API Schema schema=NetworkPolicyRuleScreenV2N5
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -463,7 +463,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.4/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}"
+	get_path := "/sdwan/v2.5/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -534,19 +534,19 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 		}
 
 		// Store the answer to state.
-		var state dsModelNetworkPolicyRuleScreenV2N4
+		var state dsModelNetworkPolicyRuleScreenV2N5
 
 		// start copying attributes
-		var ans sdwan_schema.NetworkPolicyRuleScreenV2N4
+		var ans sdwan_schema.NetworkPolicyRuleScreenV2N5
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to NetworkPolicyRuleScreenV2N4", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to NetworkPolicyRuleScreenV2N5", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=NetworkPolicyRuleScreenV2N4
+		// lets copy all items into state schema=NetworkPolicyRuleScreenV2N5
 		// copy_to_state: state=state prefix=dsModel ans=ans properties=18
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -561,7 +561,7 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 		if ans.BestPathConfig == nil {
 			state.BestPathConfig = nil
 		} else {
-			state.BestPathConfig = &dsModelBestPathConfig{}
+			state.BestPathConfig = &dsModelProbeMetricInfo{}
 			// copy_to_state: state=state.BestPathConfig prefix=dsModel ans=ans.BestPathConfig properties=3
 			tflog.Debug(ctx, "copy_to_state state=state.BestPathConfig prefix=dsModel ans=ans.BestPathConfig")
 			// property: name=metric, type=STRING macro=copy_to_state
@@ -593,19 +593,19 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 		if ans.PathsAllowed == nil {
 			state.PathsAllowed = nil
 		} else {
-			state.PathsAllowed = &dsModelPathsAllowedV2N1{}
+			state.PathsAllowed = &dsModelPathsAllowedV2N5{}
 			// copy_to_state: state=state.PathsAllowed prefix=dsModel ans=ans.PathsAllowed properties=3
 			tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed prefix=dsModel ans=ans.PathsAllowed")
 			// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_to_state
 			if ans.PathsAllowed.ActivePaths == nil {
 				state.PathsAllowed.ActivePaths = nil
 			} else if len(ans.PathsAllowed.ActivePaths) == 0 {
-				state.PathsAllowed.ActivePaths = []dsModelWANPath{}
+				state.PathsAllowed.ActivePaths = []dsModelWANPathV2N5{}
 			} else {
-				state.PathsAllowed.ActivePaths = make([]dsModelWANPath, 0, len(ans.PathsAllowed.ActivePaths))
+				state.PathsAllowed.ActivePaths = make([]dsModelWANPathV2N5, 0, len(ans.PathsAllowed.ActivePaths))
 				for varLoopActivePathsIndex, varLoopActivePaths := range ans.PathsAllowed.ActivePaths {
 					// add a new item
-					state.PathsAllowed.ActivePaths = append(state.PathsAllowed.ActivePaths, dsModelWANPath{})
+					state.PathsAllowed.ActivePaths = append(state.PathsAllowed.ActivePaths, dsModelWANPathV2N5{})
 					// copy_to_state: state=state.PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed.ActivePaths[varLoopActivePathsIndex] prefix=dsModel ans=varLoopActivePaths")
 					// property: name=label, type=STRING macro=copy_to_state
@@ -618,12 +618,12 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 			if ans.PathsAllowed.BackupPaths == nil {
 				state.PathsAllowed.BackupPaths = nil
 			} else if len(ans.PathsAllowed.BackupPaths) == 0 {
-				state.PathsAllowed.BackupPaths = []dsModelWANPath{}
+				state.PathsAllowed.BackupPaths = []dsModelWANPathV2N5{}
 			} else {
-				state.PathsAllowed.BackupPaths = make([]dsModelWANPath, 0, len(ans.PathsAllowed.BackupPaths))
+				state.PathsAllowed.BackupPaths = make([]dsModelWANPathV2N5, 0, len(ans.PathsAllowed.BackupPaths))
 				for varLoopBackupPathsIndex, varLoopBackupPaths := range ans.PathsAllowed.BackupPaths {
 					// add a new item
-					state.PathsAllowed.BackupPaths = append(state.PathsAllowed.BackupPaths, dsModelWANPath{})
+					state.PathsAllowed.BackupPaths = append(state.PathsAllowed.BackupPaths, dsModelWANPathV2N5{})
 					// copy_to_state: state=state.PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed.BackupPaths[varLoopBackupPathsIndex] prefix=dsModel ans=varLoopBackupPaths")
 					// property: name=label, type=STRING macro=copy_to_state
@@ -636,12 +636,12 @@ func (d *pathPolicyRuleDataSource) Read(ctx context.Context, req datasource.Read
 			if ans.PathsAllowed.L3FailurePaths == nil {
 				state.PathsAllowed.L3FailurePaths = nil
 			} else if len(ans.PathsAllowed.L3FailurePaths) == 0 {
-				state.PathsAllowed.L3FailurePaths = []dsModelWANPath{}
+				state.PathsAllowed.L3FailurePaths = []dsModelWANPathV2N5{}
 			} else {
-				state.PathsAllowed.L3FailurePaths = make([]dsModelWANPath, 0, len(ans.PathsAllowed.L3FailurePaths))
+				state.PathsAllowed.L3FailurePaths = make([]dsModelWANPathV2N5, 0, len(ans.PathsAllowed.L3FailurePaths))
 				for varLoopL3FailurePathsIndex, varLoopL3FailurePaths := range ans.PathsAllowed.L3FailurePaths {
 					// add a new item
-					state.PathsAllowed.L3FailurePaths = append(state.PathsAllowed.L3FailurePaths, dsModelWANPath{})
+					state.PathsAllowed.L3FailurePaths = append(state.PathsAllowed.L3FailurePaths, dsModelWANPathV2N5{})
 					// copy_to_state: state=state.PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths properties=2
 					tflog.Debug(ctx, "copy_to_state state=state.PathsAllowed.L3FailurePaths[varLoopL3FailurePathsIndex] prefix=dsModel ans=varLoopL3FailurePaths")
 					// property: name=label, type=STRING macro=copy_to_state

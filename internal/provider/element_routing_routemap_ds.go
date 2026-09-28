@@ -23,10 +23,10 @@ import (
 // | Schema Map Summary (size=goLangStructMap=4)
 // | Computed Resource Name=sites_elements_routing_routemaps
 // +-----------------------------------------------------------------
+// | RoutingRouteMapEntryMatchClauseV2N4 HasID=false
 // | RoutingRouteMapEntrySetClause HasID=false
-// | RoutingRouteMapEntryMatchClause HasID=false
-// | RoutingRouteMapEntryV2N3 HasID=false
-// | RoutingRouteMapScreenV2N3 HasID=true
+// | RoutingRouteMapEntryV2N4 HasID=false
+// | RoutingRouteMapScreenV2N4 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -58,7 +58,7 @@ type dsModelWithFilterElementRoutingRoutemap struct {
 	TfParameters types.Map                           `tfsdk:"x_parameters"` // Generic Map for Path Ids
 	Etag         types.Int64                         `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
 	Schema       types.Int64                         `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelRoutingRouteMapScreenV2N3 `tfsdk:"items"`
+	Items        []*dsModelRoutingRouteMapScreenV2N4 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -102,7 +102,7 @@ func (d *elementRoutingRoutemapDataSource) Schema(_ context.Context, _ datasourc
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=RoutingRouteMapScreenV2N3
+						// rest all properties to be read from GET API Schema schema=RoutingRouteMapScreenV2N4
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -214,6 +214,14 @@ func (d *elementRoutingRoutemapDataSource) Schema(_ context.Context, _ datasourc
 												Sensitive: false,
 											},
 											// key name holder for attribute: name=metric, type=INTEGER macro=rss_schema
+											// property: name=service_binding_id, type=STRING macro=rss_schema
+											"service_binding_id": dsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=service_binding_id, type=STRING macro=rss_schema
 											// property: name=tag, type=INTEGER macro=rss_schema
 											"tag": dsschema.Int64Attribute{
 												Required:  false,
@@ -459,19 +467,19 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 		}
 
 		// Store the answer to state.
-		var state dsModelRoutingRouteMapScreenV2N3
+		var state dsModelRoutingRouteMapScreenV2N4
 
 		// start copying attributes
-		var ans sdwan_schema.RoutingRouteMapScreenV2N3
+		var ans sdwan_schema.RoutingRouteMapScreenV2N4
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N3", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to RoutingRouteMapScreenV2N4", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=RoutingRouteMapScreenV2N3
+		// lets copy all items into state schema=RoutingRouteMapScreenV2N4
 		// copy_to_state: state=state prefix=dsModel ans=ans properties=9
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -490,12 +498,12 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 		if ans.RouteMapEntries == nil {
 			state.RouteMapEntries = nil
 		} else if len(ans.RouteMapEntries) == 0 {
-			state.RouteMapEntries = []dsModelRoutingRouteMapEntryV2N3{}
+			state.RouteMapEntries = []dsModelRoutingRouteMapEntryV2N4{}
 		} else {
-			state.RouteMapEntries = make([]dsModelRoutingRouteMapEntryV2N3, 0, len(ans.RouteMapEntries))
+			state.RouteMapEntries = make([]dsModelRoutingRouteMapEntryV2N4, 0, len(ans.RouteMapEntries))
 			for varLoopRouteMapEntriesIndex, varLoopRouteMapEntries := range ans.RouteMapEntries {
 				// add a new item
-				state.RouteMapEntries = append(state.RouteMapEntries, dsModelRoutingRouteMapEntryV2N3{})
+				state.RouteMapEntries = append(state.RouteMapEntries, dsModelRoutingRouteMapEntryV2N4{})
 				// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=dsModel ans=varLoopRouteMapEntries properties=5
 				tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex] prefix=dsModel ans=varLoopRouteMapEntries")
 				// property: name=continue_entry, type=STRING macro=copy_to_state
@@ -504,8 +512,8 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 				if varLoopRouteMapEntries.Match == nil {
 					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = nil
 				} else {
-					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &dsModelRoutingRouteMapEntryMatchClause{}
-					// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=dsModel ans=varLoopRouteMapEntries.Match properties=6
+					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match = &dsModelRoutingRouteMapEntryMatchClauseV2N4{}
+					// copy_to_state: state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=dsModel ans=varLoopRouteMapEntries.Match properties=7
 					tflog.Debug(ctx, "copy_to_state state=state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match prefix=dsModel ans=varLoopRouteMapEntries.Match")
 					// property: name=as_path_id, type=STRING macro=copy_to_state
 					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.AsPathId = types.StringPointerValue(varLoopRouteMapEntries.Match.AsPathId)
@@ -517,6 +525,8 @@ func (d *elementRoutingRoutemapDataSource) Read(ctx context.Context, req datasou
 					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.IpPrefixListId = types.StringPointerValue(varLoopRouteMapEntries.Match.IpPrefixListId)
 					// property: name=metric, type=INTEGER macro=copy_to_state
 					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Metric = types.Int64PointerValue(varLoopRouteMapEntries.Match.Metric)
+					// property: name=service_binding_id, type=STRING macro=copy_to_state
+					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.ServiceBindingId = types.StringPointerValue(varLoopRouteMapEntries.Match.ServiceBindingId)
 					// property: name=tag, type=INTEGER macro=copy_to_state
 					state.RouteMapEntries[varLoopRouteMapEntriesIndex].Match.Tag = types.Int64PointerValue(varLoopRouteMapEntries.Match.Tag)
 				}

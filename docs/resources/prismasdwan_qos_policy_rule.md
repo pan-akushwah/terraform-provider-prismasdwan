@@ -17,16 +17,20 @@
 {
   "properties" : {
     "dest_device_ids" : {
-      "description" : "Dest Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_DEST_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 10, DEST_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+      "description" : "Dest Device Ids",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Dest Device Ids",
         "type" : "string"
       }
     },
     "src_device_ids" : {
-      "description" : "Src Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_SRC_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 256, SRC_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+      "description" : "Src Device Ids",
+      "maxItems" : 256,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Src Device Ids",
         "type" : "string"
@@ -35,7 +39,7 @@
     "user_or_group" : {
       "properties" : {
         "user_group_ids" : {
-          "description" : "User Group Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_GROUP_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_GROUP_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "description" : "User Group Ids",
           "type" : "array",
           "items" : {
             "description" : "User Group Ids",
@@ -43,35 +47,45 @@
           }
         },
         "user_ids" : {
-          "description" : "User Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "description" : "User Ids",
           "type" : "array",
           "items" : {
             "description" : "User Ids",
             "type" : "string"
           }
         }
-      }
+      },
+      "required" : [ "user_group_ids", "user_ids" ]
     },
     "priority_number" : {
-      "description" : "Priority Number: Required(error = INVALID_PRIORITY_NUMBER: Invalid priority number.) Min(error = PRIORITY_NUMBER_MINIMUM_VAL: Priority number should not be less than 1., value = 1L) Max(error = PRIORITY_NUMBER_MAXIMUM_VAL: Priority number should not be greater than 4., value = 4L) ",
+      "description" : "Priority Number",
       "format" : "int32",
+      "maximum" : 4,
+      "minimum" : 1,
       "type" : "integer"
     },
     "dscp" : {
       "properties" : {
         "value" : {
-          "description" : "Value: Min(message = INVALID_DSCP_MIN_VALUE, value = 0L) Max(message = INVALID_DSCP_MAX_VALUE, value = 63L) ",
+          "description" : "Value",
           "format" : "int32",
+          "maximum" : 63,
+          "minimum" : 0,
           "type" : "integer"
         }
-      }
+      },
+      "required" : [ "value" ]
     },
     "destination_prefixes_id" : {
-      "description" : "Destination Prefixes Id: Digits(fraction = 0, integer = 30, error = INVALID_DESTINATION_PREFIXES_ID: Specified destination prefix is invalid.) ",
+      "description" : "Destination Prefixes Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
       "type" : "string"
     },
     "source_prefixes_id" : {
-      "description" : "Source Prefixes Id: Digits(fraction = 0, integer = 30, error = INVALID_SOURCE_PREFIXES_ID: Specified source prefix is invalid.) ",
+      "description" : "Source Prefixes Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
       "type" : "string"
     },
     "enabled" : {
@@ -79,26 +93,36 @@
       "type" : "boolean"
     },
     "order_number" : {
-      "description" : "Order Number: Min(error = INVALID_ORDER_NUMBER_MINIMUM_VAL: Policy Rule order number should not be less than 1., value = 1L) Max(error = INVALID_ORDER_NUMBER_MAXIMUM_VAL: Policy Rule order number should not be greater than 65535., value = 65535L) ",
+      "description" : "Order Number",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "network_context_id" : {
-      "description" : "Network Context Id: Digits(fraction = 0, integer = 30, error = INVALID_NETWORK_CONTEXT_ID: Specified network context is invalid.) ",
+      "description" : "Network Context Id",
+      "maxLength" : 30,
+      "pattern" : "^-?[0-9]{1,30}$",
       "type" : "string"
     },
     "app_def_ids" : {
-      "description" : "App Def Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, error = DUPLICATE_APP_DEF_IDS: Duplicate app ids are specified., noTrim = false, regex = , required = false) Size(max = 256, error = APP_DEF_ID_LIST_SIZE_EXCEEDED: Maximum 256 applications can be specified in a rule., min = 0) ",
+      "description" : "App Def Ids",
+      "maxItems" : 256,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "App Def Ids",
         "type" : "string"
       }
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
@@ -110,12 +134,26 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -139,21 +177,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "priority_number", "name" ]
+  "required" : [ "dest_device_ids", "src_device_ids", "user_or_group", "priority_number", "dscp", "destination_prefixes_id", "source_prefixes_id", "enabled", "order_number", "network_context_id", "app_def_ids", "tags", "description", "name", "id" ]
 }
 ```
 

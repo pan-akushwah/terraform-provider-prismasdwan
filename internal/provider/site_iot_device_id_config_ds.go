@@ -23,7 +23,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=sites_deviceidconfigs
 // +-----------------------------------------------------------------
-// | DeviceIdConfigScreen HasID=true
+// | DeviceIdConfigV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -51,11 +51,11 @@ type siteIotDeviceIdConfigDataSource struct {
 }
 
 type dsModelWithFilterSiteIotDeviceIdConfig struct {
-	Filters      types.Map                      `tfsdk:"filters"`
-	TfParameters types.Map                      `tfsdk:"x_parameters"` // Generic Map for Path Ids
-	Etag         types.Int64                    `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
-	Schema       types.Int64                    `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelDeviceIdConfigScreen `tfsdk:"items"`
+	Filters      types.Map                    `tfsdk:"filters"`
+	TfParameters types.Map                    `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                  `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                  `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelDeviceIdConfigV2N1 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -99,7 +99,7 @@ func (d *siteIotDeviceIdConfigDataSource) Schema(_ context.Context, _ datasource
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=DeviceIdConfigScreen
+						// rest all properties to be read from GET API Schema schema=DeviceIdConfigV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -124,6 +124,14 @@ func (d *siteIotDeviceIdConfigDataSource) Schema(_ context.Context, _ datasource
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=cfg_device_id_enabled, type=BOOLEAN macro=rss_schema
+						// property: name=deviceid_profile_id, type=STRING macro=rss_schema
+						"deviceid_profile_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=deviceid_profile_id, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:  false,
@@ -132,6 +140,14 @@ func (d *siteIotDeviceIdConfigDataSource) Schema(_ context.Context, _ datasource
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=site_id, type=STRING macro=rss_schema
+						"site_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 					},
 				},
 			},
@@ -239,20 +255,20 @@ func (d *siteIotDeviceIdConfigDataSource) Read(ctx context.Context, req datasour
 		}
 
 		// Store the answer to state.
-		var state dsModelDeviceIdConfigScreen
+		var state dsModelDeviceIdConfigV2N1
 
 		// start copying attributes
-		var ans sdwan_schema.DeviceIdConfigScreen
+		var ans sdwan_schema.DeviceIdConfigV2N1
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to DeviceIdConfigScreen", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to DeviceIdConfigV2N1", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=DeviceIdConfigScreen
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=4
+		// lets copy all items into state schema=DeviceIdConfigV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=6
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -260,8 +276,12 @@ func (d *siteIotDeviceIdConfigDataSource) Read(ctx context.Context, req datasour
 		state.Schema = types.Int64PointerValue(ans.Schema)
 		// property: name=cfg_device_id_enabled, type=BOOLEAN macro=copy_to_state
 		state.CfgDeviceIdEnabled = types.BoolPointerValue(ans.CfgDeviceIdEnabled)
+		// property: name=deviceid_profile_id, type=STRING macro=copy_to_state
+		state.DeviceidProfileId = types.StringPointerValue(ans.DeviceidProfileId)
 		// property: name=id, type=STRING macro=copy_to_state
 		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=site_id, type=STRING macro=copy_to_state
+		state.SiteId = types.StringPointerValue(ans.SiteId)
 
 		// append the item scanned
 		state_with_filter.Items = append(state_with_filter.Items, &state)

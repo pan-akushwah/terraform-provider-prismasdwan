@@ -24,11 +24,12 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=2)
+// | Schema Map Summary (size=goLangStructMap=3)
 // | Computed Resource Name=sites_sitesecurityzones
 // +-----------------------------------------------------------------
-// | SiteContext HasID=false
-// | SecurityZoneNetworkAssociation HasID=true
+// | ElementInterfaces HasID=false
+// | SiteContextV2N1 HasID=false
+// | SecurityZoneNetworkAssociationV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -72,7 +73,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SecurityZoneNetworkAssociation
+			// rest all properties to be read from GET API Schema schema=SecurityZoneNetworkAssociationV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -96,6 +97,35 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+			// property: name=element_interfaces, type=ARRAY_REFERENCE macro=rss_schema
+			"element_interfaces": rsschema.ListNestedAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+				NestedObject: rsschema.NestedAttributeObject{
+					Attributes: map[string]rsschema.Attribute{
+						// property: name=element_id, type=STRING macro=rss_schema
+						"element_id": rsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
+						// property: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
+						"interfaces": rsschema.ListAttribute{
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							ElementType: types.StringType,
+						},
+						// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
+					},
+				},
+			},
+			// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
 				Required:  false,
@@ -166,7 +196,7 @@ func (r *siteSecurityZoneResource) GetHttpStatusCode(request *sdwan_client.Sdwan
 	}
 }
 
-func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecurityZoneNetworkAssociation, state *rsModelSecurityZoneNetworkAssociation, resp *resource.CreateResponse) bool {
+func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecurityZoneNetworkAssociationV2N1, state *rsModelSecurityZoneNetworkAssociationV2N1, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_site_security_zone")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -178,7 +208,7 @@ func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecu
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_site_security_zone"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.0/api/sites/{site_id}/sitesecurityzones"
+	create_request.Path = "/sdwan/v2.1/api/sites/{site_id}/sitesecurityzones"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -188,27 +218,45 @@ func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecu
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SecurityZoneNetworkAssociation{}
+	var body = &sdwan_schema.SecurityZoneNetworkAssociationV2N1{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=5
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=6
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_from_plan
 	body.Schema = Int64ValueOrNil(plan.Schema)
+	// property: name=element_interfaces, type=ARRAY_REFERENCE macro=copy_from_plan
+	if plan.ElementInterfaces == nil {
+		body.ElementInterfaces = nil
+	} else if len(plan.ElementInterfaces) == 0 {
+		body.ElementInterfaces = []sdwan_schema.ElementInterfaces{}
+	} else {
+		body.ElementInterfaces = make([]sdwan_schema.ElementInterfaces, 0, len(plan.ElementInterfaces))
+		for varLoopElementInterfacesIndex, varLoopElementInterfaces := range plan.ElementInterfaces {
+			// add a new item
+			body.ElementInterfaces = append(body.ElementInterfaces, sdwan_schema.ElementInterfaces{})
+			// copy_from_plan: body=body.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel plan=varLoopElementInterfaces properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel plan=varLoopElementInterfaces")
+			// property: name=element_id, type=STRING macro=copy_from_plan
+			body.ElementInterfaces[varLoopElementInterfacesIndex].ElementId = StringValueOrNil(varLoopElementInterfaces.ElementId)
+			// property: name=interfaces, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.ElementInterfaces[varLoopElementInterfacesIndex].Interfaces = ListStringValueOrNil(ctx, varLoopElementInterfaces.Interfaces)
+		}
+	}
 	// property: name=id, type=STRING macro=copy_from_plan
 	body.Id = StringValueOrNil(plan.Id)
 	// property: name=networks, type=ARRAY_REFERENCE macro=copy_from_plan
 	if plan.Networks == nil {
 		body.Networks = nil
 	} else if len(plan.Networks) == 0 {
-		body.Networks = []sdwan_schema.SiteContext{}
+		body.Networks = []sdwan_schema.SiteContextV2N1{}
 	} else {
-		body.Networks = make([]sdwan_schema.SiteContext, 0, len(plan.Networks))
+		body.Networks = make([]sdwan_schema.SiteContextV2N1, 0, len(plan.Networks))
 		for varLoopNetworksIndex, varLoopNetworks := range plan.Networks {
 			// add a new item
-			body.Networks = append(body.Networks, sdwan_schema.SiteContext{})
+			body.Networks = append(body.Networks, sdwan_schema.SiteContextV2N1{})
 			// copy_from_plan: body=body.Networks[varLoopNetworksIndex] prefix=rsModel plan=varLoopNetworks properties=2
 			tflog.Debug(ctx, "copy_from_plan body=body.Networks[varLoopNetworksIndex] prefix=rsModel plan=varLoopNetworks")
 			// property: name=network_id, type=STRING macro=copy_from_plan
@@ -223,7 +271,7 @@ func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecu
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SecurityZoneNetworkAssociation to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SecurityZoneNetworkAssociationV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -266,12 +314,12 @@ func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecu
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SecurityZoneNetworkAssociation
+	var ans sdwan_schema.SecurityZoneNetworkAssociationV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneNetworkAssociation in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneNetworkAssociationV2N1 in create", json_err.Error())
 		return false
 	}
 
@@ -296,25 +344,45 @@ func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecu
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_site_security_zone with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SecurityZoneNetworkAssociation
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=5
+	// Store the answer to state. schema=SecurityZoneNetworkAssociationV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=element_interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.ElementInterfaces == nil {
+		state.ElementInterfaces = nil
+	} else if len(ans.ElementInterfaces) == 0 {
+		state.ElementInterfaces = []rsModelElementInterfaces{}
+	} else {
+		state.ElementInterfaces = make([]rsModelElementInterfaces, 0, len(ans.ElementInterfaces))
+		for varLoopElementInterfacesIndex, varLoopElementInterfaces := range ans.ElementInterfaces {
+			// add a new item
+			state.ElementInterfaces = append(state.ElementInterfaces, rsModelElementInterfaces{})
+			// copy_to_state: state=state.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel ans=varLoopElementInterfaces properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel ans=varLoopElementInterfaces")
+			// property: name=element_id, type=STRING macro=copy_to_state
+			state.ElementInterfaces[varLoopElementInterfacesIndex].ElementId = types.StringPointerValue(varLoopElementInterfaces.ElementId)
+			// property: name=interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varInterfaces, errInterfaces := types.ListValueFrom(ctx, types.StringType, varLoopElementInterfaces.Interfaces)
+			state.ElementInterfaces[varLoopElementInterfacesIndex].Interfaces = varInterfaces
+			resp.Diagnostics.Append(errInterfaces.Errors()...)
+		}
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=networks, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Networks == nil {
 		state.Networks = nil
 	} else if len(ans.Networks) == 0 {
-		state.Networks = []rsModelSiteContext{}
+		state.Networks = []rsModelSiteContextV2N1{}
 	} else {
-		state.Networks = make([]rsModelSiteContext, 0, len(ans.Networks))
+		state.Networks = make([]rsModelSiteContextV2N1, 0, len(ans.Networks))
 		for varLoopNetworksIndex, varLoopNetworks := range ans.Networks {
 			// add a new item
-			state.Networks = append(state.Networks, rsModelSiteContext{})
+			state.Networks = append(state.Networks, rsModelSiteContextV2N1{})
 			// copy_to_state: state=state.Networks[varLoopNetworksIndex] prefix=rsModel ans=varLoopNetworks properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.Networks[varLoopNetworksIndex] prefix=rsModel ans=varLoopNetworks")
 			// property: name=network_id, type=STRING macro=copy_to_state
@@ -328,7 +396,7 @@ func (r *siteSecurityZoneResource) doPost(ctx context.Context, plan *rsModelSecu
 	return true
 }
 
-func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecurityZoneNetworkAssociation, savestate *rsModelSecurityZoneNetworkAssociation, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecurityZoneNetworkAssociationV2N1, savestate *rsModelSecurityZoneNetworkAssociationV2N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -350,7 +418,7 @@ func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecu
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_site_security_zone"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/sitesecurityzones/{zone_id}"
+	read_request.Path = "/sdwan/v2.1/api/sites/{site_id}/sitesecurityzones/{zone_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -392,7 +460,7 @@ func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecu
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SecurityZoneNetworkAssociation
+	// Store the answer to state. schema=SecurityZoneNetworkAssociationV2N1
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -401,33 +469,53 @@ func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecu
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SecurityZoneNetworkAssociation
+	var ans sdwan_schema.SecurityZoneNetworkAssociationV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneNetworkAssociation in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneNetworkAssociationV2N1 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=5
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=element_interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.ElementInterfaces == nil {
+		state.ElementInterfaces = nil
+	} else if len(ans.ElementInterfaces) == 0 {
+		state.ElementInterfaces = []rsModelElementInterfaces{}
+	} else {
+		state.ElementInterfaces = make([]rsModelElementInterfaces, 0, len(ans.ElementInterfaces))
+		for varLoopElementInterfacesIndex, varLoopElementInterfaces := range ans.ElementInterfaces {
+			// add a new item
+			state.ElementInterfaces = append(state.ElementInterfaces, rsModelElementInterfaces{})
+			// copy_to_state: state=state.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel ans=varLoopElementInterfaces properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel ans=varLoopElementInterfaces")
+			// property: name=element_id, type=STRING macro=copy_to_state
+			state.ElementInterfaces[varLoopElementInterfacesIndex].ElementId = types.StringPointerValue(varLoopElementInterfaces.ElementId)
+			// property: name=interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varInterfaces, errInterfaces := types.ListValueFrom(ctx, types.StringType, varLoopElementInterfaces.Interfaces)
+			state.ElementInterfaces[varLoopElementInterfacesIndex].Interfaces = varInterfaces
+			resp.Diagnostics.Append(errInterfaces.Errors()...)
+		}
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=networks, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Networks == nil {
 		state.Networks = nil
 	} else if len(ans.Networks) == 0 {
-		state.Networks = []rsModelSiteContext{}
+		state.Networks = []rsModelSiteContextV2N1{}
 	} else {
-		state.Networks = make([]rsModelSiteContext, 0, len(ans.Networks))
+		state.Networks = make([]rsModelSiteContextV2N1, 0, len(ans.Networks))
 		for varLoopNetworksIndex, varLoopNetworks := range ans.Networks {
 			// add a new item
-			state.Networks = append(state.Networks, rsModelSiteContext{})
+			state.Networks = append(state.Networks, rsModelSiteContextV2N1{})
 			// copy_to_state: state=state.Networks[varLoopNetworksIndex] prefix=rsModel ans=varLoopNetworks properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.Networks[varLoopNetworksIndex] prefix=rsModel ans=varLoopNetworks")
 			// property: name=network_id, type=STRING macro=copy_to_state
@@ -441,7 +529,7 @@ func (r *siteSecurityZoneResource) doGet(ctx context.Context, state *rsModelSecu
 	return true
 }
 
-func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZoneNetworkAssociation, state *rsModelSecurityZoneNetworkAssociation, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecurityZoneNetworkAssociationV2N1, state *rsModelSecurityZoneNetworkAssociationV2N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -469,7 +557,7 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_site_security_zone"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/sitesecurityzones/{zone_id}"
+	put_request.Path = "/sdwan/v2.1/api/sites/{site_id}/sitesecurityzones/{zone_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -488,11 +576,11 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SecurityZoneNetworkAssociation{}
+	var body = &sdwan_schema.SecurityZoneNetworkAssociationV2N1{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=5
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=6
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -506,6 +594,29 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	} else {
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
+	// property: name=element_interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
+	if plan.ElementInterfaces == nil && (state == nil || state.ElementInterfaces == nil) {
+		body.ElementInterfaces = nil
+	} else if len(plan.ElementInterfaces) == 0 && (state == nil || len(state.ElementInterfaces) == 0) {
+		body.ElementInterfaces = []sdwan_schema.ElementInterfaces{}
+	} else if len(plan.ElementInterfaces) != 0 || (state != nil && len(state.ElementInterfaces) != 0) {
+		ElementInterfacesToUse := plan.ElementInterfaces
+		if len(plan.ElementInterfaces) == 0 {
+			ElementInterfacesToUse = state.ElementInterfaces
+		}
+		body.ElementInterfaces = make([]sdwan_schema.ElementInterfaces, 0, len(ElementInterfacesToUse))
+		for varLoopElementInterfacesIndex, varLoopElementInterfaces := range ElementInterfacesToUse {
+			// add a new item
+			body.ElementInterfaces = append(body.ElementInterfaces, sdwan_schema.ElementInterfaces{})
+			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
+			// copy_from_plan: body=body.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel plan=varLoopElementInterfaces properties=2
+			tflog.Debug(ctx, "copy_from_plan body=body.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel plan=varLoopElementInterfaces")
+			// property: name=element_id, type=STRING macro=copy_from_plan
+			body.ElementInterfaces[varLoopElementInterfacesIndex].ElementId = StringValueOrNil(varLoopElementInterfaces.ElementId)
+			// property: name=interfaces, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.ElementInterfaces[varLoopElementInterfacesIndex].Interfaces = ListStringValueOrNil(ctx, varLoopElementInterfaces.Interfaces)
+		}
+	}
 	// property: name=id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Id = ValueStringPointerFromPlanOrState(plan.Id, state.Id)
@@ -516,16 +627,16 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	if plan.Networks == nil && (state == nil || state.Networks == nil) {
 		body.Networks = nil
 	} else if len(plan.Networks) == 0 && (state == nil || len(state.Networks) == 0) {
-		body.Networks = []sdwan_schema.SiteContext{}
+		body.Networks = []sdwan_schema.SiteContextV2N1{}
 	} else if len(plan.Networks) != 0 || (state != nil && len(state.Networks) != 0) {
 		NetworksToUse := plan.Networks
 		if len(plan.Networks) == 0 {
 			NetworksToUse = state.Networks
 		}
-		body.Networks = make([]sdwan_schema.SiteContext, 0, len(NetworksToUse))
+		body.Networks = make([]sdwan_schema.SiteContextV2N1, 0, len(NetworksToUse))
 		for varLoopNetworksIndex, varLoopNetworks := range NetworksToUse {
 			// add a new item
-			body.Networks = append(body.Networks, sdwan_schema.SiteContext{})
+			body.Networks = append(body.Networks, sdwan_schema.SiteContextV2N1{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
 			// copy_from_plan: body=body.Networks[varLoopNetworksIndex] prefix=rsModel plan=varLoopNetworks properties=2
 			tflog.Debug(ctx, "copy_from_plan body=body.Networks[varLoopNetworksIndex] prefix=rsModel plan=varLoopNetworks")
@@ -545,7 +656,7 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SecurityZoneNetworkAssociation to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SecurityZoneNetworkAssociationV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -581,34 +692,54 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SecurityZoneNetworkAssociation
+	var ans sdwan_schema.SecurityZoneNetworkAssociationV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneNetworkAssociation in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneNetworkAssociationV2N1 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SecurityZoneNetworkAssociation
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=5
+	// Store the answer to state. schema=SecurityZoneNetworkAssociationV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
 	// property: name=_schema, type=INTEGER macro=copy_to_state
 	state.Schema = types.Int64PointerValue(ans.Schema)
+	// property: name=element_interfaces, type=ARRAY_REFERENCE macro=copy_to_state
+	if ans.ElementInterfaces == nil {
+		state.ElementInterfaces = nil
+	} else if len(ans.ElementInterfaces) == 0 {
+		state.ElementInterfaces = []rsModelElementInterfaces{}
+	} else {
+		state.ElementInterfaces = make([]rsModelElementInterfaces, 0, len(ans.ElementInterfaces))
+		for varLoopElementInterfacesIndex, varLoopElementInterfaces := range ans.ElementInterfaces {
+			// add a new item
+			state.ElementInterfaces = append(state.ElementInterfaces, rsModelElementInterfaces{})
+			// copy_to_state: state=state.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel ans=varLoopElementInterfaces properties=2
+			tflog.Debug(ctx, "copy_to_state state=state.ElementInterfaces[varLoopElementInterfacesIndex] prefix=rsModel ans=varLoopElementInterfaces")
+			// property: name=element_id, type=STRING macro=copy_to_state
+			state.ElementInterfaces[varLoopElementInterfacesIndex].ElementId = types.StringPointerValue(varLoopElementInterfaces.ElementId)
+			// property: name=interfaces, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varInterfaces, errInterfaces := types.ListValueFrom(ctx, types.StringType, varLoopElementInterfaces.Interfaces)
+			state.ElementInterfaces[varLoopElementInterfacesIndex].Interfaces = varInterfaces
+			resp.Diagnostics.Append(errInterfaces.Errors()...)
+		}
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=networks, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.Networks == nil {
 		state.Networks = nil
 	} else if len(ans.Networks) == 0 {
-		state.Networks = []rsModelSiteContext{}
+		state.Networks = []rsModelSiteContextV2N1{}
 	} else {
-		state.Networks = make([]rsModelSiteContext, 0, len(ans.Networks))
+		state.Networks = make([]rsModelSiteContextV2N1, 0, len(ans.Networks))
 		for varLoopNetworksIndex, varLoopNetworks := range ans.Networks {
 			// add a new item
-			state.Networks = append(state.Networks, rsModelSiteContext{})
+			state.Networks = append(state.Networks, rsModelSiteContextV2N1{})
 			// copy_to_state: state=state.Networks[varLoopNetworksIndex] prefix=rsModel ans=varLoopNetworks properties=2
 			tflog.Debug(ctx, "copy_to_state state=state.Networks[varLoopNetworksIndex] prefix=rsModel ans=varLoopNetworks")
 			// property: name=network_id, type=STRING macro=copy_to_state
@@ -622,7 +753,7 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 	return true
 }
 
-func (r *siteSecurityZoneResource) doDelete(ctx context.Context, state *rsModelSecurityZoneNetworkAssociation, resp *resource.DeleteResponse) bool {
+func (r *siteSecurityZoneResource) doDelete(ctx context.Context, state *rsModelSecurityZoneNetworkAssociationV2N1, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -643,7 +774,7 @@ func (r *siteSecurityZoneResource) doDelete(ctx context.Context, state *rsModelS
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_site_security_zone"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/sitesecurityzones/{zone_id}"
+	delete_request.Path = "/sdwan/v2.1/api/sites/{site_id}/sitesecurityzones/{zone_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -677,14 +808,14 @@ func (r *siteSecurityZoneResource) doDelete(ctx context.Context, state *rsModelS
 // Path Parameters are encoded into TfID itself
 func (r *siteSecurityZoneResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_site_security_zone")
-	var plan rsModelSecurityZoneNetworkAssociation
+	var plan rsModelSecurityZoneNetworkAssociationV2N1
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSecurityZoneNetworkAssociation
+	var state rsModelSecurityZoneNetworkAssociationV2N1
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -696,7 +827,7 @@ func (r *siteSecurityZoneResource) Create(ctx context.Context, req resource.Crea
 func (r *siteSecurityZoneResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_site_security_zone")
-	var savestate, state rsModelSecurityZoneNetworkAssociation
+	var savestate, state rsModelSecurityZoneNetworkAssociationV2N1
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -715,7 +846,7 @@ func (r *siteSecurityZoneResource) Read(ctx context.Context, req resource.ReadRe
 func (r *siteSecurityZoneResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_site_security_zone")
-	var plan, state rsModelSecurityZoneNetworkAssociation
+	var plan, state rsModelSecurityZoneNetworkAssociationV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -739,7 +870,7 @@ func (r *siteSecurityZoneResource) Update(ctx context.Context, req resource.Upda
 func (r *siteSecurityZoneResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_site_security_zone")
-	var state rsModelSecurityZoneNetworkAssociation
+	var state rsModelSecurityZoneNetworkAssociationV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

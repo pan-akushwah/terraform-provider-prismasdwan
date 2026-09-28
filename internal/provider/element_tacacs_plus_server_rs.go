@@ -486,13 +486,13 @@ func (r *elementTacacsPlusServerResource) doGet(ctx context.Context, state *rsMo
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{id}"
+	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{tacacs_plus_server_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
 	read_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*read_request.PathParameters)["id"] = &tokens[0]
+	(*read_request.PathParameters)["tacacs_plus_server_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
@@ -632,13 +632,13 @@ func (r *elementTacacsPlusServerResource) doPut(ctx context.Context, plan *rsMod
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{id}"
+	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{tacacs_plus_server_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	put_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*put_request.PathParameters)["id"] = &tokens[0]
+	(*put_request.PathParameters)["tacacs_plus_server_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
@@ -875,13 +875,13 @@ func (r *elementTacacsPlusServerResource) doDelete(ctx context.Context, state *r
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_element_tacacs_plus_server"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{id}"
+	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/tacacs_plus_servers/{tacacs_plus_server_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	delete_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*delete_request.PathParameters)["id"] = &tokens[0]
+	(*delete_request.PathParameters)["tacacs_plus_server_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")

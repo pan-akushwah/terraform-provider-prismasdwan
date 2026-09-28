@@ -18,10 +18,12 @@
   "properties" : {
     "system_location" : {
       "description" : "System Location",
+      "pattern" : "^[^\\x00-\\x1F\\x7F]*$",
       "type" : "string"
     },
     "system_contact" : {
       "description" : "System Contact",
+      "pattern" : "^[^\\x00-\\x1F\\x7F]*$",
       "type" : "string"
     },
     "v3_config" : {
@@ -76,14 +78,16 @@
                 "description" : "User Name",
                 "type" : "string"
               }
-            }
+            },
+            "required" : [ "enc_phrase", "enc_type", "auth_phrase", "auth_type", "security_level", "engine_id", "user_name" ]
           }
         },
         "enabled" : {
           "description" : "Enabled",
           "type" : "boolean"
         }
-      }
+      },
+      "required" : [ "users_access", "enabled" ]
     },
     "v2_config" : {
       "properties" : {
@@ -95,22 +99,41 @@
           "description" : "Enabled",
           "type" : "boolean"
         }
-      }
+      },
+      "required" : [ "community", "enabled" ]
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
+      "pattern" : "^[^\\x00-\\x1F\\x7F]*$",
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
         "properties" : {
           "x_flag_unordered" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -138,20 +161,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "system_location", "system_contact", "v3_config", "v2_config", "description", "tags", "id" ]
 }
 ```
 

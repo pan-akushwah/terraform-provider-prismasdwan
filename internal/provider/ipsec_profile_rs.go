@@ -24,17 +24,19 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=8)
+// | Schema Map Summary (size=goLangStructMap=10)
 // | Computed Resource Name=ipsecprofiles
 // +-----------------------------------------------------------------
+// | PPKConfig HasID=false
 // | IKEV1Params HasID=false
 // | IPSECAuthenticationV1 HasID=false
+// | PQCKEMConfig HasID=false
 // | Proposals HasID=false
 // | IKEGroup HasID=false
 // | Lifesize HasID=false
 // | ResponderSaseProposals HasID=false
 // | ESPGroup HasID=false
-// | IPSECProfileScreenV2N2 HasID=true
+// | IPSECProfileScreenV2N3 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -78,7 +80,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=IPSECProfileScreenV2N2
+			// rest all properties to be read from GET API Schema schema=IPSECProfileScreenV2N3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -273,6 +275,110 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
+					// property: name=ppk_config, type=REFERENCE macro=rss_schema
+					"ppk_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=enabled, type=BOOLEAN macro=rss_schema
+							"enabled": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+							// property: name=key_enabled, type=BOOLEAN macro=rss_schema
+							"key_enabled": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=key_enabled, type=BOOLEAN macro=rss_schema
+							// property: name=mode, type=STRING macro=rss_schema
+							"mode": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=mode, type=STRING macro=rss_schema
+							// property: name=ppk_key_id, type=STRING macro=rss_schema
+							"ppk_key_id": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=ppk_key_id, type=STRING macro=rss_schema
+							// property: name=ppk_secret, type=STRING macro=rss_schema
+							"ppk_secret": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: true,
+							},
+							// key name holder for attribute: name=ppk_secret, type=STRING macro=rss_schema
+							"ppk_secret_internal_key_name": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  true,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// property: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+							"ppk_secret_configured": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: true,
+							},
+							// key name holder for attribute: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+							"ppk_secret_configured_internal_key_name": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  true,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// property: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+							"ppk_secret_encrypted": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: true,
+							},
+							// key name holder for attribute: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+							"ppk_secret_encrypted_internal_key_name": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  true,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// property: name=ppk_secret_hash, type=STRING macro=rss_schema
+							"ppk_secret_hash": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: true,
+							},
+							// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
+							"ppk_secret_hash_internal_key_name": rsschema.StringAttribute{
+								Required:  false,
+								Computed:  true,
+								Optional:  true,
+								Sensitive: false,
+							},
+						},
+					},
+					// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
+					"ppk_secret_hash_internal_key_name": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  true,
+						Optional:  true,
+						Sensitive: false,
+					},
 					// property: name=private_key, type=STRING macro=rss_schema
 					"private_key": rsschema.StringAttribute{
 						Required:  false,
@@ -463,6 +569,95 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=mode, type=STRING macro=rss_schema
+					// property: name=pqc_kem_config, type=REFERENCE macro=rss_schema
+					"pqc_kem_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
+							"block_vulnerable_cipher": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
+							// property: name=enabled, type=BOOLEAN macro=rss_schema
+							"enabled": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+							// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_1_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_2_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_3_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_4_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_5_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_6_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_7_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=proposals, type=ARRAY_REFERENCE macro=rss_schema
 					"proposals": rsschema.ListNestedAttribute{
 						Required:  false,
@@ -610,6 +805,95 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=port, type=INTEGER macro=rss_schema
+					// property: name=pqc_kem_config, type=REFERENCE macro=rss_schema
+					"pqc_kem_config": rsschema.SingleNestedAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+						Attributes: map[string]rsschema.Attribute{
+							// property: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
+							"block_vulnerable_cipher": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
+							// property: name=enabled, type=BOOLEAN macro=rss_schema
+							"enabled": rsschema.BoolAttribute{
+								Required:  false,
+								Computed:  false,
+								Optional:  true,
+								Sensitive: false,
+							},
+							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+							// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_1_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_2_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_3_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_4_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_5_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_6_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+							"round_7_algorithms": rsschema.ListAttribute{
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								ElementType: types.StringType,
+							},
+							// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
+						},
+					},
+					// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=proposals, type=ARRAY_REFERENCE macro=rss_schema
 					"proposals": rsschema.ListNestedAttribute{
 						Required:  false,
@@ -716,7 +1000,7 @@ func (r *ipsecProfileResource) GetHttpStatusCode(request *sdwan_client.SdwanClie
 	}
 }
 
-func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECProfileScreenV2N2, state *rsModelIPSECProfileScreenV2N2, resp *resource.CreateResponse) bool {
+func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECProfileScreenV2N3, state *rsModelIPSECProfileScreenV2N3, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_ipsec_profile")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -728,7 +1012,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_ipsec_profile"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.2/api/ipsecprofiles"
+	create_request.Path = "/sdwan/v2.3/api/ipsecprofiles"
 
 	// copy parameters from plan always
 	params := make(map[string]*string)
@@ -738,7 +1022,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.IPSECProfileScreenV2N2{}
+	var body = &sdwan_schema.IPSECProfileScreenV2N3{}
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=13
@@ -750,7 +1034,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	// property: name=authentication, type=REFERENCE macro=copy_from_plan
 	if plan.Authentication != nil {
 		body.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
-		// copy_from_plan: body=body.Authentication prefix=rsModel plan=plan.Authentication properties=22
+		// copy_from_plan: body=body.Authentication prefix=rsModel plan=plan.Authentication properties=23
 		tflog.Debug(ctx, "copy_from_plan body=body.Authentication prefix=rsModel plan=plan.Authentication")
 		// property: name=certificate, type=STRING macro=copy_from_plan
 		body.Authentication.Certificate = StringValueOrNil(plan.Authentication.Certificate)
@@ -792,6 +1076,28 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		body.Authentication.PeerIdCheck = StringValueOrNil(plan.Authentication.PeerIdCheck)
 		// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_from_plan
 		body.Authentication.PermitPeerIdMismatch = BoolValueOrNil(plan.Authentication.PermitPeerIdMismatch)
+		// property: name=ppk_config, type=REFERENCE macro=copy_from_plan
+		if plan.Authentication.PpkConfig != nil {
+			body.Authentication.PpkConfig = &sdwan_schema.PPKConfig{}
+			// copy_from_plan: body=body.Authentication.PpkConfig prefix=rsModel plan=plan.Authentication.PpkConfig properties=8
+			tflog.Debug(ctx, "copy_from_plan body=body.Authentication.PpkConfig prefix=rsModel plan=plan.Authentication.PpkConfig")
+			// property: name=enabled, type=BOOLEAN macro=copy_from_plan
+			body.Authentication.PpkConfig.Enabled = BoolValueOrNil(plan.Authentication.PpkConfig.Enabled)
+			// property: name=key_enabled, type=BOOLEAN macro=copy_from_plan
+			body.Authentication.PpkConfig.KeyEnabled = BoolValueOrNil(plan.Authentication.PpkConfig.KeyEnabled)
+			// property: name=mode, type=STRING macro=copy_from_plan
+			body.Authentication.PpkConfig.Mode = StringValueOrNil(plan.Authentication.PpkConfig.Mode)
+			// property: name=ppk_key_id, type=STRING macro=copy_from_plan
+			body.Authentication.PpkConfig.PpkKeyId = StringValueOrNil(plan.Authentication.PpkConfig.PpkKeyId)
+			// property: name=ppk_secret, type=STRING macro=copy_from_plan
+			body.Authentication.PpkConfig.PpkSecret = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecret)
+			// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_from_plan
+			body.Authentication.PpkConfig.PpkSecretConfigured = BoolValueOrNil(plan.Authentication.PpkConfig.PpkSecretConfigured)
+			// property: name=ppk_secret_encrypted, type=STRING macro=copy_from_plan
+			body.Authentication.PpkConfig.PpkSecretEncrypted = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecretEncrypted)
+			// property: name=ppk_secret_hash, type=STRING macro=copy_from_plan
+			body.Authentication.PpkConfig.PpkSecretHash = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecretHash)
+		}
 		// property: name=private_key, type=STRING macro=copy_from_plan
 		body.Authentication.PrivateKey = StringValueOrNil(plan.Authentication.PrivateKey)
 		// property: name=private_key_encrypted, type=STRING macro=copy_from_plan
@@ -822,7 +1128,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	// property: name=esp_group, type=REFERENCE macro=copy_from_plan
 	if plan.EspGroup != nil {
 		body.EspGroup = &sdwan_schema.ESPGroup{}
-		// copy_from_plan: body=body.EspGroup prefix=rsModel plan=plan.EspGroup properties=7
+		// copy_from_plan: body=body.EspGroup prefix=rsModel plan=plan.EspGroup properties=8
 		tflog.Debug(ctx, "copy_from_plan body=body.EspGroup prefix=rsModel plan=plan.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_from_plan
 		body.EspGroup.ForceEncapsulation = BoolValueOrNil(plan.EspGroup.ForceEncapsulation)
@@ -842,6 +1148,30 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		body.EspGroup.LifetimeUnits = StringValueOrNil(plan.EspGroup.LifetimeUnits)
 		// property: name=mode, type=STRING macro=copy_from_plan
 		body.EspGroup.Mode = StringValueOrNil(plan.EspGroup.Mode)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_from_plan
+		if plan.EspGroup.PqcKemConfig != nil {
+			body.EspGroup.PqcKemConfig = &sdwan_schema.PQCKEMConfig{}
+			// copy_from_plan: body=body.EspGroup.PqcKemConfig prefix=rsModel plan=plan.EspGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_from_plan body=body.EspGroup.PqcKemConfig prefix=rsModel plan=plan.EspGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.BlockVulnerableCipher = BoolValueOrNil(plan.EspGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Enabled = BoolValueOrNil(plan.EspGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round1Algorithms)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round2Algorithms)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round3Algorithms)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round4Algorithms)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round5Algorithms)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round6Algorithms)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.EspGroup.PqcKemConfig.Round7Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round7Algorithms)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_from_plan
 		if plan.EspGroup.Proposals == nil {
 			body.EspGroup.Proposals = nil
@@ -882,7 +1212,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	// property: name=ike_group, type=REFERENCE macro=copy_from_plan
 	if plan.IkeGroup != nil {
 		body.IkeGroup = &sdwan_schema.IKEGroup{}
-		// copy_from_plan: body=body.IkeGroup prefix=rsModel plan=plan.IkeGroup properties=8
+		// copy_from_plan: body=body.IkeGroup prefix=rsModel plan=plan.IkeGroup properties=9
 		tflog.Debug(ctx, "copy_from_plan body=body.IkeGroup prefix=rsModel plan=plan.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_from_plan
 		body.IkeGroup.Aggressive = BoolValueOrNil(plan.IkeGroup.Aggressive)
@@ -896,6 +1226,30 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		body.IkeGroup.LifetimeUnits = StringValueOrNil(plan.IkeGroup.LifetimeUnits)
 		// property: name=port, type=INTEGER macro=copy_from_plan
 		body.IkeGroup.Port = Int64ValueOrNil(plan.IkeGroup.Port)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_from_plan
+		if plan.IkeGroup.PqcKemConfig != nil {
+			body.IkeGroup.PqcKemConfig = &sdwan_schema.PQCKEMConfig{}
+			// copy_from_plan: body=body.IkeGroup.PqcKemConfig prefix=rsModel plan=plan.IkeGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_from_plan body=body.IkeGroup.PqcKemConfig prefix=rsModel plan=plan.IkeGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.BlockVulnerableCipher = BoolValueOrNil(plan.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Enabled = BoolValueOrNil(plan.IkeGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round1Algorithms)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round2Algorithms)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round3Algorithms)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round4Algorithms)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round5Algorithms)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round6Algorithms)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan
+			body.IkeGroup.PqcKemConfig.Round7Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round7Algorithms)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_from_plan
 		if plan.IkeGroup.Proposals == nil {
 			body.IkeGroup.Proposals = nil
@@ -931,7 +1285,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct IPSECProfileScreenV2N2 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct IPSECProfileScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -1013,12 +1367,12 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.IPSECProfileScreenV2N2
+	var ans sdwan_schema.IPSECProfileScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to IPSECProfileScreenV2N2 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to IPSECProfileScreenV2N3 in create", json_err.Error())
 		return false
 	}
 
@@ -1043,7 +1397,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_ipsec_profile with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=IPSECProfileScreenV2N2
+	// Store the answer to state. schema=IPSECProfileScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -1055,7 +1409,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		state.Authentication = nil
 	} else {
 		state.Authentication = &rsModelIPSECAuthenticationV1{}
-		// copy_to_state: state=state.Authentication prefix=rsModel ans=ans.Authentication properties=22
+		// copy_to_state: state=state.Authentication prefix=rsModel ans=ans.Authentication properties=23
 		tflog.Debug(ctx, "copy_to_state state=state.Authentication prefix=rsModel ans=ans.Authentication")
 		// property: name=certificate, type=STRING macro=copy_to_state
 		state.Authentication.Certificate = types.StringPointerValue(ans.Authentication.Certificate)
@@ -1120,6 +1474,51 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		state.Authentication.PeerIdCheck = types.StringPointerValue(ans.Authentication.PeerIdCheck)
 		// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 		state.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.Authentication.PermitPeerIdMismatch)
+		// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+		if ans.Authentication.PpkConfig == nil {
+			state.Authentication.PpkConfig = nil
+		} else {
+			state.Authentication.PpkConfig = &rsModelPPKConfig{}
+			// copy_to_state: state=state.Authentication.PpkConfig prefix=rsModel ans=ans.Authentication.PpkConfig properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.Authentication.PpkConfig prefix=rsModel ans=ans.Authentication.PpkConfig")
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.Authentication.PpkConfig.Enabled)
+			// property: name=key_enabled, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.KeyEnabled = types.BoolPointerValue(ans.Authentication.PpkConfig.KeyEnabled)
+			// property: name=mode, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.Authentication.PpkConfig.Mode)
+			// property: name=ppk_key_id, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.Authentication.PpkConfig.PpkKeyId)
+			// property: name=ppk_secret, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecret = types.StringPointerValue(plan.Authentication.PpkConfig.PpkSecret.ValueStringPointer())
+			// this property is sensitive and will be stored in the state's internal key name
+			state.Authentication.PpkConfig.PpkSecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+			// store value if needed
+			if !state.Authentication.PpkConfig.PpkSecret.IsNull() {
+				encryptedPpkSecret, _ := Encrypt([]byte(state.Authentication.PpkConfig.PpkSecret.String()))
+				resp.Private.SetKey(ctx, state.Authentication.PpkConfig.PpkSecretInternalKeyName.String(), []byte(encryptedPpkSecret))
+			}
+			// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.Authentication.PpkConfig.PpkSecretConfigured)
+			// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretEncrypted = types.StringPointerValue(plan.Authentication.PpkConfig.PpkSecretEncrypted.ValueStringPointer())
+			// this property is sensitive and will be stored in the state's internal key name
+			state.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
+			// store value if needed
+			if !state.Authentication.PpkConfig.PpkSecretEncrypted.IsNull() {
+				encryptedPpkSecretEncrypted, _ := Encrypt([]byte(state.Authentication.PpkConfig.PpkSecretEncrypted.String()))
+				resp.Private.SetKey(ctx, state.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName.String(), []byte(encryptedPpkSecretEncrypted))
+			}
+			// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretHash = types.StringPointerValue(plan.Authentication.PpkConfig.PpkSecretHash.ValueStringPointer())
+			// this property is sensitive and will be stored in the state's internal key name
+			state.Authentication.PpkConfig.PpkSecretHashInternalKeyName = types.StringValue(GenerateRandomString(16))
+			// store value if needed
+			if !state.Authentication.PpkConfig.PpkSecretHash.IsNull() {
+				encryptedPpkSecretHash, _ := Encrypt([]byte(state.Authentication.PpkConfig.PpkSecretHash.String()))
+				resp.Private.SetKey(ctx, state.Authentication.PpkConfig.PpkSecretHashInternalKeyName.String(), []byte(encryptedPpkSecretHash))
+			}
+		}
 		// property: name=private_key, type=STRING macro=copy_to_state
 		state.Authentication.PrivateKey = types.StringPointerValue(ans.Authentication.PrivateKey)
 		// property: name=private_key_encrypted, type=STRING macro=copy_to_state
@@ -1173,7 +1572,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		state.EspGroup = nil
 	} else {
 		state.EspGroup = &rsModelESPGroup{}
-		// copy_to_state: state=state.EspGroup prefix=rsModel ans=ans.EspGroup properties=7
+		// copy_to_state: state=state.EspGroup prefix=rsModel ans=ans.EspGroup properties=8
 		tflog.Debug(ctx, "copy_to_state state=state.EspGroup prefix=rsModel ans=ans.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.EspGroup.ForceEncapsulation = types.BoolPointerValue(ans.EspGroup.ForceEncapsulation)
@@ -1195,6 +1594,46 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		state.EspGroup.LifetimeUnits = types.StringPointerValue(ans.EspGroup.LifetimeUnits)
 		// property: name=mode, type=STRING macro=copy_to_state
 		state.EspGroup.Mode = types.StringPointerValue(ans.EspGroup.Mode)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_to_state
+		if ans.EspGroup.PqcKemConfig == nil {
+			state.EspGroup.PqcKemConfig = nil
+		} else {
+			state.EspGroup.PqcKemConfig = &rsModelPQCKEMConfig{}
+			// copy_to_state: state=state.EspGroup.PqcKemConfig prefix=rsModel ans=ans.EspGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_to_state state=state.EspGroup.PqcKemConfig prefix=rsModel ans=ans.EspGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_to_state
+			state.EspGroup.PqcKemConfig.BlockVulnerableCipher = types.BoolPointerValue(ans.EspGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.EspGroup.PqcKemConfig.Enabled = types.BoolPointerValue(ans.EspGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound1Algorithms, errRound1Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round1Algorithms)
+			state.EspGroup.PqcKemConfig.Round1Algorithms = varRound1Algorithms
+			resp.Diagnostics.Append(errRound1Algorithms.Errors()...)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound2Algorithms, errRound2Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round2Algorithms)
+			state.EspGroup.PqcKemConfig.Round2Algorithms = varRound2Algorithms
+			resp.Diagnostics.Append(errRound2Algorithms.Errors()...)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound3Algorithms, errRound3Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round3Algorithms)
+			state.EspGroup.PqcKemConfig.Round3Algorithms = varRound3Algorithms
+			resp.Diagnostics.Append(errRound3Algorithms.Errors()...)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound4Algorithms, errRound4Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round4Algorithms)
+			state.EspGroup.PqcKemConfig.Round4Algorithms = varRound4Algorithms
+			resp.Diagnostics.Append(errRound4Algorithms.Errors()...)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound5Algorithms, errRound5Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round5Algorithms)
+			state.EspGroup.PqcKemConfig.Round5Algorithms = varRound5Algorithms
+			resp.Diagnostics.Append(errRound5Algorithms.Errors()...)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound6Algorithms, errRound6Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round6Algorithms)
+			state.EspGroup.PqcKemConfig.Round6Algorithms = varRound6Algorithms
+			resp.Diagnostics.Append(errRound6Algorithms.Errors()...)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound7Algorithms, errRound7Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round7Algorithms)
+			state.EspGroup.PqcKemConfig.Round7Algorithms = varRound7Algorithms
+			resp.Diagnostics.Append(errRound7Algorithms.Errors()...)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.EspGroup.Proposals == nil {
 			state.EspGroup.Proposals = nil
@@ -1245,7 +1684,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		state.IkeGroup = nil
 	} else {
 		state.IkeGroup = &rsModelIKEGroup{}
-		// copy_to_state: state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup properties=8
+		// copy_to_state: state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup properties=9
 		tflog.Debug(ctx, "copy_to_state state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_to_state
 		state.IkeGroup.Aggressive = types.BoolPointerValue(ans.IkeGroup.Aggressive)
@@ -1259,6 +1698,46 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 		state.IkeGroup.LifetimeUnits = types.StringPointerValue(ans.IkeGroup.LifetimeUnits)
 		// property: name=port, type=INTEGER macro=copy_to_state
 		state.IkeGroup.Port = types.Int64PointerValue(ans.IkeGroup.Port)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_to_state
+		if ans.IkeGroup.PqcKemConfig == nil {
+			state.IkeGroup.PqcKemConfig = nil
+		} else {
+			state.IkeGroup.PqcKemConfig = &rsModelPQCKEMConfig{}
+			// copy_to_state: state=state.IkeGroup.PqcKemConfig prefix=rsModel ans=ans.IkeGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_to_state state=state.IkeGroup.PqcKemConfig prefix=rsModel ans=ans.IkeGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_to_state
+			state.IkeGroup.PqcKemConfig.BlockVulnerableCipher = types.BoolPointerValue(ans.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.IkeGroup.PqcKemConfig.Enabled = types.BoolPointerValue(ans.IkeGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound1Algorithms, errRound1Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round1Algorithms)
+			state.IkeGroup.PqcKemConfig.Round1Algorithms = varRound1Algorithms
+			resp.Diagnostics.Append(errRound1Algorithms.Errors()...)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound2Algorithms, errRound2Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round2Algorithms)
+			state.IkeGroup.PqcKemConfig.Round2Algorithms = varRound2Algorithms
+			resp.Diagnostics.Append(errRound2Algorithms.Errors()...)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound3Algorithms, errRound3Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round3Algorithms)
+			state.IkeGroup.PqcKemConfig.Round3Algorithms = varRound3Algorithms
+			resp.Diagnostics.Append(errRound3Algorithms.Errors()...)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound4Algorithms, errRound4Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round4Algorithms)
+			state.IkeGroup.PqcKemConfig.Round4Algorithms = varRound4Algorithms
+			resp.Diagnostics.Append(errRound4Algorithms.Errors()...)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound5Algorithms, errRound5Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round5Algorithms)
+			state.IkeGroup.PqcKemConfig.Round5Algorithms = varRound5Algorithms
+			resp.Diagnostics.Append(errRound5Algorithms.Errors()...)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound6Algorithms, errRound6Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round6Algorithms)
+			state.IkeGroup.PqcKemConfig.Round6Algorithms = varRound6Algorithms
+			resp.Diagnostics.Append(errRound6Algorithms.Errors()...)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound7Algorithms, errRound7Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round7Algorithms)
+			state.IkeGroup.PqcKemConfig.Round7Algorithms = varRound7Algorithms
+			resp.Diagnostics.Append(errRound7Algorithms.Errors()...)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.IkeGroup.Proposals == nil {
 			state.IkeGroup.Proposals = nil
@@ -1295,7 +1774,7 @@ func (r *ipsecProfileResource) doPost(ctx context.Context, plan *rsModelIPSECPro
 	return true
 }
 
-func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECProfileScreenV2N2, savestate *rsModelIPSECProfileScreenV2N2, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECProfileScreenV2N3, savestate *rsModelIPSECProfileScreenV2N3, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -1317,7 +1796,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_ipsec_profile"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.2/api/ipsecprofiles/{profile_id}"
+	read_request.Path = "/sdwan/v2.3/api/ipsecprofiles/{profile_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -1359,7 +1838,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=IPSECProfileScreenV2N2
+	// Store the answer to state. schema=IPSECProfileScreenV2N3
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -1368,12 +1847,12 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.IPSECProfileScreenV2N2
+	var ans sdwan_schema.IPSECProfileScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to IPSECProfileScreenV2N2 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to IPSECProfileScreenV2N3 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
@@ -1388,7 +1867,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.Authentication = nil
 	} else {
 		state.Authentication = &rsModelIPSECAuthenticationV1{}
-		// copy_to_state: state=state.Authentication prefix=rsModel ans=ans.Authentication properties=22
+		// copy_to_state: state=state.Authentication prefix=rsModel ans=ans.Authentication properties=23
 		tflog.Debug(ctx, "copy_to_state state=state.Authentication prefix=rsModel ans=ans.Authentication")
 		// property: name=certificate, type=STRING macro=copy_to_state
 		state.Authentication.Certificate = types.StringPointerValue(ans.Authentication.Certificate)
@@ -1447,6 +1926,45 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.Authentication.PeerIdCheck = types.StringPointerValue(ans.Authentication.PeerIdCheck)
 		// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 		state.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.Authentication.PermitPeerIdMismatch)
+		// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+		if ans.Authentication.PpkConfig == nil {
+			state.Authentication.PpkConfig = nil
+		} else {
+			state.Authentication.PpkConfig = &rsModelPPKConfig{}
+			// copy_to_state: state=state.Authentication.PpkConfig prefix=rsModel ans=ans.Authentication.PpkConfig properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.Authentication.PpkConfig prefix=rsModel ans=ans.Authentication.PpkConfig")
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.Authentication.PpkConfig.Enabled)
+			// property: name=key_enabled, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.KeyEnabled = types.BoolPointerValue(ans.Authentication.PpkConfig.KeyEnabled)
+			// property: name=mode, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.Authentication.PpkConfig.Mode)
+			// property: name=ppk_key_id, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.Authentication.PpkConfig.PpkKeyId)
+			// property: name=ppk_secret, type=STRING macro=copy_to_state
+			encryptedPpkSecretKeyName := state.Authentication.PpkConfig.PpkSecretInternalKeyName.String()
+			encryptedPpkSecretValueBytes, _ := resp.Private.GetKey(ctx, encryptedPpkSecretKeyName)
+			if encryptedPpkSecretValueBytes != nil {
+				decryptedPpkSecret, _ := Decrypt(string(encryptedPpkSecretValueBytes))
+				state.Authentication.PpkConfig.PpkSecret = types.StringValue(decryptedPpkSecret)
+			}
+			// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.Authentication.PpkConfig.PpkSecretConfigured)
+			// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+			encryptedPpkSecretEncryptedKeyName := state.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName.String()
+			encryptedPpkSecretEncryptedValueBytes, _ := resp.Private.GetKey(ctx, encryptedPpkSecretEncryptedKeyName)
+			if encryptedPpkSecretEncryptedValueBytes != nil {
+				decryptedPpkSecretEncrypted, _ := Decrypt(string(encryptedPpkSecretEncryptedValueBytes))
+				state.Authentication.PpkConfig.PpkSecretEncrypted = types.StringValue(decryptedPpkSecretEncrypted)
+			}
+			// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+			encryptedPpkSecretHashKeyName := state.Authentication.PpkConfig.PpkSecretHashInternalKeyName.String()
+			encryptedPpkSecretHashValueBytes, _ := resp.Private.GetKey(ctx, encryptedPpkSecretHashKeyName)
+			if encryptedPpkSecretHashValueBytes != nil {
+				decryptedPpkSecretHash, _ := Decrypt(string(encryptedPpkSecretHashValueBytes))
+				state.Authentication.PpkConfig.PpkSecretHash = types.StringValue(decryptedPpkSecretHash)
+			}
+		}
 		// property: name=private_key, type=STRING macro=copy_to_state
 		state.Authentication.PrivateKey = types.StringPointerValue(ans.Authentication.PrivateKey)
 		// property: name=private_key_encrypted, type=STRING macro=copy_to_state
@@ -1494,7 +2012,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.EspGroup = nil
 	} else {
 		state.EspGroup = &rsModelESPGroup{}
-		// copy_to_state: state=state.EspGroup prefix=rsModel ans=ans.EspGroup properties=7
+		// copy_to_state: state=state.EspGroup prefix=rsModel ans=ans.EspGroup properties=8
 		tflog.Debug(ctx, "copy_to_state state=state.EspGroup prefix=rsModel ans=ans.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.EspGroup.ForceEncapsulation = types.BoolPointerValue(ans.EspGroup.ForceEncapsulation)
@@ -1516,6 +2034,46 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.EspGroup.LifetimeUnits = types.StringPointerValue(ans.EspGroup.LifetimeUnits)
 		// property: name=mode, type=STRING macro=copy_to_state
 		state.EspGroup.Mode = types.StringPointerValue(ans.EspGroup.Mode)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_to_state
+		if ans.EspGroup.PqcKemConfig == nil {
+			state.EspGroup.PqcKemConfig = nil
+		} else {
+			state.EspGroup.PqcKemConfig = &rsModelPQCKEMConfig{}
+			// copy_to_state: state=state.EspGroup.PqcKemConfig prefix=rsModel ans=ans.EspGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_to_state state=state.EspGroup.PqcKemConfig prefix=rsModel ans=ans.EspGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_to_state
+			state.EspGroup.PqcKemConfig.BlockVulnerableCipher = types.BoolPointerValue(ans.EspGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.EspGroup.PqcKemConfig.Enabled = types.BoolPointerValue(ans.EspGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound1Algorithms, errRound1Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round1Algorithms)
+			state.EspGroup.PqcKemConfig.Round1Algorithms = varRound1Algorithms
+			resp.Diagnostics.Append(errRound1Algorithms.Errors()...)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound2Algorithms, errRound2Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round2Algorithms)
+			state.EspGroup.PqcKemConfig.Round2Algorithms = varRound2Algorithms
+			resp.Diagnostics.Append(errRound2Algorithms.Errors()...)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound3Algorithms, errRound3Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round3Algorithms)
+			state.EspGroup.PqcKemConfig.Round3Algorithms = varRound3Algorithms
+			resp.Diagnostics.Append(errRound3Algorithms.Errors()...)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound4Algorithms, errRound4Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round4Algorithms)
+			state.EspGroup.PqcKemConfig.Round4Algorithms = varRound4Algorithms
+			resp.Diagnostics.Append(errRound4Algorithms.Errors()...)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound5Algorithms, errRound5Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round5Algorithms)
+			state.EspGroup.PqcKemConfig.Round5Algorithms = varRound5Algorithms
+			resp.Diagnostics.Append(errRound5Algorithms.Errors()...)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound6Algorithms, errRound6Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round6Algorithms)
+			state.EspGroup.PqcKemConfig.Round6Algorithms = varRound6Algorithms
+			resp.Diagnostics.Append(errRound6Algorithms.Errors()...)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound7Algorithms, errRound7Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round7Algorithms)
+			state.EspGroup.PqcKemConfig.Round7Algorithms = varRound7Algorithms
+			resp.Diagnostics.Append(errRound7Algorithms.Errors()...)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.EspGroup.Proposals == nil {
 			state.EspGroup.Proposals = nil
@@ -1566,7 +2124,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.IkeGroup = nil
 	} else {
 		state.IkeGroup = &rsModelIKEGroup{}
-		// copy_to_state: state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup properties=8
+		// copy_to_state: state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup properties=9
 		tflog.Debug(ctx, "copy_to_state state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_to_state
 		state.IkeGroup.Aggressive = types.BoolPointerValue(ans.IkeGroup.Aggressive)
@@ -1580,6 +2138,46 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 		state.IkeGroup.LifetimeUnits = types.StringPointerValue(ans.IkeGroup.LifetimeUnits)
 		// property: name=port, type=INTEGER macro=copy_to_state
 		state.IkeGroup.Port = types.Int64PointerValue(ans.IkeGroup.Port)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_to_state
+		if ans.IkeGroup.PqcKemConfig == nil {
+			state.IkeGroup.PqcKemConfig = nil
+		} else {
+			state.IkeGroup.PqcKemConfig = &rsModelPQCKEMConfig{}
+			// copy_to_state: state=state.IkeGroup.PqcKemConfig prefix=rsModel ans=ans.IkeGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_to_state state=state.IkeGroup.PqcKemConfig prefix=rsModel ans=ans.IkeGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_to_state
+			state.IkeGroup.PqcKemConfig.BlockVulnerableCipher = types.BoolPointerValue(ans.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.IkeGroup.PqcKemConfig.Enabled = types.BoolPointerValue(ans.IkeGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound1Algorithms, errRound1Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round1Algorithms)
+			state.IkeGroup.PqcKemConfig.Round1Algorithms = varRound1Algorithms
+			resp.Diagnostics.Append(errRound1Algorithms.Errors()...)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound2Algorithms, errRound2Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round2Algorithms)
+			state.IkeGroup.PqcKemConfig.Round2Algorithms = varRound2Algorithms
+			resp.Diagnostics.Append(errRound2Algorithms.Errors()...)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound3Algorithms, errRound3Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round3Algorithms)
+			state.IkeGroup.PqcKemConfig.Round3Algorithms = varRound3Algorithms
+			resp.Diagnostics.Append(errRound3Algorithms.Errors()...)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound4Algorithms, errRound4Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round4Algorithms)
+			state.IkeGroup.PqcKemConfig.Round4Algorithms = varRound4Algorithms
+			resp.Diagnostics.Append(errRound4Algorithms.Errors()...)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound5Algorithms, errRound5Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round5Algorithms)
+			state.IkeGroup.PqcKemConfig.Round5Algorithms = varRound5Algorithms
+			resp.Diagnostics.Append(errRound5Algorithms.Errors()...)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound6Algorithms, errRound6Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round6Algorithms)
+			state.IkeGroup.PqcKemConfig.Round6Algorithms = varRound6Algorithms
+			resp.Diagnostics.Append(errRound6Algorithms.Errors()...)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound7Algorithms, errRound7Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round7Algorithms)
+			state.IkeGroup.PqcKemConfig.Round7Algorithms = varRound7Algorithms
+			resp.Diagnostics.Append(errRound7Algorithms.Errors()...)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.IkeGroup.Proposals == nil {
 			state.IkeGroup.Proposals = nil
@@ -1616,7 +2214,7 @@ func (r *ipsecProfileResource) doGet(ctx context.Context, state *rsModelIPSECPro
 	return true
 }
 
-func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProfileScreenV2N2, state *rsModelIPSECProfileScreenV2N2, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProfileScreenV2N3, state *rsModelIPSECProfileScreenV2N3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -1644,7 +2242,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_ipsec_profile"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.2/api/ipsecprofiles/{profile_id}"
+	put_request.Path = "/sdwan/v2.3/api/ipsecprofiles/{profile_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1663,7 +2261,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.IPSECProfileScreenV2N2{}
+	var body = &sdwan_schema.IPSECProfileScreenV2N3{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
@@ -1686,7 +2284,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		body.Authentication = nil
 	} else {
 		body.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
-		// copy_from_plan_or_state: body=body.Authentication prefix=rsModel state=state.Authentication plan=plan.Authentication properties=22
+		// copy_from_plan_or_state: body=body.Authentication prefix=rsModel state=state.Authentication plan=plan.Authentication properties=23
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Authentication prefix=rsModel state=state.Authentication plan=plan.Authentication")
 		// property: name=certificate, type=STRING macro=copy_from_plan_or_state
 		if state.Authentication != nil {
@@ -1798,6 +2396,62 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		} else {
 			body.Authentication.PermitPeerIdMismatch = BoolValueOrNil(plan.Authentication.PermitPeerIdMismatch)
 		}
+		// property: name=ppk_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.Authentication.PpkConfig == nil {
+			body.Authentication.PpkConfig = nil
+		} else {
+			body.Authentication.PpkConfig = &sdwan_schema.PPKConfig{}
+			// copy_from_plan_or_state: body=body.Authentication.PpkConfig prefix=rsModel state=state.Authentication.PpkConfig plan=plan.Authentication.PpkConfig properties=8
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Authentication.PpkConfig prefix=rsModel state=state.Authentication.PpkConfig plan=plan.Authentication.PpkConfig")
+			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.Authentication.PpkConfig.Enabled, state.Authentication.PpkConfig.Enabled)
+			} else {
+				body.Authentication.PpkConfig.Enabled = BoolValueOrNil(plan.Authentication.PpkConfig.Enabled)
+			}
+			// property: name=key_enabled, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.KeyEnabled = ValueBoolPointerFromPlanOrState(plan.Authentication.PpkConfig.KeyEnabled, state.Authentication.PpkConfig.KeyEnabled)
+			} else {
+				body.Authentication.PpkConfig.KeyEnabled = BoolValueOrNil(plan.Authentication.PpkConfig.KeyEnabled)
+			}
+			// property: name=mode, type=STRING macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.Mode = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.Mode, state.Authentication.PpkConfig.Mode)
+			} else {
+				body.Authentication.PpkConfig.Mode = StringValueOrNil(plan.Authentication.PpkConfig.Mode)
+			}
+			// property: name=ppk_key_id, type=STRING macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.PpkKeyId = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkKeyId, state.Authentication.PpkConfig.PpkKeyId)
+			} else {
+				body.Authentication.PpkConfig.PpkKeyId = StringValueOrNil(plan.Authentication.PpkConfig.PpkKeyId)
+			}
+			// property: name=ppk_secret, type=STRING macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.PpkSecret = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecret, state.Authentication.PpkConfig.PpkSecret)
+			} else {
+				body.Authentication.PpkConfig.PpkSecret = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecret)
+			}
+			// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.PpkSecretConfigured = ValueBoolPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecretConfigured, state.Authentication.PpkConfig.PpkSecretConfigured)
+			} else {
+				body.Authentication.PpkConfig.PpkSecretConfigured = BoolValueOrNil(plan.Authentication.PpkConfig.PpkSecretConfigured)
+			}
+			// property: name=ppk_secret_encrypted, type=STRING macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.PpkSecretEncrypted = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecretEncrypted, state.Authentication.PpkConfig.PpkSecretEncrypted)
+			} else {
+				body.Authentication.PpkConfig.PpkSecretEncrypted = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecretEncrypted)
+			}
+			// property: name=ppk_secret_hash, type=STRING macro=copy_from_plan_or_state
+			if state.Authentication.PpkConfig != nil {
+				body.Authentication.PpkConfig.PpkSecretHash = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecretHash, state.Authentication.PpkConfig.PpkSecretHash)
+			} else {
+				body.Authentication.PpkConfig.PpkSecretHash = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecretHash)
+			}
+		}
 		// property: name=private_key, type=STRING macro=copy_from_plan_or_state
 		if state.Authentication != nil {
 			body.Authentication.PrivateKey = ValueStringPointerFromPlanOrState(plan.Authentication.PrivateKey, state.Authentication.PrivateKey)
@@ -1882,7 +2536,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		body.EspGroup = nil
 	} else {
 		body.EspGroup = &sdwan_schema.ESPGroup{}
-		// copy_from_plan_or_state: body=body.EspGroup prefix=rsModel state=state.EspGroup plan=plan.EspGroup properties=7
+		// copy_from_plan_or_state: body=body.EspGroup prefix=rsModel state=state.EspGroup plan=plan.EspGroup properties=8
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.EspGroup prefix=rsModel state=state.EspGroup plan=plan.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.EspGroup != nil {
@@ -1927,6 +2581,40 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			body.EspGroup.Mode = ValueStringPointerFromPlanOrState(plan.EspGroup.Mode, state.EspGroup.Mode)
 		} else {
 			body.EspGroup.Mode = StringValueOrNil(plan.EspGroup.Mode)
+		}
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.EspGroup.PqcKemConfig == nil {
+			body.EspGroup.PqcKemConfig = nil
+		} else {
+			body.EspGroup.PqcKemConfig = &sdwan_schema.PQCKEMConfig{}
+			// copy_from_plan_or_state: body=body.EspGroup.PqcKemConfig prefix=rsModel state=state.EspGroup.PqcKemConfig plan=plan.EspGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EspGroup.PqcKemConfig prefix=rsModel state=state.EspGroup.PqcKemConfig plan=plan.EspGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.EspGroup.PqcKemConfig != nil {
+				body.EspGroup.PqcKemConfig.BlockVulnerableCipher = ValueBoolPointerFromPlanOrState(plan.EspGroup.PqcKemConfig.BlockVulnerableCipher, state.EspGroup.PqcKemConfig.BlockVulnerableCipher)
+			} else {
+				body.EspGroup.PqcKemConfig.BlockVulnerableCipher = BoolValueOrNil(plan.EspGroup.PqcKemConfig.BlockVulnerableCipher)
+			}
+			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.EspGroup.PqcKemConfig != nil {
+				body.EspGroup.PqcKemConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.EspGroup.PqcKemConfig.Enabled, state.EspGroup.PqcKemConfig.Enabled)
+			} else {
+				body.EspGroup.PqcKemConfig.Enabled = BoolValueOrNil(plan.EspGroup.PqcKemConfig.Enabled)
+			}
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round1Algorithms)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round2Algorithms)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round3Algorithms)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round4Algorithms)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round5Algorithms)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round6Algorithms)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.EspGroup.PqcKemConfig.Round7Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round7Algorithms)
 		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 		if plan.EspGroup.Proposals == nil && (state.EspGroup == nil || state.EspGroup.Proposals == nil) {
@@ -1981,7 +2669,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		body.IkeGroup = nil
 	} else {
 		body.IkeGroup = &sdwan_schema.IKEGroup{}
-		// copy_from_plan_or_state: body=body.IkeGroup prefix=rsModel state=state.IkeGroup plan=plan.IkeGroup properties=8
+		// copy_from_plan_or_state: body=body.IkeGroup prefix=rsModel state=state.IkeGroup plan=plan.IkeGroup properties=9
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.IkeGroup prefix=rsModel state=state.IkeGroup plan=plan.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.IkeGroup != nil {
@@ -2018,6 +2706,40 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			body.IkeGroup.Port = ValueInt64PointerFromPlanOrState(plan.IkeGroup.Port, state.IkeGroup.Port)
 		} else {
 			body.IkeGroup.Port = Int64ValueOrNil(plan.IkeGroup.Port)
+		}
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_from_plan_or_state
+		if plan.IkeGroup.PqcKemConfig == nil {
+			body.IkeGroup.PqcKemConfig = nil
+		} else {
+			body.IkeGroup.PqcKemConfig = &sdwan_schema.PQCKEMConfig{}
+			// copy_from_plan_or_state: body=body.IkeGroup.PqcKemConfig prefix=rsModel state=state.IkeGroup.PqcKemConfig plan=plan.IkeGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_from_plan_or_state body=body.IkeGroup.PqcKemConfig prefix=rsModel state=state.IkeGroup.PqcKemConfig plan=plan.IkeGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.IkeGroup.PqcKemConfig != nil {
+				body.IkeGroup.PqcKemConfig.BlockVulnerableCipher = ValueBoolPointerFromPlanOrState(plan.IkeGroup.PqcKemConfig.BlockVulnerableCipher, state.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
+			} else {
+				body.IkeGroup.PqcKemConfig.BlockVulnerableCipher = BoolValueOrNil(plan.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
+			}
+			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
+			if state.IkeGroup.PqcKemConfig != nil {
+				body.IkeGroup.PqcKemConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.IkeGroup.PqcKemConfig.Enabled, state.IkeGroup.PqcKemConfig.Enabled)
+			} else {
+				body.IkeGroup.PqcKemConfig.Enabled = BoolValueOrNil(plan.IkeGroup.PqcKemConfig.Enabled)
+			}
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round1Algorithms)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round2Algorithms)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round3Algorithms)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round4Algorithms)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round5Algorithms)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round6Algorithms)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
+			body.IkeGroup.PqcKemConfig.Round7Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round7Algorithms)
 		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 		if plan.IkeGroup.Proposals == nil && (state.IkeGroup == nil || state.IkeGroup.Proposals == nil) {
@@ -2071,7 +2793,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct IPSECProfileScreenV2N2 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct IPSECProfileScreenV2N3 to JSON:", err.Error())
 		return false
 	}
 
@@ -2146,16 +2868,16 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.IPSECProfileScreenV2N2
+	var ans sdwan_schema.IPSECProfileScreenV2N3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to IPSECProfileScreenV2N2 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to IPSECProfileScreenV2N3 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=IPSECProfileScreenV2N2
+	// Store the answer to state. schema=IPSECProfileScreenV2N3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=13
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -2167,7 +2889,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		state.Authentication = nil
 	} else {
 		state.Authentication = &rsModelIPSECAuthenticationV1{}
-		// copy_to_state: state=state.Authentication prefix=rsModel ans=ans.Authentication properties=22
+		// copy_to_state: state=state.Authentication prefix=rsModel ans=ans.Authentication properties=23
 		tflog.Debug(ctx, "copy_to_state state=state.Authentication prefix=rsModel ans=ans.Authentication")
 		// property: name=certificate, type=STRING macro=copy_to_state
 		state.Authentication.Certificate = types.StringPointerValue(ans.Authentication.Certificate)
@@ -2232,6 +2954,51 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		state.Authentication.PeerIdCheck = types.StringPointerValue(ans.Authentication.PeerIdCheck)
 		// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 		state.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.Authentication.PermitPeerIdMismatch)
+		// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+		if ans.Authentication.PpkConfig == nil {
+			state.Authentication.PpkConfig = nil
+		} else {
+			state.Authentication.PpkConfig = &rsModelPPKConfig{}
+			// copy_to_state: state=state.Authentication.PpkConfig prefix=rsModel ans=ans.Authentication.PpkConfig properties=8
+			tflog.Debug(ctx, "copy_to_state state=state.Authentication.PpkConfig prefix=rsModel ans=ans.Authentication.PpkConfig")
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.Authentication.PpkConfig.Enabled)
+			// property: name=key_enabled, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.KeyEnabled = types.BoolPointerValue(ans.Authentication.PpkConfig.KeyEnabled)
+			// property: name=mode, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.Authentication.PpkConfig.Mode)
+			// property: name=ppk_key_id, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.Authentication.PpkConfig.PpkKeyId)
+			// property: name=ppk_secret, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecret = types.StringPointerValue(plan.Authentication.PpkConfig.PpkSecret.ValueStringPointer())
+			// this property is sensitive and will be stored in the state's internal key name
+			state.Authentication.PpkConfig.PpkSecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+			// store value if needed
+			if !state.Authentication.PpkConfig.PpkSecret.IsNull() {
+				encryptedPpkSecret, _ := Encrypt([]byte(state.Authentication.PpkConfig.PpkSecret.String()))
+				resp.Private.SetKey(ctx, state.Authentication.PpkConfig.PpkSecretInternalKeyName.String(), []byte(encryptedPpkSecret))
+			}
+			// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.Authentication.PpkConfig.PpkSecretConfigured)
+			// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretEncrypted = types.StringPointerValue(plan.Authentication.PpkConfig.PpkSecretEncrypted.ValueStringPointer())
+			// this property is sensitive and will be stored in the state's internal key name
+			state.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
+			// store value if needed
+			if !state.Authentication.PpkConfig.PpkSecretEncrypted.IsNull() {
+				encryptedPpkSecretEncrypted, _ := Encrypt([]byte(state.Authentication.PpkConfig.PpkSecretEncrypted.String()))
+				resp.Private.SetKey(ctx, state.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName.String(), []byte(encryptedPpkSecretEncrypted))
+			}
+			// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+			state.Authentication.PpkConfig.PpkSecretHash = types.StringPointerValue(plan.Authentication.PpkConfig.PpkSecretHash.ValueStringPointer())
+			// this property is sensitive and will be stored in the state's internal key name
+			state.Authentication.PpkConfig.PpkSecretHashInternalKeyName = types.StringValue(GenerateRandomString(16))
+			// store value if needed
+			if !state.Authentication.PpkConfig.PpkSecretHash.IsNull() {
+				encryptedPpkSecretHash, _ := Encrypt([]byte(state.Authentication.PpkConfig.PpkSecretHash.String()))
+				resp.Private.SetKey(ctx, state.Authentication.PpkConfig.PpkSecretHashInternalKeyName.String(), []byte(encryptedPpkSecretHash))
+			}
+		}
 		// property: name=private_key, type=STRING macro=copy_to_state
 		state.Authentication.PrivateKey = types.StringPointerValue(ans.Authentication.PrivateKey)
 		// property: name=private_key_encrypted, type=STRING macro=copy_to_state
@@ -2285,7 +3052,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		state.EspGroup = nil
 	} else {
 		state.EspGroup = &rsModelESPGroup{}
-		// copy_to_state: state=state.EspGroup prefix=rsModel ans=ans.EspGroup properties=7
+		// copy_to_state: state=state.EspGroup prefix=rsModel ans=ans.EspGroup properties=8
 		tflog.Debug(ctx, "copy_to_state state=state.EspGroup prefix=rsModel ans=ans.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_to_state
 		state.EspGroup.ForceEncapsulation = types.BoolPointerValue(ans.EspGroup.ForceEncapsulation)
@@ -2307,6 +3074,46 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		state.EspGroup.LifetimeUnits = types.StringPointerValue(ans.EspGroup.LifetimeUnits)
 		// property: name=mode, type=STRING macro=copy_to_state
 		state.EspGroup.Mode = types.StringPointerValue(ans.EspGroup.Mode)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_to_state
+		if ans.EspGroup.PqcKemConfig == nil {
+			state.EspGroup.PqcKemConfig = nil
+		} else {
+			state.EspGroup.PqcKemConfig = &rsModelPQCKEMConfig{}
+			// copy_to_state: state=state.EspGroup.PqcKemConfig prefix=rsModel ans=ans.EspGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_to_state state=state.EspGroup.PqcKemConfig prefix=rsModel ans=ans.EspGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_to_state
+			state.EspGroup.PqcKemConfig.BlockVulnerableCipher = types.BoolPointerValue(ans.EspGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.EspGroup.PqcKemConfig.Enabled = types.BoolPointerValue(ans.EspGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound1Algorithms, errRound1Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round1Algorithms)
+			state.EspGroup.PqcKemConfig.Round1Algorithms = varRound1Algorithms
+			resp.Diagnostics.Append(errRound1Algorithms.Errors()...)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound2Algorithms, errRound2Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round2Algorithms)
+			state.EspGroup.PqcKemConfig.Round2Algorithms = varRound2Algorithms
+			resp.Diagnostics.Append(errRound2Algorithms.Errors()...)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound3Algorithms, errRound3Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round3Algorithms)
+			state.EspGroup.PqcKemConfig.Round3Algorithms = varRound3Algorithms
+			resp.Diagnostics.Append(errRound3Algorithms.Errors()...)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound4Algorithms, errRound4Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round4Algorithms)
+			state.EspGroup.PqcKemConfig.Round4Algorithms = varRound4Algorithms
+			resp.Diagnostics.Append(errRound4Algorithms.Errors()...)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound5Algorithms, errRound5Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round5Algorithms)
+			state.EspGroup.PqcKemConfig.Round5Algorithms = varRound5Algorithms
+			resp.Diagnostics.Append(errRound5Algorithms.Errors()...)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound6Algorithms, errRound6Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round6Algorithms)
+			state.EspGroup.PqcKemConfig.Round6Algorithms = varRound6Algorithms
+			resp.Diagnostics.Append(errRound6Algorithms.Errors()...)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound7Algorithms, errRound7Algorithms := types.ListValueFrom(ctx, types.StringType, ans.EspGroup.PqcKemConfig.Round7Algorithms)
+			state.EspGroup.PqcKemConfig.Round7Algorithms = varRound7Algorithms
+			resp.Diagnostics.Append(errRound7Algorithms.Errors()...)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.EspGroup.Proposals == nil {
 			state.EspGroup.Proposals = nil
@@ -2357,7 +3164,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		state.IkeGroup = nil
 	} else {
 		state.IkeGroup = &rsModelIKEGroup{}
-		// copy_to_state: state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup properties=8
+		// copy_to_state: state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup properties=9
 		tflog.Debug(ctx, "copy_to_state state=state.IkeGroup prefix=rsModel ans=ans.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_to_state
 		state.IkeGroup.Aggressive = types.BoolPointerValue(ans.IkeGroup.Aggressive)
@@ -2371,6 +3178,46 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		state.IkeGroup.LifetimeUnits = types.StringPointerValue(ans.IkeGroup.LifetimeUnits)
 		// property: name=port, type=INTEGER macro=copy_to_state
 		state.IkeGroup.Port = types.Int64PointerValue(ans.IkeGroup.Port)
+		// property: name=pqc_kem_config, type=REFERENCE macro=copy_to_state
+		if ans.IkeGroup.PqcKemConfig == nil {
+			state.IkeGroup.PqcKemConfig = nil
+		} else {
+			state.IkeGroup.PqcKemConfig = &rsModelPQCKEMConfig{}
+			// copy_to_state: state=state.IkeGroup.PqcKemConfig prefix=rsModel ans=ans.IkeGroup.PqcKemConfig properties=9
+			tflog.Debug(ctx, "copy_to_state state=state.IkeGroup.PqcKemConfig prefix=rsModel ans=ans.IkeGroup.PqcKemConfig")
+			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_to_state
+			state.IkeGroup.PqcKemConfig.BlockVulnerableCipher = types.BoolPointerValue(ans.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
+			// property: name=enabled, type=BOOLEAN macro=copy_to_state
+			state.IkeGroup.PqcKemConfig.Enabled = types.BoolPointerValue(ans.IkeGroup.PqcKemConfig.Enabled)
+			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound1Algorithms, errRound1Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round1Algorithms)
+			state.IkeGroup.PqcKemConfig.Round1Algorithms = varRound1Algorithms
+			resp.Diagnostics.Append(errRound1Algorithms.Errors()...)
+			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound2Algorithms, errRound2Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round2Algorithms)
+			state.IkeGroup.PqcKemConfig.Round2Algorithms = varRound2Algorithms
+			resp.Diagnostics.Append(errRound2Algorithms.Errors()...)
+			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound3Algorithms, errRound3Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round3Algorithms)
+			state.IkeGroup.PqcKemConfig.Round3Algorithms = varRound3Algorithms
+			resp.Diagnostics.Append(errRound3Algorithms.Errors()...)
+			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound4Algorithms, errRound4Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round4Algorithms)
+			state.IkeGroup.PqcKemConfig.Round4Algorithms = varRound4Algorithms
+			resp.Diagnostics.Append(errRound4Algorithms.Errors()...)
+			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound5Algorithms, errRound5Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round5Algorithms)
+			state.IkeGroup.PqcKemConfig.Round5Algorithms = varRound5Algorithms
+			resp.Diagnostics.Append(errRound5Algorithms.Errors()...)
+			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound6Algorithms, errRound6Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round6Algorithms)
+			state.IkeGroup.PqcKemConfig.Round6Algorithms = varRound6Algorithms
+			resp.Diagnostics.Append(errRound6Algorithms.Errors()...)
+			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_to_state
+			varRound7Algorithms, errRound7Algorithms := types.ListValueFrom(ctx, types.StringType, ans.IkeGroup.PqcKemConfig.Round7Algorithms)
+			state.IkeGroup.PqcKemConfig.Round7Algorithms = varRound7Algorithms
+			resp.Diagnostics.Append(errRound7Algorithms.Errors()...)
+		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.IkeGroup.Proposals == nil {
 			state.IkeGroup.Proposals = nil
@@ -2407,7 +3254,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 	return true
 }
 
-func (r *ipsecProfileResource) doDelete(ctx context.Context, state *rsModelIPSECProfileScreenV2N2, resp *resource.DeleteResponse) bool {
+func (r *ipsecProfileResource) doDelete(ctx context.Context, state *rsModelIPSECProfileScreenV2N3, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -2428,7 +3275,7 @@ func (r *ipsecProfileResource) doDelete(ctx context.Context, state *rsModelIPSEC
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_ipsec_profile"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.2/api/ipsecprofiles/{profile_id}"
+	delete_request.Path = "/sdwan/v2.3/api/ipsecprofiles/{profile_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -2462,14 +3309,14 @@ func (r *ipsecProfileResource) doDelete(ctx context.Context, state *rsModelIPSEC
 // Path Parameters are encoded into TfID itself
 func (r *ipsecProfileResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_ipsec_profile")
-	var plan rsModelIPSECProfileScreenV2N2
+	var plan rsModelIPSECProfileScreenV2N3
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelIPSECProfileScreenV2N2
+	var state rsModelIPSECProfileScreenV2N3
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -2481,7 +3328,7 @@ func (r *ipsecProfileResource) Create(ctx context.Context, req resource.CreateRe
 func (r *ipsecProfileResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_ipsec_profile")
-	var savestate, state rsModelIPSECProfileScreenV2N2
+	var savestate, state rsModelIPSECProfileScreenV2N3
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -2500,7 +3347,7 @@ func (r *ipsecProfileResource) Read(ctx context.Context, req resource.ReadReques
 func (r *ipsecProfileResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_ipsec_profile")
-	var plan, state rsModelIPSECProfileScreenV2N2
+	var plan, state rsModelIPSECProfileScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -2524,7 +3371,7 @@ func (r *ipsecProfileResource) Update(ctx context.Context, req resource.UpdateRe
 func (r *ipsecProfileResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_ipsec_profile")
-	var state rsModelIPSECProfileScreenV2N2
+	var state rsModelIPSECProfileScreenV2N3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

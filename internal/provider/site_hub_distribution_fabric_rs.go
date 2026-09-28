@@ -327,13 +327,13 @@ func (r *siteHubDistributionFabricResource) doGet(ctx context.Context, state *rs
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_site_hub_distribution_fabric"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{id}"
+	read_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{prefixdistributionspokelist_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
 	read_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*read_request.PathParameters)["id"] = &tokens[0]
+	(*read_request.PathParameters)["prefixdistributionspokelist_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
@@ -438,13 +438,13 @@ func (r *siteHubDistributionFabricResource) doPut(ctx context.Context, plan *rsM
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_site_hub_distribution_fabric"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{id}"
+	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{prefixdistributionspokelist_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	put_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*put_request.PathParameters)["id"] = &tokens[0]
+	(*put_request.PathParameters)["prefixdistributionspokelist_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")
@@ -591,13 +591,13 @@ func (r *siteHubDistributionFabricResource) doDelete(ctx context.Context, state 
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_site_hub_distribution_fabric"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{id}"
+	delete_request.Path = "/sdwan/v2.0/api/sites/{site_id}/prefixdistributionspokelists/{prefixdistributionspokelist_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
 	delete_request.PathParameters = &params
 	// add last parameter as ObjectID
-	(*delete_request.PathParameters)["id"] = &tokens[0]
+	(*delete_request.PathParameters)["prefixdistributionspokelist_id"] = &tokens[0]
 	// add other parameters by splitting on `=`
 	for _, token := range tokens[0:] {
 		param := strings.Split(token, "=")

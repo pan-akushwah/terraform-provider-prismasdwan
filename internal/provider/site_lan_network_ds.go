@@ -20,14 +20,12 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=9)
+// | Schema Map Summary (size=goLangStructMap=7)
 // | Computed Resource Name=sites_lannetworks
 // +-----------------------------------------------------------------
 // | LanNetworkIPv6Config HasID=false
-// | BaseCustomDHCPOptions HasID=false
-// | StaticMapping HasID=false
-// | IPRange HasID=false
-// | DHCPServer HasID=true
+// | IPAddressPool HasID=false
+// | DHCPServer HasID=false
 // | DHCPRelayOption82 HasID=false
 // | DHCPRelay HasID=false
 // | LanNetworkIPv4Config HasID=false
@@ -240,91 +238,6 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 									Optional:  true,
 									Sensitive: false,
 									Attributes: map[string]dsschema.Attribute{
-										// property: name=_etag, type=INTEGER macro=rss_schema
-										"x_etag": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
-										// property: name=_schema, type=INTEGER macro=rss_schema
-										"x_schema": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
-										// property: name=broadcast_address, type=STRING macro=rss_schema
-										"broadcast_address": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=broadcast_address, type=STRING macro=rss_schema
-										// property: name=custom_options, type=ARRAY_REFERENCE macro=rss_schema
-										"custom_options": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-											NestedObject: dsschema.NestedAttributeObject{
-												Attributes: map[string]dsschema.Attribute{
-													// property: name=option_definition, type=STRING macro=rss_schema
-													"option_definition": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=option_definition, type=STRING macro=rss_schema
-													// property: name=option_value, type=STRING macro=rss_schema
-													"option_value": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=option_value, type=STRING macro=rss_schema
-												},
-											},
-										},
-										// key name holder for attribute: name=option_value, type=STRING macro=rss_schema
-										// property: name=default_lease_time, type=INTEGER macro=rss_schema
-										"default_lease_time": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=default_lease_time, type=INTEGER macro=rss_schema
-										// property: name=description, type=STRING macro=rss_schema
-										"description": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=description, type=STRING macro=rss_schema
-										// property: name=disabled, type=BOOLEAN macro=rss_schema
-										"disabled": dsschema.BoolAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
-										// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
-										"dns_servers": dsschema.ListAttribute{
-											Required:    false,
-											Computed:    false,
-											Optional:    true,
-											Sensitive:   false,
-											ElementType: types.StringType,
-										},
-										// key name holder for attribute: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
 										// property: name=domain_name, type=STRING macro=rss_schema
 										"domain_name": dsschema.StringAttribute{
 											Required:  false,
@@ -333,122 +246,62 @@ func (d *siteLanNetworkDataSource) Schema(_ context.Context, _ datasource.Schema
 											Sensitive: false,
 										},
 										// key name holder for attribute: name=domain_name, type=STRING macro=rss_schema
-										// property: name=gateway, type=STRING macro=rss_schema
-										"gateway": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=gateway, type=STRING macro=rss_schema
-										// property: name=id, type=STRING macro=rss_schema
-										"id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  true,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=id, type=STRING macro=rss_schema
-										// property: name=ip_ranges, type=ARRAY_REFERENCE macro=rss_schema
-										"ip_ranges": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-											NestedObject: dsschema.NestedAttributeObject{
-												Attributes: map[string]dsschema.Attribute{
-													// property: name=end_ip, type=STRING macro=rss_schema
-													"end_ip": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=end_ip, type=STRING macro=rss_schema
-													// property: name=start_ip, type=STRING macro=rss_schema
-													"start_ip": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
-												},
-											},
-										},
-										// key name holder for attribute: name=start_ip, type=STRING macro=rss_schema
-										// property: name=max_lease_time, type=INTEGER macro=rss_schema
-										"max_lease_time": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=max_lease_time, type=INTEGER macro=rss_schema
-										// property: name=network_context_id, type=STRING macro=rss_schema
-										"network_context_id": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
-										// property: name=static_mappings, type=ARRAY_REFERENCE macro=rss_schema
-										"static_mappings": dsschema.ListNestedAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-											NestedObject: dsschema.NestedAttributeObject{
-												Attributes: map[string]dsschema.Attribute{
-													// property: name=ip_address, type=STRING macro=rss_schema
-													"ip_address": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=ip_address, type=STRING macro=rss_schema
-													// property: name=mac, type=STRING macro=rss_schema
-													"mac": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=mac, type=STRING macro=rss_schema
-													// property: name=name, type=STRING macro=rss_schema
-													"name": dsschema.StringAttribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
-													},
-													// key name holder for attribute: name=name, type=STRING macro=rss_schema
-												},
-											},
-										},
-										// key name holder for attribute: name=name, type=STRING macro=rss_schema
-										// property: name=subnet, type=STRING macro=rss_schema
-										"subnet": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
-										},
-										// key name holder for attribute: name=subnet, type=STRING macro=rss_schema
-										// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
-										"tags": dsschema.SetAttribute{
+										// property: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=rss_schema
+										"domain_name_servers": dsschema.ListAttribute{
 											Required:    false,
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
 											ElementType: types.StringType,
 										},
-										// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+										// key name holder for attribute: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=rss_schema
+										// property: name=ip_address_pool, type=ARRAY_REFERENCE macro=rss_schema
+										"ip_address_pool": dsschema.ListNestedAttribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+											NestedObject: dsschema.NestedAttributeObject{
+												Attributes: map[string]dsschema.Attribute{
+													// property: name=end, type=STRING macro=rss_schema
+													"end": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=end, type=STRING macro=rss_schema
+													// property: name=start, type=STRING macro=rss_schema
+													"start": dsschema.StringAttribute{
+														Required:  false,
+														Computed:  false,
+														Optional:  true,
+														Sensitive: false,
+													},
+													// key name holder for attribute: name=start, type=STRING macro=rss_schema
+												},
+											},
+										},
+										// key name holder for attribute: name=start, type=STRING macro=rss_schema
+										// property: name=lease_expiry_time, type=INTEGER macro=rss_schema
+										"lease_expiry_time": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=lease_expiry_time, type=INTEGER macro=rss_schema
+										// property: name=lease_renew_time, type=INTEGER macro=rss_schema
+										"lease_renew_time": dsschema.Int64Attribute{
+											Required:  false,
+											Computed:  false,
+											Optional:  true,
+											Sensitive: false,
+										},
+										// key name holder for attribute: name=lease_renew_time, type=INTEGER macro=rss_schema
 									},
 								},
-								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+								// key name holder for attribute: name=lease_renew_time, type=INTEGER macro=rss_schema
 								// property: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 								"prefixes": dsschema.ListAttribute{
 									Required:    false,
@@ -708,96 +561,36 @@ func (d *siteLanNetworkDataSource) Read(ctx context.Context, req datasource.Read
 				state.Ipv4Config.DhcpServer = nil
 			} else {
 				state.Ipv4Config.DhcpServer = &dsModelDHCPServer{}
-				// copy_to_state: state=state.Ipv4Config.DhcpServer prefix=dsModel ans=ans.Ipv4Config.DhcpServer properties=17
+				// copy_to_state: state=state.Ipv4Config.DhcpServer prefix=dsModel ans=ans.Ipv4Config.DhcpServer properties=5
 				tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer prefix=dsModel ans=ans.Ipv4Config.DhcpServer")
-				// property: name=_etag, type=INTEGER macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Etag = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.Etag)
-				// property: name=_schema, type=INTEGER macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Schema = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.Schema)
-				// property: name=broadcast_address, type=STRING macro=copy_to_state
-				state.Ipv4Config.DhcpServer.BroadcastAddress = types.StringPointerValue(ans.Ipv4Config.DhcpServer.BroadcastAddress)
-				// property: name=custom_options, type=ARRAY_REFERENCE macro=copy_to_state
-				if ans.Ipv4Config.DhcpServer.CustomOptions == nil {
-					state.Ipv4Config.DhcpServer.CustomOptions = nil
-				} else if len(ans.Ipv4Config.DhcpServer.CustomOptions) == 0 {
-					state.Ipv4Config.DhcpServer.CustomOptions = []dsModelBaseCustomDHCPOptions{}
-				} else {
-					state.Ipv4Config.DhcpServer.CustomOptions = make([]dsModelBaseCustomDHCPOptions, 0, len(ans.Ipv4Config.DhcpServer.CustomOptions))
-					for varLoopCustomOptionsIndex, varLoopCustomOptions := range ans.Ipv4Config.DhcpServer.CustomOptions {
-						// add a new item
-						state.Ipv4Config.DhcpServer.CustomOptions = append(state.Ipv4Config.DhcpServer.CustomOptions, dsModelBaseCustomDHCPOptions{})
-						// copy_to_state: state=state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions properties=2
-						tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex] prefix=dsModel ans=varLoopCustomOptions")
-						// property: name=option_definition, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex].OptionDefinition = types.StringPointerValue(varLoopCustomOptions.OptionDefinition)
-						// property: name=option_value, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.CustomOptions[varLoopCustomOptionsIndex].OptionValue = types.StringPointerValue(varLoopCustomOptions.OptionValue)
-					}
-				}
-				// property: name=default_lease_time, type=INTEGER macro=copy_to_state
-				state.Ipv4Config.DhcpServer.DefaultLeaseTime = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.DefaultLeaseTime)
-				// property: name=description, type=STRING macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Description = types.StringPointerValue(ans.Ipv4Config.DhcpServer.Description)
-				// property: name=disabled, type=BOOLEAN macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Disabled = types.BoolPointerValue(ans.Ipv4Config.DhcpServer.Disabled)
-				// property: name=dns_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
-				varDnsServers, errDnsServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DhcpServer.DnsServers)
-				state.Ipv4Config.DhcpServer.DnsServers = varDnsServers
-				resp.Diagnostics.Append(errDnsServers.Errors()...)
 				// property: name=domain_name, type=STRING macro=copy_to_state
 				state.Ipv4Config.DhcpServer.DomainName = types.StringPointerValue(ans.Ipv4Config.DhcpServer.DomainName)
-				// property: name=gateway, type=STRING macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Gateway = types.StringPointerValue(ans.Ipv4Config.DhcpServer.Gateway)
-				// property: name=id, type=STRING macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Id = types.StringPointerValue(ans.Ipv4Config.DhcpServer.Id)
-				// property: name=ip_ranges, type=ARRAY_REFERENCE macro=copy_to_state
-				if ans.Ipv4Config.DhcpServer.IpRanges == nil {
-					state.Ipv4Config.DhcpServer.IpRanges = nil
-				} else if len(ans.Ipv4Config.DhcpServer.IpRanges) == 0 {
-					state.Ipv4Config.DhcpServer.IpRanges = []dsModelIPRange{}
+				// property: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=copy_to_state
+				varDomainNameServers, errDomainNameServers := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.DhcpServer.DomainNameServers)
+				state.Ipv4Config.DhcpServer.DomainNameServers = varDomainNameServers
+				resp.Diagnostics.Append(errDomainNameServers.Errors()...)
+				// property: name=ip_address_pool, type=ARRAY_REFERENCE macro=copy_to_state
+				if ans.Ipv4Config.DhcpServer.IpAddressPool == nil {
+					state.Ipv4Config.DhcpServer.IpAddressPool = nil
+				} else if len(ans.Ipv4Config.DhcpServer.IpAddressPool) == 0 {
+					state.Ipv4Config.DhcpServer.IpAddressPool = []dsModelIPAddressPool{}
 				} else {
-					state.Ipv4Config.DhcpServer.IpRanges = make([]dsModelIPRange, 0, len(ans.Ipv4Config.DhcpServer.IpRanges))
-					for varLoopIpRangesIndex, varLoopIpRanges := range ans.Ipv4Config.DhcpServer.IpRanges {
+					state.Ipv4Config.DhcpServer.IpAddressPool = make([]dsModelIPAddressPool, 0, len(ans.Ipv4Config.DhcpServer.IpAddressPool))
+					for varLoopIpAddressPoolIndex, varLoopIpAddressPool := range ans.Ipv4Config.DhcpServer.IpAddressPool {
 						// add a new item
-						state.Ipv4Config.DhcpServer.IpRanges = append(state.Ipv4Config.DhcpServer.IpRanges, dsModelIPRange{})
-						// copy_to_state: state=state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges properties=2
-						tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex] prefix=dsModel ans=varLoopIpRanges")
-						// property: name=end_ip, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex].EndIp = types.StringPointerValue(varLoopIpRanges.EndIp)
-						// property: name=start_ip, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.IpRanges[varLoopIpRangesIndex].StartIp = types.StringPointerValue(varLoopIpRanges.StartIp)
+						state.Ipv4Config.DhcpServer.IpAddressPool = append(state.Ipv4Config.DhcpServer.IpAddressPool, dsModelIPAddressPool{})
+						// copy_to_state: state=state.Ipv4Config.DhcpServer.IpAddressPool[varLoopIpAddressPoolIndex] prefix=dsModel ans=varLoopIpAddressPool properties=2
+						tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.IpAddressPool[varLoopIpAddressPoolIndex] prefix=dsModel ans=varLoopIpAddressPool")
+						// property: name=end, type=STRING macro=copy_to_state
+						state.Ipv4Config.DhcpServer.IpAddressPool[varLoopIpAddressPoolIndex].End = types.StringPointerValue(varLoopIpAddressPool.End)
+						// property: name=start, type=STRING macro=copy_to_state
+						state.Ipv4Config.DhcpServer.IpAddressPool[varLoopIpAddressPoolIndex].Start = types.StringPointerValue(varLoopIpAddressPool.Start)
 					}
 				}
-				// property: name=max_lease_time, type=INTEGER macro=copy_to_state
-				state.Ipv4Config.DhcpServer.MaxLeaseTime = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.MaxLeaseTime)
-				// property: name=network_context_id, type=STRING macro=copy_to_state
-				state.Ipv4Config.DhcpServer.NetworkContextId = types.StringPointerValue(ans.Ipv4Config.DhcpServer.NetworkContextId)
-				// property: name=static_mappings, type=ARRAY_REFERENCE macro=copy_to_state
-				if ans.Ipv4Config.DhcpServer.StaticMappings == nil {
-					state.Ipv4Config.DhcpServer.StaticMappings = nil
-				} else if len(ans.Ipv4Config.DhcpServer.StaticMappings) == 0 {
-					state.Ipv4Config.DhcpServer.StaticMappings = []dsModelStaticMapping{}
-				} else {
-					state.Ipv4Config.DhcpServer.StaticMappings = make([]dsModelStaticMapping, 0, len(ans.Ipv4Config.DhcpServer.StaticMappings))
-					for varLoopStaticMappingsIndex, varLoopStaticMappings := range ans.Ipv4Config.DhcpServer.StaticMappings {
-						// add a new item
-						state.Ipv4Config.DhcpServer.StaticMappings = append(state.Ipv4Config.DhcpServer.StaticMappings, dsModelStaticMapping{})
-						// copy_to_state: state=state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings properties=3
-						tflog.Debug(ctx, "copy_to_state state=state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex] prefix=dsModel ans=varLoopStaticMappings")
-						// property: name=ip_address, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex].IpAddress = types.StringPointerValue(varLoopStaticMappings.IpAddress)
-						// property: name=mac, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex].Mac = types.StringPointerValue(varLoopStaticMappings.Mac)
-						// property: name=name, type=STRING macro=copy_to_state
-						state.Ipv4Config.DhcpServer.StaticMappings[varLoopStaticMappingsIndex].Name = types.StringPointerValue(varLoopStaticMappings.Name)
-					}
-				}
-				// property: name=subnet, type=STRING macro=copy_to_state
-				state.Ipv4Config.DhcpServer.Subnet = types.StringPointerValue(ans.Ipv4Config.DhcpServer.Subnet)
-				// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
-				varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Ipv4Config.DhcpServer.Tags)
-				state.Ipv4Config.DhcpServer.Tags = varTags
-				resp.Diagnostics.Append(errTags.Errors()...)
+				// property: name=lease_expiry_time, type=INTEGER macro=copy_to_state
+				state.Ipv4Config.DhcpServer.LeaseExpiryTime = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.LeaseExpiryTime)
+				// property: name=lease_renew_time, type=INTEGER macro=copy_to_state
+				state.Ipv4Config.DhcpServer.LeaseRenewTime = types.Int64PointerValue(ans.Ipv4Config.DhcpServer.LeaseRenewTime)
 			}
 			// property: name=prefixes, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varPrefixes, errPrefixes := types.ListValueFrom(ctx, types.StringType, ans.Ipv4Config.Prefixes)

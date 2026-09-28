@@ -17,17 +17,33 @@
 {
   "properties" : {
     "vni" : {
-      "description" : "Vni: Required(error = VNI_REQD: VNI is a mandatory property.) Range(max = 64511L, error = INVALID_VNI_VALUE: VNI is invalid. It should be between 0 to 64511., min = 0L) ",
+      "description" : "Vni",
       "format" : "int32",
+      "maximum" : 64511,
+      "minimum" : 0,
       "type" : "integer"
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = WANOVERLAY_CONFIG_DESCRIPTION_INVALID: Wan overlay config description invalid., min = 0) ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = WANOVERLAY_CONFIG_NAME_REQD: WAN Overlay name required.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -51,21 +67,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "vni", "name" ]
+  "required" : [ "vni", "description", "name", "id" ]
 }
 ```
 

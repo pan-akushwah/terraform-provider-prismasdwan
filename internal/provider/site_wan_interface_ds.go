@@ -258,9 +258,25 @@ func (d *siteWanInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
+								// property: name=use_hub_sites, type=BOOLEAN macro=rss_schema
+								"use_hub_sites": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=use_hub_sites, type=BOOLEAN macro=rss_schema
+								// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
+								"use_prisma_access_service_endpoints": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
+						// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 						// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 						"lqm_enabled": dsschema.BoolAttribute{
 							Required:  false,
@@ -525,7 +541,7 @@ func (d *siteWanInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 			state.LqmConfig = nil
 		} else {
 			state.LqmConfig = &dsModelLQMConfig{}
-			// copy_to_state: state=state.LqmConfig prefix=dsModel ans=ans.LqmConfig properties=3
+			// copy_to_state: state=state.LqmConfig prefix=dsModel ans=ans.LqmConfig properties=5
 			tflog.Debug(ctx, "copy_to_state state=state.LqmConfig prefix=dsModel ans=ans.LqmConfig")
 			// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varHubSiteIds, errHubSiteIds := types.ListValueFrom(ctx, types.StringType, ans.LqmConfig.HubSiteIds)
@@ -535,6 +551,10 @@ func (d *siteWanInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 			state.LqmConfig.InterPacketGap = types.Int64PointerValue(ans.LqmConfig.InterPacketGap)
 			// property: name=statistic, type=STRING macro=copy_to_state
 			state.LqmConfig.Statistic = types.StringPointerValue(ans.LqmConfig.Statistic)
+			// property: name=use_hub_sites, type=BOOLEAN macro=copy_to_state
+			state.LqmConfig.UseHubSites = types.BoolPointerValue(ans.LqmConfig.UseHubSites)
+			// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=copy_to_state
+			state.LqmConfig.UsePrismaAccessServiceEndpoints = types.BoolPointerValue(ans.LqmConfig.UsePrismaAccessServiceEndpoints)
 		}
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 		state.LqmEnabled = types.BoolPointerValue(ans.LqmEnabled)

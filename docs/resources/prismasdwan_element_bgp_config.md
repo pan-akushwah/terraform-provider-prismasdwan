@@ -5,8 +5,8 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_bgp_config` |
-| Get Api  | `/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N4`) |
-| Put Api  | `/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N4`) |
+| Get Api  | `/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N5`) |
+| Put Api  | `/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N5`) |
 
 
 ### JSON Schema
@@ -14,6 +14,26 @@
 ```json
 {
   "properties" : {
+    "vrf_router_id_map" : {
+      "description" : "Vrf Router Id Map",
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "router_id" : {
+            "description" : "Router Id",
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "vrf_context_id" : {
+            "description" : "Vrf Context Id",
+            "maxLength" : 20,
+            "pattern" : "^-?[0-9]{1,20}$",
+            "type" : "string"
+          }
+        },
+        "required" : [ "router_id", "vrf_context_id" ]
+      }
+    },
     "ospf_redistribution" : {
       "description" : "Ospf Redistribution",
       "type" : "array",
@@ -27,14 +47,16 @@
             "description" : "Vrf Context Id",
             "type" : "string"
           }
-        }
+        },
+        "required" : [ "route_map_id", "vrf_context_id" ]
       }
     },
     "ipv6_prefixes_to_adv_to_wan" : {
-      "description" : "Ipv6 Prefixes To Adv To Wan: ListIPv6Address(bcast = DENY, listMaxSize = 0, error = BGP_CONFIG_INVALID_PREFIX: IP prefix is not valid OR is not within the valid prefix range, required = false, type = GATEWAYCIDRV6) ",
+      "description" : "Ipv6 Prefixes To Adv To Wan",
       "type" : "array",
       "items" : {
         "description" : "Ipv6 Prefixes To Adv To Wan",
+        "format" : "ipv6",
         "type" : "string"
       }
     },
@@ -48,10 +70,11 @@
       "type" : "string"
     },
     "prefixes_to_adv_to_wan" : {
-      "description" : "Prefixes To Adv To Wan: ListIPAddress(bcast = DENY, listMaxSize = 0, error = BGP_CONFIG_INVALID_PREFIX: IP prefix is not valid OR is not within the valid prefix range, required = false, type = APP_GATEWAYCIDR) ",
+      "description" : "Prefixes To Adv To Wan",
       "type" : "array",
       "items" : {
         "description" : "Prefixes To Adv To Wan",
+        "format" : "ipv4",
         "type" : "string"
       }
     },
@@ -60,8 +83,10 @@
       "type" : "string"
     },
     "stalepath_time" : {
-      "description" : "Stalepath Time: Range(max = 3600L, error = BGP_CONFIG_INVALID_STALEPATH_TIME: STTALEPATH TIME should be in the range 1-3600, min = 1L) ",
+      "description" : "Stalepath Time",
       "format" : "int32",
+      "maximum" : 3600,
+      "minimum" : 1,
       "type" : "integer"
     },
     "graceful_restart" : {
@@ -69,22 +94,29 @@
       "type" : "boolean"
     },
     "admin_distance" : {
-      "description" : "Admin Distance: Range(max = 255L, error = BGP_CONFIG_INVALID_ADMIN_DISTANCE: ADMIN DISTANCE should be in the range 1-255, min = 1L) ",
+      "description" : "Admin Distance",
       "format" : "int32",
+      "maximum" : 255,
+      "minimum" : 1,
       "type" : "integer"
     },
     "maximum_paths" : {
-      "description" : "Maximum Paths: Range(max = 255L, error = BGP_CONFIG_INVALID_MAXIMUM_PATHS: MAX PATHS should be in the range 1-255, min = 1L) ",
+      "description" : "Maximum Paths",
       "format" : "int32",
+      "maximum" : 255,
+      "minimum" : 1,
       "type" : "integer"
     },
     "multi_hop_limit" : {
-      "description" : "Multi Hop Limit: Range(max = 255L, error = BGP_CONFIG_INVALID_MULTI_HOP_LIMIT: MULTI HOP LIMIT should be in the range 1-255, min = 1L) ",
+      "description" : "Multi Hop Limit",
       "format" : "int32",
+      "maximum" : 255,
+      "minimum" : 1,
       "type" : "integer"
     },
     "md5_secret" : {
-      "description" : "Md5 Secret: Size(max = 32, error = BGP_CONFIG_MD5_LENGTH_EXCEEDS: MD5 SECRETE length should not exceed 32 characters, min = 0) ",
+      "description" : "Md5 Secret",
+      "maxLength" : 32,
       "type" : "string",
       "additionalProperties" : {
         "properties" : {
@@ -95,32 +127,55 @@
       }
     },
     "peer_retry_time" : {
-      "description" : "Peer Retry Time: Range(max = 65535L, error = BGP_CONFIG_INVALID_PEER_RETRY_TIME: PEER RETRY TIME should be in the range 0-65535, min = 0L) ",
+      "description" : "Peer Retry Time",
       "format" : "int32",
+      "maximum" : 65535,
+      "minimum" : 1,
       "type" : "integer"
     },
     "adv_interval" : {
-      "description" : "Adv Interval: Range(max = 600L, error = BGP_CONFIG_INVALID_ADV_INTERVAL: ADVERTISE INTERVAL should be in the range 0-600, min = 0L) ",
+      "description" : "Adv Interval",
       "format" : "int32",
+      "maximum" : 600,
+      "minimum" : 0,
       "type" : "integer"
     },
     "hold_time" : {
-      "description" : "Hold Time: Range(max = 600L, error = BGP_CONFIG_INVALID_HOLD_TIME: Hold TIME should be in the range 3-600, min = 3L) ",
+      "description" : "Hold Time",
       "format" : "int32",
+      "maximum" : 600,
+      "minimum" : 3,
       "type" : "integer"
     },
     "keepalive_time" : {
-      "description" : "Keepalive Time: Range(max = 200L, error = BGP_CONFIG_INVALID_KEEPALIVE_TIME: KEEPALIVE TIME should be in the range 1-200, min = 1L) ",
+      "description" : "Keepalive Time",
       "format" : "int32",
+      "maximum" : 200,
+      "minimum" : 1,
       "type" : "integer"
     },
     "local_as_num" : {
-      "description" : "Local As Num: Size(max = 256, error = LOCAL_AS_NUM_EXCEEDS_LIMIT: Local as number exceeds limit, min = 0) ",
+      "description" : "Local As Num",
+      "maxLength" : 256,
       "type" : "string"
     },
     "router_id" : {
-      "description" : "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
+      "description" : "Router Id",
+      "format" : "ipv4",
+      "maxLength" : 256,
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -144,20 +199,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
-  }
+  },
+  "required" : [ "vrf_router_id_map", "ospf_redistribution", "ipv6_prefixes_to_adv_to_wan", "peer_auth_type", "prefix_adv_type_to_lan", "prefixes_to_adv_to_wan", "prefix_adv_type", "stalepath_time", "graceful_restart", "admin_distance", "maximum_paths", "multi_hop_limit", "md5_secret", "peer_retry_time", "adv_interval", "hold_time", "keepalive_time", "local_as_num", "router_id", "id" ]
 }
 ```
 

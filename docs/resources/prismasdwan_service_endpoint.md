@@ -23,52 +23,67 @@
           "type" : "boolean"
         },
         "http" : {
-          "description" : "Http: Valid ",
+          "description" : "Http",
           "type" : "array",
           "items" : {
             "properties" : {
               "http_status_codes" : {
-                "description" : "Http Status Codes: ListNumber(duplicate = false, max = 600, error = INVALID_HTTP_STATUS_CODE: Invalid http status code. Should be between 100 to 600 and should not be duplicate., min = 100) Size(max = 8, error = HTTP_STATUS_CODES_EXCEEDS_LIMIT: Maximum 8 status codes can be specified, min = 0) ",
+                "description" : "Http Status Codes",
+                "maxItems" : 8,
                 "type" : "array",
+                "uniqueItems" : true,
                 "items" : {
                   "description" : "Http Status Codes",
+                  "maximum" : 600,
+                  "minimum" : 100,
                   "type" : "integer"
                 }
               },
               "failure_count" : {
-                "description" : "Failure Count: Required(error = INVALID_HTTP_FAILURE_COUNT_INTERVAL: Invalid http probe failure count.Should be between 3 to 300 seconds.) Range(max = 300L, error = INVALID_HTTP_FAILURE_COUNT_INTERVAL: Invalid http probe failure count.Should be between 3 to 300 seconds., min = 3L) ",
+                "description" : "Failure Count",
+                "maximum" : 300,
+                "minimum" : 3,
                 "type" : "integer"
               },
               "interval" : {
-                "description" : "Interval: Required(error = INVALID_HTTP_PROBE_INTERVAL: Invalid http probe interval. Should be between 10 to 3600 seconds.) Range(max = 3600L, error = INVALID_HTTP_PROBE_INTERVAL: Invalid http probe interval. Should be between 10 to 3600 seconds., min = 10L) ",
+                "description" : "Interval",
+                "maximum" : 3600,
+                "minimum" : 10,
                 "type" : "integer"
               },
               "url" : {
-                "description" : "Url: Required(error = INVALID_HTTP_PROBE_URL: Http probe url required) Size(max = 1024, error = INVALID_HTTP_PROBLE_URL_LEN: Invalid http probe url length.Should be up to 1024., min = 0) ",
+                "description" : "Url",
+                "maxLength" : 1024,
                 "type" : "string"
               }
             },
-            "required" : [ "failure_count", "interval", "url" ]
+            "required" : [ "http_status_codes", "failure_count", "interval", "url" ]
           }
         },
         "icmp_ping" : {
-          "description" : "Icmp Ping: Valid ",
+          "description" : "Icmp Ping",
           "type" : "array",
           "items" : {
             "properties" : {
               "failure_count" : {
-                "description" : "Failure Count: Required(error = INVALID_ICMP_FAILURE_COUNT_INTERVAL: Invalid icmp probe failure count.Should be between 3 to 300 seconds.) Range(max = 300L, error = INVALID_ICMP_FAILURE_COUNT_INTERVAL: Invalid icmp probe failure count.Should be between 3 to 300 seconds., min = 3L) ",
+                "description" : "Failure Count",
+                "maximum" : 300,
+                "minimum" : 3,
                 "type" : "integer"
               },
               "interval" : {
-                "description" : "Interval: Required(error = INVALID_ICMP_PROBE_INTERVAL: Invalid icmp probe interval.Should be between 1 to 30 seconds.) Range(max = 30L, error = INVALID_ICMP_PROBE_INTERVAL: Invalid icmp probe interval.Should be between 1 to 30 seconds., min = 1L) ",
+                "description" : "Interval",
+                "maximum" : 30,
+                "minimum" : 1,
                 "type" : "integer"
               },
               "ip_addresses" : {
-                "description" : "Ip Addresses: Required(error = INVALID_ICMP_PROBE: Please provide icmp probe.) ListIPAddress(bcast = DENY, listMaxSize = 8, error = INVALID_ICMP_PROBE_ADDRESSES: Please provide valid icmp probe ipv4 addresses., required = false, type = IP) ",
+                "description" : "Ip Addresses",
+                "maxItems" : 8,
                 "type" : "array",
                 "items" : {
                   "description" : "Ip Addresses",
+                  "format" : "ipv4",
                   "type" : "string"
                 }
               }
@@ -76,7 +91,8 @@
             "required" : [ "failure_count", "interval", "ip_addresses" ]
           }
         }
-      }
+      },
+      "required" : [ "use_tunnel_for_url_dns_resolution", "http", "icmp_ping" ]
     },
     "sase_properties" : {
       "properties" : {
@@ -88,7 +104,8 @@
           "description" : "Active",
           "type" : "boolean"
         }
-      }
+      },
+      "required" : [ "lqm_enabled", "active" ]
     },
     "is_sase" : {
       "description" : "Is Sase",
@@ -105,44 +122,56 @@
           "type" : "string"
         },
         "latitude" : {
-          "description" : "Latitude: Range(max = 90L, INVALID_LATITUDE_VALUE, min = -90L) ",
+          "description" : "Latitude",
           "format" : "float",
+          "maximum" : 90,
+          "minimum" : -90,
           "type" : "number"
         },
         "longitude" : {
-          "description" : "Longitude: Range(max = 180L, INVALID_LONGITUDE_VALUE, min = -180L) ",
+          "description" : "Longitude",
           "format" : "float",
+          "maximum" : 180,
+          "minimum" : -180,
           "type" : "number"
         }
-      }
+      },
+      "required" : [ "description", "latitude", "longitude" ]
     },
     "address" : {
       "properties" : {
         "country" : {
-          "description" : "Country: Length(max = 100, , min = 0) ",
+          "description" : "Country",
+          "maxLength" : 100,
           "type" : "string"
         },
         "post_code" : {
-          "description" : "Post Code: Length(max = 100, , min = 0) ",
+          "description" : "Post Code",
+          "maxLength" : 100,
           "type" : "string"
         },
         "state" : {
-          "description" : "State: Length(max = 100, , min = 0) ",
+          "description" : "State",
+          "maxLength" : 100,
           "type" : "string"
         },
         "city" : {
-          "description" : "City: Length(max = 100, , min = 0) ",
+          "description" : "City",
+          "maxLength" : 100,
           "type" : "string"
         },
         "street2" : {
-          "description" : "Street2: Length(max = 100, , min = 0) ",
+          "description" : "Street2",
+          "maxLength" : 100,
           "type" : "string"
         },
         "street" : {
-          "description" : "Street: Length(max = 100, , min = 0) ",
+          "description" : "Street",
+          "maxLength" : 100,
           "type" : "string"
         }
-      }
+      },
+      "required" : [ "city", "country", "street2", "state", "street", "post_code" ]
     },
     "allow_enterprise_traffic" : {
       "description" : "Allow Enterprise Traffic",
@@ -151,7 +180,8 @@
     "service_link_peers" : {
       "properties" : {
         "hostnames" : {
-          "description" : "Hostnames: ListString(allowDuplicate = true, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 128, INVALID_SERVICELINK_PEERS_ADDRESSES, noTrim = false, regex = , required = false) ",
+          "description" : "Hostnames",
+          "maxItems" : 128,
           "type" : "array",
           "items" : {
             "description" : "Hostnames",
@@ -159,46 +189,67 @@
           }
         },
         "ip_addresses" : {
-          "description" : "Ip Addresses: ListIPAddress(bcast = DENY, listMaxSize = 128, INVALID_SERVICELINK_PEERS_ADDRESSES, required = false, type = IP) ",
+          "description" : "Ip Addresses",
+          "maxItems" : 128,
           "type" : "array",
           "items" : {
             "description" : "Ip Addresses",
+            "format" : "ipv4",
             "type" : "string"
           }
         }
-      }
+      },
+      "required" : [ "hostnames", "ip_addresses" ]
     },
     "site_id" : {
       "description" : "Site Id",
       "type" : "string"
     },
     "admin_up" : {
-      "description" : "Admin Up: Required(error = ADMIN_UP_REQD: Admin up required.) ",
+      "description" : "Admin Up",
       "type" : "boolean"
     },
     "type" : {
-      "description" : "Type: ValidateEnum(enumClass = classOf[NetworkServiceType], message = Invalid enum string., nullAllowed = false) ",
+      "description" : "Type",
       "type" : "string",
-      "enum" : [ "CG_TRANSIT", "NON_CG_TRANSIT", "SASE" ]
+      "enum" : [ "cg-transit", "non-cg-transit", "sase" ]
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_SIZE_EXCEEDED: Description size exceeded., min = 0) Valid ",
+      "description" : "Description",
+      "maxLength" : 256,
       "type" : "string"
     },
     "name" : {
-      "description" : "Name: Required(error = SERVICEENDPOINT_NAME_REQD: service endpoint name required.) Size(max = 128, error = SERVICEENDPOINT_NAME_EXCEEDS_LIMIT: Service endpoint name exceeds limit., min = 0) Valid ",
+      "description" : "Name",
+      "maxLength" : 128,
       "type" : "string"
     },
     "tags" : {
-      "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
+      "description" : "Tags",
+      "maxItems" : 10,
       "type" : "array",
+      "uniqueItems" : true,
       "items" : {
         "description" : "Tags",
+        "maxLength" : 128,
+        "pattern" : "[^,\\s]+",
         "type" : "string"
       },
       "additionalProperties" : {
         "properties" : {
           "x_flag_unordered" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -226,21 +277,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "admin_up", "type", "name" ]
+  "required" : [ "liveliness_probe", "sase_properties", "is_sase", "disable_tunnel_reoptimization", "location", "address", "allow_enterprise_traffic", "service_link_peers", "site_id", "admin_up", "type", "description", "name", "tags", "id" ]
 }
 ```
 
