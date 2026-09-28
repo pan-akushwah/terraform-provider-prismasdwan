@@ -129,6 +129,67 @@
           "properties" : {
             "authentication" : {
               "properties" : {
+                "ppk_config" : {
+                  "properties" : {
+                    "ppk_secret_configured" : {
+                      "description" : "Ppk Secret Configured",
+                      "type" : "boolean",
+                      "additionalProperties" : {
+                        "properties" : {
+                          "x_flag_sensitive" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "ppk_secret_hash" : {
+                      "description" : "Ppk Secret Hash: JsonIgnore(value = true) ",
+                      "type" : "string",
+                      "additionalProperties" : {
+                        "properties" : {
+                          "x_flag_sensitive" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "ppk_secret_encrypted" : {
+                      "description" : "Ppk Secret Encrypted: JsonIgnore(value = true) ",
+                      "type" : "string",
+                      "additionalProperties" : {
+                        "properties" : {
+                          "x_flag_sensitive" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "ppk_secret" : {
+                      "description" : "Ppk Secret",
+                      "type" : "string",
+                      "additionalProperties" : {
+                        "properties" : {
+                          "x_flag_sensitive" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "ppk_key_id" : {
+                      "description" : "Ppk Key Id",
+                      "type" : "string"
+                    },
+                    "mode" : {
+                      "description" : "Mode: ValidateEnum(enumClass = classOf[PPKMode], message = Invalid enum string., nullAllowed = true) ",
+                      "type" : "string",
+                      "enum" : [ "PREFERRED", "MANDATORY" ]
+                    },
+                    "enabled" : {
+                      "description" : "Enabled",
+                      "type" : "boolean"
+                    }
+                  }
+                },
                 "peer_id_check" : {
                   "description" : "Peer Id Check",
                   "type" : "string",
@@ -630,7 +691,7 @@
       "type" : "string"
     },
     "static_arp_configs" : {
-      "description" : "Static Arp Configs: Size(max = 32, error = INTERFACE_CONFIG_STATIC_ARP_EXCEEDS_LIMIT: Invalid interface configuration. Static ARP entries exceed the supported limit of 16, min = 0) ",
+      "description" : "Static Arp Configs: Valid Valid Size(max = 32, error = INTERFACE_CONFIG_STATIC_ARP_EXCEEDS_LIMIT: Invalid interface configuration. Static ARP entries exceed the supported limit of 16, min = 0) ",
       "type" : "array",
       "items" : {
         "properties" : {
@@ -993,6 +1054,18 @@
         }
       }
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -1006,18 +1079,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

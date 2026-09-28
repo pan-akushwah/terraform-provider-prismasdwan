@@ -365,6 +365,46 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=active, type=BOOLEAN macro=rss_schema
+					// property: name=allocated_bandwidth_mbps, type=INTEGER macro=rss_schema
+					"allocated_bandwidth_mbps": rsschema.Int64Attribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=allocated_bandwidth_mbps, type=INTEGER macro=rss_schema
+					// property: name=allocated_sc_count, type=INTEGER macro=rss_schema
+					"allocated_sc_count": rsschema.Int64Attribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=allocated_sc_count, type=INTEGER macro=rss_schema
+					// property: name=compute_region_id, type=STRING macro=rss_schema
+					"compute_region_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=compute_region_id, type=STRING macro=rss_schema
+					// property: name=compute_region_provider, type=STRING macro=rss_schema
+					"compute_region_provider": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=compute_region_provider, type=STRING macro=rss_schema
+					// property: name=line_conditioning_enabled, type=BOOLEAN macro=rss_schema
+					"line_conditioning_enabled": rsschema.BoolAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=line_conditioning_enabled, type=BOOLEAN macro=rss_schema
 					// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 					"lqm_enabled": rsschema.BoolAttribute{
 						Required:  false,
@@ -373,9 +413,41 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Sensitive: false,
 					},
 					// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+					// property: name=pa_compute_region_oid, type=STRING macro=rss_schema
+					"pa_compute_region_oid": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=pa_compute_region_oid, type=STRING macro=rss_schema
+					// property: name=pa_we_br_site_id, type=STRING macro=rss_schema
+					"pa_we_br_site_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=pa_we_br_site_id, type=STRING macro=rss_schema
+					// property: name=pa_we_dc_site_id, type=STRING macro=rss_schema
+					"pa_we_dc_site_id": rsschema.StringAttribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=pa_we_dc_site_id, type=STRING macro=rss_schema
+					// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
+					"total_sc_bandwidth_mbps": rsschema.Int64Attribute{
+						Required:  false,
+						Computed:  false,
+						Optional:  true,
+						Sensitive: false,
+					},
+					// key name holder for attribute: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+			// key name holder for attribute: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 			// property: name=service_link_peers, type=REFERENCE macro=rss_schema
 			"service_link_peers": rsschema.SingleNestedAttribute{
 				Required:  false,
@@ -583,12 +655,30 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 	// property: name=sase_properties, type=REFERENCE macro=copy_from_plan
 	if plan.SaseProperties != nil {
 		body.SaseProperties = &sdwan_schema.SaseServiceEndpointProperties{}
-		// copy_from_plan: body=body.SaseProperties prefix=rsModel plan=plan.SaseProperties properties=2
+		// copy_from_plan: body=body.SaseProperties prefix=rsModel plan=plan.SaseProperties properties=11
 		tflog.Debug(ctx, "copy_from_plan body=body.SaseProperties prefix=rsModel plan=plan.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_from_plan
 		body.SaseProperties.Active = BoolValueOrNil(plan.SaseProperties.Active)
+		// property: name=allocated_bandwidth_mbps, type=INTEGER macro=copy_from_plan
+		body.SaseProperties.AllocatedBandwidthMbps = Int64ValueOrNil(plan.SaseProperties.AllocatedBandwidthMbps)
+		// property: name=allocated_sc_count, type=INTEGER macro=copy_from_plan
+		body.SaseProperties.AllocatedScCount = Int64ValueOrNil(plan.SaseProperties.AllocatedScCount)
+		// property: name=compute_region_id, type=STRING macro=copy_from_plan
+		body.SaseProperties.ComputeRegionId = StringValueOrNil(plan.SaseProperties.ComputeRegionId)
+		// property: name=compute_region_provider, type=STRING macro=copy_from_plan
+		body.SaseProperties.ComputeRegionProvider = StringValueOrNil(plan.SaseProperties.ComputeRegionProvider)
+		// property: name=line_conditioning_enabled, type=BOOLEAN macro=copy_from_plan
+		body.SaseProperties.LineConditioningEnabled = BoolValueOrNil(plan.SaseProperties.LineConditioningEnabled)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_from_plan
 		body.SaseProperties.LqmEnabled = BoolValueOrNil(plan.SaseProperties.LqmEnabled)
+		// property: name=pa_compute_region_oid, type=STRING macro=copy_from_plan
+		body.SaseProperties.PaComputeRegionOid = StringValueOrNil(plan.SaseProperties.PaComputeRegionOid)
+		// property: name=pa_we_br_site_id, type=STRING macro=copy_from_plan
+		body.SaseProperties.PaWeBrSiteId = StringValueOrNil(plan.SaseProperties.PaWeBrSiteId)
+		// property: name=pa_we_dc_site_id, type=STRING macro=copy_from_plan
+		body.SaseProperties.PaWeDcSiteId = StringValueOrNil(plan.SaseProperties.PaWeDcSiteId)
+		// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=copy_from_plan
+		body.SaseProperties.TotalScBandwidthMbps = Int64ValueOrNil(plan.SaseProperties.TotalScBandwidthMbps)
 	}
 	// property: name=service_link_peers, type=REFERENCE macro=copy_from_plan
 	if plan.ServiceLinkPeers != nil {
@@ -799,12 +889,30 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 		state.SaseProperties = nil
 	} else {
 		state.SaseProperties = &rsModelSaseServiceEndpointProperties{}
-		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=2
+		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=11
 		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
+		// property: name=allocated_bandwidth_mbps, type=INTEGER macro=copy_to_state
+		state.SaseProperties.AllocatedBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.AllocatedBandwidthMbps)
+		// property: name=allocated_sc_count, type=INTEGER macro=copy_to_state
+		state.SaseProperties.AllocatedScCount = types.Int64PointerValue(ans.SaseProperties.AllocatedScCount)
+		// property: name=compute_region_id, type=STRING macro=copy_to_state
+		state.SaseProperties.ComputeRegionId = types.StringPointerValue(ans.SaseProperties.ComputeRegionId)
+		// property: name=compute_region_provider, type=STRING macro=copy_to_state
+		state.SaseProperties.ComputeRegionProvider = types.StringPointerValue(ans.SaseProperties.ComputeRegionProvider)
+		// property: name=line_conditioning_enabled, type=BOOLEAN macro=copy_to_state
+		state.SaseProperties.LineConditioningEnabled = types.BoolPointerValue(ans.SaseProperties.LineConditioningEnabled)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.LqmEnabled = types.BoolPointerValue(ans.SaseProperties.LqmEnabled)
+		// property: name=pa_compute_region_oid, type=STRING macro=copy_to_state
+		state.SaseProperties.PaComputeRegionOid = types.StringPointerValue(ans.SaseProperties.PaComputeRegionOid)
+		// property: name=pa_we_br_site_id, type=STRING macro=copy_to_state
+		state.SaseProperties.PaWeBrSiteId = types.StringPointerValue(ans.SaseProperties.PaWeBrSiteId)
+		// property: name=pa_we_dc_site_id, type=STRING macro=copy_to_state
+		state.SaseProperties.PaWeDcSiteId = types.StringPointerValue(ans.SaseProperties.PaWeDcSiteId)
+		// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=copy_to_state
+		state.SaseProperties.TotalScBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.TotalScBandwidthMbps)
 	}
 	// property: name=service_link_peers, type=REFERENCE macro=copy_to_state
 	if ans.ServiceLinkPeers == nil {
@@ -1030,12 +1138,30 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 		state.SaseProperties = nil
 	} else {
 		state.SaseProperties = &rsModelSaseServiceEndpointProperties{}
-		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=2
+		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=11
 		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
+		// property: name=allocated_bandwidth_mbps, type=INTEGER macro=copy_to_state
+		state.SaseProperties.AllocatedBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.AllocatedBandwidthMbps)
+		// property: name=allocated_sc_count, type=INTEGER macro=copy_to_state
+		state.SaseProperties.AllocatedScCount = types.Int64PointerValue(ans.SaseProperties.AllocatedScCount)
+		// property: name=compute_region_id, type=STRING macro=copy_to_state
+		state.SaseProperties.ComputeRegionId = types.StringPointerValue(ans.SaseProperties.ComputeRegionId)
+		// property: name=compute_region_provider, type=STRING macro=copy_to_state
+		state.SaseProperties.ComputeRegionProvider = types.StringPointerValue(ans.SaseProperties.ComputeRegionProvider)
+		// property: name=line_conditioning_enabled, type=BOOLEAN macro=copy_to_state
+		state.SaseProperties.LineConditioningEnabled = types.BoolPointerValue(ans.SaseProperties.LineConditioningEnabled)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.LqmEnabled = types.BoolPointerValue(ans.SaseProperties.LqmEnabled)
+		// property: name=pa_compute_region_oid, type=STRING macro=copy_to_state
+		state.SaseProperties.PaComputeRegionOid = types.StringPointerValue(ans.SaseProperties.PaComputeRegionOid)
+		// property: name=pa_we_br_site_id, type=STRING macro=copy_to_state
+		state.SaseProperties.PaWeBrSiteId = types.StringPointerValue(ans.SaseProperties.PaWeBrSiteId)
+		// property: name=pa_we_dc_site_id, type=STRING macro=copy_to_state
+		state.SaseProperties.PaWeDcSiteId = types.StringPointerValue(ans.SaseProperties.PaWeDcSiteId)
+		// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=copy_to_state
+		state.SaseProperties.TotalScBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.TotalScBandwidthMbps)
 	}
 	// property: name=service_link_peers, type=REFERENCE macro=copy_to_state
 	if ans.ServiceLinkPeers == nil {
@@ -1312,7 +1438,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		body.SaseProperties = nil
 	} else {
 		body.SaseProperties = &sdwan_schema.SaseServiceEndpointProperties{}
-		// copy_from_plan_or_state: body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties properties=2
+		// copy_from_plan_or_state: body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties properties=11
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.SaseProperties != nil {
@@ -1320,11 +1446,65 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		} else {
 			body.SaseProperties.Active = BoolValueOrNil(plan.SaseProperties.Active)
 		}
+		// property: name=allocated_bandwidth_mbps, type=INTEGER macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.AllocatedBandwidthMbps = ValueInt64PointerFromPlanOrState(plan.SaseProperties.AllocatedBandwidthMbps, state.SaseProperties.AllocatedBandwidthMbps)
+		} else {
+			body.SaseProperties.AllocatedBandwidthMbps = Int64ValueOrNil(plan.SaseProperties.AllocatedBandwidthMbps)
+		}
+		// property: name=allocated_sc_count, type=INTEGER macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.AllocatedScCount = ValueInt64PointerFromPlanOrState(plan.SaseProperties.AllocatedScCount, state.SaseProperties.AllocatedScCount)
+		} else {
+			body.SaseProperties.AllocatedScCount = Int64ValueOrNil(plan.SaseProperties.AllocatedScCount)
+		}
+		// property: name=compute_region_id, type=STRING macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.ComputeRegionId = ValueStringPointerFromPlanOrState(plan.SaseProperties.ComputeRegionId, state.SaseProperties.ComputeRegionId)
+		} else {
+			body.SaseProperties.ComputeRegionId = StringValueOrNil(plan.SaseProperties.ComputeRegionId)
+		}
+		// property: name=compute_region_provider, type=STRING macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.ComputeRegionProvider = ValueStringPointerFromPlanOrState(plan.SaseProperties.ComputeRegionProvider, state.SaseProperties.ComputeRegionProvider)
+		} else {
+			body.SaseProperties.ComputeRegionProvider = StringValueOrNil(plan.SaseProperties.ComputeRegionProvider)
+		}
+		// property: name=line_conditioning_enabled, type=BOOLEAN macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.LineConditioningEnabled = ValueBoolPointerFromPlanOrState(plan.SaseProperties.LineConditioningEnabled, state.SaseProperties.LineConditioningEnabled)
+		} else {
+			body.SaseProperties.LineConditioningEnabled = BoolValueOrNil(plan.SaseProperties.LineConditioningEnabled)
+		}
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.SaseProperties != nil {
 			body.SaseProperties.LqmEnabled = ValueBoolPointerFromPlanOrState(plan.SaseProperties.LqmEnabled, state.SaseProperties.LqmEnabled)
 		} else {
 			body.SaseProperties.LqmEnabled = BoolValueOrNil(plan.SaseProperties.LqmEnabled)
+		}
+		// property: name=pa_compute_region_oid, type=STRING macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.PaComputeRegionOid = ValueStringPointerFromPlanOrState(plan.SaseProperties.PaComputeRegionOid, state.SaseProperties.PaComputeRegionOid)
+		} else {
+			body.SaseProperties.PaComputeRegionOid = StringValueOrNil(plan.SaseProperties.PaComputeRegionOid)
+		}
+		// property: name=pa_we_br_site_id, type=STRING macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.PaWeBrSiteId = ValueStringPointerFromPlanOrState(plan.SaseProperties.PaWeBrSiteId, state.SaseProperties.PaWeBrSiteId)
+		} else {
+			body.SaseProperties.PaWeBrSiteId = StringValueOrNil(plan.SaseProperties.PaWeBrSiteId)
+		}
+		// property: name=pa_we_dc_site_id, type=STRING macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.PaWeDcSiteId = ValueStringPointerFromPlanOrState(plan.SaseProperties.PaWeDcSiteId, state.SaseProperties.PaWeDcSiteId)
+		} else {
+			body.SaseProperties.PaWeDcSiteId = StringValueOrNil(plan.SaseProperties.PaWeDcSiteId)
+		}
+		// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=copy_from_plan_or_state
+		if state.SaseProperties != nil {
+			body.SaseProperties.TotalScBandwidthMbps = ValueInt64PointerFromPlanOrState(plan.SaseProperties.TotalScBandwidthMbps, state.SaseProperties.TotalScBandwidthMbps)
+		} else {
+			body.SaseProperties.TotalScBandwidthMbps = Int64ValueOrNil(plan.SaseProperties.TotalScBandwidthMbps)
 		}
 	}
 	// property: name=service_link_peers, type=REFERENCE macro=copy_from_plan_or_state
@@ -1518,12 +1698,30 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		state.SaseProperties = nil
 	} else {
 		state.SaseProperties = &rsModelSaseServiceEndpointProperties{}
-		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=2
+		// copy_to_state: state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties properties=11
 		tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=rsModel ans=ans.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
+		// property: name=allocated_bandwidth_mbps, type=INTEGER macro=copy_to_state
+		state.SaseProperties.AllocatedBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.AllocatedBandwidthMbps)
+		// property: name=allocated_sc_count, type=INTEGER macro=copy_to_state
+		state.SaseProperties.AllocatedScCount = types.Int64PointerValue(ans.SaseProperties.AllocatedScCount)
+		// property: name=compute_region_id, type=STRING macro=copy_to_state
+		state.SaseProperties.ComputeRegionId = types.StringPointerValue(ans.SaseProperties.ComputeRegionId)
+		// property: name=compute_region_provider, type=STRING macro=copy_to_state
+		state.SaseProperties.ComputeRegionProvider = types.StringPointerValue(ans.SaseProperties.ComputeRegionProvider)
+		// property: name=line_conditioning_enabled, type=BOOLEAN macro=copy_to_state
+		state.SaseProperties.LineConditioningEnabled = types.BoolPointerValue(ans.SaseProperties.LineConditioningEnabled)
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 		state.SaseProperties.LqmEnabled = types.BoolPointerValue(ans.SaseProperties.LqmEnabled)
+		// property: name=pa_compute_region_oid, type=STRING macro=copy_to_state
+		state.SaseProperties.PaComputeRegionOid = types.StringPointerValue(ans.SaseProperties.PaComputeRegionOid)
+		// property: name=pa_we_br_site_id, type=STRING macro=copy_to_state
+		state.SaseProperties.PaWeBrSiteId = types.StringPointerValue(ans.SaseProperties.PaWeBrSiteId)
+		// property: name=pa_we_dc_site_id, type=STRING macro=copy_to_state
+		state.SaseProperties.PaWeDcSiteId = types.StringPointerValue(ans.SaseProperties.PaWeDcSiteId)
+		// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=copy_to_state
+		state.SaseProperties.TotalScBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.TotalScBandwidthMbps)
 	}
 	// property: name=service_link_peers, type=REFERENCE macro=copy_to_state
 	if ans.ServiceLinkPeers == nil {

@@ -39,7 +39,7 @@
                     "path_type" : {
                       "description" : "Path Type: ValidateEnum(enumClass = classOf[PathType], message = INVALID_PATH_TYPE, nullAllowed = false) ",
                       "type" : "string",
-                      "enum" : [ "vpn", "direct", "servicelink" ]
+                      "enum" : [ "vpn", "direct", "servicelink", "pa_vpn" ]
                     },
                     "label" : {
                       "description" : "Label: Pattern(message = INVALID_PATH_LABEL, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
@@ -57,7 +57,7 @@
                     "path_type" : {
                       "description" : "Path Type: ValidateEnum(enumClass = classOf[PathType], message = INVALID_PATH_TYPE, nullAllowed = false) ",
                       "type" : "string",
-                      "enum" : [ "vpn", "direct", "servicelink" ]
+                      "enum" : [ "vpn", "direct", "servicelink", "pa_vpn" ]
                     },
                     "label" : {
                       "description" : "Label: Pattern(message = INVALID_PATH_LABEL, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
@@ -75,7 +75,7 @@
                     "path_type" : {
                       "description" : "Path Type: ValidateEnum(enumClass = classOf[PathType], message = INVALID_PATH_TYPE, nullAllowed = false) ",
                       "type" : "string",
-                      "enum" : [ "vpn", "direct", "servicelink" ]
+                      "enum" : [ "vpn", "direct", "servicelink", "pa_vpn" ]
                     },
                     "label" : {
                       "description" : "Label: Pattern(message = INVALID_PATH_LABEL, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
@@ -159,6 +159,18 @@
             "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
             "type" : "string"
           },
+          "_etag" : {
+            "description" : "Etag for this object",
+            "minimum" : 1,
+            "type" : "integer",
+            "additionalProperties" : {
+              "properties" : {
+                "x_flag_computed" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          },
           "id" : {
             "description" : "Id",
             "type" : "string",
@@ -172,18 +184,6 @@
           },
           "_schema" : {
             "description" : "Schema version for this object",
-            "minimum" : 1,
-            "type" : "integer",
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          },
-          "_etag" : {
-            "description" : "Etag for this object",
             "minimum" : 1,
             "type" : "integer",
             "additionalProperties" : {
@@ -257,6 +257,18 @@
       "description" : "Inactive",
       "type" : "boolean"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "type" : "string",
       "additionalProperties" : {
@@ -269,18 +281,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

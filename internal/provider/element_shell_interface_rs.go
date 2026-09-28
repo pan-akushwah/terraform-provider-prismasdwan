@@ -24,7 +24,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=39)
 // | Computed Resource Name=sites_elementshells_interfaces
 // +-----------------------------------------------------------------
 // | LoopbackConfig HasID=false
@@ -32,6 +32,7 @@ import (
 // | CellularInterfaceConfig HasID=false
 // | PortChannelConfig HasID=false
 // | PassiveMode HasID=false
+// | PPKConfig HasID=false
 // | IKEV1Params HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | IPSECConfigV1 HasID=false
@@ -1403,6 +1404,102 @@ func (r *elementShellInterfaceResource) Schema(_ context.Context, _ resource.Sch
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
+									// property: name=ppk_config, type=REFERENCE macro=rss_schema
+									"ppk_config": rsschema.SingleNestedAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+										Attributes: map[string]rsschema.Attribute{
+											// property: name=enabled, type=BOOLEAN macro=rss_schema
+											"enabled": rsschema.BoolAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+											// property: name=mode, type=STRING macro=rss_schema
+											"mode": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=mode, type=STRING macro=rss_schema
+											// property: name=ppk_key_id, type=STRING macro=rss_schema
+											"ppk_key_id": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// key name holder for attribute: name=ppk_key_id, type=STRING macro=rss_schema
+											// property: name=ppk_secret, type=STRING macro=rss_schema
+											"ppk_secret": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: true,
+											},
+											// key name holder for attribute: name=ppk_secret, type=STRING macro=rss_schema
+											"ppk_secret_internal_key_name": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// property: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+											"ppk_secret_configured": rsschema.BoolAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: true,
+											},
+											// key name holder for attribute: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+											"ppk_secret_configured_internal_key_name": rsschema.BoolAttribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// property: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+											"ppk_secret_encrypted": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: true,
+											},
+											// key name holder for attribute: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+											"ppk_secret_encrypted_internal_key_name": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+											// property: name=ppk_secret_hash, type=STRING macro=rss_schema
+											"ppk_secret_hash": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  false,
+												Optional:  true,
+												Sensitive: true,
+											},
+											// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
+											"ppk_secret_hash_internal_key_name": rsschema.StringAttribute{
+												Required:  false,
+												Computed:  true,
+												Optional:  true,
+												Sensitive: false,
+											},
+										},
+									},
+									// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
+									"ppk_secret_hash_internal_key_name": rsschema.StringAttribute{
+										Required:  false,
+										Computed:  true,
+										Optional:  true,
+										Sensitive: false,
+									},
 									// property: name=private_key, type=STRING macro=rss_schema
 									"private_key": rsschema.StringAttribute{
 										Required:  false,
@@ -2344,7 +2441,7 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 			// property: name=authentication, type=REFERENCE macro=copy_from_plan
 			if plan.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
-				// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 				tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_from_plan
 				body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -2386,6 +2483,26 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 				body.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_from_plan
 				body.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+				// property: name=ppk_config, type=REFERENCE macro=copy_from_plan
+				if plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &sdwan_schema.PPKConfig{}
+					// copy_from_plan: body=body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=7
+					tflog.Debug(ctx, "copy_from_plan body=body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+					// property: name=enabled, type=BOOLEAN macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+					// property: name=mode, type=STRING macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+					// property: name=ppk_key_id, type=STRING macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+					// property: name=ppk_secret, type=STRING macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
+					// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+					// property: name=ppk_secret_encrypted, type=STRING macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
+					// property: name=ppk_secret_hash, type=STRING macro=copy_from_plan
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
+				}
 				// property: name=private_key, type=STRING macro=copy_from_plan
 				body.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_from_plan
@@ -3121,7 +3238,7 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
-				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -3186,6 +3303,49 @@ func (r *elementShellInterfaceResource) doPost(ctx context.Context, plan *rsMode
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+				// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+				if ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig == nil {
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = nil
+				} else {
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &rsModelPPKConfig{}
+					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=7
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+					// property: name=enabled, type=BOOLEAN macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+					// property: name=mode, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+					// property: name=ppk_key_id, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+					// property: name=ppk_secret, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret.ValueStringPointer())
+					// this property is sensitive and will be stored in the state's internal key name
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+					// store value if needed
+					if !state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret.IsNull() {
+						encryptedPpkSecret, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret.String()))
+						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretInternalKeyName.String(), []byte(encryptedPpkSecret))
+					}
+					// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+					// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted.ValueStringPointer())
+					// this property is sensitive and will be stored in the state's internal key name
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
+					// store value if needed
+					if !state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted.IsNull() {
+						encryptedPpkSecretEncrypted, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted.String()))
+						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName.String(), []byte(encryptedPpkSecretEncrypted))
+					}
+					// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash.ValueStringPointer())
+					// this property is sensitive and will be stored in the state's internal key name
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHashInternalKeyName = types.StringValue(GenerateRandomString(16))
+					// store value if needed
+					if !state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash.IsNull() {
+						encryptedPpkSecretHash, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash.String()))
+						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHashInternalKeyName.String(), []byte(encryptedPpkSecretHash))
+					}
+				}
 				// property: name=private_key, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_to_state
@@ -3963,7 +4123,7 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
-				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -4022,6 +4182,43 @@ func (r *elementShellInterfaceResource) doGet(ctx context.Context, state *rsMode
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+				// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+				if ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig == nil {
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = nil
+				} else {
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &rsModelPPKConfig{}
+					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=7
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+					// property: name=enabled, type=BOOLEAN macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+					// property: name=mode, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+					// property: name=ppk_key_id, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+					// property: name=ppk_secret, type=STRING macro=copy_to_state
+					encryptedPpkSecretKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretInternalKeyName.String()
+					encryptedPpkSecretValueBytes, _ := resp.Private.GetKey(ctx, encryptedPpkSecretKeyName)
+					if encryptedPpkSecretValueBytes != nil {
+						decryptedPpkSecret, _ := Decrypt(string(encryptedPpkSecretValueBytes))
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = types.StringValue(decryptedPpkSecret)
+					}
+					// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+					// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+					encryptedPpkSecretEncryptedKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName.String()
+					encryptedPpkSecretEncryptedValueBytes, _ := resp.Private.GetKey(ctx, encryptedPpkSecretEncryptedKeyName)
+					if encryptedPpkSecretEncryptedValueBytes != nil {
+						decryptedPpkSecretEncrypted, _ := Decrypt(string(encryptedPpkSecretEncryptedValueBytes))
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = types.StringValue(decryptedPpkSecretEncrypted)
+					}
+					// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+					encryptedPpkSecretHashKeyName := state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHashInternalKeyName.String()
+					encryptedPpkSecretHashValueBytes, _ := resp.Private.GetKey(ctx, encryptedPpkSecretHashKeyName)
+					if encryptedPpkSecretHashValueBytes != nil {
+						decryptedPpkSecretHash, _ := Decrypt(string(encryptedPpkSecretHashValueBytes))
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = types.StringValue(decryptedPpkSecretHash)
+					}
+				}
 				// property: name=private_key, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_to_state
@@ -5081,7 +5278,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 				body.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				body.ServiceLinkConfig.IpsecConfig.Authentication = &sdwan_schema.IPSECAuthenticationV1{}
-				// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 				tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_from_plan_or_state
 				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
@@ -5192,6 +5389,56 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch, state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+				}
+				// property: name=ppk_config, type=REFERENCE macro=copy_from_plan_or_state
+				if plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig == nil {
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = nil
+				} else {
+					body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &sdwan_schema.PPKConfig{}
+					// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=7
+					tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+					// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+					}
+					// property: name=mode, type=STRING macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+					}
+					// property: name=ppk_key_id, type=STRING macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+					}
+					// property: name=ppk_secret, type=STRING macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
+					}
+					// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+					}
+					// property: name=ppk_secret_encrypted, type=STRING macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
+					}
+					// property: name=ppk_secret_hash, type=STRING macro=copy_from_plan_or_state
+					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
+					} else {
+						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
+					}
 				}
 				// property: name=private_key, type=STRING macro=copy_from_plan_or_state
 				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
@@ -6074,7 +6321,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 				state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 			} else {
 				state.ServiceLinkConfig.IpsecConfig.Authentication = &rsModelIPSECAuthenticationV1{}
-				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+				// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 				tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -6139,6 +6386,49 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+				// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+				if ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig == nil {
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = nil
+				} else {
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &rsModelPPKConfig{}
+					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=7
+					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+					// property: name=enabled, type=BOOLEAN macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+					// property: name=mode, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+					// property: name=ppk_key_id, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+					// property: name=ppk_secret, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret.ValueStringPointer())
+					// this property is sensitive and will be stored in the state's internal key name
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+					// store value if needed
+					if !state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret.IsNull() {
+						encryptedPpkSecret, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret.String()))
+						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretInternalKeyName.String(), []byte(encryptedPpkSecret))
+					}
+					// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+					// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted.ValueStringPointer())
+					// this property is sensitive and will be stored in the state's internal key name
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName = types.StringValue(GenerateRandomString(16))
+					// store value if needed
+					if !state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted.IsNull() {
+						encryptedPpkSecretEncrypted, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted.String()))
+						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncryptedInternalKeyName.String(), []byte(encryptedPpkSecretEncrypted))
+					}
+					// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = types.StringPointerValue(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash.ValueStringPointer())
+					// this property is sensitive and will be stored in the state's internal key name
+					state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHashInternalKeyName = types.StringValue(GenerateRandomString(16))
+					// store value if needed
+					if !state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash.IsNull() {
+						encryptedPpkSecretHash, _ := Encrypt([]byte(state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash.String()))
+						resp.Private.SetKey(ctx, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHashInternalKeyName.String(), []byte(encryptedPpkSecretHash))
+					}
+				}
 				// property: name=private_key, type=STRING macro=copy_to_state
 				state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				// property: name=private_key_encrypted, type=STRING macro=copy_to_state

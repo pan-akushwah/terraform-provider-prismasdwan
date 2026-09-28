@@ -84,9 +84,45 @@
           "description" : "Lqm Enabled",
           "type" : "boolean"
         },
+        "line_conditioning_enabled" : {
+          "description" : "Line Conditioning Enabled",
+          "type" : "boolean"
+        },
         "active" : {
           "description" : "Active",
           "type" : "boolean"
+        },
+        "pa_compute_region_oid" : {
+          "description" : "Pa Compute Region Oid",
+          "type" : "string"
+        },
+        "pa_we_dc_site_id" : {
+          "description" : "Pa We Dc Site Id",
+          "type" : "string"
+        },
+        "pa_we_br_site_id" : {
+          "description" : "Pa We Br Site Id",
+          "type" : "string"
+        },
+        "allocated_sc_count" : {
+          "description" : "Allocated Sc Count",
+          "type" : "integer"
+        },
+        "total_sc_bandwidth_mbps" : {
+          "description" : "Total Sc Bandwidth Mbps",
+          "type" : "integer"
+        },
+        "allocated_bandwidth_mbps" : {
+          "description" : "Allocated Bandwidth Mbps",
+          "type" : "integer"
+        },
+        "compute_region_provider" : {
+          "description" : "Compute Region Provider",
+          "type" : "string"
+        },
+        "compute_region_id" : {
+          "description" : "Compute Region Id",
+          "type" : "string"
         }
       }
     },
@@ -204,6 +240,18 @@
         }
       }
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -217,18 +265,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

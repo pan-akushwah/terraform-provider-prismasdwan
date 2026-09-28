@@ -27,7 +27,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=ipfixtemplates
 // +-----------------------------------------------------------------
-// | IPFixTemplateScreen HasID=true
+// | IPFixTemplate HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -71,7 +71,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=IPFixTemplateScreen
+			// rest all properties to be read from GET API Schema schema=IPFixTemplate
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -196,7 +196,7 @@ func (r *ipfixTemplateResource) GetHttpStatusCode(request *sdwan_client.SdwanCli
 	}
 }
 
-func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTemplateScreen, state *rsModelIPFixTemplateScreen, resp *resource.CreateResponse) bool {
+func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTemplate, state *rsModelIPFixTemplate, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_ipfix_template")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -218,7 +218,7 @@ func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTe
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.IPFixTemplateScreen{}
+	var body = &sdwan_schema.IPFixTemplate{}
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=11
@@ -249,7 +249,7 @@ func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTe
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct IPFixTemplateScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct IPFixTemplate to JSON:", err.Error())
 		return false
 	}
 
@@ -292,12 +292,12 @@ func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTe
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.IPFixTemplateScreen
+	var ans sdwan_schema.IPFixTemplate
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplateScreen in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplate in create", json_err.Error())
 		return false
 	}
 
@@ -322,7 +322,7 @@ func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTe
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_ipfix_template with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=IPFixTemplateScreen
+	// Store the answer to state. schema=IPFixTemplate
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -356,7 +356,7 @@ func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTe
 	return true
 }
 
-func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTemplateScreen, savestate *rsModelIPFixTemplateScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTemplate, savestate *rsModelIPFixTemplate, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -420,7 +420,7 @@ func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTe
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=IPFixTemplateScreen
+	// Store the answer to state. schema=IPFixTemplate
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -429,12 +429,12 @@ func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTe
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.IPFixTemplateScreen
+	var ans sdwan_schema.IPFixTemplate
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplateScreen in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplate in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
@@ -471,7 +471,7 @@ func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTe
 	return true
 }
 
-func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTemplateScreen, state *rsModelIPFixTemplateScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTemplate, state *rsModelIPFixTemplate, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -518,7 +518,7 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.IPFixTemplateScreen{}
+	var body = &sdwan_schema.IPFixTemplate{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
@@ -582,7 +582,7 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct IPFixTemplateScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct IPFixTemplate to JSON:", err.Error())
 		return false
 	}
 
@@ -618,16 +618,16 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.IPFixTemplateScreen
+	var ans sdwan_schema.IPFixTemplate
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplateScreen in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to IPFixTemplate in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=IPFixTemplateScreen
+	// Store the answer to state. schema=IPFixTemplate
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=11
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -661,7 +661,7 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 	return true
 }
 
-func (r *ipfixTemplateResource) doDelete(ctx context.Context, state *rsModelIPFixTemplateScreen, resp *resource.DeleteResponse) bool {
+func (r *ipfixTemplateResource) doDelete(ctx context.Context, state *rsModelIPFixTemplate, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -716,14 +716,14 @@ func (r *ipfixTemplateResource) doDelete(ctx context.Context, state *rsModelIPFi
 // Path Parameters are encoded into TfID itself
 func (r *ipfixTemplateResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_ipfix_template")
-	var plan rsModelIPFixTemplateScreen
+	var plan rsModelIPFixTemplate
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelIPFixTemplateScreen
+	var state rsModelIPFixTemplate
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -735,7 +735,7 @@ func (r *ipfixTemplateResource) Create(ctx context.Context, req resource.CreateR
 func (r *ipfixTemplateResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_ipfix_template")
-	var savestate, state rsModelIPFixTemplateScreen
+	var savestate, state rsModelIPFixTemplate
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -754,7 +754,7 @@ func (r *ipfixTemplateResource) Read(ctx context.Context, req resource.ReadReque
 func (r *ipfixTemplateResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_ipfix_template")
-	var plan, state rsModelIPFixTemplateScreen
+	var plan, state rsModelIPFixTemplate
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -778,7 +778,7 @@ func (r *ipfixTemplateResource) Update(ctx context.Context, req resource.UpdateR
 func (r *ipfixTemplateResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_ipfix_template")
-	var state rsModelIPFixTemplateScreen
+	var state rsModelIPFixTemplate
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

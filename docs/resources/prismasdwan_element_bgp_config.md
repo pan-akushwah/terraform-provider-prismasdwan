@@ -5,8 +5,8 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_bgp_config` |
-| Get Api  | `/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N4`) |
-| Put Api  | `/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N4`) |
+| Get Api  | `/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N5`) |
+| Put Api  | `/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}` (`BGPGlobalConfigScreenV2N5`) |
 
 
 ### JSON Schema
@@ -14,6 +14,22 @@
 ```json
 {
   "properties" : {
+    "vrf_router_id_map" : {
+      "description" : "Vrf Router Id Map: Valid ",
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "router_id" : {
+            "description" : "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
+            "type" : "string"
+          },
+          "vrf_context_id" : {
+            "description" : "Vrf Context Id: Digits(fraction = 0, integer = 20, error = VRF_CONTEXT_ID_INVALID: VRF Context ID is empty or invalid.) ",
+            "type" : "string"
+          }
+        }
+      }
+    },
     "ospf_redistribution" : {
       "description" : "Ospf Redistribution",
       "type" : "array",
@@ -95,7 +111,7 @@
       }
     },
     "peer_retry_time" : {
-      "description" : "Peer Retry Time: Range(max = 65535L, error = BGP_CONFIG_INVALID_PEER_RETRY_TIME: PEER RETRY TIME should be in the range 0-65535, min = 0L) ",
+      "description" : "Peer Retry Time: Range(max = 65535L, error = BGP_CONFIG_INVALID_PEER_RETRY_TIME: PEER RETRY TIME should be in the range 1-65535, min = 1L) ",
       "format" : "int32",
       "type" : "integer"
     },
@@ -122,6 +138,18 @@
       "description" : "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -135,18 +163,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

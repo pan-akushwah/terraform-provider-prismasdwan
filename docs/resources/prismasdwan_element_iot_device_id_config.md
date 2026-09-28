@@ -5,7 +5,7 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_iot_device_id_config` |
-| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{config_id}` (`DeviceIdElementConfigScreen`) |
+| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{deviceid_config_id}` (`DeviceIdElementConfigScreen`) |
 | Post Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs` (`DeviceIdElementConfigScreen`) |
 | Put Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{deviceid_config_id}` (`DeviceIdElementConfigScreen`) |
 | Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/deviceidconfigs/{deviceid_config_id}` |
@@ -43,6 +43,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -56,18 +68,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

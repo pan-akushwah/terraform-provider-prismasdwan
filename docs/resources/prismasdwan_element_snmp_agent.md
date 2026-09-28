@@ -17,11 +17,11 @@
 {
   "properties" : {
     "system_location" : {
-      "description" : "System Location",
+      "description" : "System Location: Pattern(error = SNMPCONFIG_INVALID_SYSTEM_LOCATION: System location contains invalid characters, regexp = ^[^\\\\x00-\\\\x1F\\\\x7F]*$) ",
       "type" : "string"
     },
     "system_contact" : {
-      "description" : "System Contact",
+      "description" : "System Contact: Pattern(error = SNMPCONFIG_INVALID_SYSTEM_CONTACT: System contact contains invalid characters, regexp = ^[^\\\\x00-\\\\x1F\\\\x7F]*$) ",
       "type" : "string"
     },
     "v3_config" : {
@@ -98,7 +98,7 @@
       }
     },
     "description" : {
-      "description" : "Description: Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
+      "description" : "Description: Pattern(error = INVALID_DESCRIPTION: Description contains invalid characters, regexp = ^[^\\\\x00-\\\\x1F\\\\x7F]*$) Size(max = 256, error = DESCRIPTION_EXCEEDS_LIMIT: Description length exceeds limit, min = 0) ",
       "type" : "string"
     },
     "tags" : {
@@ -111,6 +111,18 @@
       "additionalProperties" : {
         "properties" : {
           "x_flag_unordered" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
             "type" : "boolean"
           }
         }
@@ -129,18 +141,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

@@ -192,7 +192,7 @@
                 "path_type" : {
                   "description" : "Path Type: ValidateEnum(enumClass = classOf[PathFilterType], error = PERFMGMT_INVALID_PATH_TYPE: Invalid path type specified in path filter, nullAllowed = false) ",
                   "type" : "string",
-                  "enum" : [ "vpn", "direct", "servicelink", "all" ]
+                  "enum" : [ "vpn", "direct", "servicelink", "pa_vpn", "all" ]
                 },
                 "label" : {
                   "description" : "Label: Pattern(message = PERFMGMT_RULE_INVALID_PATH_LABELS, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
@@ -246,6 +246,18 @@
             "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
             "type" : "string"
           },
+          "_etag" : {
+            "description" : "Etag for this object",
+            "minimum" : 1,
+            "type" : "integer",
+            "additionalProperties" : {
+              "properties" : {
+                "x_flag_computed" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          },
           "id" : {
             "description" : "Id",
             "type" : "string",
@@ -259,18 +271,6 @@
           },
           "_schema" : {
             "description" : "Schema version for this object",
-            "minimum" : 1,
-            "type" : "integer",
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          },
-          "_etag" : {
-            "description" : "Etag for this object",
             "minimum" : 1,
             "type" : "integer",
             "additionalProperties" : {
@@ -352,6 +352,18 @@
             "description" : "Inactive",
             "type" : "boolean"
           },
+          "_etag" : {
+            "description" : "Etag for this object",
+            "minimum" : 1,
+            "type" : "integer",
+            "additionalProperties" : {
+              "properties" : {
+                "x_flag_computed" : {
+                  "type" : "boolean"
+                }
+              }
+            }
+          },
           "id" : {
             "type" : "string",
             "additionalProperties" : {
@@ -364,18 +376,6 @@
           },
           "_schema" : {
             "description" : "Schema version for this object",
-            "minimum" : 1,
-            "type" : "integer",
-            "additionalProperties" : {
-              "properties" : {
-                "x_flag_computed" : {
-                  "type" : "boolean"
-                }
-              }
-            }
-          },
-          "_etag" : {
-            "description" : "Etag for this object",
             "minimum" : 1,
             "type" : "integer",
             "additionalProperties" : {
@@ -441,6 +441,18 @@
       "description" : "Inactive",
       "type" : "boolean"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "type" : "string",
       "additionalProperties" : {
@@ -453,18 +465,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

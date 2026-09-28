@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `site` |
-| Get Api  | `/sdwan/v4.12/api/sites/{site_id}` (`SiteScreenV4N12`) |
-| Post Api  | `/sdwan/v4.12/api/sites` (`SiteScreenV4N12`) |
-| Put Api  | `/sdwan/v4.12/api/sites/{site_id}` (`SiteScreenV4N12`) |
-| Delete Api  | `/sdwan/v4.12/api/sites/{site_id}` |
+| Get Api  | `/sdwan/v4.13/api/sites/{site_id}` (`SiteScreenV4N13`) |
+| Post Api  | `/sdwan/v4.13/api/sites` (`SiteScreenV4N13`) |
+| Put Api  | `/sdwan/v4.13/api/sites/{site_id}` (`SiteScreenV4N13`) |
+| Delete Api  | `/sdwan/v4.13/api/sites/{site_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,10 @@
 ```json
 {
   "properties" : {
+    "element_system_limit_profile_id" : {
+      "description" : "Element System Limit Profile Id",
+      "type" : "string"
+    },
     "sgi_config" : {
       "properties" : {
         "sgi_tag" : {
@@ -187,6 +191,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -200,18 +216,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

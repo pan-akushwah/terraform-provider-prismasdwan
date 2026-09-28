@@ -20,7 +20,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=38)
+// | Schema Map Summary (size=goLangStructMap=39)
 // | Computed Resource Name=sites_elements_interfaces
 // +-----------------------------------------------------------------
 // | LoopbackConfig HasID=false
@@ -28,6 +28,7 @@ import (
 // | CellularInterfaceConfig HasID=false
 // | PortChannelConfig HasID=false
 // | PassiveMode HasID=false
+// | PPKConfig HasID=false
 // | IKEV1Params HasID=false
 // | IPSECAuthenticationV1 HasID=false
 // | IPSECConfigV1 HasID=false
@@ -1388,6 +1389,72 @@ func (d *elementInterfaceDataSource) Schema(_ context.Context, _ datasource.Sche
 													Sensitive: false,
 												},
 												// key name holder for attribute: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
+												// property: name=ppk_config, type=REFERENCE macro=rss_schema
+												"ppk_config": dsschema.SingleNestedAttribute{
+													Required:  false,
+													Computed:  false,
+													Optional:  true,
+													Sensitive: false,
+													Attributes: map[string]dsschema.Attribute{
+														// property: name=enabled, type=BOOLEAN macro=rss_schema
+														"enabled": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
+														// property: name=mode, type=STRING macro=rss_schema
+														"mode": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=mode, type=STRING macro=rss_schema
+														// property: name=ppk_key_id, type=STRING macro=rss_schema
+														"ppk_key_id": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: false,
+														},
+														// key name holder for attribute: name=ppk_key_id, type=STRING macro=rss_schema
+														// property: name=ppk_secret, type=STRING macro=rss_schema
+														"ppk_secret": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret, type=STRING macro=rss_schema
+														// property: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+														"ppk_secret_configured": dsschema.BoolAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
+														// property: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+														"ppk_secret_encrypted": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret_encrypted, type=STRING macro=rss_schema
+														// property: name=ppk_secret_hash, type=STRING macro=rss_schema
+														"ppk_secret_hash": dsschema.StringAttribute{
+															Required:  false,
+															Computed:  false,
+															Optional:  true,
+															Sensitive: true,
+														},
+														// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
+													},
+												},
+												// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
 												// property: name=private_key, type=STRING macro=rss_schema
 												"private_key": dsschema.StringAttribute{
 													Required:  false,
@@ -2440,7 +2507,7 @@ func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 					state.ServiceLinkConfig.IpsecConfig.Authentication = nil
 				} else {
 					state.ServiceLinkConfig.IpsecConfig.Authentication = &dsModelIPSECAuthenticationV1{}
-					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=22
+					// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 					tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication")
 					// property: name=certificate, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
@@ -2484,6 +2551,28 @@ func (d *elementInterfaceDataSource) Read(ctx context.Context, req datasource.Re
 					state.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 					// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
+					// property: name=ppk_config, type=REFERENCE macro=copy_to_state
+					if ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig == nil {
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = nil
+					} else {
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig = &dsModelPPKConfig{}
+						// copy_to_state: state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=7
+						tflog.Debug(ctx, "copy_to_state state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=dsModel ans=ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
+						// property: name=enabled, type=BOOLEAN macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
+						// property: name=mode, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
+						// property: name=ppk_key_id, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
+						// property: name=ppk_secret, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
+						// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = types.BoolPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
+						// property: name=ppk_secret_encrypted, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
+						// property: name=ppk_secret_hash, type=STRING macro=copy_to_state
+						state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
+					}
 					// property: name=private_key, type=STRING macro=copy_to_state
 					state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = types.StringPointerValue(ans.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 					// property: name=private_key_encrypted, type=STRING macro=copy_to_state

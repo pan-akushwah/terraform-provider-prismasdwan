@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_ospf_config` |
-| Get Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreen`) |
-| Post Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs` (`OspfConfigScreen`) |
-| Put Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreen`) |
-| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` |
+| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreenV2N1`) |
+| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs` (`OspfConfigScreenV2N1`) |
+| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` (`OspfConfigScreenV2N1`) |
+| Delete Api  | `/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,14 @@
 ```json
 {
   "properties" : {
+    "cost_for_default_route" : {
+      "description" : "Cost For Default Route: Range(max = 16777214L, message = OSPF_CONFIG_INVALID_COST_FOR_DEFAULT_ROUTE, min = 0L) JsonDeserialize(as = classOf[Void], builder = classOf[Void], contentAs = classOf[Void], contentConverter = classOf[Converter$None], contentUsing = classOf[JsonDeserializer$None], converter = classOf[Converter$None], keyAs = classOf[Void], keyUsing = classOf[KeyDeserializer$None], using = classOf[OspfConfigDO$StrictIntegerDeserializer]) ",
+      "type" : "integer"
+    },
+    "advertise_fabric_default_route" : {
+      "description" : "Advertise Fabric Default Route",
+      "type" : "boolean"
+    },
     "interfaces" : {
       "description" : "Interfaces: Valid ",
       "type" : "array",
@@ -143,6 +151,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -156,18 +176,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

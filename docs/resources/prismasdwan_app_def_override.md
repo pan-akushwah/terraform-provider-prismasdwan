@@ -269,8 +269,9 @@
       "enum" : [ "none", "weak", "strict" ]
     },
     "transfer_type" : {
-      "description" : "Transfer Type: ValidateString(allowNull = true, error = APPDEF_CONFIG_INVALID_TRANSFER_TYPE: Application transfer type is invalid. Only transactional, bulk, rt-audio, rt-video is allowed., values = [transactional, bulk, rt-audio, rt-video]) ",
-      "type" : "string"
+      "description" : "Transfer Type",
+      "type" : "string",
+      "enum" : [ "transactional", "bulk", "rt-audio", "rt-video" ]
     },
     "ingress_traffic_pct" : {
       "description" : "Ingress Traffic Pct: Range(max = 99L, error = APPDEF_CONFIG_INVALID_INGRESS: Application ingress traffic percentage should be in between 1-99, min = 1L) ",
@@ -280,6 +281,18 @@
       "description" : "Category: ValidateEnum(enumClass = classOf[AppCategory], error = APPDEF_CONFIG_INVALID_CATEGORY: Application category is invalid., nullAllowed = true) ",
       "type" : "string",
       "enum" : [ "anonymity", "anti-virus", "auth", "backup", "cad", "collaboration", "conference", "crm", "db-mgmt", "email", "enterprise", "file-sharing", "file-system", "file-transfer", "gaming", "intercomm", "logging", "management", "messaging", "net-discovery", "net-mgmt", "net-monitor", "news-server", "notification", "p2p", "printing", "proxy", "recreational", "remote-desk", "remote-mgmt", "replication", "routing", "saas", "secure-browsing", "storage", "streaming", "tunnel", "utility", "voip", "wan-opt", "web-browsing", "wireless-mgmt", "ip-protocol", "multicast", "security", "i23v5", "printer", "default" ]
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -294,18 +307,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

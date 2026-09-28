@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `element_bgp_peer` |
-| Get Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV2N6`) |
-| Post Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers` (`BGPPeerConfigScreenV2N6`) |
-| Put Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV2N6`) |
-| Delete Api  | `/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` |
+| Get Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV3`) |
+| Post Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers` (`BGPPeerConfigScreenV3`) |
+| Put Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` (`BGPPeerConfigScreenV3`) |
+| Delete Api  | `/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}` |
 
 
 ### JSON Schema
@@ -59,7 +59,7 @@
       "type" : "boolean"
     },
     "update_source_v6" : {
-      "description" : "Update Source V6: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IPV6) ",
+      "description" : "Update Source V6: IPAddress(allowEmpty = false, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IPV6) ",
       "type" : "string"
     },
     "allow_v6_prefixes" : {
@@ -75,7 +75,7 @@
       "type" : "string"
     },
     "router_id" : {
-      "description" : "Router Id: Size(max = 256, error = ROUTER_ID_EXCEEDS_LIMIT: Router_id exceeds limit. Maximum length is 256, min = 0) IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
+      "description" : "Router Id: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, error = BGP_CONFIG_INVALID_ROUTER_ID: Invalid IP address for router_id. Please use a valid IP Address., type = IP) ",
       "type" : "string"
     },
     "vrf_context_id" : {
@@ -141,7 +141,7 @@
       "type" : "boolean"
     },
     "update_source" : {
-      "description" : "Update Source: IPAddress(allowEmpty = true, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IP) ",
+      "description" : "Update Source: IPAddress(allowEmpty = false, allowLinkLocal = false, allowNull = true, bcast = DENY, defaultRoute = false, dnsCheck = false, PEER_CONFIG_INVALID_UPDATE_SOURCE_IP, type = IP) ",
       "type" : "string"
     },
     "route_map_out_id" : {
@@ -187,6 +187,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -200,18 +212,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

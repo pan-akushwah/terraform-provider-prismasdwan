@@ -246,6 +246,14 @@ func (d *qosPolicySetDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 										Sensitive: false,
 									},
 									// key name holder for attribute: name=priority_name, type=STRING macro=rss_schema
+									// property: name=priority_num, type=INTEGER macro=rss_schema
+									"priority_num": dsschema.Int64Attribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=priority_num, type=INTEGER macro=rss_schema
 									// property: name=priority_number, type=INTEGER macro=rss_schema
 									"priority_number": dsschema.Int64Attribute{
 										Required:  false,
@@ -548,10 +556,12 @@ func (d *qosPolicySetDataSource) Read(ctx context.Context, req datasource.ReadRe
 			for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range ans.BusinessPriorityNames {
 				// add a new item
 				state.BusinessPriorityNames = append(state.BusinessPriorityNames, dsModelBusinessPriorityNameMapper{})
-				// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames properties=2
+				// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames properties=3
 				tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=dsModel ans=varLoopBusinessPriorityNames")
 				// property: name=priority_name, type=STRING macro=copy_to_state
 				state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
+				// property: name=priority_num, type=INTEGER macro=copy_to_state
+				state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNum = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNum)
 				// property: name=priority_number, type=INTEGER macro=copy_to_state
 				state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNumber)
 			}

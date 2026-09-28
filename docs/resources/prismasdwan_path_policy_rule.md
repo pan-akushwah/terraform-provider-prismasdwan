@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `path_policy_rule` |
-| Get Api  | `/sdwan/v2.4/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}` (`NetworkPolicyRuleScreenV2N4`) |
-| Post Api  | `/sdwan/v2.4/api/networkpolicysets/{policy_set_id}/networkpolicyrules` (`NetworkPolicyRuleScreenV2N4`) |
-| Put Api  | `/sdwan/v2.4/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}` (`NetworkPolicyRuleScreenV2N4`) |
-| Delete Api  | `/sdwan/v2.4/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}` |
+| Get Api  | `/sdwan/v2.5/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}` (`NetworkPolicyRuleScreenV2N5`) |
+| Post Api  | `/sdwan/v2.5/api/networkpolicysets/{policy_set_id}/networkpolicyrules` (`NetworkPolicyRuleScreenV2N5`) |
+| Put Api  | `/sdwan/v2.5/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}` (`NetworkPolicyRuleScreenV2N5`) |
+| Delete Api  | `/sdwan/v2.5/api/networkpolicysets/{policy_set_id}/networkpolicyrules/{policy_rule_id}` |
 
 
 ### JSON Schema
@@ -16,61 +16,6 @@
 ```json
 {
   "properties" : {
-    "dest_device_ids" : {
-      "description" : "Dest Device Ids: JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_DEST_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 10, DEST_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
-      "type" : "array",
-      "items" : {
-        "description" : "Dest Device Ids",
-        "type" : "string"
-      }
-    },
-    "src_device_ids" : {
-      "description" : "Src Device Ids: JsonInclude(content = ALWAYS, contentFilter = classOf[Void], value = NON_NULL, valueFilter = classOf[Void]) ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_SRC_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 256, SRC_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
-      "type" : "array",
-      "items" : {
-        "description" : "Src Device Ids",
-        "type" : "string"
-      }
-    },
-    "best_path_config" : {
-      "properties" : {
-        "probe_config_id" : {
-          "description" : "Probe Config Id",
-          "type" : "string"
-        },
-        "metric_type" : {
-          "description" : "Metric Type: Required(error = METRIC_TYPE_MISSING: Metric type is required) ValidateEnum(enumClass = classOf[ProbeMetricType], error = NETWORK_POLICY_INVALID_PROBE_METRIC_TYPE: Probe metric type is invalid. It should be lqm or probe, nullAllowed = false) ",
-          "type" : "string",
-          "enum" : [ "PROBE", "LQM" ]
-        },
-        "metric" : {
-          "description" : "Metric: Required(error = METRIC_PARAMETER_MISSING: Metric parameter is required) ValidateEnum(enumClass = classOf[LQMMetricType], error = NETWORK_POLICY_INVALID_PROBE_METRIC: Probe metric is invalid. It should be latency, jitter, packet_loss, init_failure_pct or dns_txn_failure_pct, nullAllowed = false) ",
-          "type" : "string",
-          "enum" : [ "LATENCY", "JITTER", "PACKET_LOSS", "INIT_FAILURE_PCT", "DNS_TXN_FAILURE_PCT" ]
-        }
-      },
-      "required" : [ "metric_type", "metric" ]
-    },
-    "user_or_group" : {
-      "properties" : {
-        "user_group_ids" : {
-          "description" : "User Group Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_GROUP_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_GROUP_ID_LIST_SIZE_EXCEEDED, min = 0) ",
-          "type" : "array",
-          "items" : {
-            "description" : "User Group Ids",
-            "type" : "string"
-          }
-        },
-        "user_ids" : {
-          "description" : "User Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_ID_LIST_SIZE_EXCEEDED, min = 0) ",
-          "type" : "array",
-          "items" : {
-            "description" : "User Ids",
-            "type" : "string"
-          }
-        }
-      }
-    },
     "destination_prefixes_id" : {
       "description" : "Destination Prefixes Id: Digits(fraction = 0, integer = 30, error = INVALID_DESTINATION_PREFIXES_ID: Specified destination prefix is invalid.) ",
       "type" : "string"
@@ -87,16 +32,15 @@
           "items" : {
             "properties" : {
               "path_type" : {
-                "description" : "Path Type: ValidateEnum(enumClass = classOf[PathType], message = INVALID_PATH_TYPE, nullAllowed = false) ",
+                "description" : "Path Type",
                 "type" : "string",
-                "enum" : [ "vpn", "direct", "servicelink" ]
+                "enum" : [ "vpn", "direct", "servicelink", "pa_vpn" ]
               },
               "label" : {
-                "description" : "Label: Pattern(message = INVALID_PATH_LABEL, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
+                "description" : "Label",
                 "type" : "string"
               }
-            },
-            "required" : [ "path_type" ]
+            }
           }
         },
         "backup_paths" : {
@@ -105,16 +49,15 @@
           "items" : {
             "properties" : {
               "path_type" : {
-                "description" : "Path Type: ValidateEnum(enumClass = classOf[PathType], message = INVALID_PATH_TYPE, nullAllowed = false) ",
+                "description" : "Path Type",
                 "type" : "string",
-                "enum" : [ "vpn", "direct", "servicelink" ]
+                "enum" : [ "vpn", "direct", "servicelink", "pa_vpn" ]
               },
               "label" : {
-                "description" : "Label: Pattern(message = INVALID_PATH_LABEL, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
+                "description" : "Label",
                 "type" : "string"
               }
-            },
-            "required" : [ "path_type" ]
+            }
           }
         },
         "active_paths" : {
@@ -123,16 +66,15 @@
           "items" : {
             "properties" : {
               "path_type" : {
-                "description" : "Path Type: ValidateEnum(enumClass = classOf[PathType], message = INVALID_PATH_TYPE, nullAllowed = false) ",
+                "description" : "Path Type",
                 "type" : "string",
-                "enum" : [ "vpn", "direct", "servicelink" ]
+                "enum" : [ "vpn", "direct", "servicelink", "pa_vpn" ]
               },
               "label" : {
-                "description" : "Label: Pattern(message = INVALID_PATH_LABEL, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
+                "description" : "Label",
                 "type" : "string"
               }
-            },
-            "required" : [ "path_type" ]
+            }
           }
         }
       }
@@ -185,6 +127,60 @@
         "type" : "string"
       }
     },
+    "user_or_group" : {
+      "properties" : {
+        "user_group_ids" : {
+          "description" : "User Group Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_GROUP_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_GROUP_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "type" : "array",
+          "items" : {
+            "description" : "User Group Ids",
+            "type" : "string"
+          }
+        },
+        "user_ids" : {
+          "description" : "User Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_USER_IDS, noTrim = false, regex = , required = false) Size(max = 256, USER_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+          "type" : "array",
+          "items" : {
+            "description" : "User Ids",
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "dest_device_ids" : {
+      "description" : "Dest Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_DEST_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 10, DEST_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+      "type" : "array",
+      "items" : {
+        "description" : "Dest Device Ids",
+        "type" : "string"
+      }
+    },
+    "src_device_ids" : {
+      "description" : "Src Device Ids: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 0, listMaxSize = 0, DUPLICATE_SRC_DEVICE_IDS, noTrim = false, regex = , required = false) Size(max = 256, SRC_DEVICE_ID_LIST_SIZE_EXCEEDED, min = 0) ",
+      "type" : "array",
+      "items" : {
+        "description" : "Src Device Ids",
+        "type" : "string"
+      }
+    },
+    "best_path_config" : {
+      "properties" : {
+        "probe_config_id" : {
+          "description" : "Probe Config Id",
+          "type" : "string"
+        },
+        "metric" : {
+          "description" : "Metric",
+          "type" : "string",
+          "enum" : [ "LATENCY", "JITTER", "PACKET_LOSS", "INIT_FAILURE_PCT", "DNS_TXN_FAILURE_PCT" ]
+        },
+        "metric_type" : {
+          "description" : "Metric Type",
+          "type" : "string",
+          "enum" : [ "PROBE", "LQM" ]
+        }
+      }
+    },
     "tags" : {
       "description" : "Tags: ListString(allowDuplicate = false, allowEmpty = true, allowNull = true, length = 128, listMaxSize = 10, error = INVALID_TAG: Maximum 10 Unique tags of length 1024 each are allowed, noTrim = false, regex = [^,\\\\s]+, required = false) ",
       "type" : "array",
@@ -208,6 +204,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -221,18 +229,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

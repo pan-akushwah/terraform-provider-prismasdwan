@@ -23,7 +23,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=securityzones
 // +-----------------------------------------------------------------
-// | SecurityZoneV2N1 HasID=true
+// | SecurityZoneV2N2 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -55,7 +55,7 @@ type dsModelWithFilterSecurityZone struct {
 	TfParameters types.Map                  `tfsdk:"x_parameters"` // Generic Map for Path Ids
 	Etag         types.Int64                `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
 	Schema       types.Int64                `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelSecurityZoneV2N1 `tfsdk:"items"`
+	Items        []*dsModelSecurityZoneV2N2 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -99,7 +99,7 @@ func (d *securityZoneDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=SecurityZoneV2N1
+						// rest all properties to be read from GET API Schema schema=SecurityZoneV2N2
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -132,6 +132,14 @@ func (d *securityZoneDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
+						// property: name=is_l2, type=BOOLEAN macro=rss_schema
+						"is_l2": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=is_l2, type=BOOLEAN macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:  false,
@@ -143,7 +151,7 @@ func (d *securityZoneDataSource) Schema(_ context.Context, _ datasource.SchemaRe
 						// property: name=tcp_allow_non_syn, type=BOOLEAN macro=rss_schema
 						"tcp_allow_non_syn": dsschema.BoolAttribute{
 							Required:  false,
-							Computed:  true,
+							Computed:  false,
 							Optional:  true,
 							Sensitive: false,
 						},
@@ -184,7 +192,7 @@ func (d *securityZoneDataSource) Read(ctx context.Context, req datasource.ReadRe
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.1/api/securityzones/{zone_id}"
+	get_path := "/sdwan/v2.2/api/securityzones/{zone_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -255,20 +263,20 @@ func (d *securityZoneDataSource) Read(ctx context.Context, req datasource.ReadRe
 		}
 
 		// Store the answer to state.
-		var state dsModelSecurityZoneV2N1
+		var state dsModelSecurityZoneV2N2
 
 		// start copying attributes
-		var ans sdwan_schema.SecurityZoneV2N1
+		var ans sdwan_schema.SecurityZoneV2N2
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N1", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to SecurityZoneV2N2", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=SecurityZoneV2N1
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=6
+		// lets copy all items into state schema=SecurityZoneV2N2
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=7
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -278,6 +286,8 @@ func (d *securityZoneDataSource) Read(ctx context.Context, req datasource.ReadRe
 		state.Description = types.StringPointerValue(ans.Description)
 		// property: name=id, type=STRING macro=copy_to_state
 		state.Id = types.StringPointerValue(ans.Id)
+		// property: name=is_l2, type=BOOLEAN macro=copy_to_state
+		state.IsL2 = types.BoolPointerValue(ans.IsL2)
 		// property: name=name, type=STRING macro=copy_to_state
 		state.Name = types.StringPointerValue(ans.Name)
 		// property: name=tcp_allow_non_syn, type=BOOLEAN macro=copy_to_state

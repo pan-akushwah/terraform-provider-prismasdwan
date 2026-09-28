@@ -20,7 +20,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=7)
+// | Schema Map Summary (size=goLangStructMap=8)
 // | Computed Resource Name=sites_prismasase_connections
 // +-----------------------------------------------------------------
 // | RoutingConfigs HasID=false
@@ -28,8 +28,9 @@ import (
 // | IPSecTunnelAuthentication HasID=false
 // | IPSecTunnel HasID=false
 // | RemoteNetworkGroup HasID=false
+// | RoutingConfigsV3N0 HasID=false
 // | IPSecTunnelConfigs HasID=false
-// | SaseConnectionScreenV2N1 HasID=true
+// | SaseConnectionScreenV3N0 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -61,7 +62,7 @@ type dsModelWithFilterSitePrismaSaseConnection struct {
 	TfParameters types.Map                          `tfsdk:"x_parameters"` // Generic Map for Path Ids
 	Etag         types.Int64                        `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
 	Schema       types.Int64                        `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelSaseConnectionScreenV2N1 `tfsdk:"items"`
+	Items        []*dsModelSaseConnectionScreenV3N0 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -105,7 +106,7 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=SaseConnectionScreenV2N1
+						// rest all properties to be read from GET API Schema schema=SaseConnectionScreenV3N0
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -229,15 +230,15 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=license_type, type=STRING macro=rss_schema
-						// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
-						"prismaaccess_edge_location": dsschema.ListAttribute{
+						// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=rss_schema
+						"prismaaccess_edge_location_config": dsschema.ListAttribute{
 							Required:    false,
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
 							ElementType: types.StringType,
 						},
-						// key name holder for attribute: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=rss_schema
+						// key name holder for attribute: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=rss_schema
 						"prismaaccess_qos_cir_mbps": dsschema.Int64Attribute{
 							Required:  false,
@@ -254,6 +255,14 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=prismaaccess_qos_profile_id, type=STRING macro=rss_schema
+						// property: name=prismasase_connection_id, type=STRING macro=rss_schema
+						"prismasase_connection_id": dsschema.StringAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=prismasase_connection_id, type=STRING macro=rss_schema
 						// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=rss_schema
 						"remote_network_groups": dsschema.ListNestedAttribute{
 							Required:  false,
@@ -444,6 +453,22 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 									Sensitive: true,
 								},
 								// key name holder for attribute: name=bgp_secret, type=STRING macro=rss_schema
+								// property: name=branch_as_number, type=STRING macro=rss_schema
+								"branch_as_number": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=branch_as_number, type=STRING macro=rss_schema
+								// property: name=deployment_mode, type=STRING macro=rss_schema
+								"deployment_mode": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=deployment_mode, type=STRING macro=rss_schema
 								// property: name=export_routes, type=BOOLEAN macro=rss_schema
 								"export_routes": dsschema.BoolAttribute{
 									Required:  false,
@@ -507,7 +532,7 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
+	get_path := "/sdwan/v3.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -578,20 +603,20 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 		}
 
 		// Store the answer to state.
-		var state dsModelSaseConnectionScreenV2N1
+		var state dsModelSaseConnectionScreenV3N0
 
 		// start copying attributes
-		var ans sdwan_schema.SaseConnectionScreenV2N1
+		var ans sdwan_schema.SaseConnectionScreenV3N0
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV2N1", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to SaseConnectionScreenV3N0", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=SaseConnectionScreenV2N1
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=14
+		// lets copy all items into state schema=SaseConnectionScreenV3N0
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=15
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -631,14 +656,16 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 		state.IsEnabled = types.BoolPointerValue(ans.IsEnabled)
 		// property: name=license_type, type=STRING macro=copy_to_state
 		state.LicenseType = types.StringPointerValue(ans.LicenseType)
-		// property: name=prismaaccess_edge_location, type=ARRAY_PRIMITIVE macro=copy_to_state
-		varPrismaaccessEdgeLocation, errPrismaaccessEdgeLocation := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocation)
-		state.PrismaaccessEdgeLocation = varPrismaaccessEdgeLocation
-		resp.Diagnostics.Append(errPrismaaccessEdgeLocation.Errors()...)
+		// property: name=prismaaccess_edge_location_config, type=ARRAY_PRIMITIVE macro=copy_to_state
+		varPrismaaccessEdgeLocationConfig, errPrismaaccessEdgeLocationConfig := types.ListValueFrom(ctx, types.StringType, ans.PrismaaccessEdgeLocationConfig)
+		state.PrismaaccessEdgeLocationConfig = varPrismaaccessEdgeLocationConfig
+		resp.Diagnostics.Append(errPrismaaccessEdgeLocationConfig.Errors()...)
 		// property: name=prismaaccess_qos_cir_mbps, type=INTEGER macro=copy_to_state
 		state.PrismaaccessQosCirMbps = types.Int64PointerValue(ans.PrismaaccessQosCirMbps)
 		// property: name=prismaaccess_qos_profile_id, type=STRING macro=copy_to_state
 		state.PrismaaccessQosProfileId = types.StringPointerValue(ans.PrismaaccessQosProfileId)
+		// property: name=prismasase_connection_id, type=STRING macro=copy_to_state
+		state.PrismasaseConnectionId = types.StringPointerValue(ans.PrismasaseConnectionId)
 		// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.RemoteNetworkGroups == nil {
 			state.RemoteNetworkGroups = nil
@@ -725,13 +752,17 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 		if ans.RoutingConfigs == nil {
 			state.RoutingConfigs = nil
 		} else {
-			state.RoutingConfigs = &dsModelRoutingConfigs{}
-			// copy_to_state: state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs properties=4
+			state.RoutingConfigs = &dsModelRoutingConfigsV3N0{}
+			// copy_to_state: state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.RoutingConfigs prefix=dsModel ans=ans.RoutingConfigs")
 			// property: name=advertise_default_route, type=BOOLEAN macro=copy_to_state
 			state.RoutingConfigs.AdvertiseDefaultRoute = types.BoolPointerValue(ans.RoutingConfigs.AdvertiseDefaultRoute)
 			// property: name=bgp_secret, type=STRING macro=copy_to_state
 			state.RoutingConfigs.BgpSecret = types.StringPointerValue(ans.RoutingConfigs.BgpSecret)
+			// property: name=branch_as_number, type=STRING macro=copy_to_state
+			state.RoutingConfigs.BranchAsNumber = types.StringPointerValue(ans.RoutingConfigs.BranchAsNumber)
+			// property: name=deployment_mode, type=STRING macro=copy_to_state
+			state.RoutingConfigs.DeploymentMode = types.StringPointerValue(ans.RoutingConfigs.DeploymentMode)
 			// property: name=export_routes, type=BOOLEAN macro=copy_to_state
 			state.RoutingConfigs.ExportRoutes = types.BoolPointerValue(ans.RoutingConfigs.ExportRoutes)
 			// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_to_state

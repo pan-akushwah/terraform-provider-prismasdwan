@@ -26,7 +26,7 @@ import (
 // | OspfGlobalConfig HasID=false
 // | InterfaceOspfConfig HasID=false
 // | Area HasID=false
-// | OspfConfigScreen HasID=true
+// | OspfConfigScreenV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -54,11 +54,11 @@ type elementOspfConfigDataSource struct {
 }
 
 type dsModelWithFilterElementOspfConfig struct {
-	Filters      types.Map                  `tfsdk:"filters"`
-	TfParameters types.Map                  `tfsdk:"x_parameters"` // Generic Map for Path Ids
-	Etag         types.Int64                `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
-	Schema       types.Int64                `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelOspfConfigScreen `tfsdk:"items"`
+	Filters      types.Map                      `tfsdk:"filters"`
+	TfParameters types.Map                      `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                    `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                    `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelOspfConfigScreenV2N1 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -102,7 +102,7 @@ func (d *elementOspfConfigDataSource) Schema(_ context.Context, _ datasource.Sch
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=OspfConfigScreen
+						// rest all properties to be read from GET API Schema schema=OspfConfigScreenV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -119,6 +119,14 @@ func (d *elementOspfConfigDataSource) Schema(_ context.Context, _ datasource.Sch
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
+						// property: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
+						"advertise_fabric_default_route": dsschema.BoolAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 						// property: name=areas, type=ARRAY_REFERENCE macro=rss_schema
 						"areas": dsschema.ListNestedAttribute{
 							Required:  false,
@@ -147,6 +155,14 @@ func (d *elementOspfConfigDataSource) Schema(_ context.Context, _ datasource.Sch
 							},
 						},
 						// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
+						// property: name=cost_for_default_route, type=INTEGER macro=rss_schema
+						"cost_for_default_route": dsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=cost_for_default_route, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:  false,
@@ -374,7 +390,7 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
+	get_path := "/sdwan/v2.1/api/sites/{site_id}/elements/{element_id}/ospfconfigs/{ospf_config_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -445,25 +461,27 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 		}
 
 		// Store the answer to state.
-		var state dsModelOspfConfigScreen
+		var state dsModelOspfConfigScreenV2N1
 
 		// start copying attributes
-		var ans sdwan_schema.OspfConfigScreen
+		var ans sdwan_schema.OspfConfigScreenV2N1
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreen", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to OspfConfigScreenV2N1", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=OspfConfigScreen
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=16
+		// lets copy all items into state schema=OspfConfigScreenV2N1
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=18
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
 		// property: name=_schema, type=INTEGER macro=copy_to_state
 		state.Schema = types.Int64PointerValue(ans.Schema)
+		// property: name=advertise_fabric_default_route, type=BOOLEAN macro=copy_to_state
+		state.AdvertiseFabricDefaultRoute = types.BoolPointerValue(ans.AdvertiseFabricDefaultRoute)
 		// property: name=areas, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.Areas == nil {
 			state.Areas = nil
@@ -482,6 +500,8 @@ func (d *elementOspfConfigDataSource) Read(ctx context.Context, req datasource.R
 				state.Areas[varLoopAreasIndex].AreaType = types.StringPointerValue(varLoopAreas.AreaType)
 			}
 		}
+		// property: name=cost_for_default_route, type=INTEGER macro=copy_to_state
+		state.CostForDefaultRoute = types.Int64PointerValue(ans.CostForDefaultRoute)
 		// property: name=description, type=STRING macro=copy_to_state
 		state.Description = types.StringPointerValue(ans.Description)
 		// property: name=id, type=STRING macro=copy_to_state

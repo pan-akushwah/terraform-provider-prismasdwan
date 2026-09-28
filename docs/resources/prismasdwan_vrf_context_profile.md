@@ -90,6 +90,18 @@
       "description" : "Name: NotBlank(error = VRF_CONTEXT_PROFILE_NAME_INVALID: Vrf context profile name is invalid) Size(max = 128, error = VRF_CONTEXT_PROFILE_NAME_EXCEEDS_LIMIT: Vrf context profile name exceeds limit, min = 0) Pattern(error = VRF_CONTEXT_PROFILE_NAME_INVALID: Vrf context profile name is invalid, regexp = ^[A-Za-z][A-Za-z0-9_\\\\s-]*$) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -103,18 +115,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

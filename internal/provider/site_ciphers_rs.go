@@ -27,7 +27,7 @@ import (
 // | Schema Map Summary (size=goLangStructMap=1)
 // | Computed Resource Name=sites_siteciphers
 // +-----------------------------------------------------------------
-// | SiteCipherScreen HasID=true
+// | SiteCipherScreenV2N1 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -71,7 +71,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SiteCipherScreen
+			// rest all properties to be read from GET API Schema schema=SiteCipherScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -119,6 +119,22 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
+			// property: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
+			"tls13_controller_connection_cipher": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
+			// property: name=tls13_enabled, type=BOOLEAN macro=rss_schema
+			"tls13_enabled": rsschema.BoolAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=tls13_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema
 			"vpn_ciphers": rsschema.ListAttribute{
 				Required:    false,
@@ -154,7 +170,7 @@ func (r *siteCiphersResource) GetHttpStatusCode(request *sdwan_client.SdwanClien
 	}
 }
 
-func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCipherScreen, savestate *rsModelSiteCipherScreen, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCipherScreenV2N1, savestate *rsModelSiteCipherScreenV2N1, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -218,7 +234,7 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SiteCipherScreen
+	// Store the answer to state. schema=SiteCipherScreenV2N1
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -227,16 +243,16 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SiteCipherScreen
+	var ans sdwan_schema.SiteCipherScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SiteCipherScreen in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SiteCipherScreenV2N1 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -248,6 +264,10 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// property: name=tls13_controller_connection_cipher, type=STRING macro=copy_to_state
+	state.Tls13ControllerConnectionCipher = types.StringPointerValue(ans.Tls13ControllerConnectionCipher)
+	// property: name=tls13_enabled, type=BOOLEAN macro=copy_to_state
+	state.Tls13Enabled = types.BoolPointerValue(ans.Tls13Enabled)
 	// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varVpnCiphers, errVpnCiphers := types.ListValueFrom(ctx, types.StringType, ans.VpnCiphers)
 	state.VpnCiphers = varVpnCiphers
@@ -255,7 +275,7 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 	return true
 }
 
-func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipherScreen, state *rsModelSiteCipherScreen, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipherScreenV2N1, state *rsModelSiteCipherScreenV2N1, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -283,7 +303,7 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_site_ciphers"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.0/api/sites/{site_id}/siteciphers"
+	put_request.Path = "/sdwan/v2.1/api/sites/{site_id}/siteciphers"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -298,11 +318,11 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SiteCipherScreen{}
+	var body = &sdwan_schema.SiteCipherScreenV2N1{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=6
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=8
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -334,13 +354,25 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	} else {
 		body.SiteId = StringValueOrNil(plan.SiteId)
 	}
+	// property: name=tls13_controller_connection_cipher, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.Tls13ControllerConnectionCipher = ValueStringPointerFromPlanOrState(plan.Tls13ControllerConnectionCipher, state.Tls13ControllerConnectionCipher)
+	} else {
+		body.Tls13ControllerConnectionCipher = StringValueOrNil(plan.Tls13ControllerConnectionCipher)
+	}
+	// property: name=tls13_enabled, type=BOOLEAN macro=copy_from_plan_or_state
+	if state != nil {
+		body.Tls13Enabled = ValueBoolPointerFromPlanOrState(plan.Tls13Enabled, state.Tls13Enabled)
+	} else {
+		body.Tls13Enabled = BoolValueOrNil(plan.Tls13Enabled)
+	}
 	// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
 	body.VpnCiphers = ListStringValueOrNil(ctx, plan.VpnCiphers)
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SiteCipherScreen to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SiteCipherScreenV2N1 to JSON:", err.Error())
 		return false
 	}
 
@@ -381,17 +413,17 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SiteCipherScreen
+	var ans sdwan_schema.SiteCipherScreenV2N1
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SiteCipherScreen in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SiteCipherScreenV2N1 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SiteCipherScreen
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
+	// Store the answer to state. schema=SiteCipherScreenV2N1
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=8
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -403,6 +435,10 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// property: name=tls13_controller_connection_cipher, type=STRING macro=copy_to_state
+	state.Tls13ControllerConnectionCipher = types.StringPointerValue(ans.Tls13ControllerConnectionCipher)
+	// property: name=tls13_enabled, type=BOOLEAN macro=copy_to_state
+	state.Tls13Enabled = types.BoolPointerValue(ans.Tls13Enabled)
 	// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varVpnCiphers, errVpnCiphers := types.ListValueFrom(ctx, types.StringType, ans.VpnCiphers)
 	state.VpnCiphers = varVpnCiphers
@@ -415,17 +451,17 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 // Path Parameters are encoded into TfID itself
 func (r *siteCiphersResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_site_ciphers")
-	var plan rsModelSiteCipherScreen
+	var plan rsModelSiteCipherScreenV2N1
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// this resource does not have a POST call defined, assuming that the PUT call is present and GET call is present
-	// path=/sdwan/v2.0/api/sites/{site_id}/siteciphers
+	// path=/sdwan/v2.1/api/sites/{site_id}/siteciphers
 
 	// state in api servers
-	var save rsModelSiteCipherScreen
+	var save rsModelSiteCipherScreenV2N1
 
 	// create a new tfid
 	var idBuilder strings.Builder
@@ -466,7 +502,7 @@ func (r *siteCiphersResource) Create(ctx context.Context, req resource.CreateReq
 func (r *siteCiphersResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_site_ciphers")
-	var savestate, state rsModelSiteCipherScreen
+	var savestate, state rsModelSiteCipherScreenV2N1
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -485,7 +521,7 @@ func (r *siteCiphersResource) Read(ctx context.Context, req resource.ReadRequest
 func (r *siteCiphersResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_site_ciphers")
-	var plan, state rsModelSiteCipherScreen
+	var plan, state rsModelSiteCipherScreenV2N1
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

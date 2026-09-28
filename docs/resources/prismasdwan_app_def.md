@@ -104,12 +104,14 @@
       "enum" : [ "anonymity", "anti-virus", "auth", "backup", "cad", "collaboration", "conference", "crm", "db-mgmt", "email", "enterprise", "file-sharing", "file-system", "file-transfer", "gaming", "intercomm", "logging", "management", "messaging", "net-discovery", "net-mgmt", "net-monitor", "news-server", "notification", "p2p", "printing", "proxy", "recreational", "remote-desk", "remote-mgmt", "replication", "routing", "saas", "secure-browsing", "storage", "streaming", "tunnel", "utility", "voip", "wan-opt", "web-browsing", "wireless-mgmt", "ip-protocol", "multicast", "security", "i23v5", "printer", "default" ]
     },
     "app_type" : {
-      "description" : "App Type: ValidateString(allowNull = false, error = APPDEF_CONFIG_INVALID_TYPE: Only Custom app allowed to create/update., values = [custom]) ",
-      "type" : "string"
+      "description" : "App Type",
+      "type" : "string",
+      "enum" : [ "custom" ]
     },
     "transfer_type" : {
-      "description" : "Transfer Type: ValidateString(allowNull = false, error = APPDEF_CONFIG_INVALID_TRANSFER_TYPE: Application transfer type is invalid. Only transactional, bulk, rt-audio, rt-video is allowed., values = [transactional, bulk, rt-audio, rt-video]) ",
-      "type" : "string"
+      "description" : "Transfer Type",
+      "type" : "string",
+      "enum" : [ "transactional", "bulk", "rt-audio", "rt-video" ]
     },
     "ip_rules" : {
       "type" : "array",
@@ -314,6 +316,18 @@
       "type" : "string",
       "enum" : [ "none", "weak", "strict" ]
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -336,21 +350,9 @@
           }
         }
       }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
     }
   },
-  "required" : [ "app_type", "transfer_type", "display_name", "ingress_traffic_pct", "path_affinity" ]
+  "required" : [ "display_name", "ingress_traffic_pct", "path_affinity" ]
 }
 ```
 

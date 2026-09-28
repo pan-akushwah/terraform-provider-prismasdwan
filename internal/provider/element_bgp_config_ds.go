@@ -20,11 +20,12 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=2)
+// | Schema Map Summary (size=goLangStructMap=3)
 // | Computed Resource Name=sites_elements_bgpconfigs
 // +-----------------------------------------------------------------
+// | VRFRouterIDMapping HasID=false
 // | OspfRedistribution HasID=false
-// | BGPGlobalConfigScreenV2N4 HasID=true
+// | BGPGlobalConfigScreenV2N5 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -56,7 +57,7 @@ type dsModelWithFilterElementBgpConfig struct {
 	TfParameters types.Map                           `tfsdk:"x_parameters"` // Generic Map for Path Ids
 	Etag         types.Int64                         `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
 	Schema       types.Int64                         `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelBGPGlobalConfigScreenV2N4 `tfsdk:"items"`
+	Items        []*dsModelBGPGlobalConfigScreenV2N5 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -100,7 +101,7 @@ func (d *elementBgpConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N4
+						// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N5
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -291,6 +292,34 @@ func (d *elementBgpConfigDataSource) Schema(_ context.Context, _ datasource.Sche
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=stalepath_time, type=INTEGER macro=rss_schema
+						// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=rss_schema
+						"vrf_router_id_map": dsschema.ListNestedAttribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+							NestedObject: dsschema.NestedAttributeObject{
+								Attributes: map[string]dsschema.Attribute{
+									// property: name=router_id, type=STRING macro=rss_schema
+									"router_id": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
+									// property: name=vrf_context_id, type=STRING macro=rss_schema
+									"vrf_context_id": dsschema.StringAttribute{
+										Required:  false,
+										Computed:  false,
+										Optional:  true,
+										Sensitive: false,
+									},
+									// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+								},
+							},
+						},
+						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
 				},
 			},
@@ -327,7 +356,7 @@ func (d *elementBgpConfigDataSource) Read(ctx context.Context, req datasource.Re
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.4/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
+	get_path := "/sdwan/v2.5/api/sites/{site_id}/elements/{element_id}/bgpconfigs/{bgp_config_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -398,20 +427,20 @@ func (d *elementBgpConfigDataSource) Read(ctx context.Context, req datasource.Re
 		}
 
 		// Store the answer to state.
-		var state dsModelBGPGlobalConfigScreenV2N4
+		var state dsModelBGPGlobalConfigScreenV2N5
 
 		// start copying attributes
-		var ans sdwan_schema.BGPGlobalConfigScreenV2N4
+		var ans sdwan_schema.BGPGlobalConfigScreenV2N5
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N4", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to BGPGlobalConfigScreenV2N5", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=BGPGlobalConfigScreenV2N4
-		// copy_to_state: state=state prefix=dsModel ans=ans properties=21
+		// lets copy all items into state schema=BGPGlobalConfigScreenV2N5
+		// copy_to_state: state=state prefix=dsModel ans=ans properties=22
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state
 		state.Etag = types.Int64PointerValue(ans.Etag)
@@ -475,6 +504,24 @@ func (d *elementBgpConfigDataSource) Read(ctx context.Context, req datasource.Re
 		state.RouterId = types.StringPointerValue(ans.RouterId)
 		// property: name=stalepath_time, type=INTEGER macro=copy_to_state
 		state.StalepathTime = types.Int64PointerValue(ans.StalepathTime)
+		// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=copy_to_state
+		if ans.VrfRouterIdMap == nil {
+			state.VrfRouterIdMap = nil
+		} else if len(ans.VrfRouterIdMap) == 0 {
+			state.VrfRouterIdMap = []dsModelVRFRouterIDMapping{}
+		} else {
+			state.VrfRouterIdMap = make([]dsModelVRFRouterIDMapping, 0, len(ans.VrfRouterIdMap))
+			for varLoopVrfRouterIdMapIndex, varLoopVrfRouterIdMap := range ans.VrfRouterIdMap {
+				// add a new item
+				state.VrfRouterIdMap = append(state.VrfRouterIdMap, dsModelVRFRouterIDMapping{})
+				// copy_to_state: state=state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=dsModel ans=varLoopVrfRouterIdMap properties=2
+				tflog.Debug(ctx, "copy_to_state state=state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex] prefix=dsModel ans=varLoopVrfRouterIdMap")
+				// property: name=router_id, type=STRING macro=copy_to_state
+				state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].RouterId = types.StringPointerValue(varLoopVrfRouterIdMap.RouterId)
+				// property: name=vrf_context_id, type=STRING macro=copy_to_state
+				state.VrfRouterIdMap[varLoopVrfRouterIdMapIndex].VrfContextId = types.StringPointerValue(varLoopVrfRouterIdMap.VrfContextId)
+			}
+		}
 
 		// append the item scanned
 		state_with_filter.Items = append(state_with_filter.Items, &state)

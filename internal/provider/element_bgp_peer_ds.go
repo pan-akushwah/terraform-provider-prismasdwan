@@ -26,7 +26,7 @@ import (
 // | AggregatePrefixes HasID=false
 // | RouteAggregation HasID=false
 // | BGPConfig HasID=false
-// | BGPPeerConfigScreenV2N6 HasID=true
+// | BGPPeerConfigScreenV3 HasID=true
 // +-----------------------------------------------------------------
 
 // Data source.
@@ -54,11 +54,11 @@ type elementBgpPeerDataSource struct {
 }
 
 type dsModelWithFilterElementBgpPeer struct {
-	Filters      types.Map                         `tfsdk:"filters"`
-	TfParameters types.Map                         `tfsdk:"x_parameters"` // Generic Map for Path Ids
-	Etag         types.Int64                       `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
-	Schema       types.Int64                       `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
-	Items        []*dsModelBGPPeerConfigScreenV2N6 `tfsdk:"items"`
+	Filters      types.Map                       `tfsdk:"filters"`
+	TfParameters types.Map                       `tfsdk:"x_parameters"` // Generic Map for Path Ids
+	Etag         types.Int64                     `tfsdk:"x_etag"`       // propertyName=_etag type=INTEGER
+	Schema       types.Int64                     `tfsdk:"x_schema"`     // propertyName=_schema type=INTEGER
+	Items        []*dsModelBGPPeerConfigScreenV3 `tfsdk:"items"`
 }
 
 // Metadata returns the data source type name.
@@ -102,7 +102,7 @@ func (d *elementBgpPeerDataSource) Schema(_ context.Context, _ datasource.Schema
 				Computed: true,
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
-						// rest all properties to be read from GET API Schema schema=BGPPeerConfigScreenV2N6
+						// rest all properties to be read from GET API Schema schema=BGPPeerConfigScreenV3
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:  false,
@@ -445,7 +445,7 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 	svc := sdwan_client.NewClient(d.client)
 
 	// Prepare input for the API endpoint.
-	get_path := "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
+	get_path := "/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
 	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
@@ -516,19 +516,19 @@ func (d *elementBgpPeerDataSource) Read(ctx context.Context, req datasource.Read
 		}
 
 		// Store the answer to state.
-		var state dsModelBGPPeerConfigScreenV2N6
+		var state dsModelBGPPeerConfigScreenV3
 
 		// start copying attributes
-		var ans sdwan_schema.BGPPeerConfigScreenV2N6
+		var ans sdwan_schema.BGPPeerConfigScreenV3
 		// copy from json response
 		json_err := json.Unmarshal(item_json, &ans)
 		// if found, exit
 		if json_err != nil {
-			resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV2N6", json_err.Error())
+			resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV3", json_err.Error())
 			return
 		}
 
-		// lets copy all items into state schema=BGPPeerConfigScreenV2N6
+		// lets copy all items into state schema=BGPPeerConfigScreenV3
 		// copy_to_state: state=state prefix=dsModel ans=ans properties=23
 		tflog.Debug(ctx, "copy_to_state state=state prefix=dsModel ans=ans")
 		// property: name=_etag, type=INTEGER macro=copy_to_state

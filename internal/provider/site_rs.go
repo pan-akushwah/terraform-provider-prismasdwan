@@ -31,7 +31,7 @@ import (
 // | ExtendedTag HasID=false
 // | Location HasID=false
 // | Address HasID=false
-// | SiteScreenV4N12 HasID=true
+// | SiteScreenV4N13 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -75,7 +75,7 @@ func (r *siteResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=SiteScreenV4N12
+			// rest all properties to be read from GET API Schema schema=SiteScreenV4N13
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -197,6 +197,14 @@ func (r *siteResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 				Sensitive: false,
 			},
 			// key name holder for attribute: name=element_cluster_role, type=STRING macro=rss_schema
+			// property: name=element_system_limit_profile_id, type=STRING macro=rss_schema
+			"element_system_limit_profile_id": rsschema.StringAttribute{
+				Required:  false,
+				Computed:  false,
+				Optional:  true,
+				Sensitive: false,
+			},
+			// key name holder for attribute: name=element_system_limit_profile_id, type=STRING macro=rss_schema
 			// property: name=extended_tags, type=ARRAY_REFERENCE macro=rss_schema
 			"extended_tags": rsschema.ListNestedAttribute{
 				Required:  false,
@@ -432,7 +440,7 @@ func (r *siteResource) GetHttpStatusCode(request *sdwan_client.SdwanClientReques
 	}
 }
 
-func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12, state *rsModelSiteScreenV4N12, resp *resource.CreateResponse) bool {
+func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N13, state *rsModelSiteScreenV4N13, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_site")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -444,7 +452,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_site"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v4.12/api/sites"
+	create_request.Path = "/sdwan/v4.13/api/sites"
 
 	// copy parameters from plan always
 	params := make(map[string]*string)
@@ -454,10 +462,10 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SiteScreenV4N12{}
+	var body = &sdwan_schema.SiteScreenV4N13{}
 
 	// copy from plan to body
-	// copy_from_plan: body=body prefix=rsModel plan=plan properties=25
+	// copy_from_plan: body=body prefix=rsModel plan=plan properties=26
 	tflog.Debug(ctx, "copy_from_plan body=body prefix=rsModel plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan
 	body.Etag = Int64ValueOrNil(plan.Etag)
@@ -491,6 +499,8 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	body.Description = StringValueOrNil(plan.Description)
 	// property: name=element_cluster_role, type=STRING macro=copy_from_plan
 	body.ElementClusterRole = StringValueOrNil(plan.ElementClusterRole)
+	// property: name=element_system_limit_profile_id, type=STRING macro=copy_from_plan
+	body.ElementSystemLimitProfileId = StringValueOrNil(plan.ElementSystemLimitProfileId)
 	// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_from_plan
 	if plan.ExtendedTags == nil {
 		body.ExtendedTags = nil
@@ -565,7 +575,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SiteScreenV4N12 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SiteScreenV4N13 to JSON:", err.Error())
 		return false
 	}
 
@@ -608,12 +618,12 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SiteScreenV4N12
+	var ans sdwan_schema.SiteScreenV4N13
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N12 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N13 in create", json_err.Error())
 		return false
 	}
 
@@ -638,8 +648,8 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_site with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=SiteScreenV4N12
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=25
+	// Store the answer to state. schema=SiteScreenV4N13
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -675,6 +685,8 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=element_cluster_role, type=STRING macro=copy_to_state
 	state.ElementClusterRole = types.StringPointerValue(ans.ElementClusterRole)
+	// property: name=element_system_limit_profile_id, type=STRING macro=copy_to_state
+	state.ElementSystemLimitProfileId = types.StringPointerValue(ans.ElementSystemLimitProfileId)
 	// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.ExtendedTags == nil {
 		state.ExtendedTags = nil
@@ -754,7 +766,7 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N12,
 	return true
 }
 
-func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12, savestate *rsModelSiteScreenV4N12, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N13, savestate *rsModelSiteScreenV4N13, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -776,7 +788,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_site"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v4.12/api/sites/{site_id}"
+	read_request.Path = "/sdwan/v4.13/api/sites/{site_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -818,7 +830,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=SiteScreenV4N12
+	// Store the answer to state. schema=SiteScreenV4N13
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -827,16 +839,16 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.SiteScreenV4N12
+	var ans sdwan_schema.SiteScreenV4N13
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N12 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N13 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=25
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -872,6 +884,8 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=element_cluster_role, type=STRING macro=copy_to_state
 	state.ElementClusterRole = types.StringPointerValue(ans.ElementClusterRole)
+	// property: name=element_system_limit_profile_id, type=STRING macro=copy_to_state
+	state.ElementSystemLimitProfileId = types.StringPointerValue(ans.ElementSystemLimitProfileId)
 	// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.ExtendedTags == nil {
 		state.ExtendedTags = nil
@@ -951,7 +965,7 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N12,
 	return true
 }
 
-func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, state *rsModelSiteScreenV4N12, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N13, state *rsModelSiteScreenV4N13, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -979,7 +993,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_site"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v4.12/api/sites/{site_id}"
+	put_request.Path = "/sdwan/v4.13/api/sites/{site_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -998,11 +1012,11 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.SiteScreenV4N12{}
+	var body = &sdwan_schema.SiteScreenV4N13{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
-	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=25
+	// copy_from_plan_or_state: body=body prefix=rsModel state=state plan=plan properties=26
 	tflog.Debug(ctx, "copy_from_plan_or_state body=body prefix=rsModel state=state plan=plan")
 	// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
@@ -1089,6 +1103,12 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 		body.ElementClusterRole = ValueStringPointerFromPlanOrState(plan.ElementClusterRole, state.ElementClusterRole)
 	} else {
 		body.ElementClusterRole = StringValueOrNil(plan.ElementClusterRole)
+	}
+	// property: name=element_system_limit_profile_id, type=STRING macro=copy_from_plan_or_state
+	if state != nil {
+		body.ElementSystemLimitProfileId = ValueStringPointerFromPlanOrState(plan.ElementSystemLimitProfileId, state.ElementSystemLimitProfileId)
+	} else {
+		body.ElementSystemLimitProfileId = StringValueOrNil(plan.ElementSystemLimitProfileId)
 	}
 	// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 	if plan.ExtendedTags == nil && (state == nil || state.ExtendedTags == nil) {
@@ -1245,7 +1265,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct SiteScreenV4N12 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct SiteScreenV4N13 to JSON:", err.Error())
 		return false
 	}
 
@@ -1281,17 +1301,17 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.SiteScreenV4N12
+	var ans sdwan_schema.SiteScreenV4N13
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N12 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to SiteScreenV4N13 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=SiteScreenV4N12
-	// copy_to_state: state=state prefix=rsModel ans=ans properties=25
+	// Store the answer to state. schema=SiteScreenV4N13
+	// copy_to_state: state=state prefix=rsModel ans=ans properties=26
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
 	state.Etag = types.Int64PointerValue(ans.Etag)
@@ -1327,6 +1347,8 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=element_cluster_role, type=STRING macro=copy_to_state
 	state.ElementClusterRole = types.StringPointerValue(ans.ElementClusterRole)
+	// property: name=element_system_limit_profile_id, type=STRING macro=copy_to_state
+	state.ElementSystemLimitProfileId = types.StringPointerValue(ans.ElementSystemLimitProfileId)
 	// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_to_state
 	if ans.ExtendedTags == nil {
 		state.ExtendedTags = nil
@@ -1406,7 +1428,7 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N12, 
 	return true
 }
 
-func (r *siteResource) doDelete(ctx context.Context, state *rsModelSiteScreenV4N12, resp *resource.DeleteResponse) bool {
+func (r *siteResource) doDelete(ctx context.Context, state *rsModelSiteScreenV4N13, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1427,7 +1449,7 @@ func (r *siteResource) doDelete(ctx context.Context, state *rsModelSiteScreenV4N
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_site"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v4.12/api/sites/{site_id}"
+	delete_request.Path = "/sdwan/v4.13/api/sites/{site_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1461,14 +1483,14 @@ func (r *siteResource) doDelete(ctx context.Context, state *rsModelSiteScreenV4N
 // Path Parameters are encoded into TfID itself
 func (r *siteResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_site")
-	var plan rsModelSiteScreenV4N12
+	var plan rsModelSiteScreenV4N13
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelSiteScreenV4N12
+	var state rsModelSiteScreenV4N13
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1480,7 +1502,7 @@ func (r *siteResource) Create(ctx context.Context, req resource.CreateRequest, r
 func (r *siteResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_site")
-	var savestate, state rsModelSiteScreenV4N12
+	var savestate, state rsModelSiteScreenV4N13
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1499,7 +1521,7 @@ func (r *siteResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 func (r *siteResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_site")
-	var plan, state rsModelSiteScreenV4N12
+	var plan, state rsModelSiteScreenV4N13
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1523,7 +1545,7 @@ func (r *siteResource) Update(ctx context.Context, req resource.UpdateRequest, r
 func (r *siteResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_site")
-	var state rsModelSiteScreenV4N12
+	var state rsModelSiteScreenV4N13
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

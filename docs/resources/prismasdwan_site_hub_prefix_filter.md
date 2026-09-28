@@ -21,9 +21,45 @@
       "type" : "array",
       "items" : {
         "properties" : {
+          "ip_prefixes" : {
+            "description" : "Ip Prefixes: ListIPAddress(bcast = DENY, listMaxSize = 0, error = PREFIXFILTER_INVALID_PREFIX: IP prefix is not valid OR not within the valid prefix range., required = false, type = APP1_GATEWAYCIDR) ",
+            "type" : "array",
+            "items" : {
+              "description" : "Ip Prefixes",
+              "type" : "string"
+            }
+          },
           "type" : {
             "description" : "Type",
             "type" : "string"
+          },
+          "wn_path" : {
+            "description" : "Wn Path",
+            "type" : "array",
+            "items" : {
+              "description" : "Wn Path",
+              "type" : "string"
+            }
+          },
+          "path" : {
+            "description" : "Path",
+            "type" : "array",
+            "items" : {
+              "description" : "Path",
+              "type" : "string"
+            }
+          },
+          "site" : {
+            "description" : "Site",
+            "type" : "object"
+          },
+          "elements" : {
+            "description" : "Elements",
+            "type" : "array",
+            "items" : {
+              "description" : "Elements",
+              "type" : "string"
+            }
           }
         }
       }
@@ -31,6 +67,18 @@
     "prefix_filter_id" : {
       "description" : "Prefix Filter Id",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -45,18 +93,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

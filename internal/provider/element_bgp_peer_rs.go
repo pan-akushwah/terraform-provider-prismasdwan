@@ -30,7 +30,7 @@ import (
 // | AggregatePrefixes HasID=false
 // | RouteAggregation HasID=false
 // | BGPConfig HasID=false
-// | BGPPeerConfigScreenV2N6 HasID=true
+// | BGPPeerConfigScreenV3 HasID=true
 // +-----------------------------------------------------------------
 
 // Resource.
@@ -74,7 +74,7 @@ func (r *elementBgpPeerResource) Schema(_ context.Context, _ resource.SchemaRequ
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
-			// rest all properties to be read from GET API Schema schema=BGPPeerConfigScreenV2N6
+			// rest all properties to be read from GET API Schema schema=BGPPeerConfigScreenV3
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
@@ -420,7 +420,7 @@ func (r *elementBgpPeerResource) GetHttpStatusCode(request *sdwan_client.SdwanCl
 	}
 }
 
-func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPeerConfigScreenV2N6, state *rsModelBGPPeerConfigScreenV2N6, resp *resource.CreateResponse) bool {
+func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPeerConfigScreenV3, state *rsModelBGPPeerConfigScreenV3, resp *resource.CreateResponse) bool {
 	tflog.Info(ctx, "executing http post for prismasdwan_element_bgp_peer")
 	// Basic logging.
 	tflog.Info(ctx, "performing resource create", map[string]any{
@@ -432,7 +432,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	create_request := &sdwan_client.SdwanClientRequestResponse{}
 	create_request.ResourceType = "prismasdwan_element_bgp_peer"
 	create_request.Method = "POST"
-	create_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers"
+	create_request.Path = "/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, plan.TfParameters)
@@ -442,7 +442,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.BGPPeerConfigScreenV2N6{}
+	var body = &sdwan_schema.BGPPeerConfigScreenV3{}
 
 	// copy from plan to body
 	// copy_from_plan: body=body prefix=rsModel plan=plan properties=23
@@ -545,7 +545,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct BGPPeerConfigScreenV2N6 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct BGPPeerConfigScreenV3 to JSON:", err.Error())
 		return false
 	}
 
@@ -588,12 +588,12 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.BGPPeerConfigScreenV2N6
+	var ans sdwan_schema.BGPPeerConfigScreenV3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV2N6 in create", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV3 in create", json_err.Error())
 		return false
 	}
 
@@ -618,7 +618,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	state.TfParameters = plan.TfParameters
 	tflog.Info(ctx, "created prismasdwan_element_bgp_peer with ID", map[string]any{"tfid": state.Tfid.ValueString()})
 
-	// Store the answer to state. schema=BGPPeerConfigScreenV2N6
+	// Store the answer to state. schema=BGPPeerConfigScreenV3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -733,7 +733,7 @@ func (r *elementBgpPeerResource) doPost(ctx context.Context, plan *rsModelBGPPee
 	return true
 }
 
-func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPeerConfigScreenV2N6, savestate *rsModelBGPPeerConfigScreenV2N6, State *tfsdk.State, resp *resource.ReadResponse) bool {
+func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPeerConfigScreenV3, savestate *rsModelBGPPeerConfigScreenV3, State *tfsdk.State, resp *resource.ReadResponse) bool {
 	// Basic logging.
 	tfid := savestate.Tfid.ValueString()
 	tflog.Info(ctx, "performing resource read", map[string]any{
@@ -755,7 +755,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	read_request := &sdwan_client.SdwanClientRequestResponse{}
 	read_request.ResourceType = "prismasdwan_element_bgp_peer"
 	read_request.Method = "GET"
-	read_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
+	read_request.Path = "/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, savestate.TfParameters)
@@ -797,7 +797,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	tflog.Debug(ctx, "http json override: set response_body_string::_schema")
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
-	// Store the answer to state. schema=BGPPeerConfigScreenV2N6
+	// Store the answer to state. schema=BGPPeerConfigScreenV3
 	state.Tfid = savestate.Tfid
 	// copy parameters from savestate as they are
 	if savestate.TfParameters.IsNull() {
@@ -806,12 +806,12 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 		state.TfParameters = savestate.TfParameters
 	}
 	// start copying attributes
-	var ans sdwan_schema.BGPPeerConfigScreenV2N6
+	var ans sdwan_schema.BGPPeerConfigScreenV3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV2N6 in read", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV3 in read", json_err.Error())
 		return false
 	}
 	// lets copy all items into state
@@ -927,7 +927,7 @@ func (r *elementBgpPeerResource) doGet(ctx context.Context, state *rsModelBGPPee
 	return true
 }
 
-func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeerConfigScreenV2N6, state *rsModelBGPPeerConfigScreenV2N6, State *tfsdk.State, resp *resource.UpdateResponse) bool {
+func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeerConfigScreenV3, state *rsModelBGPPeerConfigScreenV3, State *tfsdk.State, resp *resource.UpdateResponse) bool {
 	state_tfid := state.Tfid.ValueString()
 	plan_tfid := plan.Tfid.ValueString()
 	// Basic logging.
@@ -955,7 +955,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	put_request := &sdwan_client.SdwanClientRequestResponse{}
 	put_request.ResourceType = "prismasdwan_element_bgp_peer"
 	put_request.Method = "PUT"
-	put_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
+	put_request.Path = "/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -974,7 +974,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	svc := sdwan_client.NewClient(r.client)
 
 	// prepare request from state
-	var body = &sdwan_schema.BGPPeerConfigScreenV2N6{}
+	var body = &sdwan_schema.BGPPeerConfigScreenV3{}
 
 	// now we create the JSON request from the state/plan created by TF
 	// below copy code generated from macro copy_from_plan_or_state
@@ -1211,7 +1211,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	// convert body to map
 	json_body, err := json.Marshal(body)
 	if err != nil {
-		resp.Diagnostics.AddError("error marshaling struct BGPPeerConfigScreenV2N6 to JSON:", err.Error())
+		resp.Diagnostics.AddError("error marshaling struct BGPPeerConfigScreenV3 to JSON:", err.Error())
 		return false
 	}
 
@@ -1247,16 +1247,16 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	response_body_string, _ = sjson.Set(response_body_string, "_schema", 0)
 
 	// start copying attributes
-	var ans sdwan_schema.BGPPeerConfigScreenV2N6
+	var ans sdwan_schema.BGPPeerConfigScreenV3
 	// copy from json response
 	json_err := json.Unmarshal([]byte(response_body_string), &ans)
 	// if found, exit
 	if json_err != nil {
-		resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV2N6 in update", json_err.Error())
+		resp.Diagnostics.AddError("error in json unmarshal to BGPPeerConfigScreenV3 in update", json_err.Error())
 		return false
 	}
 
-	// Store the answer to state. schema=BGPPeerConfigScreenV2N6
+	// Store the answer to state. schema=BGPPeerConfigScreenV3
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=23
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
 	// property: name=_etag, type=INTEGER macro=copy_to_state
@@ -1371,7 +1371,7 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 	return true
 }
 
-func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGPPeerConfigScreenV2N6, resp *resource.DeleteResponse) bool {
+func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGPPeerConfigScreenV3, resp *resource.DeleteResponse) bool {
 	// read object id
 	tfid := state.Tfid.ValueString()
 	// Basic logging.
@@ -1392,7 +1392,7 @@ func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGP
 	delete_request := &sdwan_client.SdwanClientRequestResponse{}
 	delete_request.ResourceType = "prismasdwan_element_bgp_peer"
 	delete_request.Method = "DELETE"
-	delete_request.Path = "/sdwan/v2.6/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
+	delete_request.Path = "/sdwan/v3.0/api/sites/{site_id}/elements/{element_id}/bgppeers/{bgp_peer_id}"
 
 	// copy parameters from plan always
 	params := MapStringValueOrNil(ctx, state.TfParameters)
@@ -1426,14 +1426,14 @@ func (r *elementBgpPeerResource) doDelete(ctx context.Context, state *rsModelBGP
 // Path Parameters are encoded into TfID itself
 func (r *elementBgpPeerResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	tflog.Info(ctx, "executing resource create for prismasdwan_element_bgp_peer")
-	var plan rsModelBGPPeerConfigScreenV2N6
+	var plan rsModelBGPPeerConfigScreenV3
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
 	// make post call
-	var state rsModelBGPPeerConfigScreenV2N6
+	var state rsModelBGPPeerConfigScreenV3
 	if r.doPost(ctx, &plan, &state, resp) {
 		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 	}
@@ -1445,7 +1445,7 @@ func (r *elementBgpPeerResource) Create(ctx context.Context, req resource.Create
 func (r *elementBgpPeerResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 
 	tflog.Info(ctx, "executing resource read for prismasdwan_element_bgp_peer")
-	var savestate, state rsModelBGPPeerConfigScreenV2N6
+	var savestate, state rsModelBGPPeerConfigScreenV3
 	resp.Diagnostics.Append(req.State.Get(ctx, &savestate)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -1464,7 +1464,7 @@ func (r *elementBgpPeerResource) Read(ctx context.Context, req resource.ReadRequ
 func (r *elementBgpPeerResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 
 	tflog.Info(ctx, "executing resource update for prismasdwan_element_bgp_peer")
-	var plan, state rsModelBGPPeerConfigScreenV2N6
+	var plan, state rsModelBGPPeerConfigScreenV3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -1488,7 +1488,7 @@ func (r *elementBgpPeerResource) Update(ctx context.Context, req resource.Update
 func (r *elementBgpPeerResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
 	tflog.Info(ctx, "executing resource delete for prismasdwan_element_bgp_peer")
-	var state rsModelBGPPeerConfigScreenV2N6
+	var state rsModelBGPPeerConfigScreenV3
 	// copy state from TF
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {

@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `performance_policy_rule` |
-| Get Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N2`) |
-| Post Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules` (`PerfMgmtPolicyRuleScreenV2N2`) |
-| Put Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N2`) |
-| Delete Api  | `/sdwan/v2.2/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` |
+| Get Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N3`) |
+| Post Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules` (`PerfMgmtPolicyRuleScreenV2N3`) |
+| Put Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` (`PerfMgmtPolicyRuleScreenV2N3`) |
+| Delete Api  | `/sdwan/v2.3/api/perfmgmtpolicysets/{perfmgmtpolicyset_id}/perfmgmtpolicyrules/{perfmgmtpolicyrule_id}` |
 
 
 ### JSON Schema
@@ -16,6 +16,23 @@
 ```json
 {
   "properties" : {
+    "path_filters" : {
+      "description" : "Path Filters: Valid Size(max = 32, error = PERFMGMT_PATH_FILTERS_LIST_SIZE_EXCEEDED: Maximum 32 path filters are supported, min = 0) ",
+      "type" : "array",
+      "items" : {
+        "properties" : {
+          "path_type" : {
+            "description" : "Path Type",
+            "type" : "string",
+            "enum" : [ "vpn", "direct", "servicelink", "pa_vpn", "all" ]
+          },
+          "label" : {
+            "description" : "Label",
+            "type" : "string"
+          }
+        }
+      }
+    },
     "network_context_ids" : {
       "description" : "Network Context Ids",
       "type" : "array",
@@ -183,24 +200,6 @@
         "type" : "string"
       }
     },
-    "path_filters" : {
-      "description" : "Path Filters: Valid Size(max = 32, error = PERFMGMT_PATH_FILTERS_LIST_SIZE_EXCEEDED: Maximum 32 path filters are supported, min = 0) ",
-      "type" : "array",
-      "items" : {
-        "properties" : {
-          "path_type" : {
-            "description" : "Path Type: ValidateEnum(enumClass = classOf[PathFilterType], error = PERFMGMT_INVALID_PATH_TYPE: Invalid path type specified in path filter, nullAllowed = false) ",
-            "type" : "string",
-            "enum" : [ "vpn", "direct", "servicelink", "all" ]
-          },
-          "label" : {
-            "description" : "Label: Pattern(message = PERFMGMT_RULE_INVALID_PATH_LABELS, regexp = (public|private)-((([1-9])|([1-2][0-9])|(3[0-2]))|([*]))) ",
-            "type" : "string"
-          }
-        },
-        "required" : [ "path_type" ]
-      }
-    },
     "app_filters" : {
       "properties" : {
         "app_transfer_types" : {
@@ -245,6 +244,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -258,18 +269,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

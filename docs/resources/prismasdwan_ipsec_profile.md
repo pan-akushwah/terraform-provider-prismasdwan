@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `ipsec_profile` |
-| Get Api  | `/sdwan/v2.2/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N2`) |
-| Post Api  | `/sdwan/v2.2/api/ipsecprofiles` (`IPSECProfileScreenV2N2`) |
-| Put Api  | `/sdwan/v2.2/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N2`) |
-| Delete Api  | `/sdwan/v2.2/api/ipsecprofiles/{profile_id}` |
+| Get Api  | `/sdwan/v2.3/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N3`) |
+| Post Api  | `/sdwan/v2.3/api/ipsecprofiles` (`IPSECProfileScreenV2N3`) |
+| Put Api  | `/sdwan/v2.3/api/ipsecprofiles/{profile_id}` (`IPSECProfileScreenV2N3`) |
+| Delete Api  | `/sdwan/v2.3/api/ipsecprofiles/{profile_id}` |
 
 
 ### JSON Schema
@@ -37,6 +37,67 @@
     },
     "authentication" : {
       "properties" : {
+        "ppk_config" : {
+          "properties" : {
+            "ppk_secret_configured" : {
+              "description" : "Ppk Secret Configured",
+              "type" : "boolean",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            },
+            "ppk_secret_hash" : {
+              "description" : "Ppk Secret Hash: JsonIgnore(value = true) ",
+              "type" : "string",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            },
+            "ppk_secret_encrypted" : {
+              "description" : "Ppk Secret Encrypted: JsonIgnore(value = true) ",
+              "type" : "string",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            },
+            "ppk_secret" : {
+              "description" : "Ppk Secret",
+              "type" : "string",
+              "additionalProperties" : {
+                "properties" : {
+                  "x_flag_sensitive" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            },
+            "ppk_key_id" : {
+              "description" : "Ppk Key Id",
+              "type" : "string"
+            },
+            "mode" : {
+              "description" : "Mode: ValidateEnum(enumClass = classOf[PPKMode], message = Invalid enum string., nullAllowed = true) ",
+              "type" : "string",
+              "enum" : [ "PREFERRED", "MANDATORY" ]
+            },
+            "enabled" : {
+              "description" : "Enabled",
+              "type" : "boolean"
+            }
+          }
+        },
         "peer_id_check" : {
           "description" : "Peer Id Check",
           "type" : "string",
@@ -197,6 +258,70 @@
     },
     "ike_group" : {
       "properties" : {
+        "pqc_kem_config" : {
+          "properties" : {
+            "round_7_algorithms" : {
+              "description" : "Round_7 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 7 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_6_algorithms" : {
+              "description" : "Round_6 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 6 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_5_algorithms" : {
+              "description" : "Round_5 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 5 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_4_algorithms" : {
+              "description" : "Round_4 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 4 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_3_algorithms" : {
+              "description" : "Round_3 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 3 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_2_algorithms" : {
+              "description" : "Round_2 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 2 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_1_algorithms" : {
+              "description" : "Round_1 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 1 Algorithms",
+                "type" : "string"
+              }
+            },
+            "enabled" : {
+              "description" : "Enabled",
+              "type" : "boolean"
+            }
+          }
+        },
         "port" : {
           "description" : "Port: Range(max = 65535L, error = IPSECCONFIG_INVALID_IKE_PORT_RANGE: Invalid ike port range.Should be between 1-65535., min = 1L) ",
           "format" : "int32",
@@ -262,6 +387,70 @@
     },
     "esp_group" : {
       "properties" : {
+        "pqc_kem_config" : {
+          "properties" : {
+            "round_7_algorithms" : {
+              "description" : "Round_7 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 7 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_6_algorithms" : {
+              "description" : "Round_6 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 6 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_5_algorithms" : {
+              "description" : "Round_5 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 5 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_4_algorithms" : {
+              "description" : "Round_4 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 4 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_3_algorithms" : {
+              "description" : "Round_3 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 3 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_2_algorithms" : {
+              "description" : "Round_2 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 2 Algorithms",
+                "type" : "string"
+              }
+            },
+            "round_1_algorithms" : {
+              "description" : "Round_1 Algorithms",
+              "type" : "array",
+              "items" : {
+                "description" : "Round 1 Algorithms",
+                "type" : "string"
+              }
+            },
+            "enabled" : {
+              "description" : "Enabled",
+              "type" : "boolean"
+            }
+          }
+        },
         "lifesize" : {
           "properties" : {
             "units" : {
@@ -379,6 +568,18 @@
       "description" : "Name: Required(error = NAME_REQD: Please provide resource name.) Size(max = 128, error = NAME_EXCEEDS_LIMIT: Name of the resource exceeds limit., min = 0) ",
       "type" : "string"
     },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
+    },
     "id" : {
       "description" : "Id",
       "type" : "string",
@@ -392,18 +593,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

@@ -5,10 +5,10 @@
 | Resource Details | |
 | ------------- | ------------- |
 | Resource Name | `site_prisma_sase_connection` |
-| Get Api  | `/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV2N1`) |
-| Post Api  | `/sdwan/v2.1/api/sites/{site_id}/prismasase_connections` (`SaseConnectionScreenV2N1`) |
-| Put Api  | `/sdwan/v2.1/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV2N1`) |
-| Delete Api  | `/sdwan/v2.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` |
+| Get Api  | `/sdwan/v3.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV3N0`) |
+| Post Api  | `/sdwan/v3.0/api/sites/{site_id}/prismasase_connections` (`SaseConnectionScreenV3N0`) |
+| Put Api  | `/sdwan/v3.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` (`SaseConnectionScreenV3N0`) |
+| Delete Api  | `/sdwan/v3.0/api/sites/{site_id}/prismasase_connections/{prismasase_connection_id}` |
 
 
 ### JSON Schema
@@ -117,6 +117,14 @@
     },
     "routing_configs" : {
       "properties" : {
+        "deployment_mode" : {
+          "description" : "Deployment Mode",
+          "type" : "string"
+        },
+        "branch_as_number" : {
+          "description" : "Branch As Number",
+          "type" : "string"
+        },
         "bgp_secret" : {
           "description" : "Bgp Secret",
           "type" : "string",
@@ -198,17 +206,33 @@
       "description" : "Is Active",
       "type" : "boolean"
     },
-    "prismaaccess_edge_location" : {
-      "description" : "Prismaaccess Edge Location",
+    "prismaaccess_edge_location_config" : {
+      "description" : "Prismaaccess Edge Location Config",
       "type" : "array",
       "items" : {
-        "description" : "Prismaaccess Edge Location",
+        "description" : "Prismaaccess Edge Location Config",
         "type" : "string"
       }
+    },
+    "prismasase_connection_id" : {
+      "description" : "Prismasase Connection Id",
+      "type" : "string"
     },
     "site_id" : {
       "description" : "Site Id: Digits(fraction = 0, integer = 50, SITEID_INVALID) NotNull ",
       "type" : "string"
+    },
+    "_etag" : {
+      "description" : "Etag for this object",
+      "minimum" : 1,
+      "type" : "integer",
+      "additionalProperties" : {
+        "properties" : {
+          "x_flag_computed" : {
+            "type" : "boolean"
+          }
+        }
+      }
     },
     "id" : {
       "description" : "Id",
@@ -223,18 +247,6 @@
     },
     "_schema" : {
       "description" : "Schema version for this object",
-      "minimum" : 1,
-      "type" : "integer",
-      "additionalProperties" : {
-        "properties" : {
-          "x_flag_computed" : {
-            "type" : "boolean"
-          }
-        }
-      }
-    },
-    "_etag" : {
-      "description" : "Etag for this object",
       "minimum" : 1,
       "type" : "integer",
       "additionalProperties" : {

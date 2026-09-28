@@ -386,6 +386,46 @@ func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.Schem
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=active, type=BOOLEAN macro=rss_schema
+								// property: name=allocated_bandwidth_mbps, type=INTEGER macro=rss_schema
+								"allocated_bandwidth_mbps": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=allocated_bandwidth_mbps, type=INTEGER macro=rss_schema
+								// property: name=allocated_sc_count, type=INTEGER macro=rss_schema
+								"allocated_sc_count": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=allocated_sc_count, type=INTEGER macro=rss_schema
+								// property: name=compute_region_id, type=STRING macro=rss_schema
+								"compute_region_id": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=compute_region_id, type=STRING macro=rss_schema
+								// property: name=compute_region_provider, type=STRING macro=rss_schema
+								"compute_region_provider": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=compute_region_provider, type=STRING macro=rss_schema
+								// property: name=line_conditioning_enabled, type=BOOLEAN macro=rss_schema
+								"line_conditioning_enabled": dsschema.BoolAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=line_conditioning_enabled, type=BOOLEAN macro=rss_schema
 								// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 								"lqm_enabled": dsschema.BoolAttribute{
 									Required:  false,
@@ -394,9 +434,41 @@ func (d *serviceEndpointDataSource) Schema(_ context.Context, _ datasource.Schem
 									Sensitive: false,
 								},
 								// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+								// property: name=pa_compute_region_oid, type=STRING macro=rss_schema
+								"pa_compute_region_oid": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=pa_compute_region_oid, type=STRING macro=rss_schema
+								// property: name=pa_we_br_site_id, type=STRING macro=rss_schema
+								"pa_we_br_site_id": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=pa_we_br_site_id, type=STRING macro=rss_schema
+								// property: name=pa_we_dc_site_id, type=STRING macro=rss_schema
+								"pa_we_dc_site_id": dsschema.StringAttribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=pa_we_dc_site_id, type=STRING macro=rss_schema
+								// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
+								"total_sc_bandwidth_mbps": dsschema.Int64Attribute{
+									Required:  false,
+									Computed:  false,
+									Optional:  true,
+									Sensitive: false,
+								},
+								// key name holder for attribute: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
+						// key name holder for attribute: name=total_sc_bandwidth_mbps, type=INTEGER macro=rss_schema
 						// property: name=service_link_peers, type=REFERENCE macro=rss_schema
 						"service_link_peers": dsschema.SingleNestedAttribute{
 							Required:  false,
@@ -685,12 +757,30 @@ func (d *serviceEndpointDataSource) Read(ctx context.Context, req datasource.Rea
 			state.SaseProperties = nil
 		} else {
 			state.SaseProperties = &dsModelSaseServiceEndpointProperties{}
-			// copy_to_state: state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties properties=2
+			// copy_to_state: state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties properties=11
 			tflog.Debug(ctx, "copy_to_state state=state.SaseProperties prefix=dsModel ans=ans.SaseProperties")
 			// property: name=active, type=BOOLEAN macro=copy_to_state
 			state.SaseProperties.Active = types.BoolPointerValue(ans.SaseProperties.Active)
+			// property: name=allocated_bandwidth_mbps, type=INTEGER macro=copy_to_state
+			state.SaseProperties.AllocatedBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.AllocatedBandwidthMbps)
+			// property: name=allocated_sc_count, type=INTEGER macro=copy_to_state
+			state.SaseProperties.AllocatedScCount = types.Int64PointerValue(ans.SaseProperties.AllocatedScCount)
+			// property: name=compute_region_id, type=STRING macro=copy_to_state
+			state.SaseProperties.ComputeRegionId = types.StringPointerValue(ans.SaseProperties.ComputeRegionId)
+			// property: name=compute_region_provider, type=STRING macro=copy_to_state
+			state.SaseProperties.ComputeRegionProvider = types.StringPointerValue(ans.SaseProperties.ComputeRegionProvider)
+			// property: name=line_conditioning_enabled, type=BOOLEAN macro=copy_to_state
+			state.SaseProperties.LineConditioningEnabled = types.BoolPointerValue(ans.SaseProperties.LineConditioningEnabled)
 			// property: name=lqm_enabled, type=BOOLEAN macro=copy_to_state
 			state.SaseProperties.LqmEnabled = types.BoolPointerValue(ans.SaseProperties.LqmEnabled)
+			// property: name=pa_compute_region_oid, type=STRING macro=copy_to_state
+			state.SaseProperties.PaComputeRegionOid = types.StringPointerValue(ans.SaseProperties.PaComputeRegionOid)
+			// property: name=pa_we_br_site_id, type=STRING macro=copy_to_state
+			state.SaseProperties.PaWeBrSiteId = types.StringPointerValue(ans.SaseProperties.PaWeBrSiteId)
+			// property: name=pa_we_dc_site_id, type=STRING macro=copy_to_state
+			state.SaseProperties.PaWeDcSiteId = types.StringPointerValue(ans.SaseProperties.PaWeDcSiteId)
+			// property: name=total_sc_bandwidth_mbps, type=INTEGER macro=copy_to_state
+			state.SaseProperties.TotalScBandwidthMbps = types.Int64PointerValue(ans.SaseProperties.TotalScBandwidthMbps)
 		}
 		// property: name=service_link_peers, type=REFERENCE macro=copy_to_state
 		if ans.ServiceLinkPeers == nil {

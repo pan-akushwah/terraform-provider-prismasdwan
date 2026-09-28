@@ -225,6 +225,14 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Sensitive: false,
 						},
 						// key name holder for attribute: name=priority_name, type=STRING macro=rss_schema
+						// property: name=priority_num, type=INTEGER macro=rss_schema
+						"priority_num": rsschema.Int64Attribute{
+							Required:  false,
+							Computed:  false,
+							Optional:  true,
+							Sensitive: false,
+						},
+						// key name holder for attribute: name=priority_num, type=INTEGER macro=rss_schema
 						// property: name=priority_number, type=INTEGER macro=rss_schema
 						"priority_number": rsschema.Int64Attribute{
 							Required:  false,
@@ -456,10 +464,12 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 		for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range plan.BusinessPriorityNames {
 			// add a new item
 			body.BusinessPriorityNames = append(body.BusinessPriorityNames, sdwan_schema.BusinessPriorityNameMapper{})
-			// copy_from_plan: body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames properties=2
+			// copy_from_plan: body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames properties=3
 			tflog.Debug(ctx, "copy_from_plan body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_from_plan
 			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = StringValueOrNil(varLoopBusinessPriorityNames.PriorityName)
+			// property: name=priority_num, type=INTEGER macro=copy_from_plan
+			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNum = Int64ValueOrNil(varLoopBusinessPriorityNames.PriorityNum)
 			// property: name=priority_number, type=INTEGER macro=copy_from_plan
 			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = Int64ValueOrNil(varLoopBusinessPriorityNames.PriorityNumber)
 		}
@@ -652,10 +662,12 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 		for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range ans.BusinessPriorityNames {
 			// add a new item
 			state.BusinessPriorityNames = append(state.BusinessPriorityNames, rsModelBusinessPriorityNameMapper{})
-			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=2
+			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=3
 			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
+			// property: name=priority_num, type=INTEGER macro=copy_to_state
+			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNum = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNum)
 			// property: name=priority_number, type=INTEGER macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNumber)
 		}
@@ -859,10 +871,12 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 		for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range ans.BusinessPriorityNames {
 			// add a new item
 			state.BusinessPriorityNames = append(state.BusinessPriorityNames, rsModelBusinessPriorityNameMapper{})
-			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=2
+			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=3
 			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
+			// property: name=priority_num, type=INTEGER macro=copy_to_state
+			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNum = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNum)
 			// property: name=priority_number, type=INTEGER macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNumber)
 		}
@@ -1049,10 +1063,12 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 			// add a new item
 			body.BusinessPriorityNames = append(body.BusinessPriorityNames, sdwan_schema.BusinessPriorityNameMapper{})
 			// since we have chosen to stick with either the plan or state, we need to simply copy child properties
-			// copy_from_plan: body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames properties=2
+			// copy_from_plan: body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames properties=3
 			tflog.Debug(ctx, "copy_from_plan body=body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel plan=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_from_plan
 			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = StringValueOrNil(varLoopBusinessPriorityNames.PriorityName)
+			// property: name=priority_num, type=INTEGER macro=copy_from_plan
+			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNum = Int64ValueOrNil(varLoopBusinessPriorityNames.PriorityNum)
 			// property: name=priority_number, type=INTEGER macro=copy_from_plan
 			body.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = Int64ValueOrNil(varLoopBusinessPriorityNames.PriorityNumber)
 		}
@@ -1246,10 +1262,12 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 		for varLoopBusinessPriorityNamesIndex, varLoopBusinessPriorityNames := range ans.BusinessPriorityNames {
 			// add a new item
 			state.BusinessPriorityNames = append(state.BusinessPriorityNames, rsModelBusinessPriorityNameMapper{})
-			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=2
+			// copy_to_state: state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames properties=3
 			tflog.Debug(ctx, "copy_to_state state=state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex] prefix=rsModel ans=varLoopBusinessPriorityNames")
 			// property: name=priority_name, type=STRING macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityName = types.StringPointerValue(varLoopBusinessPriorityNames.PriorityName)
+			// property: name=priority_num, type=INTEGER macro=copy_to_state
+			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNum = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNum)
 			// property: name=priority_number, type=INTEGER macro=copy_to_state
 			state.BusinessPriorityNames[varLoopBusinessPriorityNamesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorityNames.PriorityNumber)
 		}
