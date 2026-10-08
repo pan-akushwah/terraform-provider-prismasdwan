@@ -1,8 +1,5 @@
 package services
 
-// This code is automatically generated.
-// Manual changes will be overwritten upon SDK generation.
-
 import (
 	"context"
 	"encoding/json"
@@ -10,6 +7,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/bhmj/jsonslice"
@@ -25,6 +23,21 @@ var (
 		"qa.api.sase.paloaltonetworks.com": "",
 	}
 )
+
+// Keyed mutex map of ResourceType -> *sync.Mutex.
+// Some APIs use _etag based optimistic locking and reject concurrent requests,
+// so requests for a registered ResourceType are served one at a time.
+var serializedResourceTypes sync.Map
+
+func init() {
+	for _, resourceType := range []string{
+		"prismasdwan_app_def",
+		"prismasdwan_global_prefix_filter",
+		"prismasdwan_path_global_prefix",
+	} {
+		serializedResourceTypes.Store(resourceType, &sync.Mutex{})
+	}
+}
 
 // Client is the client for the namespace.
 type Client struct {
@@ -84,7 +97,12 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 		request.RequestBody = &request_body
 	}
 
-	// Execute the command.
+	// Execute the command, one at a time if the resource type is serialized.
+	if lock, ok := serializedResourceTypes.Load(request.ResourceType); ok {
+		mutex := lock.(*sync.Mutex)
+		mutex.Lock()
+		defer mutex.Unlock()
+	}
 	r_bytes, r_status, r_err := c.client.Do(ctx, request.Method, path, nil, request.RequestBody, nil)
 	request.ResponseBytes = &r_bytes
 	request.ResponseStatusCode = r_status
