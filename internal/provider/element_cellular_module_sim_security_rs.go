@@ -32,9 +32,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &elementCellularModuleSimSecurityResource{}
-	_ resource.ResourceWithConfigure   = &elementCellularModuleSimSecurityResource{}
-	_ resource.ResourceWithImportState = &elementCellularModuleSimSecurityResource{}
+	_ resource.Resource                   = &elementCellularModuleSimSecurityResource{}
+	_ resource.ResourceWithConfigure      = &elementCellularModuleSimSecurityResource{}
+	_ resource.ResourceWithImportState    = &elementCellularModuleSimSecurityResource{}
+	_ resource.ResourceWithValidateConfig = &elementCellularModuleSimSecurityResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -53,6 +54,12 @@ func NewElementCellularModuleSimSecurityResource() resource.Resource {
 
 type elementCellularModuleSimSecurityResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *elementCellularModuleSimSecurityResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{"element_id", "cellular_module_id", "sim_security_id"})...)
 }
 
 // Metadata returns the data source type name.

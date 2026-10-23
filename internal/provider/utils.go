@@ -11,6 +11,9 @@ import (
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
@@ -327,4 +330,22 @@ func TfidFromParams(params *map[string]*string) types.String {
 		idBuilder.WriteString(*v)
 	}
 	return types.StringValue(idBuilder.String())
+}
+
+// ValidateRequiredXParameters reports each path parameter the resource needs that is missing from x_parameters.
+// An unknown x_parameters (built from values known only after apply) is checked again when the request is sent.
+func ValidateRequiredXParameters(ctx context.Context, config tfsdk.Config, required []string) diag.Diagnostics {
+	var params types.Map
+	diags := config.GetAttribute(ctx, path.Root("x_parameters"), &params)
+	if diags.HasError() || params.IsUnknown() {
+		return diags
+	}
+	elements := params.Elements()
+	for _, name := range required {
+		if v, ok := elements[name]; !ok || v.IsNull() {
+			diags.AddAttributeError(path.Root("x_parameters"), "Missing path parameter",
+				fmt.Sprintf("path parameter %q is required; set x_parameters.%s", name, name))
+		}
+	}
+	return diags
 }

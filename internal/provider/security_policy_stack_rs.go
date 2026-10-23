@@ -32,9 +32,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &securityPolicyStackResource{}
-	_ resource.ResourceWithConfigure   = &securityPolicyStackResource{}
-	_ resource.ResourceWithImportState = &securityPolicyStackResource{}
+	_ resource.Resource                   = &securityPolicyStackResource{}
+	_ resource.ResourceWithConfigure      = &securityPolicyStackResource{}
+	_ resource.ResourceWithImportState    = &securityPolicyStackResource{}
+	_ resource.ResourceWithValidateConfig = &securityPolicyStackResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -53,6 +54,12 @@ func NewSecurityPolicyStackResource() resource.Resource {
 
 type securityPolicyStackResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *securityPolicyStackResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{})...)
 }
 
 // Metadata returns the data source type name.

@@ -6,6 +6,7 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
@@ -225,7 +226,8 @@ func (d *elementToolkitDataSource) Read(ctx context.Context, req datasource.Read
 	get_path := "/sdwan/v2.2/api/elements/{element_id}/elementaccessconfigs"
 	list_request := &sdwan_client.SdwanClientRequestResponse{}
 	list_request.Method = "GET"
-	list_request.Path = get_path[:strings.LastIndex(get_path, "/")]
+	// one object per parent (e.g. site ciphers): the GET path returns that object itself, not a list
+	list_request.Path = get_path
 
 	// handle parameters
 	params := MapStringValueOrNil(ctx, state_with_filter.TfParameters)
@@ -233,17 +235,25 @@ func (d *elementToolkitDataSource) Read(ctx context.Context, req datasource.Read
 
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, list_request)
+	response_body_string := `{"items":[]}`
 	if list_request.ResponseErr != nil {
-		if IsObjectNotFound(*list_request.ResponseErr) {
-			resp.State.RemoveResource(ctx)
-		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_element_toolkit", (*list_request.ResponseErr).Error())
+		// the parent has no such object: no items (removing the data source from state is a "null object" error)
+		if !IsObjectNotFound(*list_request.ResponseErr) {
+			resp.Diagnostics.AddError("error reading prismasdwan_element_toolkit",
+				fmt.Sprintf("%s (GET %s)", (*list_request.ResponseErr).Error(), *list_request.FinalPath))
+			return
 		}
-		return
+	} else {
+		response_body_string = string(*list_request.ResponseBytes)
+		// some endpoints return the one object itself instead of {"items": [...]}: treat it as the only item
+		var body map[string]interface{}
+		if err := json.Unmarshal([]byte(response_body_string), &body); err == nil {
+			if _, isList := body["items"]; !isList && body["id"] != nil {
+				wrapped, _ := json.Marshal(map[string]interface{}{"items": []map[string]interface{}{body}})
+				response_body_string = string(wrapped)
+			}
+		}
 	}
-
-	// read json string from http response
-	response_body_string := string(*list_request.ResponseBytes)
 	tflog.Info(ctx, "lookup response from server", map[string]any{
 		"path": response_body_string,
 	})

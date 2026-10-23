@@ -41,9 +41,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &ipsecProfileResource{}
-	_ resource.ResourceWithConfigure   = &ipsecProfileResource{}
-	_ resource.ResourceWithImportState = &ipsecProfileResource{}
+	_ resource.Resource                   = &ipsecProfileResource{}
+	_ resource.ResourceWithConfigure      = &ipsecProfileResource{}
+	_ resource.ResourceWithImportState    = &ipsecProfileResource{}
+	_ resource.ResourceWithValidateConfig = &ipsecProfileResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -62,6 +63,12 @@ func NewIpsecProfileResource() resource.Resource {
 
 type ipsecProfileResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *ipsecProfileResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{})...)
 }
 
 // Metadata returns the data source type name.

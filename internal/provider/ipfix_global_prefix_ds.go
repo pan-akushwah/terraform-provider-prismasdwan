@@ -6,6 +6,7 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	sdwan "github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk"
@@ -217,17 +218,25 @@ func (d *ipfixGlobalPrefixDataSource) Read(ctx context.Context, req datasource.R
 
 	// Perform the operation.
 	svc.ExecuteSdwanRequest(ctx, list_request)
+	response_body_string := `{"items":[]}`
 	if list_request.ResponseErr != nil {
-		if IsObjectNotFound(*list_request.ResponseErr) {
-			resp.State.RemoveResource(ctx)
-		} else {
-			resp.Diagnostics.AddError("error reading prismasdwan_ipfix_global_prefix", (*list_request.ResponseErr).Error())
+		// a 404 here means the list endpoint itself is missing, which must not look like "no matches"
+		{
+			resp.Diagnostics.AddError("error reading prismasdwan_ipfix_global_prefix",
+				fmt.Sprintf("%s (GET %s)", (*list_request.ResponseErr).Error(), *list_request.FinalPath))
+			return
 		}
-		return
+	} else {
+		response_body_string = string(*list_request.ResponseBytes)
+		// some endpoints return the one object itself instead of {"items": [...]}: treat it as the only item
+		var body map[string]interface{}
+		if err := json.Unmarshal([]byte(response_body_string), &body); err == nil {
+			if _, isList := body["items"]; !isList && body["id"] != nil {
+				wrapped, _ := json.Marshal(map[string]interface{}{"items": []map[string]interface{}{body}})
+				response_body_string = string(wrapped)
+			}
+		}
 	}
-
-	// read json string from http response
-	response_body_string := string(*list_request.ResponseBytes)
 	tflog.Info(ctx, "lookup response from server", map[string]any{
 		"path": response_body_string,
 	})

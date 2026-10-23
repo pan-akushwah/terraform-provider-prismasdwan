@@ -35,9 +35,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &elementRoutingRoutemapResource{}
-	_ resource.ResourceWithConfigure   = &elementRoutingRoutemapResource{}
-	_ resource.ResourceWithImportState = &elementRoutingRoutemapResource{}
+	_ resource.Resource                   = &elementRoutingRoutemapResource{}
+	_ resource.ResourceWithConfigure      = &elementRoutingRoutemapResource{}
+	_ resource.ResourceWithImportState    = &elementRoutingRoutemapResource{}
+	_ resource.ResourceWithValidateConfig = &elementRoutingRoutemapResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -56,6 +57,12 @@ func NewElementRoutingRoutemapResource() resource.Resource {
 
 type elementRoutingRoutemapResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *elementRoutingRoutemapResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{"site_id", "element_id"})...)
 }
 
 // Metadata returns the data source type name.

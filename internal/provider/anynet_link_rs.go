@@ -33,9 +33,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &anynetLinkResource{}
-	_ resource.ResourceWithConfigure   = &anynetLinkResource{}
-	_ resource.ResourceWithImportState = &anynetLinkResource{}
+	_ resource.Resource                   = &anynetLinkResource{}
+	_ resource.ResourceWithConfigure      = &anynetLinkResource{}
+	_ resource.ResourceWithImportState    = &anynetLinkResource{}
+	_ resource.ResourceWithValidateConfig = &anynetLinkResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -54,6 +55,12 @@ func NewAnynetLinkResource() resource.Resource {
 
 type anynetLinkResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *anynetLinkResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{})...)
 }
 
 // Metadata returns the data source type name.

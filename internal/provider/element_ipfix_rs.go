@@ -36,9 +36,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &elementIpfixResource{}
-	_ resource.ResourceWithConfigure   = &elementIpfixResource{}
-	_ resource.ResourceWithImportState = &elementIpfixResource{}
+	_ resource.Resource                   = &elementIpfixResource{}
+	_ resource.ResourceWithConfigure      = &elementIpfixResource{}
+	_ resource.ResourceWithImportState    = &elementIpfixResource{}
+	_ resource.ResourceWithValidateConfig = &elementIpfixResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -57,6 +58,12 @@ func NewElementIpfixResource() resource.Resource {
 
 type elementIpfixResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *elementIpfixResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{"site_id", "element_id"})...)
 }
 
 // Metadata returns the data source type name.

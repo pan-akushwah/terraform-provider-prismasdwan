@@ -34,9 +34,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &iotProfileResource{}
-	_ resource.ResourceWithConfigure   = &iotProfileResource{}
-	_ resource.ResourceWithImportState = &iotProfileResource{}
+	_ resource.Resource                   = &iotProfileResource{}
+	_ resource.ResourceWithConfigure      = &iotProfileResource{}
+	_ resource.ResourceWithImportState    = &iotProfileResource{}
+	_ resource.ResourceWithValidateConfig = &iotProfileResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -55,6 +56,12 @@ func NewIotProfileResource() resource.Resource {
 
 type iotProfileResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *iotProfileResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{})...)
 }
 
 // Metadata returns the data source type name.

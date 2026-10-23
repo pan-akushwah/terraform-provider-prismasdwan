@@ -35,9 +35,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &elementSnmpTrapResource{}
-	_ resource.ResourceWithConfigure   = &elementSnmpTrapResource{}
-	_ resource.ResourceWithImportState = &elementSnmpTrapResource{}
+	_ resource.Resource                   = &elementSnmpTrapResource{}
+	_ resource.ResourceWithConfigure      = &elementSnmpTrapResource{}
+	_ resource.ResourceWithImportState    = &elementSnmpTrapResource{}
+	_ resource.ResourceWithValidateConfig = &elementSnmpTrapResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -56,6 +57,12 @@ func NewElementSnmpTrapResource() resource.Resource {
 
 type elementSnmpTrapResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *elementSnmpTrapResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{"site_id", "element_id"})...)
 }
 
 // Metadata returns the data source type name.

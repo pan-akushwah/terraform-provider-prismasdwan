@@ -37,9 +37,10 @@ import (
 
 // Resource.
 var (
-	_ resource.Resource                = &performancePolicyRuleResource{}
-	_ resource.ResourceWithConfigure   = &performancePolicyRuleResource{}
-	_ resource.ResourceWithImportState = &performancePolicyRuleResource{}
+	_ resource.Resource                   = &performancePolicyRuleResource{}
+	_ resource.ResourceWithConfigure      = &performancePolicyRuleResource{}
+	_ resource.ResourceWithImportState    = &performancePolicyRuleResource{}
+	_ resource.ResourceWithValidateConfig = &performancePolicyRuleResource{}
 )
 
 // To enable this data source for TF Provider, go to `provider.go` and inject this into the function
@@ -58,6 +59,12 @@ func NewPerformancePolicyRuleResource() resource.Resource {
 
 type performancePolicyRuleResource struct {
 	client *sdwan.Client
+}
+
+// ValidateConfig fails the plan when a path parameter the create call needs is missing from x_parameters,
+// instead of sending a request with a literal "{param}" in its path.
+func (r *performancePolicyRuleResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	resp.Diagnostics.Append(ValidateRequiredXParameters(ctx, req.Config, []string{"perfmgmtpolicyset_id"})...)
 }
 
 // Metadata returns the data source type name.
