@@ -38,5 +38,4 @@ resource "prismasdwan_wan_network" "test_public_wan_network_1" {
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["example", "network"]
   type = "publicwan"
-  provider_as_numbers = [6576]
 }

@@ -38,7 +38,7 @@ resource "prismasdwan_security_policy_global_prefix" "branch_office_security_glo
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags          = ["branch", "security"]
   ipv4_prefixes = ["172.16.0.0/12"]
-  ipv6_prefixes = ["2620:0:2d0::/40"]
+  ipv6_prefixes = ["2620:0:2d0::/48"]
 }
 
 resource "prismasdwan_security_policy_global_prefix" "data_center_security_global_prefix" {

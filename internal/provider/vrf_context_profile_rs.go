@@ -64,13 +64,14 @@ func (r *vrfContextProfileResource) Metadata(_ context.Context, req resource.Met
 // Schema defines the schema for this data source.
 func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Vrf Context Profile.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=VRFContextProfileScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -79,53 +80,60 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
 			"default_vrf_context_profile": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Default Vrf Context Profile",
 			},
 			// key name holder for attribute: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -134,6 +142,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -143,31 +152,35 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Vrf Context Ids",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=vrf_context_ids, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=vrf_context_route_leak_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"vrf_context_route_leak_rules": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Context Route Leak Rules",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=description, type=STRING macro=rss_schema
 						"description": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=dest_vrf_context_id, type=STRING macro=rss_schema
 						"dest_vrf_context_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dest Vrf Context Id",
 						},
 						// key name holder for attribute: name=dest_vrf_context_id, type=STRING macro=rss_schema
 						// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -176,29 +189,32 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Ipv4 Prefixes",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=src_vrf_context_id, type=STRING macro=rss_schema
 						"src_vrf_context_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Src Vrf Context Id",
 						},
 						// key name holder for attribute: name=src_vrf_context_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=src_vrf_context_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=vrf_context_route_leak_rules, type=ARRAY_REFERENCE macro=rss_schema
 		},
 	}
 }
@@ -644,9 +660,19 @@ func (r *vrfContextProfileResource) doPut(ctx context.Context, plan *rsModelVRFC
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=vrf_context_ids, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.VrfContextIds = SetStringValueOrNil(ctx, plan.VrfContextIds)
+	if state != nil && plan.VrfContextIds.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.VrfContextIds = SetStringValueOrNil(ctx, state.VrfContextIds)
+	} else {
+		body.VrfContextIds = SetStringValueOrNil(ctx, plan.VrfContextIds)
+	}
 	// property: name=vrf_context_route_leak_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 	if plan.VrfContextRouteLeakRules == nil && (state == nil || state.VrfContextRouteLeakRules == nil) {
 		body.VrfContextRouteLeakRules = nil

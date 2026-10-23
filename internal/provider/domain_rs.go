@@ -64,13 +64,14 @@ func (r *domainResource) Metadata(_ context.Context, req resource.MetadataReques
 // Schema defines the schema for this data source.
 func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Domain.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ServiceBindingMapScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -79,61 +80,69 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=is_default, type=BOOLEAN macro=rss_schema
 			"is_default": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Is Default",
 			},
 			// key name holder for attribute: name=is_default, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=service_bindings, type=ARRAY_REFERENCE macro=rss_schema
 			"service_bindings": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Service Bindings",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -142,27 +151,30 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Service Endpoint Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=service_label_id, type=STRING macro=rss_schema
 						"service_label_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Service Label Id",
 						},
 						// key name holder for attribute: name=service_label_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=service_label_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=service_bindings, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": rsschema.SetAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -615,7 +627,12 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 		}
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)

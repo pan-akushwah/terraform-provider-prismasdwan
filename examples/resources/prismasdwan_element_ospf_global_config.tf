@@ -37,10 +37,24 @@ resource "prismasdwan_resource_locator" "element_shell" {
   resource_property_value = "manual_device_shell"
 }
 
-resource "prismasdwan_element_ospf_global_config" "tf_element_ospf_global_config" {
+#
+# Every element has exactly one OSPF global configuration. Look it up and manage it.
+#
+data "prismasdwan_element_ospf_global_config" "existing" {
   x_parameters = {
     site_id    = prismasdwan_resource_locator.element_site.result
     element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    // read all (there is only one)
+  }
+}
+
+resource "prismasdwan_element_ospf_global_config" "tf_element_ospf_global_config" {
+  x_parameters = {
+    site_id        = prismasdwan_resource_locator.element_site.result
+    element_id     = prismasdwan_resource_locator.element_shell.result
+    ospf_config_id = data.prismasdwan_element_ospf_global_config.existing.items[0].id
   }
   cost                   = 100
   dead_interval          = 40

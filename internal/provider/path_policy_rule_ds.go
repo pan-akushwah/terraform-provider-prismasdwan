@@ -71,13 +71,14 @@ func (d *pathPolicyRuleDataSource) Metadata(_ context.Context, req datasource.Me
 // Schema defines the schema for this data source.
 func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Path Policy Rule items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -85,40 +86,46 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=NetworkPolicyRuleScreenV2N5
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -127,49 +134,55 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "App Def Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=best_path_config, type=REFERENCE macro=rss_schema
 						"best_path_config": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=metric, type=STRING macro=rss_schema
 								"metric": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Metric",
 								},
 								// key name holder for attribute: name=metric, type=STRING macro=rss_schema
 								// property: name=metric_type, type=STRING macro=rss_schema
 								"metric_type": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Metric Type",
 								},
 								// key name holder for attribute: name=metric_type, type=STRING macro=rss_schema
 								// property: name=probe_config_id, type=STRING macro=rss_schema
 								"probe_config_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Probe Config Id",
 								},
 								// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+						// key name holder for attribute: name=best_path_config, type=REFERENCE macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -178,207 +191,231 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Dest Device Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=destination_prefixes_id, type=STRING macro=rss_schema
 						"destination_prefixes_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Destination Prefixes Id",
 						},
 						// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=network_context_id, type=STRING macro=rss_schema
 						"network_context_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Network Context Id",
 						},
 						// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 						// property: name=order_number, type=INTEGER macro=rss_schema
 						"order_number": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Order Number",
 						},
 						// key name holder for attribute: name=order_number, type=INTEGER macro=rss_schema
 						// property: name=paths_allowed, type=REFERENCE macro=rss_schema
 						"paths_allowed": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=active_paths, type=ARRAY_REFERENCE macro=rss_schema
 								"active_paths": dsschema.ListNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Active Paths",
 									NestedObject: dsschema.NestedAttributeObject{
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=label, type=STRING macro=rss_schema
 											"label": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Label",
 											},
 											// key name holder for attribute: name=label, type=STRING macro=rss_schema
 											// property: name=path_type, type=STRING macro=rss_schema
 											"path_type": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Path Type",
 											},
 											// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 										},
 									},
 								},
-								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+								// key name holder for attribute: name=active_paths, type=ARRAY_REFERENCE macro=rss_schema
 								// property: name=backup_paths, type=ARRAY_REFERENCE macro=rss_schema
 								"backup_paths": dsschema.ListNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Backup Paths",
 									NestedObject: dsschema.NestedAttributeObject{
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=label, type=STRING macro=rss_schema
 											"label": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Label",
 											},
 											// key name holder for attribute: name=label, type=STRING macro=rss_schema
 											// property: name=path_type, type=STRING macro=rss_schema
 											"path_type": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Path Type",
 											},
 											// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 										},
 									},
 								},
-								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+								// key name holder for attribute: name=backup_paths, type=ARRAY_REFERENCE macro=rss_schema
 								// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=rss_schema
 								"l3_failure_paths": dsschema.ListNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "L3 Failure Paths",
 									NestedObject: dsschema.NestedAttributeObject{
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=label, type=STRING macro=rss_schema
 											"label": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Label",
 											},
 											// key name holder for attribute: name=label, type=STRING macro=rss_schema
 											// property: name=path_type, type=STRING macro=rss_schema
 											"path_type": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Path Type",
 											},
 											// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 										},
 									},
 								},
-								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+								// key name holder for attribute: name=l3_failure_paths, type=ARRAY_REFERENCE macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+						// key name holder for attribute: name=paths_allowed, type=REFERENCE macro=rss_schema
 						// property: name=service_context, type=REFERENCE macro=rss_schema
 						"service_context": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=active_service_label_id, type=STRING macro=rss_schema
 								"active_service_label_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Active Service Label Id",
 								},
 								// key name holder for attribute: name=active_service_label_id, type=STRING macro=rss_schema
 								// property: name=active_service_label_type, type=STRING macro=rss_schema
 								"active_service_label_type": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Active Service Label Type",
 								},
 								// key name holder for attribute: name=active_service_label_type, type=STRING macro=rss_schema
 								// property: name=backup_service_label_id, type=STRING macro=rss_schema
 								"backup_service_label_id": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Backup Service Label Id",
 								},
 								// key name holder for attribute: name=backup_service_label_id, type=STRING macro=rss_schema
 								// property: name=backup_service_label_type, type=STRING macro=rss_schema
 								"backup_service_label_type": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Backup Service Label Type",
 								},
 								// key name holder for attribute: name=backup_service_label_type, type=STRING macro=rss_schema
 								// property: name=type, type=STRING macro=rss_schema
 								"type": dsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Type",
 								},
 								// key name holder for attribute: name=type, type=STRING macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=type, type=STRING macro=rss_schema
+						// key name holder for attribute: name=service_context, type=REFERENCE macro=rss_schema
 						// property: name=source_prefixes_id, type=STRING macro=rss_schema
 						"source_prefixes_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Source Prefixes Id",
 						},
 						// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
 						// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -387,6 +424,7 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Src Device Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -396,15 +434,17 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=user_or_group, type=REFERENCE macro=rss_schema
 						"user_or_group": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 								"user_group_ids": dsschema.ListAttribute{
@@ -412,6 +452,7 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "User Group Ids",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -421,12 +462,13 @@ func (d *pathPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Schema
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "User Ids",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// key name holder for attribute: name=user_or_group, type=REFERENCE macro=rss_schema
 					},
 				},
 			},

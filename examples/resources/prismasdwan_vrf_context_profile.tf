@@ -25,13 +25,26 @@
 #
 #
 
+# The built-in Global VRF
+resource "prismasdwan_resource_locator" "global_vrf_context" {
+  resource_type           = "prismasdwan_vrf_context"
+  resource_property       = "name"
+  resource_property_value = "Global"
+}
+
+# A second VRF to leak routes from
+resource "prismasdwan_vrf_context" "test_vrf_context_2" {
+  name        = "example_vrf_context_2"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+}
+
 resource "prismasdwan_vrf_context_profile" "test_vrf_context_profile_1" {
   name = "example vrf context profile"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = ["tag1", "tag2"]
   default_vrf_context_profile = false
   vrf_context_ids = [
-    prismasdwan_vrf_context.default_vrf_context.id,
+    prismasdwan_resource_locator.global_vrf_context.result,
     prismasdwan_vrf_context.test_vrf_context_1.id,
     prismasdwan_vrf_context.test_vrf_context_2.id
   ]

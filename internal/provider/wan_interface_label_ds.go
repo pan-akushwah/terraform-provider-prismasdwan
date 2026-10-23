@@ -68,13 +68,14 @@ func (d *wanInterfaceLabelDataSource) Metadata(_ context.Context, req datasource
 // Schema defines the schema for this data source.
 func (d *wanInterfaceLabelDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Wan Interface Label items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -82,80 +83,91 @@ func (d *wanInterfaceLabelDataSource) Schema(_ context.Context, _ datasource.Sch
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=WANInterfaceLabelScreenV2N6
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 						"app_acceleration_enabled": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "App Acceleration Enabled",
 						},
 						// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 						// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 						"bwc_enabled": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Bwc Enabled",
 						},
 						// key name holder for attribute: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=l3_reachability, type=REFERENCE macro=rss_schema
 						"l3_reachability": dsschema.SingleNestedAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 								"probe_config_ids": dsschema.ListAttribute{
@@ -163,50 +175,56 @@ func (d *wanInterfaceLabelDataSource) Schema(_ context.Context, _ datasource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Probe Config Ids",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 								// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 								"use_element_default": dsschema.BoolAttribute{
-									Required:  true,
-									Computed:  false,
-									Optional:  false,
-									Sensitive: false,
+									Required:    true,
+									Computed:    false,
+									Optional:    false,
+									Sensitive:   false,
+									Description: "Use Element Default",
 								},
 								// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
+						// key name holder for attribute: name=l3_reachability, type=REFERENCE macro=rss_schema
 						// property: name=label, type=STRING macro=rss_schema
 						"label": dsschema.StringAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Label",
 						},
 						// key name holder for attribute: name=label, type=STRING macro=rss_schema
 						// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 						"lqm_enabled": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Lqm Enabled",
 						},
 						// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=probe_profile_id, type=STRING macro=rss_schema
 						"probe_profile_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Probe Profile Id",
 						},
 						// key name holder for attribute: name=probe_profile_id, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -215,59 +233,66 @@ func (d *wanInterfaceLabelDataSource) Schema(_ context.Context, _ datasource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 						"use_for_application_reachability_probes": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Use For Application Reachability Probes",
 						},
 						// key name holder for attribute: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 						// property: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 						"use_for_controller_connections": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Use For Controller Connections",
 						},
 						// key name holder for attribute: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 						// property: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 						"use_lqm_for_non_hub_paths": dsschema.BoolAttribute{
-							Required:  true,
-							Computed:  false,
-							Optional:  false,
-							Sensitive: false,
+							Required:    true,
+							Computed:    false,
+							Optional:    false,
+							Sensitive:   false,
+							Description: "Use Lqm For Non Hub Paths",
 						},
 						// key name holder for attribute: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 						// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 						"vpnlink_configuration": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 								"keep_alive_failure_count": dsschema.Int64Attribute{
-									Required:  true,
-									Computed:  false,
-									Optional:  false,
-									Sensitive: false,
+									Required:    true,
+									Computed:    false,
+									Optional:    false,
+									Sensitive:   false,
+									Description: "Keep Alive Failure Count",
 								},
 								// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 								// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 								"keep_alive_interval": dsschema.Int64Attribute{
-									Required:  true,
-									Computed:  false,
-									Optional:  false,
-									Sensitive: false,
+									Required:    true,
+									Computed:    false,
+									Optional:    false,
+									Sensitive:   false,
+									Description: "Keep Alive Interval",
 								},
 								// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 					},
 				},
 			},

@@ -25,14 +25,21 @@
 #
 #
 
+# The stack's default-rule set must be created with defaultrule_policyset = true
+resource "prismasdwan_path_policy_set" "default_rule_policy_set" {
+  name                  = "example_default_rule_path_set"
+  description           = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  defaultrule_policyset = true
+}
+
 resource "prismasdwan_path_policy_stack" "example_path_policy_stack" {
   name                   = "example_test_path_policy_stack"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                   = ["test", "example", "path_policy"]
   default_policysetstack = false
   policyset_ids          = [
-    prismasdwan_path_policy_set.example_policy_set_1.id,
-    prismasdwan_path_policy_set.example_policy_set_2.id
+    prismasdwan_path_policy_set.branch_office_policy_set.id,
+    prismasdwan_path_policy_set.cloud_policy_set.id
   ]
-  defaultrule_policyset_id = prismasdwan_path_policy_set.example_policy_set.id
+  defaultrule_policyset_id = prismasdwan_path_policy_set.default_rule_policy_set.id
 }

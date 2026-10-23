@@ -25,10 +25,16 @@
 #
 #
 
+# Source and destination prefixes must differ
+resource "prismasdwan_nat_local_prefix" "destination_prefix" {
+  name        = "example_nat_destination_prefix"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+}
+
 resource "prismasdwan_nat_policy_rule" "test_nat_policy_rule_1" {
   # This is needed for path parameters
   x_parameters = {
-    nat_policy_set_id = prismasdwan_nat_policy_set.test_nat_policy_set.id
+    nat_policy_set_id = prismasdwan_nat_policy_set.example_nat_policy_set.id
   }
   name = "example_test_nat_rule"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
@@ -57,25 +63,25 @@ resource "prismasdwan_nat_policy_rule" "test_nat_policy_rule_1" {
   actions = [
     {
       type = "source_nat_dynamic"
-      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+      nat_pool_id = prismasdwan_nat_policy_pool.example_pool.id
     },
     {
       type = "destination_nat_dynamic"
-      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+      nat_pool_id = prismasdwan_nat_policy_pool.example_pool.id
       port = 520
     },
     {
       type = "source_nat_static"
-      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+      nat_pool_id = prismasdwan_nat_policy_pool.example_pool.id
     },
     {
       type = "destination_nat_static"
-      nat_pool_id = prismasdwan_nat_policy_pool.test_nat_policy_pool.id
+      nat_pool_id = prismasdwan_nat_policy_pool.example_pool.id
       port = 235
     }
   ]
   source_prefixes_id = prismasdwan_nat_local_prefix.test_nat_local_prefix_01.id
-  destination_prefixes_id = prismasdwan_nat_local_prefix.test_nat_local_prefix_02.id
+  destination_prefixes_id = prismasdwan_nat_local_prefix.destination_prefix.id
   source_zone_id = prismasdwan_nat_zone.test_nat_zone.id
   enabled = true
 }

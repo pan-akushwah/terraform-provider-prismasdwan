@@ -3,8 +3,10 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"strings"
 	"sync"
@@ -34,6 +36,9 @@ func init() {
 		"prismasdwan_app_def",
 		"prismasdwan_global_prefix_filter",
 		"prismasdwan_path_global_prefix",
+		// concurrent site creates fail with INVALID_REQUEST_DUPLICATE_KEY ("Resource already exists")
+		"prismasdwan_site",
+		"prismasdwan_vrf_context",
 	} {
 		serializedResourceTypes.Store(resourceType, &sync.Mutex{})
 	}
@@ -71,6 +76,8 @@ func (r *SdwanClientRequestResponse) ToString() string {
 	return string(json_body)
 }
 
+var unresolvedPathParam = regexp.MustCompile(`\{[^}]+\}`)
+
 // executes a http function using sdwan client implementation
 // the request and response data is captured in the same request object for ease of debugging and logging.
 func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRequestResponse) {
@@ -78,6 +85,13 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 	path := request.Path
 	for k, v := range *request.PathParameters {
 		path = strings.ReplaceAll(path, "{"+k+"}", *v)
+	}
+	// a placeholder left in the path would be sent literally, and the api times out on it instead of failing fast
+	if missing := unresolvedPathParam.FindAllString(path, -1); len(missing) > 0 {
+		err := fmt.Errorf("missing path parameter(s) %s for %s: set them in x_parameters", strings.Join(missing, ", "), request.Path)
+		request.ResponseErr = &err
+		request.FinalPath = &path
+		return
 	}
 	// Path param handling.
 	prefix, ok := Servers[c.client.GetHost()]

@@ -71,13 +71,14 @@ func (d *performancePolicyRuleDataSource) Metadata(_ context.Context, req dataso
 // Schema defines the schema for this data source.
 func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Performance Policy Rule items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -85,296 +86,331 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=PerfMgmtPolicyRuleScreenV2N3
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=actions, type=ARRAY_REFERENCE macro=rss_schema
 						"actions": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Actions",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=action_type, type=STRING macro=rss_schema
 									"action_type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Action Type",
 									},
 									// key name holder for attribute: name=action_type, type=STRING macro=rss_schema
 									// property: name=always_on, type=BOOLEAN macro=rss_schema
 									"always_on": dsschema.BoolAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Always On",
 									},
 									// key name holder for attribute: name=always_on, type=BOOLEAN macro=rss_schema
 									// property: name=app_perf, type=REFERENCE macro=rss_schema
 									"app_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
 											},
-											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// key name holder for attribute: name=app_perf, type=REFERENCE macro=rss_schema
 									// property: name=circuit_utilization_perf, type=REFERENCE macro=rss_schema
 									"circuit_utilization_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
 											},
-											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// key name holder for attribute: name=circuit_utilization_perf, type=REFERENCE macro=rss_schema
 									// property: name=lqm_perf, type=REFERENCE macro=rss_schema
 									"lqm_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
 											},
-											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// key name holder for attribute: name=lqm_perf, type=REFERENCE macro=rss_schema
 									// property: name=probe_perf, type=REFERENCE macro=rss_schema
 									"probe_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
 											},
-											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// key name holder for attribute: name=probe_perf, type=REFERENCE macro=rss_schema
 									// property: name=sys_perf, type=REFERENCE macro=rss_schema
 									"sys_perf": dsschema.SingleNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											"bad_health_thresholds": dsschema.SingleNestedAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "",
 												Attributes: map[string]dsschema.Attribute{
 													// property: name=clear_below, type=INTEGER macro=rss_schema
 													"clear_below": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Clear Below",
 													},
 													// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 													// property: name=raise_above, type=INTEGER macro=rss_schema
 													"raise_above": dsschema.Int64Attribute{
-														Required:  false,
-														Computed:  false,
-														Optional:  true,
-														Sensitive: false,
+														Required:    false,
+														Computed:    false,
+														Optional:    true,
+														Sensitive:   false,
+														Description: "Raise Above",
 													},
 													// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 												},
 											},
-											// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
+											// key name holder for attribute: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 											// property: name=monitoring_approach, type=STRING macro=rss_schema
 											"monitoring_approach": dsschema.StringAttribute{
-												Required:  false,
-												Computed:  false,
-												Optional:  true,
-												Sensitive: false,
+												Required:    false,
+												Computed:    false,
+												Optional:    true,
+												Sensitive:   false,
+												Description: "Monitoring Approach",
 											},
 											// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 										},
 									},
-									// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+									// key name holder for attribute: name=sys_perf, type=REFERENCE macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
+						// key name holder for attribute: name=actions, type=ARRAY_REFERENCE macro=rss_schema
 						// property: name=app_filters, type=REFERENCE macro=rss_schema
 						"app_filters": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
 								"app_transfer_types": dsschema.ListAttribute{
@@ -382,6 +418,7 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "App Transfer Types",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -391,42 +428,47 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "Application Ids",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// key name holder for attribute: name=app_filters, type=REFERENCE macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -435,43 +477,48 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Network Context Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=path_filters, type=ARRAY_REFERENCE macro=rss_schema
 						"path_filters": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Path Filters",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=label, type=STRING macro=rss_schema
 									"label": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Label",
 									},
 									// key name holder for attribute: name=label, type=STRING macro=rss_schema
 									// property: name=path_type, type=STRING macro=rss_schema
 									"path_type": dsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Path Type",
 									},
 									// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+						// key name holder for attribute: name=path_filters, type=ARRAY_REFERENCE macro=rss_schema
 						// property: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"service_label_ids": dsschema.ListAttribute{
 							Required:    false,
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Service Label Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -481,23 +528,26 @@ func (d *performancePolicyRuleDataSource) Schema(_ context.Context, _ datasource
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=thresholdprofile_id, type=STRING macro=rss_schema
 						"thresholdprofile_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Thresholdprofile Id",
 						},
 						// key name holder for attribute: name=thresholdprofile_id, type=STRING macro=rss_schema
 						// property: name=type, type=STRING macro=rss_schema
 						"type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Type",
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 					},

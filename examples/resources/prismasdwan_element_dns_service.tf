@@ -43,12 +43,6 @@ resource "prismasdwan_resource_locator" "dnsservice_profile_id" {
   resource_property_value = "Default DNSServiceProfile"
 }
 
-resource "prismasdwan_resource_locator" "dnsservice_role_id" {
-  resource_type           = "prismasdwan_dns_service_role"
-  resource_property       = "name"
-  resource_property_value = "TfManagedDNSServiceRole"
-}
-
 resource "prismasdwan_resource_locator" "element_port_1_id" {
   x_parameters = {
     element_id = prismasdwan_resource_locator.element_shell.result
@@ -90,6 +84,10 @@ output "default_dns_profile_id" {
 }
 
 resource "prismasdwan_element_dns_service" "first_element_dns_service" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
   name                       = "SomeDnsName"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                       = ["lorem", "ipsum"]
@@ -98,7 +96,7 @@ resource "prismasdwan_element_dns_service" "first_element_dns_service" {
   enabled                    = false
   dnsservicerole_bindings = [
     {
-      dnsservicerole_id = prismasdwan_resource_locator.dnsservice_role_id.result
+      dnsservicerole_id = prismasdwan_dns_service_role.example.id # from the prismasdwan_dns_service_role example
       interfaces = [
         {
           interface_id = prismasdwan_resource_locator.element_port_1_id.result

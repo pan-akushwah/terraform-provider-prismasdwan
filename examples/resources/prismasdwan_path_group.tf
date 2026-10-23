@@ -26,5 +26,16 @@
 #
 
 resource "prismasdwan_path_group" "example" {
- // content goes here
+  name        = "tf example path group"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  paths = [
+    {
+      label     = "private-1"
+      path_type = "vpn"
+    },
+    {
+      label     = "public-1"
+      path_type = "direct"
+    }
+  ]
 }

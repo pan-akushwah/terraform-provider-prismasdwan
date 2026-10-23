@@ -63,13 +63,14 @@ func (r *elementApplicationProbeResource) Metadata(_ context.Context, req resour
 // Schema defines the schema for this data source.
 func (r *elementApplicationProbeResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Application Probe.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ApplicationProbeScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -78,61 +79,69 @@ func (r *elementApplicationProbeResource) Schema(_ context.Context, _ resource.S
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enable_probe, type=BOOLEAN macro=rss_schema
 			"enable_probe": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enable Probe",
 			},
 			// key name holder for attribute: name=enable_probe, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=source_interface_id, type=STRING macro=rss_schema
 			"source_interface_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Source Interface Id",
 			},
 			// key name holder for attribute: name=source_interface_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -141,6 +150,7 @@ func (r *elementApplicationProbeResource) Schema(_ context.Context, _ resource.S
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -367,7 +377,12 @@ func (r *elementApplicationProbeResource) doPut(ctx context.Context, plan *rsMod
 		body.SourceInterfaceId = StringValueOrNil(plan.SourceInterfaceId)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -378,6 +393,9 @@ func (r *elementApplicationProbeResource) doPut(ctx context.Context, plan *rsMod
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
+	request_body_string, _ = sjson.Set(request_body_string, "_schema", 1)
 	// inject overrides
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 1)
@@ -499,7 +517,12 @@ func (r *elementApplicationProbeResource) Create(ctx context.Context, req resour
 		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
 			// push into state
 			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			// surface the put error; otherwise terraform only reports "Missing Resource State After Create"
+			resp.Diagnostics = uResp.Diagnostics
 		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 

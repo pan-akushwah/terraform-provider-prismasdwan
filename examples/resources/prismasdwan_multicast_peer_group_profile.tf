@@ -25,10 +25,24 @@
 #
 #
 
-resource "prismasdwan_resource_locator" "dc_site" {
-  resource_type           = "prismasdwan_site"
-  resource_property       = "name"
-  resource_property_value = "DataCenter"
+# A data-center (HUB) site to peer with.
+resource "prismasdwan_site" "dc_site" {
+  name                 = "tf multicast dc site"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "HUB"
+  address = {
+    city    = "San Jose"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.8863
+    latitude  = 37.3382
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
 }
 
 resource "prismasdwan_multicast_peer_group_profile" "multicast_peer_group_profile" {
@@ -37,7 +51,7 @@ resource "prismasdwan_multicast_peer_group_profile" "multicast_peer_group_profil
   tags        = ["ipsum", "lorem"]
   peer_sites = [
     {
-      peer_site_id = prismasdwan_resource_locator.dc_site.result
+      peer_site_id = prismasdwan_site.dc_site.id
     }
   ]
   is_source_site_receiver = true

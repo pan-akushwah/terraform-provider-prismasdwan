@@ -63,13 +63,14 @@ func (r *ipfixTemplateResource) Metadata(_ context.Context, req resource.Metadat
 // Schema defines the schema for this data source.
 func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Ipfix Template.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=IPFixTemplate
 			// generic x_parameters is added to accomodate path parameters
@@ -78,29 +79,33 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=flow_fields, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -109,39 +114,44 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Flow Fields",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=flow_fields, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=generate_biflow, type=BOOLEAN macro=rss_schema
 			"generate_biflow": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Generate Biflow",
 			},
 			// key name holder for attribute: name=generate_biflow, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=option_export_timeout, type=INTEGER macro=rss_schema
 			"option_export_timeout": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Option Export Timeout",
 			},
 			// key name holder for attribute: name=option_export_timeout, type=INTEGER macro=rss_schema
 			// property: name=options, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -150,6 +160,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Options",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=options, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -159,15 +170,17 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=template_export_timeout, type=INTEGER macro=rss_schema
 			"template_export_timeout": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Template Export Timeout",
 			},
 			// key name holder for attribute: name=template_export_timeout, type=INTEGER macro=rss_schema
 		},
@@ -335,6 +348,10 @@ func (r *ipfixTemplateResource) doPost(ctx context.Context, plan *rsModelIPFixTe
 	varFlowFields, errFlowFields := types.ListValueFrom(ctx, types.StringType, ans.FlowFields)
 	state.FlowFields = varFlowFields
 	resp.Diagnostics.Append(errFlowFields.Errors()...)
+	// the api adds some items to this list on its own; keep the configured list when those are the only difference
+	if ListEqualIgnoringAdditions(state.FlowFields, plan.FlowFields, "VRF_NAME") {
+		state.FlowFields = plan.FlowFields
+	}
 	// property: name=generate_biflow, type=BOOLEAN macro=copy_to_state
 	state.GenerateBiflow = types.BoolPointerValue(ans.GenerateBiflow)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -450,6 +467,10 @@ func (r *ipfixTemplateResource) doGet(ctx context.Context, state *rsModelIPFixTe
 	varFlowFields, errFlowFields := types.ListValueFrom(ctx, types.StringType, ans.FlowFields)
 	state.FlowFields = varFlowFields
 	resp.Diagnostics.Append(errFlowFields.Errors()...)
+	// the api adds some items to this list on its own; keep the configured list when those are the only difference
+	if ListEqualIgnoringAdditions(state.FlowFields, savestate.FlowFields, "VRF_NAME") {
+		state.FlowFields = savestate.FlowFields
+	}
 	// property: name=generate_biflow, type=BOOLEAN macro=copy_to_state
 	state.GenerateBiflow = types.BoolPointerValue(ans.GenerateBiflow)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -543,7 +564,12 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=flow_fields, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.FlowFields = ListStringValueOrNil(ctx, plan.FlowFields)
+	if state != nil && plan.FlowFields.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.FlowFields = ListStringValueOrNil(ctx, state.FlowFields)
+	} else {
+		body.FlowFields = ListStringValueOrNil(ctx, plan.FlowFields)
+	}
 	// property: name=generate_biflow, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.GenerateBiflow = ValueBoolPointerFromPlanOrState(plan.GenerateBiflow, state.GenerateBiflow)
@@ -569,9 +595,19 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 		body.OptionExportTimeout = Int64ValueOrNil(plan.OptionExportTimeout)
 	}
 	// property: name=options, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.Options = ListStringValueOrNil(ctx, plan.Options)
+	if state != nil && plan.Options.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Options = ListStringValueOrNil(ctx, state.Options)
+	} else {
+		body.Options = ListStringValueOrNil(ctx, plan.Options)
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=template_export_timeout, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.TemplateExportTimeout = ValueInt64PointerFromPlanOrState(plan.TemplateExportTimeout, state.TemplateExportTimeout)
@@ -640,6 +676,10 @@ func (r *ipfixTemplateResource) doPut(ctx context.Context, plan *rsModelIPFixTem
 	varFlowFields, errFlowFields := types.ListValueFrom(ctx, types.StringType, ans.FlowFields)
 	state.FlowFields = varFlowFields
 	resp.Diagnostics.Append(errFlowFields.Errors()...)
+	// the api adds some items to this list on its own; keep the configured list when those are the only difference
+	if ListEqualIgnoringAdditions(state.FlowFields, plan.FlowFields, "VRF_NAME") {
+		state.FlowFields = plan.FlowFields
+	}
 	// property: name=generate_biflow, type=BOOLEAN macro=copy_to_state
 	state.GenerateBiflow = types.BoolPointerValue(ans.GenerateBiflow)
 	// property: name=id, type=STRING macro=copy_to_state

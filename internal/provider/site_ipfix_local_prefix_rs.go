@@ -63,13 +63,14 @@ func (r *siteIpfixLocalPrefixResource) Metadata(_ context.Context, req resource.
 // Schema defines the schema for this data source.
 func (r *siteIpfixLocalPrefixResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Ipfix Local Prefix.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=SiteIPFixPrefixAssociationScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -78,29 +79,33 @@ func (r *siteIpfixLocalPrefixResource) Schema(_ context.Context, _ resource.Sche
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -109,15 +114,17 @@ func (r *siteIpfixLocalPrefixResource) Schema(_ context.Context, _ resource.Sche
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Ipv4 Prefixes",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=prefix_id, type=STRING macro=rss_schema
 			"prefix_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Id",
 			},
 			// key name holder for attribute: name=prefix_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -126,6 +133,7 @@ func (r *siteIpfixLocalPrefixResource) Schema(_ context.Context, _ resource.Sche
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -468,7 +476,12 @@ func (r *siteIpfixLocalPrefixResource) doPut(ctx context.Context, plan *rsModelS
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Prefixes)
+	if state != nil && plan.Ipv4Prefixes.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Ipv4Prefixes = ListStringValueOrNil(ctx, state.Ipv4Prefixes)
+	} else {
+		body.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Prefixes)
+	}
 	// property: name=prefix_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.PrefixId = ValueStringPointerFromPlanOrState(plan.PrefixId, state.PrefixId)
@@ -476,7 +489,12 @@ func (r *siteIpfixLocalPrefixResource) doPut(ctx context.Context, plan *rsModelS
 		body.PrefixId = StringValueOrNil(plan.PrefixId)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)

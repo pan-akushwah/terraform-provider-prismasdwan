@@ -155,7 +155,15 @@ resource "prismasdwan_security_policy_rule" "rule_001" {
     "policy_set_id" = prismasdwan_security_policy_set.cross_reference_policy_set.id
   }
   name = "Rule001"
-  # ...
+  description            = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled                = true
+  action                 = "allow"
+  app_def_ids            = []
+  source_zone_ids        = []
+  source_prefix_ids      = []
+  destination_prefix_ids = []
+  destination_zone_ids   = []
+  services               = []
 }
 resource "prismasdwan_security_policy_rule" "rule_002" {
   x_parameters = {
@@ -163,15 +171,23 @@ resource "prismasdwan_security_policy_rule" "rule_002" {
   }
   depends_on = [prismasdwan_security_policy_rule.rule_001]
   name       = "Rule002"
-  # ...
+  description            = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled                = true
+  action                 = "allow"
+  app_def_ids            = []
+  source_zone_ids        = []
+  source_prefix_ids      = []
+  destination_prefix_ids = []
+  destination_zone_ids   = []
+  services               = []
 }
-# Stage 2: After terraform apply, update the policy set with explicit order:
-resource "prismasdwan_security_policy_set" "cross_reference_policy_set" {
-  defaultrule_policyset = false
-  name                  = "cross_reference_policy_set"
-  # Now specify the order explicitly
-  policyrule_order = [
-    prismasdwan_security_policy_rule.rule_002.id, # Rule 002 first
-    prismasdwan_security_policy_rule.rule_001.id, # Rule 001 second
-  ]
-}
+# Stage 2: after the first apply, replace the block above with this one to set an explicit order:
+# resource "prismasdwan_security_policy_set" "cross_reference_policy_set" {
+#   defaultrule_policyset = false
+#   name                  = "cross_reference_policy_set"
+#   # Now specify the order explicitly
+#   policyrule_order = [
+#     prismasdwan_security_policy_rule.rule_002.id, # Rule 002 first
+#     prismasdwan_security_policy_rule.rule_001.id, # Rule 001 second
+#   ]
+# }

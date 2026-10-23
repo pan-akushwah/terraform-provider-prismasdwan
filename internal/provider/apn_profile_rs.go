@@ -63,13 +63,14 @@ func (r *apnProfileResource) Metadata(_ context.Context, req resource.MetadataRe
 // Schema defines the schema for this data source.
 func (r *apnProfileResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Apn Profile.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=APNProfileScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -78,84 +79,95 @@ func (r *apnProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=apn, type=STRING macro=rss_schema
 			"apn": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Apn",
 			},
 			// key name holder for attribute: name=apn, type=STRING macro=rss_schema
 			// property: name=authentication, type=STRING macro=rss_schema
 			"authentication": rsschema.StringAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Authentication",
 			},
 			// key name holder for attribute: name=authentication, type=STRING macro=rss_schema
 			// property: name=clear_password, type=BOOLEAN macro=rss_schema
 			"clear_password": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Clear Password",
 			},
 			// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=password, type=STRING macro=rss_schema
 			"password": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: true,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   true,
+				Description: "Password",
 			},
 			// key name holder for attribute: name=password, type=STRING macro=rss_schema
 			"password_internal_key_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Internal key name for the sensitive attribute password, managed automatically by the provider.",
 			},
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": rsschema.SetAttribute{
@@ -163,15 +175,17 @@ func (r *apnProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=user_name, type=STRING macro=rss_schema
 			"user_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "User Name",
 			},
 			// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 		},
@@ -346,13 +360,16 @@ func (r *apnProfileResource) doPost(ctx context.Context, plan *rsModelAPNProfile
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=password, type=STRING macro=copy_to_state
-	state.Password = types.StringPointerValue(plan.Password.ValueStringPointer())
 	// this property is sensitive and will be stored in the state's internal key name
 	state.PasswordInternalKeyName = types.StringValue(GenerateRandomString(16))
+	state.Password = types.StringPointerValue(plan.Password.ValueStringPointer())
 	// store value if needed
 	if !state.Password.IsNull() {
-		encryptedPassword, _ := Encrypt([]byte(state.Password.String()))
-		resp.Private.SetKey(ctx, state.PasswordInternalKeyName.String(), []byte(encryptedPassword))
+		// ValueString, not String: String() returns the value quoted, which drifts on read
+		encryptedPassword, _ := Encrypt([]byte(state.Password.ValueString()))
+		// private state only accepts valid JSON, so store the ciphertext as a JSON string
+		encryptedPasswordJson, _ := json.Marshal(encryptedPassword)
+		resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.PasswordInternalKeyName.String(), encryptedPasswordJson)...)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
@@ -464,10 +481,13 @@ func (r *apnProfileResource) doGet(ctx context.Context, state *rsModelAPNProfile
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=password, type=STRING macro=copy_to_state
+	// the api returns sensitive values blank, so keep the key name from prior state to find the stored value
+	state.PasswordInternalKeyName = savestate.PasswordInternalKeyName
 	encryptedPasswordKeyName := state.PasswordInternalKeyName.String()
 	encryptedPasswordValueBytes, _ := resp.Private.GetKey(ctx, encryptedPasswordKeyName)
-	if encryptedPasswordValueBytes != nil {
-		decryptedPassword, _ := Decrypt(string(encryptedPasswordValueBytes))
+	var encryptedPasswordValue string
+	if encryptedPasswordValueBytes != nil && json.Unmarshal(encryptedPasswordValueBytes, &encryptedPasswordValue) == nil {
+		decryptedPassword, _ := Decrypt(encryptedPasswordValue)
 		state.Password = types.StringValue(decryptedPassword)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
@@ -587,7 +607,12 @@ func (r *apnProfileResource) doPut(ctx context.Context, plan *rsModelAPNProfileS
 		body.Password = StringValueOrNil(plan.Password)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=user_name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.UserName = ValueStringPointerFromPlanOrState(plan.UserName, state.UserName)
@@ -663,13 +688,16 @@ func (r *apnProfileResource) doPut(ctx context.Context, plan *rsModelAPNProfileS
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=password, type=STRING macro=copy_to_state
-	state.Password = types.StringPointerValue(plan.Password.ValueStringPointer())
 	// this property is sensitive and will be stored in the state's internal key name
 	state.PasswordInternalKeyName = types.StringValue(GenerateRandomString(16))
+	state.Password = types.StringPointerValue(plan.Password.ValueStringPointer())
 	// store value if needed
 	if !state.Password.IsNull() {
-		encryptedPassword, _ := Encrypt([]byte(state.Password.String()))
-		resp.Private.SetKey(ctx, state.PasswordInternalKeyName.String(), []byte(encryptedPassword))
+		// ValueString, not String: String() returns the value quoted, which drifts on read
+		encryptedPassword, _ := Encrypt([]byte(state.Password.ValueString()))
+		// private state only accepts valid JSON, so store the ciphertext as a JSON string
+		encryptedPasswordJson, _ := json.Marshal(encryptedPassword)
+		resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.PasswordInternalKeyName.String(), encryptedPasswordJson)...)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)

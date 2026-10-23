@@ -64,13 +64,14 @@ func (r *siteHubClusterResource) Metadata(_ context.Context, req resource.Metada
 // Schema defines the schema for this data source.
 func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Hub Cluster.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=HubClusterV4
 			// generic x_parameters is added to accomodate path parameters
@@ -79,81 +80,91 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=default_cluster, type=BOOLEAN macro=rss_schema
 			"default_cluster": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Default Cluster",
 			},
 			// key name holder for attribute: name=default_cluster, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=elements, type=ARRAY_REFERENCE macro=rss_schema
 			"elements": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Elements",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=hub_element_id, type=STRING macro=rss_schema
 						"hub_element_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Hub Element Id",
 						},
 						// key name holder for attribute: name=hub_element_id, type=STRING macro=rss_schema
 						// property: name=locked, type=BOOLEAN macro=rss_schema
 						"locked": rsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Locked",
 						},
 						// key name holder for attribute: name=locked, type=BOOLEAN macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=locked, type=BOOLEAN macro=rss_schema
+			// key name holder for attribute: name=elements, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=peer_sites, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -162,15 +173,17 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Peer Sites",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=peer_sites, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=site_count_alarm_threshold, type=INTEGER macro=rss_schema
 			"site_count_alarm_threshold": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Site Count Alarm Threshold",
 			},
 			// key name holder for attribute: name=site_count_alarm_threshold, type=INTEGER macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -179,6 +192,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -634,7 +648,12 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=peer_sites, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.PeerSites = ListStringValueOrNil(ctx, plan.PeerSites)
+	if state != nil && plan.PeerSites.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.PeerSites = ListStringValueOrNil(ctx, state.PeerSites)
+	} else {
+		body.PeerSites = ListStringValueOrNil(ctx, plan.PeerSites)
+	}
 	// property: name=site_count_alarm_threshold, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.SiteCountAlarmThreshold = ValueInt64PointerFromPlanOrState(plan.SiteCountAlarmThreshold, state.SiteCountAlarmThreshold)
@@ -642,7 +661,12 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 		body.SiteCountAlarmThreshold = Int64ValueOrNil(plan.SiteCountAlarmThreshold)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)

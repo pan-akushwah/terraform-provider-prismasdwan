@@ -64,13 +64,14 @@ func (r *elementNtpResource) Metadata(_ context.Context, req resource.MetadataRe
 // Schema defines the schema for this data source.
 func (r *elementNtpResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Ntp.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=ElementNTPV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -79,97 +80,109 @@ func (r *elementNtpResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=ntp_servers, type=ARRAY_REFERENCE macro=rss_schema
 			"ntp_servers": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ntp Servers",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=host, type=STRING macro=rss_schema
 						"host": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Host",
 						},
 						// key name holder for attribute: name=host, type=STRING macro=rss_schema
 						// property: name=max_poll, type=INTEGER macro=rss_schema
 						"max_poll": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Max Poll",
 						},
 						// key name holder for attribute: name=max_poll, type=INTEGER macro=rss_schema
 						// property: name=min_poll, type=INTEGER macro=rss_schema
 						"min_poll": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Min Poll",
 						},
 						// key name holder for attribute: name=min_poll, type=INTEGER macro=rss_schema
 						// property: name=version, type=INTEGER macro=rss_schema
 						"version": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Version",
 						},
 						// key name holder for attribute: name=version, type=INTEGER macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=version, type=INTEGER macro=rss_schema
+			// key name holder for attribute: name=ntp_servers, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=source_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			"source_interface_ids": rsschema.ListAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Source Interface Ids",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=source_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -179,6 +192,7 @@ func (r *elementNtpResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -446,9 +460,19 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 		}
 	}
 	// property: name=source_interface_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.SourceInterfaceIds = ListStringValueOrNil(ctx, plan.SourceInterfaceIds)
+	if state != nil && plan.SourceInterfaceIds.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.SourceInterfaceIds = ListStringValueOrNil(ctx, state.SourceInterfaceIds)
+	} else {
+		body.SourceInterfaceIds = ListStringValueOrNil(ctx, plan.SourceInterfaceIds)
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -602,7 +626,12 @@ func (r *elementNtpResource) Create(ctx context.Context, req resource.CreateRequ
 		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
 			// push into state
 			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			// surface the put error; otherwise terraform only reports "Missing Resource State After Create"
+			resp.Diagnostics = uResp.Diagnostics
 		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 

@@ -65,13 +65,14 @@ func (r *wanInterfaceLabelResource) Metadata(_ context.Context, req resource.Met
 // Schema defines the schema for this data source.
 func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Wan Interface Label.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=WANInterfaceLabelScreenV2N6
 			// generic x_parameters is added to accomodate path parameters
@@ -80,61 +81,69 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			"app_acceleration_enabled": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "App Acceleration Enabled",
 			},
 			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			"bwc_enabled": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Bwc Enabled",
 			},
 			// key name holder for attribute: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=l3_reachability, type=REFERENCE macro=rss_schema
 			"l3_reachability": rsschema.SingleNestedAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"probe_config_ids": rsschema.ListAttribute{
@@ -142,50 +151,56 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Probe Config Ids",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 					"use_element_default": rsschema.BoolAttribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Use Element Default",
 					},
 					// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
+			// key name holder for attribute: name=l3_reachability, type=REFERENCE macro=rss_schema
 			// property: name=label, type=STRING macro=rss_schema
 			"label": rsschema.StringAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Label",
 			},
 			// key name holder for attribute: name=label, type=STRING macro=rss_schema
 			// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			"lqm_enabled": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Lqm Enabled",
 			},
 			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=probe_profile_id, type=STRING macro=rss_schema
 			"probe_profile_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Probe Profile Id",
 			},
 			// key name holder for attribute: name=probe_profile_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -194,59 +209,66 @@ func (r *wanInterfaceLabelResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			"use_for_application_reachability_probes": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Use For Application Reachability Probes",
 			},
 			// key name holder for attribute: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			// property: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			"use_for_controller_connections": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Use For Controller Connections",
 			},
 			// key name holder for attribute: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			// property: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			"use_lqm_for_non_hub_paths": rsschema.BoolAttribute{
-				Required:  true,
-				Computed:  false,
-				Optional:  false,
-				Sensitive: false,
+				Required:    true,
+				Computed:    false,
+				Optional:    false,
+				Sensitive:   false,
+				Description: "Use Lqm For Non Hub Paths",
 			},
 			// key name holder for attribute: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 			"vpnlink_configuration": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Keep Alive Failure Count",
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 					"keep_alive_interval": rsschema.Int64Attribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Keep Alive Interval",
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
+			// key name holder for attribute: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 		},
 	}
 }
@@ -513,7 +535,12 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 		// copy_from_plan_or_state: body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, plan.L3Reachability.ProbeConfigIds)
+		if state.L3Reachability != nil && plan.L3Reachability.ProbeConfigIds.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, state.L3Reachability.ProbeConfigIds)
+		} else {
+			body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, plan.L3Reachability.ProbeConfigIds)
+		}
 		// property: name=use_element_default, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.L3Reachability != nil {
 			body.L3Reachability.UseElementDefault = ValueBoolPointerFromPlanOrState(plan.L3Reachability.UseElementDefault, state.L3Reachability.UseElementDefault)
@@ -546,7 +573,12 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 		body.ProbeProfileId = StringValueOrNil(plan.ProbeProfileId)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.UseForApplicationReachabilityProbes = ValueBoolPointerFromPlanOrState(plan.UseForApplicationReachabilityProbes, state.UseForApplicationReachabilityProbes)
@@ -742,7 +774,12 @@ func (r *wanInterfaceLabelResource) Create(ctx context.Context, req resource.Cre
 		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
 			// push into state
 			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			// surface the put error; otherwise terraform only reports "Missing Resource State After Create"
+			resp.Diagnostics = uResp.Diagnostics
 		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 

@@ -25,6 +25,45 @@
 #
 #
 
+# Minimal sites for this example.
+resource "prismasdwan_site" "site_1" {
+  name                 = "tf site 1 for example"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "SPOKE"
+  address = {
+    city    = "San Jose"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.8863
+    latitude  = 37.3382
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
+}
+
+resource "prismasdwan_site" "site_2" {
+  name                 = "tf site 2 for example"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "HUB"
+  address = {
+    city    = "Santa Clara"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.9552
+    latitude  = 37.3541
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
+}
+
 resource "prismasdwan_site_hub_distribution_fabric" "hub_site_distribution_fabric_1" {
   # Needed for path parameters
   x_parameters = {

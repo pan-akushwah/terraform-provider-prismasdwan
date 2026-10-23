@@ -66,13 +66,14 @@ func (r *natPolicySetResource) Metadata(_ context.Context, req resource.Metadata
 // Schema defines the schema for this data source.
 func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Nat Policy Set.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=NATPolicySet
 			// generic x_parameters is added to accomodate path parameters
@@ -81,37 +82,42 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=clone_from, type=STRING macro=rss_schema
 			"clone_from": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Clone From",
 			},
 			// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=destination_zone_policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -120,71 +126,80 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Destination Zone Policyrule Order",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=destination_zone_policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=disabled, type=BOOLEAN macro=rss_schema
 			"disabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Disabled",
 			},
 			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
 			// property: name=disabled_reason, type=STRING macro=rss_schema
 			"disabled_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Disabled Reason",
 			},
 			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=inactive, type=BOOLEAN macro=rss_schema
 			"inactive": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Inactive",
 			},
 			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
 			// property: name=inactive_reason, type=STRING macro=rss_schema
 			"inactive_reason": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Inactive Reason",
 			},
 			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=policy_req_version, type=STRING macro=rss_schema
 			"policy_req_version": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Policy Req Version",
 			},
 			// key name holder for attribute: name=policy_req_version, type=STRING macro=rss_schema
 			// property: name=policy_rules, type=ARRAY_REFERENCE macro=rss_schema
 			"policy_rules": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Policy Rules",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// generic x_parameters is added to accomodate path parameters
@@ -193,45 +208,51 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							ElementType: types.StringType,
+							Description: "Path parameters for the resource, managed automatically by the provider.",
 						},
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=actions, type=ARRAY_REFERENCE macro=rss_schema
 						"actions": rsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Actions",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=nat_pool_id, type=STRING macro=rss_schema
 									"nat_pool_id": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Nat Pool Id",
 									},
 									// key name holder for attribute: name=nat_pool_id, type=STRING macro=rss_schema
 									// property: name=port, type=INTEGER macro=rss_schema
 									"port": rsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Port",
 									},
 									// key name holder for attribute: name=port, type=INTEGER macro=rss_schema
 									// property: name=protocols, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -240,147 +261,164 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
+										Description: "Protocols",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=protocols, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=type, type=STRING macro=rss_schema
 									"type": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Type",
 									},
 									// key name holder for attribute: name=type, type=STRING macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=type, type=STRING macro=rss_schema
+						// key name holder for attribute: name=actions, type=ARRAY_REFERENCE macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=destination_ports, type=ARRAY_REFERENCE macro=rss_schema
 						"destination_ports": rsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Destination Ports",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=from, type=INTEGER macro=rss_schema
 									"from": rsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "From",
 									},
 									// key name holder for attribute: name=from, type=INTEGER macro=rss_schema
 									// property: name=to, type=INTEGER macro=rss_schema
 									"to": rsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "To",
 									},
 									// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=destination_ports, type=ARRAY_REFERENCE macro=rss_schema
 						// property: name=destination_prefixes_id, type=STRING macro=rss_schema
 						"destination_prefixes_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Destination Prefixes Id",
 						},
 						// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
 						// property: name=destination_zone_id, type=STRING macro=rss_schema
 						"destination_zone_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Destination Zone Id",
 						},
 						// key name holder for attribute: name=destination_zone_id, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": rsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=protocol, type=INTEGER macro=rss_schema
 						"protocol": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Protocol",
 						},
 						// key name holder for attribute: name=protocol, type=INTEGER macro=rss_schema
 						// property: name=source_ports, type=ARRAY_REFERENCE macro=rss_schema
 						"source_ports": rsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Source Ports",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=from, type=INTEGER macro=rss_schema
 									"from": rsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "From",
 									},
 									// key name holder for attribute: name=from, type=INTEGER macro=rss_schema
 									// property: name=to, type=INTEGER macro=rss_schema
 									"to": rsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "To",
 									},
 									// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=source_ports, type=ARRAY_REFERENCE macro=rss_schema
 						// property: name=source_prefixes_id, type=STRING macro=rss_schema
 						"source_prefixes_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Source Prefixes Id",
 						},
 						// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
 						// property: name=source_zone_id, type=STRING macro=rss_schema
 						"source_zone_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Source Zone Id",
 						},
 						// key name holder for attribute: name=source_zone_id, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -389,27 +427,30 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=policy_rules, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=region, type=STRING macro=rss_schema
 			"region": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Region",
 			},
 			// key name holder for attribute: name=region, type=STRING macro=rss_schema
 			// property: name=send_to_element, type=BOOLEAN macro=rss_schema
 			"send_to_element": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Send To Element",
 			},
 			// key name holder for attribute: name=send_to_element, type=BOOLEAN macro=rss_schema
 			// property: name=source_zone_policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -418,6 +459,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Source Zone Policyrule Order",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=source_zone_policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -427,15 +469,17 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=update_order, type=BOOLEAN macro=rss_schema
 			"update_order": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Update Order",
 			},
 			// key name holder for attribute: name=update_order, type=BOOLEAN macro=rss_schema
 		},
@@ -1172,7 +1216,12 @@ func (r *natPolicySetResource) doPut(ctx context.Context, plan *rsModelNATPolicy
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=destination_zone_policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.DestinationZonePolicyruleOrder = ListStringValueOrNil(ctx, plan.DestinationZonePolicyruleOrder)
+	if state != nil && plan.DestinationZonePolicyruleOrder.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.DestinationZonePolicyruleOrder = ListStringValueOrNil(ctx, state.DestinationZonePolicyruleOrder)
+	} else {
+		body.DestinationZonePolicyruleOrder = ListStringValueOrNil(ctx, plan.DestinationZonePolicyruleOrder)
+	}
 	// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.Disabled = ValueBoolPointerFromPlanOrState(plan.Disabled, state.Disabled)
@@ -1329,9 +1378,19 @@ func (r *natPolicySetResource) doPut(ctx context.Context, plan *rsModelNATPolicy
 		body.SendToElement = BoolValueOrNil(plan.SendToElement)
 	}
 	// property: name=source_zone_policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.SourceZonePolicyruleOrder = ListStringValueOrNil(ctx, plan.SourceZonePolicyruleOrder)
+	if state != nil && plan.SourceZonePolicyruleOrder.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.SourceZonePolicyruleOrder = ListStringValueOrNil(ctx, state.SourceZonePolicyruleOrder)
+	} else {
+		body.SourceZonePolicyruleOrder = ListStringValueOrNil(ctx, plan.SourceZonePolicyruleOrder)
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=update_order, type=BOOLEAN macro=copy_from_plan_or_state
 	if state != nil {
 		body.UpdateOrder = ValueBoolPointerFromPlanOrState(plan.UpdateOrder, state.UpdateOrder)

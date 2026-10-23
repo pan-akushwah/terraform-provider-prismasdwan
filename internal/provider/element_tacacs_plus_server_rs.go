@@ -64,13 +64,14 @@ func (r *elementTacacsPlusServerResource) Metadata(_ context.Context, req resour
 // Schema defines the schema for this data source.
 func (r *elementTacacsPlusServerResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Tacacs Plus Server.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=TacacsPlusServerScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -79,151 +80,170 @@ func (r *elementTacacsPlusServerResource) Schema(_ context.Context, _ resource.S
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=authentication_protocol, type=STRING macro=rss_schema
 			"authentication_protocol": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Authentication Protocol",
 			},
 			// key name holder for attribute: name=authentication_protocol, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enabled",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=source_interface_id, type=STRING macro=rss_schema
 			"source_interface_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Source Interface Id",
 			},
 			// key name holder for attribute: name=source_interface_id, type=STRING macro=rss_schema
 			// property: name=tacacs_plus_profile_id, type=STRING macro=rss_schema
 			"tacacs_plus_profile_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Tacacs Plus Profile Id",
 			},
 			// key name holder for attribute: name=tacacs_plus_profile_id, type=STRING macro=rss_schema
 			// property: name=tacacs_plus_servers, type=ARRAY_REFERENCE macro=rss_schema
 			"tacacs_plus_servers": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Tacacs Plus Servers",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=secret, type=STRING macro=rss_schema
 						"secret": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: true,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   true,
+							Description: "Secret",
 						},
 						// key name holder for attribute: name=secret, type=STRING macro=rss_schema
 						"secret_internal_key_name": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Internal key name for the sensitive attribute secret, managed automatically by the provider.",
 						},
 						// property: name=server_fqdn, type=STRING macro=rss_schema
 						"server_fqdn": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Fqdn",
 						},
 						// key name holder for attribute: name=server_fqdn, type=STRING macro=rss_schema
 						// property: name=server_ip, type=STRING macro=rss_schema
 						"server_ip": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Ip",
 						},
 						// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 						// property: name=server_ipv6, type=STRING macro=rss_schema
 						"server_ipv6": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Ipv6",
 						},
 						// key name holder for attribute: name=server_ipv6, type=STRING macro=rss_schema
 						// property: name=server_port, type=INTEGER macro=rss_schema
 						"server_port": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Server Port",
 						},
 						// key name holder for attribute: name=server_port, type=INTEGER macro=rss_schema
 						// property: name=timeout, type=INTEGER macro=rss_schema
 						"timeout": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Timeout",
 						},
 						// key name holder for attribute: name=timeout, type=INTEGER macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=timeout, type=INTEGER macro=rss_schema
+			// key name holder for attribute: name=tacacs_plus_servers, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			"tags": rsschema.SetAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -437,13 +457,19 @@ func (r *elementTacacsPlusServerResource) doPost(ctx context.Context, plan *rsMo
 			// copy_to_state: state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=rsModel ans=varLoopTacacsPlusServers properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=rsModel ans=varLoopTacacsPlusServers")
 			// property: name=secret, type=STRING macro=copy_to_state
-			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringPointerValue(plan.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.ValueStringPointer())
 			// this property is sensitive and will be stored in the state's internal key name
 			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringNull()
+			if len(plan.TacacsPlusServers) > varLoopTacacsPlusServersIndex {
+				state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringPointerValue(plan.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.ValueStringPointer())
+			}
 			// store value if needed
 			if !state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.IsNull() {
-				encryptedSecret, _ := Encrypt([]byte(state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.String()))
-				resp.Private.SetKey(ctx, state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName.String(), []byte(encryptedSecret))
+				// ValueString, not String: String() returns the value quoted, which drifts on read
+				encryptedSecret, _ := Encrypt([]byte(state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.ValueString()))
+				// private state only accepts valid JSON, so store the ciphertext as a JSON string
+				encryptedSecretJson, _ := json.Marshal(encryptedSecret)
+				resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName.String(), encryptedSecretJson)...)
 			}
 			// property: name=server_fqdn, type=STRING macro=copy_to_state
 			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].ServerFqdn = types.StringPointerValue(varLoopTacacsPlusServers.ServerFqdn)
@@ -579,10 +605,15 @@ func (r *elementTacacsPlusServerResource) doGet(ctx context.Context, state *rsMo
 			// copy_to_state: state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=rsModel ans=varLoopTacacsPlusServers properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=rsModel ans=varLoopTacacsPlusServers")
 			// property: name=secret, type=STRING macro=copy_to_state
+			// the api returns sensitive values blank, so keep the key name from prior state to find the stored value
+			if len(savestate.TacacsPlusServers) > varLoopTacacsPlusServersIndex {
+				state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName = savestate.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName
+			}
 			encryptedSecretKeyName := state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName.String()
 			encryptedSecretValueBytes, _ := resp.Private.GetKey(ctx, encryptedSecretKeyName)
-			if encryptedSecretValueBytes != nil {
-				decryptedSecret, _ := Decrypt(string(encryptedSecretValueBytes))
+			var encryptedSecretValue string
+			if encryptedSecretValueBytes != nil && json.Unmarshal(encryptedSecretValueBytes, &encryptedSecretValue) == nil {
+				decryptedSecret, _ := Decrypt(encryptedSecretValue)
 				state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringValue(decryptedSecret)
 			}
 			// property: name=server_fqdn, type=STRING macro=copy_to_state
@@ -743,7 +774,12 @@ func (r *elementTacacsPlusServerResource) doPut(ctx context.Context, plan *rsMod
 		}
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -827,13 +863,19 @@ func (r *elementTacacsPlusServerResource) doPut(ctx context.Context, plan *rsMod
 			// copy_to_state: state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=rsModel ans=varLoopTacacsPlusServers properties=6
 			tflog.Debug(ctx, "copy_to_state state=state.TacacsPlusServers[varLoopTacacsPlusServersIndex] prefix=rsModel ans=varLoopTacacsPlusServers")
 			// property: name=secret, type=STRING macro=copy_to_state
-			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringPointerValue(plan.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.ValueStringPointer())
 			// this property is sensitive and will be stored in the state's internal key name
 			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringNull()
+			if len(plan.TacacsPlusServers) > varLoopTacacsPlusServersIndex {
+				state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret = types.StringPointerValue(plan.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.ValueStringPointer())
+			}
 			// store value if needed
 			if !state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.IsNull() {
-				encryptedSecret, _ := Encrypt([]byte(state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.String()))
-				resp.Private.SetKey(ctx, state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName.String(), []byte(encryptedSecret))
+				// ValueString, not String: String() returns the value quoted, which drifts on read
+				encryptedSecret, _ := Encrypt([]byte(state.TacacsPlusServers[varLoopTacacsPlusServersIndex].Secret.ValueString()))
+				// private state only accepts valid JSON, so store the ciphertext as a JSON string
+				encryptedSecretJson, _ := json.Marshal(encryptedSecret)
+				resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.TacacsPlusServers[varLoopTacacsPlusServersIndex].SecretInternalKeyName.String(), encryptedSecretJson)...)
 			}
 			// property: name=server_fqdn, type=STRING macro=copy_to_state
 			state.TacacsPlusServers[varLoopTacacsPlusServersIndex].ServerFqdn = types.StringPointerValue(varLoopTacacsPlusServers.ServerFqdn)

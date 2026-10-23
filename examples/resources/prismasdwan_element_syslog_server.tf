@@ -25,6 +25,36 @@
 #
 #
 
+# The element to configure. "element_shell_site" and "manual_device_shell" are example names; use your own.
+resource "prismasdwan_resource_locator" "element_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "element_shell_site"
+}
+
+resource "prismasdwan_resource_locator" "element_shell" {
+  x_parameters = {
+    site_id = prismasdwan_resource_locator.element_site.result
+  }
+  resource_type           = "prismasdwan_element"
+  resource_property       = "name"
+  resource_property_value = "manual_device_shell"
+}
+
 resource "prismasdwan_element_syslog_server" "example" {
- // content goes here
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  name                  = "tf example syslog server"
+  description           = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  enabled               = true
+  server_ip             = "10.1.1.20"
+  server_port           = 514
+  protocol              = "udp"
+  severity_level        = "major"
+  enable_flow_logging   = false
+  enable_threat_logging = false
+  enable_url_logging    = false
+  enable_dns_logging    = false
 }

@@ -74,31 +74,36 @@ type listResponse struct {
 // Schema defines the schema for this data source.
 func (r *newResourceLocatorResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Looks up the ID of an existing Prisma SD-WAN configuration object by matching one of its attributes. Useful for referencing objects that are not managed by this provider.",
 		Attributes: map[string]rsschema.Attribute{
 			"resource_type": rsschema.StringAttribute{
-				Computed: false,
-				Required: true,
+				Computed:    false,
+				Required:    true,
+				Description: "The provider resource type to look up, e.g. `prismasdwan_site`.",
 			},
 			"resource_property": rsschema.StringAttribute{
-				Computed: false,
-				Required: false,
-				Optional: true,
+				Computed:    false,
+				Required:    false,
+				Optional:    true,
+				Description: "Name of the object attribute to match against, e.g. `name`.",
 			},
 			"resource_property_value": rsschema.StringAttribute{
-				Computed: false,
-				Required: false,
-				Optional: true,
+				Computed:    false,
+				Required:    false,
+				Optional:    true,
+				Description: "Value of the attribute to match.",
 			},
 			"result": rsschema.StringAttribute{
-				Computed: true,
-				Required: false,
+				Computed:    true,
+				Required:    false,
+				Description: "The resolved ID of the matching object.",
 			},
 			"x_parameters": rsschema.MapAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the object, managed automatically by the provider.",
 			},
 		},
 	}

@@ -69,13 +69,14 @@ func (d *securityPolicyRuleDataSource) Metadata(_ context.Context, req datasourc
 // Schema defines the schema for this data source.
 func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Security Policy Rule items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -83,48 +84,55 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=SecurityPolicyV2RuleScreenV2N3
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=action, type=STRING macro=rss_schema
 						"action": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Action",
 						},
 						// key name holder for attribute: name=action, type=STRING macro=rss_schema
 						// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -133,15 +141,17 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "App Def Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -150,6 +160,7 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Dest Device Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -159,6 +170,7 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Destination Prefix Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=destination_prefix_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -168,123 +180,137 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Destination Zone Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=destination_zone_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=security_profile_group_id, type=STRING macro=rss_schema
 						"security_profile_group_id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Security Profile Group Id",
 						},
 						// key name holder for attribute: name=security_profile_group_id, type=STRING macro=rss_schema
 						// property: name=services, type=ARRAY_REFERENCE macro=rss_schema
 						"services": dsschema.ListNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Services",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=destination_ports, type=ARRAY_REFERENCE macro=rss_schema
 									"destination_ports": dsschema.ListNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Destination Ports",
 										NestedObject: dsschema.NestedAttributeObject{
 											Attributes: map[string]dsschema.Attribute{
 												// property: name=from, type=INTEGER macro=rss_schema
 												"from": dsschema.Int64Attribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "From",
 												},
 												// key name holder for attribute: name=from, type=INTEGER macro=rss_schema
 												// property: name=to, type=INTEGER macro=rss_schema
 												"to": dsschema.Int64Attribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "To",
 												},
 												// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
 											},
 										},
 									},
-									// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=destination_ports, type=ARRAY_REFERENCE macro=rss_schema
 									// property: name=protocol, type=INTEGER macro=rss_schema
 									"protocol": dsschema.Int64Attribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Protocol",
 									},
 									// key name holder for attribute: name=protocol, type=INTEGER macro=rss_schema
 									// property: name=source_ports, type=ARRAY_REFERENCE macro=rss_schema
 									"source_ports": dsschema.ListNestedAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Source Ports",
 										NestedObject: dsschema.NestedAttributeObject{
 											Attributes: map[string]dsschema.Attribute{
 												// property: name=from, type=INTEGER macro=rss_schema
 												"from": dsschema.Int64Attribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "From",
 												},
 												// key name holder for attribute: name=from, type=INTEGER macro=rss_schema
 												// property: name=to, type=INTEGER macro=rss_schema
 												"to": dsschema.Int64Attribute{
-													Required:  false,
-													Computed:  false,
-													Optional:  true,
-													Sensitive: false,
+													Required:    false,
+													Computed:    false,
+													Optional:    true,
+													Sensitive:   false,
+													Description: "To",
 												},
 												// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
 											},
 										},
 									},
-									// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
+									// key name holder for attribute: name=source_ports, type=ARRAY_REFERENCE macro=rss_schema
 								},
 							},
 						},
-						// key name holder for attribute: name=to, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=services, type=ARRAY_REFERENCE macro=rss_schema
 						// property: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"source_prefix_ids": dsschema.ListAttribute{
 							Required:    false,
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Source Prefix Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -294,6 +320,7 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Source Zone Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=source_zone_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -303,6 +330,7 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Src Device Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -312,15 +340,17 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=user_or_group, type=REFERENCE macro=rss_schema
 						"user_or_group": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 								"user_group_ids": dsschema.ListAttribute{
@@ -328,6 +358,7 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "User Group Ids",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -337,12 +368,13 @@ func (d *securityPolicyRuleDataSource) Schema(_ context.Context, _ datasource.Sc
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
+									Description: "User Ids",
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+						// key name holder for attribute: name=user_or_group, type=REFERENCE macro=rss_schema
 					},
 				},
 			},

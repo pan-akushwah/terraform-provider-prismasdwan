@@ -5,7 +5,7 @@ package schemas
 //
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=1,830)
+// | Schema Map Summary (size=goLangStructMap=1,823)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -192,10 +192,6 @@ package schemas
 // | IntraClusterTunnel HasID=false
 // | SysMetricsDeviceAcpiTemperatureMetricV3N0 HasID=false
 // | PriorityPolicyRuleQueryFilter HasID=true
-// | ListQueryResponse HasID=true
-// | ListRQueryResponse HasID=false
-// | SiteAggregateQueryFilter HasID=true
-// | ListQueryResponseListSiteAggregateQueryFilter HasID=true
 // | FlowStartTimeRange HasID=false
 // | FlowTupple HasID=false
 // | HttpProbe HasID=false
@@ -231,8 +227,6 @@ package schemas
 // | CustomRoleV2N1 HasID=true
 // | SecurityZoneQueryFilter HasID=true
 // | TenantPassageConf HasID=true
-// | LicensePurchaseAggregateFilter HasID=true
-// | ListQueryResponseListLicensePurchaseAggregateFilter HasID=true
 // | AppStatsAggregateData HasID=false
 // | AppStatsAggregateQueryResponse HasID=false
 // | FirmwareState HasID=false
@@ -243,8 +237,6 @@ package schemas
 // | SecurityPolicyV2N2RuleQueryFilter HasID=true
 // | DnsResourceRecords HasID=false
 // | NetworkPolicyLocalPrefix HasID=true
-// | ElementQueryFilterV3N1 HasID=true
-// | ListQueryResponseElementQueryFilterV3N1 HasID=true
 // | RoutingPrefixFilterV2N1 HasID=false
 // | RoutingPrefixListScreenV2N1 HasID=true
 // | SecurityPolicyGlobalPrefix HasID=true
@@ -421,6 +413,8 @@ package schemas
 // | SiteSecurityPolicyV2PrefixAssociation HasID=true
 // | MachineCellularModuleState HasID=true
 // | BaseInsightsResponse HasID=false
+// | ListQueryResponse HasID=true
+// | ListRQueryResponse HasID=false
 // | BypassPair HasID=false
 // | SubInterface HasID=false
 // | EthernetPort HasID=false
@@ -639,6 +633,7 @@ package schemas
 // | CellularmetricsSchemaResponse HasID=false
 // | PrefixDistributionSpokeList HasID=true
 // | NATPolicySetQueryFilter HasID=true
+// | LicensePurchaseAggregateFilter HasID=true
 // | LANNetworkQueryFilterResponse HasID=true
 // | PriorityPolicyRuleQueryFilterV2N1 HasID=true
 // | PriorityPolicyRuleQueryFilterV2N2 HasID=true
@@ -927,6 +922,7 @@ package schemas
 // | TaskStatus HasID=false
 // | ElementQueryFilterV3N2 HasID=true
 // | RoutingRouteMapQuery HasID=true
+// | ElementQueryFilterV3N1 HasID=true
 // | SysMetricsInterfaceDroppedPacketsMetricV3N0 HasID=false
 // | NetworkPolicyRuleScreen HasID=true
 // | MulticastPeerGroupV2N1 HasID=true
@@ -972,7 +968,6 @@ package schemas
 // | NTPTemplate HasID=true
 // | ElementImageStatusQueryFilterV2N1 HasID=true
 // | NATPolicySetStackScreen HasID=true
-// | ListQueryResponseList HasID=true
 // | Filter HasID=false
 // | PointMetricsQuery HasID=false
 // | ElementShellScreen HasID=true
@@ -1320,7 +1315,6 @@ package schemas
 // | ElementMetaModel HasID=true
 // | CellularModuleFirmwareStatusQuery HasID=true
 // | DeviceIdSNMPV3Config HasID=false
-// | ListQueryResponseListElementAggregateQueryFilterV3N1 HasID=true
 // | TenantV2N9 HasID=true
 // | SysMetricsDeviceInletTemperatureMetricV3N0 HasID=false
 // | RadiusClientMetricsFilter HasID=false
@@ -1615,7 +1609,6 @@ package schemas
 // | DHCPServerV2N3 HasID=true
 // | DHCPServerV2N1 HasID=true
 // | LANNetworkQuery HasID=true
-// | ListQueryResponseMachineQuery HasID=true
 // | OspfConfigQueryFilter HasID=true
 // | SpokeHAConfig HasID=false
 // | SiteContextV2N1 HasID=false
@@ -1692,8 +1685,6 @@ package schemas
 // | SecurityPolicyV2RuleScreen HasID=true
 // | SecurityProfileGroup HasID=true
 // | BulkConfigCreateScreen HasID=true
-// | LicenseUsageAggregateFilter HasID=true
-// | ListQueryResponseListLicenseUsageAggregateFilter HasID=true
 // | VPLAdminState HasID=true
 // | MulticastIgmpMembershipQueryFilter HasID=true
 // | SaseConnectionScreen HasID=true
@@ -1789,6 +1780,7 @@ package schemas
 // | ProbeConfig HasID=true
 // | CellularModuleFirmwareImageStatus HasID=true
 // | SiteV4N10 HasID=true
+// | LicenseUsageAggregateFilter HasID=true
 // | SiteV4N11 HasID=true
 // | SiteV4N12 HasID=true
 // | SiteV4N13 HasID=true
@@ -1797,6 +1789,7 @@ package schemas
 // | AuditLog HasID=true
 // | ProbeConfigQuery HasID=true
 // | BGPPeerStatusV2N3 HasID=true
+// | SiteAggregateQueryFilter HasID=true
 // | VPLStatusV2N2 HasID=true
 // | ElementStatusV2N4 HasID=true
 // | VPLStatusV2N1 HasID=true
@@ -4295,70 +4288,6 @@ type PriorityPolicyRuleQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponse`
-// +-----------------------------------------------------------------
-type ListQueryResponse struct {
-	Etag         *int64                  `json:"_etag"`         // propertyName=_etag type=INTEGER
-	Schema       *int64                  `json:"_schema"`       // propertyName=_schema type=INTEGER
-	Count        *int64                  `json:"count"`         // propertyName=count type=INTEGER
-	DeletedCount *int64                  `json:"deleted_count"` // propertyName=deleted_count type=INTEGER
-	DeletedIds   []string                `json:"deleted_ids"`   // propertyName=deleted_ids type=ARRAY_PRIMITIVE
-	Id           *string                 `json:"id"`            // propertyName=id type=STRING
-	NextQuery    *map[string]interface{} `json:"next_query"`    // propertyName=next_query type=OBJECT
-	TotalCount   *int64                  `json:"total_count"`   // propertyName=total_count type=INTEGER
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListRQueryResponse`
-// +-----------------------------------------------------------------
-type ListRQueryResponse struct {
-	Data   *ListQueryResponse `json:"data"`   // propertyName=data type=REFERENCE
-	Region *string            `json:"region"` // propertyName=region type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SiteAggregateQueryFilter`
-// +-----------------------------------------------------------------
-type SiteAggregateQueryFilter struct {
-	Etag                                *int64        `json:"_etag"`                                     // propertyName=_etag type=INTEGER
-	Schema                              *int64        `json:"_schema"`                                   // propertyName=_schema type=INTEGER
-	Address                             *Address      `json:"address"`                                   // propertyName=address type=REFERENCE
-	AdminState                          *string       `json:"admin_state"`                               // propertyName=admin_state type=STRING
-	AggregatedValue                     *int64        `json:"aggregated_value"`                          // propertyName=aggregated_value type=INTEGER
-	AppAccelerationEnabled              *bool         `json:"app_acceleration_enabled"`                  // propertyName=app_acceleration_enabled type=BOOLEAN
-	BranchGateway                       *bool         `json:"branch_gateway"`                            // propertyName=branch_gateway type=BOOLEAN
-	Description                         *string       `json:"description"`                               // propertyName=description type=STRING
-	ElementClusterRole                  *string       `json:"element_cluster_role"`                      // propertyName=element_cluster_role type=STRING
-	ExtendedTags                        []ExtendedTag `json:"extended_tags"`                             // propertyName=extended_tags type=ARRAY_REFERENCE
-	Id                                  *string       `json:"id"`                                        // propertyName=id type=STRING
-	Location                            *Location     `json:"location"`                                  // propertyName=location type=REFERENCE
-	MulticastPeerGroupId                *string       `json:"multicast_peer_group_id"`                   // propertyName=multicast_peer_group_id type=STRING
-	Name                                *string       `json:"name"`                                      // propertyName=name type=STRING
-	NatPolicysetstackId                 *string       `json:"nat_policysetstack_id"`                     // propertyName=nat_policysetstack_id type=STRING
-	NetworkPolicysetstackId             *string       `json:"network_policysetstack_id"`                 // propertyName=network_policysetstack_id type=STRING
-	PerfmgmtPolicysetstackId            *string       `json:"perfmgmt_policysetstack_id"`                // propertyName=perfmgmt_policysetstack_id type=STRING
-	PolicySetId                         *string       `json:"policy_set_id"`                             // propertyName=policy_set_id type=STRING
-	PreferLanDefaultOverWanDefaultRoute *bool         `json:"prefer_lan_default_over_wan_default_route"` // propertyName=prefer_lan_default_over_wan_default_route type=BOOLEAN
-	PriorityPolicysetstackId            *string       `json:"priority_policysetstack_id"`                // propertyName=priority_policysetstack_id type=STRING
-	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
-	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
-	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
-	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
-	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseListSiteAggregateQueryFilter`
-// +-----------------------------------------------------------------
-type ListQueryResponseListSiteAggregateQueryFilter struct {
-	Etag                  *int64                     `json:"_etag"`                 // propertyName=_etag type=INTEGER
-	Schema                *int64                     `json:"_schema"`               // propertyName=_schema type=INTEGER
-	Id                    *string                    `json:"id"`                    // propertyName=id type=STRING
-	Items                 []SiteAggregateQueryFilter `json:"items"`                 // propertyName=items type=ARRAY_REFERENCE
-	Listqueryresponselist []ListRQueryResponse       `json:"listQueryResponseList"` // propertyName=listQueryResponseList type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `FlowStartTimeRange`
 // +-----------------------------------------------------------------
 type FlowStartTimeRange struct {
@@ -4895,29 +4824,6 @@ type TenantPassageConf struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `LicensePurchaseAggregateFilter`
-// +-----------------------------------------------------------------
-type LicensePurchaseAggregateFilter struct {
-	Etag            *int64  `json:"_etag"`            // propertyName=_etag type=INTEGER
-	Schema          *int64  `json:"_schema"`          // propertyName=_schema type=INTEGER
-	AggregatedValue *int64  `json:"aggregated_value"` // propertyName=aggregated_value type=INTEGER
-	Id              *string `json:"id"`               // propertyName=id type=STRING
-	SkuCategory     *string `json:"sku_category"`     // propertyName=sku_category type=STRING
-	SkuSize         *string `json:"sku_size"`         // propertyName=sku_size type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseListLicensePurchaseAggregateFilter`
-// +-----------------------------------------------------------------
-type ListQueryResponseListLicensePurchaseAggregateFilter struct {
-	Etag                  *int64                           `json:"_etag"`                 // propertyName=_etag type=INTEGER
-	Schema                *int64                           `json:"_schema"`               // propertyName=_schema type=INTEGER
-	Id                    *string                          `json:"id"`                    // propertyName=id type=STRING
-	Items                 []LicensePurchaseAggregateFilter `json:"items"`                 // propertyName=items type=ARRAY_REFERENCE
-	Listqueryresponselist []ListRQueryResponse             `json:"listQueryResponseList"` // propertyName=listQueryResponseList type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `AppStatsAggregateData`
 // +-----------------------------------------------------------------
 type AppStatsAggregateData struct {
@@ -5054,64 +4960,6 @@ type NetworkPolicyLocalPrefix struct {
 	Id          *string  `json:"id"`          // propertyName=id type=STRING
 	Name        *string  `json:"name"`        // propertyName=name type=STRING
 	Tags        []string `json:"tags"`        // propertyName=tags type=SET_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementQueryFilterV3N1`
-// +-----------------------------------------------------------------
-type ElementQueryFilterV3N1 struct {
-	Etag                         *int64           `json:"_etag"`                            // propertyName=_etag type=INTEGER
-	Schema                       *int64           `json:"_schema"`                          // propertyName=_schema type=INTEGER
-	AdminAction                  *string          `json:"admin_action"`                     // propertyName=admin_action type=STRING
-	AdminRenewState              *string          `json:"admin_renew_state"`                // propertyName=admin_renew_state type=STRING
-	AdminSuspendState            *string          `json:"admin_suspend_state"`              // propertyName=admin_suspend_state type=STRING
-	AllowedRoles                 []string         `json:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
-	ClusterId                    *string          `json:"cluster_id"`                       // propertyName=cluster_id type=STRING
-	Connected                    *bool            `json:"connected"`                        // propertyName=connected type=BOOLEAN
-	DeploymentOp                 *string          `json:"deployment_op"`                    // propertyName=deployment_op type=STRING
-	Description                  *string          `json:"description"`                      // propertyName=description type=STRING
-	DeviceChangeModeStartTime    *int64           `json:"device_change_mode_start_time"`    // propertyName=device_change_mode_start_time type=INTEGER
-	DeviceChangeModeState        *string          `json:"device_change_mode_state"`         // propertyName=device_change_mode_state type=STRING
-	DeviceMode                   *string          `json:"device_mode"`                      // propertyName=device_mode type=STRING
-	DeviceProfileId              *string          `json:"device_profile_id"`                // propertyName=device_profile_id type=STRING
-	FipsMode                     *string          `json:"fips_mode"`                        // propertyName=fips_mode type=STRING
-	FipsModeChangeStartTime      *int64           `json:"fips_mode_change_start_time"`      // propertyName=fips_mode_change_start_time type=INTEGER
-	HwId                         *string          `json:"hw_id"`                            // propertyName=hw_id type=STRING
-	Id                           *string          `json:"id"`                               // propertyName=id type=STRING
-	L3DirectPrivateWanForwarding *bool            `json:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
-	L3LanForwarding              *bool            `json:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
-	LedConfig                    *LedConfig       `json:"led_config"`                       // propertyName=led_config type=REFERENCE
-	MainPowerUsageThreshold      *int64           `json:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
-	ModelName                    *string          `json:"model_name"`                       // propertyName=model_name type=STRING
-	Name                         *string          `json:"name"`                             // propertyName=name type=STRING
-	NatPolicysetstackId          *string          `json:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
-	NetworkPolicysetstackId      *string          `json:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
-	OverrideIndicator            []string         `json:"override_indicator"`               // propertyName=override_indicator type=ARRAY_PRIMITIVE
-	PriorityPolicysetstackId     *string          `json:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
-	Role                         *string          `json:"role"`                             // propertyName=role type=STRING
-	SerialNumber                 *string          `json:"serial_number"`                    // propertyName=serial_number type=STRING
-	SiteId                       *string          `json:"site_id"`                          // propertyName=site_id type=STRING
-	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
-	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
-	State                        *string          `json:"state"`                            // propertyName=state type=STRING
-	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
-	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
-	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseElementQueryFilterV3N1`
-// +-----------------------------------------------------------------
-type ListQueryResponseElementQueryFilterV3N1 struct {
-	Etag         *int64                   `json:"_etag"`         // propertyName=_etag type=INTEGER
-	Schema       *int64                   `json:"_schema"`       // propertyName=_schema type=INTEGER
-	Count        *int64                   `json:"count"`         // propertyName=count type=INTEGER
-	DeletedCount *int64                   `json:"deleted_count"` // propertyName=deleted_count type=INTEGER
-	DeletedIds   []string                 `json:"deleted_ids"`   // propertyName=deleted_ids type=ARRAY_PRIMITIVE
-	Id           *string                  `json:"id"`            // propertyName=id type=STRING
-	Items        []ElementQueryFilterV3N1 `json:"items"`         // propertyName=items type=ARRAY_REFERENCE
-	NextQuery    *map[string]interface{}  `json:"next_query"`    // propertyName=next_query type=OBJECT
-	TotalCount   *int64                   `json:"total_count"`   // propertyName=total_count type=INTEGER
 }
 
 // +-----------------------------------------------------------------
@@ -7492,6 +7340,28 @@ type BaseInsightsResponse struct {
 	Site         *string `json:"site"`         // propertyName=site type=STRING
 	StartTime    *string `json:"start_time"`   // propertyName=start_time type=STRING
 	Waninterface *string `json:"waninterface"` // propertyName=waninterface type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `ListQueryResponse`
+// +-----------------------------------------------------------------
+type ListQueryResponse struct {
+	Etag         *int64                  `json:"_etag"`         // propertyName=_etag type=INTEGER
+	Schema       *int64                  `json:"_schema"`       // propertyName=_schema type=INTEGER
+	Count        *int64                  `json:"count"`         // propertyName=count type=INTEGER
+	DeletedCount *int64                  `json:"deleted_count"` // propertyName=deleted_count type=INTEGER
+	DeletedIds   []string                `json:"deleted_ids"`   // propertyName=deleted_ids type=ARRAY_PRIMITIVE
+	Id           *string                 `json:"id"`            // propertyName=id type=STRING
+	NextQuery    *map[string]interface{} `json:"next_query"`    // propertyName=next_query type=OBJECT
+	TotalCount   *int64                  `json:"total_count"`   // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `ListRQueryResponse`
+// +-----------------------------------------------------------------
+type ListRQueryResponse struct {
+	Data   *ListQueryResponse `json:"data"`   // propertyName=data type=REFERENCE
+	Region *string            `json:"region"` // propertyName=region type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -10764,6 +10634,18 @@ type NATPolicySetQueryFilter struct {
 	Name                           *string  `json:"name"`                              // propertyName=name type=STRING
 	SourceZonePolicyruleOrder      []string `json:"source_zone_policyrule_order"`      // propertyName=source_zone_policyrule_order type=ARRAY_PRIMITIVE
 	Tags                           []string `json:"tags"`                              // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LicensePurchaseAggregateFilter`
+// +-----------------------------------------------------------------
+type LicensePurchaseAggregateFilter struct {
+	Etag            *int64  `json:"_etag"`            // propertyName=_etag type=INTEGER
+	Schema          *int64  `json:"_schema"`          // propertyName=_schema type=INTEGER
+	AggregatedValue *int64  `json:"aggregated_value"` // propertyName=aggregated_value type=INTEGER
+	Id              *string `json:"id"`               // propertyName=id type=STRING
+	SkuCategory     *string `json:"sku_category"`     // propertyName=sku_category type=STRING
+	SkuSize         *string `json:"sku_size"`         // propertyName=sku_size type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -15784,6 +15666,49 @@ type RoutingRouteMapQuery struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementQueryFilterV3N1`
+// +-----------------------------------------------------------------
+type ElementQueryFilterV3N1 struct {
+	Etag                         *int64           `json:"_etag"`                            // propertyName=_etag type=INTEGER
+	Schema                       *int64           `json:"_schema"`                          // propertyName=_schema type=INTEGER
+	AdminAction                  *string          `json:"admin_action"`                     // propertyName=admin_action type=STRING
+	AdminRenewState              *string          `json:"admin_renew_state"`                // propertyName=admin_renew_state type=STRING
+	AdminSuspendState            *string          `json:"admin_suspend_state"`              // propertyName=admin_suspend_state type=STRING
+	AllowedRoles                 []string         `json:"allowed_roles"`                    // propertyName=allowed_roles type=ARRAY_PRIMITIVE
+	ClusterId                    *string          `json:"cluster_id"`                       // propertyName=cluster_id type=STRING
+	Connected                    *bool            `json:"connected"`                        // propertyName=connected type=BOOLEAN
+	DeploymentOp                 *string          `json:"deployment_op"`                    // propertyName=deployment_op type=STRING
+	Description                  *string          `json:"description"`                      // propertyName=description type=STRING
+	DeviceChangeModeStartTime    *int64           `json:"device_change_mode_start_time"`    // propertyName=device_change_mode_start_time type=INTEGER
+	DeviceChangeModeState        *string          `json:"device_change_mode_state"`         // propertyName=device_change_mode_state type=STRING
+	DeviceMode                   *string          `json:"device_mode"`                      // propertyName=device_mode type=STRING
+	DeviceProfileId              *string          `json:"device_profile_id"`                // propertyName=device_profile_id type=STRING
+	FipsMode                     *string          `json:"fips_mode"`                        // propertyName=fips_mode type=STRING
+	FipsModeChangeStartTime      *int64           `json:"fips_mode_change_start_time"`      // propertyName=fips_mode_change_start_time type=INTEGER
+	HwId                         *string          `json:"hw_id"`                            // propertyName=hw_id type=STRING
+	Id                           *string          `json:"id"`                               // propertyName=id type=STRING
+	L3DirectPrivateWanForwarding *bool            `json:"l3_direct_private_wan_forwarding"` // propertyName=l3_direct_private_wan_forwarding type=BOOLEAN
+	L3LanForwarding              *bool            `json:"l3_lan_forwarding"`                // propertyName=l3_lan_forwarding type=BOOLEAN
+	LedConfig                    *LedConfig       `json:"led_config"`                       // propertyName=led_config type=REFERENCE
+	MainPowerUsageThreshold      *int64           `json:"main_power_usage_threshold"`       // propertyName=main_power_usage_threshold type=INTEGER
+	ModelName                    *string          `json:"model_name"`                       // propertyName=model_name type=STRING
+	Name                         *string          `json:"name"`                             // propertyName=name type=STRING
+	NatPolicysetstackId          *string          `json:"nat_policysetstack_id"`            // propertyName=nat_policysetstack_id type=STRING
+	NetworkPolicysetstackId      *string          `json:"network_policysetstack_id"`        // propertyName=network_policysetstack_id type=STRING
+	OverrideIndicator            []string         `json:"override_indicator"`               // propertyName=override_indicator type=ARRAY_PRIMITIVE
+	PriorityPolicysetstackId     *string          `json:"priority_policysetstack_id"`       // propertyName=priority_policysetstack_id type=STRING
+	Role                         *string          `json:"role"`                             // propertyName=role type=STRING
+	SerialNumber                 *string          `json:"serial_number"`                    // propertyName=serial_number type=STRING
+	SiteId                       *string          `json:"site_id"`                          // propertyName=site_id type=STRING
+	SoftwareVersion              *string          `json:"software_version"`                 // propertyName=software_version type=STRING
+	SpokeHaConfig                *SpokeHAConfigV2 `json:"spoke_ha_config"`                  // propertyName=spoke_ha_config type=REFERENCE
+	State                        *string          `json:"state"`                            // propertyName=state type=STRING
+	SwitchConfig                 *SwitchConfig    `json:"switch_config"`                    // propertyName=switch_config type=REFERENCE
+	Tags                         []string         `json:"tags"`                             // propertyName=tags type=SET_PRIMITIVE
+	VpnToVpnForwarding           *bool            `json:"vpn_to_vpn_forwarding"`            // propertyName=vpn_to_vpn_forwarding type=BOOLEAN
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SysMetricsInterfaceDroppedPacketsMetricV3N0`
 // +-----------------------------------------------------------------
 type SysMetricsInterfaceDroppedPacketsMetricV3N0 struct {
@@ -16438,16 +16363,6 @@ type NATPolicySetStackScreen struct {
 	Name                  *string  `json:"name"`                   // propertyName=name type=STRING
 	PolicysetIds          []string `json:"policyset_ids"`          // propertyName=policyset_ids type=ARRAY_PRIMITIVE
 	Tags                  []string `json:"tags"`                   // propertyName=tags type=SET_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseList`
-// +-----------------------------------------------------------------
-type ListQueryResponseList struct {
-	Etag                  *int64               `json:"_etag"`                 // propertyName=_etag type=INTEGER
-	Schema                *int64               `json:"_schema"`               // propertyName=_schema type=INTEGER
-	Id                    *string              `json:"id"`                    // propertyName=id type=STRING
-	Listqueryresponselist []ListRQueryResponse `json:"listQueryResponseList"` // propertyName=listQueryResponseList type=ARRAY_REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -22120,17 +22035,6 @@ type DeviceIdSNMPV3Config struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseListElementAggregateQueryFilterV3N1`
-// +-----------------------------------------------------------------
-type ListQueryResponseListElementAggregateQueryFilterV3N1 struct {
-	Etag                  *int64                            `json:"_etag"`                 // propertyName=_etag type=INTEGER
-	Schema                *int64                            `json:"_schema"`               // propertyName=_schema type=INTEGER
-	Id                    *string                           `json:"id"`                    // propertyName=id type=STRING
-	Items                 []ElementAggregateQueryFilterV3N1 `json:"items"`                 // propertyName=items type=ARRAY_REFERENCE
-	Listqueryresponselist []ListRQueryResponse              `json:"listQueryResponseList"` // propertyName=listQueryResponseList type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `TenantV2N9`
 // +-----------------------------------------------------------------
 type TenantV2N9 struct {
@@ -27650,21 +27554,6 @@ type LANNetworkQuery struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseMachineQuery`
-// +-----------------------------------------------------------------
-type ListQueryResponseMachineQuery struct {
-	Etag         *int64                  `json:"_etag"`         // propertyName=_etag type=INTEGER
-	Schema       *int64                  `json:"_schema"`       // propertyName=_schema type=INTEGER
-	Count        *int64                  `json:"count"`         // propertyName=count type=INTEGER
-	DeletedCount *int64                  `json:"deleted_count"` // propertyName=deleted_count type=INTEGER
-	DeletedIds   []string                `json:"deleted_ids"`   // propertyName=deleted_ids type=ARRAY_PRIMITIVE
-	Id           *string                 `json:"id"`            // propertyName=id type=STRING
-	Items        []MachineQuery          `json:"items"`         // propertyName=items type=ARRAY_REFERENCE
-	NextQuery    *map[string]interface{} `json:"next_query"`    // propertyName=next_query type=OBJECT
-	TotalCount   *int64                  `json:"total_count"`   // propertyName=total_count type=INTEGER
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `OspfConfigQueryFilter`
 // +-----------------------------------------------------------------
 type OspfConfigQueryFilter struct {
@@ -28997,29 +28886,6 @@ type BulkConfigCreateScreen struct {
 	TemplateDescription *string                 `json:"template_description"` // propertyName=template_description type=STRING
 	TemplateName        *string                 `json:"template_name"`        // propertyName=template_name type=STRING
 	VariableMap         *map[string]interface{} `json:"variable_map"`         // propertyName=variable_map type=OBJECT
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `LicenseUsageAggregateFilter`
-// +-----------------------------------------------------------------
-type LicenseUsageAggregateFilter struct {
-	Etag            *int64  `json:"_etag"`            // propertyName=_etag type=INTEGER
-	Schema          *int64  `json:"_schema"`          // propertyName=_schema type=INTEGER
-	AggregatedValue *int64  `json:"aggregated_value"` // propertyName=aggregated_value type=INTEGER
-	Id              *string `json:"id"`               // propertyName=id type=STRING
-	SkuCategory     *string `json:"sku_category"`     // propertyName=sku_category type=STRING
-	SkuSize         *string `json:"sku_size"`         // propertyName=sku_size type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `ListQueryResponseListLicenseUsageAggregateFilter`
-// +-----------------------------------------------------------------
-type ListQueryResponseListLicenseUsageAggregateFilter struct {
-	Etag                  *int64                        `json:"_etag"`                 // propertyName=_etag type=INTEGER
-	Schema                *int64                        `json:"_schema"`               // propertyName=_schema type=INTEGER
-	Id                    *string                       `json:"id"`                    // propertyName=id type=STRING
-	Items                 []LicenseUsageAggregateFilter `json:"items"`                 // propertyName=items type=ARRAY_REFERENCE
-	Listqueryresponselist []ListRQueryResponse          `json:"listQueryResponseList"` // propertyName=listQueryResponseList type=ARRAY_REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -30626,6 +30492,18 @@ type SiteV4N10 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LicenseUsageAggregateFilter`
+// +-----------------------------------------------------------------
+type LicenseUsageAggregateFilter struct {
+	Etag            *int64  `json:"_etag"`            // propertyName=_etag type=INTEGER
+	Schema          *int64  `json:"_schema"`          // propertyName=_schema type=INTEGER
+	AggregatedValue *int64  `json:"aggregated_value"` // propertyName=aggregated_value type=INTEGER
+	Id              *string `json:"id"`               // propertyName=id type=STRING
+	SkuCategory     *string `json:"sku_category"`     // propertyName=sku_category type=STRING
+	SkuSize         *string `json:"sku_size"`         // propertyName=sku_size type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SiteV4N11`
 // +-----------------------------------------------------------------
 type SiteV4N11 struct {
@@ -30813,6 +30691,37 @@ type BGPPeerStatusV2N3 struct {
 	Uptime                 *string `json:"uptime"`                   // propertyName=uptime type=STRING
 	V4CapabilityNegotiated *bool   `json:"v4_capability_negotiated"` // propertyName=v4_capability_negotiated type=BOOLEAN
 	V6CapabilityNegotiated *bool   `json:"v6_capability_negotiated"` // propertyName=v6_capability_negotiated type=BOOLEAN
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SiteAggregateQueryFilter`
+// +-----------------------------------------------------------------
+type SiteAggregateQueryFilter struct {
+	Etag                                *int64        `json:"_etag"`                                     // propertyName=_etag type=INTEGER
+	Schema                              *int64        `json:"_schema"`                                   // propertyName=_schema type=INTEGER
+	Address                             *Address      `json:"address"`                                   // propertyName=address type=REFERENCE
+	AdminState                          *string       `json:"admin_state"`                               // propertyName=admin_state type=STRING
+	AggregatedValue                     *int64        `json:"aggregated_value"`                          // propertyName=aggregated_value type=INTEGER
+	AppAccelerationEnabled              *bool         `json:"app_acceleration_enabled"`                  // propertyName=app_acceleration_enabled type=BOOLEAN
+	BranchGateway                       *bool         `json:"branch_gateway"`                            // propertyName=branch_gateway type=BOOLEAN
+	Description                         *string       `json:"description"`                               // propertyName=description type=STRING
+	ElementClusterRole                  *string       `json:"element_cluster_role"`                      // propertyName=element_cluster_role type=STRING
+	ExtendedTags                        []ExtendedTag `json:"extended_tags"`                             // propertyName=extended_tags type=ARRAY_REFERENCE
+	Id                                  *string       `json:"id"`                                        // propertyName=id type=STRING
+	Location                            *Location     `json:"location"`                                  // propertyName=location type=REFERENCE
+	MulticastPeerGroupId                *string       `json:"multicast_peer_group_id"`                   // propertyName=multicast_peer_group_id type=STRING
+	Name                                *string       `json:"name"`                                      // propertyName=name type=STRING
+	NatPolicysetstackId                 *string       `json:"nat_policysetstack_id"`                     // propertyName=nat_policysetstack_id type=STRING
+	NetworkPolicysetstackId             *string       `json:"network_policysetstack_id"`                 // propertyName=network_policysetstack_id type=STRING
+	PerfmgmtPolicysetstackId            *string       `json:"perfmgmt_policysetstack_id"`                // propertyName=perfmgmt_policysetstack_id type=STRING
+	PolicySetId                         *string       `json:"policy_set_id"`                             // propertyName=policy_set_id type=STRING
+	PreferLanDefaultOverWanDefaultRoute *bool         `json:"prefer_lan_default_over_wan_default_route"` // propertyName=prefer_lan_default_over_wan_default_route type=BOOLEAN
+	PriorityPolicysetstackId            *string       `json:"priority_policysetstack_id"`                // propertyName=priority_policysetstack_id type=STRING
+	SecurityPolicysetId                 *string       `json:"security_policyset_id"`                     // propertyName=security_policyset_id type=STRING
+	SecurityPolicysetstackId            *string       `json:"security_policysetstack_id"`                // propertyName=security_policysetstack_id type=STRING
+	ServiceBinding                      *string       `json:"service_binding"`                           // propertyName=service_binding type=STRING
+	Tags                                []string      `json:"tags"`                                      // propertyName=tags type=SET_PRIMITIVE
+	VrfContextProfileId                 *string       `json:"vrf_context_profile_id"`                    // propertyName=vrf_context_profile_id type=STRING
 }
 
 // +-----------------------------------------------------------------

@@ -25,18 +25,25 @@
 #
 #
 
+# App definitions are built in; look one up by name rather than hardcoding a tenant-specific id.
+resource "prismasdwan_resource_locator" "icmp_app_def" {
+  resource_type           = "prismasdwan_app_def"
+  resource_property       = "display_name"
+  resource_property_value = "icmp"
+}
+
 resource "prismasdwan_security_policy_rule" "example_security_policy_rule" {
   x_parameters = {
-    policy_set_id = prismasdwan_security_policy_set.example_policy_set.id
+    policy_set_id = prismasdwan_security_policy_set.development_policy_set.id
   }
   name                   = "example_security_policy_rule"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                   = ["production", "firewall"]
-  app_def_ids            = [prismasdwan_appdefs.example_app.id]
-  source_zone_ids        = [prismasdwan_security_zone.example_source_zone.id]
-  source_prefix_ids      = [prismasdwan_security_policy_local_prefix.example_local_prefix.id]
-  destination_prefix_ids = [prismasdwan_security_policy_global_prefix.example_global_prefix.id]
-  destination_zone_ids   = [prismasdwan_security_zone.example_destination_zone.id]
+  app_def_ids            = [prismasdwan_resource_locator.icmp_app_def.result]
+  source_zone_ids        = [prismasdwan_security_zone.dmz_zone.id]
+  source_prefix_ids      = [prismasdwan_security_policy_local_prefix.development_local_prefix.id]
+  destination_prefix_ids = [prismasdwan_security_policy_global_prefix.corporate_security_global_prefix.id]
+  destination_zone_ids   = [prismasdwan_security_zone.production_zone.id]
   action                 = "allow"
   enabled                = true
   services               = []

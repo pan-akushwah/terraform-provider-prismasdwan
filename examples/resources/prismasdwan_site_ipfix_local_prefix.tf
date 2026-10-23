@@ -25,6 +25,26 @@
 #
 #
 
+# A minimal site for this example.
+resource "prismasdwan_site" "site_1" {
+  name                 = "tf site 1 for example"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "SPOKE"
+  address = {
+    city    = "San Jose"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.8863
+    latitude  = 37.3382
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
+}
+
 resource "prismasdwan_site_ipfix_local_prefix" "example_ipfix_local_prefix" {
   x_parameters = {
     site_id = prismasdwan_site.site_1.id

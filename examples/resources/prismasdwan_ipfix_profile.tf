@@ -25,6 +25,13 @@
 #
 #
 
+# App definitions are built in; look one up by name rather than hardcoding a tenant-specific id.
+resource "prismasdwan_resource_locator" "icmp_app_def" {
+  resource_type           = "prismasdwan_app_def"
+  resource_property       = "display_name"
+  resource_property_value = "icmp"
+}
+
 resource "prismasdwan_ipfix_profile" "example_ipfix_profile" {
   name = "sample_ipfix_profile"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
@@ -41,7 +48,7 @@ resource "prismasdwan_ipfix_profile" "example_ipfix_profile" {
   ]
   export_cache_timeout = 300
   filters = [{
-    app_def_ids = ["1700028999966017496"]
+    app_def_ids = [prismasdwan_resource_locator.icmp_app_def.result]
     src_ports = [{
       start = 1000
       end = 2000

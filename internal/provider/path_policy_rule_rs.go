@@ -68,13 +68,14 @@ func (r *pathPolicyRuleResource) Metadata(_ context.Context, req resource.Metada
 // Schema defines the schema for this data source.
 func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Path Policy Rule.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=NetworkPolicyRuleScreenV2N5
 			// generic x_parameters is added to accomodate path parameters
@@ -83,21 +84,24 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -106,49 +110,55 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "App Def Ids",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=best_path_config, type=REFERENCE macro=rss_schema
 			"best_path_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=metric, type=STRING macro=rss_schema
 					"metric": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Metric",
 					},
 					// key name holder for attribute: name=metric, type=STRING macro=rss_schema
 					// property: name=metric_type, type=STRING macro=rss_schema
 					"metric_type": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Metric Type",
 					},
 					// key name holder for attribute: name=metric_type, type=STRING macro=rss_schema
 					// property: name=probe_config_id, type=STRING macro=rss_schema
 					"probe_config_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Probe Config Id",
 					},
 					// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=best_path_config, type=REFERENCE macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -157,207 +167,231 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Dest Device Ids",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=destination_prefixes_id, type=STRING macro=rss_schema
 			"destination_prefixes_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Destination Prefixes Id",
 			},
 			// key name holder for attribute: name=destination_prefixes_id, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enabled",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_context_id, type=STRING macro=rss_schema
 			"network_context_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Network Context Id",
 			},
 			// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 			// property: name=order_number, type=INTEGER macro=rss_schema
 			"order_number": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Order Number",
 			},
 			// key name holder for attribute: name=order_number, type=INTEGER macro=rss_schema
 			// property: name=paths_allowed, type=REFERENCE macro=rss_schema
 			"paths_allowed": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=active_paths, type=ARRAY_REFERENCE macro=rss_schema
 					"active_paths": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Active Paths",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=label, type=STRING macro=rss_schema
 								"label": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Label",
 								},
 								// key name holder for attribute: name=label, type=STRING macro=rss_schema
 								// property: name=path_type, type=STRING macro=rss_schema
 								"path_type": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Path Type",
 								},
 								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 							},
 						},
 					},
-					// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+					// key name holder for attribute: name=active_paths, type=ARRAY_REFERENCE macro=rss_schema
 					// property: name=backup_paths, type=ARRAY_REFERENCE macro=rss_schema
 					"backup_paths": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Backup Paths",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=label, type=STRING macro=rss_schema
 								"label": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Label",
 								},
 								// key name holder for attribute: name=label, type=STRING macro=rss_schema
 								// property: name=path_type, type=STRING macro=rss_schema
 								"path_type": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Path Type",
 								},
 								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 							},
 						},
 					},
-					// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+					// key name holder for attribute: name=backup_paths, type=ARRAY_REFERENCE macro=rss_schema
 					// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=rss_schema
 					"l3_failure_paths": rsschema.ListNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "L3 Failure Paths",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=label, type=STRING macro=rss_schema
 								"label": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Label",
 								},
 								// key name holder for attribute: name=label, type=STRING macro=rss_schema
 								// property: name=path_type, type=STRING macro=rss_schema
 								"path_type": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Path Type",
 								},
 								// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 							},
 						},
 					},
-					// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+					// key name holder for attribute: name=l3_failure_paths, type=ARRAY_REFERENCE macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
+			// key name holder for attribute: name=paths_allowed, type=REFERENCE macro=rss_schema
 			// property: name=service_context, type=REFERENCE macro=rss_schema
 			"service_context": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=active_service_label_id, type=STRING macro=rss_schema
 					"active_service_label_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Active Service Label Id",
 					},
 					// key name holder for attribute: name=active_service_label_id, type=STRING macro=rss_schema
 					// property: name=active_service_label_type, type=STRING macro=rss_schema
 					"active_service_label_type": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Active Service Label Type",
 					},
 					// key name holder for attribute: name=active_service_label_type, type=STRING macro=rss_schema
 					// property: name=backup_service_label_id, type=STRING macro=rss_schema
 					"backup_service_label_id": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Backup Service Label Id",
 					},
 					// key name holder for attribute: name=backup_service_label_id, type=STRING macro=rss_schema
 					// property: name=backup_service_label_type, type=STRING macro=rss_schema
 					"backup_service_label_type": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Backup Service Label Type",
 					},
 					// key name holder for attribute: name=backup_service_label_type, type=STRING macro=rss_schema
 					// property: name=type, type=STRING macro=rss_schema
 					"type": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Type",
 					},
 					// key name holder for attribute: name=type, type=STRING macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=type, type=STRING macro=rss_schema
+			// key name holder for attribute: name=service_context, type=REFERENCE macro=rss_schema
 			// property: name=source_prefixes_id, type=STRING macro=rss_schema
 			"source_prefixes_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Source Prefixes Id",
 			},
 			// key name holder for attribute: name=source_prefixes_id, type=STRING macro=rss_schema
 			// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -366,6 +400,7 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Src Device Ids",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -375,15 +410,17 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=user_or_group, type=REFERENCE macro=rss_schema
 			"user_or_group": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"user_group_ids": rsschema.ListAttribute{
@@ -391,6 +428,7 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "User Group Ids",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=user_group_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -400,12 +438,13 @@ func (r *pathPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "User Ids",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=user_ids, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=user_or_group, type=REFERENCE macro=rss_schema
 		},
 	}
 }
@@ -1113,7 +1152,12 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.AppDefIds = ListStringValueOrNil(ctx, plan.AppDefIds)
+	if state != nil && plan.AppDefIds.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.AppDefIds = ListStringValueOrNil(ctx, state.AppDefIds)
+	} else {
+		body.AppDefIds = ListStringValueOrNil(ctx, plan.AppDefIds)
+	}
 	// property: name=best_path_config, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.BestPathConfig == nil {
 		body.BestPathConfig = nil
@@ -1147,7 +1191,12 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.DestDeviceIds = ListStringValueOrNil(ctx, plan.DestDeviceIds)
+	if state != nil && plan.DestDeviceIds.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.DestDeviceIds = ListStringValueOrNil(ctx, state.DestDeviceIds)
+	} else {
+		body.DestDeviceIds = ListStringValueOrNil(ctx, plan.DestDeviceIds)
+	}
 	// property: name=destination_prefixes_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.DestinationPrefixesId = ValueStringPointerFromPlanOrState(plan.DestinationPrefixesId, state.DestinationPrefixesId)
@@ -1306,9 +1355,19 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		body.SourcePrefixesId = StringValueOrNil(plan.SourcePrefixesId)
 	}
 	// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.SrcDeviceIds = ListStringValueOrNil(ctx, plan.SrcDeviceIds)
+	if state != nil && plan.SrcDeviceIds.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.SrcDeviceIds = ListStringValueOrNil(ctx, state.SrcDeviceIds)
+	} else {
+		body.SrcDeviceIds = ListStringValueOrNil(ctx, plan.SrcDeviceIds)
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.UserOrGroup == nil {
 		body.UserOrGroup = nil
@@ -1317,9 +1376,19 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		// copy_from_plan_or_state: body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
+		if state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserGroupIds)
+		} else {
+			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
+		}
 		// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.UserOrGroup.UserIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserIds)
+		if state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.UserOrGroup.UserIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserIds)
+		} else {
+			body.UserOrGroup.UserIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserIds)
+		}
 	}
 
 	// convert body to map

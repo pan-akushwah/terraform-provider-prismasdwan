@@ -63,13 +63,14 @@ func (r *syslogProfileResource) Metadata(_ context.Context, req resource.Metadat
 // Schema defines the schema for this data source.
 func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Syslog Profile.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=SyslogServerProfileScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -78,125 +79,141 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			"enable_dns_logging": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enable Dns Logging",
 			},
 			// key name holder for attribute: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			"enable_flow_logging": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enable Flow Logging",
 			},
 			// key name holder for attribute: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 			"enable_threat_logging": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enable Threat Logging",
 			},
 			// key name holder for attribute: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			"enable_url_logging": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Enable Url Logging",
 			},
 			// key name holder for attribute: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=protocol, type=STRING macro=rss_schema
 			"protocol": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Protocol",
 			},
 			// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 			// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 			"remote_ca_certificate": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Remote Ca Certificate",
 			},
 			// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
 			// property: name=server_fqdn, type=STRING macro=rss_schema
 			"server_fqdn": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Server Fqdn",
 			},
 			// key name holder for attribute: name=server_fqdn, type=STRING macro=rss_schema
 			// property: name=server_ip, type=STRING macro=rss_schema
 			"server_ip": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Server Ip",
 			},
 			// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 			// property: name=server_port, type=INTEGER macro=rss_schema
 			"server_port": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Server Port",
 			},
 			// key name holder for attribute: name=server_port, type=INTEGER macro=rss_schema
 			// property: name=severity_level, type=STRING macro=rss_schema
 			"severity_level": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Severity Level",
 			},
 			// key name holder for attribute: name=severity_level, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -205,6 +222,7 @@ func (r *syslogProfileResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -675,7 +693,12 @@ func (r *syslogProfileResource) doPut(ctx context.Context, plan *rsModelSyslogSe
 		body.SeverityLevel = StringValueOrNil(plan.SeverityLevel)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)

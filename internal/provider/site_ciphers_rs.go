@@ -63,13 +63,14 @@ func (r *siteCiphersResource) Metadata(_ context.Context, req resource.MetadataR
 // Schema defines the schema for this data source.
 func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Ciphers.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=SiteCipherScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -78,61 +79,69 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=controller_connection_cipher, type=STRING macro=rss_schema
 			"controller_connection_cipher": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Controller Connection Cipher",
 			},
 			// key name holder for attribute: name=controller_connection_cipher, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
 			"site_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Site Id",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
 			"tls13_controller_connection_cipher": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Tls13 Controller Connection Cipher",
 			},
 			// key name holder for attribute: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
 			// property: name=tls13_enabled, type=BOOLEAN macro=rss_schema
 			"tls13_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Tls13 Enabled",
 			},
 			// key name holder for attribute: name=tls13_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -141,6 +150,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Vpn Ciphers",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -367,7 +377,12 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 		body.Tls13Enabled = BoolValueOrNil(plan.Tls13Enabled)
 	}
 	// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.VpnCiphers = ListStringValueOrNil(ctx, plan.VpnCiphers)
+	if state != nil && plan.VpnCiphers.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.VpnCiphers = ListStringValueOrNil(ctx, state.VpnCiphers)
+	} else {
+		body.VpnCiphers = ListStringValueOrNil(ctx, plan.VpnCiphers)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
@@ -492,7 +507,12 @@ func (r *siteCiphersResource) Create(ctx context.Context, req resource.CreateReq
 		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
 			// push into state
 			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			// surface the put error; otherwise terraform only reports "Missing Resource State After Create"
+			resp.Diagnostics = uResp.Diagnostics
 		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 

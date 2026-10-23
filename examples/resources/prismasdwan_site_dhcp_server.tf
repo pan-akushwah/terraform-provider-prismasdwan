@@ -25,6 +25,33 @@
 #
 #
 
+# A minimal site for this example.
+# The built-in Global VRF, which every site's default VRF profile contains
+resource "prismasdwan_resource_locator" "global_vrf_context" {
+  resource_type           = "prismasdwan_vrf_context"
+  resource_property       = "name"
+  resource_property_value = "Global"
+}
+
+resource "prismasdwan_site" "site_1" {
+  name                 = "tf site 1 for example"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "SPOKE"
+  address = {
+    city    = "San Jose"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.8863
+    latitude  = 37.3382
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
+}
+
 resource "prismasdwan_site_dhcp_server" "site_dhcp_server_1" {
   # This is needed for path parameters
   x_parameters = {
@@ -57,5 +84,5 @@ resource "prismasdwan_site_dhcp_server" "site_dhcp_server_1" {
     }
   ]
   address_family = "ipv4"
-  vrf_context_id = prismasdwan_vrf_context.test_vrf_context_1.id
+  vrf_context_id = prismasdwan_resource_locator.global_vrf_context.result # must be in the site's VRF profile
 }

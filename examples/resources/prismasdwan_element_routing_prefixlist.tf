@@ -25,10 +25,26 @@
 #
 #
 
+# The element to configure. "element_shell_site" and "manual_device_shell" are example names; use your own.
+resource "prismasdwan_resource_locator" "element_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "element_shell_site"
+}
+
+resource "prismasdwan_resource_locator" "element_shell" {
+  x_parameters = {
+    site_id = prismasdwan_resource_locator.element_site.result
+  }
+  resource_type           = "prismasdwan_element"
+  resource_property       = "name"
+  resource_property_value = "manual_device_shell"
+}
+
 resource "prismasdwan_element_routing_prefixlist" "example_routing_prefixlist" {
   x_parameters = {
-    site_id = prismasdwan_site.site_1.id
-    element_id = prismasdwan_element.element_1.id
+    site_id = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
   }
   name = "example_routing_prefixlist"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"

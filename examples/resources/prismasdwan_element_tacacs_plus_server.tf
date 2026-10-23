@@ -81,7 +81,7 @@ resource "prismasdwan_element_tacacs_plus_server" "tacacs_plus_server" {
       server_ipv6 = null
     }
   ]
-  tacacs_plus_profile_id = prismasdwan_resource_locator.tacacs_plus_profile.result
+  tacacs_plus_profile_id = prismasdwan_tacacs_plus_profile.example_tacacs_profile_1.id # from the prismasdwan_tacacs_plus_profile example
   source_interface_id    = prismasdwan_resource_locator.element_port_2_id.result
   name                   = "Tf Managed Tacacs Server"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"

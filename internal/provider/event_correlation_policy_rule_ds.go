@@ -69,13 +69,14 @@ func (d *eventCorrelationPolicyRuleDataSource) Metadata(_ context.Context, req d
 // Schema defines the schema for this data source.
 func (d *eventCorrelationPolicyRuleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = dsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Retrieves a list of Prisma SD-WAN Event Correlation Policy Rule items.",
 		Attributes: map[string]dsschema.Attribute{
 			"filters": dsschema.MapAttribute{
 				Required:    true,
 				Computed:    false,
 				Optional:    false,
 				ElementType: types.StringType,
+				Description: "Path parameters used to locate the items to retrieve.",
 			},
 			// generic x_parameters is added to accomodate path parameters
 			"x_parameters": dsschema.MapAttribute{
@@ -83,167 +84,188 @@ func (d *eventCorrelationPolicyRuleDataSource) Schema(_ context.Context, _ datas
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Additional path parameters for the data source, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": dsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Entity tag returned by the API, managed automatically by the provider.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": dsschema.Int64Attribute{
-				Required: false,
-				Computed: true,
-				Optional: true,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Description: "Schema version returned by the API, managed automatically by the provider.",
 			},
 			"items": dsschema.ListNestedAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "The list of items returned by the data source.",
 				NestedObject: dsschema.NestedAttributeObject{
 					Attributes: map[string]dsschema.Attribute{
 						// rest all properties to be read from GET API Schema schema=EventCorrelationPolicyRuleScreenV2N1
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Etag for this object",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Schema version for this object",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=dampening_duration, type=INTEGER macro=rss_schema
 						"dampening_duration": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Dampening Duration",
 						},
 						// key name holder for attribute: name=dampening_duration, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Description",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Enabled",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=end_time, type=INTEGER macro=rss_schema
 						"end_time": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "End Time",
 						},
 						// key name holder for attribute: name=end_time, type=INTEGER macro=rss_schema
 						// property: name=escalation_rules, type=REFERENCE macro=rss_schema
 						"escalation_rules": dsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=flap_rule, type=REFERENCE macro=rss_schema
 								"flap_rule": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=flap_duration, type=INTEGER macro=rss_schema
 										"flap_duration": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Flap Duration",
 										},
 										// key name holder for attribute: name=flap_duration, type=INTEGER macro=rss_schema
 										// property: name=flap_rate, type=INTEGER macro=rss_schema
 										"flap_rate": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Flap Rate",
 										},
 										// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
 									},
 								},
-								// key name holder for attribute: name=flap_rate, type=INTEGER macro=rss_schema
+								// key name holder for attribute: name=flap_rule, type=REFERENCE macro=rss_schema
 								// property: name=standing_rule, type=REFERENCE macro=rss_schema
 								"standing_rule": dsschema.SingleNestedAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "",
 									Attributes: map[string]dsschema.Attribute{
 										// property: name=priority, type=STRING macro=rss_schema
 										"priority": dsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Priority",
 										},
 										// key name holder for attribute: name=priority, type=STRING macro=rss_schema
 										// property: name=standing_for, type=INTEGER macro=rss_schema
 										"standing_for": dsschema.Int64Attribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Standing For",
 										},
 										// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
 									},
 								},
-								// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
+								// key name holder for attribute: name=standing_rule, type=REFERENCE macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=standing_for, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=escalation_rules, type=REFERENCE macro=rss_schema
 						// property: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 						"event_codes": dsschema.ListAttribute{
 							Required:    false,
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Event Codes",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=event_codes, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  true,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    true,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Id",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Name",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=priority, type=STRING macro=rss_schema
 						"priority": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Priority",
 						},
 						// key name holder for attribute: name=priority, type=STRING macro=rss_schema
 						// property: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -252,39 +274,44 @@ func (d *eventCorrelationPolicyRuleDataSource) Schema(_ context.Context, _ datas
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Resource Ids",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=resource_type, type=STRING macro=rss_schema
 						"resource_type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Resource Type",
 						},
 						// key name holder for attribute: name=resource_type, type=STRING macro=rss_schema
 						// property: name=start_time, type=INTEGER macro=rss_schema
 						"start_time": dsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Start Time",
 						},
 						// key name holder for attribute: name=start_time, type=INTEGER macro=rss_schema
 						// property: name=sub_resource_type, type=STRING macro=rss_schema
 						"sub_resource_type": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Sub Resource Type",
 						},
 						// key name holder for attribute: name=sub_resource_type, type=STRING macro=rss_schema
 						// property: name=suppress, type=STRING macro=rss_schema
 						"suppress": dsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Suppress",
 						},
 						// key name holder for attribute: name=suppress, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -293,6 +320,7 @@ func (d *eventCorrelationPolicyRuleDataSource) Schema(_ context.Context, _ datas
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
+							Description: "Tags",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

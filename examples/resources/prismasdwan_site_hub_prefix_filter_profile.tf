@@ -28,34 +28,46 @@
 #
 # we need to work on DC Site
 #
-resource "prismasdwan_resource_locator" "dc_site" {
-  resource_type           = "prismasdwan_site"
-  resource_property       = "name"
-  resource_property_value = "tf data center"
-}
-
-#
-# Profile will need an existing VRF Profile
-#
-resource "prismasdwan_resource_locator" "default_vrf_context_profile" {
-  resource_type     = "prismasdwan_vrf_context_profile"
-  resource_property = "name"
-  resource_property_value = "Global Profile"
-}
-
 #
 # Create Profile
+# A data-center (HUB) site for the filter profile
+resource "prismasdwan_site" "dc_site" {
+  name                 = "tf hub prefix filter dc site"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "HUB"
+  address = {
+    city    = "Santa Clara"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.9552
+    latitude  = 37.3541
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
+}
+
+# The built-in Global VRF
+resource "prismasdwan_resource_locator" "global_vrf_context" {
+  resource_type           = "prismasdwan_vrf_context"
+  resource_property       = "name"
+  resource_property_value = "Global"
+}
+
 resource "prismasdwan_site_hub_prefix_filter_profile" "hub_prefix_filter_profile_1" {
   # Needed for path parameters
   x_parameters = {
-    site_id = prismasdwan_resource_locator.dc_site.result
+    site_id = prismasdwan_site.dc_site.id
   }
   name        = "tf managed hub prefix filter profile"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags        = ["lorem", "ipsum"]
   path_prefix_filter_list = [
     {
-      vrf_context_id = prismasdwan_resource_locator.default_vrf_context_profile.id
+      vrf_context_id = prismasdwan_resource_locator.global_vrf_context.result
       path_prefix_filters = [
         {
           "order" : 1,

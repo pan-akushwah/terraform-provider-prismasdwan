@@ -26,16 +26,10 @@
 #
 
 # Resource locators for probe configurations (required)
-resource "prismasdwan_resource_locator" "probe_config" {
-  resource_type           = "prismasdwan_probe_config"
-  resource_property       = "name"
-  resource_property_value = "some existing probe config"
-}
-
 resource "prismasdwan_probe_profile" "development_probe_profile" {
   # Required fields
   name             = "development profile"
-  probe_config_ids = [prismasdwan_resource_locator.probe_config.result]
+  probe_config_ids = [prismasdwan_probe_config.dns_icmp.id] # from the prismasdwan_probe_config example
   description      = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags             = ["development"]
 }

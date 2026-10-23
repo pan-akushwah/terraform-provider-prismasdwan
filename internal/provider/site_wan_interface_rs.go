@@ -66,13 +66,14 @@ func (r *siteWanInterfaceResource) Metadata(_ context.Context, req resource.Meta
 // Schema defines the schema for this data source.
 func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Wan Interface.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=WANInterfaceScreenV2N10
 			// generic x_parameters is added to accomodate path parameters
@@ -81,85 +82,96 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			"app_acceleration_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "App Acceleration Enabled",
 			},
 			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bfd_mode, type=STRING macro=rss_schema
 			"bfd_mode": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bfd Mode",
 			},
 			// key name holder for attribute: name=bfd_mode, type=STRING macro=rss_schema
 			// property: name=bw_config_mode, type=STRING macro=rss_schema
 			"bw_config_mode": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bw Config Mode",
 			},
 			// key name holder for attribute: name=bw_config_mode, type=STRING macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			"bwc_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Bwc Enabled",
 			},
 			// key name holder for attribute: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=cost, type=INTEGER macro=rss_schema
 			"cost": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Cost",
 			},
 			// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=l3_reachability, type=REFERENCE macro=rss_schema
 			"l3_reachability": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"probe_config_ids": rsschema.ListAttribute{
@@ -167,50 +179,56 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Probe Config Ids",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=use_element_default, type=BOOLEAN macro=rss_schema
 					"use_element_default": rsschema.BoolAttribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Use Element Default",
 					},
 					// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
+			// key name holder for attribute: name=l3_reachability, type=REFERENCE macro=rss_schema
 			// property: name=label_id, type=STRING macro=rss_schema
 			"label_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Label Id",
 			},
 			// key name holder for attribute: name=label_id, type=STRING macro=rss_schema
 			// property: name=link_bw_down, type=NUMBER macro=rss_schema
 			"link_bw_down": rsschema.Float64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Link Bw Down",
 			},
 			// key name holder for attribute: name=link_bw_down, type=NUMBER macro=rss_schema
 			// property: name=link_bw_up, type=NUMBER macro=rss_schema
 			"link_bw_up": rsschema.Float64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Link Bw Up",
 			},
 			// key name holder for attribute: name=link_bw_up, type=NUMBER macro=rss_schema
 			// property: name=lqm_config, type=REFERENCE macro=rss_schema
 			"lqm_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"hub_site_ids": rsschema.ListAttribute{
@@ -218,74 +236,83 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Hub Site Ids",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=inter_packet_gap, type=INTEGER macro=rss_schema
 					"inter_packet_gap": rsschema.Int64Attribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Inter Packet Gap",
 					},
 					// key name holder for attribute: name=inter_packet_gap, type=INTEGER macro=rss_schema
 					// property: name=statistic, type=STRING macro=rss_schema
 					"statistic": rsschema.StringAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Statistic",
 					},
 					// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
 					// property: name=use_hub_sites, type=BOOLEAN macro=rss_schema
 					"use_hub_sites": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Use Hub Sites",
 					},
 					// key name holder for attribute: name=use_hub_sites, type=BOOLEAN macro=rss_schema
 					// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 					"use_prisma_access_service_endpoints": rsschema.BoolAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "Use Prisma Access Service Endpoints",
 					},
 					// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
+			// key name holder for attribute: name=lqm_config, type=REFERENCE macro=rss_schema
 			// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			"lqm_enabled": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Lqm Enabled",
 			},
 			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_id, type=STRING macro=rss_schema
 			"network_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Network Id",
 			},
 			// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 			// property: name=probe_profile_id, type=STRING macro=rss_schema
 			"probe_profile_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Probe Profile Id",
 			},
 			// key name holder for attribute: name=probe_profile_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -294,67 +321,75 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
 			"type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Type",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 			// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			"use_for_application_reachability_probes": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use For Application Reachability Probes",
 			},
 			// key name holder for attribute: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			// property: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			"use_for_controller_connections": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use For Controller Connections",
 			},
 			// key name holder for attribute: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			// property: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			"use_lqm_for_non_hub_paths": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Use Lqm For Non Hub Paths",
 			},
 			// key name holder for attribute: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 			"vpnlink_configuration": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Keep Alive Failure Count",
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
 					"keep_alive_interval": rsschema.Int64Attribute{
-						Required:  true,
-						Computed:  false,
-						Optional:  false,
-						Sensitive: false,
+						Required:    true,
+						Computed:    false,
+						Optional:    false,
+						Sensitive:   false,
+						Description: "Keep Alive Interval",
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
+			// key name holder for attribute: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
 		},
 	}
 }
@@ -951,7 +986,12 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		// copy_from_plan_or_state: body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, plan.L3Reachability.ProbeConfigIds)
+		if state.L3Reachability != nil && plan.L3Reachability.ProbeConfigIds.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, state.L3Reachability.ProbeConfigIds)
+		} else {
+			body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, plan.L3Reachability.ProbeConfigIds)
+		}
 		// property: name=use_element_default, type=BOOLEAN macro=copy_from_plan_or_state
 		if state.L3Reachability != nil {
 			body.L3Reachability.UseElementDefault = ValueBoolPointerFromPlanOrState(plan.L3Reachability.UseElementDefault, state.L3Reachability.UseElementDefault)
@@ -985,7 +1025,12 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		// copy_from_plan_or_state: body=body.LqmConfig prefix=rsModel state=state.LqmConfig plan=plan.LqmConfig properties=5
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LqmConfig prefix=rsModel state=state.LqmConfig plan=plan.LqmConfig")
 		// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.LqmConfig.HubSiteIds = ListStringValueOrNil(ctx, plan.LqmConfig.HubSiteIds)
+		if state.LqmConfig != nil && plan.LqmConfig.HubSiteIds.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.LqmConfig.HubSiteIds = ListStringValueOrNil(ctx, state.LqmConfig.HubSiteIds)
+		} else {
+			body.LqmConfig.HubSiteIds = ListStringValueOrNil(ctx, plan.LqmConfig.HubSiteIds)
+		}
 		// property: name=inter_packet_gap, type=INTEGER macro=copy_from_plan_or_state
 		if state.LqmConfig != nil {
 			body.LqmConfig.InterPacketGap = ValueInt64PointerFromPlanOrState(plan.LqmConfig.InterPacketGap, state.LqmConfig.InterPacketGap)
@@ -1036,7 +1081,12 @@ func (r *siteWanInterfaceResource) doPut(ctx context.Context, plan *rsModelWANIn
 		body.ProbeProfileId = StringValueOrNil(plan.ProbeProfileId)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=type, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Type = ValueStringPointerFromPlanOrState(plan.Type, state.Type)

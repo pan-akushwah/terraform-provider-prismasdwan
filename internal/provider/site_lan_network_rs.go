@@ -69,13 +69,14 @@ func (r *siteLanNetworkResource) Metadata(_ context.Context, req resource.Metada
 // Schema defines the schema for this data source.
 func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Site Lan Network.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=LANNetworkScreenV3N3
 			// generic x_parameters is added to accomodate path parameters
@@ -84,45 +85,51 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv4_config, type=REFERENCE macro=rss_schema
 			"ipv4_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 					"default_routers": rsschema.ListAttribute{
@@ -130,99 +137,111 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Default Routers",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 					// property: name=dhcp_relay, type=REFERENCE macro=rss_schema
 					"dhcp_relay": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=enabled, type=BOOLEAN macro=rss_schema
 							"enabled": rsschema.BoolAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Enabled",
 							},
 							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 							// property: name=option_82, type=REFERENCE macro=rss_schema
 							"option_82": rsschema.SingleNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "",
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=circuit_id, type=STRING macro=rss_schema
 									"circuit_id": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Circuit Id",
 									},
 									// key name holder for attribute: name=circuit_id, type=STRING macro=rss_schema
 									// property: name=enabled, type=BOOLEAN macro=rss_schema
 									"enabled": rsschema.BoolAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Enabled",
 									},
 									// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 									// property: name=reforwarding_policy, type=STRING macro=rss_schema
 									"reforwarding_policy": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Reforwarding Policy",
 									},
 									// key name holder for attribute: name=reforwarding_policy, type=STRING macro=rss_schema
 									// property: name=remote_id, type=STRING macro=rss_schema
 									"remote_id": rsschema.StringAttribute{
-										Required:  false,
-										Computed:  false,
-										Optional:  true,
-										Sensitive: false,
+										Required:    false,
+										Computed:    false,
+										Optional:    true,
+										Sensitive:   false,
+										Description: "Remote Id",
 									},
 									// key name holder for attribute: name=remote_id, type=STRING macro=rss_schema
 								},
 							},
-							// key name holder for attribute: name=remote_id, type=STRING macro=rss_schema
+							// key name holder for attribute: name=option_82, type=REFERENCE macro=rss_schema
 							// property: name=server_ips, type=ARRAY_PRIMITIVE macro=rss_schema
 							"server_ips": rsschema.ListAttribute{
 								Required:    false,
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
+								Description: "Server Ips",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=server_ips, type=ARRAY_PRIMITIVE macro=rss_schema
 							// property: name=source_interface, type=STRING macro=rss_schema
 							"source_interface": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Source Interface",
 							},
 							// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 						},
 					},
-					// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
+					// key name holder for attribute: name=dhcp_relay, type=REFERENCE macro=rss_schema
 					// property: name=dhcp_server, type=REFERENCE macro=rss_schema
 					"dhcp_server": rsschema.SingleNestedAttribute{
-						Required:  false,
-						Computed:  false,
-						Optional:  true,
-						Sensitive: false,
+						Required:    false,
+						Computed:    false,
+						Optional:    true,
+						Sensitive:   false,
+						Description: "",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=domain_name, type=STRING macro=rss_schema
 							"domain_name": rsschema.StringAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Domain Name",
 							},
 							// key name holder for attribute: name=domain_name, type=STRING macro=rss_schema
 							// property: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -231,74 +250,82 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
+								Description: "Domain Name Servers",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=rss_schema
 							// property: name=ip_address_pool, type=ARRAY_REFERENCE macro=rss_schema
 							"ip_address_pool": rsschema.ListNestedAttribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Ip Address Pool",
 								NestedObject: rsschema.NestedAttributeObject{
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=end, type=STRING macro=rss_schema
 										"end": rsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "End",
 										},
 										// key name holder for attribute: name=end, type=STRING macro=rss_schema
 										// property: name=start, type=STRING macro=rss_schema
 										"start": rsschema.StringAttribute{
-											Required:  false,
-											Computed:  false,
-											Optional:  true,
-											Sensitive: false,
+											Required:    false,
+											Computed:    false,
+											Optional:    true,
+											Sensitive:   false,
+											Description: "Start",
 										},
 										// key name holder for attribute: name=start, type=STRING macro=rss_schema
 									},
 								},
 							},
-							// key name holder for attribute: name=start, type=STRING macro=rss_schema
+							// key name holder for attribute: name=ip_address_pool, type=ARRAY_REFERENCE macro=rss_schema
 							// property: name=lease_expiry_time, type=INTEGER macro=rss_schema
 							"lease_expiry_time": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Lease Expiry Time",
 							},
 							// key name holder for attribute: name=lease_expiry_time, type=INTEGER macro=rss_schema
 							// property: name=lease_renew_time, type=INTEGER macro=rss_schema
 							"lease_renew_time": rsschema.Int64Attribute{
-								Required:  false,
-								Computed:  false,
-								Optional:  true,
-								Sensitive: false,
+								Required:    false,
+								Computed:    false,
+								Optional:    true,
+								Sensitive:   false,
+								Description: "Lease Renew Time",
 							},
 							// key name holder for attribute: name=lease_renew_time, type=INTEGER macro=rss_schema
 						},
 					},
-					// key name holder for attribute: name=lease_renew_time, type=INTEGER macro=rss_schema
+					// key name holder for attribute: name=dhcp_server, type=REFERENCE macro=rss_schema
 					// property: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 					"prefixes": rsschema.ListAttribute{
 						Required:    false,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Prefixes",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=ipv4_config, type=REFERENCE macro=rss_schema
 			// property: name=ipv6_config, type=REFERENCE macro=rss_schema
 			"ipv6_config": rsschema.SingleNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 					"default_routers": rsschema.ListAttribute{
@@ -306,6 +333,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Default Routers",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -315,34 +343,38 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
+						Description: "Prefixes",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 				},
 			},
-			// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
+			// key name holder for attribute: name=ipv6_config, type=REFERENCE macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_context_id, type=STRING macro=rss_schema
 			"network_context_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Network Context Id",
 			},
 			// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 			// property: name=scope, type=STRING macro=rss_schema
 			"scope": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Scope",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -351,15 +383,17 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Context Id",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},
@@ -1006,7 +1040,12 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 		// copy_from_plan_or_state: body=body.Ipv4Config prefix=rsModel state=state.Ipv4Config plan=plan.Ipv4Config properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config prefix=rsModel state=state.Ipv4Config plan=plan.Ipv4Config")
 		// property: name=default_routers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.Ipv4Config.DefaultRouters = ListStringValueOrNil(ctx, plan.Ipv4Config.DefaultRouters)
+		if state.Ipv4Config != nil && plan.Ipv4Config.DefaultRouters.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.Ipv4Config.DefaultRouters = ListStringValueOrNil(ctx, state.Ipv4Config.DefaultRouters)
+		} else {
+			body.Ipv4Config.DefaultRouters = ListStringValueOrNil(ctx, plan.Ipv4Config.DefaultRouters)
+		}
 		// property: name=dhcp_relay, type=REFERENCE macro=copy_from_plan_or_state
 		if plan.Ipv4Config.DhcpRelay == nil {
 			body.Ipv4Config.DhcpRelay = nil
@@ -1053,7 +1092,12 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 				}
 			}
 			// property: name=server_ips, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			body.Ipv4Config.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, plan.Ipv4Config.DhcpRelay.ServerIps)
+			if state.Ipv4Config.DhcpRelay != nil && plan.Ipv4Config.DhcpRelay.ServerIps.IsUnknown() {
+				// computed and not configured: send what the server has, not an empty list the api may read as a change
+				body.Ipv4Config.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, state.Ipv4Config.DhcpRelay.ServerIps)
+			} else {
+				body.Ipv4Config.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, plan.Ipv4Config.DhcpRelay.ServerIps)
+			}
 			// property: name=source_interface, type=STRING macro=copy_from_plan_or_state
 			if state.Ipv4Config.DhcpRelay != nil {
 				body.Ipv4Config.DhcpRelay.SourceInterface = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.SourceInterface, state.Ipv4Config.DhcpRelay.SourceInterface)
@@ -1075,7 +1119,12 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 				body.Ipv4Config.DhcpServer.DomainName = StringValueOrNil(plan.Ipv4Config.DhcpServer.DomainName)
 			}
 			// property: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			body.Ipv4Config.DhcpServer.DomainNameServers = ListStringValueOrNil(ctx, plan.Ipv4Config.DhcpServer.DomainNameServers)
+			if state.Ipv4Config.DhcpServer != nil && plan.Ipv4Config.DhcpServer.DomainNameServers.IsUnknown() {
+				// computed and not configured: send what the server has, not an empty list the api may read as a change
+				body.Ipv4Config.DhcpServer.DomainNameServers = ListStringValueOrNil(ctx, state.Ipv4Config.DhcpServer.DomainNameServers)
+			} else {
+				body.Ipv4Config.DhcpServer.DomainNameServers = ListStringValueOrNil(ctx, plan.Ipv4Config.DhcpServer.DomainNameServers)
+			}
 			// property: name=ip_address_pool, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
 			if plan.Ipv4Config.DhcpServer.IpAddressPool == nil && (state.Ipv4Config.DhcpServer == nil || state.Ipv4Config.DhcpServer.IpAddressPool == nil) {
 				body.Ipv4Config.DhcpServer.IpAddressPool = nil
@@ -1113,7 +1162,12 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 			}
 		}
 		// property: name=prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.Ipv4Config.Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Config.Prefixes)
+		if state.Ipv4Config != nil && plan.Ipv4Config.Prefixes.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.Ipv4Config.Prefixes = ListStringValueOrNil(ctx, state.Ipv4Config.Prefixes)
+		} else {
+			body.Ipv4Config.Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Config.Prefixes)
+		}
 	}
 	// property: name=ipv6_config, type=REFERENCE macro=copy_from_plan_or_state
 	if plan.Ipv6Config == nil {
@@ -1123,9 +1177,19 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 		// copy_from_plan_or_state: body=body.Ipv6Config prefix=rsModel state=state.Ipv6Config plan=plan.Ipv6Config properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config prefix=rsModel state=state.Ipv6Config plan=plan.Ipv6Config")
 		// property: name=default_routers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.Ipv6Config.DefaultRouters = ListStringValueOrNil(ctx, plan.Ipv6Config.DefaultRouters)
+		if state.Ipv6Config != nil && plan.Ipv6Config.DefaultRouters.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.Ipv6Config.DefaultRouters = ListStringValueOrNil(ctx, state.Ipv6Config.DefaultRouters)
+		} else {
+			body.Ipv6Config.DefaultRouters = ListStringValueOrNil(ctx, plan.Ipv6Config.DefaultRouters)
+		}
 		// property: name=prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		body.Ipv6Config.Prefixes = ListStringValueOrNil(ctx, plan.Ipv6Config.Prefixes)
+		if state.Ipv6Config != nil && plan.Ipv6Config.Prefixes.IsUnknown() {
+			// computed and not configured: send what the server has, not an empty list the api may read as a change
+			body.Ipv6Config.Prefixes = ListStringValueOrNil(ctx, state.Ipv6Config.Prefixes)
+		} else {
+			body.Ipv6Config.Prefixes = ListStringValueOrNil(ctx, plan.Ipv6Config.Prefixes)
+		}
 	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
@@ -1146,7 +1210,12 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 		body.Scope = StringValueOrNil(plan.Scope)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=vrf_context_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.VrfContextId = ValueStringPointerFromPlanOrState(plan.VrfContextId, state.VrfContextId)

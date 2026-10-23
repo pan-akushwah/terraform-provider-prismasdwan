@@ -25,6 +25,32 @@
 #
 #
 
+# A minimal site for this example.
+resource "prismasdwan_site" "site_1" {
+  name                 = "tf qos local prefix site"
+  description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  admin_state          = "disabled"
+  element_cluster_role = "SPOKE"
+  address = {
+    city    = "San Jose"
+    state   = "California"
+    country = "United States"
+  }
+  location = {
+    longitude = -121.8863
+    latitude  = 37.3382
+  }
+  branch_gateway                            = false
+  prefer_lan_default_over_wan_default_route = false
+  app_acceleration_enabled                  = false
+}
+
+# Give the site its own value for the QoS local prefix from the prismasdwan_qos_policy_local_prefix example
 resource "prismasdwan_site_qos_policy_local_prefix" "example" {
- // content goes here
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  prefix_id     = prismasdwan_qos_policy_local_prefix.test_qos_local_prefix.id
+  ipv4_prefixes = ["10.20.0.0/16"]
+  tags          = ["example"]
 }

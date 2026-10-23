@@ -28,27 +28,28 @@
 #
 # find the site you want to work on
 # alternatively, you can use `resource_locator`
-data "prismasdwan_site" "site_blr" {
-  filters = {
-    name = "Bangalore"
-  }
-}
-
-#
-# find the element you want to work on
-# alternatively, you can use `resource_locator`
-data "prismasdwan_element" "device_blr" {
-  filters = {
-    site_id = data.prismasdwan_site.site_blr.items[0].id
-  }
-}
-
 #
 # read all bgp configs which exists already on element
+# The element to configure. "element_shell_site" and "manual_device_shell" are example names; use your own.
+resource "prismasdwan_resource_locator" "element_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "element_shell_site"
+}
+
+resource "prismasdwan_resource_locator" "element_shell" {
+  x_parameters = {
+    site_id = prismasdwan_resource_locator.element_site.result
+  }
+  resource_type           = "prismasdwan_element"
+  resource_property       = "name"
+  resource_property_value = "manual_device_shell"
+}
+
 data "prismasdwan_element_bgp_config" "existing_bgp_config" {
   x_parameters = {
-    site_id    = data.prismasdwan_site.site_blr.items[0].id
-    element_id = data.prismasdwan_element.device_blr.items[0].id
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
   }
   filters = {
     // read all elements
@@ -60,8 +61,8 @@ data "prismasdwan_element_bgp_config" "existing_bgp_config" {
 resource "prismasdwan_element_bgp_config" "single_bgp_config" {
 
   x_parameters = {
-    site_id    = data.prismasdwan_site.all_sites.items[0].id
-    element_id = data.prismasdwan_element.device_blr.items[0].id
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
     # set the bgp_config_id as empty string if there is no config available
     bgp_config_id = length(data.prismasdwan_element_bgp_config.existing_bgp_config.items) == 0 ? "" : data.prismasdwan_element_bgp_config.existing_bgp_config.items[0].id
   }

@@ -25,7 +25,33 @@
 #
 #
 
+resource "prismasdwan_resource_locator" "element_site" {
+  resource_type           = "prismasdwan_site"
+  resource_property       = "name"
+  resource_property_value = "element_shell_site"
+}
+
+resource "prismasdwan_resource_locator" "element_shell" {
+  x_parameters = {
+    site_id = prismasdwan_resource_locator.element_site.result
+  }
+  resource_type           = "prismasdwan_element"
+  resource_property       = "name"
+  resource_property_value = "manual_device_shell"
+}
+
+# The built-in Global VRF
+resource "prismasdwan_resource_locator" "global_vrf_context" {
+  resource_type           = "prismasdwan_vrf_context"
+  resource_property       = "name"
+  resource_property_value = "Global"
+}
+
 resource "prismasdwan_element_bgp_peer" "bgp_peer" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
   advertise_default_route = false
   allow_v4_prefixes       = true
   allow_v6_prefixes       = false
@@ -55,5 +81,5 @@ resource "prismasdwan_element_bgp_peer" "bgp_peer" {
   tags              = ["AUTO-PRISMA_MANAGED"]
   update_source     = "172.16.0.110"
   update_source_v6  = null
-  vrf_context_id    = "1706693390127013196"
+  vrf_context_id    = prismasdwan_resource_locator.global_vrf_context.result
 }

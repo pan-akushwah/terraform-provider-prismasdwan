@@ -65,13 +65,14 @@ func (r *elementBgpConfigResource) Metadata(_ context.Context, req resource.Meta
 // Schema defines the schema for this data source.
 func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Bgp Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=BGPGlobalConfigScreenV2N5
 			// generic x_parameters is added to accomodate path parameters
@@ -80,61 +81,69 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=admin_distance, type=INTEGER macro=rss_schema
 			"admin_distance": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Admin Distance",
 			},
 			// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
 			// property: name=adv_interval, type=INTEGER macro=rss_schema
 			"adv_interval": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Adv Interval",
 			},
 			// key name holder for attribute: name=adv_interval, type=INTEGER macro=rss_schema
 			// property: name=graceful_restart, type=BOOLEAN macro=rss_schema
 			"graceful_restart": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Graceful Restart",
 			},
 			// key name holder for attribute: name=graceful_restart, type=BOOLEAN macro=rss_schema
 			// property: name=hold_time, type=INTEGER macro=rss_schema
 			"hold_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Hold Time",
 			},
 			// key name holder for attribute: name=hold_time, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -143,113 +152,127 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Ipv6 Prefixes To Adv To Wan",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=keepalive_time, type=INTEGER macro=rss_schema
 			"keepalive_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Keepalive Time",
 			},
 			// key name holder for attribute: name=keepalive_time, type=INTEGER macro=rss_schema
 			// property: name=local_as_num, type=STRING macro=rss_schema
 			"local_as_num": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Local As Num",
 			},
 			// key name holder for attribute: name=local_as_num, type=STRING macro=rss_schema
 			// property: name=maximum_paths, type=INTEGER macro=rss_schema
 			"maximum_paths": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Maximum Paths",
 			},
 			// key name holder for attribute: name=maximum_paths, type=INTEGER macro=rss_schema
 			// property: name=md5_secret, type=STRING macro=rss_schema
 			"md5_secret": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: true,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   true,
+				Description: "Md5 Secret",
 			},
 			// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 			"md5_secret_internal_key_name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Internal key name for the sensitive attribute md5_secret, managed automatically by the provider.",
 			},
 			// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
 			"multi_hop_limit": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Multi Hop Limit",
 			},
 			// key name holder for attribute: name=multi_hop_limit, type=INTEGER macro=rss_schema
 			// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=rss_schema
 			"ospf_redistribution": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Ospf Redistribution",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=route_map_id, type=STRING macro=rss_schema
 						"route_map_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Route Map Id",
 						},
 						// key name holder for attribute: name=route_map_id, type=STRING macro=rss_schema
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Vrf Context Id",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=ospf_redistribution, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=peer_auth_type, type=STRING macro=rss_schema
 			"peer_auth_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Auth Type",
 			},
 			// key name holder for attribute: name=peer_auth_type, type=STRING macro=rss_schema
 			// property: name=peer_retry_time, type=INTEGER macro=rss_schema
 			"peer_retry_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Peer Retry Time",
 			},
 			// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
 			// property: name=prefix_adv_type, type=STRING macro=rss_schema
 			"prefix_adv_type": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type",
 			},
 			// key name holder for attribute: name=prefix_adv_type, type=STRING macro=rss_schema
 			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			"prefix_adv_type_to_lan": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type To Lan",
 			},
 			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -258,53 +281,59 @@ func (r *elementBgpConfigResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Prefixes To Adv To Wan",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
 			"router_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Router Id",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=stalepath_time, type=INTEGER macro=rss_schema
 			"stalepath_time": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Stalepath Time",
 			},
 			// key name holder for attribute: name=stalepath_time, type=INTEGER macro=rss_schema
 			// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=rss_schema
 			"vrf_router_id_map": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Router Id Map",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=router_id, type=STRING macro=rss_schema
 						"router_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Router Id",
 						},
 						// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Vrf Context Id",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
+			// key name holder for attribute: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=rss_schema
 		},
 	}
 }
@@ -440,10 +469,13 @@ func (r *elementBgpConfigResource) doGet(ctx context.Context, state *rsModelBGPG
 	// property: name=maximum_paths, type=INTEGER macro=copy_to_state
 	state.MaximumPaths = types.Int64PointerValue(ans.MaximumPaths)
 	// property: name=md5_secret, type=STRING macro=copy_to_state
+	// the api returns sensitive values blank, so keep the key name from prior state to find the stored value
+	state.Md5SecretInternalKeyName = savestate.Md5SecretInternalKeyName
 	encryptedMd5SecretKeyName := state.Md5SecretInternalKeyName.String()
 	encryptedMd5SecretValueBytes, _ := resp.Private.GetKey(ctx, encryptedMd5SecretKeyName)
-	if encryptedMd5SecretValueBytes != nil {
-		decryptedMd5Secret, _ := Decrypt(string(encryptedMd5SecretValueBytes))
+	var encryptedMd5SecretValue string
+	if encryptedMd5SecretValueBytes != nil && json.Unmarshal(encryptedMd5SecretValueBytes, &encryptedMd5SecretValue) == nil {
+		decryptedMd5Secret, _ := Decrypt(encryptedMd5SecretValue)
 		state.Md5Secret = types.StringValue(decryptedMd5Secret)
 	}
 	// property: name=multi_hop_limit, type=INTEGER macro=copy_to_state
@@ -599,7 +631,12 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=ipv6_prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.Ipv6PrefixesToAdvToWan = ListStringValueOrNil(ctx, plan.Ipv6PrefixesToAdvToWan)
+	if state != nil && plan.Ipv6PrefixesToAdvToWan.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Ipv6PrefixesToAdvToWan = ListStringValueOrNil(ctx, state.Ipv6PrefixesToAdvToWan)
+	} else {
+		body.Ipv6PrefixesToAdvToWan = ListStringValueOrNil(ctx, plan.Ipv6PrefixesToAdvToWan)
+	}
 	// property: name=keepalive_time, type=INTEGER macro=copy_from_plan_or_state
 	if state != nil {
 		body.KeepaliveTime = ValueInt64PointerFromPlanOrState(plan.KeepaliveTime, state.KeepaliveTime)
@@ -678,7 +715,12 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 		body.PrefixAdvTypeToLan = StringValueOrNil(plan.PrefixAdvTypeToLan)
 	}
 	// property: name=prefixes_to_adv_to_wan, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.PrefixesToAdvToWan = ListStringValueOrNil(ctx, plan.PrefixesToAdvToWan)
+	if state != nil && plan.PrefixesToAdvToWan.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.PrefixesToAdvToWan = ListStringValueOrNil(ctx, state.PrefixesToAdvToWan)
+	} else {
+		body.PrefixesToAdvToWan = ListStringValueOrNil(ctx, plan.PrefixesToAdvToWan)
+	}
 	// property: name=router_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.RouterId = ValueStringPointerFromPlanOrState(plan.RouterId, state.RouterId)
@@ -794,13 +836,16 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 	// property: name=maximum_paths, type=INTEGER macro=copy_to_state
 	state.MaximumPaths = types.Int64PointerValue(ans.MaximumPaths)
 	// property: name=md5_secret, type=STRING macro=copy_to_state
-	state.Md5Secret = types.StringPointerValue(plan.Md5Secret.ValueStringPointer())
 	// this property is sensitive and will be stored in the state's internal key name
 	state.Md5SecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+	state.Md5Secret = types.StringPointerValue(plan.Md5Secret.ValueStringPointer())
 	// store value if needed
 	if !state.Md5Secret.IsNull() {
-		encryptedMd5Secret, _ := Encrypt([]byte(state.Md5Secret.String()))
-		resp.Private.SetKey(ctx, state.Md5SecretInternalKeyName.String(), []byte(encryptedMd5Secret))
+		// ValueString, not String: String() returns the value quoted, which drifts on read
+		encryptedMd5Secret, _ := Encrypt([]byte(state.Md5Secret.ValueString()))
+		// private state only accepts valid JSON, so store the ciphertext as a JSON string
+		encryptedMd5SecretJson, _ := json.Marshal(encryptedMd5Secret)
+		resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.Md5SecretInternalKeyName.String(), encryptedMd5SecretJson)...)
 	}
 	// property: name=multi_hop_limit, type=INTEGER macro=copy_to_state
 	state.MultiHopLimit = types.Int64PointerValue(ans.MultiHopLimit)
@@ -923,7 +968,12 @@ func (r *elementBgpConfigResource) Create(ctx context.Context, req resource.Crea
 		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
 			// push into state
 			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			// surface the put error; otherwise terraform only reports "Missing Resource State After Create"
+			resp.Diagnostics = uResp.Diagnostics
 		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 

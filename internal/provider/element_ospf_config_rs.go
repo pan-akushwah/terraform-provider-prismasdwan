@@ -66,13 +66,14 @@ func (r *elementOspfConfigResource) Metadata(_ context.Context, req resource.Met
 // Schema defines the schema for this data source.
 func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Element Ospf Config.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=OspfConfigScreenV2N1
 			// generic x_parameters is added to accomodate path parameters
@@ -81,245 +82,275 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			"advertise_fabric_default_route": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Advertise Fabric Default Route",
 			},
 			// key name holder for attribute: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			// property: name=areas, type=ARRAY_REFERENCE macro=rss_schema
 			"areas": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Areas",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=area_id, type=INTEGER macro=rss_schema
 						"area_id": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Area Id",
 						},
 						// key name holder for attribute: name=area_id, type=INTEGER macro=rss_schema
 						// property: name=area_type, type=STRING macro=rss_schema
 						"area_type": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Area Type",
 						},
 						// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
+			// key name holder for attribute: name=areas, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=cost_for_default_route, type=INTEGER macro=rss_schema
 			"cost_for_default_route": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Cost For Default Route",
 			},
 			// key name holder for attribute: name=cost_for_default_route, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
 			"interfaces": rsschema.ListNestedAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Interfaces",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=area_id, type=INTEGER macro=rss_schema
 						"area_id": rsschema.Int64Attribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Area Id",
 						},
 						// key name holder for attribute: name=area_id, type=INTEGER macro=rss_schema
 						// property: name=interface_id, type=STRING macro=rss_schema
 						"interface_id": rsschema.StringAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "Interface Id",
 						},
 						// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 						// property: name=ospf_config_override, type=REFERENCE macro=rss_schema
 						"ospf_config_override": rsschema.SingleNestedAttribute{
-							Required:  false,
-							Computed:  false,
-							Optional:  true,
-							Sensitive: false,
+							Required:    false,
+							Computed:    false,
+							Optional:    true,
+							Sensitive:   false,
+							Description: "",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=cost, type=INTEGER macro=rss_schema
 								"cost": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Cost",
 								},
 								// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 								// property: name=dead_interval, type=INTEGER macro=rss_schema
 								"dead_interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Dead Interval",
 								},
 								// key name holder for attribute: name=dead_interval, type=INTEGER macro=rss_schema
 								// property: name=hello_interval, type=INTEGER macro=rss_schema
 								"hello_interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Hello Interval",
 								},
 								// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 								// property: name=md5_key_id, type=INTEGER macro=rss_schema
 								"md5_key_id": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Md5 Key Id",
 								},
 								// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
 								// property: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: true,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   true,
+									Description: "Md5 Secret",
 								},
 								// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret_internal_key_name": rsschema.StringAttribute{
-									Required:  false,
-									Computed:  true,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    true,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Internal key name for the sensitive attribute md5_secret, managed automatically by the provider.",
 								},
 								// property: name=retransmit_interval, type=INTEGER macro=rss_schema
 								"retransmit_interval": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Retransmit Interval",
 								},
 								// key name holder for attribute: name=retransmit_interval, type=INTEGER macro=rss_schema
 								// property: name=transmit_delay, type=INTEGER macro=rss_schema
 								"transmit_delay": rsschema.Int64Attribute{
-									Required:  false,
-									Computed:  false,
-									Optional:  true,
-									Sensitive: false,
+									Required:    false,
+									Computed:    false,
+									Optional:    true,
+									Sensitive:   false,
+									Description: "Transmit Delay",
 								},
 								// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
 							},
 						},
-						// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
+						// key name holder for attribute: name=ospf_config_override, type=REFERENCE macro=rss_schema
 					},
 				},
 			},
-			// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
+			// key name holder for attribute: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=prefix_adv_route_map_id, type=STRING macro=rss_schema
 			"prefix_adv_route_map_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Route Map Id",
 			},
 			// key name holder for attribute: name=prefix_adv_route_map_id, type=STRING macro=rss_schema
 			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			"prefix_adv_type_to_lan": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Prefix Adv Type To Lan",
 			},
 			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			// property: name=redistribute_bgp, type=BOOLEAN macro=rss_schema
 			"redistribute_bgp": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Redistribute Bgp",
 			},
 			// key name holder for attribute: name=redistribute_bgp, type=BOOLEAN macro=rss_schema
 			// property: name=redistribute_route_map_id, type=STRING macro=rss_schema
 			"redistribute_route_map_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Redistribute Route Map Id",
 			},
 			// key name holder for attribute: name=redistribute_route_map_id, type=STRING macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
 			"router_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Router Id",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=scope, type=STRING macro=rss_schema
 			"scope": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Scope",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=shutdown, type=BOOLEAN macro=rss_schema
 			"shutdown": rsschema.BoolAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Shutdown",
 			},
 			// key name holder for attribute: name=shutdown, type=BOOLEAN macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -328,15 +359,17 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Vrf Context Id",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},
@@ -622,13 +655,19 @@ func (r *elementOspfConfigResource) doPost(ctx context.Context, plan *rsModelOsp
 				// property: name=md5_key_id, type=INTEGER macro=copy_to_state
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5KeyId = types.Int64PointerValue(varLoopInterfaces.OspfConfigOverride.Md5KeyId)
 				// property: name=md5_secret, type=STRING macro=copy_to_state
-				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringPointerValue(plan.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.ValueStringPointer())
 				// this property is sensitive and will be stored in the state's internal key name
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringNull()
+				if len(plan.Interfaces) > varLoopInterfacesIndex && plan.Interfaces[varLoopInterfacesIndex].OspfConfigOverride != nil {
+					state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringPointerValue(plan.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.ValueStringPointer())
+				}
 				// store value if needed
 				if !state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.IsNull() {
-					encryptedMd5Secret, _ := Encrypt([]byte(state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.String()))
-					resp.Private.SetKey(ctx, state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName.String(), []byte(encryptedMd5Secret))
+					// ValueString, not String: String() returns the value quoted, which drifts on read
+					encryptedMd5Secret, _ := Encrypt([]byte(state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.ValueString()))
+					// private state only accepts valid JSON, so store the ciphertext as a JSON string
+					encryptedMd5SecretJson, _ := json.Marshal(encryptedMd5Secret)
+					resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName.String(), encryptedMd5SecretJson)...)
 				}
 				// property: name=retransmit_interval, type=INTEGER macro=copy_to_state
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.RetransmitInterval = types.Int64PointerValue(varLoopInterfaces.OspfConfigOverride.RetransmitInterval)
@@ -808,10 +847,15 @@ func (r *elementOspfConfigResource) doGet(ctx context.Context, state *rsModelOsp
 				// property: name=md5_key_id, type=INTEGER macro=copy_to_state
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5KeyId = types.Int64PointerValue(varLoopInterfaces.OspfConfigOverride.Md5KeyId)
 				// property: name=md5_secret, type=STRING macro=copy_to_state
+				// the api returns sensitive values blank, so keep the key name from prior state to find the stored value
+				if len(savestate.Interfaces) > varLoopInterfacesIndex && savestate.Interfaces[varLoopInterfacesIndex].OspfConfigOverride != nil {
+					state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName = savestate.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName
+				}
 				encryptedMd5SecretKeyName := state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName.String()
 				encryptedMd5SecretValueBytes, _ := resp.Private.GetKey(ctx, encryptedMd5SecretKeyName)
-				if encryptedMd5SecretValueBytes != nil {
-					decryptedMd5Secret, _ := Decrypt(string(encryptedMd5SecretValueBytes))
+				var encryptedMd5SecretValue string
+				if encryptedMd5SecretValueBytes != nil && json.Unmarshal(encryptedMd5SecretValueBytes, &encryptedMd5SecretValue) == nil {
+					decryptedMd5Secret, _ := Decrypt(encryptedMd5SecretValue)
 					state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringValue(decryptedMd5Secret)
 				}
 				// property: name=retransmit_interval, type=INTEGER macro=copy_to_state
@@ -1050,7 +1094,12 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 		body.Shutdown = BoolValueOrNil(plan.Shutdown)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 	// property: name=vrf_context_id, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.VrfContextId = ValueStringPointerFromPlanOrState(plan.VrfContextId, state.VrfContextId)
@@ -1171,13 +1220,19 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 				// property: name=md5_key_id, type=INTEGER macro=copy_to_state
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5KeyId = types.Int64PointerValue(varLoopInterfaces.OspfConfigOverride.Md5KeyId)
 				// property: name=md5_secret, type=STRING macro=copy_to_state
-				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringPointerValue(plan.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.ValueStringPointer())
 				// this property is sensitive and will be stored in the state's internal key name
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName = types.StringValue(GenerateRandomString(16))
+				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringNull()
+				if len(plan.Interfaces) > varLoopInterfacesIndex && plan.Interfaces[varLoopInterfacesIndex].OspfConfigOverride != nil {
+					state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret = types.StringPointerValue(plan.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.ValueStringPointer())
+				}
 				// store value if needed
 				if !state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.IsNull() {
-					encryptedMd5Secret, _ := Encrypt([]byte(state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.String()))
-					resp.Private.SetKey(ctx, state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName.String(), []byte(encryptedMd5Secret))
+					// ValueString, not String: String() returns the value quoted, which drifts on read
+					encryptedMd5Secret, _ := Encrypt([]byte(state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5Secret.ValueString()))
+					// private state only accepts valid JSON, so store the ciphertext as a JSON string
+					encryptedMd5SecretJson, _ := json.Marshal(encryptedMd5Secret)
+					resp.Diagnostics.Append(resp.Private.SetKey(ctx, state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.Md5SecretInternalKeyName.String(), encryptedMd5SecretJson)...)
 				}
 				// property: name=retransmit_interval, type=INTEGER macro=copy_to_state
 				state.Interfaces[varLoopInterfacesIndex].OspfConfigOverride.RetransmitInterval = types.Int64PointerValue(varLoopInterfaces.OspfConfigOverride.RetransmitInterval)

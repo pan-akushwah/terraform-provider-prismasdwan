@@ -1,0 +1,3 @@
+# Import an existing "performance_policy_rule" resource by its id.
+# For nested resources the id is a composite of the parent path parameters and the resource id.
+terraform import prismasdwan_performance_policy_rule.example "<resource_id>:perfmgmtpolicyset_id=<perfmgmtpolicyset_id>"

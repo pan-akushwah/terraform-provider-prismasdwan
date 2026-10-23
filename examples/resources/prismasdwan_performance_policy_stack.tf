@@ -25,6 +25,13 @@
 #
 #
 
+# A tenant has exactly one default-rule performance set; look it up
+resource "prismasdwan_resource_locator" "default_performance_policy_set" {
+  resource_type           = "prismasdwan_performance_policy_set"
+  resource_property       = "name"
+  resource_property_value = "Default Performance Policy Set"
+}
+
 resource "prismasdwan_performance_policy_stack" "performance_policy_stack_1" {
   name                   = "example_performance_stack_alpha"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
@@ -33,5 +40,5 @@ resource "prismasdwan_performance_policy_stack" "performance_policy_stack_1" {
   policyset_ids = [
     prismasdwan_performance_policy_set.performance_policy_set_1.id
   ]
-  defaultrule_policyset_id = prismasdwan_performance_policy_set.default_performance_policy_set.id
+  defaultrule_policyset_id = prismasdwan_resource_locator.default_performance_policy_set.result
 }

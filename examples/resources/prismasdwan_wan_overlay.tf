@@ -26,5 +26,7 @@
 #
 
 resource "prismasdwan_wan_overlay" "example" {
- // content goes here
+  name        = "tf example wan overlay"
+  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  vni         = 4001 # unique in the tenant; the built-in VPN overlay uses 1
 }

@@ -10,12 +10,18 @@ import (
 	"io"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
 func ValueStringPointerFromPlanOrState(planVal, stateVal types.String) *string {
-	if !planVal.IsNull() && !planVal.IsUnknown() {
+	// null: removed from the config, so send null and let the api clear it
+	if planVal.IsNull() {
+		return nil
+	}
+	// unknown: computed and not configured, so fall back to what the server has
+	if !planVal.IsUnknown() {
 		return planVal.ValueStringPointer()
 	}
 	if stateVal.IsNull() || stateVal.IsUnknown() {
@@ -25,7 +31,12 @@ func ValueStringPointerFromPlanOrState(planVal, stateVal types.String) *string {
 }
 
 func ValueBoolPointerFromPlanOrState(planVal, stateVal types.Bool) *bool {
-	if !planVal.IsNull() && !planVal.IsUnknown() {
+	// null: removed from the config, so send null and let the api clear it
+	if planVal.IsNull() {
+		return nil
+	}
+	// unknown: computed and not configured, so fall back to what the server has
+	if !planVal.IsUnknown() {
 		value := planVal.ValueBool()
 		return &value
 	}
@@ -57,7 +68,12 @@ func ValueBoolFromPlanOrState(planVal, stateVal types.Bool) bool {
 }
 
 func ValueInt64PointerFromPlanOrState(planVal, stateVal types.Int64) *int64 {
-	if !planVal.IsNull() && !planVal.IsUnknown() {
+	// null: removed from the config, so send null and let the api clear it
+	if planVal.IsNull() {
+		return nil
+	}
+	// unknown: computed and not configured, so fall back to what the server has
+	if !planVal.IsUnknown() {
 		value := planVal.ValueInt64()
 		return &value
 	}
@@ -79,7 +95,12 @@ func ValueInt64FromPlanOrState(planVal, stateVal types.Int64) int64 {
 }
 
 func ValueFloat64PointerFromPlanOrState(planVal, stateVal types.Float64) *float64 {
-	if !planVal.IsNull() && !planVal.IsUnknown() {
+	// null: removed from the config, so send null and let the api clear it
+	if planVal.IsNull() {
+		return nil
+	}
+	// unknown: computed and not configured, so fall back to what the server has
+	if !planVal.IsUnknown() {
 		value := planVal.ValueFloat64()
 		return &value
 	}
@@ -171,6 +192,41 @@ func ListStringValueOrNil(ctx context.Context, v types.List) []string {
 	var result []string
 	v.ElementsAs(ctx, &result, false)
 	return result
+}
+
+// ListEqualIgnoringAdditions reports whether have holds exactly the elements of want plus, optionally, some of
+// additions (items the API adds on its own). Order is ignored. A null or unknown list never matches, so callers
+// fall back to the value the API returned.
+func ListEqualIgnoringAdditions(have, want types.List, additions ...string) bool {
+	if want.IsNull() || want.IsUnknown() || have.IsNull() || have.IsUnknown() {
+		return false
+	}
+	wanted := make(map[string]bool, len(want.Elements()))
+	for _, v := range want.Elements() {
+		wanted[listElementKey(v)] = true
+	}
+	allowed := make(map[string]bool, len(additions))
+	for _, a := range additions {
+		allowed[a] = true
+	}
+	found := make(map[string]bool, len(wanted))
+	for _, v := range have.Elements() {
+		key := listElementKey(v)
+		if wanted[key] {
+			found[key] = true
+		} else if !allowed[key] {
+			return false
+		}
+	}
+	return len(found) == len(wanted)
+}
+
+// listElementKey compares string elements by their raw value; String() would quote them.
+func listElementKey(v attr.Value) string {
+	if s, ok := v.(types.String); ok {
+		return s.ValueString()
+	}
+	return v.String()
 }
 
 func SetStringValueOrNil(ctx context.Context, v types.Set) []string {

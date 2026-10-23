@@ -63,13 +63,14 @@ func (r *ipfixGlobalPrefixResource) Metadata(_ context.Context, req resource.Met
 // Schema defines the schema for this data source.
 func (r *ipfixGlobalPrefixResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = rsschema.Schema{
-		Description: "Retrieves a config item.",
+		Description: "Manages a Prisma SD-WAN Ipfix Global Prefix.",
 		Attributes: map[string]rsschema.Attribute{
 			"tfid": rsschema.StringAttribute{
 				Computed: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+				Description: "The Terraform internal identifier for this resource.",
 			},
 			// rest all properties to be read from GET API Schema schema=IPFixGlobalPrefixScreen
 			// generic x_parameters is added to accomodate path parameters
@@ -78,37 +79,42 @@ func (r *ipfixGlobalPrefixResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				ElementType: types.StringType,
+				Description: "Path parameters for the resource, managed automatically by the provider.",
 			},
 			// property: name=_etag, type=INTEGER macro=rss_schema
 			"x_etag": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Etag for this object",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
 			"x_schema": rsschema.Int64Attribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Schema version for this object",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
 			"description": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Description",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
 			"id": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  true,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    true,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Id",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -117,15 +123,17 @@ func (r *ipfixGlobalPrefixResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Ipv4 Prefixes",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
 			"name": rsschema.StringAttribute{
-				Required:  false,
-				Computed:  false,
-				Optional:  true,
-				Sensitive: false,
+				Required:    false,
+				Computed:    false,
+				Optional:    true,
+				Sensitive:   false,
+				Description: "Name",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -134,6 +142,7 @@ func (r *ipfixGlobalPrefixResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
+				Description: "Tags",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -490,7 +499,12 @@ func (r *ipfixGlobalPrefixResource) doPut(ctx context.Context, plan *rsModelIPFi
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-	body.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Prefixes)
+	if state != nil && plan.Ipv4Prefixes.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Ipv4Prefixes = ListStringValueOrNil(ctx, state.Ipv4Prefixes)
+	} else {
+		body.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Prefixes)
+	}
 	// property: name=name, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Name = ValueStringPointerFromPlanOrState(plan.Name, state.Name)
@@ -498,7 +512,12 @@ func (r *ipfixGlobalPrefixResource) doPut(ctx context.Context, plan *rsModelIPFi
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-	body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	if state != nil && plan.Tags.IsUnknown() {
+		// computed and not configured: send what the server has, not an empty list the api may read as a change
+		body.Tags = SetStringValueOrNil(ctx, state.Tags)
+	} else {
+		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
+	}
 
 	// convert body to map
 	json_body, err := json.Marshal(body)
