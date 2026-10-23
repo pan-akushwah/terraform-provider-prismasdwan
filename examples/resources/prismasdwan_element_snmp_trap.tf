@@ -1,31 +1,28 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "element_snmp_trap"
+# prismasdwan_element_snmp_trap: Manages a Prisma SD-WAN Element Snmp Trap.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# Required x_parameters (the parent's ids; the plan fails without them): site_id, element_id.
 #
+# This example creates the resource with the objects it depends on, then reads it back through the data source with
+# several filters.
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Notes:
+#   - The API returns the v2 community masked; the provider keeps the configured value encrypted in private state.
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
+# Tested end to end by the provider suite: resources/element_snmp_trap/example,
+# data_sources/element_snmp_trap/filters.
 #
+# Provider configuration (see the provider documentation):
 #
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
-# The element to configure. "element_shell_site" and "manual_device_shell" are example names; use your own.
 resource "prismasdwan_resource_locator" "element_site" {
   resource_type           = "prismasdwan_site"
   resource_property       = "name"
@@ -49,8 +46,44 @@ resource "prismasdwan_element_snmp_trap" "example" {
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   enabled     = true
   server_ip   = "10.1.1.10"
-  version     = "v2"
+  version     = "v2" # one of: v2, v3
   v2_config = {
     community = "example-community"
   }
+}
+
+#
+# Reading element snmp trap objects back with the data source
+#
+# filters keys are paths into each object's JSON and values are compared as strings; an object is returned
+# when every filter matches. items is null when nothing matches.
+#
+
+# by id
+data "prismasdwan_element_snmp_trap" "find_by_id" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "id" = prismasdwan_element_snmp_trap.example.id
+  }
+  depends_on = [prismasdwan_element_snmp_trap.example]
+}
+
+# by server_ip
+data "prismasdwan_element_snmp_trap" "find_by_server_ip" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "server_ip" = prismasdwan_element_snmp_trap.example.server_ip
+  }
+  depends_on = [prismasdwan_element_snmp_trap.example]
+}
+
+output "element_snmp_trap_found" {
+  value     = [for o in coalesce(data.prismasdwan_element_snmp_trap.find_by_id.items, []) : o.id]
+  sensitive = true
 }

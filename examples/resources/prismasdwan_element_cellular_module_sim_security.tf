@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_element_cellular_module_sim_security" "example" {
- // content goes here
+  // content goes here
 }

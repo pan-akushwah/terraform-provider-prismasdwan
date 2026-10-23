@@ -1,32 +1,24 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "anynet_link"
+# prismasdwan_anynet_link: Manages a Prisma SD-WAN Anynet Link.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# This example creates the resource with the objects it depends on.
 #
+# Notes:
+#   - The prismasdwan_anynet_link data source is not usable yet (its list endpoint returns 404).
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Tested end to end by the provider suite: resources/anynet_link/example, data_sources/anynet_link/filters.
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
+# Provider configuration (see the provider documentation):
 #
-#
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
-# Two branch sites with a public WAN interface each, joined by the anynet link below.
-# Each site needs its own location: the API treats sites at the same coordinates as duplicates.
 resource "prismasdwan_site" "site_a" {
   name                 = "tf anynet site a"
   description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
@@ -116,7 +108,7 @@ resource "prismasdwan_anynet_link" "manual_anynet_link" {
   ep1_wan_interface_id = prismasdwan_site_wan_interface.public_a.id
   ep2_site_id          = prismasdwan_site.site_b.id
   ep2_wan_interface_id = prismasdwan_site_wan_interface.public_b.id
-  type                 = "MANUAL-PUBLIC"
+  type                 = "MANUAL-PUBLIC" # one of: AUTO, MANUAL, AUTO_PRIVATE, MANUAL_PRIVATE, AUTO_SASE, DCI_MANUAL_PUBLIC, DCI_MANUAL_PRIVATE
   forced               = false
   admin_up             = true
   vpnlink_configuration = {

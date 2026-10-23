@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_site_prisma_access_config" "example" {
- // content goes here
+  // content goes here
 }

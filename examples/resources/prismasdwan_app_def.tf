@@ -1,46 +1,36 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "app_def"
+# prismasdwan_app_def: Manages a Prisma SD-WAN App Def.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# This example creates the resource with the objects it depends on, then reads it back through the data source with
+# several filters.
 #
+# Tested end to end by the provider suite: resources/app_def/example, data_sources/app_def/filters.
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Provider configuration (see the provider documentation):
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
-#
-#
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
-#
-# Test App 003
 resource "prismasdwan_app_def" "test_app_003" {
   display_name                 = "Test_App_003"
   abbreviation                 = "tap03"
   domains                      = ["acme-domain-003.com"]
-  path_affinity                = "none"
+  path_affinity                = "none" # one of: none, weak, strict
   ingress_traffic_pct          = 50
   conn_idle_timeout            = 3600
-  transfer_type                = "bulk"
-  app_type                     = "custom"
+  transfer_type                = "bulk"   # one of: transactional, bulk, rt-audio, rt-video
+  app_type                     = "custom" # one of: custom
   session_timeout              = 0
   order_number                 = 1
   app_unreachability_detection = true
   network_scan_application     = true
-  p_category                   = "collaboration"
+  p_category                   = "collaboration" # one of: business-systems, collaboration, general-internet, media, networking, saas
 }
 
 #
@@ -58,16 +48,16 @@ output "existing_filters" {
 resource "prismasdwan_app_def" "test_app_002" {
   display_name                 = "Test_App_002"
   abbreviation                 = "tap02"
-  path_affinity                = "strict"
+  path_affinity                = "strict" # one of: none, weak, strict
   ingress_traffic_pct          = 50
   conn_idle_timeout            = 3600
-  transfer_type                = "transactional"
-  app_type                     = "custom"
+  transfer_type                = "transactional" # one of: transactional, bulk, rt-audio, rt-video
+  app_type                     = "custom"        # one of: custom
   session_timeout              = 0
   order_number                 = 1
   app_unreachability_detection = true
   network_scan_application     = true
-  p_category                   = "business-systems"
+  p_category                   = "business-systems" # one of: business-systems, collaboration, general-internet, media, networking, saas
 
   tcp_rules = [
     {
@@ -127,3 +117,29 @@ resource "prismasdwan_app_def" "test_app_002" {
   ]
 }
 
+#
+# Reading app def objects back with the data source
+#
+# filters keys are paths into each object's JSON and values are compared as strings; an object is returned
+# when every filter matches. items is null when nothing matches.
+#
+
+# by id
+data "prismasdwan_app_def" "find_by_id" {
+  filters = {
+    "id" = prismasdwan_app_def.test_app_003.id
+  }
+  depends_on = [prismasdwan_app_def.test_app_003]
+}
+
+# by a value in the domains list (gjson query: <list>.#(=="value"))
+data "prismasdwan_app_def" "find_by_domains_member" {
+  filters = {
+    "domains.#(==\"acme-domain-003.com\")" = "acme-domain-003.com"
+  }
+  depends_on = [prismasdwan_app_def.test_app_003]
+}
+
+output "app_def_found" {
+  value = [for o in coalesce(data.prismasdwan_app_def.find_by_id.items, []) : o.id]
+}

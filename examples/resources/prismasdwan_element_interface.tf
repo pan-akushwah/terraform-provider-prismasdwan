@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_element_interface" "example" {
- // content goes here
+  // content goes here
 }

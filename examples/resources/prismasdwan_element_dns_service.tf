@@ -1,29 +1,24 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "element_dns_service"
+# prismasdwan_element_dns_service: Manages a Prisma SD-WAN Element Dns Service.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# Required x_parameters (the parent's ids; the plan fails without them): site_id, element_id.
 #
+# This example creates the resource with the objects it depends on, then reads it back through the data source with
+# several filters.
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Tested end to end by the provider suite: resources/element_dns_service/example,
+# data_sources/element_dns_service/filters.
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
+# Provider configuration (see the provider documentation):
 #
-#
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
 resource "prismasdwan_resource_locator" "element_site" {
   resource_type           = "prismasdwan_site"
@@ -89,7 +84,7 @@ resource "prismasdwan_element_dns_service" "first_element_dns_service" {
     element_id = prismasdwan_resource_locator.element_shell.result
   }
   name                       = "SomeDnsName"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  description                = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                       = ["lorem", "ipsum"]
   max_concurrent_dns_queries = 150
   dnsservice_profile_id      = prismasdwan_resource_locator.dnsservice_profile_id.result
@@ -148,4 +143,63 @@ resource "prismasdwan_element_dns_service" "first_element_dns_service" {
       interface_id = prismasdwan_resource_locator.element_port_3_id.result
     }
   ]
+}
+
+#
+# Reading element dns service objects back with the data source
+#
+# filters keys are paths into each object's JSON and values are compared as strings; an object is returned
+# when every filter matches. items is null when nothing matches.
+#
+
+# by name
+data "prismasdwan_element_dns_service" "find_by_name" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "name" = prismasdwan_element_dns_service.first_element_dns_service.name
+  }
+  depends_on = [prismasdwan_element_dns_service.first_element_dns_service]
+}
+
+# by id
+data "prismasdwan_element_dns_service" "find_by_id" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "id" = prismasdwan_element_dns_service.first_element_dns_service.id
+  }
+  depends_on = [prismasdwan_element_dns_service.first_element_dns_service]
+}
+
+# by a reference: every object with this dnsservice_profile_id
+data "prismasdwan_element_dns_service" "find_by_dnsservice_profile_id" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "dnsservice_profile_id" = prismasdwan_element_dns_service.first_element_dns_service.dnsservice_profile_id
+  }
+  depends_on = [prismasdwan_element_dns_service.first_element_dns_service]
+}
+
+# by a value in the tags list (gjson query: <list>.#(=="value"))
+data "prismasdwan_element_dns_service" "find_by_tags_member" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "tags.#(==\"lorem\")" = "lorem"
+  }
+  depends_on = [prismasdwan_element_dns_service.first_element_dns_service]
+}
+
+output "element_dns_service_found" {
+  value = [for o in coalesce(data.prismasdwan_element_dns_service.find_by_name.items, []) : o.id]
 }

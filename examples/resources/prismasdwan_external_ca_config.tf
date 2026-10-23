@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_external_ca_config" "example" {
- // content goes here
+  // content goes here
 }

@@ -30,10 +30,10 @@ resource "prismasdwan_performance_policy_rule" "performance_policy_rule_1" {
     perfmgmtpolicyset_id = prismasdwan_performance_policy_set.performance_policy_set_1.id
   }
   name                = "example_system_health_rule"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  description         = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                = ["123"]
   thresholdprofile_id = prismasdwan_performance_profile.performance_profile_5.id
-  actions             = [
+  actions = [
     {
       action_type = "raise_alarm"
       always_on   = false
@@ -48,7 +48,7 @@ resource "prismasdwan_performance_policy_rule" "performance_policy_rule_2" {
     perfmgmtpolicyset_id = prismasdwan_performance_policy_set.performance_policy_set_1.id
   }
   name                = "example_app_circuit_health_rule"
-  description = "Managed by Prisma SDWAN Terraform IaaC Provider"
+  description         = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags                = ["123"]
   thresholdprofile_id = prismasdwan_performance_profile.performance_profile_2.id
   enabled             = true

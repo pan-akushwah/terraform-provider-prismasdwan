@@ -1,29 +1,24 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "element_security_zone"
+# prismasdwan_element_security_zone: Manages a Prisma SD-WAN Element Security Zone.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# Required x_parameters (the parent's ids; the plan fails without them): site_id, element_id.
 #
+# This example creates the resource with the objects it depends on, then reads it back through the data source with
+# several filters.
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Tested end to end by the provider suite: resources/element_security_zone/example,
+# data_sources/element_security_zone/filters.
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
+# Provider configuration (see the provider documentation):
 #
-#
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
 resource "prismasdwan_resource_locator" "element_site" {
   resource_type           = "prismasdwan_site"
@@ -91,5 +86,40 @@ resource "prismasdwan_element_security_zone" "security_zone" {
   wanoverlay_ids = [
     prismasdwan_resource_locator.vpn_wan_overlay_id.result
   ]
-  zone_id        = prismasdwan_security_zone.dmz_zone.id # from the prismasdwan_security_zone example
+  zone_id = prismasdwan_security_zone.dmz_zone.id # from the prismasdwan_security_zone example
+}
+
+#
+# Reading element security zone objects back with the data source
+#
+# filters keys are paths into each object's JSON and values are compared as strings; an object is returned
+# when every filter matches. items is null when nothing matches.
+#
+
+# by id
+data "prismasdwan_element_security_zone" "find_by_id" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "id" = prismasdwan_element_security_zone.security_zone.id
+  }
+  depends_on = [prismasdwan_element_security_zone.security_zone]
+}
+
+# by a reference: every object with this zone_id
+data "prismasdwan_element_security_zone" "find_by_zone_id" {
+  x_parameters = {
+    site_id    = prismasdwan_resource_locator.element_site.result
+    element_id = prismasdwan_resource_locator.element_shell.result
+  }
+  filters = {
+    "zone_id" = prismasdwan_element_security_zone.security_zone.zone_id
+  }
+  depends_on = [prismasdwan_element_security_zone.security_zone]
+}
+
+output "element_security_zone_found" {
+  value = [for o in coalesce(data.prismasdwan_element_security_zone.find_by_id.items, []) : o.id]
 }

@@ -1,31 +1,25 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "site_lan_network"
+# prismasdwan_site_lan_network: Manages a Prisma SD-WAN Site Lan Network.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# Required x_parameters (the parent's ids; the plan fails without them): site_id.
 #
+# This example creates the resource with the objects it depends on, then reads it back through the data source with
+# several filters.
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Tested end to end by the provider suite: resources/site_lan_network/example,
+# data_sources/site_lan_network/filters.
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
+# Provider configuration (see the provider documentation):
 #
-#
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
-# A minimal site for this example.
 resource "prismasdwan_site" "site_1" {
   name                 = "tf site 1 for example"
   description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
@@ -57,14 +51,69 @@ resource "prismasdwan_site_lan_network" "site_lan_network_1" {
   x_parameters = {
     site_id = prismasdwan_site.site_1.id
   }
-  name = "example_lan_network"
+  name        = "example_lan_network"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags = ["example", "network"]
+  tags        = ["example", "network"]
   ipv4_config = {
     prefixes = [
       "31.10.10.0/24"
     ]
   }
-  scope = "global"
+  scope          = "global" # one of: global, local
   vrf_context_id = prismasdwan_resource_locator.default_vrf_context.result
+}
+
+#
+# Reading site lan network objects back with the data source
+#
+# filters keys are paths into each object's JSON and values are compared as strings; an object is returned
+# when every filter matches. items is null when nothing matches.
+#
+
+# by name
+data "prismasdwan_site_lan_network" "find_by_name" {
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  filters = {
+    "name" = prismasdwan_site_lan_network.site_lan_network_1.name
+  }
+  depends_on = [prismasdwan_site_lan_network.site_lan_network_1]
+}
+
+# by id
+data "prismasdwan_site_lan_network" "find_by_id" {
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  filters = {
+    "id" = prismasdwan_site_lan_network.site_lan_network_1.id
+  }
+  depends_on = [prismasdwan_site_lan_network.site_lan_network_1]
+}
+
+# by a reference: every object with this vrf_context_id
+data "prismasdwan_site_lan_network" "find_by_vrf_context_id" {
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  filters = {
+    "vrf_context_id" = prismasdwan_site_lan_network.site_lan_network_1.vrf_context_id
+  }
+  depends_on = [prismasdwan_site_lan_network.site_lan_network_1]
+}
+
+# by a value in the tags list (gjson query: <list>.#(=="value"))
+data "prismasdwan_site_lan_network" "find_by_tags_member" {
+  x_parameters = {
+    site_id = prismasdwan_site.site_1.id
+  }
+  filters = {
+    "tags.#(==\"example\")" = "example"
+  }
+  depends_on = [prismasdwan_site_lan_network.site_lan_network_1]
+}
+
+output "site_lan_network_found" {
+  value = [for o in coalesce(data.prismasdwan_site_lan_network.find_by_name.items, []) : o.id]
 }

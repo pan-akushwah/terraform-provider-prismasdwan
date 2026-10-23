@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_site_prisma_sase_connection" "example" {
- // content goes here
+  // content goes here
 }

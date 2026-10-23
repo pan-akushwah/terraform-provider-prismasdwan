@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_element_cellular_module" "example" {
- // content goes here
+  // content goes here
 }

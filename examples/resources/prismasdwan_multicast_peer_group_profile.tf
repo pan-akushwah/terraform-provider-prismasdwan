@@ -1,31 +1,23 @@
 # Copyright Palo Alto Networks Inc. 2025
 #
-# Sample resource example for "multicast_peer_group_profile"
+# prismasdwan_multicast_peer_group_profile: Manages a Prisma SD-WAN Multicast Peer Group Profile.
 #
-# To be able to use this template, first use the Prisma SDWAN provider:
-# terraform {
-#    required_providers {
-#      prismasdwan = {
-#        source  = "paloaltonetworks/terraform-provider-prismasdwan"
-#        version = "a.b.c.d[-beta]"
-#      }
-#    }
-#  }
+# This example creates the resource with the objects it depends on, then reads it back through the data source with
+# several filters.
 #
+# Tested end to end by the provider suite: resources/multicast_peer_group_profile/example,
+# data_sources/multicast_peer_group_profile/filters.
 #
-# Configure the Provider with appropriate Service Account Credentials
+# Provider configuration (see the provider documentation):
 #
-#  provider "prismasdwan" {
-#    host          = "api.sase.paloaltonetworks.com"
-#    client_id     = "acmeuser@12345.iam.panserviceaccount.com"
-#    client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
-#    scope         = "tsg_id:12345"
-#    auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
-#  }
-#
-#
+#   provider "prismasdwan" {
+#     host          = "api.sase.paloaltonetworks.com"
+#     client_id     = "acmeuser@12345.iam.panserviceaccount.com"
+#     client_secret = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+#     scope         = "tsg_id:12345"
+#     auth_url      = "https://auth.apps.paloaltonetworks.com/am/oauth2/access_token"
+#   }
 
-# A data-center (HUB) site to peer with.
 resource "prismasdwan_site" "dc_site" {
   name                 = "tf multicast dc site"
   description          = "Managed by Prisma SDWAN Terraform IaaC Provider"
@@ -55,4 +47,39 @@ resource "prismasdwan_multicast_peer_group_profile" "multicast_peer_group_profil
     }
   ]
   is_source_site_receiver = true
+}
+
+#
+# Reading multicast peer group profile objects back with the data source
+#
+# filters keys are paths into each object's JSON and values are compared as strings; an object is returned
+# when every filter matches. items is null when nothing matches.
+#
+
+# by name
+data "prismasdwan_multicast_peer_group_profile" "find_by_name" {
+  filters = {
+    "name" = prismasdwan_multicast_peer_group_profile.multicast_peer_group_profile.name
+  }
+  depends_on = [prismasdwan_multicast_peer_group_profile.multicast_peer_group_profile]
+}
+
+# by id
+data "prismasdwan_multicast_peer_group_profile" "find_by_id" {
+  filters = {
+    "id" = prismasdwan_multicast_peer_group_profile.multicast_peer_group_profile.id
+  }
+  depends_on = [prismasdwan_multicast_peer_group_profile.multicast_peer_group_profile]
+}
+
+# by a value in the tags list (gjson query: <list>.#(=="value"))
+data "prismasdwan_multicast_peer_group_profile" "find_by_tags_member" {
+  filters = {
+    "tags.#(==\"ipsum\")" = "ipsum"
+  }
+  depends_on = [prismasdwan_multicast_peer_group_profile.multicast_peer_group_profile]
+}
+
+output "multicast_peer_group_profile_found" {
+  value = [for o in coalesce(data.prismasdwan_multicast_peer_group_profile.find_by_name.items, []) : o.id]
 }

@@ -26,5 +26,5 @@
 #
 
 resource "prismasdwan_site_hub_cluster_member" "example" {
- // content goes here
+  // content goes here
 }
