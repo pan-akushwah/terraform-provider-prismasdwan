@@ -88,7 +88,12 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 	}
 	// a placeholder left in the path would be sent literally, and the api times out on it instead of failing fast
 	if missing := unresolvedPathParam.FindAllString(path, -1); len(missing) > 0 {
-		err := fmt.Errorf("missing path parameter(s) %s for %s: set them in x_parameters", strings.Join(missing, ", "), request.Path)
+		names := make([]string, len(missing))
+		for i, m := range missing {
+			names[i] = strings.Trim(m, "{}")
+		}
+		err := fmt.Errorf("path parameter %q is required; set x_parameters.%s (request %s %s)",
+			names[0], strings.Join(names, ", x_parameters."), request.Method, request.Path)
 		request.ResponseErr = &err
 		request.FinalPath = &path
 		return
