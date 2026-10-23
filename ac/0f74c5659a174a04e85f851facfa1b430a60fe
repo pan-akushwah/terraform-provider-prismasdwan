@@ -1,0 +1,1308 @@
+internal/provider/utils_test.go
+  s_a281bc52404319::t_0fa65d2f01dec2 1-43
+  s_a281bc52404319::t_155084dfc80f02 44-59
+internal/provider/utils.go
+  s_a281bc52404319::t_c610e010d33a63 21,24,35,75,98,201-203,205,218-219,228,230-231
+  s_a281bc52404319::t_c8244e22309b6e 13
+  s_a281bc52404319::t_7bfc340eb047e4 23,34,38,100,197-200,204,206-217,220-227,229
+  s_a281bc52404319::t_b7a09d2c4c9ad5 19-20,22,36-37,39,71-74,76,99,101-103
+DEVELOPER.md
+  s_f5d0de0b955eb4::t_39dcc8e607b475 158-161
+  s_f5d0de0b955eb4::t_e5ea2cced565f0 1-157,162-514
+examples/data-sources/prismasdwan_anynet_link/data-source.tf
+  s_a281bc52404319::t_1e42f1d22d2296 1-29
+examples/data-sources/prismasdwan_apn_profile/data-source.tf
+  s_a281bc52404319::t_bf8c7609e500f7 1-29
+examples/data-sources/prismasdwan_app_def/data-source.tf
+  s_a281bc52404319::t_b487033b52f9dc 1-29
+examples/data-sources/prismasdwan_app_def_override/data-source.tf
+  s_a281bc52404319::t_bbcc882643ac91 1-33
+examples/data-sources/prismasdwan_dns_service_profile/data-source.tf
+  s_a281bc52404319::t_ad45082c6344db 1-29
+examples/data-sources/prismasdwan_dns_service_role/data-source.tf
+  s_a281bc52404319::t_4a314cc8e17574 1-29
+examples/data-sources/prismasdwan_domain/data-source.tf
+  s_a281bc52404319::t_97c93b88da2274 1-29
+examples/data-sources/prismasdwan_element/data-source.tf
+  s_a281bc52404319::t_e252b82f9315fa 1-29
+examples/data-sources/prismasdwan_element_application_probe/data-source.tf
+  s_a281bc52404319::t_55bfc3ae10d410 1-29
+examples/data-sources/prismasdwan_element_bgp_config/data-source.tf
+  s_a281bc52404319::t_926087ad41d59f 1-29
+examples/data-sources/prismasdwan_element_bgp_peer/data-source.tf
+  s_a281bc52404319::t_595972275a2a3c 1-34
+examples/data-sources/prismasdwan_element_cellular_module/data-source.tf
+  s_a281bc52404319::t_f9aee691b52e18 1-29
+examples/data-sources/prismasdwan_element_cellular_module_sim_security/data-source.tf
+  s_a281bc52404319::t_9ee6f77425648d 1-29
+examples/data-sources/prismasdwan_element_dns_service/data-source.tf
+  s_a281bc52404319::t_f4ffd137e1f0a0 1-34
+examples/data-sources/prismasdwan_element_interface/data-source.tf
+  s_a281bc52404319::t_726d695f0850c1 1-34
+examples/data-sources/prismasdwan_element_iot_device_id_config/data-source.tf
+  s_a281bc52404319::t_7d0cd1789399c0 1-34
+examples/data-sources/prismasdwan_element_ipfix/data-source.tf
+  s_a281bc52404319::t_a093691586dd61 1-34
+examples/data-sources/prismasdwan_element_multicast_global_config/data-source.tf
+  s_a281bc52404319::t_ad18b92af890d3 1-29
+examples/data-sources/prismasdwan_element_multicast_rp/data-source.tf
+  s_a281bc52404319::t_f46f56b0fbf5ac 1-34
+examples/data-sources/prismasdwan_element_ntp/data-source.tf
+  s_a281bc52404319::t_cb7b5370fa4e08 1-29
+examples/data-sources/prismasdwan_element_ospf_config/data-source.tf
+  s_a281bc52404319::t_08f005ce11e3d7 1-34
+examples/data-sources/prismasdwan_element_ospf_global_config/data-source.tf
+  s_a281bc52404319::t_59af4d1bcdce87 1-29
+examples/data-sources/prismasdwan_element_radius/data-source.tf
+  s_a281bc52404319::t_1acf8a621dbcce 1-33
+examples/data-sources/prismasdwan_element_routing_aspathaccesslist/data-source.tf
+  s_a281bc52404319::t_3c647030c0d819 1-34
+examples/data-sources/prismasdwan_element_routing_ipcommunitylist/data-source.tf
+  s_a281bc52404319::t_a1960ab67e3483 1-34
+examples/data-sources/prismasdwan_element_routing_prefixlist/data-source.tf
+  s_a281bc52404319::t_707728d1092ee9 1-34
+examples/data-sources/prismasdwan_element_routing_routemap/data-source.tf
+  s_a281bc52404319::t_b38cfa176a6198 1-34
+examples/data-sources/prismasdwan_element_security_zone/data-source.tf
+  s_a281bc52404319::t_2e4111ec5e3508 1-34
+examples/data-sources/prismasdwan_element_shell/data-source.tf
+  s_a281bc52404319::t_3c3b2be99d31b3 1-33
+examples/data-sources/prismasdwan_element_shell_interface/data-source.tf
+  s_a281bc52404319::t_45f8b2516bf2dd 1-34
+examples/data-sources/prismasdwan_element_snmp_agent/data-source.tf
+  s_a281bc52404319::t_2f4a44ae30e02f 1-34
+examples/data-sources/prismasdwan_element_snmp_trap/data-source.tf
+  s_a281bc52404319::t_39d7d063c22fa2 1-34
+examples/data-sources/prismasdwan_element_static_route/data-source.tf
+  s_a281bc52404319::t_98605e6d30fd87 1-34
+examples/data-sources/prismasdwan_element_syslog_server/data-source.tf
+  s_a281bc52404319::t_3db637e4df08c0 1-34
+examples/data-sources/prismasdwan_element_tacacs_plus_server/data-source.tf
+  s_a281bc52404319::t_eeb69426b4f70c 1-34
+examples/data-sources/prismasdwan_element_toolkit/data-source.tf
+  s_a281bc52404319::t_e5d113a52021f5 1-29
+examples/data-sources/prismasdwan_event_correlation_policy_rule/data-source.tf
+  s_a281bc52404319::t_0c084bc7c8e136 1-33
+examples/data-sources/prismasdwan_event_correlation_policy_set/data-source.tf
+  s_a281bc52404319::t_1100110a579854 1-29
+examples/data-sources/prismasdwan_external_ca_config/data-source.tf
+  s_a281bc52404319::t_b781154e3db47b 1-29
+examples/data-sources/prismasdwan_global_prefix_filter/data-source.tf
+  s_a281bc52404319::t_0c247d6b44565d 1-29
+examples/data-sources/prismasdwan_iot_profile/data-source.tf
+  s_a281bc52404319::t_0afae945e57bc3 1-29
+examples/data-sources/prismasdwan_ipfix_collector_context/data-source.tf
+  s_a281bc52404319::t_f644c24130e905 1-29
+examples/data-sources/prismasdwan_ipfix_filter_context/data-source.tf
+  s_a281bc52404319::t_4e10a3e569535e 1-29
+examples/data-sources/prismasdwan_ipfix_global_prefix/data-source.tf
+  s_a281bc52404319::t_5bbed0c4b8f157 1-29
+examples/data-sources/prismasdwan_ipfix_local_prefix/data-source.tf
+  s_a281bc52404319::t_d24affdb043b24 1-29
+examples/data-sources/prismasdwan_ipfix_profile/data-source.tf
+  s_a281bc52404319::t_4e3c8e72da08d9 1-29
+examples/data-sources/prismasdwan_ipfix_template/data-source.tf
+  s_a281bc52404319::t_42b3e220f69313 1-29
+examples/data-sources/prismasdwan_ipsec_profile/data-source.tf
+  s_a281bc52404319::t_09dc4a85d1c596 1-29
+examples/data-sources/prismasdwan_local_prefix_filter/data-source.tf
+  s_a281bc52404319::t_13a26b0efe039f 1-29
+examples/data-sources/prismasdwan_multicast_peer_group_profile/data-source.tf
+  s_a281bc52404319::t_eed5b273acaee8 1-29
+examples/data-sources/prismasdwan_nat_global_prefix/data-source.tf
+  s_a281bc52404319::t_cc2ffa105424fe 1-29
+examples/data-sources/prismasdwan_nat_local_prefix/data-source.tf
+  s_a281bc52404319::t_046bde12fd2fbb 1-29
+examples/data-sources/prismasdwan_nat_policy_pool/data-source.tf
+  s_a281bc52404319::t_ab736e2db42871 1-29
+examples/data-sources/prismasdwan_nat_policy_rule/data-source.tf
+  s_a281bc52404319::t_63651b35a5a6fe 1-33
+examples/data-sources/prismasdwan_nat_policy_set/data-source.tf
+  s_a281bc52404319::t_9a62c8a1c2ac38 1-29
+examples/data-sources/prismasdwan_nat_policy_set_stack/data-source.tf
+  s_a281bc52404319::t_0c498f8c13d8f1 1-29
+examples/data-sources/prismasdwan_nat_zone/data-source.tf
+  s_a281bc52404319::t_d1b34630b2feec 1-29
+examples/data-sources/prismasdwan_network_context/data-source.tf
+  s_a281bc52404319::t_f4c8c5bd10ecfe 1-29
+examples/data-sources/prismasdwan_ntp_template/data-source.tf
+  s_a281bc52404319::t_56edebb8ac3d9d 1-29
+examples/data-sources/prismasdwan_path_global_prefix/data-source.tf
+  s_a281bc52404319::t_ac7af03f4fe385 1-29
+examples/data-sources/prismasdwan_path_group/data-source.tf
+  s_a281bc52404319::t_3181403f57159c 1-29
+examples/data-sources/prismasdwan_path_local_prefix/data-source.tf
+  s_a281bc52404319::t_9aad5ad7a5b94d 1-29
+examples/data-sources/prismasdwan_path_policy_rule/data-source.tf
+  s_a281bc52404319::t_8846bed8278c97 1-33
+examples/data-sources/prismasdwan_path_policy_set/data-source.tf
+  s_a281bc52404319::t_1fca2619fc9bb3 1-29
+examples/data-sources/prismasdwan_path_policy_stack/data-source.tf
+  s_a281bc52404319::t_3e55a8c7ec723f 1-29
+examples/data-sources/prismasdwan_performance_policy_rule/data-source.tf
+  s_a281bc52404319::t_baf6c438ec71d2 1-33
+examples/data-sources/prismasdwan_performance_policy_set/data-source.tf
+  s_a281bc52404319::t_3fe78ccd5e6390 1-29
+examples/data-sources/prismasdwan_performance_policy_stack/data-source.tf
+  s_a281bc52404319::t_e13979935c8b85 1-29
+examples/data-sources/prismasdwan_performance_profile/data-source.tf
+  s_a281bc52404319::t_6832ae3762ff36 1-29
+examples/data-sources/prismasdwan_probe_config/data-source.tf
+  s_a281bc52404319::t_1728f40463b31d 1-29
+examples/data-sources/prismasdwan_probe_profile/data-source.tf
+  s_a281bc52404319::t_a62c9d42c7269b 1-29
+examples/data-sources/prismasdwan_qos_policy_global_prefix/data-source.tf
+  s_a281bc52404319::t_aa4381ff1d94fd 1-29
+examples/data-sources/prismasdwan_qos_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_2e541537ab32a6 1-29
+examples/data-sources/prismasdwan_qos_policy_rule/data-source.tf
+  s_a281bc52404319::t_d4b67fd6698c16 1-33
+examples/data-sources/prismasdwan_qos_policy_set/data-source.tf
+  s_a281bc52404319::t_7d81a71d889004 1-29
+examples/data-sources/prismasdwan_qos_policy_stack/data-source.tf
+  s_a281bc52404319::t_7bbe3027ad226e 1-29
+examples/data-sources/prismasdwan_sdwanapps_config/data-source.tf
+  s_a281bc52404319::t_b1fcf7d686285c 1-33
+examples/data-sources/prismasdwan_security_policy_global_prefix/data-source.tf
+  s_a281bc52404319::t_e2b6c77739b73a 1-29
+examples/data-sources/prismasdwan_security_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_674dc5c97d09ae 1-29
+examples/data-sources/prismasdwan_security_policy_rule/data-source.tf
+  s_a281bc52404319::t_0aa110d0d95049 1-33
+examples/data-sources/prismasdwan_security_policy_set/data-source.tf
+  s_a281bc52404319::t_3dbbe6c6b07871 1-29
+examples/data-sources/prismasdwan_security_policy_stack/data-source.tf
+  s_a281bc52404319::t_ced1167bb6f501 1-29
+examples/data-sources/prismasdwan_security_zone/data-source.tf
+  s_a281bc52404319::t_a7867a2a513933 1-29
+examples/data-sources/prismasdwan_service_endpoint/data-source.tf
+  s_a281bc52404319::t_6f95b87609d0c6 1-29
+examples/data-sources/prismasdwan_service_group/data-source.tf
+  s_a281bc52404319::t_8bbba68392ee01 1-29
+examples/data-sources/prismasdwan_site/data-source.tf
+  s_a281bc52404319::t_9c73fe4f373b68 1-29
+examples/data-sources/prismasdwan_site_ciphers/data-source.tf
+  s_a281bc52404319::t_ad9bc1bec171bf 1-29
+examples/data-sources/prismasdwan_site_dhcp_server/data-source.tf
+  s_a281bc52404319::t_ff81b491524e7e 1-33
+examples/data-sources/prismasdwan_site_hub_cluster/data-source.tf
+  s_a281bc52404319::t_474d0b9979d1f4 1-33
+examples/data-sources/prismasdwan_site_hub_cluster_member/data-source.tf
+  s_a281bc52404319::t_191e09c5e8e599 1-34
+examples/data-sources/prismasdwan_site_hub_distribution_fabric/data-source.tf
+  s_a281bc52404319::t_e11e4ed724c230 1-33
+examples/data-sources/prismasdwan_site_hub_prefix_filter/data-source.tf
+  s_a281bc52404319::t_03fc61d4e5a9e5 1-33
+examples/data-sources/prismasdwan_site_hub_prefix_filter_association/data-source.tf
+  s_a281bc52404319::t_320fc2688819f4 1-33
+examples/data-sources/prismasdwan_site_hub_prefix_filter_profile/data-source.tf
+  s_a281bc52404319::t_4217da839b70f8 1-33
+examples/data-sources/prismasdwan_site_iot_device_id_config/data-source.tf
+  s_a281bc52404319::t_8a6415b3a66151 1-33
+examples/data-sources/prismasdwan_site_iot_snmp_start_node/data-source.tf
+  s_a281bc52404319::t_747d40f6092832 1-34
+examples/data-sources/prismasdwan_site_ipfix_local_prefix/data-source.tf
+  s_a281bc52404319::t_2f434e574e904c 1-33
+examples/data-sources/prismasdwan_site_lan_network/data-source.tf
+  s_a281bc52404319::t_b1aa37c899b706 1-33
+examples/data-sources/prismasdwan_site_nat_local_prefix/data-source.tf
+  s_a281bc52404319::t_ea33e6bb39b101 1-33
+examples/data-sources/prismasdwan_site_path_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_7a837a2d3cc619 1-33
+examples/data-sources/prismasdwan_site_prisma_access_config/data-source.tf
+  s_a281bc52404319::t_5fa4a0962b63ea 1-33
+examples/data-sources/prismasdwan_site_prisma_sase_connection/data-source.tf
+  s_a281bc52404319::t_c797ad1275b940 1-33
+examples/data-sources/prismasdwan_site_qos_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_519467f38d6f66 1-33
+examples/data-sources/prismasdwan_site_security_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_a3afefd12d73c3 1-33
+examples/data-sources/prismasdwan_site_security_zone/data-source.tf
+  s_a281bc52404319::t_2da1ce0f743a6e 1-33
+examples/data-sources/prismasdwan_site_spoke_cluster/data-source.tf
+  s_a281bc52404319::t_2887a3afd079d6 1-33
+examples/data-sources/prismasdwan_site_wan_interface/data-source.tf
+  s_a281bc52404319::t_f10af957123feb 1-33
+examples/data-sources/prismasdwan_site_wan_multicast_configuration/data-source.tf
+  s_a281bc52404319::t_1d67b67c893209 1-33
+examples/data-sources/prismasdwan_syslog_profile/data-source.tf
+  s_a281bc52404319::t_7ce15f2afc6d62 1-29
+examples/data-sources/prismasdwan_tacacs_plus_profile/data-source.tf
+  s_a281bc52404319::t_c1594a6cb38fa5 1-29
+examples/data-sources/prismasdwan_vrf_context/data-source.tf
+  s_a281bc52404319::t_46399c99efc0ca 1-29
+examples/data-sources/prismasdwan_vrf_context_profile/data-source.tf
+  s_a281bc52404319::t_47839d74b4d5bd 1-29
+examples/data-sources/prismasdwan_wan_interface_label/data-source.tf
+  s_a281bc52404319::t_d1849b625584c9 1-29
+examples/data-sources/prismasdwan_wan_network/data-source.tf
+  s_a281bc52404319::t_c7dbe797c7fe9a 1-29
+examples/data-sources/prismasdwan_wan_overlay/data-source.tf
+  s_a281bc52404319::t_c46c2a823581f1 1-29
+examples/resources/prismasdwan_anynet_link.tf
+  s_a281bc52404319::t_04b7526cee1232 28-71,74-78,81,83,85-92,95,97,99-106,115-118
+examples/resources/prismasdwan_anynet_link/import.sh
+  s_a281bc52404319::t_d5c6c419a94e63 1-3
+examples/resources/prismasdwan_anynet_link/resource.tf
+  s_a281bc52404319::t_3d0fe30cd3a5b7 1-41
+examples/resources/prismasdwan_apn_profile/import.sh
+  s_a281bc52404319::t_914a72c11b003a 1-3
+examples/resources/prismasdwan_apn_profile/resource.tf
+  s_a281bc52404319::t_58ae292a6a1903 1-33
+examples/resources/prismasdwan_app_def/import.sh
+  s_a281bc52404319::t_1532b42473b131 1-3
+examples/resources/prismasdwan_app_def/resource.tf
+  s_a281bc52404319::t_418d8487835336 1-90
+examples/resources/prismasdwan_app_def_override/import.sh
+  s_a281bc52404319::t_067cbc2f5b9fa2 1-3
+examples/resources/prismasdwan_app_def_override/resource.tf
+  s_a281bc52404319::t_d28d3d959a328a 1-82
+examples/resources/prismasdwan_dns_service_profile/import.sh
+  s_a281bc52404319::t_5c5a60a05f45cd 1-3
+examples/resources/prismasdwan_dns_service_profile/resource.tf
+  s_a281bc52404319::t_dc08d08670afde 1-190
+examples/resources/prismasdwan_dns_service_role/import.sh
+  s_a281bc52404319::t_e4c52ec8e6f7a8 1-3
+examples/resources/prismasdwan_dns_service_role/resource.tf
+  s_a281bc52404319::t_3fac9ce1a40f40 1-33
+examples/resources/prismasdwan_domain/import.sh
+  s_a281bc52404319::t_fd9c767a2fd9f1 1-3
+examples/resources/prismasdwan_domain/resource.tf
+  s_a281bc52404319::t_6096dc7f7aa1f2 1-33
+examples/resources/prismasdwan_element/import.sh
+  s_a281bc52404319::t_218b006f0feaee 1-3
+examples/resources/prismasdwan_element/resource.tf
+  s_a281bc52404319::t_0f638110008f3f 1-82
+examples/resources/prismasdwan_element_application_probe/import.sh
+  s_a281bc52404319::t_3b83c8580b2fe0 1-3
+examples/resources/prismasdwan_element_application_probe/resource.tf
+  s_a281bc52404319::t_205afa0f29cd7c 1-30
+examples/resources/prismasdwan_element_bgp_config.tf
+  s_a281bc52404319::t_58a191ba6012fd 31-37,40-42,44-46,51-52,64-65
+examples/resources/prismasdwan_element_bgp_config/import.sh
+  s_a281bc52404319::t_f03279e7bd3a8a 1-3
+examples/resources/prismasdwan_element_bgp_config/resource.tf
+  s_a281bc52404319::t_97f3e3cf43357a 1-50
+examples/resources/prismasdwan_element_bgp_peer.tf
+  s_a281bc52404319::t_c4eb06cc920f52 28-49,51-54,84
+examples/resources/prismasdwan_element_bgp_peer/import.sh
+  s_a281bc52404319::t_86066d0d56b2e1 1-3
+examples/resources/prismasdwan_element_bgp_peer/resource.tf
+  s_a281bc52404319::t_fea0afe9ee206a 1-62
+examples/resources/prismasdwan_element_cellular_module/import.sh
+  s_a281bc52404319::t_040826d8af5079 1-3
+examples/resources/prismasdwan_element_cellular_module/resource.tf
+  s_a281bc52404319::t_e124e01e898f7f 1-31
+examples/resources/prismasdwan_element_cellular_module_sim_security/import.sh
+  s_a281bc52404319::t_cf580f087389e2 1-3
+examples/resources/prismasdwan_element_cellular_module_sim_security/resource.tf
+  s_a281bc52404319::t_03400f8ea111b2 1-31
+examples/resources/prismasdwan_element_dns_service.tf
+  s_a281bc52404319::t_0509a4f1fe0920 87-90,99
+examples/resources/prismasdwan_element_dns_service/import.sh
+  s_a281bc52404319::t_70a40ca01b80a3 1-3
+examples/resources/prismasdwan_element_dns_service/resource.tf
+  s_a281bc52404319::t_80131732f6b407 1-62
+examples/resources/prismasdwan_element_interface/import.sh
+  s_a281bc52404319::t_d2d345749933f3 1-3
+examples/resources/prismasdwan_element_interface/resource.tf
+  s_a281bc52404319::t_27c3ed45ec27c2 1-251
+examples/resources/prismasdwan_element_iot_device_id_config.tf
+  s_a281bc52404319::t_1687ea9fd4406a 28-103,105-112
+examples/resources/prismasdwan_element_iot_device_id_config/import.sh
+  s_a281bc52404319::t_4273197f699c0b 1-3
+examples/resources/prismasdwan_element_iot_device_id_config/resource.tf
+  s_a281bc52404319::t_16f8707312e178 1-29
+examples/resources/prismasdwan_element_ipfix.tf
+  s_a281bc52404319::t_b86b56ad4f7971 28-43,45-48,50-51,53,55,59,61-64,67-68,71,73
+examples/resources/prismasdwan_element_ipfix/import.sh
+  s_a281bc52404319::t_9d069f01716c1e 1-3
+examples/resources/prismasdwan_element_ipfix/resource.tf
+  s_a281bc52404319::t_f531b8b31b526d 1-61
+examples/resources/prismasdwan_element_multicast_global_config.tf
+  s_a281bc52404319::t_31ea2bdadceec3 28-56,58-77
+examples/resources/prismasdwan_element_multicast_global_config/import.sh
+  s_a281bc52404319::t_59535619e06ab7 1-3
+examples/resources/prismasdwan_element_multicast_global_config/resource.tf
+  s_a281bc52404319::t_80405530e692eb 1-39
+examples/resources/prismasdwan_element_multicast_rp.tf
+  s_a281bc52404319::t_3fce988752e2d0 28-43,45-58
+examples/resources/prismasdwan_element_multicast_rp/import.sh
+  s_a281bc52404319::t_c4cedaa913bd1e 1-3
+examples/resources/prismasdwan_element_multicast_rp/resource.tf
+  s_a281bc52404319::t_120e069d5f7781 1-33
+examples/resources/prismasdwan_element_ntp.tf
+  s_a281bc52404319::t_8db96d210e0159 28-55,57-77
+examples/resources/prismasdwan_element_ntp/import.sh
+  s_a281bc52404319::t_a05344f4c04ec3 1-3
+examples/resources/prismasdwan_element_ntp/resource.tf
+  s_a281bc52404319::t_c6d37453e70be6 1-35
+examples/resources/prismasdwan_element_ospf_config.tf
+  s_a281bc52404319::t_49cea891f4fea8 28-103,105-130
+examples/resources/prismasdwan_element_ospf_config/import.sh
+  s_a281bc52404319::t_67091ec62a8ce6 1-3
+examples/resources/prismasdwan_element_ospf_config/resource.tf
+  s_a281bc52404319::t_96399537cb59a1 1-54
+examples/resources/prismasdwan_element_ospf_global_config.tf
+  s_a281bc52404319::t_1bdc8d8b5851ab 40-43,48-58
+examples/resources/prismasdwan_element_ospf_global_config/import.sh
+  s_a281bc52404319::t_228a8a754d5ec4 1-3
+examples/resources/prismasdwan_element_ospf_global_config/resource.tf
+  s_a281bc52404319::t_d73edbf8bc29bb 1-34
+examples/resources/prismasdwan_element_radius.tf
+  s_a281bc52404319::t_7d767dc944bc2a 28-43,45-60
+examples/resources/prismasdwan_element_radius/import.sh
+  s_a281bc52404319::t_e52b2b5fe8457f 1-3
+examples/resources/prismasdwan_element_radius/resource.tf
+  s_a281bc52404319::t_75afe8cd067f1b 1-41
+examples/resources/prismasdwan_element_routing_aspathaccesslist.tf
+  s_a281bc52404319::t_6fa1d12caa8208 28-43,46-47
+examples/resources/prismasdwan_element_routing_aspathaccesslist/import.sh
+  s_a281bc52404319::t_41d4cc8df0ccbf 1-3
+examples/resources/prismasdwan_element_routing_aspathaccesslist/resource.tf
+  s_a281bc52404319::t_2a4c96d151b94d 1-34
+examples/resources/prismasdwan_element_routing_ipcommunitylist.tf
+  s_a281bc52404319::t_cddb2d9b212cac 28-43,46-47
+examples/resources/prismasdwan_element_routing_ipcommunitylist/import.sh
+  s_a281bc52404319::t_440f814d3d4b28 1-3
+examples/resources/prismasdwan_element_routing_ipcommunitylist/resource.tf
+  s_a281bc52404319::t_1665c9a24028c4 1-33
+examples/resources/prismasdwan_element_routing_prefixlist.tf
+  s_a281bc52404319::t_2278a0206b8ae2 28-43,46-47
+examples/resources/prismasdwan_element_routing_prefixlist/import.sh
+  s_a281bc52404319::t_4f53388fb4452e 1-3
+examples/resources/prismasdwan_element_routing_prefixlist/resource.tf
+  s_a281bc52404319::t_25a1e17c84ea62 1-37
+examples/resources/prismasdwan_element_routing_routemap.tf
+  s_a281bc52404319::t_5bd0649cea5b51 28-43,46-47
+examples/resources/prismasdwan_element_routing_routemap/import.sh
+  s_a281bc52404319::t_cfdab492a4a571 1-3
+examples/resources/prismasdwan_element_routing_routemap/resource.tf
+  s_a281bc52404319::t_eff25f9670eb54 1-56
+examples/resources/prismasdwan_element_security_zone.tf
+  s_a281bc52404319::t_93ae4e450bc127 94
+examples/resources/prismasdwan_element_security_zone/import.sh
+  s_a281bc52404319::t_4ad5c99b6efe07 1-3
+examples/resources/prismasdwan_element_security_zone/resource.tf
+  s_a281bc52404319::t_c36663b4b55df9 1-32
+examples/resources/prismasdwan_element_shell/import.sh
+  s_a281bc52404319::t_dc8d248f28ab1d 1-3
+examples/resources/prismasdwan_element_shell/resource.tf
+  s_a281bc52404319::t_2dc84efbc62230 1-82
+examples/resources/prismasdwan_element_shell_interface.tf
+  s_a281bc52404319::t_4aeb41aa60b7f9 28-101
+examples/resources/prismasdwan_element_shell_interface/import.sh
+  s_a281bc52404319::t_484cbf93bacfa3 1-3
+examples/resources/prismasdwan_element_shell_interface/resource.tf
+  s_a281bc52404319::t_c362579b52123e 1-251
+examples/resources/prismasdwan_element_snmp_agent.tf
+  s_a281bc52404319::t_3d6629dc24f6f7 28-43,45-56
+examples/resources/prismasdwan_element_snmp_agent/import.sh
+  s_a281bc52404319::t_27e7eb0d6d3e25 1-3
+examples/resources/prismasdwan_element_snmp_agent/resource.tf
+  s_a281bc52404319::t_8c9187b6f746b0 1-45
+examples/resources/prismasdwan_element_snmp_trap.tf
+  s_a281bc52404319::t_979fd77f8ba4ce 28-43,45-56
+examples/resources/prismasdwan_element_snmp_trap/import.sh
+  s_a281bc52404319::t_93245fb9afa237 1-3
+examples/resources/prismasdwan_element_snmp_trap/resource.tf
+  s_a281bc52404319::t_4c99c0d829b08f 1-45
+examples/resources/prismasdwan_element_static_route.tf
+  s_a281bc52404319::t_18c774dc05801e 28-50,52-70
+examples/resources/prismasdwan_element_static_route/import.sh
+  s_a281bc52404319::t_cf6cf478b4f238 1-3
+examples/resources/prismasdwan_element_static_route/resource.tf
+  s_a281bc52404319::t_f91fefc6044c82 1-40
+examples/resources/prismasdwan_element_syslog_server.tf
+  s_a281bc52404319::t_f7dde28ae4fe48 28-43,45-60
+examples/resources/prismasdwan_element_syslog_server/import.sh
+  s_a281bc52404319::t_ce7e7fd925a15c 1-3
+examples/resources/prismasdwan_element_syslog_server/resource.tf
+  s_a281bc52404319::t_79c4d3c5aa67dc 1-41
+examples/resources/prismasdwan_element_tacacs_plus_server.tf
+  s_a281bc52404319::t_a378b647351fb5 84
+examples/resources/prismasdwan_element_tacacs_plus_server/import.sh
+  s_a281bc52404319::t_6baa2c0e440f65 1-3
+examples/resources/prismasdwan_element_tacacs_plus_server/resource.tf
+  s_a281bc52404319::t_e719ff086d59a6 1-40
+examples/resources/prismasdwan_element_toolkit/import.sh
+  s_a281bc52404319::t_303fd4074bfc80 1-3
+examples/resources/prismasdwan_element_toolkit/resource.tf
+  s_a281bc52404319::t_e2286ca7b28cae 1-31
+examples/resources/prismasdwan_event_correlation_policy_rule/import.sh
+  s_a281bc52404319::t_066f94d5993043 1-3
+examples/resources/prismasdwan_event_correlation_policy_rule/resource.tf
+  s_a281bc52404319::t_af2869781f872b 1-48
+examples/resources/prismasdwan_event_correlation_policy_set/import.sh
+  s_a281bc52404319::t_aa922cdf052c6d 1-3
+examples/resources/prismasdwan_event_correlation_policy_set/resource.tf
+  s_a281bc52404319::t_ab54559d818546 1-34
+examples/resources/prismasdwan_external_ca_config/import.sh
+  s_a281bc52404319::t_67b53382f9b16f 1-3
+examples/resources/prismasdwan_external_ca_config/resource.tf
+  s_a281bc52404319::t_efb95b72801a36 1-39
+examples/resources/prismasdwan_global_prefix_filter/import.sh
+  s_a281bc52404319::t_9809375440df7f 1-3
+examples/resources/prismasdwan_global_prefix_filter/resource.tf
+  s_a281bc52404319::t_29417ee312ffff 1-31
+examples/resources/prismasdwan_iot_profile/import.sh
+  s_a281bc52404319::t_c93f7b2bf57828 1-3
+examples/resources/prismasdwan_iot_profile/resource.tf
+  s_a281bc52404319::t_26f1854cc1af97 1-51
+examples/resources/prismasdwan_ipfix_collector_context/import.sh
+  s_a281bc52404319::t_e47b53ecd4bcf3 1-3
+examples/resources/prismasdwan_ipfix_collector_context/resource.tf
+  s_a281bc52404319::t_14df40083ff82a 1-27
+examples/resources/prismasdwan_ipfix_filter_context/import.sh
+  s_a281bc52404319::t_6fa25f8cca0b2d 1-3
+examples/resources/prismasdwan_ipfix_filter_context/resource.tf
+  s_a281bc52404319::t_d6f11aabffcfa8 1-27
+examples/resources/prismasdwan_ipfix_global_prefix/import.sh
+  s_a281bc52404319::t_2738415dfb3105 1-3
+examples/resources/prismasdwan_ipfix_global_prefix/resource.tf
+  s_a281bc52404319::t_0a91ab94a97cf4 1-29
+examples/resources/prismasdwan_ipfix_local_prefix/import.sh
+  s_a281bc52404319::t_c625396f3e7fd0 1-3
+examples/resources/prismasdwan_ipfix_local_prefix/resource.tf
+  s_a281bc52404319::t_d4ed025e8f687a 1-28
+examples/resources/prismasdwan_ipfix_profile.tf
+  s_a281bc52404319::t_f7aec517a6b538 28-34,51
+examples/resources/prismasdwan_ipfix_profile/import.sh
+  s_a281bc52404319::t_e3bb5a5dae42f5 1-3
+examples/resources/prismasdwan_ipfix_profile/resource.tf
+  s_a281bc52404319::t_38427bdf50a8e3 1-60
+examples/resources/prismasdwan_ipfix_template/import.sh
+  s_a281bc52404319::t_0d2a58fc15ecae 1-3
+examples/resources/prismasdwan_ipfix_template/resource.tf
+  s_a281bc52404319::t_39df4721103687 1-33
+examples/resources/prismasdwan_ipsec_profile/import.sh
+  s_a281bc52404319::t_14ccc3ae8b6377 1-3
+examples/resources/prismasdwan_ipsec_profile/resource.tf
+  s_a281bc52404319::t_5524a1e38b077b 1-130
+examples/resources/prismasdwan_local_prefix_filter/import.sh
+  s_a281bc52404319::t_84ca1f4a683259 1-3
+examples/resources/prismasdwan_local_prefix_filter/resource.tf
+  s_a281bc52404319::t_ff030ed91dbdcf 1-27
+examples/resources/prismasdwan_multicast_peer_group_profile.tf
+  s_a281bc52404319::t_313239441e1aae 28-45,54
+examples/resources/prismasdwan_multicast_peer_group_profile/import.sh
+  s_a281bc52404319::t_274c5bd9b90443 1-3
+examples/resources/prismasdwan_multicast_peer_group_profile/resource.tf
+  s_a281bc52404319::t_d01edf3ace06dd 1-32
+examples/resources/prismasdwan_nat_global_prefix/import.sh
+  s_a281bc52404319::t_ac69fb50d8e33c 1-3
+examples/resources/prismasdwan_nat_global_prefix/resource.tf
+  s_a281bc52404319::t_e22b9c31f0d3dd 1-29
+examples/resources/prismasdwan_nat_local_prefix/import.sh
+  s_a281bc52404319::t_2bc93d78c8bf33 1-3
+examples/resources/prismasdwan_nat_local_prefix/resource.tf
+  s_a281bc52404319::t_8fee25d79c8887 1-28
+examples/resources/prismasdwan_nat_policy_pool/import.sh
+  s_a281bc52404319::t_b8432283024710 1-3
+examples/resources/prismasdwan_nat_policy_pool/resource.tf
+  s_a281bc52404319::t_0710b40a565526 1-28
+examples/resources/prismasdwan_nat_policy_rule.tf
+  s_a281bc52404319::t_76ebd7c14ba013 28-33,37,66,70,75,79,84
+examples/resources/prismasdwan_nat_policy_rule/import.sh
+  s_a281bc52404319::t_dac0119b36066d 1-3
+examples/resources/prismasdwan_nat_policy_rule/resource.tf
+  s_a281bc52404319::t_705327e3b01fb2 1-48
+examples/resources/prismasdwan_nat_policy_set/import.sh
+  s_a281bc52404319::t_32271fb0780881 1-3
+examples/resources/prismasdwan_nat_policy_set/resource.tf
+  s_a281bc52404319::t_cda45fb529e741 1-63
+examples/resources/prismasdwan_nat_policy_set_stack/import.sh
+  s_a281bc52404319::t_23a7716de91fae 1-3
+examples/resources/prismasdwan_nat_policy_set_stack/resource.tf
+  s_a281bc52404319::t_64f0532aa6a10e 1-30
+examples/resources/prismasdwan_nat_zone/import.sh
+  s_a281bc52404319::t_1f6b1bc0dd396c 1-3
+examples/resources/prismasdwan_nat_zone/resource.tf
+  s_a281bc52404319::t_5e731bb0e47819 1-33
+examples/resources/prismasdwan_network_context/import.sh
+  s_a281bc52404319::t_a68773faf8869d 1-3
+examples/resources/prismasdwan_network_context/resource.tf
+  s_a281bc52404319::t_481e3f5f7f3796 1-27
+examples/resources/prismasdwan_ntp_template/import.sh
+  s_a281bc52404319::t_813e335b42217d 1-3
+examples/resources/prismasdwan_ntp_template/resource.tf
+  s_a281bc52404319::t_1a053753c0cd33 1-35
+examples/resources/prismasdwan_path_global_prefix/import.sh
+  s_a281bc52404319::t_26d491029e39b5 1-3
+examples/resources/prismasdwan_path_global_prefix/resource.tf
+  s_a281bc52404319::t_5722a77daaeef6 1-30
+examples/resources/prismasdwan_path_group.tf
+  s_a281bc52404319::t_9327a6a5fedf77 29-41
+examples/resources/prismasdwan_path_group/import.sh
+  s_a281bc52404319::t_ba3e049f801aa4 1-3
+examples/resources/prismasdwan_path_group/resource.tf
+  s_a281bc52404319::t_1120177de98252 1-31
+examples/resources/prismasdwan_path_local_prefix/import.sh
+  s_a281bc52404319::t_bf880b53185881 1-3
+examples/resources/prismasdwan_path_local_prefix/resource.tf
+  s_a281bc52404319::t_ba9d7f97a541db 1-28
+examples/resources/prismasdwan_path_policy_rule.tf
+  s_a281bc52404319::t_c77db303e2103e 31,38,42,48
+examples/resources/prismasdwan_path_policy_rule/import.sh
+  s_a281bc52404319::t_4cb55ec8cff2c4 1-3
+examples/resources/prismasdwan_path_policy_rule/resource.tf
+  s_a281bc52404319::t_eaf98b371dddd9 1-66
+examples/resources/prismasdwan_path_policy_set/import.sh
+  s_a281bc52404319::t_f14286d5f566e2 1-3
+examples/resources/prismasdwan_path_policy_set/resource.tf
+  s_a281bc52404319::t_22dc6c6b46cef4 1-101
+examples/resources/prismasdwan_path_policy_stack.tf
+  s_a281bc52404319::t_2e2741b115dced 28-34,41-42,44
+examples/resources/prismasdwan_path_policy_stack/import.sh
+  s_a281bc52404319::t_c50b828d347c55 1-3
+examples/resources/prismasdwan_path_policy_stack/resource.tf
+  s_a281bc52404319::t_16e766492e83f3 1-139
+examples/resources/prismasdwan_performance_policy_rule/import.sh
+  s_a281bc52404319::t_7fa460ca1ae0cc 1-3
+examples/resources/prismasdwan_performance_policy_rule/resource.tf
+  s_a281bc52404319::t_aadc563363325d 1-80
+examples/resources/prismasdwan_performance_policy_set/import.sh
+  s_a281bc52404319::t_392b491a4c86a5 1-3
+examples/resources/prismasdwan_performance_policy_set/resource.tf
+  s_a281bc52404319::t_dd6132f1520dc3 1-173
+examples/resources/prismasdwan_performance_policy_stack.tf
+  s_a281bc52404319::t_0513fb89de9c5a 28-34,43
+examples/resources/prismasdwan_performance_policy_stack/import.sh
+  s_a281bc52404319::t_ba8908266ada3a 1-3
+examples/resources/prismasdwan_performance_policy_stack/resource.tf
+  s_a281bc52404319::t_fc0b074cad9df8 1-210
+examples/resources/prismasdwan_performance_profile/import.sh
+  s_a281bc52404319::t_f9fc71d257fea0 1-3
+examples/resources/prismasdwan_performance_profile/resource.tf
+  s_a281bc52404319::t_f3f579320289cd 1-77
+examples/resources/prismasdwan_probe_config/import.sh
+  s_a281bc52404319::t_d7ef4727e3b8af 1-3
+examples/resources/prismasdwan_probe_config/resource.tf
+  s_a281bc52404319::t_df2b5fab38b490 1-40
+examples/resources/prismasdwan_probe_profile.tf
+  s_a281bc52404319::t_acd7b17b8e0534 32
+examples/resources/prismasdwan_probe_profile/import.sh
+  s_a281bc52404319::t_ea4b6e6e957a9f 1-3
+examples/resources/prismasdwan_probe_profile/resource.tf
+  s_a281bc52404319::t_012e3453762824 1-29
+examples/resources/prismasdwan_qos_policy_global_prefix/import.sh
+  s_a281bc52404319::t_bdf5c0073c384b 1-3
+examples/resources/prismasdwan_qos_policy_global_prefix/resource.tf
+  s_a281bc52404319::t_a9256a870b5eab 1-30
+examples/resources/prismasdwan_qos_policy_local_prefix/import.sh
+  s_a281bc52404319::t_945250cebd3aa2 1-3
+examples/resources/prismasdwan_qos_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_e68174bebde862 1-28
+examples/resources/prismasdwan_qos_policy_rule.tf
+  s_a281bc52404319::t_7d27c709658218 36
+examples/resources/prismasdwan_qos_policy_rule/import.sh
+  s_a281bc52404319::t_e1da417e727698 1-3
+examples/resources/prismasdwan_qos_policy_rule/resource.tf
+  s_a281bc52404319::t_942f81a60bbad8 1-44
+examples/resources/prismasdwan_qos_policy_set/import.sh
+  s_a281bc52404319::t_32afa3fd41eaba 1-3
+examples/resources/prismasdwan_qos_policy_set/resource.tf
+  s_a281bc52404319::t_7c4f72a98bffc3 1-56
+examples/resources/prismasdwan_qos_policy_stack.tf
+  s_a281bc52404319::t_8fc6eeee66c00f 28-34,40
+examples/resources/prismasdwan_qos_policy_stack/import.sh
+  s_a281bc52404319::t_a4ff7a116427ec 1-3
+examples/resources/prismasdwan_qos_policy_stack/resource.tf
+  s_a281bc52404319::t_38c3a412494cb5 1-31
+examples/resources/prismasdwan_sdwanapps_config/import.sh
+  s_a281bc52404319::t_1a404c215e663f 1-3
+examples/resources/prismasdwan_sdwanapps_config/resource.tf
+  s_a281bc52404319::t_f340d61444528e 1-28
+examples/resources/prismasdwan_security_policy_global_prefix.tf
+  s_a281bc52404319::t_011265713f440f 41
+examples/resources/prismasdwan_security_policy_global_prefix/import.sh
+  s_a281bc52404319::t_f7f7a2ea44cc75 1-3
+examples/resources/prismasdwan_security_policy_global_prefix/resource.tf
+  s_a281bc52404319::t_38730528ba57f0 1-30
+examples/resources/prismasdwan_security_policy_local_prefix/import.sh
+  s_a281bc52404319::t_402f8a86b24b02 1-3
+examples/resources/prismasdwan_security_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_0ee605ad70b623 1-28
+examples/resources/prismasdwan_security_policy_rule.tf
+  s_a281bc52404319::t_8945176d9c63bf 28-34,37,42-46
+examples/resources/prismasdwan_security_policy_rule/import.sh
+  s_a281bc52404319::t_553d9e04e064fb 1-3
+examples/resources/prismasdwan_security_policy_rule/resource.tf
+  s_a281bc52404319::t_a65de70d798d57 1-53
+examples/resources/prismasdwan_security_policy_set.tf
+  s_a281bc52404319::t_ac3b929856dbe4 158-166,174-182,184-193
+examples/resources/prismasdwan_security_policy_set/import.sh
+  s_a281bc52404319::t_c8605670887cb3 1-3
+examples/resources/prismasdwan_security_policy_set/resource.tf
+  s_a281bc52404319::t_f03ac53f851757 1-30
+examples/resources/prismasdwan_security_policy_stack.tf
+  s_a281bc52404319::t_d8bd3d57c27f66 47-48,54
+examples/resources/prismasdwan_security_policy_stack/import.sh
+  s_a281bc52404319::t_2996260bb2385d 1-3
+examples/resources/prismasdwan_security_policy_stack/resource.tf
+  s_a281bc52404319::t_d1c6e3ef54fc32 1-30
+examples/resources/prismasdwan_security_zone/import.sh
+  s_a281bc52404319::t_ffbb1a5e3c13a5 1-3
+examples/resources/prismasdwan_security_zone/resource.tf
+  s_a281bc52404319::t_a2cc308c3158e3 1-27
+examples/resources/prismasdwan_service_endpoint/import.sh
+  s_a281bc52404319::t_1d1f5f7a5669a6 1-3
+examples/resources/prismasdwan_service_endpoint/resource.tf
+  s_a281bc52404319::t_295244128c0db6 1-69
+examples/resources/prismasdwan_service_group/import.sh
+  s_a281bc52404319::t_17498c0f5fe34a 1-3
+examples/resources/prismasdwan_service_group/resource.tf
+  s_a281bc52404319::t_579baabb3a2e12 1-32
+examples/resources/prismasdwan_site/import.sh
+  s_a281bc52404319::t_abe03c42649b4a 1-3
+examples/resources/prismasdwan_site/resource.tf
+  s_a281bc52404319::t_0a726f58ea1b34 1-62
+examples/resources/prismasdwan_site_ciphers.tf
+  s_a281bc52404319::t_de23fc1a852ebd 28-47
+examples/resources/prismasdwan_site_ciphers/import.sh
+  s_a281bc52404319::t_385a3cc629dc12 1-3
+examples/resources/prismasdwan_site_ciphers/resource.tf
+  s_a281bc52404319::t_bb631524ffb5e3 1-28
+examples/resources/prismasdwan_site_dhcp_server.tf
+  s_a281bc52404319::t_f4032ab4b47469 28-54,87
+examples/resources/prismasdwan_site_dhcp_server/import.sh
+  s_a281bc52404319::t_d5f1abde5bdb54 1-3
+examples/resources/prismasdwan_site_dhcp_server/resource.tf
+  s_a281bc52404319::t_d02b264b45f63c 1-52
+examples/resources/prismasdwan_site_hub_cluster/import.sh
+  s_a281bc52404319::t_ab744545e1afeb 1-3
+examples/resources/prismasdwan_site_hub_cluster/resource.tf
+  s_a281bc52404319::t_b5b7beba09a6d3 1-35
+examples/resources/prismasdwan_site_hub_cluster_member/import.sh
+  s_a281bc52404319::t_b81b253b6b6898 1-3
+examples/resources/prismasdwan_site_hub_cluster_member/resource.tf
+  s_a281bc52404319::t_d269531d97300c 1-39
+examples/resources/prismasdwan_site_hub_distribution_fabric.tf
+  s_a281bc52404319::t_0b2b917e5f0726 28-66
+examples/resources/prismasdwan_site_hub_distribution_fabric/import.sh
+  s_a281bc52404319::t_8eb3a95aaa5d7e 1-3
+examples/resources/prismasdwan_site_hub_distribution_fabric/resource.tf
+  s_a281bc52404319::t_28ea34041385d3 1-29
+examples/resources/prismasdwan_site_hub_prefix_filter.tf
+  s_a281bc52404319::t_1163b6a9ebc937 28-48,50-60
+examples/resources/prismasdwan_site_hub_prefix_filter/import.sh
+  s_a281bc52404319::t_910ab3c2a0bfca 1-3
+examples/resources/prismasdwan_site_hub_prefix_filter/resource.tf
+  s_a281bc52404319::t_a617ec01244550 1-34
+examples/resources/prismasdwan_site_hub_prefix_filter_association.tf
+  s_a281bc52404319::t_9e53caf3323fc5 28-67,69-76
+examples/resources/prismasdwan_site_hub_prefix_filter_association/import.sh
+  s_a281bc52404319::t_b2a394cbbd684d 1-3
+examples/resources/prismasdwan_site_hub_prefix_filter_association/resource.tf
+  s_a281bc52404319::t_01747a39158a5d 1-30
+examples/resources/prismasdwan_site_hub_prefix_filter_profile.tf
+  s_a281bc52404319::t_36a834c2a412f6 31-50,53-57,63,70
+examples/resources/prismasdwan_site_hub_prefix_filter_profile/import.sh
+  s_a281bc52404319::t_d67205e9f1b102 1-3
+examples/resources/prismasdwan_site_hub_prefix_filter_profile/resource.tf
+  s_a281bc52404319::t_b72f928c70b9d1 1-37
+examples/resources/prismasdwan_site_iot_device_id_config.tf
+  s_a281bc52404319::t_608c362c968005 28-57,59-64
+examples/resources/prismasdwan_site_iot_device_id_config/import.sh
+  s_a281bc52404319::t_6f71feb26ba735 1-3
+examples/resources/prismasdwan_site_iot_device_id_config/resource.tf
+  s_a281bc52404319::t_7adb0badb0890d 1-28
+examples/resources/prismasdwan_site_iot_snmp_start_node.tf
+  s_a281bc52404319::t_9c09e36812e21b 28-57,59-71
+examples/resources/prismasdwan_site_iot_snmp_start_node/import.sh
+  s_a281bc52404319::t_1e477191bb6e38 1-3
+examples/resources/prismasdwan_site_iot_snmp_start_node/resource.tf
+  s_a281bc52404319::t_dd49ec73859c2b 1-32
+examples/resources/prismasdwan_site_ipfix_local_prefix.tf
+  s_a281bc52404319::t_2b7dddddec6430 28-47
+examples/resources/prismasdwan_site_ipfix_local_prefix/import.sh
+  s_a281bc52404319::t_46f92dfe01751b 1-3
+examples/resources/prismasdwan_site_ipfix_local_prefix/resource.tf
+  s_a281bc52404319::t_70fb87b36291cf 1-28
+examples/resources/prismasdwan_site_lan_network.tf
+  s_a281bc52404319::t_d5d06f55b807df 28-54
+examples/resources/prismasdwan_site_lan_network/import.sh
+  s_a281bc52404319::t_6439d0aba12dd6 1-3
+examples/resources/prismasdwan_site_lan_network/resource.tf
+  s_a281bc52404319::t_0b6a3845db62c6 1-60
+examples/resources/prismasdwan_site_nat_local_prefix.tf
+  s_a281bc52404319::t_f66f75c80ddec2 28-47
+examples/resources/prismasdwan_site_nat_local_prefix/import.sh
+  s_a281bc52404319::t_30bad3fb62c1c4 1-3
+examples/resources/prismasdwan_site_nat_local_prefix/resource.tf
+  s_a281bc52404319::t_7a243c6a8c6fe3 1-28
+examples/resources/prismasdwan_site_path_policy_local_prefix.tf
+  s_a281bc52404319::t_7decdd6e2c1127 28-47
+examples/resources/prismasdwan_site_path_policy_local_prefix/import.sh
+  s_a281bc52404319::t_624e1cd0e2e2e0 1-3
+examples/resources/prismasdwan_site_path_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_db34614b0fa0d3 1-29
+examples/resources/prismasdwan_site_prisma_access_config/import.sh
+  s_a281bc52404319::t_69d7eb2f015775 1-3
+examples/resources/prismasdwan_site_prisma_access_config/resource.tf
+  s_a281bc52404319::t_26ed8fe5cda3f3 1-33
+examples/resources/prismasdwan_site_prisma_sase_connection/import.sh
+  s_a281bc52404319::t_5a342a1961aef5 1-3
+examples/resources/prismasdwan_site_prisma_sase_connection/resource.tf
+  s_a281bc52404319::t_d7e6d0a3049699 1-76
+examples/resources/prismasdwan_site_qos_policy_local_prefix.tf
+  s_a281bc52404319::t_e15b0967366273 28-48,50-56
+examples/resources/prismasdwan_site_qos_policy_local_prefix/import.sh
+  s_a281bc52404319::t_8acaa38ba14d67 1-3
+examples/resources/prismasdwan_site_qos_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_b9b65305d725f6 1-29
+examples/resources/prismasdwan_site_security_policy_local_prefix.tf
+  s_a281bc52404319::t_8decc8dbce5e54 28-47
+examples/resources/prismasdwan_site_security_policy_local_prefix/import.sh
+  s_a281bc52404319::t_36145e02a290d5 1-3
+examples/resources/prismasdwan_site_security_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_7d1b9b6d9814df 1-29
+examples/resources/prismasdwan_site_security_zone.tf
+  s_a281bc52404319::t_46c99f9a1dc9e6 28-47,53
+examples/resources/prismasdwan_site_security_zone/import.sh
+  s_a281bc52404319::t_5f9a626229834c 1-3
+examples/resources/prismasdwan_site_security_zone/resource.tf
+  s_a281bc52404319::t_20e5b2f64a4eab 1-34
+examples/resources/prismasdwan_site_spoke_cluster.tf
+  s_a281bc52404319::t_39b248e72084d0 28-47
+examples/resources/prismasdwan_site_spoke_cluster/import.sh
+  s_a281bc52404319::t_3e6dec4f36941b 1-3
+examples/resources/prismasdwan_site_spoke_cluster/resource.tf
+  s_a281bc52404319::t_2d13d22035cab6 1-30
+examples/resources/prismasdwan_site_wan_interface/import.sh
+  s_a281bc52404319::t_3f6451f0084f30 1-3
+examples/resources/prismasdwan_site_wan_interface/resource.tf
+  s_a281bc52404319::t_f60bf5cc46c7c8 1-56
+examples/resources/prismasdwan_site_wan_multicast_configuration.tf
+  s_a281bc52404319::t_392e2302c2b9c0 28-78,85-88,90-92,95
+examples/resources/prismasdwan_site_wan_multicast_configuration/import.sh
+  s_a281bc52404319::t_9d6f9fa6ba012c 1-3
+examples/resources/prismasdwan_site_wan_multicast_configuration/resource.tf
+  s_a281bc52404319::t_febecac32240f3 1-29
+examples/resources/prismasdwan_syslog_profile/import.sh
+  s_a281bc52404319::t_57d83f4f9845ea 1-3
+examples/resources/prismasdwan_syslog_profile/resource.tf
+  s_a281bc52404319::t_64b1ff385b7493 1-31
+examples/resources/prismasdwan_tacacs_plus_profile/import.sh
+  s_a281bc52404319::t_45be35c2480021 1-3
+examples/resources/prismasdwan_tacacs_plus_profile/resource.tf
+  s_a281bc52404319::t_06c7d022678fb7 1-37
+examples/resources/prismasdwan_vrf_context/import.sh
+  s_a281bc52404319::t_695a142374efa7 1-3
+examples/resources/prismasdwan_vrf_context/resource.tf
+  s_a281bc52404319::t_20b05a1c25c00a 1-28
+examples/resources/prismasdwan_vrf_context_profile.tf
+  s_a281bc52404319::t_71101378b6943a 28-40,47
+examples/resources/prismasdwan_vrf_context_profile/import.sh
+  s_a281bc52404319::t_8c7890c22be9c6 1-3
+examples/resources/prismasdwan_vrf_context_profile/resource.tf
+  s_a281bc52404319::t_97466e28a43e9b 1-37
+examples/resources/prismasdwan_wan_interface_label/import.sh
+  s_a281bc52404319::t_41007f4b29acff 1-3
+examples/resources/prismasdwan_wan_interface_label/resource.tf
+  s_a281bc52404319::t_57869333601a36 1-44
+examples/resources/prismasdwan_wan_network/import.sh
+  s_a281bc52404319::t_c146f9a214cb95 1-3
+examples/resources/prismasdwan_wan_network/resource.tf
+  s_a281bc52404319::t_f2800df7434b84 1-29
+examples/resources/prismasdwan_wan_overlay.tf
+  s_a281bc52404319::t_f74fd707a480b9 29-32
+examples/resources/prismasdwan_wan_overlay/import.sh
+  s_a281bc52404319::t_b0d08c94dd8c04 1-3
+examples/resources/prismasdwan_wan_overlay/resource.tf
+  s_a281bc52404319::t_3321209169677b 1-28
+internal/provider/anynet_link_ds.go
+  s_a281bc52404319::t_693df8cb7f1c0f 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,210-214,219-223,232,238-242,247-251,256-260,264-268,273-277,282
+internal/provider/anynet_link_rs.go
+  s_a281bc52404319::t_da5c76ecf43e4f 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,186-190,195-199,208,214-218,223-227,232-236,240-244,249-253,258,751-756
+internal/provider/apn_profile_ds.go
+  s_a281bc52404319::t_2e0903a5d636bb 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,195,201-205
+internal/provider/apn_profile_rs.go
+  s_a281bc52404319::t_4ae20167c0e3bb 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,158-162,166-170,178,184-188,365,368-372,484-485,488-490,610-615,693,696-700
+internal/provider/app_def_ds.go
+  s_a281bc52404319::t_9e8c240387b45c 74,81,89,93-97,102-105,108-109,115-119,124-128,133-137,142-146,151-155,160-164,169-173,178-182,187-191,196-200,209,215-219,224-228,233-237,246,256,266,272-276,280-284,289,292-296,305,312,315-319,324-328,333-337,342-346,351-355,360-364,369-373,378-382,387-391,396-400,405-409,414-418,423-427,436,442-446,455,461-465,469-473,478-482,487,490-494,498-502,507,514,524,530-534,538-542,547-551,556,563,570,573-577,582-586,595,605,611-615,619-623,628,635,641-645,649-653,658-662,667,671,674-678
+internal/provider/app_def_override_ds.go
+  s_a281bc52404319::t_4b2bd6d6789138 74,81,89,93-97,102-105,108-109,115-119,124-128,133-137,142-146,151-155,160-164,169-173,182,188-192,197-201,206-210,219,229,239,245-249,253-257,262,265-269,278,285,288-292,297-301,306-310,315-319,324-328,333-337,342-346,351-355,364,370-374,383,389-393,397-401,406-410,415,418-422,426-430,435,442,452,458-462,466-470,475-479,484,491,498,501-505,510-514,523,533,539-543,547-551,556,563,569-573,577-581,586-590,595,599,602-606
+internal/provider/app_def_override_rs.go
+  s_a281bc52404319::t_94b3af59e1d295 71,78,87,91-95,100-104,109-113,118-122,127-131,136-140,145-149,158,164-168,173-177,182-186,195,205,215,221-225,229-233,238,241-245,254,261,264-268,273-277,282-286,291-295,300-304,309-313,318-322,327-331,340,346-350,359,365-369,373-377,382-386,391,394-398,402-406,411,418,428,434-438,442-446,451-455,460,467,474,477-481,486-490,499,509,515-519,523-527,532,539,545-549,553-557,562-566,571,575,578-582,1466-1471,1570-1575
+internal/provider/app_def_rs.go
+  s_a281bc52404319::t_895c9012f388ca 71,78,87,91-95,100-104,109-113,118-122,127-131,136-140,145-149,154-158,163-167,172-176,185,191-195,200-204,209-213,222,232,242,248-252,256-260,265,268-272,281,288,291-295,300-304,309-313,318-322,327-331,336-340,345-349,354-358,363-367,372-376,381-385,390-394,399-403,412,418-422,431,437-441,445-449,454-458,463,466-470,474-478,483,490,500,506-510,514-518,523-527,532,539,546,549-553,558-562,571,581,587-591,595-599,604,611,617-621,625-629,634-638,643,647,650-654,1604-1609,1738-1743
+internal/provider/dns_service_profile_ds.go
+  s_a281bc52404319::t_77053af8379219 97,104,112,116-120,125-128,131-132,138-142,147-151,156-160,164-168,173-177,182-186,191-195,200-204,210,213-217,226,232-236,241-245,251,254-258,263-267,272-276,281-285,291,294-298,307,313-317,322-326,331-335,341,344-348,353-357,362-366,371-375,381,384-388,393-397,402-406,411-415,420-424,429-433,438-442,447-451,457,464,470-474,479-483,488-492,498,505,511-515,520-524,529-533,539,542-546,551-555,560-564,569-573,578-582,587-591,597,600-604,609-613,618-622,627-631,636-640,645-649,654-658,663-667,673,676-680,685-689,694-698,703-707,712-716,721-725,731,734-738,743-747,752-756,765,772,775-779,784-788,797,807,814,817,820-824,828-832,837-841,846-850,855-859,864-868,873,876-880,885-889,893-897,902-906,911-915,920-924,933,939-943,948-952,957-961,967,970-974,979-983,988-992,997,1000-1004,1008-1012,1016-1020,1025,1028-1032,1036-1040,1045-1049,1054,1057-1061,1066-1070,1075-1079,1084-1088,1093-1097,1103,1106,1109-1113,1117-1121,1130,1136-1140,1145,1148-1152,1156-1160,1165-1169,1174-1178,1183-1187,1192-1196,1201-1205,1211,1218,1224-1228,1237,1243-1247,1252-1256,1261,1264-1268,1272-1276,1281-1285,1290-1294,1299-1303,1308-1312,1317-1321,1326-1330,1334-1338,1343-1347,1352-1356,1361-1365,1370,1374,1377,1380-1384,1393,1399-1403,1408-1412,1418,1421-1425,1430-1434,1439-1443,1448-1452,1457-1461,1466-1470,1475-1479,1484-1488,1497
+internal/provider/dns_service_profile_rs.go
+  s_a281bc52404319::t_2cb649c8b08b7a 94,101,110,114-118,123-127,132-136,140-144,149-153,158-162,167-171,176-180,186,189-193,202,208-212,217-221,227,230-234,239-243,248-252,257-261,267,270-274,283,289-293,298-302,307-311,317,320-324,329-333,338-342,347-351,357,360-364,369-373,378-382,387-391,396-400,405-409,414-418,423-427,433,440,446-450,455-459,464-468,474,481,487-491,496-500,505-509,515,518-522,527-531,536-540,545-549,554-558,563-567,573,576-580,585-589,594-598,603-607,612-616,621-625,630-634,639-643,649,652-656,661-665,670-674,679-683,688-692,697-701,707,710-714,719-723,728-732,741,748,751-755,760-764,773,783,790,793,796-800,804-808,813-817,822-826,831-835,840-844,849,852-856,861-865,869-873,878-882,887-891,896-900,909,915-919,924-928,933-937,943,946-950,955-959,964-968,973,976-980,984-988,992-996,1001,1004-1008,1012-1016,1021-1025,1030,1033-1037,1042-1046,1051-1055,1060-1064,1069-1073,1079,1082,1085-1089,1093-1097,1106,1112-1116,1121,1124-1128,1132-1136,1141-1145,1150-1154,1159-1163,1168-1172,1177-1181,1187,1194,1200-1204,1213,1219-1223,1228-1232,1237,1240-1244,1248-1252,1257-1261,1266-1270,1275-1279,1284-1288,1293-1297,1302-1306,1310-1314,1319-1323,1328-1332,1337-1341,1346,1350,1353,1356-1360,1369,1375-1379,1384-1388,1394,1397-1401,1406-1410,1415-1419,1424-1428,1433-1437,1442-1446,1451-1455,1460-1464,1473,3635-3640,3665-3670,4026-4031,4076-4081,4089-4094,4245-4250
+internal/provider/dns_service_role_ds.go
+  s_a281bc52404319::t_adde3a78f34669 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,191-195,204
+internal/provider/dns_service_role_rs.go
+  s_a281bc52404319::t_02a38ac03f5bf2 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,158-162,167-171,180,591-596
+internal/provider/domain_ds.go
+  s_a281bc52404319::t_822e11f127e032 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,178,184-188,194,201
+internal/provider/domain_rs.go
+  s_a281bc52404319::t_8d502160850fd9 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,154,160-164,170,177,630-635
+internal/provider/element_application_probe_ds.go
+  s_a281bc52404319::t_833f174b887f3d 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,177
+internal/provider/element_application_probe_rs.go
+  s_a281bc52404319::t_b386afadba4927 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,153,380-385,399-401,520-522,524-525
+internal/provider/element_bgp_config_ds.go
+  s_a281bc52404319::t_45c43a28da75f7 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,148-152,157-161,166-170,179,185-189,194-198,203-207,212-216,221-225,230-234,239-243,248-252,258,261-265,270-274,279-283,288-292,301,307-311,316-320,325-329,334-338,343-347,353
+internal/provider/element_bgp_config_rs.go
+  s_a281bc52404319::t_c78d83f66d24b3 68,75,84,88-92,97-101,106-110,115-119,124-128,133-137,142-146,155,161-165,170-174,179-183,188-192,196-200,204-208,213-217,222-226,231-235,241,244-248,253-257,262-266,271-275,284,290-294,299-303,308-312,317-321,326-330,336,472-473,476-478,634-639,718-723,841,844-848,971-973,975-976
+internal/provider/element_bgp_peer_ds.go
+  s_a281bc52404319::t_05a704b01df076 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,166-170,175-179,184-188,193-197,202-206,211-215,220-224,229-233,238,241-245,250-254,259-263,268-272,277-281,286-290,295-299,304-308,312-316,325,331-335,341,344-348,353-357,362-366,371,374-378,383-387,392-396,401-405,410-414,423,429-433,438-442,447-451
+internal/provider/element_bgp_peer_rs.go
+  s_a281bc52404319::t_ad2a60d28e4c16 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,142-146,151-155,160-164,169-173,178-182,186-190,194-198,203-207,212-216,221,224-228,233-237,242-246,251-255,260-264,269-273,278-282,287-291,295-299,308,314-318,324,327-331,336-340,345-349,354,357-361,366-370,375-379,384-388,393-397,406,412-416,421-425,430-434,601-603,695-698,701-705,895-898,901-903,1245-1250,1279-1281,1352-1355,1358-1362
+internal/provider/element_cellular_module_ds.go
+  s_a281bc52404319::t_eb3d88d3b0f1ec 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,186
+internal/provider/element_cellular_module_rs.go
+  s_a281bc52404319::t_67dba2686422ab 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,162,401-406,537-539,541-542
+internal/provider/element_cellular_module_sim_security_ds.go
+  s_a281bc52404319::t_78b7fd4e115d38 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,186
+internal/provider/element_cellular_module_sim_security_rs.go
+  s_a281bc52404319::t_105db6610f8053 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,162,401-406,546-548,550-551
+internal/provider/element_dns_service_ds.go
+  s_a281bc52404319::t_4c624daf3c27e4 77,84,92,96-100,105-108,111-112,118-122,127-131,136-140,144-148,153,156-160,165-169,173-177,181-185,190-194,199,202-206,211-215,220-224,229-233,238-242,248,251,254-258,263-267,272-276,281-285,290-294,299-303,309,313,316-320,329,335-339,344-348,354,357-361,370,376-380,386,389-393,398-402,407-411,416-420,425-429,438
+internal/provider/element_dns_service_rs.go
+  s_a281bc52404319::t_7aa839f5ba1428 74,81,90,94-98,103-107,112-116,120-124,129,132-136,141-145,149-153,157-161,166-170,175,178-182,187-191,196-200,205-209,214-218,224,227,230-234,239-243,248-252,257-261,266-270,275-279,285,289,292-296,305,311-315,320-324,330,333-337,346,352-356,362,365-369,374-378,383-387,392-396,401-405,414,1343-1348
+internal/provider/element_ds.go
+  s_a281bc52404319::t_4477ac4421150f 80,87,95,99-103,108-111,114-115,121-125,130-134,143,149-153,158-162,167-171,176-180,185-189,194-198,203-207,212-216,220-224,228-232,241,247,250-254,258-262,267-271,276-280,285-289,295,298,301,304-308,313-317,322-326,331-335,340-344,348-352,357,360-364,369-373,378-382,387-391,396-400,405-409,414-418,423-427,432-436,441-445,449-453,458-462,467-471,476-480,485-489,493-497,502-506,511-515,521,524-528,533-537,542-546,552,555,558,561-565,570-574,578-582,587-591,596,599-603,607-611,616-620,625-629,634-638,643-647,652-656,661-665,670-674,679,686,692-696,701-705
+internal/provider/element_interface_ds.go
+  s_a281bc52404319::t_41995a4f497e13 106,113,121,125-129,134-137,140-141,147-151,156-160,165-169,174-178,183-187,192-196,202,205-209,213-217,222-226,231-235,240,247,253-257,261-265,270-274,279-283,288-292,297,300-304,308-312,316-320,325-329,334-338,343-347,352-356,361-365,370,373-377,382-386,391-395,400-404,409-413,418,421-425,430-434,439-443,447-451,456-460,464-468,473-477,482-486,491-495,500,507,513-517,522,525-529,534-538,542-546,551-555,560,563-567,572-576,581-585,590-594,599-603,608-612,616-620,624-628,633-637,642,645-649,657,667,673,676-680,685-689,694-698,704,707-711,715-719,724,727-731,736,739-743,747-751,755-759,764-768,773,776-780,788,798,804,807-811,816-820,825-829,835,838-842,846-850,855-859,864,867-871,876,879-883,888-892,896-900,905,908-912,917-921,926-930,934-938,943-947,952-956,961-965,971,974-978,983-987,992,995-999,1004-1008,1013-1017,1022-1026,1031-1035,1040-1044,1049-1053,1059,1062-1066,1072,1075-1079,1084-1088,1093-1097,1102-1106,1111-1115,1120-1124,1129-1133,1138-1142,1146-1150,1155-1159,1164,1167-1171,1176-1180,1184-1188,1193-1197,1202-1206,1211-1215,1220-1224,1229-1233,1238,1241-1245,1250-1254,1259-1263,1268-1272,1278,1281-1285,1289-1293,1297-1301,1306-1310,1315-1319,1324-1328,1333,1336-1340,1344-1348,1352-1356,1361-1365,1370-1374,1379-1383,1387-1391,1396-1400,1405-1409,1414-1418,1423-1427,1432,1435-1439,1444-1448,1453-1457,1462-1466,1471-1475,1480-1484,1489-1493,1498-1502,1507-1511,1516-1520,1524-1528,1533-1537,1542-1546,1551-1555,1560-1564,1569-1573,1578-1582,1587-1591,1596,1599-1603,1608-1612,1617-1621,1626-1630,1635-1639,1644-1648,1653-1657,1662-1666,1671-1675,1680,1683-1687,1692,1695-1699,1704-1708,1713-1717,1721-1725,1730,1733-1737,1741-1745,1754,1760,1763-1767,1772-1776,1781,1784-1788,1797,1803-1807,1812-1816,1821-1825,1831,1834-1838,1842-1846,1851-1855,1860,1863-1867,1871-1875,1880-1884,1889-1893,1898-1902,1907-1911,1916-1920,1924-1928,1933-1937,1942-1946,1951,1954-1958,1963-1967,1972-1976,1985,1991-1995,2000-2004,2009,2016,2022-2026,2031-2035,2040-2044,2048-2052,2057-2061,2066-2070,2075,2078-2082
+internal/provider/element_interface_rs.go
+  s_a281bc52404319::t_d6c79ac7413d0c 103,110,119,123-127,132-136,141-145,150-154,159-163,168-172,178,181-185,189-193,198-202,207-211,216,223,229-233,237-241,246-250,255-259,264-268,273,276-280,284-288,292-296,301-305,310-314,319-323,327-331,335-339,343-347,351-355,360,363-367,372-376,381-385,390-394,399-403,408,411-415,420-424,429-433,437-441,446-450,454-458,463-467,472-476,481-485,490,497,503-507,512,515-519,524-528,532-536,541-545,550,553-557,562-566,571-575,580-584,589-593,598-602,606-610,614-618,623-627,632,635-639,647,657,663,666-670,675-679,684-688,694,697-701,705-709,714,717-721,726,729-733,737-741,745-749,754-758,763,766-770,778,788,794,797-801,806-810,815-819,825,828-832,836-840,845-849,854,857-861,866,869-873,878-882,886-890,895,898-902,907-911,916-920,924-928,933-937,942-946,951-955,961,964-968,973-977,982,985-989,994-998,1003-1007,1012-1016,1021-1025,1030-1034,1039-1043,1049,1052-1056,1062,1065-1069,1074-1078,1083-1087,1092-1096,1101-1105,1110-1114,1119-1123,1128-1132,1136-1140,1145-1149,1154,1157-1161,1166-1170,1174-1178,1183-1187,1192-1196,1200-1204,1208-1212,1217-1221,1226-1230,1235,1238-1242,1247-1251,1256-1260,1265-1269,1275,1278-1282,1286-1290,1294-1298,1303-1307,1312-1316,1321-1325,1330,1333-1337,1341-1345,1349-1353,1358-1362,1367-1371,1376-1380,1384-1388,1393-1397,1401-1405,1409-1413,1417-1421,1425-1429,1433-1437,1441-1445,1450,1453-1457,1462-1466,1471-1475,1480-1484,1489-1493,1498-1502,1505-1511,1514-1518,1521-1527,1530-1534,1539-1543,1548-1552,1556-1560,1565-1569,1574-1578,1583-1587,1592-1596,1600-1604,1608-1612,1616-1620,1624-1628,1632-1636,1640-1644,1648-1652,1656,1659-1663,1666-1672,1675-1679,1682-1688,1691-1695,1700-1704,1709-1713,1717-1721,1725-1729,1733-1737,1741-1745,1749-1753,1757-1761,1766-1770,1775,1778-1782,1787,1790-1794,1799-1803,1808-1812,1816-1820,1825,1828-1832,1836-1840,1849,1855,1858-1862,1867-1871,1876,1879-1883,1892,1898-1902,1907-1911,1916-1920,1926,1929-1933,1937-1941,1946-1950,1955,1958-1962,1966-1970,1975-1979,1984-1988,1993-1997,2002-2006,2011-2015,2019-2023,2028-2032,2037-2041,2046,2049-2053,2058-2062,2067-2071,2080,2086-2090,2095-2099,2104,2111,2117-2121,2126-2130,2135-2139,2143-2147,2152-2156,2161-2165,2170,2173-2177,3029-3032,3035-3039,3044-3047,3050-3054,3394-3397,3400-3404,3488-3491,3494-3498,3503-3506,3509-3513,3518-3521,3524-3528,3544-3557,3559-3572,3595-3598,3601-3605,3612-3615,3618-3622,3627-3630,3633-3637,3641-3654,3656-3669,3677-3680,3683-3687,3692-3695,3698-3702,3707-3710,3713-3717,4032-4035,4038-4040,4044-4047,4050-4052,4391-4394,4397-4399,4482-4485,4488-4490,4494-4497,4500-4502,4506-4509,4512-4514,4531-4541,4543-4553,4574-4577,4580-4582,4588-4591,4594-4596,4600-4603,4606-4608,4613-4623,4625-4635,4641-4644,4647-4649,4653-4656,4659-4661,4665-4668,4671-4673,4947-4952,5125-5130,5229-5234,5236-5241,5322-5327,5329-5334,5986-5991,6013-6018,6144-6149,6164-6169,6354-6357,6360-6364,6369-6372,6375-6379,6719-6722,6725-6729,6813-6816,6819-6823,6828-6831,6834-6838,6843-6846,6849-6853,6869-6882,6884-6897,6920-6923,6926-6930,6937-6940,6943-6947,6952-6955,6958-6962,6966-6979,6981-6994,7002-7005,7008-7012,7017-7020,7023-7027,7032-7035,7038-7042
+internal/provider/element_iot_device_id_config_ds.go
+  s_a281bc52404319::t_3576b3360f61c7 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,168
+internal/provider/element_iot_device_id_config_rs.go
+  s_a281bc52404319::t_851ef03a7d314c 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,144,507-512
+internal/provider/element_ipfix_ds.go
+  s_a281bc52404319::t_a36a005f7db239 73,80,88,92-96,101-104,107-108,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,187,190-194,199-203,208-212,221,227-231,236-240,245-249,255,258-262,271,281,291,297-301,306-310,315-319,324-328,334,337-341,346-350,356,359-363,368-372,377-381,386-390,395-399,403-407,412-416,421-425,430,437
+internal/provider/element_ipfix_rs.go
+  s_a281bc52404319::t_2835a5799df39f 70,77,86,90-94,99-103,108-112,117-121,126-130,135-139,144-148,153-157,163,166-170,175-179,184-188,197,203-207,212-216,221-225,231,234-238,247,257,267,273-277,282-286,291-295,300-304,310,313-317,322-326,332,335-339,344-348,353-357,362-366,371-375,379-383,388-392,397-401,406,413,1252-1257
+internal/provider/element_multicast_global_config_ds.go
+  s_a281bc52404319::t_0316bc41c7af5e 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,148-152,157-161,165-169,174-178,183-187,192-196,201,204-208,212-216,221-225,230-234,239,242-246
+internal/provider/element_multicast_global_config_rs.go
+  s_a281bc52404319::t_ed1789469100cc 68,75,84,88-92,97-101,106-110,115-119,124-128,133-137,141-145,150-154,159-163,168-172,177,180-184,188-192,197-201,206-210,215,218-222,688-690,692-693
+internal/provider/element_multicast_rp_ds.go
+  s_a281bc52404319::t_b9bd6d3545c82a 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,166,169-173,178-182,187-191,200
+internal/provider/element_multicast_rp_rs.go
+  s_a281bc52404319::t_5d43603678c658 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,142,145-149,154-158,163-167,176,616-621
+internal/provider/element_ntp_ds.go
+  s_a281bc52404319::t_d2f427d52385c7 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,202,209,219
+internal/provider/element_ntp_rs.go
+  s_a281bc52404319::t_d80e04f4b6929a 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,159-163,168-172,178,185,195,463-468,470-475,629-631,633-634
+internal/provider/element_ospf_config_ds.go
+  s_a281bc52404319::t_fefbc80e98fc1b 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,168,171-175,180-184,189-193,198-202,207-211,216-220,225-229,233-237,242-246,251-255,260-264,269-273,278-282,287-291,296,300,303-307,312-316,321-325,330-334,339-343,348-352,357-361,366-370,379,385-389
+internal/provider/element_ospf_config_rs.go
+  s_a281bc52404319::t_d8ccbdb75b7666 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,144,147-151,156-160,165-169,174-178,183-187,192-196,201-205,209-213,218-222,227-231,236-240,245-249,253-257,261-265,270-274,279,283,286-290,295-299,304-308,313-317,322-326,331-335,340-344,349-353,362,368-372,660-663,666-670,850-853,856-858,1097-1102,1225-1228,1231-1235
+internal/provider/element_ospf_global_config_ds.go
+  s_a281bc52404319::t_d22110a7e2988f 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,191-195,200-204,209-213
+internal/provider/element_ospf_global_config_rs.go
+  s_a281bc52404319::t_da066747a3d027 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,157-161,165-169,174-178,183-187,192-196,324-325,328-330,538,541-545,622-624,626-627
+internal/provider/element_radius_ds.go
+  s_a281bc52404319::t_d95ff3d231fce1 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,160,166-170,175-179,184-188,193-197,202-206,211-215,220-224,229-233,238-242,248,251-255,260-264,273
+internal/provider/element_radius_rs.go
+  s_a281bc52404319::t_fd8b677db9c246 67,74,83,87-91,96-100,105-109,114-118,123-127,136,142-146,151-155,160-164,169-173,178-182,187-191,195-199,203-207,212-216,220-224,228-232,236-240,245,248-252,257-261,270,496-499,502-506,511-514,517-521,659-662,665-667,671-674,677-679,779-784,833-838,932-935,938-942,947-950,953-957
+internal/provider/element_routing_aspathaccesslist_ds.go
+  s_a281bc52404319::t_552b2c2d91a0ba 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,166,169-173,178-182,187-191,196-200,209
+internal/provider/element_routing_aspathaccesslist_rs.go
+  s_a281bc52404319::t_4b526131d513ab 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,142,145-149,154-158,163-167,172-176,185,633-638
+internal/provider/element_routing_ipcommunitylist_ds.go
+  s_a281bc52404319::t_714314a59efffe 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,166,169-173,178-182,187-191,200
+internal/provider/element_routing_ipcommunitylist_rs.go
+  s_a281bc52404319::t_0a4a96fe5868d7 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,142,145-149,154-158,163-167,176,616-621
+internal/provider/element_routing_prefixlist_ds.go
+  s_a281bc52404319::t_e501c1571f44f3 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,210-214,219-223,229,236
+internal/provider/element_routing_prefixlist_rs.go
+  s_a281bc52404319::t_8a94bfda0b72b9 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,186-190,195-199,205,212,684-689
+internal/provider/element_routing_routemap_ds.go
+  s_a281bc52404319::t_5a4f4bc07cd99c 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,167-171,176-180,185-189,193-197,202-206,211-215,220-224,229-233,238-242,247-251,256,259-263,268-272,277-281,285-289,294-298,303-307,312-316,321-325,330-334,339-343,348-352,357-361,366-370,375,379,386,392-396
+internal/provider/element_routing_routemap_rs.go
+  s_a281bc52404319::t_84aa76ac7f6e7f 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,143-147,152-156,161-165,169-173,178-182,187-191,196-200,205-209,214-218,223-227,232,235-239,244-248,253-257,261-265,270-274,279-283,288-292,297-301,306-310,315-319,324-328,333-337,342-346,351,355,362,368-372,1017-1022
+internal/provider/element_rs.go
+  s_a281bc52404319::t_160a4d10a70a35 77,84,93,97-101,106-110,119,125-129,134-138,143-147,152-156,161-165,170-174,179-183,188-192,196-200,204-208,217,223,226-230,234-238,243-247,252-256,261-265,271,274,277,280-284,289-293,298-302,307-311,316-320,324-328,333,336-340,345-349,354-358,363-367,372-376,381-385,390-394,399-403,408-412,417-421,425-429,434-438,443-447,452-456,461-465,469-473,478-482,487-491,497,500-504,509-513,518-522,528,531,534,537-541,546-550,554-558,563-567,572,575-579,583-587,592-596,601-605,610-614,619-623,628-632,637-641,646-650,655,662,668-672,677-681,1077-1082,1146-1151,1448-1453,1827-1829,1831-1832
+internal/provider/element_security_zone_ds.go
+  s_a281bc52404319::t_c273fddeb0e370 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,151,157-161,166-170,179,189,195-199
+internal/provider/element_security_zone_rs.go
+  s_a281bc52404319::t_ce260df404dd84 66,73,82,86-90,95-99,104-108,117,127,133-137,142-146,155,165,171-175,552-557,559-564,578-583,585-590
+internal/provider/element_shell_ds.go
+  s_a281bc52404319::t_9c068c723f143b 80,87,95,99-103,108-111,114-115,121-125,130-134,143,149-153,158-162,167-171,176-180,185-189,194-198,203-207,212-216,220-224,228-232,241,247,250-254,258-262,267-271,276-280,285-289,295,298,301,304-308,313-317,322-326,331-335,340-344,348-352,357,360-364,369-373,378-382,387-391,396-400,405-409,414-418,423-427,432-436,441-445,449-453,458-462,467-471,476-480,485-489,493-497,502-506,511-515,521,524-528,533-537,542-546,552,555,558,561-565,570-574,578-582,587-591,596,599-603,607-611,616-620,625-629,634-638,643-647,652-656,661-665,670-674,679,686,692-696,701-705
+internal/provider/element_shell_interface_ds.go
+  s_a281bc52404319::t_e2548db0706ff7 106,113,121,125-129,134-137,140-141,147-151,156-160,165-169,174-178,183-187,192-196,202,205-209,213-217,222-226,231-235,240,247,253-257,261-265,270-274,279-283,288-292,297,300-304,308-312,316-320,325-329,334-338,343-347,352-356,361-365,370,373-377,382-386,391-395,400-404,409-413,418,421-425,430-434,439-443,447-451,456-460,464-468,473-477,482-486,491-495,500,507,513-517,522,525-529,534-538,542-546,551-555,560,563-567,572-576,581-585,590-594,599-603,608-612,616-620,624-628,633-637,642,645-649,657,667,673,676-680,685-689,694-698,704,707-711,715-719,724,727-731,736,739-743,747-751,755-759,764-768,773,776-780,788,798,804,807-811,816-820,825-829,835,838-842,846-850,855-859,864,867-871,876,879-883,888-892,896-900,905,908-912,917-921,926-930,934-938,943-947,952-956,961-965,971,974-978,983-987,992,995-999,1004-1008,1013-1017,1022-1026,1031-1035,1040-1044,1049-1053,1059,1062-1066,1072,1075-1079,1084-1088,1093-1097,1102-1106,1111-1115,1120-1124,1129-1133,1138-1142,1146-1150,1155-1159,1164,1167-1171,1176-1180,1184-1188,1193-1197,1202-1206,1211-1215,1220-1224,1229-1233,1238,1241-1245,1250-1254,1259-1263,1268-1272,1278,1281-1285,1289-1293,1297-1301,1306-1310,1315-1319,1324-1328,1333,1336-1340,1344-1348,1352-1356,1361-1365,1370-1374,1379-1383,1387-1391,1396-1400,1405-1409,1414-1418,1423-1427,1432,1435-1439,1444-1448,1453-1457,1462-1466,1471-1475,1480-1484,1489-1493,1498-1502,1507-1511,1516-1520,1524-1528,1533-1537,1542-1546,1551-1555,1560-1564,1569-1573,1578-1582,1587-1591,1596,1599-1603,1608-1612,1617-1621,1626-1630,1635-1639,1644-1648,1653-1657,1662-1666,1671-1675,1680,1683-1687,1692,1695-1699,1704-1708,1713-1717,1721-1725,1730,1733-1737,1741-1745,1754,1760,1763-1767,1772-1776,1781,1784-1788,1797,1803-1807,1812-1816,1821-1825,1831,1834-1838,1842-1846,1851-1855,1860,1863-1867,1871-1875,1880-1884,1889-1893,1898-1902,1907-1911,1916-1920,1924-1928,1933-1937,1942-1946,1951,1954-1958,1963-1967,1972-1976,1985,1991-1995,2000-2004,2009,2016,2022-2026,2031-2035,2040-2044,2048-2052,2057-2061,2066-2070,2075,2078-2082
+internal/provider/element_shell_interface_rs.go
+  s_a281bc52404319::t_a3de45f0063f75 103,110,119,123-127,132-136,141-145,150-154,159-163,168-172,178,181-185,189-193,198-202,207-211,216,223,229-233,237-241,246-250,255-259,264-268,273,276-280,284-288,292-296,301-305,310-314,319-323,327-331,335-339,343-347,351-355,360,363-367,372-376,381-385,390-394,399-403,408,411-415,420-424,429-433,437-441,446-450,454-458,463-467,472-476,481-485,490,497,503-507,512,515-519,524-528,532-536,541-545,550,553-557,562-566,571-575,580-584,589-593,598-602,606-610,614-618,623-627,632,635-639,647,657,663,666-670,675-679,684-688,694,697-701,705-709,714,717-721,726,729-733,737-741,745-749,754-758,763,766-770,778,788,794,797-801,806-810,815-819,825,828-832,836-840,845-849,854,857-861,866,869-873,878-882,886-890,895,898-902,907-911,916-920,924-928,933-937,942-946,951-955,961,964-968,973-977,982,985-989,994-998,1003-1007,1012-1016,1021-1025,1030-1034,1039-1043,1049,1052-1056,1062,1065-1069,1074-1078,1083-1087,1092-1096,1101-1105,1110-1114,1119-1123,1128-1132,1136-1140,1145-1149,1154,1157-1161,1166-1170,1174-1178,1183-1187,1192-1196,1200-1204,1208-1212,1217-1221,1226-1230,1235,1238-1242,1247-1251,1256-1260,1265-1269,1275,1278-1282,1286-1290,1294-1298,1303-1307,1312-1316,1321-1325,1330,1333-1337,1341-1345,1349-1353,1358-1362,1367-1371,1376-1380,1384-1388,1393-1397,1401-1405,1409-1413,1417-1421,1425-1429,1433-1437,1441-1445,1450,1453-1457,1462-1466,1471-1475,1480-1484,1489-1493,1498-1502,1505-1511,1514-1518,1521-1527,1530-1534,1539-1543,1548-1552,1556-1560,1565-1569,1574-1578,1583-1587,1592-1596,1600-1604,1608-1612,1616-1620,1624-1628,1632-1636,1640-1644,1648-1652,1656,1659-1663,1666-1672,1675-1679,1682-1688,1691-1695,1700-1704,1709-1713,1717-1721,1725-1729,1733-1737,1741-1745,1749-1753,1757-1761,1766-1770,1775,1778-1782,1787,1790-1794,1799-1803,1808-1812,1816-1820,1825,1828-1832,1836-1840,1849,1855,1858-1862,1867-1871,1876,1879-1883,1892,1898-1902,1907-1911,1916-1920,1926,1929-1933,1937-1941,1946-1950,1955,1958-1962,1966-1970,1975-1979,1984-1988,1993-1997,2002-2006,2011-2015,2019-2023,2028-2032,2037-2041,2046,2049-2053,2058-2062,2067-2071,2080,2086-2090,2095-2099,2104,2111,2117-2121,2126-2130,2135-2139,2143-2147,2152-2156,2161-2165,2170,2173-2177,3022-3025,3028-3032,3037-3040,3043-3047,3387-3390,3393-3397,3481-3484,3487-3491,3496-3499,3502-3506,3511-3514,3517-3521,3537-3550,3552-3565,3588-3591,3594-3598,3605-3608,3611-3615,3620-3623,3626-3630,3634-3647,3649-3662,3670-3673,3676-3680,3685-3688,3691-3695,3700-3703,3706-3710,4025-4028,4031-4033,4037-4040,4043-4045,4384-4387,4390-4392,4475-4478,4481-4483,4487-4490,4493-4495,4499-4502,4505-4507,4524-4534,4536-4546,4567-4570,4573-4575,4581-4584,4587-4589,4593-4596,4599-4601,4606-4616,4618-4628,4634-4637,4640-4642,4646-4649,4652-4654,4658-4661,4664-4666,4940-4945,5118-5123,5222-5227,5229-5234,5315-5320,5322-5327,5979-5984,6006-6011,6137-6142,6157-6162,6345-6348,6351-6355,6360-6363,6366-6370,6710-6713,6716-6720,6804-6807,6810-6814,6819-6822,6825-6829,6834-6837,6840-6844,6860-6873,6875-6888,6911-6914,6917-6921,6928-6931,6934-6938,6943-6946,6949-6953,6957-6970,6972-6985,6993-6996,6999-7003,7008-7011,7014-7018,7023-7026,7029-7033,7359-7377
+internal/provider/element_shell_rs.go
+  s_a281bc52404319::t_f11218f17bf8e3 87,94,103,107-111,116-120,129,135-139,144-148,153-157,162-166,171-175,180-184,189-193,198-202,206-210,214-218,227,233,236-240,244-248,253-257,262-266,271-275,281,284,287,290-294,299-303,308-312,317-321,326-330,334-338,343,346-350,355-359,364-368,373-377,382-386,391-395,400-404,409-413,418-422,427-431,435-439,444-448,453-457,462-466,471-475,479-483,488-492,497-501,507,510-514,519-523,528-532,538,541,544,547-551,556-560,564-568,573-577,582,585-589,593-597,602-606,611-615,620-624,629-633,638-642,647-651,656-660,665,672,678-682,687-691,1422-1427,1491-1496,1793-1798
+internal/provider/element_snmp_agent_ds.go
+  s_a281bc52404319::t_ec1aed85296f6e 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,171,177-181,185-189,194-198,203,206-210,214-218,223-227,232-236,241-245,250-254,259-263,268-272,277-281,286-290,296,299
+internal/provider/element_snmp_agent_rs.go
+  s_a281bc52404319::t_ab8a1079b4c7c1 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,147,153-157,161-165,168-174,177-181,186,189-193,197-201,206-210,215-219,223-227,231-235,240-244,248-252,256-260,265-269,274-278,283-287,293,296,514-527,555-558,561-565,572-575,578-582,706-716,742-745,748-750,756-759,762-764,871-876,1020-1033,1061-1064,1067-1071,1078-1081,1084-1088
+internal/provider/element_snmp_trap_ds.go
+  s_a281bc52404319::t_9368045ea1ce9c 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,167-171,180,186-190,194-198,203,206-210,214-218,222-226,231-235,240-244,249-253,258-262,267-271,276-280,285,288,291-295
+internal/provider/element_snmp_trap_rs.go
+  s_a281bc52404319::t_e46b63e6cd020d 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,143-147,156,162-166,170-174,177-183,186,189-193,197-201,205-209,213-217,221-225,230-234,238-242,246-250,255-259,264-268,273-277,282,285,288-292,506-519,538-541,544-548,555-558,561-565,692-702,719-722,725-727,733-736,739-741,855-860,1017-1030,1049-1052,1055-1059,1066-1069,1072-1076
+internal/provider/element_static_route_ds.go
+  s_a281bc52404319::t_fe7e3d922ffe3c 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,210-214,219-223,228-232,238,241-245,254,260-264
+internal/provider/element_static_route_rs.go
+  s_a281bc52404319::t_0821265493d382 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,186-190,195-199,204-208,214,217-221,230,236-240,749-754
+internal/provider/element_syslog_server_ds.go
+  s_a281bc52404319::t_afa73dd760e1dd 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,191-195,200-204,209-213,218-222,227-231,236-240,245-249,254-258,263-267,276
+internal/provider/element_syslog_server_rs.go
+  s_a281bc52404319::t_79799a0d6a9ea7 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,158-162,167-171,176-180,185-189,194-198,203-207,212-216,221-225,230-234,239-243,252,759-764
+internal/provider/element_tacacs_plus_server_ds.go
+  s_a281bc52404319::t_ea0f9f0ca90770 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,210-214,219-223,228-232,237-241,246-250,256,263
+internal/provider/element_tacacs_plus_server_rs.go
+  s_a281bc52404319::t_775ad62ec0d8c1 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,185-189,193-197,202-206,211-215,220-224,229-233,239,246,462-465,468-472,608-611,614-616,777-782,868-871,874-878
+internal/provider/element_toolkit_ds.go
+  s_a281bc52404319::t_9b7fe9468c5673 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186
+internal/provider/element_toolkit_rs.go
+  s_a281bc52404319::t_2567bc4c59865b 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,158-162,531-533,535-536
+internal/provider/event_correlation_policy_rule_ds.go
+  s_a281bc52404319::t_9590c71a8174ff 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,167-171,175-179,183-187,192-196,201,204-208,212-216,221-225,230,233,240,246-250,255-259,264-268,277,283-287,292-296,301-305,310-314,323
+internal/provider/event_correlation_policy_rule_rs.go
+  s_a281bc52404319::t_62a9cee6020078 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,143-147,151-155,159-163,168-172,177,180-184,188-192,197-201,206,209,216,222-226,231-235,240-244,253,259-263,268-272,277-281,286-290,299,862-867,887-892,918-923
+internal/provider/event_correlation_policy_set_ds.go
+  s_a281bc52404319::t_d845467a11f0df 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,178,184-188,193-197,202-206,212,219
+internal/provider/event_correlation_policy_set_rs.go
+  s_a281bc52404319::t_8035ea85fd4722 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,154,160-164,169-173,178-182,188,195,634-639,664-669
+internal/provider/external_ca_config_ds.go
+  s_a281bc52404319::t_2ce5e8b231a95d 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,173-177,182-186,191-195,200-204,209-213,218-222,227-231,236-240,245,248-252
+internal/provider/external_ca_config_rs.go
+  s_a281bc52404319::t_90102b8bf62c0e 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,149-153,158-162,167-171,176-180,185-189,194-198,201-207,210-214,219-223,228,231-235,437-450,575-585,829-842
+internal/provider/global_prefix_filter_ds.go
+  s_a281bc52404319::t_d92efa789e3dd8 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,151,157-161,167,170-174,179-183
+internal/provider/global_prefix_filter_rs.go
+  s_a281bc52404319::t_294525ebc5728f 67,74,83,87-91,96-100,105-109,114-118,127,133-137,143,146-150,155-159
+internal/provider/iot_profile_ds.go
+  s_a281bc52404319::t_ea31d81ff38bd1 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,148-152,157-161,166-170,175-179,184-188,193-197,202-206,211-215,220-224,229-233,238-242,247-251,260,266-270,274-278,283,286-290,294-298,303-307,312-316,321-325,330-334,339-343,348-352,357-361,366
+internal/provider/iot_profile_rs.go
+  s_a281bc52404319::t_c7b6ee4108ce20 68,75,84,88-92,97-101,106-110,115-119,124-128,133-137,142-146,151-155,160-164,169-173,178-182,187-191,196-200,205-209,214-218,223-227,236,242-246,250-254,259,262-266,270-274,278-282,286-290,294-298,302-306,311-315,318-324,327-331,334-340,343-347,352-356,361-365,370,624-627,630-634,639-642,645-649,654-667,669-682,831-834,837-839,843-846,849-851,857-867,869-879,1040-1045,1224-1227,1230-1234,1239-1242,1245-1249,1254-1267,1269-1282
+internal/provider/ipfix_collector_context_ds.go
+  s_a281bc52404319::t_63403fa5cbbb3c 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150
+internal/provider/ipfix_collector_context_rs.go
+  s_a281bc52404319::t_b60b699ac1afbd 66,73,82,86-90,95-99,104-108,113-117,122-126
+internal/provider/ipfix_filter_context_ds.go
+  s_a281bc52404319::t_a03ad49be4a921 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150
+internal/provider/ipfix_filter_context_rs.go
+  s_a281bc52404319::t_f6fd298e292655 66,73,82,86-90,95-99,104-108,113-117,122-126
+internal/provider/ipfix_global_prefix_ds.go
+  s_a281bc52404319::t_8fc8cdbf72b3cc 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,150,156-160,169
+internal/provider/ipfix_global_prefix_rs.go
+  s_a281bc52404319::t_a9ae5128e75de3 66,73,82,86-90,95-99,104-108,113-117,126,132-136,145,502-507,515-520
+internal/provider/ipfix_local_prefix_ds.go
+  s_a281bc52404319::t_e23af06d523fea 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/ipfix_local_prefix_rs.go
+  s_a281bc52404319::t_ce535a39d7c2ca 66,73,82,86-90,95-99,104-108,113-117,122-126,135,488-493
+internal/provider/ipfix_profile_ds.go
+  s_a281bc52404319::t_d1928654aed73f 73,80,88,92-96,101-104,107-108,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,187,190-194,199-203,208-212,221,227-231,236-240,245-249,255,258-262,271,281,291,297-301,306-310,315-319,324-328,334,337-341,346-350,356,359-363,368-372,377-381,386-390,394-398,403-407,412-416,421,428
+internal/provider/ipfix_profile_rs.go
+  s_a281bc52404319::t_50e0a865cf0cec 70,77,86,90-94,99-103,108-112,117-121,126-130,135-139,144-148,153-157,163,166-170,175-179,184-188,197,203-207,212-216,221-225,231,234-238,247,257,267,273-277,282-286,291-295,300-304,310,313-317,322-326,332,335-339,344-348,353-357,362-366,370-374,379-383,388-392,397,404,1231-1236
+internal/provider/ipfix_template_ds.go
+  s_a281bc52404319::t_69a3a1c361c2ec 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,147-151,156-160,165-169,174-178,187,197,203-207
+internal/provider/ipfix_template_rs.go
+  s_a281bc52404319::t_a46246fdabf5ba 66,73,82,86-90,95-99,104-108,117,123-127,132-136,141-145,150-154,163,173,179-183,351-354,470-473,567-572,598-603,605-610,679-682
+internal/provider/ipsec_profile_ds.go
+  s_a281bc52404319::t_ba5e9c2f6e8bbf 78,85,93,97-101,106-109,112-113,119-123,128-132,137-141,145-149,154-158,163-167,172-176,180-184,189-193,198-202,207-211,216-220,225,228-232,237-241,246-250,255-259,264-268,273-277,282-286,291-295,300-304,309-313,317-321,326-330,335-339,344-348,353-357,362-366,371-375,380-384,389,392-396,401-405,410-414,419-423,428-432,437-441,446-450,455-459,464-468,473,476-480,485-489,494-498,503-507,512-516,520-524,529-533,537-541,546-550,555,558-562,567-571,576-580,585-589,593-597,602-606,615,625,635,645,655,665,675,681,684-688,693-697,702-706,711-715,720-724,730,733-737,745,755,765,771,774,777-781,786-790,794-798,803-807,812-816,821-825,830-834,839-843,848-852,856-860,865-869,878,888,898,908,918,928,938,944,947-951,956-960,965-969,974-978,983-987,993,996-1000,1005,1008-1012,1021,1027-1031
+internal/provider/ipsec_profile_rs.go
+  s_a281bc52404319::t_cb249a5644c46e 75,82,91,95-99,104-108,113-117,121-125,130-134,139-143,148-152,156-160,165-169,173-177,181-185,189-193,197-201,205-209,213-217,222,225-229,234-238,243-247,252-256,261-265,270-274,277-283,286-290,293-299,302-306,311-315,320-324,328-332,337-341,346-350,355-359,364-368,372-376,380-384,388-392,396-400,404-408,412-416,420-424,428,431-435,438-444,447-451,454-460,463-467,472-476,481-485,489-493,497-501,505-509,513-517,521-525,529-533,538-542,547,550-554,559-563,568-572,577-581,586-590,594-598,603-607,611-615,620-624,629,632-636,641-645,650-654,659-663,667-671,676-680,689,699,709,719,729,739,749,755,758-762,767-771,776-780,785-789,794-798,804,807-811,819,829,839,845,848,851-855,860-864,868-872,877-881,886-890,895-899,904-908,913-917,922-926,930-934,939-943,952,962,972,982,992,1002,1012,1018,1021-1025,1030-1034,1039-1043,1048-1052,1057-1061,1067,1070-1074,1079,1082-1086,1095,1101-1105,1563-1566,1569-1573,1578-1581,1584-1588,1593-1596,1599-1603,1619-1632,1634-1647,1670-1673,1676-1680,1687-1690,1693-1697,1702-1705,1708-1712,1716-1729,1731-1744,1752-1755,1758-1762,1767-1770,1773-1777,1782-1785,1788-1792,2125-2128,2131-2133,2137-2140,2143-2145,2149-2152,2155-2157,2174-2184,2186-2196,2217-2220,2223-2225,2231-2234,2237-2239,2243-2246,2249-2251,2256-2266,2268-2278,2284-2287,2290-2292,2296-2299,2302-2304,2308-2311,2314-2316,2927-2932,2934-2939,2941-2946,2948-2953,2955-2960,2962-2967,2969-2974,3011-3016,3018-3023,3025-3030,3102-3107,3109-3114,3116-3121,3123-3128,3130-3135,3137-3142,3144-3149,3192-3197,3324-3327,3330-3334,3339-3342,3345-3349,3354-3357,3360-3364,3380-3393,3395-3408,3431-3434,3437-3441,3448-3451,3454-3458,3463-3466,3469-3473,3477-3490,3492-3505,3513-3516,3519-3523,3528-3531,3534-3538,3543-3546,3549-3553
+internal/provider/local_prefix_filter_ds.go
+  s_a281bc52404319::t_4f632ed3c7f6e0 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150
+internal/provider/local_prefix_filter_rs.go
+  s_a281bc52404319::t_b3ddd01ef3c1e6 66,73,82,86-90,95-99,104-108,113-117,122-126
+internal/provider/multicast_peer_group_profile_ds.go
+  s_a281bc52404319::t_dff85c6009adf4 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,184,191
+internal/provider/multicast_peer_group_profile_rs.go
+  s_a281bc52404319::t_35f45e78b650bd 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,160,167,599-604
+internal/provider/nat_global_prefix_ds.go
+  s_a281bc52404319::t_127a76fce79776 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,150,156-160,169
+internal/provider/nat_global_prefix_rs.go
+  s_a281bc52404319::t_0db7e8a9ff0db8 66,73,82,86-90,95-99,104-108,113-117,126,132-136,145,500-505,513-518
+internal/provider/nat_local_prefix_ds.go
+  s_a281bc52404319::t_2ec47c547df5e5 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/nat_local_prefix_rs.go
+  s_a281bc52404319::t_41b2b447a7a1ac 66,73,82,86-90,95-99,104-108,113-117,122-126,135,488-493
+internal/provider/nat_policy_pool_ds.go
+  s_a281bc52404319::t_345a01b05a38fb 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/nat_policy_pool_rs.go
+  s_a281bc52404319::t_8b291cddb38e06 66,73,82,86-90,95-99,104-108,113-117,122-126,135,486-491
+internal/provider/nat_policy_rule_ds.go
+  s_a281bc52404319::t_3a18608d322f99 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,148-152,161,167-171,177,180-184,189-193,198-202,207-211,217,220-224,229-233,238-242,247-251,256-260,265-269,274-278,283-287,292-296,302,305-309,314-318,327
+internal/provider/nat_policy_rule_rs.go
+  s_a281bc52404319::t_e7c098082ccd1e 68,75,84,88-92,97-101,106-110,115-119,124-128,137,143-147,153,156-160,165-169,174-178,183-187,193,196-200,205-209,214-218,223-227,232-236,241-245,250-254,259-263,268-272,278,281-285,290-294,303,1010-1015
+internal/provider/nat_policy_set_ds.go
+  s_a281bc52404319::t_f25c9df20983bd 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,153,159-163,168-172,177-181,186-190,195-199,204-208,213-217,222-226,231-235,240-244,249-253,258-262,267-271,280,286-290,296,299-303,308-312,317-321,326-330,336,339-343,348-352,357-361,366-370,375-379,384-388,393-397,402-406,411-415,421,424-428,433-437,446,453,456-460,465-469,478,488,494-498
+internal/provider/nat_policy_set_rs.go
+  s_a281bc52404319::t_3aa9a5fcc187ad 69,76,85,89-93,98-102,107-111,116-120,129,135-139,144-148,153-157,162-166,171-175,180-184,189-193,198-202,211,215-219,224-228,233-237,242-246,251-255,264,270-274,280,283-287,292-296,301-305,310-314,320,323-327,332-336,341-345,350-354,359-363,368-372,377-381,386-390,395-399,405,408-412,417-421,430,437,440-444,449-453,462,472,478-482,1219-1224,1381-1386,1388-1393
+internal/provider/nat_policy_set_stack_ds.go
+  s_a281bc52404319::t_2ffd67c25ca82d 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,168,178
+internal/provider/nat_policy_set_stack_rs.go
+  s_a281bc52404319::t_cea7e04bdfdae2 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,144,154,529-534,536-541
+internal/provider/nat_zone_ds.go
+  s_a281bc52404319::t_93ea206056947c 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,191-195,200-204,213
+internal/provider/nat_zone_rs.go
+  s_a281bc52404319::t_629aa9134af399 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,158-162,167-171,176-180,189,623-628
+internal/provider/network_context_ds.go
+  s_a281bc52404319::t_c04d88489237ec 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150
+internal/provider/network_context_rs.go
+  s_a281bc52404319::t_ddf5f230bb7c9e 66,73,82,86-90,95-99,104-108,113-117,122-126
+internal/provider/ntp_template_ds.go
+  s_a281bc52404319::t_44bb031ae8338a 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,211,218
+internal/provider/ntp_template_rs.go
+  s_a281bc52404319::t_702e045bfea7de 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,159-163,168-172,177-181,187,194,650-655
+internal/provider/path_global_prefix_ds.go
+  s_a281bc52404319::t_c497aa93124822 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,150,160,166-170,179
+internal/provider/path_global_prefix_rs.go
+  s_a281bc52404319::t_b0e332628c0b31 66,73,82,86-90,95-99,104-108,113-117,126,136,142-146,155,522-527,529-534,542-547
+internal/provider/path_group_ds.go
+  s_a281bc52404319::t_645aabbbe105d1 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,184
+internal/provider/path_group_rs.go
+  s_a281bc52404319::t_b368d530485746 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,160
+internal/provider/path_local_prefix_ds.go
+  s_a281bc52404319::t_9e21e8ebb81875 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/path_local_prefix_rs.go
+  s_a281bc52404319::t_b38015eb1da495 66,73,82,86-90,95-99,104-108,113-117,122-126,135,488-493
+internal/provider/path_policy_rule_ds.go
+  s_a281bc52404319::t_c15ecd4d6fd523 74,81,89,93-97,102-105,108-109,115-119,124-128,137,143-147,151-155,160-164,169-173,178,181-185,194,200-204,209-213,218-222,227-231,236-240,245-249,254-258,262-266,271-275,280-284,290,293-297,302-306,311-315,321,324-328,333-337,342-346,352,355,358-362,366-370,375-379,384-388,393-397,402-406,411,414-418,427,437,443-447,455,465,471
+internal/provider/path_policy_rule_rs.go
+  s_a281bc52404319::t_0cd803a220e4ab 71,78,87,91-95,100-104,113,119-123,127-131,136-140,145-149,154,157-161,170,176-180,185-189,194-198,203-207,212-216,221-225,230-234,238-242,247-251,256-260,266,269-273,278-282,287-291,297,300-304,309-313,318-322,328,331,334-338,342-346,351-355,360-364,369-373,378-382,387,390-394,403,413,419-423,431,441,447,1155-1160,1194-1199,1358-1363,1365-1370,1379-1384,1386-1391
+internal/provider/path_policy_set_ds.go
+  s_a281bc52404319::t_89b114f32fed3e 76,83,91,95-99,104-107,110-111,117-121,126-130,135-139,144-148,153-157,162-166,171-175,180-184,189-193,198-202,207-211,216-220,225-229,234-238,243-247,256,262-266,270-274,279-283,288-292,297,300-304,309-313,322,328-332,336-340,345-349,354-358,363-367,376,386,392-396,405,411,414-418,423-427,432-436,441-445,450-454,459-463,468-472,477-481,486-490,495-499,504-508,512-516,521-525,530-534,540,543-547,552-556,561-565,571,574-578,583-587,592-596,602,605,608-612,617-621,626-630,634-638,643-647,652-656,661-665,670-674,679,682-686,690-694,699-703,708-712,717-721,730,740,746-750,759,765,768-772,781,791,797-801,809,819,825,829,832-836,841-845,854
+internal/provider/path_policy_set_rs.go
+  s_a281bc52404319::t_4117cbf72bcee1 73,80,89,93-97,102-106,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,214,218-222,227-231,240,246-250,254-258,263-267,272-276,281,284-288,293-297,306,312-316,324,328-332,337-341,346-350,355-359,368,378,384-388,397,403,406-410,415-419,424-428,433-437,442-446,451-455,460-464,469-473,478-482,487-491,496-500,504-508,513-517,522-526,532,535-539,544-548,553-557,563,566-570,575-579,584-588,594,597,600-604,609-613,618-622,626-630,635-639,644-648,653-657,662-666,671,674-678,686,690-694,699-703,708-712,717-721,730,740,746-750,759,765,768-772,781,791,797-801,809,819,825,829,832-836,841-845,854,2199-2204
+internal/provider/path_policy_stack_ds.go
+  s_a281bc52404319::t_cc9e909c02c09e 79,86,94,98-102,107-110,113-114,120-124,129-133,138-142,147-151,155-159,164-168,173-177,182-186,191-195,200-204,209-213,218-222,227-231,236-240,245-249,254-258,263-267,272-276,281-285,294,300-304,308-312,317-321,326-330,335,338-342,347-351,360,366-370,374-378,383-387,392-396,401-405,414,424,430-434,443,449,452-456,461-465,470-474,479-483,488-492,497-501,506-510,515-519,524-528,533-537,542-546,550-554,559-563,568-572,578,581-585,590-594,599-603,609,612-616,621-625,630-634,640,643,646-650,655-659,664-668,672-676,681-685,690-694,699-703,708-712,717,720-724,728-732,737-741,746-750,755-759,768,778,784-788,797,803,806-810,819,829,835-839,847,857,863,867,870-874,879-883,892,898,901-905,910-914,919-923,928-932,937-941,946-950,955-959,964-968,973-977,986,992-996,1001-1005,1010-1014,1019-1023,1028-1032,1037-1041,1046-1050,1055-1059,1064-1068,1073-1077,1082-1086,1091-1095,1100-1104,1109-1113,1118-1122,1127-1131,1136-1140,1145-1149,1154-1158,1163-1167,1172-1176,1181-1185,1190-1194,1199-1203,1212,1219,1222-1226,1231-1235,1244,1251,1254-1258,1267
+internal/provider/path_policy_stack_rs.go
+  s_a281bc52404319::t_32470595ca975f 76,83,92,96-100,105-109,114-118,123-127,135,139-143,148-152,157-161,166-170,175-179,184-188,193-197,202-206,211-215,220-224,229-233,238-242,247-251,260,264-268,273-277,286,292-296,300-304,309-313,318-322,327,330-334,339-343,352,358-362,370,374-378,383-387,392-396,401-405,414,424,430-434,443,449,452-456,461-465,470-474,479-483,488-492,497-501,506-510,515-519,524-528,533-537,542-546,550-554,559-563,568-572,578,581-585,590-594,599-603,609,612-616,621-625,630-634,640,643,646-650,655-659,664-668,672-676,681-685,690-694,699-703,708-712,717,720-724,732,736-740,745-749,754-758,763-767,776,786,792-796,805,811,814-818,827,837,843-847,855,865,871,875,878-882,887-891,900,906,909-913,918-922,927-931,936-940,945-949,954-958,963-967,972-976,981-985,994,1000-1004,1009-1013,1022,1026-1030,1035-1039,1044-1048,1053-1057,1062-1066,1071-1075,1080-1084,1089-1093,1098-1102,1107-1111,1116-1120,1129,1133-1137,1142-1146,1151-1155,1160-1164,1169-1173,1178-1182,1187-1191,1196-1200,1205-1209,1214-1218,1223-1227,1236,1243,1246-1250,1255-1259,1268,1275,1278-1282,1291,3054-3059,3116-3121,3218-3223
+internal/provider/performance_policy_rule_ds.go
+  s_a281bc52404319::t_5110320a7355a9 74,81,89,93-97,102-105,108-109,115-119,124-128,133-137,142-146,151-155,160-164,168-172,176-180,185-189,194,197-201,206,209-213,217-221,225-229,234-238,243,246-250,255,258-262,266-270,274-278,283-287,292,295-299,304,307-311,315-319,323-327,332-336,341,344-348,353,356-360,364-368,372-376,381-385,390,393-397,402,406,409-413,421,431,437,440-444,449-453,458-462,467-471,480,486-490,495-499,504-508,514,521,531,537-541,546-550
+internal/provider/performance_policy_rule_rs.go
+  s_a281bc52404319::t_b400e25e2854f8 71,78,87,91-95,100-104,109-113,118-122,127-131,136-140,144-148,152-156,161-165,170,173-177,182,185-189,193-197,201-205,210-214,219,222-226,231,234-238,242-246,250-254,259-263,268,271-275,280,283-287,291-295,299-303,308-312,317,320-324,329,332-336,340-344,348-352,357-361,366,369-373,378,382,385-389,397,407,413,416-420,425-429,434-438,443-447,456,462-466,471-475,480-484,490,497,507,513-517,522-526,1476-1481,1483-1488,1515-1520,1545-1550,1552-1557
+internal/provider/performance_policy_set_ds.go
+  s_a281bc52404319::t_04118b4acb600a 84,91,99,103-107,112-115,118-119,125-129,134-138,143-147,152-156,161-165,170-174,179-183,188-192,197-201,206-210,219,225-229,234-238,243-247,252-256,261-265,270-274,279-283,287-291,295-299,304-308,313,316-320,325,328-332,336-340,344-348,353-357,362,365-369,374,377-381,385-389,393-397,402-406,411,414-418,423,426-430,434-438,442-446,451-455,460,463-467,472,475-479,483-487,491-495,500-504,509,512-516,521,525,528-532,537-541,549,559,565,568-572,577-581,586-590,595-599,604-608,613-617,622-626,631-635,640-644,653,659-663,668-672,677-681,686-690,696,699-703,708-712,721,731,737-741,745-749,754-758,763-767,771-775,780,783-787,792-796,801-805,810-814,818-822,827,830-834,838-842,847-851,856-860,865,868-872,877-881,886-890,895-899,904-908,912-916,921-925,930-934,939-943,948,951-955,960-964,969-973,977-981,986-990,995-999,1004,1007-1011,1015-1019,1023-1027,1032-1036,1041,1044-1048,1052-1056,1061-1065,1070,1073-1077,1081-1085,1090-1094,1099,1102-1106,1110-1114,1119-1123,1128,1131-1135,1139-1143,1148-1152,1157,1160,1163-1167,1171-1175,1180-1184,1189-1193,1198,1205,1211,1214-1218,1223-1227,1233,1236-1240,1245-1249,1254-1258,1263-1267,1272-1276,1281-1285,1290-1294,1299-1303,1308-1312,1317-1321,1326-1330,1335-1339,1344-1348,1357,1364,1367-1371,1376-1380,1389
+internal/provider/performance_policy_set_rs.go
+  s_a281bc52404319::t_94c615a10b7f5f 81,88,97,101-105,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,195,201-205,214,218-222,227-231,236-240,245-249,254-258,263-267,271-275,279-283,288-292,297,300-304,309,312-316,320-324,328-332,337-341,346,349-353,358,361-365,369-373,377-381,386-390,395,398-402,407,410-414,418-422,426-430,435-439,444,447-451,456,459-463,467-471,475-479,484-488,493,496-500,505,509,512-516,521-525,533,543,549,552-556,561-565,570-574,579-583,588-592,597-601,606-610,615-619,624-628,637,643-647,652-656,661-665,670-674,680,683-687,692-696,705,715,721-725,733,737-741,746-750,755-759,763-767,772,775-779,784-788,793-797,802-806,810-814,819,822-826,830-834,839-843,848-852,857,860-864,869-873,878-882,887-891,896-900,904-908,913-917,922-926,931-935,940,943-947,952-956,961-965,969-973,978-982,987-991,996,999-1003,1007-1011,1015-1019,1024-1028,1033,1036-1040,1044-1048,1053-1057,1062,1065-1069,1073-1077,1082-1086,1091,1094-1098,1102-1106,1111-1115,1120,1123-1127,1131-1135,1140-1144,1149,1152,1155-1159,1163-1167,1172-1176,1181-1185,1190,1197,1203,1206-1210,1215-1219,1225,1228-1232,1237-1241,1250,1254-1258,1263-1267,1272-1276,1281-1285,1290-1294,1299-1303,1308-1312,1317-1321,1326-1330,1335-1339,1344-1348,1357,1364,1367-1371,1376-1380,1389,3113-3118,3528-3533
+internal/provider/performance_policy_stack_ds.go
+  s_a281bc52404319::t_d43555f182ea3b 86,93,101,105-109,114-117,120-121,127-131,136-140,145-149,154-158,162-166,171-175,180-184,189-193,198-202,207-211,216-220,225-229,234-238,243-247,256,262-266,271-275,280-284,289-293,298-302,307-311,316-320,324-328,332-336,341-345,350,353-357,362,365-369,373-377,381-385,390-394,399,402-406,411,414-418,422-426,430-434,439-443,448,451-455,460,463-467,471-475,479-483,488-492,497,500-504,509,512-516,520-524,528-532,537-541,546,549-553,558,562,565-569,574-578,586,596,602,605-609,614-618,623-627,632-636,641-645,650-654,659-663,668-672,677-681,690,696-700,705-709,714-718,723-727,733,736-740,745-749,758,768,774-778,782-786,791-795,800-804,808-812,817,820-824,829-833,838-842,847-851,855-859,864,867-871,875-879,884-888,893-897,902,905-909,914-918,923-927,932-936,941-945,949-953,958-962,967-971,976-980,985,988-992,997-1001,1006-1010,1014-1018,1023-1027,1032-1036,1041,1044-1048,1052-1056,1060-1064,1069-1073,1078,1081-1085,1089-1093,1098-1102,1107,1110-1114,1118-1122,1127-1131,1136,1139-1143,1147-1151,1156-1160,1165,1168-1172,1176-1180,1185-1189,1194,1197,1200-1204,1208-1212,1217-1221,1226-1230,1235,1242,1248,1251-1255,1260-1264,1270,1273-1277,1282-1286,1291-1295,1300-1304,1309-1313,1318-1322,1327-1331,1336-1340,1345-1349,1354-1358,1363-1367,1372-1376,1381-1385,1394,1401,1404-1408,1413-1417,1426,1432,1435-1439,1444-1448,1453-1457,1462-1466,1471-1475,1480-1484,1489-1493,1498-1502,1511,1517-1521,1526-1530,1535-1539,1544-1548,1553-1557,1562-1566,1571-1575,1580-1584,1589-1593,1598-1602,1607-1611,1616-1620,1625-1629,1634-1638,1643-1647,1652-1656,1661-1665,1670-1674,1679-1683,1688-1692,1697-1701,1706-1710,1715-1719,1724-1728,1737,1744,1747-1751,1756-1760,1769,1776,1779-1783,1792
+internal/provider/performance_policy_stack_rs.go
+  s_a281bc52404319::t_f20c1ba5468735 83,90,99,103-107,112-116,121-125,130-134,142,146-150,155-159,164-168,173-177,182-186,191-195,200-204,209-213,218-222,227-231,240,246-250,259,263-267,272-276,281-285,290-294,299-303,308-312,316-320,324-328,333-337,342,345-349,354,357-361,365-369,373-377,382-386,391,394-398,403,406-410,414-418,422-426,431-435,440,443-447,452,455-459,463-467,471-475,480-484,489,492-496,501,504-508,512-516,520-524,529-533,538,541-545,550,554,557-561,566-570,578,588,594,597-601,606-610,615-619,624-628,633-637,642-646,651-655,660-664,669-673,682,688-692,697-701,706-710,715-719,725,728-732,737-741,750,760,766-770,778,782-786,791-795,800-804,808-812,817,820-824,829-833,838-842,847-851,855-859,864,867-871,875-879,884-888,893-897,902,905-909,914-918,923-927,932-936,941-945,949-953,958-962,967-971,976-980,985,988-992,997-1001,1006-1010,1014-1018,1023-1027,1032-1036,1041,1044-1048,1052-1056,1060-1064,1069-1073,1078,1081-1085,1089-1093,1098-1102,1107,1110-1114,1118-1122,1127-1131,1136,1139-1143,1147-1151,1156-1160,1165,1168-1172,1176-1180,1185-1189,1194,1197,1200-1204,1208-1212,1217-1221,1226-1230,1235,1242,1248,1251-1255,1260-1264,1270,1273-1277,1282-1286,1295,1299-1303,1308-1312,1317-1321,1326-1330,1335-1339,1344-1348,1353-1357,1362-1366,1371-1375,1380-1384,1389-1393,1402,1409,1412-1416,1421-1425,1434,1440,1443-1447,1452-1456,1461-1465,1470-1474,1479-1483,1488-1492,1497-1501,1506-1510,1519,1525-1529,1534-1538,1547,1551-1555,1560-1564,1569-1573,1578-1582,1587-1591,1596-1600,1605-1609,1614-1618,1623-1627,1632-1636,1641-1645,1654,1658-1662,1667-1671,1676-1680,1685-1689,1694-1698,1703-1707,1712-1716,1721-1725,1730-1734,1739-1743,1748-1752,1761,1768,1771-1775,1780-1784,1793,1800,1803-1807,1816,2414-2430,3923-3928,4338-4343,4394-4399,4496-4501,4512-4528
+internal/provider/performance_profile_ds.go
+  s_a281bc52404319::t_e689279955cf1e 76,83,91,95-99,104-107,110-111,117-121,126-130,135-139,143-147,152,155-159,164-168,172-176,181,184-188,192-196,201-205,210-214,219,222-226,231-235,239-243,248-252,257-261,266-270,275,278-282,287-291,295-299,304-308,313-317,322,325-329,333-337,341-345,350-354,359,362-366,370-374,379-383,388,391-395,399-403,408-412,417,420-424,428-432,437-441,446,449-453,457-461,466-470,475,478,481-485,489-493,498-502,507-511,516,523
+internal/provider/performance_profile_rs.go
+  s_a281bc52404319::t_b8341cb9494c9e 73,80,89,93-97,102-106,111-115,119-123,128,131-135,140-144,148-152,157,160-164,168-172,177-181,186-190,195,198-202,207-211,215-219,224-228,233-237,242-246,251,254-258,263-267,271-275,280-284,289-293,298,301-305,309-313,317-321,326-330,335,338-342,346-350,355-359,364,367-371,375-379,384-388,393,396-400,404-408,413-417,422,425-429,433-437,442-446,451,454,457-461,465-469,474-478,483-487,492,499,1523-1528
+internal/provider/probe_config_ds.go
+  s_a281bc52404319::t_bf67e176aed9d0 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,184,187,193-197,202-206,215,221-225,230-234,239-243,249,252-256,261-265,274,430-433
+internal/provider/probe_config_rs.go
+  s_a281bc52404319::t_5d4bcda7bde996 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,160,163,169-173,178-182,191,197-201,206-210,215-219,225,228-232,237-241,250,335-338,469-472,614-617,747-750,778-783,866-869
+internal/provider/probe_profile_ds.go
+  s_a281bc52404319::t_0eb7dccec9d1ec 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159,169
+internal/provider/probe_profile_rs.go
+  s_a281bc52404319::t_bb52196729931f 66,73,82,86-90,95-99,104-108,113-117,122-126,135,145,506-511,513-518
+internal/provider/qos_policy_global_prefix_ds.go
+  s_a281bc52404319::t_85ad34a1d20366 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,150,160,166-170,179
+internal/provider/qos_policy_global_prefix_rs.go
+  s_a281bc52404319::t_a774cc35546c75 66,73,82,86-90,95-99,104-108,113-117,126,136,142-146,155,522-527,529-534,542-547
+internal/provider/qos_policy_local_prefix_ds.go
+  s_a281bc52404319::t_6657001ac9d17e 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/qos_policy_local_prefix_rs.go
+  s_a281bc52404319::t_360726078f4055 66,73,82,86-90,95-99,104-108,113-117,122-126,135,488-493
+internal/provider/qos_policy_rule_ds.go
+  s_a281bc52404319::t_db6a72052ca220 71,78,86,90-94,99-102,105-106,112-116,121-125,134,140-144,153,159-163,168-172,176-180,185,188-192,197-201,206-210,215-219,224-228,233-237,242-246,255,265,271-275,283,293,299
+internal/provider/qos_policy_rule_rs.go
+  s_a281bc52404319::t_0a67221307ab5b 68,75,84,88-92,97-101,110,116-120,129,135-139,144-148,152-156,161,164-168,173-177,182-186,191-195,200-204,209-213,218-222,231,241,247-251,259,269,275,743-748,756-761,825-830,832-837,846-851,853-858
+internal/provider/qos_policy_set_ds.go
+  s_a281bc52404319::t_39496ff3793aee 75,82,90,94-98,103-106,109-110,116-120,125-129,134-138,143-147,151-155,160-164,169,172-176,181-185,190-194,198-202,207-211,216-220,225-229,234,237-241,247,251,254-258,263-267,272-276,282,285-289,294-298,307,313-317,322-326,332,335-339,344-348,353-357,362-366,375,381-385
+internal/provider/qos_policy_set_rs.go
+  s_a281bc52404319::t_d72191c98ddc18 72,79,88,92-96,101-105,110-114,119-123,127-131,136-140,145,148-152,157-161,166-170,174-178,183-187,192-196,201-205,210,213-217,223,227,230-234,239-243,248-252,258,261-265,270-274,283,289-293,298-302,308,311-315,320-324,329-333,338-342,351,357-361,1146-1151
+internal/provider/qos_policy_stack_ds.go
+  s_a281bc52404319::t_69513e8ccc5d66 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,177,187
+internal/provider/qos_policy_stack_rs.go
+  s_a281bc52404319::t_82e55ef7eab999 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,153,163,550-555,557-562
+internal/provider/resource_locator.go
+  s_a281bc52404319::t_10869ea84a1996 77,80-82,85-88,91-94,97-99,106
+internal/provider/schema_datasource.go
+  s_a281bc52404319::t_9263079578e4ef 11,419-420,639,928,1786,1795,1838,10423-10454,15691-15708,24015-24094,48519-48536,48869-48924
+internal/provider/schema_resource.go
+  s_a281bc52404319::t_6a8117befa23d0 11,419-420,639,928,1786,1795,1838,2717-2718,2721-2722,2731-2732,2735-2736,8231-8232,10051-10052,11077-11112,11383-11384,11387-11388,11397-11398,11401-11402,16769-16790,20731-20732,25547-25548,25811-25894,26365-26366,29825-29826,33559-33560,33565-33566,37205-37206,37209-37210,37451-37452,44757-44758,50973-50974,52833-52854,53219-53278
+internal/provider/sdwanapps_config_ds.go
+  s_a281bc52404319::t_cf9f25ff5d20e9 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159
+internal/provider/sdwanapps_config_rs.go
+  s_a281bc52404319::t_2877e06df2e563 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135
+internal/provider/security_policy_global_prefix_ds.go
+  s_a281bc52404319::t_c61ad251a54def 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,150,160,166-170,179
+internal/provider/security_policy_global_prefix_rs.go
+  s_a281bc52404319::t_daccb7ab2e145f 66,73,82,86-90,95-99,104-108,113-117,126,136,142-146,155,522-527,529-534,542-547
+internal/provider/security_policy_local_prefix_ds.go
+  s_a281bc52404319::t_29cab150b1b0e4 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/security_policy_local_prefix_rs.go
+  s_a281bc52404319::t_1ace8f6949538f 66,73,82,86-90,95-99,104-108,113-117,122-126,135,488-493
+internal/provider/security_policy_rule_ds.go
+  s_a281bc52404319::t_10a681ae78b9ce 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,144,150-154,163,173,183,189-193,198-202,207-211,216-220,225-229,234-238,243-247,252-256,262,265-269,274-278,283-287,292-296,302,306,313,323,333,343,349-353,361,371,377
+internal/provider/security_policy_rule_rs.go
+  s_a281bc52404319::t_14f42baca20b8e 69,76,85,89-93,98-102,107-111,120,126-130,139,149,159,165-169,174-178,183-187,192-196,201-205,210-214,219-223,228-232,238,241-245,250-254,259-263,268-272,278,282,289,299,309,319,325-329,337,347,353,977-982,990-995,997-1002,1004-1009,1092-1097,1099-1104,1106-1111,1113-1118,1127-1132,1134-1139
+internal/provider/security_policy_set_ds.go
+  s_a281bc52404319::t_86e9b1e2a46d32 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,177,187
+internal/provider/security_policy_set_rs.go
+  s_a281bc52404319::t_ec62d599a95ca2 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,153,163,550-555,557-562
+internal/provider/security_policy_stack_ds.go
+  s_a281bc52404319::t_184e913e814502 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,168,178
+internal/provider/security_policy_stack_rs.go
+  s_a281bc52404319::t_8390823bf26f42 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,144,154,529-534,536-541
+internal/provider/security_zone_ds.go
+  s_a281bc52404319::t_5478e2f1a16ec4 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168
+internal/provider/security_zone_rs.go
+  s_a281bc52404319::t_a1f73af4b7db05 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144
+internal/provider/service_endpoint_ds.go
+  s_a281bc52404319::t_6e110f6afcc8ce 76,83,91,95-99,104-107,110-111,117-121,126-130,135-139,143-147,152-156,161-165,170-174,179-183,188-192,197,200-204,209-213,218-222,227-231,236-240,245-249,254-258,262-266,271-275,284,290-294,299-303,309,312-316,321-325,330-334,343,350,353-357,362,365-369,373-377,382-386,391-395,400,403-407,412-416,420-424,429-433,438,441-445,453,463,469,472-476,485,491-495
+internal/provider/service_endpoint_rs.go
+  s_a281bc52404319::t_81930c1804351e 73,80,89,93-97,102-106,111-115,119-123,128-132,137-141,146-150,155-159,164-168,173,176-180,185-189,194-198,203-207,212-216,221-225,230-234,238-242,247-251,260,266-270,275-279,285,288-292,297-301,306-310,319,326,329-333,338,341-345,349-353,358-362,367-371,376,379-383,388-392,396-400,405-409,414,417-421,429,439,445,448-452,461,467-471,1380-1385,1387-1392,1401-1406
+internal/provider/service_group_ds.go
+  s_a281bc52404319::t_192f913aa63feb 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,164-168,173,180,186-190
+internal/provider/service_group_rs.go
+  s_a281bc52404319::t_c947d60578aa35 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,140-144,149,156,162-166,564-569
+internal/provider/site_ciphers_ds.go
+  s_a281bc52404319::t_2ffdadffdce4f7 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,177
+internal/provider/site_ciphers_rs.go
+  s_a281bc52404319::t_716cb6bb6a1fa3 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,153,380-385,510-512,514-515
+internal/provider/site_dhcp_server_ds.go
+  s_a281bc52404319::t_b188b1a4c8012d 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,167-171,176-180,186,189-193,198-202,207-211,220,226-230,235-239,244-248,253-257,262-266,271-275,281,284-288,293-297,302-306,311-315,320-324,329-333,338-342,348,351-355,364,370-374
+internal/provider/site_dhcp_server_rs.go
+  s_a281bc52404319::t_e6534d44c13063 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,143-147,152-156,162,165-169,174-178,183-187,196,202-206,211-215,220-224,229-233,238-242,247-251,257,260-264,269-273,278-282,287-291,296-300,305-309,314-318,324,327-331,340,346-350,981-986,1074-1079
+internal/provider/site_ds.go
+  s_a281bc52404319::t_5ccf49dd2f2322 73,80,88,92-96,101-104,107-108,114-118,123-127,132-136,140-144,149-153,158-162,167-171,176-180,185-189,194,197-201,206-210,215-219,224-228,233-237,242-246,251-255,260-264,269-273,278-282,288,291-295,300-304,308-312,317-321,326-330,335,338-342,347-351,356-360,365-369,374-378,383-387,392-396,401-405,410-414,419-423,428-432,437-441,445-449,454-458,463,470,476-480
+internal/provider/site_hub_cluster_ds.go
+  s_a281bc52404319::t_eef5a9bea5c095 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,175,178-182,187-191,200,206-210,219
+internal/provider/site_hub_cluster_member_ds.go
+  s_a281bc52404319::t_fbd2471fd713f1 71,78,86,90-94,99-102,105-106,112-116,121-125,134,144,150-154,159-163,168-172,177-181,186-190,195-199,204-208,212-216,221-225,230-234,239,242-246,252
+internal/provider/site_hub_cluster_member_rs.go
+  s_a281bc52404319::t_ef1fd7027adb83 68,75,84,88-92,97-101,110,120,126-130,135-139,144-148,153-157,162-166,171-175,180-184,188-192,197-201,206-210,215,218-222,228,668-673,675-680
+internal/provider/site_hub_cluster_rs.go
+  s_a281bc52404319::t_5599d1afe6c3b4 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,151,154-158,163-167,176,182-186,195,651-656,664-669
+internal/provider/site_hub_distribution_fabric_ds.go
+  s_a281bc52404319::t_aa3223034e3c57 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159,169
+internal/provider/site_hub_distribution_fabric_rs.go
+  s_a281bc52404319::t_978a461436f61a 66,73,82,86-90,95-99,104-108,113-117,122-126,135,145,506-511,513-518
+internal/provider/site_hub_prefix_filter_association_ds.go
+  s_a281bc52404319::t_7bb6f136190898 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,168,178
+internal/provider/site_hub_prefix_filter_association_rs.go
+  s_a281bc52404319::t_5294a62131631e 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,144,154,527-532,534-539
+internal/provider/site_hub_prefix_filter_ds.go
+  s_a281bc52404319::t_bd1e516e831910 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,142,152,162,168-172,177-181,190,197,200-204,209-213
+internal/provider/site_hub_prefix_filter_profile_ds.go
+  s_a281bc52404319::t_c7a8894a1cbee0 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,148-152,157-161,166-170,175-179,184-188,193-197,202-206,212,215-219,225,232
+internal/provider/site_hub_prefix_filter_profile_rs.go
+  s_a281bc52404319::t_38f7a486b439be 68,75,84,88-92,97-101,106-110,115-119,124-128,133-137,142-146,151-155,160-164,169-173,178-182,188,191-195,201,208,716-721
+internal/provider/site_hub_prefix_filter_rs.go
+  s_a281bc52404319::t_ae881281858ef3 67,74,83,87-91,96-100,105-109,118,128,138,144-148,153-157,166,173,176-180,185-189
+internal/provider/site_iot_device_id_config_ds.go
+  s_a281bc52404319::t_1a21d01d4c7856 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159
+internal/provider/site_iot_device_id_config_rs.go
+  s_a281bc52404319::t_6e32fe9aa3fcef 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,220-222
+internal/provider/site_iot_snmp_start_node_ds.go
+  s_a281bc52404319::t_e0e9ec8f91a303 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,184,191
+internal/provider/site_iot_snmp_start_node_rs.go
+  s_a281bc52404319::t_383abeaa7fcfcf 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,160,167,599-604
+internal/provider/site_ipfix_local_prefix_ds.go
+  s_a281bc52404319::t_a29d96008e8562 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,147-151,160
+internal/provider/site_ipfix_local_prefix_rs.go
+  s_a281bc52404319::t_558ff3f3afd84e 66,73,82,86-90,95-99,104-108,117,123-127,136,479-484,492-497
+internal/provider/site_lan_network_ds.go
+  s_a281bc52404319::t_2808abfa7dc76e 75,82,90,94-98,103-106,109-110,116-120,125-129,134-138,143-147,152-156,164,170-174,178-182,187-191,195-199,204-208,213-217,222-226,231,238,244-248,253,256-260,264-268,277,283-287,292-296,301-305,311,314-318,323-327,332,339,345,348-352,360,370,376,379-383,388-392,397-401,410,416-420
+internal/provider/site_lan_network_rs.go
+  s_a281bc52404319::t_31f02dbdbbd906 72,79,88,92-96,101-105,110-114,119-123,128-132,140,146-150,154-158,163-167,171-175,180-184,189-193,198-202,207,214,220-224,229,232-236,240-244,253,259-263,268-272,277-281,287,290-294,299-303,308,315,321,324-328,336,346,352,355-359,364-368,373-377,386,392-396,1043-1048,1095-1100,1122-1127,1165-1170,1180-1185,1187-1192,1213-1218
+internal/provider/site_nat_local_prefix_ds.go
+  s_a281bc52404319::t_2917850c165991 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,147-151,160
+internal/provider/site_nat_local_prefix_rs.go
+  s_a281bc52404319::t_931ac445b79084 66,73,82,86-90,95-99,104-108,117,123-127,136,479-484,492-497
+internal/provider/site_path_policy_local_prefix_ds.go
+  s_a281bc52404319::t_12d3612c8c7b93 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,151,157-161,170
+internal/provider/site_path_policy_local_prefix_rs.go
+  s_a281bc52404319::t_ca3352352e8bb9 66,73,82,86-90,95-99,104-108,117,127,133-137,146,499-504,506-511,519-524
+internal/provider/site_prisma_access_config_ds.go
+  s_a281bc52404319::t_c7f1ea8bc552ef 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,169,179,185-189,195,198-202
+internal/provider/site_prisma_access_config_rs.go
+  s_a281bc52404319::t_487696e82ab06b 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,145,155,161-165,171,174-178
+internal/provider/site_prisma_sase_connection_ds.go
+  s_a281bc52404319::t_f2ac0e3da25569 76,83,91,95-99,104-107,110-111,117-121,126-130,139,145-149,154-158,162-166,171-175,180-184,189-193,198-202,207-211,216-220,225,228-232,237-241,246-250,259,265-269,274-278,283-287,292-296,301-305,310-314,318-322,327-331,336-340,345,348-352,357-361,365-369,374-378,383-387,392,395-399,403-407,412-416,421-425,430-434,439,442-446,452,455-459,468,475,478-482,486-490,495-499,504-508,513-517,522-526,531-535,540-544,549,552-556
+internal/provider/site_prisma_sase_connection_rs.go
+  s_a281bc52404319::t_81280c450376a3 73,80,89,93-97,102-106,115,121-125,130-134,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201,204-208,213-217,222-226,235,241-245,250-254,259-263,268-272,277-281,286-290,294-298,303-307,312-316,319-325,328,331-335,340-344,348-352,357-361,366-370,375,378-382,386-390,395-399,403-407,411-415,420-424,429,432-436,442,445-449,458,465,468-472,476-480,485-489,493-497,501-505,510-514,519-523,528-532,537-541,546,549-553,911-924,954-957,960-964,995-998,1001-1005,1191-1201,1229-1232,1235-1237,1267-1270,1273-1275,1360-1365,1441-1446,1736-1749,1779-1782,1785-1789,1820-1823,1826-1830
+internal/provider/site_qos_policy_local_prefix_ds.go
+  s_a281bc52404319::t_b2bd065c0ba9ef 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,151,157-161,170
+internal/provider/site_qos_policy_local_prefix_rs.go
+  s_a281bc52404319::t_d4eaa14c253ab9 66,73,82,86-90,95-99,104-108,117,127,133-137,146,499-504,506-511,519-524
+internal/provider/site_rs.go
+  s_a281bc52404319::t_057a6b2237b0b1 70,77,86,90-94,99-103,108-112,116-120,125-129,134-138,143-147,152-156,161-165,170,173-177,182-186,191-195,200-204,209-213,218-222,227-231,236-240,245-249,254-258,264,267-271,276-280,284-288,293-297,302-306,311,314-318,323-327,332-336,341-345,350-354,359-363,368-372,377-381,386-390,395-399,404-408,413-417,421-425,430-434,439,446,452-456,1299-1304
+internal/provider/site_security_policy_local_prefix_ds.go
+  s_a281bc52404319::t_df509f9f79841f 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,141,151,157-161,170
+internal/provider/site_security_policy_local_prefix_rs.go
+  s_a281bc52404319::t_6e0e8be9b336f7 66,73,82,86-90,95-99,104-108,117,127,133-137,146,499-504,506-511,519-524
+internal/provider/site_security_zone_ds.go
+  s_a281bc52404319::t_4e40719acd2b09 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,152,159,162-166,171-175,180-184,189-193,199,202-206
+internal/provider/site_security_zone_rs.go
+  s_a281bc52404319::t_97765236681eeb 68,75,84,88-92,97-101,106-110,115-119,128,135,138-142,147-151,156-160,165-169,175,178-182
+internal/provider/site_spoke_cluster_ds.go
+  s_a281bc52404319::t_19c989a50310a8 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,177
+internal/provider/site_spoke_cluster_rs.go
+  s_a281bc52404319::t_ef267c9f2191c5 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,153,528-533
+internal/provider/site_wan_interface_ds.go
+  s_a281bc52404319::t_857e7b1a46e7de 72,79,87,91-95,100-103,106-107,113-117,122-126,131-135,140-144,149-153,158-162,167-171,176-180,185-189,194-198,206,212-216,221,224-228,233-237,242-246,251-255,263,269-273,278-282,287-291,296-300,305,308-312,317-321,326-330,335-339,348,354-358,363-367,372-376,381-385,390-394,398-402,407-411,416
+internal/provider/site_wan_interface_rs.go
+  s_a281bc52404319::t_a665d9353ec2e6 69,76,85,89-93,98-102,107-111,116-120,125-129,134-138,143-147,152-156,161-165,170-174,182,188-192,197,200-204,209-213,218-222,227-231,239,245-249,254-258,263-267,272-276,281,284-288,293-297,302-306,311-315,324,330-334,339-343,348-352,357-361,366-370,374-378,383-387,392,989-994,1028-1033,1084-1089
+internal/provider/site_wan_multicast_configuration_ds.go
+  s_a281bc52404319::t_8bb632328ec6f5 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,166
+internal/provider/site_wan_multicast_configuration_rs.go
+  s_a281bc52404319::t_4e2ac8d264e3e9 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,142
+internal/provider/syslog_profile_ds.go
+  s_a281bc52404319::t_fa18d1ac1467ea 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159,164-168,173-177,182-186,191-195,200-204,209-213,218-222,227-231,236-240,249
+internal/provider/syslog_profile_rs.go
+  s_a281bc52404319::t_ba83bddb4cb41e 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135,140-144,149-153,158-162,167-171,176-180,185-189,194-198,203-207,212-216,225,696-701
+internal/provider/tacacs_plus_profile_ds.go
+  s_a281bc52404319::t_e163f45a35ede9 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,165-169,174-178,183-187,192-196,201-205,210-214,219-223,229,236
+internal/provider/tacacs_plus_profile_rs.go
+  s_a281bc52404319::t_bb4b17ec24de9d 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,141-145,150-154,158-162,166-170,175-179,184-188,193-197,202-206,212,219,423-426,429-433,563-566,569-571,714-719,799-802,805-809
+internal/provider/vrf_context_ds.go
+  s_a281bc52404319::t_234e7d503fc8e3 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159
+internal/provider/vrf_context_profile_ds.go
+  s_a281bc52404319::t_dd3ceb8b73d191 70,77,85,89-93,98-101,104-105,111-115,120-124,129-133,138-142,147-151,156-160,169,179,185-189,194-198,203-207,216,222-226,231-235,241
+internal/provider/vrf_context_profile_rs.go
+  s_a281bc52404319::t_c8dcaf5b4db2e7 67,74,83,87-91,96-100,105-109,114-118,123-127,132-136,145,155,161-165,170-174,179-183,192,198-202,207-211,217,663-668,670-675
+internal/provider/vrf_context_rs.go
+  s_a281bc52404319::t_34baebc293a94a 66,73,82,86-90,95-99,104-108,113-117,122-126,135,486-491
+internal/provider/wan_interface_label_ds.go
+  s_a281bc52404319::t_acdfb36bec9b22 71,78,86,90-94,99-102,105-106,112-116,121-125,130-134,139-143,148-152,157-161,166-170,178,184-188,193,196-200,205-209,214-218,223-227,236,242-246,251-255,260-264,269-273,277-281,286-290,295
+internal/provider/wan_interface_label_rs.go
+  s_a281bc52404319::t_f5789ca78de17d 68,75,84,88-92,97-101,106-110,115-119,124-128,133-137,142-146,154,160-164,169,172-176,181-185,190-194,199-203,212,218-222,227-231,236-240,245-249,253-257,262-266,271,538-543,576-581,777-779,781-782
+internal/provider/wan_network_ds.go
+  s_a281bc52404319::t_825a4ae711d713 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,159,169,175-179
+internal/provider/wan_network_rs.go
+  s_a281bc52404319::t_0652753a6e9782 66,73,82,86-90,95-99,104-108,113-117,122-126,135,145,151-155,521-526,528-533
+internal/provider/wan_overlay_ds.go
+  s_a281bc52404319::t_346c4e62d31ffc 69,76,84,88-92,97-100,103-104,110-114,119-123,128-132,137-141,146-150,155-159
+internal/provider/wan_overlay_rs.go
+  s_a281bc52404319::t_f4d57d59aef764 66,73,82,86-90,95-99,104-108,113-117,122-126,131-135
+sdk/sdwan/schemas/all_schema.go
+  s_a281bc52404319::t_69b38248a2249d 8,416-417,636,925,1783,1792,7345-7366,10639-10650,15668-15710,30494-30505,30696-30726
+sdk/sdwan/services/sdwan_client.go
+  s_a281bc52404319::t_1174147a1f2bd0 6,9,39-41,79-80,89-95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "ac0f74c5659a174a04e85f851facfa1b430a60fe",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    },
+    "s_f5d0de0b955eb4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ef4efe57-225d-405c-9fc7-6075f1c4bfc6",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
