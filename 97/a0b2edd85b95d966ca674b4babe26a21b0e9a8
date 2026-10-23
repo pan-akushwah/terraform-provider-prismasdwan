@@ -1,0 +1,21 @@
+sdk/sdwan/services/sdwan_client.go
+  s_a281bc52404319::t_509ce46abcf243 91-96
+sdk/sdwan/services/sdwan_client_test.go
+  s_a281bc52404319::t_0304b363b41ffa 1-39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "97a0b2edd85b95d966ca674b4babe26a21b0e9a8",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
