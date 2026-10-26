@@ -1,0 +1,465 @@
+examples/data-sources/prismasdwan_anynet_link/data-source.tf
+  s_a281bc52404319::t_99fe3e10e8dbc5 27
+examples/data-sources/prismasdwan_apn_profile/data-source.tf
+  s_a281bc52404319::t_a8a0ef888b63c2 27
+examples/data-sources/prismasdwan_dns_service_profile/data-source.tf
+  s_a281bc52404319::t_4c32ce92498d85 27
+examples/data-sources/prismasdwan_dns_service_role/data-source.tf
+  s_a281bc52404319::t_26c793ca79eb31 27
+examples/data-sources/prismasdwan_domain/data-source.tf
+  s_a281bc52404319::t_07b5e4e5dc26b3 27
+examples/data-sources/prismasdwan_element/data-source.tf
+  s_a281bc52404319::t_49b1a1b4aacece 27
+examples/data-sources/prismasdwan_element_application_probe/data-source.tf
+  s_a281bc52404319::t_d9baf148d0305b 27
+examples/data-sources/prismasdwan_element_bgp_peer/data-source.tf
+  s_a281bc52404319::t_26ca32741a9828 27,32
+examples/data-sources/prismasdwan_element_cellular_module/data-source.tf
+  s_a281bc52404319::t_c39e44cc8f6773 27
+examples/data-sources/prismasdwan_element_cellular_module_sim_security/data-source.tf
+  s_a281bc52404319::t_15dc3ab8409367 27
+examples/data-sources/prismasdwan_element_dns_service/data-source.tf
+  s_a281bc52404319::t_4dcfeefe8ffa2c 27,32
+examples/data-sources/prismasdwan_element_interface/data-source.tf
+  s_a281bc52404319::t_5e0d5bba1f285f 27,32
+examples/data-sources/prismasdwan_element_iot_device_id_config/data-source.tf
+  s_a281bc52404319::t_027478e71a48ee 27,32
+examples/data-sources/prismasdwan_element_ipfix/data-source.tf
+  s_a281bc52404319::t_eeb5ef8d1da04a 27,32
+examples/data-sources/prismasdwan_element_multicast_rp/data-source.tf
+  s_a281bc52404319::t_995ec398bc158a 27,32
+examples/data-sources/prismasdwan_element_ntp/data-source.tf
+  s_a281bc52404319::t_85316cb03ba0f3 27
+examples/data-sources/prismasdwan_element_ospf_config/data-source.tf
+  s_a281bc52404319::t_35440090de25eb 27,32
+examples/data-sources/prismasdwan_element_radius/data-source.tf
+  s_a281bc52404319::t_881ef87521876e 31
+examples/data-sources/prismasdwan_element_routing_aspathaccesslist/data-source.tf
+  s_a281bc52404319::t_3d4ecf031fc94c 27,32
+examples/data-sources/prismasdwan_element_routing_ipcommunitylist/data-source.tf
+  s_a281bc52404319::t_93b5bc2923ff5e 27,32
+examples/data-sources/prismasdwan_element_routing_prefixlist/data-source.tf
+  s_a281bc52404319::t_50310a5061d487 27,32
+examples/data-sources/prismasdwan_element_routing_routemap/data-source.tf
+  s_a281bc52404319::t_5604284166c147 27,32
+examples/data-sources/prismasdwan_element_security_zone/data-source.tf
+  s_a281bc52404319::t_652c05f21a813d 27
+examples/data-sources/prismasdwan_element_shell/data-source.tf
+  s_a281bc52404319::t_d27ba794d5c0ca 31
+examples/data-sources/prismasdwan_element_shell_interface/data-source.tf
+  s_a281bc52404319::t_f63c021337a9fc 27,32
+examples/data-sources/prismasdwan_element_snmp_agent/data-source.tf
+  s_a281bc52404319::t_835e79532d44a7 27
+examples/data-sources/prismasdwan_element_snmp_trap/data-source.tf
+  s_a281bc52404319::t_ae895c3769c3d6 27
+examples/data-sources/prismasdwan_element_static_route/data-source.tf
+  s_a281bc52404319::t_86951b401617a0 27,32
+examples/data-sources/prismasdwan_element_syslog_server/data-source.tf
+  s_a281bc52404319::t_98a40cc1875c2c 27,32
+examples/data-sources/prismasdwan_element_tacacs_plus_server/data-source.tf
+  s_a281bc52404319::t_3aad6ce2010b2c 27,32
+examples/data-sources/prismasdwan_event_correlation_policy_rule/data-source.tf
+  s_a281bc52404319::t_0b3cbdbcbd244f 31
+examples/data-sources/prismasdwan_event_correlation_policy_set/data-source.tf
+  s_a281bc52404319::t_3dc2f2be69b86d 27
+examples/data-sources/prismasdwan_global_prefix_filter/data-source.tf
+  s_a281bc52404319::t_48b3450d30ba7e 27
+examples/data-sources/prismasdwan_iot_profile/data-source.tf
+  s_a281bc52404319::t_5f07e05419e165 27
+examples/data-sources/prismasdwan_ipfix_collector_context/data-source.tf
+  s_a281bc52404319::t_bdfa05bad991cb 27
+examples/data-sources/prismasdwan_ipfix_filter_context/data-source.tf
+  s_a281bc52404319::t_341f26e2848861 27
+examples/data-sources/prismasdwan_ipfix_global_prefix/data-source.tf
+  s_a281bc52404319::t_6f93e03afffb9c 27
+examples/data-sources/prismasdwan_ipfix_local_prefix/data-source.tf
+  s_a281bc52404319::t_3d971b3f07d5d4 27
+examples/data-sources/prismasdwan_ipfix_profile/data-source.tf
+  s_a281bc52404319::t_d4d225732d91d5 27
+examples/data-sources/prismasdwan_ipfix_template/data-source.tf
+  s_a281bc52404319::t_eb7b7135451224 27
+examples/data-sources/prismasdwan_ipsec_profile/data-source.tf
+  s_a281bc52404319::t_26f049ee63f422 27
+examples/data-sources/prismasdwan_local_prefix_filter/data-source.tf
+  s_a281bc52404319::t_d6e8d646152d95 27
+examples/data-sources/prismasdwan_multicast_peer_group_profile/data-source.tf
+  s_a281bc52404319::t_dd55ecbbe1d37e 27
+examples/data-sources/prismasdwan_nat_global_prefix/data-source.tf
+  s_a281bc52404319::t_173bb438276f54 27
+examples/data-sources/prismasdwan_nat_local_prefix/data-source.tf
+  s_a281bc52404319::t_cf3a5fd991a431 27
+examples/data-sources/prismasdwan_nat_policy_pool/data-source.tf
+  s_a281bc52404319::t_67477666d03ed8 27
+examples/data-sources/prismasdwan_nat_policy_rule/data-source.tf
+  s_a281bc52404319::t_0c4ed85a87a61b 31
+examples/data-sources/prismasdwan_nat_policy_set/data-source.tf
+  s_a281bc52404319::t_aab0903d7109e1 27
+examples/data-sources/prismasdwan_nat_policy_set_stack/data-source.tf
+  s_a281bc52404319::t_cad5b41d5e990b 27
+examples/data-sources/prismasdwan_nat_zone/data-source.tf
+  s_a281bc52404319::t_c2e0a2b4203f14 27
+examples/data-sources/prismasdwan_network_context/data-source.tf
+  s_a281bc52404319::t_95fa7a0959b11c 27
+examples/data-sources/prismasdwan_ntp_template/data-source.tf
+  s_a281bc52404319::t_a3cf6ebd587fd8 27
+examples/data-sources/prismasdwan_path_global_prefix/data-source.tf
+  s_a281bc52404319::t_e3d710e444c5ad 27
+examples/data-sources/prismasdwan_path_group/data-source.tf
+  s_a281bc52404319::t_1bc81e3fe2f5c8 27
+examples/data-sources/prismasdwan_path_local_prefix/data-source.tf
+  s_a281bc52404319::t_087512ddf7b499 27
+examples/data-sources/prismasdwan_path_policy_rule/data-source.tf
+  s_a281bc52404319::t_94b677bf6dd916 31
+examples/data-sources/prismasdwan_path_policy_set/data-source.tf
+  s_a281bc52404319::t_82b9ba58d324f7 27
+examples/data-sources/prismasdwan_path_policy_stack/data-source.tf
+  s_a281bc52404319::t_5d2837f099a880 27
+examples/data-sources/prismasdwan_performance_policy_rule/data-source.tf
+  s_a281bc52404319::t_e26aa0d09f1004 31
+examples/data-sources/prismasdwan_performance_policy_set/data-source.tf
+  s_a281bc52404319::t_4fe5a4b23d461b 27
+examples/data-sources/prismasdwan_performance_policy_stack/data-source.tf
+  s_a281bc52404319::t_4dc4783aea0a99 27
+examples/data-sources/prismasdwan_performance_profile/data-source.tf
+  s_a281bc52404319::t_4045aac3440824 27
+examples/data-sources/prismasdwan_probe_config/data-source.tf
+  s_a281bc52404319::t_2e5b98f62dd16c 27
+examples/data-sources/prismasdwan_probe_profile/data-source.tf
+  s_a281bc52404319::t_4d444b1f61702a 27
+examples/data-sources/prismasdwan_qos_policy_global_prefix/data-source.tf
+  s_a281bc52404319::t_e1f6cbbbcee27d 27
+examples/data-sources/prismasdwan_qos_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_e9312e1ffdbff0 27
+examples/data-sources/prismasdwan_qos_policy_rule/data-source.tf
+  s_a281bc52404319::t_deba31b1e9ee1a 31
+examples/data-sources/prismasdwan_qos_policy_set/data-source.tf
+  s_a281bc52404319::t_de8e8042556b68 27
+examples/data-sources/prismasdwan_qos_policy_stack/data-source.tf
+  s_a281bc52404319::t_17f0db277208c7 27
+examples/data-sources/prismasdwan_security_policy_global_prefix/data-source.tf
+  s_a281bc52404319::t_d4f88db753e468 27
+examples/data-sources/prismasdwan_security_policy_local_prefix/data-source.tf
+  s_a281bc52404319::t_3a91ebbee0a8d3 27
+examples/data-sources/prismasdwan_security_policy_rule/data-source.tf
+  s_a281bc52404319::t_b8386da4cd974c 31
+examples/data-sources/prismasdwan_security_policy_set/data-source.tf
+  s_a281bc52404319::t_50c3a914272950 27
+examples/data-sources/prismasdwan_security_policy_stack/data-source.tf
+  s_a281bc52404319::t_99ccfe07c2f3f2 27
+examples/data-sources/prismasdwan_security_zone/data-source.tf
+  s_a281bc52404319::t_47dc00fa5d3bc3 27
+examples/data-sources/prismasdwan_service_endpoint/data-source.tf
+  s_a281bc52404319::t_24eb04e98387d1 27
+examples/data-sources/prismasdwan_service_group/data-source.tf
+  s_a281bc52404319::t_abf42e144f4a38 27
+examples/data-sources/prismasdwan_site/data-source.tf
+  s_a281bc52404319::t_83b089ebda2afe 27
+examples/data-sources/prismasdwan_site_hub_cluster/data-source.tf
+  s_a281bc52404319::t_ff46e782704438 31
+examples/data-sources/prismasdwan_site_hub_cluster_member/data-source.tf
+  s_a281bc52404319::t_7d6c1baa13e8f8 27
+examples/data-sources/prismasdwan_site_hub_distribution_fabric/data-source.tf
+  s_a281bc52404319::t_1d62d244d37d36 31
+examples/data-sources/prismasdwan_site_hub_prefix_filter_association/data-source.tf
+  s_a281bc52404319::t_302f5182df1481 31
+examples/data-sources/prismasdwan_site_hub_prefix_filter_profile/data-source.tf
+  s_a281bc52404319::t_8cb3c7ddc093c8 31
+examples/data-sources/prismasdwan_site_iot_snmp_start_node/data-source.tf
+  s_a281bc52404319::t_65b281fbe77b86 27,32
+examples/data-sources/prismasdwan_site_lan_network/data-source.tf
+  s_a281bc52404319::t_18d2d2bd67ef80 31
+examples/data-sources/prismasdwan_site_spoke_cluster/data-source.tf
+  s_a281bc52404319::t_35925de579c631 31
+examples/data-sources/prismasdwan_site_wan_interface/data-source.tf
+  s_a281bc52404319::t_738dfe6da46dae 31
+examples/data-sources/prismasdwan_syslog_profile/data-source.tf
+  s_a281bc52404319::t_ee862bf25896ca 27
+examples/data-sources/prismasdwan_tacacs_plus_profile/data-source.tf
+  s_a281bc52404319::t_31d276df570ded 27
+examples/data-sources/prismasdwan_vrf_context/data-source.tf
+  s_a281bc52404319::t_88ba41db1e3752 27
+examples/data-sources/prismasdwan_vrf_context_profile/data-source.tf
+  s_a281bc52404319::t_82a1253d369cf9 27
+examples/data-sources/prismasdwan_wan_interface_label/data-source.tf
+  s_a281bc52404319::t_9a6de067ce428f 27
+examples/data-sources/prismasdwan_wan_network/data-source.tf
+  s_a281bc52404319::t_31c7e9bd484e3a 27
+examples/data-sources/prismasdwan_wan_overlay/data-source.tf
+  s_a281bc52404319::t_e47426659a1788 27
+examples/resources/prismasdwan_anynet_link.tf
+  s_a281bc52404319::t_2dc21d972d54cd 105
+examples/resources/prismasdwan_anynet_link/resource.tf
+  s_a281bc52404319::t_6977d16272ca23 25-36,38-39
+examples/resources/prismasdwan_apn_profile.tf
+  s_a281bc52404319::t_2fa7976522e50d 26,37,48,59,101
+examples/resources/prismasdwan_apn_profile/resource.tf
+  s_a281bc52404319::t_339bb755cd0fa9 25-32
+examples/resources/prismasdwan_app_def/resource.tf
+  s_a281bc52404319::t_3135bb9657f7c1 25-34,36-38,40,42-43,45-58,60,62-63,66,68-69,71-72,74,76,78-79,81,83,85-86,89
+examples/resources/prismasdwan_app_def_override/resource.tf
+  s_a281bc52404319::t_ab87426c1a2bd4 25-31,33-35,37,39-40,42-50,52,54-55,58,60-61,63-64,66,68,70-71,73,75,77-78,81
+examples/resources/prismasdwan_dns_service_profile/resource.tf
+  s_a281bc52404319::t_183f0eb5ff4ad0 27-30,33-35,38-40,43-46,49-51,54-62,64-65,67,69-70,73-77,80-86,89-93,95,97-98,101-103,107-111,113,116-126,130,133-134,137-140,144-146,150-160,163-165,167-168,170-173,178-180,182-189
+examples/resources/prismasdwan_dns_service_role/resource.tf
+  s_a281bc52404319::t_1c7b8c90ed0573 25-32
+examples/resources/prismasdwan_domain/resource.tf
+  s_a281bc52404319::t_6971e122c5fb4d 25-27,29-30,32
+examples/resources/prismasdwan_element/resource.tf
+  s_a281bc52404319::t_9d2cef71b745d4 25-29,32-33,37-39,44,46-50,52-55,58-59,62-63,68-69,72-79,81
+examples/resources/prismasdwan_element_application_probe/resource.tf
+  s_a281bc52404319::t_cb2e9ce9f6c621 25-29
+examples/resources/prismasdwan_element_bgp_config/resource.tf
+  s_a281bc52404319::t_f8389d0d7e19ca 25-34,36-37,39-45,47-48
+examples/resources/prismasdwan_element_bgp_peer/resource.tf
+  s_a281bc52404319::t_c41303401b9d01 25-27,29-36,38-43,46-47,49-51,53-61
+examples/resources/prismasdwan_element_cellular_module/resource.tf
+  s_a281bc52404319::t_ded9eeb0853a19 25-30
+examples/resources/prismasdwan_element_cellular_module_sim_security/resource.tf
+  s_a281bc52404319::t_317c2aae68247e 25-30
+examples/resources/prismasdwan_element_dns_service.tf
+  s_a281bc52404319::t_1e8a015cb2cb95 88,198
+examples/resources/prismasdwan_element_dns_service/resource.tf
+  s_a281bc52404319::t_dd5fde37394fa8 26,28,31-32,35-38,41,43,45-46,50-52,55-56,58-61
+examples/resources/prismasdwan_element_interface/resource.tf
+  s_a281bc52404319::t_d9f5efb2024ab4 27-28,31-33,35,37-40,44-49,51-55,57-58,62-65,67-68,72-75,78-79,82-83,86-87,90,92,96-97,100-101,104-105,108-109,111,114,116,118,120-121,123-124,126-127,130-131,133,135-137,139-140,143-148,150,152-153,157-160,164-166,168-172,174-182,184-191,193-201,203,205-206,211-212,214-215,217,219-220,223-224,227-231,233-235,237-242,244-245,247-249
+examples/resources/prismasdwan_element_iot_device_id_config/resource.tf
+  s_a281bc52404319::t_61fae23bba6a1e 25-28
+examples/resources/prismasdwan_element_ipfix/resource.tf
+  s_a281bc52404319::t_09570a335a90b5 26-30,32-33,35,37-38,40-44,46-47,49-50,52-54,56-58,60
+examples/resources/prismasdwan_element_multicast_global_config/resource.tf
+  s_a281bc52404319::t_642570c5c6c0f6 25-26,28-31,34-36,38
+examples/resources/prismasdwan_element_multicast_rp/resource.tf
+  s_a281bc52404319::t_50896cf2fb5a6c 25,27-28,30-32
+examples/resources/prismasdwan_element_ntp/resource.tf
+  s_a281bc52404319::t_5be6c143aa288e 25-26,28-31,33-34
+examples/resources/prismasdwan_element_ospf_config/resource.tf
+  s_a281bc52404319::t_4dfa5e284a943a 25,27-28,30-31,33-34,36-42,45-53
+examples/resources/prismasdwan_element_ospf_global_config/resource.tf
+  s_a281bc52404319::t_fcdf24b3b61026 25-33
+examples/resources/prismasdwan_element_radius/resource.tf
+  s_a281bc52404319::t_af6284109950bc 25-27,29-36,38-40
+examples/resources/prismasdwan_element_routing_aspathaccesslist.tf
+  s_a281bc52404319::t_790a5ae60b9a7c 45,104
+examples/resources/prismasdwan_element_routing_aspathaccesslist/resource.tf
+  s_a281bc52404319::t_3c4914d4e221f3 26-28,30-33
+examples/resources/prismasdwan_element_routing_ipcommunitylist.tf
+  s_a281bc52404319::t_fcebe86043cb87 48,104
+examples/resources/prismasdwan_element_routing_ipcommunitylist/resource.tf
+  s_a281bc52404319::t_f18b8ce9e88bc1 25,27-28,30-32
+examples/resources/prismasdwan_element_routing_prefixlist.tf
+  s_a281bc52404319::t_012685a2259698 45,105
+examples/resources/prismasdwan_element_routing_prefixlist/resource.tf
+  s_a281bc52404319::t_4e3ed5a54f85b5 25-27,29-34,36
+examples/resources/prismasdwan_element_routing_routemap.tf
+  s_a281bc52404319::t_deb074da33f64a 45,115
+examples/resources/prismasdwan_element_routing_routemap/resource.tf
+  s_a281bc52404319::t_214b717cd78bce 25-27,29,31-37,39-40,42-51,54-55
+examples/resources/prismasdwan_element_security_zone/resource.tf
+  s_a281bc52404319::t_e2237adfc9f040 25-31
+examples/resources/prismasdwan_element_shell/resource.tf
+  s_a281bc52404319::t_23030d9e6478b7 25-29,32-33,37-39,44,46-50,52-55,58-59,62-63,68-69,72-79,81
+examples/resources/prismasdwan_element_shell_interface/resource.tf
+  s_a281bc52404319::t_5986e74d7be72f 27-28,31-33,35,37-40,44-49,51-55,57-58,62-65,67-68,72-75,78-79,82-83,86-87,90,92,96-97,100-101,104-105,108-109,111,114,116,118,120-121,123-124,126-127,130-131,133,135-137,139-140,143-148,150,152-153,157-160,164-166,168-172,174-182,184-191,193-201,203,205-206,211-212,214-215,217,219-220,223-224,227-231,233-235,237-242,244-245,247-249
+examples/resources/prismasdwan_element_snmp_agent/resource.tf
+  s_a281bc52404319::t_4e737b82755db1 25-28,30-31,36-42
+examples/resources/prismasdwan_element_snmp_trap/resource.tf
+  s_a281bc52404319::t_0e5ec8522c4381 25-29,31,35-41,44
+examples/resources/prismasdwan_element_static_route/resource.tf
+  s_a281bc52404319::t_86e5de0943e532 25-30,32-35,37-39
+examples/resources/prismasdwan_element_syslog_server/resource.tf
+  s_a281bc52404319::t_83eef1d12fa2f9 25-40
+examples/resources/prismasdwan_element_tacacs_plus_server.tf
+  s_a281bc52404319::t_918e393291852a 85,153
+examples/resources/prismasdwan_element_tacacs_plus_server/resource.tf
+  s_a281bc52404319::t_72b6a7c1ec7c6f 25-30,32-37,39
+examples/resources/prismasdwan_element_toolkit/resource.tf
+  s_a281bc52404319::t_7015fd1d498c06 25-29
+examples/resources/prismasdwan_event_correlation_policy_rule/resource.tf
+  s_a281bc52404319::t_673ea6ceeb93cc 25-28,31-32,35-36,39-47
+examples/resources/prismasdwan_event_correlation_policy_set/resource.tf
+  s_a281bc52404319::t_39ae2e63cbd140 25-28,30-31,33
+examples/resources/prismasdwan_external_ca_config/resource.tf
+  s_a281bc52404319::t_d1fd426566051c 25-27,29-36,38
+examples/resources/prismasdwan_global_prefix_filter/resource.tf
+  s_a281bc52404319::t_3f8053af81ca75 25,27-28,30
+examples/resources/prismasdwan_iot_profile/resource.tf
+  s_a281bc52404319::t_d729f41264e351 25-37,39,42-49
+examples/resources/prismasdwan_ipfix_collector_context/resource.tf
+  s_a281bc52404319::t_81fbd0fdaf792b 25-26
+examples/resources/prismasdwan_ipfix_filter_context/resource.tf
+  s_a281bc52404319::t_60f59f1a6bd15a 25-26
+examples/resources/prismasdwan_ipfix_global_prefix/resource.tf
+  s_a281bc52404319::t_1f1cdd8589f42f 25-28
+examples/resources/prismasdwan_ipfix_local_prefix/resource.tf
+  s_a281bc52404319::t_572731dc507318 25-27
+examples/resources/prismasdwan_ipfix_profile/resource.tf
+  s_a281bc52404319::t_63dc7ca8535fa4 26-30,32-33,35,37-38,40-44,46-47,49-50,52-53,55-57,59
+examples/resources/prismasdwan_ipfix_template.tf
+  s_a281bc52404319::t_7c0236ae95d582 27-28,81
+examples/resources/prismasdwan_ipfix_template/resource.tf
+  s_a281bc52404319::t_6f5480322be557 25-32
+examples/resources/prismasdwan_ipsec_profile/resource.tf
+  s_a281bc52404319::t_c61d3504c0431c 26-28,30-34,36-44,46-53,55-63,65-68,70,72-73,75-77,79-87,90-93,96-98,102-107,109-117,120-123,125,127-129
+examples/resources/prismasdwan_local_prefix_filter/resource.tf
+  s_a281bc52404319::t_172b7bf6ac43f0 25-26
+examples/resources/prismasdwan_multicast_peer_group_profile.tf
+  s_a281bc52404319::t_031c1739192022 43,78
+examples/resources/prismasdwan_multicast_peer_group_profile/resource.tf
+  s_a281bc52404319::t_c06ad58b501e32 25-27,29,31
+examples/resources/prismasdwan_nat_global_prefix/resource.tf
+  s_a281bc52404319::t_febb5aa769c62b 25-28
+examples/resources/prismasdwan_nat_local_prefix/resource.tf
+  s_a281bc52404319::t_6abf5d03aa17da 25-27
+examples/resources/prismasdwan_nat_policy_pool/resource.tf
+  s_a281bc52404319::t_d9c4b48f3b67c4 25-27
+examples/resources/prismasdwan_nat_policy_rule/resource.tf
+  s_a281bc52404319::t_c83769b3fef592 26-29,31,33-34,36-40,42-43,45-47
+examples/resources/prismasdwan_nat_policy_set/resource.tf
+  s_a281bc52404319::t_20f243b5d20d20 25-32,35-38,40,42-43,45-49,51-52,54-56,58-62
+examples/resources/prismasdwan_nat_policy_set_stack/resource.tf
+  s_a281bc52404319::t_ac9baa52ed7486 25-29
+examples/resources/prismasdwan_nat_zone/resource.tf
+  s_a281bc52404319::t_c4f2f4215b38bc 25-32
+examples/resources/prismasdwan_network_context/resource.tf
+  s_a281bc52404319::t_b4fedabbb2f071 25-26
+examples/resources/prismasdwan_ntp_template/resource.tf
+  s_a281bc52404319::t_a318c187192d09 25-27,29-32,34
+examples/resources/prismasdwan_path_global_prefix/resource.tf
+  s_a281bc52404319::t_16fb6f78cfb689 25-29
+examples/resources/prismasdwan_path_group/resource.tf
+  s_a281bc52404319::t_594ae9a93c0811 25-26,28-29
+examples/resources/prismasdwan_path_local_prefix/resource.tf
+  s_a281bc52404319::t_a30481e9b442b7 25-27
+examples/resources/prismasdwan_path_policy_rule/resource.tf
+  s_a281bc52404319::t_bf43ba8c20329c 25,27-29,31-37,40-41,44-45,48-49,53-57,59-61,63-64
+examples/resources/prismasdwan_path_policy_set/resource.tf
+  s_a281bc52404319::t_1b40415715b186 25-33,35,37-39,41-43,45-49,51-59,62-63,66-67,70-71,74-75,77-81,84-88,90-92,94-95,98-100
+examples/resources/prismasdwan_path_policy_stack/resource.tf
+  s_a281bc52404319::t_2a7d8cac01f4d2 25,27-35,37,39-41,43-45,47-51,53-61,64-65,68-69,72-73,76-77,79-83,86-90,92-94,96-97,100-102,104-113,115-121,123-131,133-135,137-138
+examples/resources/prismasdwan_performance_policy_rule/resource.tf
+  s_a281bc52404319::t_e4d7d1f27ca67a 26-27,30-31,33,37-38,40,44-45,47,51-52,54,58-59,61,65-66,68-71,73-74,76-79
+examples/resources/prismasdwan_performance_policy_set/resource.tf
+  s_a281bc52404319::t_3b713970271b94 25-31,34-35,38-39,41,45-46,48,52-53,55,59-60,62,66-67,69,72,74-75,77-86,88-89,91-94,97,99-101,103,106-108,110-112,114-117,119-120,122-124,128-129,132-133,136-137,140-141,144-145,149-151,153,155-156,158,160-168,170-172
+examples/resources/prismasdwan_performance_policy_stack/resource.tf
+  s_a281bc52404319::t_f0c76789728c23 25,27-33,36-37,40-41,43,47-48,50,54-55,57,61-62,64,68-69,71,74,76-77,79-88,90-91,93-96,99,101-103,105,108-110,112-114,116-119,121-122,124-126,130-131,134-135,138-139,142-143,146-147,151-153,155,157-158,160,162-170,172-174,176-184,186-192,194-202,204-206,208-209
+examples/resources/prismasdwan_performance_profile/resource.tf
+  s_a281bc52404319::t_cffdf19798b850 26,28,30,33-35,38-41,43,45-47,51-52,55-56,59-60,63-64,67-68,72-74,76
+examples/resources/prismasdwan_probe_config/resource.tf
+  s_a281bc52404319::t_f568c024a23f05 25-26,28-36,38-39
+examples/resources/prismasdwan_probe_profile/resource.tf
+  s_a281bc52404319::t_ce560f31ef42cc 25-28
+examples/resources/prismasdwan_qos_policy_global_prefix/resource.tf
+  s_a281bc52404319::t_11fcd0ba08b4c4 25-29
+examples/resources/prismasdwan_qos_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_21509ee3e31f61 25-27
+examples/resources/prismasdwan_qos_policy_rule/resource.tf
+  s_a281bc52404319::t_8179bd45d18f6f 25-28,30,32-39,41-42
+examples/resources/prismasdwan_qos_policy_set/resource.tf
+  s_a281bc52404319::t_3868ac8342a1de 27-28,31,33-36,38,42-43,45,47-49,51-55
+examples/resources/prismasdwan_qos_policy_stack/resource.tf
+  s_a281bc52404319::t_49b724f69482f4 25-30
+examples/resources/prismasdwan_sdwanapps_config/resource.tf
+  s_a281bc52404319::t_b7ef8fb4696ba0 25,27
+examples/resources/prismasdwan_security_policy_global_prefix/resource.tf
+  s_a281bc52404319::t_10ba4ab3f8d79e 25-29
+examples/resources/prismasdwan_security_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_0bed36caa8f770 25-27
+examples/resources/prismasdwan_security_policy_rule/resource.tf
+  s_a281bc52404319::t_a690926f22cb68 25-33,36-37,39,41-42,45-48,50-51
+examples/resources/prismasdwan_security_policy_set/resource.tf
+  s_a281bc52404319::t_fe62787f6f92fb 25-29
+examples/resources/prismasdwan_security_policy_stack/resource.tf
+  s_a281bc52404319::t_f5562fca9914f7 25-29
+examples/resources/prismasdwan_security_zone/resource.tf
+  s_a281bc52404319::t_949ca155edb4d9 25-26
+examples/resources/prismasdwan_service_endpoint.tf
+  s_a281bc52404319::t_f2d714f2c9d647 24,73,143
+examples/resources/prismasdwan_service_endpoint/resource.tf
+  s_a281bc52404319::t_56e88711ed87e1 26-31,33-37,40-43,46-48,50,53-55,57,59-60,63-64,66-68
+examples/resources/prismasdwan_service_group/resource.tf
+  s_a281bc52404319::t_51caf94bc334ec 25-26,28,30-31
+examples/resources/prismasdwan_site/resource.tf
+  s_a281bc52404319::t_6888ece5531d6a 26-31,33-38,40-42,45-47,49-56,58-59,61
+examples/resources/prismasdwan_site_ciphers/resource.tf
+  s_a281bc52404319::t_f2a7388c09976f 25-27
+examples/resources/prismasdwan_site_dhcp_server/resource.tf
+  s_a281bc52404319::t_eb7c1e0a857ea0 25-26,28-30,32-37,39-40,42-43,45-48,50-51
+examples/resources/prismasdwan_site_hub_cluster.tf
+  s_a281bc52404319::t_773649e0d8605a 63,79
+examples/resources/prismasdwan_site_hub_cluster/resource.tf
+  s_a281bc52404319::t_4ac361c924e851 25-26,28-29,31-34
+examples/resources/prismasdwan_site_hub_cluster_member/resource.tf
+  s_a281bc52404319::t_637d54cf86e0bd 25-27,29-31,33-35,37
+examples/resources/prismasdwan_site_hub_distribution_fabric/resource.tf
+  s_a281bc52404319::t_ab3f9ec1ab18a9 25-28
+examples/resources/prismasdwan_site_hub_prefix_filter/resource.tf
+  s_a281bc52404319::t_1d39bd14bd5e77 26-28,30-31,33
+examples/resources/prismasdwan_site_hub_prefix_filter_association/resource.tf
+  s_a281bc52404319::t_5040fbd9a29536 25-29
+examples/resources/prismasdwan_site_hub_prefix_filter_profile.tf
+  s_a281bc52404319::t_0f617cfc188012 56,111
+examples/resources/prismasdwan_site_hub_prefix_filter_profile/resource.tf
+  s_a281bc52404319::t_19fbfc78fa150a 25-26,29-32,34,36
+examples/resources/prismasdwan_site_iot_device_id_config/resource.tf
+  s_a281bc52404319::t_6c4cd058a070bd 25-27
+examples/resources/prismasdwan_site_iot_snmp_start_node/resource.tf
+  s_a281bc52404319::t_e1c7704d62f1cf 25-27,29,31
+examples/resources/prismasdwan_site_ipfix_local_prefix/resource.tf
+  s_a281bc52404319::t_1566e632caf01b 25-27
+examples/resources/prismasdwan_site_lan_network/resource.tf
+  s_a281bc52404319::t_0769a19b58355d 25,27,31-34,36-37,40-41,43-44,46-47,49,52-53,55-59
+examples/resources/prismasdwan_site_nat_local_prefix/resource.tf
+  s_a281bc52404319::t_5db4c08b473d93 25-27
+examples/resources/prismasdwan_site_path_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_67938e1c0c902d 25-28
+examples/resources/prismasdwan_site_prisma_access_config/resource.tf
+  s_a281bc52404319::t_dbe6fa11487db7 26-30,32
+examples/resources/prismasdwan_site_prisma_sase_connection/resource.tf
+  s_a281bc52404319::t_7a64b9a0aec34c 25,27-33,35-41,45-47,49,51-53,56-59,61,63-64,67-73,75
+examples/resources/prismasdwan_site_qos_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_ac0c0161611424 25-28
+examples/resources/prismasdwan_site_security_policy_local_prefix/resource.tf
+  s_a281bc52404319::t_f527d94207c325 25-28
+examples/resources/prismasdwan_site_security_zone/resource.tf
+  s_a281bc52404319::t_5637c8a0328f40 26-27,30-31,33
+examples/resources/prismasdwan_site_spoke_cluster/resource.tf
+  s_a281bc52404319::t_a94c8f08ee068e 25-29
+examples/resources/prismasdwan_site_wan_interface/resource.tf
+  s_a281bc52404319::t_e1e69d95a8a80f 25-28,30-31,33-35,37-41,43-51,53-54
+examples/resources/prismasdwan_site_wan_multicast_configuration/resource.tf
+  s_a281bc52404319::t_8ed8cc9ebf5091 26-27
+examples/resources/prismasdwan_syslog_profile.tf
+  s_a281bc52404319::t_3b392a96f0b6eb 26,39,83
+examples/resources/prismasdwan_syslog_profile/resource.tf
+  s_a281bc52404319::t_b08b4610ed2fa6 25-30
+examples/resources/prismasdwan_tacacs_plus_profile.tf
+  s_a281bc52404319::t_45221d31e8b4b5 27,42,80
+examples/resources/prismasdwan_tacacs_plus_profile/resource.tf
+  s_a281bc52404319::t_eb6f708511de0d 25-27,29-34,36
+examples/resources/prismasdwan_vrf_context/resource.tf
+  s_a281bc52404319::t_8bacfff44c19f7 25-27
+examples/resources/prismasdwan_vrf_context_profile/resource.tf
+  s_a281bc52404319::t_727939b16ba5eb 25-29,31-35
+examples/resources/prismasdwan_wan_interface_label/resource.tf
+  s_a281bc52404319::t_f66cbb03756cb5 25-27,29-30,32-39,41-42
+examples/resources/prismasdwan_wan_network/resource.tf
+  s_a281bc52404319::t_831231daaa7336 25-28
+examples/resources/prismasdwan_wan_overlay/resource.tf
+  s_a281bc52404319::t_e38314da1d074c 25-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "1abf91d6c1485ede385bae37b03acd475bbd3e94",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
