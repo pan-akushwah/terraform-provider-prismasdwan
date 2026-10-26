@@ -22,9 +22,9 @@
 #   }
 
 resource "prismasdwan_site_spoke_cluster" "example" {
-  advertisement_interval = 0.1234
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  preempt = true
-  tags = ["lorem"]
+  advertisement_interval = 1.5
+  description            = "Managed by Terraform"
+  name                   = "example_name"
+  preempt                = false
+  tags                   = ["terraform"]
 }

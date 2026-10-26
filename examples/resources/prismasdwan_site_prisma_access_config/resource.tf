@@ -23,11 +23,11 @@
 
 resource "prismasdwan_site_prisma_access_config" "example" {
   remote_networks = [{
-    edge_location_display = "Lorem-Ipsum"
-    edge_location_value = "Lorem-Ipsum"
-    remote_network_names = ["Lorem-Ipsum"]
-    service_link_ids = ["Lorem-Ipsum"]
-    spn_name = "Lorem-Ipsum"
+    edge_location_display = "example_edge_location_display"
+    edge_location_value   = "example_edge_location_value"
+    remote_network_names  = ["example_remote_network_names"]
+    service_link_ids      = ["<service_link_id>"]
+    spn_name              = "example_spn"
   }]
-  site_id = "123456789"
+  site_id = "<site_id>"
 }

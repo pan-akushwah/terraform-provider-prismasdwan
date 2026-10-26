@@ -22,11 +22,11 @@
 #   }
 
 resource "prismasdwan_site_iot_snmp_start_node" "example" {
-  description = "Lorem-Ipsum"
-  ipv4_address = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description  = "Managed by Terraform"
+  ipv4_address = "10.0.0.1"
+  name         = "example_name"
   scope = [{
-    ipv4_prefix = "Lorem-Ipsum"
+    ipv4_prefix = "10.10.0.0/16"
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

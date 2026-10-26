@@ -42,7 +42,7 @@ resource "prismasdwan_element_routing_aspathaccesslist" "example_routing_aspatha
   }
   name           = "example_routing_aspathaccesslist"
   description    = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags           = ["lorem", "ipsum"]
+  tags           = ["terraform", "example"]
   auto_generated = false
   as_path_regex_list = [
     {
@@ -101,7 +101,7 @@ data "prismasdwan_element_routing_aspathaccesslist" "find_by_tags_member" {
     element_id = prismasdwan_resource_locator.element_shell.result
   }
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_element_routing_aspathaccesslist.example_routing_aspathaccesslist]
 }

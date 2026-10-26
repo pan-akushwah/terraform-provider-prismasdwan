@@ -22,12 +22,12 @@
 #   }
 
 resource "prismasdwan_ipfix_template" "example" {
-  description = "Lorem-Ipsum"
-  flow_fields = ["Lorem-Ipsum"]
-  generate_biflow = true
-  name = "Lorem-Ipsum"
-  option_export_timeout = 1234
-  options = ["Lorem-Ipsum"]
-  tags = ["lorem"]
-  template_export_timeout = 1234
+  description             = "Managed by Terraform"
+  flow_fields             = ["INTERFACES"]
+  generate_biflow         = false
+  name                    = "example_name"
+  option_export_timeout   = 443
+  options                 = ["APP_DEF_ID_TABLE"]
+  tags                    = ["terraform"]
+  template_export_timeout = 443
 }

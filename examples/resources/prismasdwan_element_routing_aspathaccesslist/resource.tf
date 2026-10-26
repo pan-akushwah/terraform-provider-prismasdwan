@@ -23,12 +23,12 @@
 
 resource "prismasdwan_element_routing_aspathaccesslist" "example" {
   as_path_regex_list = [{
-    as_path_regex = "Lorem-Ipsum"
-    order = 1234
-    permit = true
+    as_path_regex = "example_as_path_regex"
+    order         = 1
+    permit        = false
   }]
-  auto_generated = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  auto_generated = false
+  description    = "Managed by Terraform"
+  name           = "example_name"
+  tags           = ["terraform"]
 }

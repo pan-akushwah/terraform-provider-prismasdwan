@@ -22,20 +22,20 @@
 #   }
 
 resource "prismasdwan_element_syslog_server" "example" {
-  description = "Lorem-Ipsum"
-  enable_dns_logging = true
-  enable_flow_logging = true
-  enable_threat_logging = true
-  enable_url_logging = true
-  enabled = true
-  name = "Lorem-Ipsum"
-  protocol = "Lorem-Ipsum"
-  remote_ca_certificate = "Lorem-Ipsum"
-  server_fqdn = "Lorem-Ipsum"
-  server_ip = "Lorem-Ipsum"
-  server_port = 1234
-  severity_level = "Lorem-Ipsum"
-  source_interface = "Lorem-Ipsum"
-  syslog_profile_id = "123456789"
-  tags = ["lorem"]
+  description           = "Managed by Terraform"
+  enable_dns_logging    = false
+  enable_flow_logging   = false
+  enable_threat_logging = false
+  enable_url_logging    = false
+  enabled               = true
+  name                  = "example_name"
+  protocol              = "example_protocol"
+  remote_ca_certificate = "example_remote_ca_certificate"
+  server_fqdn           = "server.example.com"
+  server_ip             = "10.0.0.1"
+  server_port           = 443
+  severity_level        = "example_severity_level"
+  source_interface      = "example_source_interface"
+  syslog_profile_id     = "<syslog_profile_id>"
+  tags                  = ["terraform"]
 }

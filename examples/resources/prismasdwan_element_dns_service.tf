@@ -85,7 +85,7 @@ resource "prismasdwan_element_dns_service" "first_element_dns_service" {
   }
   name                       = "SomeDnsName"
   description                = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                       = ["lorem", "ipsum"]
+  tags                       = ["terraform", "example"]
   max_concurrent_dns_queries = 150
   dnsservice_profile_id      = prismasdwan_resource_locator.dnsservice_profile_id.result
   enabled                    = false
@@ -195,7 +195,7 @@ data "prismasdwan_element_dns_service" "find_by_tags_member" {
     element_id = prismasdwan_resource_locator.element_shell.result
   }
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_element_dns_service.first_element_dns_service]
 }

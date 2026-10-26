@@ -22,10 +22,10 @@
 #   }
 
 resource "prismasdwan_syslog_profile" "example" {
-  name = "Lorem-Ipsum"
-  protocol = "Lorem-Ipsum"
-  server_ip = "Lorem-Ipsum"
-  server_port = 1234
-  severity_level = "Lorem-Ipsum"
-  tags = ["lorem"]
+  name           = "example_name"
+  protocol       = "udp"
+  server_ip      = "10.0.0.1"
+  server_port    = 443
+  severity_level = "major"
+  tags           = ["terraform"]
 }

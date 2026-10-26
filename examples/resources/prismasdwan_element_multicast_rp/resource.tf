@@ -22,12 +22,12 @@
 #   }
 
 resource "prismasdwan_element_multicast_rp" "example" {
-  description = "Lorem-Ipsum"
+  description = "Managed by Terraform"
   groups = [{
-    ipv4_prefix = "Lorem-Ipsum"
-    name = "Lorem-Ipsum"
+    ipv4_prefix = "10.10.0.0/16"
+    name        = "example_name"
   }]
-  ipv4_address = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  ipv4_address = "10.0.0.1"
+  name         = "example_name"
+  tags         = ["terraform"]
 }

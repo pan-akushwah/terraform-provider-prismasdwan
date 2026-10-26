@@ -42,7 +42,7 @@ resource "prismasdwan_element_routing_prefixlist" "example_routing_prefixlist" {
   }
   name           = "example_routing_prefixlist"
   description    = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags           = ["lorem", "ipsum"]
+  tags           = ["terraform", "example"]
   auto_generated = false
   prefix_filter_list = [
     {
@@ -102,7 +102,7 @@ data "prismasdwan_element_routing_prefixlist" "find_by_tags_member" {
     element_id = prismasdwan_resource_locator.element_shell.result
   }
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_element_routing_prefixlist.example_routing_prefixlist]
 }

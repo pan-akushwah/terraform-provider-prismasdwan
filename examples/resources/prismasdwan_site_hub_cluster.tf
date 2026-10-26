@@ -60,7 +60,7 @@ resource "prismasdwan_site_hub_cluster" "empty_dc_hub_cluster" {
   name                       = "tf managed empty hub cluster 01"
   default_cluster            = false
   description                = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                       = ["lorem", "ipsum"]
+  tags                       = ["terraform", "example"]
   site_count_alarm_threshold = null
   peer_sites                 = null
   elements                   = null
@@ -76,7 +76,7 @@ resource "prismasdwan_site_hub_cluster" "non_empty_dc_hub_cluster" {
   name                       = "tf managed empty hub cluster 01"
   default_cluster            = false
   description                = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                       = ["lorem", "ipsum"]
+  tags                       = ["terraform", "example"]
   site_count_alarm_threshold = 20
   peer_sites = [
     prismasdwan_resource_locator.first_site.result,

@@ -24,6 +24,6 @@
 data "prismasdwan_nat_policy_set_stack" "example" {
   # Select an item by matching one or more of its attributes.
   filters = {
-    name = "Lorem-Ipsum"
+    name = "example_name"
   }
 }

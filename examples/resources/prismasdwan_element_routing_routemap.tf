@@ -42,7 +42,7 @@ resource "prismasdwan_element_routing_routemap" "example_routing_routemap" {
   }
   name        = "example_routemap"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags        = ["lorem", "ipsum"]
+  tags        = ["terraform", "example"]
   route_map_entries = [
     {
       order  = 10
@@ -112,7 +112,7 @@ data "prismasdwan_element_routing_routemap" "find_by_tags_member" {
     element_id = prismasdwan_resource_locator.element_shell.result
   }
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_element_routing_routemap.example_routing_routemap]
 }

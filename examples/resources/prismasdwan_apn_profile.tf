@@ -23,7 +23,7 @@
 resource "prismasdwan_apn_profile" "example_apn_profile_1" {
   name           = "example_apnprofile_1"
   description    = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags           = ["lorem"]
+  tags           = ["terraform"]
   apn            = "example-tf"
   authentication = "pap_or_chap" # one of: none, pap, chap, pap_or_chap
   clear_password = true
@@ -34,7 +34,7 @@ resource "prismasdwan_apn_profile" "example_apn_profile_1" {
 resource "prismasdwan_apn_profile" "example_apn_profile_2" {
   name           = "example_apnprofile_2"
   description    = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags           = ["lorem"]
+  tags           = ["terraform"]
   apn            = "example-tf"
   authentication = "pap_or_chap" # one of: none, pap, chap, pap_or_chap
   clear_password = false
@@ -45,7 +45,7 @@ resource "prismasdwan_apn_profile" "example_apn_profile_2" {
 resource "prismasdwan_apn_profile" "example_apn_profile_3" {
   name           = "example_apnprofile_3"
   description    = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags           = ["lorem"]
+  tags           = ["terraform"]
   apn            = "example-tf"
   authentication = "pap" # one of: none, pap, chap, pap_or_chap
   clear_password = false
@@ -56,7 +56,7 @@ resource "prismasdwan_apn_profile" "example_apn_profile_3" {
 resource "prismasdwan_apn_profile" "example_apn_profile_4" {
   name           = "example_apnprofile_4"
   description    = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags           = ["lorem"]
+  tags           = ["terraform"]
   apn            = "example-tf"
   authentication = "chap" # one of: none, pap, chap, pap_or_chap
   clear_password = true
@@ -98,7 +98,7 @@ data "prismasdwan_apn_profile" "find_by_apn" {
 # by a value in the tags list (gjson query: <list>.#(=="value"))
 data "prismasdwan_apn_profile" "find_by_tags_member" {
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_apn_profile.example_apn_profile_1]
 }

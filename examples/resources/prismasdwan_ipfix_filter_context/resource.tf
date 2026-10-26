@@ -22,6 +22,6 @@
 #   }
 
 resource "prismasdwan_ipfix_filter_context" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
 }

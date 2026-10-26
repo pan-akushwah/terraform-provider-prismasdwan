@@ -22,8 +22,8 @@
 #   }
 
 resource "prismasdwan_site_path_policy_local_prefix" "example" {
-  ipv4_prefixes = ["Lorem-Ipsum"]
-  ipv6_prefixes = ["Lorem-Ipsum"]
-  prefix_id = "123456789"
-  tags = ["lorem"]
+  ipv4_prefixes = ["10.10.0.0/16"]
+  ipv6_prefixes = ["2001:db8:10::/48"]
+  prefix_id     = "<prefix_id>"
+  tags          = ["terraform"]
 }

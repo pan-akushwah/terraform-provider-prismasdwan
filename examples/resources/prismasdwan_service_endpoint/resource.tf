@@ -23,47 +23,47 @@
 
 resource "prismasdwan_service_endpoint" "example" {
   address = {
-    city = "Lorem-Ipsum"
-    country = "Lorem-Ipsum"
-    post_code = "Lorem-Ipsum"
-    state = "Lorem-Ipsum"
-    street = "Lorem-Ipsum"
-    street2 = "Lorem-Ipsum"
+    city      = "Santa Clara"
+    country   = "United States"
+    post_code = "95054"
+    state     = "California"
+    street    = "3000 Tannery Way"
+    street2   = "Building A"
   }
-  admin_up = true
-  allow_enterprise_traffic = true
-  description = "Lorem-Ipsum"
-  disable_tunnel_reoptimization = true
-  is_sase = true
+  admin_up                      = true
+  allow_enterprise_traffic      = false
+  description                   = "Managed by Terraform"
+  disable_tunnel_reoptimization = false
+  is_sase                       = false
   liveliness_probe = {
     http = [{
-      failure_count = 1234
-      http_status_codes = [1234]
-      interval = 1234
-      url = "Lorem-Ipsum"
+      failure_count     = 3
+      http_status_codes = [100]
+      interval          = 30
+      url               = "https://example.com"
     }]
     icmp_ping = [{
-      failure_count = 1234
-      interval = 1234
-      ip_addresses = ["Lorem-Ipsum"]
+      failure_count = 3
+      interval      = 30
+      ip_addresses  = ["example_ip_addresses"]
     }]
-    use_tunnel_for_url_dns_resolution = true
+    use_tunnel_for_url_dns_resolution = false
   }
   location = {
-    description = "Lorem-Ipsum"
-    latitude = 0.1234
-    longitude = 0.1234
+    description = "Managed by Terraform"
+    latitude    = 37.3541
+    longitude   = -121.9552
   }
-  name = "Lorem-Ipsum"
+  name = "example_name"
   sase_properties = {
-    active = true
-    lqm_enabled = true
+    active      = false
+    lqm_enabled = false
   }
   service_link_peers = {
-    hostnames = ["Lorem-Ipsum"]
-    ip_addresses = ["Lorem-Ipsum"]
+    hostnames    = ["server.example.com"]
+    ip_addresses = ["example_ip_addresses"]
   }
-  site_id = "123456789"
-  tags = ["lorem"]
-  type = "Lorem-Ipsum"
+  site_id = "<site_id>"
+  tags    = ["terraform"]
+  type    = "cg-transit"
 }

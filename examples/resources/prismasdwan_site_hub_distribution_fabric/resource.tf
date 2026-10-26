@@ -22,8 +22,8 @@
 #   }
 
 resource "prismasdwan_site_hub_distribution_fabric" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  spoke_site_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  description    = "Managed by Terraform"
+  name           = "example_name"
+  spoke_site_ids = ["<spoke_site_id>"]
+  tags           = ["terraform"]
 }

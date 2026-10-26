@@ -22,10 +22,10 @@
 #   }
 
 resource "prismasdwan_element_cellular_module" "example" {
-  description = "Lorem-Ipsum"
-  gps_enable = true
-  name = "Lorem-Ipsum"
-  primary_sim = 1234
-  radio_on = true
-  tags = ["lorem"]
+  description = "Managed by Terraform"
+  gps_enable  = false
+  name        = "example_name"
+  primary_sim = 10
+  radio_on    = false
+  tags        = ["terraform"]
 }

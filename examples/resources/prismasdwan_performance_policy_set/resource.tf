@@ -22,152 +22,152 @@
 #   }
 
 resource "prismasdwan_performance_policy_set" "example" {
-  clone_from = "Lorem-Ipsum"
-  defaultrule_policyset = true
-  description = "Lorem-Ipsum"
-  disabled = true
-  disabled_reason = "Lorem-Ipsum"
-  inactive = true
-  inactive_reason = "Lorem-Ipsum"
+  clone_from            = "example_clone_from"
+  defaultrule_policyset = false
+  description           = "Managed by Terraform"
+  disabled              = false
+  disabled_reason       = "example_disabled_reason"
+  inactive              = false
+  inactive_reason       = "example_inactive_reason"
   link_health_rules = [{
     actions = [{
-      action_type = "Lorem-Ipsum"
-      always_on = true
+      action_type = "raise_alarm"
+      always_on   = false
       app_perf = {
         bad_health_thresholds = {
-          clear_below = 1234
-          raise_above = 1234
+          clear_below = 10
+          raise_above = 10
         }
-        monitoring_approach = "Lorem-Ipsum"
+        monitoring_approach = "moderate"
       }
       circuit_utilization_perf = {
         bad_health_thresholds = {
-          clear_below = 1234
-          raise_above = 1234
+          clear_below = 10
+          raise_above = 10
         }
-        monitoring_approach = "Lorem-Ipsum"
+        monitoring_approach = "moderate"
       }
       lqm_perf = {
         bad_health_thresholds = {
-          clear_below = 1234
-          raise_above = 1234
+          clear_below = 10
+          raise_above = 10
         }
-        monitoring_approach = "Lorem-Ipsum"
+        monitoring_approach = "moderate"
       }
       probe_perf = {
         bad_health_thresholds = {
-          clear_below = 1234
-          raise_above = 1234
+          clear_below = 10
+          raise_above = 10
         }
-        monitoring_approach = "Lorem-Ipsum"
+        monitoring_approach = "moderate"
       }
       sys_perf = {
         bad_health_thresholds = {
-          clear_below = 1234
-          raise_above = 1234
+          clear_below = 10
+          raise_above = 10
         }
-        monitoring_approach = "Lorem-Ipsum"
+        monitoring_approach = "moderate"
       }
     }]
-    app_acceleration_update = true
+    app_acceleration_update = false
     app_filters = {
-      app_transfer_types = ["Lorem-Ipsum"]
-      application_ids = ["Lorem-Ipsum"]
+      app_transfer_types = ["rt-audio"]
+      application_ids    = ["<application_id>"]
     }
-    default_rule = true
-    description = "Lorem-Ipsum"
-    disabled = true
-    disabled_reason = "Lorem-Ipsum"
-    enabled = true
-    inactive = true
-    inactive_reason = "Lorem-Ipsum"
-    name = "Lorem-Ipsum"
-    network_context_ids = ["Lorem-Ipsum"]
-    path_filter_update = true
+    default_rule        = false
+    description         = "Managed by Terraform"
+    disabled            = false
+    disabled_reason     = "example_disabled_reason"
+    enabled             = true
+    inactive            = false
+    inactive_reason     = "example_inactive_reason"
+    name                = "example_name"
+    network_context_ids = ["<network_context_id>"]
+    path_filter_update  = false
     path_filters = [{
-      label = "Lorem-Ipsum"
-      path_type = "Lorem-Ipsum"
+      label     = "public-1"
+      path_type = "direct"
     }]
-    policyset_id = "123456789"
-    region = "Lorem-Ipsum"
-    service_label_ids = ["Lorem-Ipsum"]
-    tags = ["lorem"]
+    policyset_id      = "<policyset_id>"
+    region            = "example_region"
+    service_label_ids = ["<service_label_id>"]
+    tags              = ["terraform"]
     thresholdprofile = {
       circuit_utilization_metrics_thresholds = {
-        percentage_circuit_utilization = 1234
+        percentage_circuit_utilization = 10
       }
-      description = "Lorem-Ipsum"
-      disabled = true
-      disabled_reason = "Lorem-Ipsum"
+      description     = "Managed by Terraform"
+      disabled        = false
+      disabled_reason = "example_disabled_reason"
       flow_metrics_thresholds = {
-        percentage_flow_utilization = 1234
+        percentage_flow_utilization = 10
       }
       hard_limit_app_metrics = {
-        max_init_failure_rate = 1234
-        max_rtt = 1234
-        udp_trt = 1234
+        max_init_failure_rate = 10
+        max_rtt               = 10
+        udp_trt               = 10
       }
-      inactive = true
-      inactive_reason = "Lorem-Ipsum"
-      is_default = true
+      inactive        = false
+      inactive_reason = "example_inactive_reason"
+      is_default      = false
       lqm_thresholds = {
-        max_jitter = 1234
-        max_latency = 1234
-        max_packet_loss = 1234
-        min_mos = 1234
+        max_jitter      = 10
+        max_latency     = 10
+        max_packet_loss = 10
+        min_mos         = 5
       }
-      name = "Lorem-Ipsum"
-      region = "Lorem-Ipsum"
+      name   = "example_name"
+      region = "example_region"
       soft_limit_app_metrics = {
-        max_init_failure_rate = 1234
-        max_rtt = 1234
-        udp_trt = 1234
+        max_init_failure_rate = 10
+        max_rtt               = 10
+        udp_trt               = 10
       }
       synthetic_probe_thresholds = {
         dns_txn_failure_pct = {
-          probe_config_id = "123456789"
-          value = 1234
+          probe_config_id = "<probe_config_id>"
+          value           = 10
         }
         init_failure_pct = {
-          probe_config_id = "123456789"
-          value = 1234
+          probe_config_id = "<probe_config_id>"
+          value           = 10
         }
         jitter = {
-          probe_config_id = "123456789"
-          value = 1234
+          probe_config_id = "<probe_config_id>"
+          value           = 10
         }
         latency = {
-          probe_config_id = "123456789"
-          value = 1234
+          probe_config_id = "<probe_config_id>"
+          value           = 10
         }
         packet_loss = {
-          probe_config_id = "123456789"
-          value = 1234
+          probe_config_id = "<probe_config_id>"
+          value           = 10
         }
       }
       system_health_metrics_thresholds = {
-        cpu_utilization = 1234
-        disk_utilization = 1234
-        memory_utilization = 1234
+        cpu_utilization    = 10
+        disk_utilization   = 10
+        memory_utilization = 10
       }
-      tags = ["lorem"]
+      tags = ["terraform"]
     }
-    thresholdprofile_id = "123456789"
-    type = "Lorem-Ipsum"
+    thresholdprofile_id = "<thresholdprofile_id>"
+    type                = "app_circuit_health"
   }]
-  name = "Lorem-Ipsum"
+  name = "example_name"
   policy_rules = [{
-    description = "Lorem-Ipsum"
-    disabled = true
-    disabled_reason = "Lorem-Ipsum"
-    inactive = true
-    inactive_reason = "Lorem-Ipsum"
-    name = "Lorem-Ipsum"
-    policyset_id = "123456789"
-    region = "Lorem-Ipsum"
-    tags = ["lorem"]
+    description     = "Managed by Terraform"
+    disabled        = false
+    disabled_reason = "example_disabled_reason"
+    inactive        = false
+    inactive_reason = "example_inactive_reason"
+    name            = "example_name"
+    policyset_id    = "<policyset_id>"
+    region          = "example_region"
+    tags            = ["terraform"]
   }]
-  region = "Lorem-Ipsum"
-  send_to_element = true
-  tags = ["lorem"]
+  region          = "example_region"
+  send_to_element = false
+  tags            = ["terraform"]
 }

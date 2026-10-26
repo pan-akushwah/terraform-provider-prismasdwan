@@ -22,32 +22,32 @@
 #   }
 
 resource "prismasdwan_security_policy_rule" "example" {
-  action = "Lorem-Ipsum"
-  app_def_ids = ["Lorem-Ipsum"]
-  description = "Lorem-Ipsum"
-  dest_device_ids = ["Lorem-Ipsum"]
-  destination_prefix_ids = ["Lorem-Ipsum"]
-  destination_zone_ids = ["Lorem-Ipsum"]
-  enabled = true
-  name = "Lorem-Ipsum"
-  security_profile_group_id = "123456789"
+  action                    = "ALLOW"
+  app_def_ids               = ["<app_def_id>"]
+  description               = "Managed by Terraform"
+  dest_device_ids           = ["<dest_device_id>"]
+  destination_prefix_ids    = ["<destination_prefix_id>"]
+  destination_zone_ids      = ["<destination_zone_id>"]
+  enabled                   = true
+  name                      = "example_name"
+  security_profile_group_id = "<security_profile_group_id>"
   services = [{
     destination_ports = [{
-      from = 1234
-      to = 1234
+      from = 10
+      to   = 10
     }]
-    protocol = 1234
+    protocol = 10
     source_ports = [{
-      from = 1234
-      to = 1234
+      from = 10
+      to   = 10
     }]
   }]
-  source_prefix_ids = ["Lorem-Ipsum"]
-  source_zone_ids = ["Lorem-Ipsum"]
-  src_device_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  source_prefix_ids = ["<source_prefix_id>"]
+  source_zone_ids   = ["<source_zone_id>"]
+  src_device_ids    = ["<src_device_id>"]
+  tags              = ["terraform"]
   user_or_group = {
-    user_group_ids = ["Lorem-Ipsum"]
-    user_ids = ["Lorem-Ipsum"]
+    user_group_ids = ["<user_group_id>"]
+    user_ids       = ["<user_id>"]
   }
 }

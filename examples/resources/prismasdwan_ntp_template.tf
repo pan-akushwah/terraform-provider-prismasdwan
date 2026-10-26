@@ -28,8 +28,8 @@
 resource "prismasdwan_ntp_template" "example_ntp_template_1" {
   name             = "example_ntp_template_1"
   description      = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags             = ["lorem"]
-  default_template = true
+  tags             = ["terraform"]
+  default_template = false # true replaces the tenant default, which then cannot be deleted
   ntp_servers = [
     {
       host     = "10.11.12.13"
@@ -49,7 +49,7 @@ resource "prismasdwan_ntp_template" "example_ntp_template_1" {
 resource "prismasdwan_ntp_template" "example_ntp_template_2" {
   name             = "example_ntp_template_2"
   description      = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags             = ["lorem"]
+  tags             = ["terraform"]
   default_template = false
   ntp_servers = [
     {

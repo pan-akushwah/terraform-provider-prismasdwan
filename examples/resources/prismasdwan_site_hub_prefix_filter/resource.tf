@@ -23,12 +23,12 @@
 
 resource "prismasdwan_site_hub_prefix_filter" "example" {
   filters = [{
-    elements = ["Lorem-Ipsum"]
-    ip_prefixes = ["Lorem-Ipsum"]
-    path = ["Lorem-Ipsum"]
+    elements    = ["example_elements"]
+    ip_prefixes = ["10.10.0.0/16"]
+    path        = ["example_path"]
     # site (unsupported type OBJECT)
-    type = "Lorem-Ipsum"
-    wn_path = ["Lorem-Ipsum"]
+    type    = "example_type"
+    wn_path = ["example_wn_path"]
   }]
-  prefix_filter_id = "123456789"
+  prefix_filter_id = "<prefix_filter_id>"
 }

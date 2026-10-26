@@ -23,26 +23,26 @@
 
 resource "prismasdwan_nat_policy_rule" "example" {
   actions = [{
-    nat_pool_id = "123456789"
-    port = 1234
-    protocols = ["Lorem-Ipsum"]
-    type = "Lorem-Ipsum"
+    nat_pool_id = "<nat_pool_id>"
+    port        = 443
+    protocols   = ["example_protocols"]
+    type        = "no_nat"
   }]
-  description = "Lorem-Ipsum"
+  description = "Managed by Terraform"
   destination_ports = [{
-    from = 1234
-    to = 1234
+    from = 10
+    to   = 10
   }]
-  destination_prefixes_id = "123456789"
-  destination_zone_id = "123456789"
-  enabled = true
-  name = "Lorem-Ipsum"
-  protocol = 1234
+  destination_prefixes_id = "<destination_prefixes_id>"
+  destination_zone_id     = "<destination_zone_id>"
+  enabled                 = true
+  name                    = "example_name"
+  protocol                = 10
   source_ports = [{
-    from = 1234
-    to = 1234
+    from = 10
+    to   = 10
   }]
-  source_prefixes_id = "123456789"
-  source_zone_id = "123456789"
-  tags = ["lorem"]
+  source_prefixes_id = "<source_prefixes_id>"
+  source_zone_id     = "<source_zone_id>"
+  tags               = ["terraform"]
 }

@@ -22,16 +22,16 @@
 #   }
 
 resource "prismasdwan_site_hub_prefix_filter_profile" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
   path_prefix_filter_list = [{
     path_prefix_filters = [{
-      ipv4_prefix = "Lorem-Ipsum"
-      ipv6_prefix = "Lorem-Ipsum"
-      order = 1234
-      permit = true
+      ipv4_prefix = "10.10.0.0/16"
+      ipv6_prefix = "2001:db8:10::/48"
+      order       = 1
+      permit      = false
     }]
-    vrf_context_id = "123456789"
+    vrf_context_id = "<vrf_context_id>"
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

@@ -22,16 +22,16 @@
 #   }
 
 resource "prismasdwan_element_routing_prefixlist" "example" {
-  auto_generated = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  auto_generated = false
+  description    = "Managed by Terraform"
+  name           = "example_name"
   prefix_filter_list = [{
-    ge = 1234
-    ipv6_prefix = "Lorem-Ipsum"
-    le = 1234
-    order = 1234
-    permit = true
-    prefix = "Lorem-Ipsum"
+    ge          = 10
+    ipv6_prefix = "2001:db8:10::/48"
+    le          = 10
+    order       = 1
+    permit      = false
+    prefix      = "10.10.0.0/16"
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

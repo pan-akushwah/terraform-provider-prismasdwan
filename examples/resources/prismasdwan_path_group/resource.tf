@@ -22,10 +22,10 @@
 #   }
 
 resource "prismasdwan_path_group" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
   paths = [{
-    label = "Lorem-Ipsum"
-    path_type = "Lorem-Ipsum"
+    label     = "public-1"
+    path_type = "direct"
   }]
 }

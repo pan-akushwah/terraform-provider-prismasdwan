@@ -22,24 +22,24 @@
 #   }
 
 resource "prismasdwan_element_snmp_agent" "example" {
-  description = "Lorem-Ipsum"
-  system_contact = "Lorem-Ipsum"
-  system_location = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description     = "Managed by Terraform"
+  system_contact  = "example_system_contact"
+  system_location = "example_system_location"
+  tags            = ["terraform"]
   v2_config = {
-    community = "base64(<secret-string>)"
-    enabled = true
+    community = "<secret>"
+    enabled   = true
   }
   v3_config = {
     enabled = true
     users_access = [{
-      auth_phrase = "base64(<secret-string>)"
-      auth_type = "Lorem-Ipsum"
-      enc_phrase = "base64(<secret-string>)"
-      enc_type = "Lorem-Ipsum"
-      engine_id = "123456789"
-      security_level = "Lorem-Ipsum"
-      user_name = "Lorem-Ipsum"
+      auth_phrase    = "<secret>"
+      auth_type      = "NONE"
+      enc_phrase     = "<secret>"
+      enc_type       = "NONE"
+      engine_id      = "<engine_id>"
+      security_level = "NOAUTH"
+      user_name      = "example_user"
     }]
   }
 }

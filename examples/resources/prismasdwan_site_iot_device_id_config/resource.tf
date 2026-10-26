@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_site_iot_device_id_config" "example" {
-  cfg_device_id_enabled = true
-  deviceid_profile_id = "123456789"
-  site_id = "123456789"
+  cfg_device_id_enabled = false
+  deviceid_profile_id   = "<deviceid_profile_id>"
+  site_id               = "<site_id>"
 }

@@ -22,16 +22,16 @@
 #   }
 
 resource "prismasdwan_vrf_context_profile" "example" {
-  default_vrf_context_profile = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
-  vrf_context_ids = ["Lorem-Ipsum"]
+  default_vrf_context_profile = false
+  description                 = "Managed by Terraform"
+  name                        = "example_name"
+  tags                        = ["terraform"]
+  vrf_context_ids             = ["<vrf_context_id>"]
   vrf_context_route_leak_rules = [{
-    description = "Lorem-Ipsum"
-    dest_vrf_context_id = "123456789"
-    ipv4_prefixes = ["Lorem-Ipsum"]
-    name = "Lorem-Ipsum"
-    src_vrf_context_id = "123456789"
+    description         = "Managed by Terraform"
+    dest_vrf_context_id = "<dest_vrf_context_id>"
+    ipv4_prefixes       = ["10.10.0.0/16"]
+    name                = "example_name"
+    src_vrf_context_id  = "<src_vrf_context_id>"
   }]
 }

@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_nat_policy_pool" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

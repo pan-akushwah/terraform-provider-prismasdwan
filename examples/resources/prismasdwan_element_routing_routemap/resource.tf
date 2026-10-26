@@ -22,35 +22,35 @@
 #   }
 
 resource "prismasdwan_element_routing_routemap" "example" {
-  auto_generated = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  auto_generated = false
+  description    = "Managed by Terraform"
+  name           = "example_name"
   route_map_entries = [{
-    continue_entry = "Lorem-Ipsum"
+    continue_entry = "example_continue_entry"
     match = {
-      as_path_id = "123456789"
-      community_list_id = "123456789"
-      ip_next_hop_id = "123456789"
-      ip_prefix_list_id = "123456789"
-      metric = 1234
-      service_binding_id = "123456789"
-      tag = 1234
+      as_path_id         = "<as_path_id>"
+      community_list_id  = "<community_list_id>"
+      ip_next_hop_id     = "<ip_next_hop_id>"
+      ip_prefix_list_id  = "<ip_prefix_list_id>"
+      metric             = 1
+      service_binding_id = "<service_binding_id>"
+      tag                = 10
     }
-    order = 1234
-    permit = true
+    order  = 1
+    permit = false
     set = {
-      additive_community = true
-      as_path_prepend = "Lorem-Ipsum"
-      community = "Lorem-Ipsum"
-      ip_next_hop = "Lorem-Ipsum"
-      ip_v6_next_hop = "Lorem-Ipsum"
-      local_preference = 1234
-      metric = 1234
-      tag = 1234
-      type = "Lorem-Ipsum"
-      weight = 1234
+      additive_community = false
+      as_path_prepend    = "example_as_path_prepend"
+      community          = "example-community"
+      ip_next_hop        = "example_ip_next_hop"
+      ip_v6_next_hop     = "example_ip_v6_next_hop"
+      local_preference   = 10
+      metric             = 1
+      tag                = 10
+      type               = "type-1"
+      weight             = 10
     }
   }]
-  tags = ["lorem"]
-  used_for = "Lorem-Ipsum"
+  tags     = ["terraform"]
+  used_for = "bgp"
 }

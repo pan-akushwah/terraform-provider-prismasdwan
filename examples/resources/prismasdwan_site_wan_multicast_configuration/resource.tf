@@ -23,7 +23,7 @@
 
 resource "prismasdwan_site_wan_multicast_configuration" "example" {
   site_configs = [{
-    group_ipv4_prefix = "Lorem-Ipsum"
-    source_ipv4_address = "Lorem-Ipsum"
+    group_ipv4_prefix   = "10.10.0.0/16"
+    source_ipv4_address = "10.0.0.1"
   }]
 }

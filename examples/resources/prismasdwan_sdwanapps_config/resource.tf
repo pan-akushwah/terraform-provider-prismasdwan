@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_sdwanapps_config" "example" {
-  state = "Lorem-Ipsum"
+  state = "enabled"
   # user_config (unsupported type OBJECT)
-  version = "Lorem-Ipsum"
+  version = "example_version"
 }

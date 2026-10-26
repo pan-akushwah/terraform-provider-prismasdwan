@@ -22,13 +22,13 @@
 #   }
 
 resource "prismasdwan_event_correlation_policy_set" "example" {
-  active_policyset = true
-  clone_from = "Lorem-Ipsum"
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  active_policyset = false
+  clone_from       = "example_clone_from"
+  description      = "Managed by Terraform"
+  name             = "example_name"
   severity_priority_mapping = [{
-    priority = "Lorem-Ipsum"
-    severity = "Lorem-Ipsum"
+    priority = "p1"
+    severity = "major"
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

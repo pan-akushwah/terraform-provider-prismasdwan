@@ -22,11 +22,11 @@
 #   }
 
 resource "prismasdwan_element_security_zone" "example" {
-  interface_ids = ["Lorem-Ipsum"]
-  lannetwork_ids = ["Lorem-Ipsum"]
-  pa_network_id = "123456789"
-  site_id = "123456789"
-  waninterface_ids = ["Lorem-Ipsum"]
-  wanoverlay_ids = ["Lorem-Ipsum"]
-  zone_id = "123456789"
+  interface_ids    = ["<interface_id>"]
+  lannetwork_ids   = ["<lannetwork_id>"]
+  pa_network_id    = "<pa_network_id>"
+  site_id          = "<site_id>"
+  waninterface_ids = ["<waninterface_id>"]
+  wanoverlay_ids   = ["<wanoverlay_id>"]
+  zone_id          = "<zone_id>"
 }

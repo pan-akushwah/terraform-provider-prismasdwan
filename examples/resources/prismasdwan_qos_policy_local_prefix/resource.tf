@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_qos_policy_local_prefix" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

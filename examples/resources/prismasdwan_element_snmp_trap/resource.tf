@@ -22,24 +22,24 @@
 #   }
 
 resource "prismasdwan_element_snmp_trap" "example" {
-  description = "Lorem-Ipsum"
-  enabled = true
-  server_ip = "Lorem-Ipsum"
-  source_interface = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description      = "Managed by Terraform"
+  enabled          = true
+  server_ip        = "10.0.0.1"
+  source_interface = "example_source_interface"
+  tags             = ["terraform"]
   v2_config = {
-    community = "base64(<secret-string>)"
+    community = "<secret>"
   }
   v3_config = {
     user_access = {
-      auth_phrase = "base64(<secret-string>)"
-      auth_type = "Lorem-Ipsum"
-      enc_phrase = "base64(<secret-string>)"
-      enc_type = "Lorem-Ipsum"
-      engine_id = "123456789"
-      security_level = "Lorem-Ipsum"
-      user_name = "Lorem-Ipsum"
+      auth_phrase    = "<secret>"
+      auth_type      = "NONE"
+      enc_phrase     = "<secret>"
+      enc_type       = "NONE"
+      engine_id      = "<engine_id>"
+      security_level = "NOAUTH"
+      user_name      = "example_user"
     }
   }
-  version = "Lorem-Ipsum"
+  version = "v2"
 }

@@ -22,12 +22,12 @@
 #   }
 
 resource "prismasdwan_element_routing_ipcommunitylist" "example" {
-  auto_generated = true
+  auto_generated = false
   community_list = [{
-    community_str = "Lorem-Ipsum"
-    permit = true
+    community_str = "example-community"
+    permit        = false
   }]
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

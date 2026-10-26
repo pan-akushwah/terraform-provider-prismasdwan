@@ -22,45 +22,45 @@
 #   }
 
 resource "prismasdwan_path_policy_rule" "example" {
-  app_def_ids = ["Lorem-Ipsum"]
+  app_def_ids = ["<app_def_id>"]
   best_path_config = {
-    metric = "Lorem-Ipsum"
-    metric_type = "Lorem-Ipsum"
-    probe_config_id = "123456789"
+    metric          = "LATENCY"
+    metric_type     = "PROBE"
+    probe_config_id = "<probe_config_id>"
   }
-  description = "Lorem-Ipsum"
-  dest_device_ids = ["Lorem-Ipsum"]
-  destination_prefixes_id = "123456789"
-  enabled = true
-  name = "Lorem-Ipsum"
-  network_context_id = "123456789"
-  order_number = 1234
+  description             = "Managed by Terraform"
+  dest_device_ids         = ["<dest_device_id>"]
+  destination_prefixes_id = "<destination_prefixes_id>"
+  enabled                 = true
+  name                    = "example_name"
+  network_context_id      = "<network_context_id>"
+  order_number            = 1
   paths_allowed = {
     active_paths = [{
-      label = "Lorem-Ipsum"
-      path_type = "Lorem-Ipsum"
+      label     = "public-1"
+      path_type = "direct"
     }]
     backup_paths = [{
-      label = "Lorem-Ipsum"
-      path_type = "Lorem-Ipsum"
+      label     = "public-1"
+      path_type = "direct"
     }]
     l3_failure_paths = [{
-      label = "Lorem-Ipsum"
-      path_type = "Lorem-Ipsum"
+      label     = "public-1"
+      path_type = "direct"
     }]
   }
   service_context = {
-    active_service_label_id = "123456789"
-    active_service_label_type = "Lorem-Ipsum"
-    backup_service_label_id = "123456789"
-    backup_service_label_type = "Lorem-Ipsum"
-    type = "Lorem-Ipsum"
+    active_service_label_id   = "<active_service_label_id>"
+    active_service_label_type = "CG_TRANSIT"
+    backup_service_label_id   = "<backup_service_label_id>"
+    backup_service_label_type = "CG_TRANSIT"
+    type                      = "allowed-transit"
   }
-  source_prefixes_id = "123456789"
-  src_device_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  source_prefixes_id = "<source_prefixes_id>"
+  src_device_ids     = ["<src_device_id>"]
+  tags               = ["terraform"]
   user_or_group = {
-    user_group_ids = ["Lorem-Ipsum"]
-    user_ids = ["Lorem-Ipsum"]
+    user_group_ids = ["<user_group_id>"]
+    user_ids       = ["<user_id>"]
   }
 }

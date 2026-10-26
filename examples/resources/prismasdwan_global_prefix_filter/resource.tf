@@ -22,10 +22,10 @@
 #   }
 
 resource "prismasdwan_global_prefix_filter" "example" {
-  description = "Lorem-Ipsum"
+  description = "Managed by Terraform"
   filters = [{
-    ip_prefixes = ["Lorem-Ipsum"]
-    type = "Lorem-Ipsum"
+    ip_prefixes = ["10.10.0.0/16"]
+    type        = "ipv4"
   }]
-  name = "Lorem-Ipsum"
+  name = "example_name"
 }

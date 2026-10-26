@@ -24,7 +24,7 @@
 resource "prismasdwan_tacacs_plus_profile" "example_tacacs_profile_1" {
   name                    = "example_tacacs_profile_1"
   description             = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                    = ["lorem", "ipsum"]
+  tags                    = ["terraform", "example"]
   authentication_protocol = "chap" # one of: chap, pap
   tacacs_plus_servers = [
     {
@@ -39,7 +39,7 @@ resource "prismasdwan_tacacs_plus_profile" "example_tacacs_profile_1" {
 resource "prismasdwan_tacacs_plus_profile" "example_tacacs_profile_2" {
   name                    = "example_tacacs_profile_2"
   description             = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                    = ["lorem", "ipsum"]
+  tags                    = ["terraform", "example"]
   authentication_protocol = "pap" # one of: chap, pap
   tacacs_plus_servers = [
     {
@@ -77,7 +77,7 @@ data "prismasdwan_tacacs_plus_profile" "find_by_id" {
 # by a value in the tags list (gjson query: <list>.#(=="value"))
 data "prismasdwan_tacacs_plus_profile" "find_by_tags_member" {
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_tacacs_plus_profile.example_tacacs_profile_1]
 }

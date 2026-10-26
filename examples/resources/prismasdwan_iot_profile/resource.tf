@@ -22,30 +22,30 @@
 #   }
 
 resource "prismasdwan_iot_profile" "example" {
-  description = "Lorem-Ipsum"
-  disabled = true
-  disabled_reason = "Lorem-Ipsum"
-  inactive = true
-  inactive_reason = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  region = "Lorem-Ipsum"
-  snmp_discovery_device_refresh_frequency = 1234
-  snmp_discovery_enabled = true
-  snmp_discovery_network_refresh_frequency = 1234
-  snmp_discovery_use_local_neighbours = true
-  snmp_version = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description                              = "Managed by Terraform"
+  disabled                                 = false
+  disabled_reason                          = "example_disabled_reason"
+  inactive                                 = false
+  inactive_reason                          = "example_inactive_reason"
+  name                                     = "example_name"
+  region                                   = "example_region"
+  snmp_discovery_device_refresh_frequency  = 30
+  snmp_discovery_enabled                   = false
+  snmp_discovery_network_refresh_frequency = 10
+  snmp_discovery_use_local_neighbours      = false
+  snmp_version                             = "v2"
+  tags                                     = ["terraform"]
   v2_config = {
-    snmp_community_string = "Lorem-Ipsum"
+    snmp_community_string = "example_snmp_community_string"
   }
   v3_config = {
-    snmp_auth_password = "base64(<secret-string>)"
-    snmp_auth_password_encrypted = "base64(<secret-string>)"
-    snmp_auth_protocol = "Lorem-Ipsum"
-    snmp_privacy_password = "base64(<secret-string>)"
-    snmp_privacy_password_encrypted = "base64(<secret-string>)"
-    snmp_privacy_protocol = "Lorem-Ipsum"
-    snmp_security_level = "Lorem-Ipsum"
-    snmp_username = "Lorem-Ipsum"
+    snmp_auth_password              = "<secret>"
+    snmp_auth_password_encrypted    = "<secret>"
+    snmp_auth_protocol              = "none"
+    snmp_privacy_password           = "<secret>"
+    snmp_privacy_password_encrypted = "<secret>"
+    snmp_privacy_protocol           = "none"
+    snmp_security_level             = "noauth"
+    snmp_username                   = "example_snmp_username"
   }
 }

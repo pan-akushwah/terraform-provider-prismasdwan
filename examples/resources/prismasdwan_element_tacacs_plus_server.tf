@@ -82,7 +82,7 @@ resource "prismasdwan_element_tacacs_plus_server" "tacacs_plus_server" {
   name                   = "Tf Managed Tacacs Server"
   description            = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = [
-    "lorem", "ipsum"
+    "terraform", "example"
   ]
   authentication_protocol = "pap" # one of: chap, pap
   enabled                 = true
@@ -150,7 +150,7 @@ data "prismasdwan_element_tacacs_plus_server" "find_by_tags_member" {
     element_id = prismasdwan_resource_locator.element_shell.result
   }
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_element_tacacs_plus_server.tacacs_plus_server]
 }

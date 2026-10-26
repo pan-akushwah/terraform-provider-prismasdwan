@@ -23,12 +23,12 @@
 
 resource "prismasdwan_site_security_zone" "example" {
   element_interfaces = [{
-    element_id = "123456789"
-    interfaces = ["Lorem-Ipsum"]
+    element_id = "<element_id>"
+    interfaces = ["example_interfaces"]
   }]
   networks = [{
-    network_id = "123456789"
-    network_type = "Lorem-Ipsum"
+    network_id   = "<network_id>"
+    network_type = "wan_network"
   }]
-  zone_id = "123456789"
+  zone_id = "<zone_id>"
 }

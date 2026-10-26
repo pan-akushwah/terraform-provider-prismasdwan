@@ -22,9 +22,9 @@
 #   }
 
 resource "prismasdwan_qos_policy_global_prefix" "example" {
-  description = "Lorem-Ipsum"
-  ipv4_prefixes = ["Lorem-Ipsum"]
-  ipv6_prefixes = ["Lorem-Ipsum"]
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description   = "Managed by Terraform"
+  ipv4_prefixes = ["10.10.0.0/16"]
+  ipv6_prefixes = ["2001:db8:10::/48"]
+  name          = "example_name"
+  tags          = ["terraform"]
 }

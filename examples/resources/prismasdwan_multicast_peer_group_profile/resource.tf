@@ -22,11 +22,11 @@
 #   }
 
 resource "prismasdwan_multicast_peer_group_profile" "example" {
-  description = "Lorem-Ipsum"
-  is_source_site_receiver = true
-  name = "Lorem-Ipsum"
+  description             = "Managed by Terraform"
+  is_source_site_receiver = false
+  name                    = "example_name"
   peer_sites = [{
-    peer_site_id = "123456789"
+    peer_site_id = "<peer_site_id>"
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

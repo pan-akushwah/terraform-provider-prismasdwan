@@ -22,23 +22,23 @@
 #   }
 
 resource "prismasdwan_qos_policy_rule" "example" {
-  app_def_ids = ["Lorem-Ipsum"]
-  description = "Lorem-Ipsum"
-  dest_device_ids = ["Lorem-Ipsum"]
-  destination_prefixes_id = "123456789"
+  app_def_ids             = ["<app_def_id>"]
+  description             = "Managed by Terraform"
+  dest_device_ids         = ["<dest_device_id>"]
+  destination_prefixes_id = "<destination_prefixes_id>"
   dscp = {
-    value = 1234
+    value = 10
   }
-  enabled = true
-  name = "Lorem-Ipsum"
-  network_context_id = "123456789"
-  order_number = 1234
-  priority_number = 1234
-  source_prefixes_id = "123456789"
-  src_device_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  enabled            = true
+  name               = "example_name"
+  network_context_id = "<network_context_id>"
+  order_number       = 1
+  priority_number    = 1
+  source_prefixes_id = "<source_prefixes_id>"
+  src_device_ids     = ["<src_device_id>"]
+  tags               = ["terraform"]
   user_or_group = {
-    user_group_ids = ["Lorem-Ipsum"]
-    user_ids = ["Lorem-Ipsum"]
+    user_group_ids = ["<user_group_id>"]
+    user_ids       = ["<user_id>"]
   }
 }

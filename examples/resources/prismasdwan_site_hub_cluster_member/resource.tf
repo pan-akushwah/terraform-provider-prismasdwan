@@ -22,18 +22,18 @@
 #   }
 
 resource "prismasdwan_site_hub_cluster_member" "example" {
-  headend1_site_ids = ["Lorem-Ipsum"]
-  headend2_site_ids = ["Lorem-Ipsum"]
-  hub_element_id = "123456789"
+  headend1_site_ids = ["<headend1_site_id>"]
+  headend2_site_ids = ["<headend2_site_id>"]
+  hub_element_id    = "<hub_element_id>"
   load_factors = [{
-    alarm_threshold = 1234
-    allocated = 1234
-    subscription_factor = 0.1234
+    alarm_threshold     = 10
+    allocated           = 10
+    subscription_factor = 1.5
     threshold = {
-      critical_alarm = 1234
-      major_alarm = 1234
-      subscription_factor = 0.1234
+      critical_alarm      = 10
+      major_alarm         = 10
+      subscription_factor = 1.5
     }
-    type = "Lorem-Ipsum"
+    type = "forwarding-capacity"
   }]
 }

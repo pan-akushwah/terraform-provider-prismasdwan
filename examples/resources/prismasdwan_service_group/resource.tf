@@ -22,11 +22,11 @@
 #   }
 
 resource "prismasdwan_service_group" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
   sase_properties = {
-    active_sase_label = true
+    active_sase_label = false
   }
-  tags = ["lorem"]
-  type = "Lorem-Ipsum"
+  tags = ["terraform"]
+  type = "cg-transit"
 }

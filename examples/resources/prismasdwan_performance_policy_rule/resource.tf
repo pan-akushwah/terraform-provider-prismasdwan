@@ -23,58 +23,58 @@
 
 resource "prismasdwan_performance_policy_rule" "example" {
   actions = [{
-    action_type = "Lorem-Ipsum"
-    always_on = true
+    action_type = "raise_alarm"
+    always_on   = false
     app_perf = {
       bad_health_thresholds = {
-        clear_below = 1234
-        raise_above = 1234
+        clear_below = 10
+        raise_above = 10
       }
-      monitoring_approach = "Lorem-Ipsum"
+      monitoring_approach = "moderate"
     }
     circuit_utilization_perf = {
       bad_health_thresholds = {
-        clear_below = 1234
-        raise_above = 1234
+        clear_below = 10
+        raise_above = 10
       }
-      monitoring_approach = "Lorem-Ipsum"
+      monitoring_approach = "moderate"
     }
     lqm_perf = {
       bad_health_thresholds = {
-        clear_below = 1234
-        raise_above = 1234
+        clear_below = 10
+        raise_above = 10
       }
-      monitoring_approach = "Lorem-Ipsum"
+      monitoring_approach = "moderate"
     }
     probe_perf = {
       bad_health_thresholds = {
-        clear_below = 1234
-        raise_above = 1234
+        clear_below = 10
+        raise_above = 10
       }
-      monitoring_approach = "Lorem-Ipsum"
+      monitoring_approach = "moderate"
     }
     sys_perf = {
       bad_health_thresholds = {
-        clear_below = 1234
-        raise_above = 1234
+        clear_below = 10
+        raise_above = 10
       }
-      monitoring_approach = "Lorem-Ipsum"
+      monitoring_approach = "moderate"
     }
   }]
   app_filters = {
-    app_transfer_types = ["Lorem-Ipsum"]
-    application_ids = ["Lorem-Ipsum"]
+    app_transfer_types = ["rt-audio"]
+    application_ids    = ["<application_id>"]
   }
-  description = "Lorem-Ipsum"
-  enabled = true
-  name = "Lorem-Ipsum"
-  network_context_ids = ["Lorem-Ipsum"]
+  description         = "Managed by Terraform"
+  enabled             = true
+  name                = "example_name"
+  network_context_ids = ["<network_context_id>"]
   path_filters = [{
-    label = "Lorem-Ipsum"
-    path_type = "Lorem-Ipsum"
+    label     = "public-1"
+    path_type = "direct"
   }]
-  service_label_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
-  thresholdprofile_id = "123456789"
-  type = "Lorem-Ipsum"
+  service_label_ids   = ["<service_label_id>"]
+  tags                = ["terraform"]
+  thresholdprofile_id = "<thresholdprofile_id>"
+  type                = "app_circuit_health"
 }

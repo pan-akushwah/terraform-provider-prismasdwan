@@ -24,167 +24,167 @@
 resource "prismasdwan_dns_service_profile" "example" {
   authoritative_config = {
     caa_records = [{
-      flags = "Lorem-Ipsum"
-      name = "Lorem-Ipsum"
-      tag = "Lorem-Ipsum"
-      value = "Lorem-Ipsum"
+      flags = "example_flags"
+      name  = "example_name"
+      tag   = "example_tag"
+      value = "example_value"
     }]
     cname_records = [{
-      name = ["Lorem-Ipsum"]
-      target = "Lorem-Ipsum"
-      ttl = 1234
+      name   = ["example_name"]
+      target = "example_target"
+      ttl    = 10
     }]
     dns_resource_records = [{
-      hex_data = "Lorem-Ipsum"
-      name = "Lorem-Ipsum"
-      rr_number = 1234
+      hex_data  = "example_hex_data"
+      name      = "example_name"
+      rr_number = 10
     }]
     host_records = [{
-      domain_names = ["Lorem-Ipsum"]
-      ipv4_address = "Lorem-Ipsum"
-      ipv6_address = "Lorem-Ipsum"
-      ttl = 1234
+      domain_names = ["example_domain_names"]
+      ipv4_address = "10.0.0.1"
+      ipv6_address = "2001:db8::1"
+      ttl          = 10
     }]
     mx_host_records = [{
-      hostname = "Lorem-Ipsum"
-      mx_name = "Lorem-Ipsum"
-      preference = 1234
+      hostname   = "server.example.com"
+      mx_name    = "example_mx"
+      preference = 10
     }]
     naptr_records = [{
-      flags = "Lorem-Ipsum"
-      name = "Lorem-Ipsum"
-      order = 1234
-      preference = 1234
-      regexp = "Lorem-Ipsum"
-      replacement = "Lorem-Ipsum"
-      service = "Lorem-Ipsum"
+      flags       = "example_flags"
+      name        = "example_name"
+      order       = 1
+      preference  = 10
+      regexp      = "example_regexp"
+      replacement = "example_replacement"
+      service     = "example_service"
     }]
-    peers = ["Lorem-Ipsum"]
+    peers = ["example_peers"]
     ptr_records = [{
-      name = "Lorem-Ipsum"
-      target = "Lorem-Ipsum"
+      name   = "example_name"
+      target = "example_target"
     }]
-    secondary_servers = ["Lorem-Ipsum"]
+    secondary_servers = ["example_secondary_servers"]
     servers = [{
-      dnsservicerole_id = "123456789"
-      domain_name = "Lorem-Ipsum"
+      dnsservicerole_id = "<dnsservicerole_id>"
+      domain_name       = "example.com"
     }]
     soa = [{
-      expiry = 1234
-      host_master = "Lorem-Ipsum"
-      refresh = 1234
-      retry = 1234
-      serial_number = 1234
+      expiry        = 10
+      host_master   = "example_host_master"
+      refresh       = 10
+      retry         = 3
+      serial_number = 10
     }]
     srv_hosts = [{
-      domain_name = "Lorem-Ipsum"
-      port = 1234
-      priority = 1234
-      protocol = "Lorem-Ipsum"
-      service = "Lorem-Ipsum"
-      target = 1234
-      weight = 1234
+      domain_name = "example.com"
+      port        = 443
+      priority    = 1
+      protocol    = "example_protocol"
+      service     = "example_service"
+      target      = 10
+      weight      = 10
     }]
     synth_domains = [{
-      domain = "Lorem-Ipsum"
-      end_ipaddress = "Lorem-Ipsum"
-      ipaddress_prefix = "Lorem-Ipsum"
-      prefix = "Lorem-Ipsum"
-      start_ipaddress = "Lorem-Ipsum"
+      domain           = "example.com"
+      end_ipaddress    = "example_end_ipaddress"
+      ipaddress_prefix = "10.10.0.0/16"
+      prefix           = "10.10.0.0/16"
+      start_ipaddress  = "example_start_ipaddress"
     }]
-    ttl = 1234
+    ttl = 10
     txt_records = [{
-      domain_name = "Lorem-Ipsum"
-      texts = ["Lorem-Ipsum"]
+      domain_name = "example.com"
+      texts       = ["example_texts"]
     }]
     zones = [{
-      domain_name = "Lorem-Ipsum"
-      exclude_prefix = ["Lorem-Ipsum"]
-      include_prefix = ["Lorem-Ipsum"]
+      domain_name    = "example.com"
+      exclude_prefix = ["10.10.0.0/16"]
+      include_prefix = ["10.10.0.0/16"]
     }]
   }
   cache_config = {
-    cache_size = 1234
-    disable_negative_caching = true
-    max_cache_ttl = 1234
-    min_cache_ttl = 1234
-    negative_cache_ttl = 1234
+    cache_size               = 10
+    disable_negative_caching = false
+    max_cache_ttl            = 10
+    min_cache_ttl            = 10
+    negative_cache_ttl       = 10
   }
-  description = "Lorem-Ipsum"
+  description = "Managed by Terraform"
   dns_forward_config = {
     dns_servers = [{
-      address_family = "Lorem-Ipsum"
-      dnsserver_ip = "Lorem-Ipsum"
-      dnsserver_port = 1234
-      domain_names = ["Lorem-Ipsum"]
-      forward_dnsservicerole_id = "123456789"
-      ip_prefix = "Lorem-Ipsum"
-      source_port = 1234
+      address_family            = "ipv4"
+      dnsserver_ip              = "10.0.0.1"
+      dnsserver_port            = 443
+      domain_names              = ["example_domain_names"]
+      forward_dnsservicerole_id = "<forward_dnsservicerole_id>"
+      ip_prefix                 = "10.10.0.0/16"
+      source_port               = 443
     }]
-    max_source_port = 1234
-    min_source_port = 1234
-    send_to_all_dns_servers = true
+    max_source_port         = 443
+    min_source_port         = 443
+    send_to_all_dns_servers = false
   }
   dns_queries_metadata = {
     add_client_mac = {
-      mac_encoding_format = "Lorem-Ipsum"
+      mac_encoding_format = "base64"
     }
     add_customer_premises_equipment = {
-      identifier_text = "Lorem-Ipsum"
-      type = "Lorem-Ipsum"
+      identifier_text = "example_identifier_text"
+      type            = "text"
     }
     add_subnets = [{
-      ipv4_address = "Lorem-Ipsum"
-      ipv4_prefix_length = 1234
-      ipv6_address = "Lorem-Ipsum"
-      ipv6_prefix_length = 1234
+      ipv4_address       = "10.0.0.1"
+      ipv4_prefix_length = 10
+      ipv6_address       = "2001:db8::1"
+      ipv6_prefix_length = 10
     }]
   }
   dns_rebind_config = {
-    enable_localhost_rebind = true
-    rebind_domains = ["Lorem-Ipsum"]
-    stop_dns_rebind_privateip = true
+    enable_localhost_rebind   = false
+    rebind_domains            = ["example_rebind_domains"]
+    stop_dns_rebind_privateip = false
   }
   dns_response_overrides = {
     aliases = [{
-      mask = 1234
-      original_end_ip = "Lorem-Ipsum"
-      original_ip = "Lorem-Ipsum"
-      original_start_ip = "Lorem-Ipsum"
-      replace_ip = "Lorem-Ipsum"
+      mask              = 10
+      original_end_ip   = "10.0.0.1"
+      original_ip       = "10.0.0.1"
+      original_start_ip = "10.0.0.1"
+      replace_ip        = "10.0.0.1"
     }]
-    bogus_nx_domains = ["Lorem-Ipsum"]
-    disable_private_ip_lookups = true
-    ignore_ip_addresses = ["Lorem-Ipsum"]
-    local_ttl = 1234
-    max_ttl = 1234
+    bogus_nx_domains           = ["example_bogus_nx_domains"]
+    disable_private_ip_lookups = false
+    ignore_ip_addresses        = ["example_ignore_ip_addresses"]
+    local_ttl                  = 10
+    max_ttl                    = 10
   }
   dnssec_config = {
-    disable_dnssec_timecheck = true
-    dns_check_unsigned = true
-    enabled = true
+    disable_dnssec_timecheck = false
+    dns_check_unsigned       = false
+    enabled                  = true
     trust_anchors = [{
-      class = "Lorem-Ipsum"
-      domain = "Lorem-Ipsum"
+      class  = "example_class"
+      domain = "example.com"
       key_digest = {
-        algorithm = 1234
-        digest = "Lorem-Ipsum"
-        digest_type = 1234
-        key_tag = 1234
+        algorithm   = 10
+        digest      = "example_digest"
+        digest_type = 10
+        key_tag     = 10
       }
     }]
   }
   domains_to_addresses = [{
-    domain_names = ["Lorem-Ipsum"]
-    ipv4_address = "Lorem-Ipsum"
-    ipv6_address = "Lorem-Ipsum"
+    domain_names = ["example_domain_names"]
+    ipv4_address = "10.0.0.1"
+    ipv6_address = "2001:db8::1"
   }]
-  edns_packet_max = 1234
-  enable_dns_loop_detection = true
-  enable_dnssec_proxy = true
-  enable_strict_domain_name = true
-  listen_dnsservicerole_id = "123456789"
-  listen_port = 1234
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  edns_packet_max           = 10
+  enable_dns_loop_detection = false
+  enable_dnssec_proxy       = false
+  enable_strict_domain_name = false
+  listen_dnsservicerole_id  = "<listen_dnsservicerole_id>"
+  listen_port               = 443
+  name                      = "example_name"
+  tags                      = ["terraform"]
 }

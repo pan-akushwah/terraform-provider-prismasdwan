@@ -23,7 +23,7 @@
 resource "prismasdwan_syslog_profile" "example_syslog_profile_1" {
   name                  = "example_syslogprofile_1"
   description           = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                  = ["lorem"]
+  tags                  = ["terraform"]
   protocol              = "tcp" # one of: tcp, udp, tls
   enable_flow_logging   = true
   remote_ca_certificate = null
@@ -36,7 +36,7 @@ resource "prismasdwan_syslog_profile" "example_syslog_profile_1" {
 resource "prismasdwan_syslog_profile" "example_syslog_profile_2" {
   name                  = "example_syslogprofile_2"
   description           = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags                  = ["lorem"]
+  tags                  = ["terraform"]
   protocol              = "udp" # one of: tcp, udp, tls
   enable_flow_logging   = false
   remote_ca_certificate = null
@@ -80,7 +80,7 @@ data "prismasdwan_syslog_profile" "find_by_server_ip" {
 # by a value in the tags list (gjson query: <list>.#(=="value"))
 data "prismasdwan_syslog_profile" "find_by_tags_member" {
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_syslog_profile.example_syslog_profile_1]
 }

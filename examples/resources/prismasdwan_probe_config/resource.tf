@@ -22,19 +22,19 @@
 #   }
 
 resource "prismasdwan_probe_config" "example" {
-  description = "Lorem-Ipsum"
-  enabled = true
+  description = "Managed by Terraform"
+  enabled     = true
   endpoints = [{
-    allow_insecure_https_connection = true
-    dns_server_ip = "Lorem-Ipsum"
-    fqdn = "Lorem-Ipsum"
-    http_response_string = "Lorem-Ipsum"
-    ipv4_address = "Lorem-Ipsum"
-    path_types = ["Lorem-Ipsum"]
-    probe_count = 1234
-    probe_cycle_duration = 1234
-    protocol = "Lorem-Ipsum"
+    allow_insecure_https_connection = false
+    dns_server_ip                   = "10.0.0.1"
+    fqdn                            = "server.example.com"
+    http_response_string            = "example_http_response_string"
+    ipv4_address                    = "10.0.0.1"
+    path_types                      = ["direct"]
+    probe_count                     = 3
+    probe_cycle_duration            = 10
+    protocol                        = "http"
   }]
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  name = "example_name"
+  tags = ["terraform"]
 }

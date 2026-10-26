@@ -24,6 +24,6 @@
 data "prismasdwan_element_cellular_module_sim_security" "example" {
   # Select an item by matching one or more of its attributes.
   filters = {
-    name = "Lorem-Ipsum"
+    name = "example_name"
   }
 }

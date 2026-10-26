@@ -22,55 +22,55 @@
 #   }
 
 resource "prismasdwan_site_prisma_sase_connection" "example" {
-  enabled_wan_interface_ids = ["Lorem-Ipsum"]
+  enabled_wan_interface_ids = ["<enabled_wan_interface_id>"]
   ipsec_tunnel_configs = {
-    anti_replay = true
-    copy_tos = true
-    enable_gre_encapsulation = true
-    ike_key_exchange = "Lorem-Ipsum"
-    prismaaccess_ike_crypto_profile_id = "123456789"
-    prismaaccess_ipsec_profile_id = "123456789"
-    tunnel_monitoring = true
+    anti_replay                        = false
+    copy_tos                           = false
+    enable_gre_encapsulation           = false
+    ike_key_exchange                   = "example_ike_key_exchange"
+    prismaaccess_ike_crypto_profile_id = "<prismaaccess_ike_crypto_profile_id>"
+    prismaaccess_ipsec_profile_id      = "<prismaaccess_ipsec_profile_id>"
+    tunnel_monitoring                  = false
   }
-  is_active = true
-  is_enabled = true
-  license_type = "Lorem-Ipsum"
-  prismaaccess_edge_location_config = ["Lorem-Ipsum"]
-  prismaaccess_qos_cir_mbps = 1234
-  prismaaccess_qos_profile_id = "123456789"
-  prismasase_connection_id = "123456789"
+  is_active                         = false
+  is_enabled                        = false
+  license_type                      = "example_license_type"
+  prismaaccess_edge_location_config = ["example_prismaaccess_edge_location_config"]
+  prismaaccess_qos_cir_mbps         = 10
+  prismaaccess_qos_profile_id       = "<prismaaccess_qos_profile_id>"
+  prismasase_connection_id          = "<prismasase_connection_id>"
   remote_network_groups = [{
     ipsec_tunnels = [{
       authentication = {
-        branch_ike_identification = "Lorem-Ipsum"
-        prismaaccess_ike_identification = "Lorem-Ipsum"
-        psk = "base64(<secret-string>)"
+        branch_ike_identification       = "example_branch_ike_identification"
+        prismaaccess_ike_identification = "example_prismaaccess_ike_identification"
+        psk                             = "<secret>"
       }
-      name = "Lorem-Ipsum"
+      name = "example_name"
       routing = {
-        branch_as_number = "Lorem-Ipsum"
-        branch_ip_address = "Lorem-Ipsum"
-        prismaaccess_ip_address = "Lorem-Ipsum"
+        branch_as_number        = "65000"
+        branch_ip_address       = "10.0.0.1"
+        prismaaccess_ip_address = "10.0.0.1"
       }
       routing_configs = {
-        advertise_default_route = true
-        bgp_secret = "base64(<secret-string>)"
-        export_routes = true
-        summarize_mobile_routes_before_advertise = true
+        advertise_default_route                  = false
+        bgp_secret                               = "<secret>"
+        export_routes                            = false
+        summarize_mobile_routes_before_advertise = false
       }
-      wan_interface_id = "123456789"
+      wan_interface_id = "<wan_interface_id>"
     }]
-    name = "Lorem-Ipsum"
-    spn_name = ["Lorem-Ipsum"]
+    name     = "example_name"
+    spn_name = ["example_spn"]
   }]
   routing_configs = {
-    advertise_default_route = true
-    bgp_secret = "base64(<secret-string>)"
-    branch_as_number = "Lorem-Ipsum"
-    deployment_mode = "Lorem-Ipsum"
-    export_routes = true
-    peering_type = "Lorem-Ipsum"
-    summarize_mobile_routes_before_advertise = true
+    advertise_default_route                  = false
+    bgp_secret                               = "<secret>"
+    branch_as_number                         = "65000"
+    deployment_mode                          = "example_deployment_mode"
+    export_routes                            = false
+    peering_type                             = "example_peering_type"
+    summarize_mobile_routes_before_advertise = false
   }
-  site_id = "123456789"
+  site_id = "<site_id>"
 }

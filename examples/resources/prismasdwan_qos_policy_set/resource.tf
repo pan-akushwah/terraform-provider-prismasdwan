@@ -24,33 +24,33 @@
 resource "prismasdwan_qos_policy_set" "example" {
   bandwidth_allocation_schemes = [{
     bandwidth_range = {
-      high = 0.1234
-      low = 0.1234
+      high = 1.5
+      low  = 1.5
     }
     business_priorities = [{
-      bandwidth_allocation = 0.1234
+      bandwidth_allocation = 1.5
       bandwidth_split_per_type = {
-        bulk = 0.1234
-        rt_audio = 0.1234
-        rt_video = 0.1234
-        transactional = 0.1234
+        bulk          = 1.5
+        rt_audio      = 1.5
+        rt_video      = 1.5
+        transactional = 1.5
       }
-      priority_number = 1234
+      priority_number = 1
     }]
   }]
   business_priority_names = [{
-    priority_name = "Lorem-Ipsum"
-    priority_number = 1234
+    priority_name   = "example_priority"
+    priority_number = 1
   }]
-  clone_from = "Lorem-Ipsum"
+  clone_from = "example_clone_from"
   default_rule_dscp_mappings = [{
-    dscp = [1234]
-    priority_number = 1234
-    transfer_type = "Lorem-Ipsum"
+    dscp            = [10]
+    priority_number = 1
+    transfer_type   = "RT_AUDIO"
   }]
-  defaultrule_policyset = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
-  template = true
+  defaultrule_policyset = false
+  description           = "Managed by Terraform"
+  name                  = "example_name"
+  tags                  = ["terraform"]
+  template              = false
 }

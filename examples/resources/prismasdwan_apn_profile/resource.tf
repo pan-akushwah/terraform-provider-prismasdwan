@@ -22,12 +22,12 @@
 #   }
 
 resource "prismasdwan_apn_profile" "example" {
-  apn = "Lorem-Ipsum"
-  authentication = "Lorem-Ipsum"
-  clear_password = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  password = "base64(<secret-string>)"
-  tags = ["lorem"]
-  user_name = "Lorem-Ipsum"
+  apn            = "example_apn"
+  authentication = "none"
+  clear_password = false
+  description    = "Managed by Terraform"
+  name           = "example_name"
+  password       = "<secret>"
+  tags           = ["terraform"]
+  user_name      = "example_user"
 }

@@ -22,41 +22,41 @@
 #   }
 
 resource "prismasdwan_element_bgp_peer" "example" {
-  advertise_default_route = true
-  allow_v4_prefixes = true
-  allow_v6_prefixes = true
+  advertise_default_route = false
+  allow_v4_prefixes       = false
+  allow_v6_prefixes       = false
   bgp_config = {
-    adv_interval = 1234
-    hold_time = 1234
-    keepalive_time = 1234
-    local_as_num = "Lorem-Ipsum"
-    md5_secret = "base64(<secret-string>)"
-    multi_hop_limit = 1234
-    peer_auth_type = "Lorem-Ipsum"
-    peer_retry_time = 1234
+    adv_interval    = 30
+    hold_time       = 30
+    keepalive_time  = 30
+    local_as_num    = "65000"
+    md5_secret      = "<secret>"
+    multi_hop_limit = 3
+    peer_auth_type  = "md5"
+    peer_retry_time = 30
   }
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  peer_ip = "Lorem-Ipsum"
-  peer_ip_v6 = "Lorem-Ipsum"
-  peer_type = "Lorem-Ipsum"
-  remote_as_num = "Lorem-Ipsum"
+  description   = "Managed by Terraform"
+  name          = "example_name"
+  peer_ip       = "10.0.0.1"
+  peer_ip_v6    = "2001:db8::1"
+  peer_type     = "example_peer_type"
+  remote_as_num = "65000"
   route_aggregation = {
     aggregate_prefixes = [{
-      ip_prefixes = ["Lorem-Ipsum"]
-      type = "Lorem-Ipsum"
+      ip_prefixes = ["10.10.0.0/16"]
+      type        = "ipv4"
     }]
-    aggregate_type = "Lorem-Ipsum"
-    ipv4_prefix_list_id = "123456789"
-    ipv6_prefix_list_id = "123456789"
+    aggregate_type      = "unaggregated"
+    ipv4_prefix_list_id = "<ipv4_prefix_list_id>"
+    ipv6_prefix_list_id = "<ipv6_prefix_list_id>"
   }
-  route_map_in_id = "123456789"
-  route_map_out_id = "123456789"
-  router_id = "123456789"
-  scope = "Lorem-Ipsum"
-  shutdown = true
-  tags = ["lorem"]
-  update_source = "Lorem-Ipsum"
-  update_source_v6 = "Lorem-Ipsum"
-  vrf_context_id = "123456789"
+  route_map_in_id  = "<route_map_in_id>"
+  route_map_out_id = "<route_map_out_id>"
+  router_id        = "<router_id>"
+  scope            = "GLOBAL"
+  shutdown         = false
+  tags             = ["terraform"]
+  update_source    = "10.0.0.1"
+  update_source_v6 = "2001:db8::1"
+  vrf_context_id   = "<vrf_context_id>"
 }

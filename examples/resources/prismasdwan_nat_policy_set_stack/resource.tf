@@ -22,9 +22,9 @@
 #   }
 
 resource "prismasdwan_nat_policy_set_stack" "example" {
-  default_policysetstack = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  policyset_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  default_policysetstack = false
+  description            = "Managed by Terraform"
+  name                   = "example_name"
+  policyset_ids          = ["<policyset_id>"]
+  tags                   = ["terraform"]
 }

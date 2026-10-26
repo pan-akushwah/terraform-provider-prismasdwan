@@ -22,8 +22,8 @@
 #   }
 
 resource "prismasdwan_probe_profile" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  probe_config_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  description      = "Managed by Terraform"
+  name             = "example_name"
+  probe_config_ids = ["<probe_config_id>"]
+  tags             = ["terraform"]
 }

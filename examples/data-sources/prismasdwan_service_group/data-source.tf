@@ -24,6 +24,6 @@
 data "prismasdwan_service_group" "example" {
   # Select an item by matching one or more of its attributes.
   filters = {
-    name = "Lorem-Ipsum"
+    name = "example_name"
   }
 }

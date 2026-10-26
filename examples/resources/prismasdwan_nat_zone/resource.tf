@@ -22,12 +22,12 @@
 #   }
 
 resource "prismasdwan_nat_zone" "example" {
-  description = "Lorem-Ipsum"
-  disabled = true
-  disabled_reason = "Lorem-Ipsum"
-  inactive = true
-  inactive_reason = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  region = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description     = "Managed by Terraform"
+  disabled        = false
+  disabled_reason = "example_disabled_reason"
+  inactive        = false
+  inactive_reason = "example_inactive_reason"
+  name            = "example_name"
+  region          = "example_region"
+  tags            = ["terraform"]
 }

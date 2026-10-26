@@ -22,6 +22,6 @@
 #   }
 
 resource "prismasdwan_network_context" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
 }

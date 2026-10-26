@@ -23,38 +23,38 @@
 
 resource "prismasdwan_ipfix_profile" "example" {
   collector_config = [{
-    host = "Lorem-Ipsum"
-    host_port = 1234
-    ipfixcollectorcontext_id = "123456789"
-    max_message_size = 1234
-    protocol = "Lorem-Ipsum"
+    host                     = "server.example.com"
+    host_port                = 443
+    ipfixcollectorcontext_id = "<ipfixcollectorcontext_id>"
+    max_message_size         = 10
+    protocol                 = "udp"
   }]
-  description = "Lorem-Ipsum"
-  export_cache_timeout = 1234
+  description          = "Managed by Terraform"
+  export_cache_timeout = 443
   filters = [{
-    app_def_ids = ["Lorem-Ipsum"]
+    app_def_ids = ["<app_def_id>"]
     dst_ports = [{
-      end = 1234
-      start = 1234
+      end   = 10
+      start = 10
     }]
-    dst_prefixes_id = "123456789"
-    ipfixfiltercontext_ids = ["Lorem-Ipsum"]
-    priority_traffic_types = ["Lorem-Ipsum"]
-    protocols = ["Lorem-Ipsum"]
-    rtp_transport_type = "Lorem-Ipsum"
+    dst_prefixes_id        = "<dst_prefixes_id>"
+    ipfixfiltercontext_ids = ["<ipfixfiltercontext_id>"]
+    priority_traffic_types = ["P1_Video"]
+    protocols              = ["udp"]
+    rtp_transport_type     = "audio"
     src_ports = [{
-      end = 1234
-      start = 1234
+      end   = 10
+      start = 10
     }]
-    src_prefixes_id = "123456789"
-    wan_path_direction = "Lorem-Ipsum"
+    src_prefixes_id    = "<src_prefixes_id>"
+    wan_path_direction = "lan_to_wan"
   }]
-  ipfixtemplate_id = "123456789"
-  name = "Lorem-Ipsum"
+  ipfixtemplate_id = "<ipfixtemplate_id>"
+  name             = "example_name"
   sampler = {
-    algorithm = "Lorem-Ipsum"
-    time_interval = 1234
-    time_spacing = 1234
+    algorithm     = "time_based"
+    time_interval = 30
+    time_spacing  = 30
   }
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

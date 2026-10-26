@@ -24,8 +24,8 @@ resource "prismasdwan_ipfix_template" "example_ipfix_template" {
   name        = "example_template"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = [
-    "lorem",
-    "ipsum"
+    "terraform",
+    "example"
   ]
   flow_fields = [
     "TIME_STAMPS",
@@ -78,7 +78,7 @@ data "prismasdwan_ipfix_template" "find_by_id" {
 # by a value in the tags list (gjson query: <list>.#(=="value"))
 data "prismasdwan_ipfix_template" "find_by_tags_member" {
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_ipfix_template.example_ipfix_template]
 }

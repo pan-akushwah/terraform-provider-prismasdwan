@@ -22,8 +22,8 @@
 #   }
 
 resource "prismasdwan_wan_network" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
-  type = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
+  type        = "publicwan"
 }

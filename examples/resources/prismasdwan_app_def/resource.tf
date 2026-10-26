@@ -22,69 +22,69 @@
 #   }
 
 resource "prismasdwan_app_def" "example" {
-  abbreviation = "Lorem-Ipsum"
-  aggregate_flows = true
-  app_type = "Lorem-Ipsum"
-  app_unreachability_detection = true
-  category = "Lorem-Ipsum"
-  conn_idle_timeout = 1234
-  description = "Lorem-Ipsum"
-  display_name = "Lorem-Ipsum"
-  domains = ["Lorem-Ipsum"]
-  ingress_traffic_pct = 1234
+  abbreviation                 = "examp"
+  aggregate_flows              = false
+  app_type                     = "custom"
+  app_unreachability_detection = false
+  category                     = "anonymity"
+  conn_idle_timeout            = 30
+  description                  = "Managed by Terraform"
+  display_name                 = "example_display"
+  domains                      = ["example_domains"]
+  ingress_traffic_pct          = 10
   ip_rules = [{
-    dest_filters = ["Lorem-Ipsum"]
-    dest_ipv6_prefixes = ["Lorem-Ipsum"]
-    dest_prefixes = ["Lorem-Ipsum"]
+    dest_filters       = ["example_dest_filters"]
+    dest_ipv6_prefixes = ["2001:db8:10::/48"]
+    dest_prefixes      = ["10.10.0.0/16"]
     dscp = {
-      value = 1234
+      value = 10
     }
-    protocol = "Lorem-Ipsum"
-    src_filters = ["Lorem-Ipsum"]
+    protocol    = "ospf"
+    src_filters = ["example_src_filters"]
   }]
-  is_deprecated = true
-  network_scan_application = true
-  order_number = 1234
-  overrides_allowed = true
-  p_category = "Lorem-Ipsum"
-  p_parent_id = "123456789"
-  p_sub_category = "Lorem-Ipsum"
-  parent_id = "123456789"
-  path_affinity = "Lorem-Ipsum"
-  session_timeout = 1234
-  supported_base_software_version = "Lorem-Ipsum"
-  supported_engines = "Lorem-Ipsum"
-  system_app_overridden = true
-  tags = ["lorem"]
+  is_deprecated                   = false
+  network_scan_application        = false
+  order_number                    = 1
+  overrides_allowed               = false
+  p_category                      = "business-systems"
+  p_parent_id                     = "<p_parent_id>"
+  p_sub_category                  = "photo-video"
+  parent_id                       = "<parent_id>"
+  path_affinity                   = "none"
+  session_timeout                 = 30
+  supported_base_software_version = "example_supported_base_software_version"
+  supported_engines               = "ave"
+  system_app_overridden           = false
+  tags                            = ["terraform"]
   tcp_rules = [{
-    client_filters = ["Lorem-Ipsum"]
+    client_filters = ["example_client_filters"]
     client_port = {
-      end = "Lorem-Ipsum"
-      start = "Lorem-Ipsum"
+      end   = "example_end"
+      start = "example_start"
     }
     dscp = {
-      value = 1234
+      value = 10
     }
-    server_filters = ["Lorem-Ipsum"]
-    server_ipv6_prefixes = ["Lorem-Ipsum"]
+    server_filters       = ["example_server_filters"]
+    server_ipv6_prefixes = ["2001:db8:10::/48"]
     server_port = {
-      end = "Lorem-Ipsum"
-      start = "Lorem-Ipsum"
+      end   = "example_end"
+      start = "example_start"
     }
-    server_prefixes = ["Lorem-Ipsum"]
+    server_prefixes = ["10.10.0.0/16"]
   }]
-  transfer_type = "Lorem-Ipsum"
+  transfer_type = "transactional"
   udp_rules = [{
-    dest_ipv6_prefixes = ["Lorem-Ipsum"]
-    dest_prefixes = ["Lorem-Ipsum"]
+    dest_ipv6_prefixes = ["2001:db8:10::/48"]
+    dest_prefixes      = ["10.10.0.0/16"]
     dscp = {
-      value = 1234
+      value = 10
     }
-    udp_filters = ["Lorem-Ipsum"]
+    udp_filters = ["example_udp_filters"]
     udp_port = {
-      end = "Lorem-Ipsum"
-      start = "Lorem-Ipsum"
+      end   = "example_end"
+      start = "example_start"
     }
   }]
-  use_parentapp_network_policy = true
+  use_parentapp_network_policy = false
 }

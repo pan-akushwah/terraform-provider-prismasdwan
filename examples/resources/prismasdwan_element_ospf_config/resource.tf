@@ -22,33 +22,33 @@
 #   }
 
 resource "prismasdwan_element_ospf_config" "example" {
-  advertise_fabric_default_route = true
+  advertise_fabric_default_route = false
   areas = [{
-    area_id = 1234
-    area_type = "Lorem-Ipsum"
+    area_id   = 10
+    area_type = "NORMAL"
   }]
-  cost_for_default_route = 1234
-  description = "Lorem-Ipsum"
+  cost_for_default_route = 1
+  description            = "Managed by Terraform"
   interfaces = [{
-    area_id = 1234
-    interface_id = "123456789"
+    area_id      = 10
+    interface_id = "<interface_id>"
     ospf_config_override = {
-      cost = 1234
-      dead_interval = 1234
-      hello_interval = 1234
-      md5_key_id = 1234
-      md5_secret = "base64(<secret-string>)"
-      retransmit_interval = 1234
-      transmit_delay = 1234
+      cost                = 1
+      dead_interval       = 30
+      hello_interval      = 30
+      md5_key_id          = 10
+      md5_secret          = "<secret>"
+      retransmit_interval = 30
+      transmit_delay      = 10
     }
   }]
-  name = "Lorem-Ipsum"
-  prefix_adv_route_map_id = "123456789"
-  prefix_adv_type_to_lan = "Lorem-Ipsum"
-  redistribute_route_map_id = "123456789"
-  router_id = "123456789"
-  scope = "Lorem-Ipsum"
-  shutdown = true
-  tags = ["lorem"]
-  vrf_context_id = "123456789"
+  name                      = "example_name"
+  prefix_adv_route_map_id   = "<prefix_adv_route_map_id>"
+  prefix_adv_type_to_lan    = "example_prefix_adv_type_to_lan"
+  redistribute_route_map_id = "<redistribute_route_map_id>"
+  router_id                 = "<router_id>"
+  scope                     = "example_scope"
+  shutdown                  = false
+  tags                      = ["terraform"]
+  vrf_context_id            = "<vrf_context_id>"
 }

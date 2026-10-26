@@ -22,18 +22,18 @@
 #   }
 
 resource "prismasdwan_element_multicast_global_config" "example" {
-  bsm_enabled = true
-  dr_priority = 1234
+  bsm_enabled = false
+  dr_priority = 1
   igmp_protocol_parameters = {
-    last_member_query_count = 1234
-    last_member_query_interval = 1234
-    query_interval = 1234
-    query_max_response_time = 1234
+    last_member_query_count    = 3
+    last_member_query_interval = 30
+    query_interval             = 30
+    query_max_response_time    = 30
   }
   pim_protocol_parameters = {
-    hello_hold_time = 1234
-    hello_interval = 1234
-    join_prune_interval = 1234
+    hello_hold_time     = 30
+    hello_interval      = 30
+    join_prune_interval = 30
   }
-  spt_switchover_enabled = true
+  spt_switchover_enabled = false
 }

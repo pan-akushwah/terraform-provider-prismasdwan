@@ -22,10 +22,10 @@
 #   }
 
 resource "prismasdwan_qos_policy_stack" "example" {
-  default_policysetstack = true
-  defaultrule_policyset_id = "123456789"
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  policyset_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  default_policysetstack   = false
+  defaultrule_policyset_id = "<defaultrule_policyset_id>"
+  description              = "Managed by Terraform"
+  name                     = "example_name"
+  policyset_ids            = ["<policyset_id>"]
+  tags                     = ["terraform"]
 }

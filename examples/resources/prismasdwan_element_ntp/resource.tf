@@ -22,14 +22,14 @@
 #   }
 
 resource "prismasdwan_element_ntp" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
   ntp_servers = [{
-    host = "Lorem-Ipsum"
-    max_poll = 1234
-    min_poll = 1234
-    version = 1234
+    host     = "server.example.com"
+    max_poll = 10
+    min_poll = 10
+    version  = 2
   }]
-  source_interface_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  source_interface_ids = ["<source_interface_id>"]
+  tags                 = ["terraform"]
 }

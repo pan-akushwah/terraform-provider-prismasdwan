@@ -22,23 +22,23 @@
 #   }
 
 resource "prismasdwan_wan_interface_label" "example" {
-  app_acceleration_enabled = true
-  bwc_enabled = true
-  description = "Lorem-Ipsum"
+  app_acceleration_enabled = false
+  bwc_enabled              = false
+  description              = "Managed by Terraform"
   l3_reachability = {
-    probe_config_ids = ["Lorem-Ipsum"]
-    use_element_default = true
+    probe_config_ids    = ["<probe_config_id>"]
+    use_element_default = false
   }
-  label = "Lorem-Ipsum"
-  lqm_enabled = true
-  name = "Lorem-Ipsum"
-  probe_profile_id = "123456789"
-  tags = ["lorem"]
-  use_for_application_reachability_probes = true
-  use_for_controller_connections = true
-  use_lqm_for_non_hub_paths = true
+  label                                   = "public-1"
+  lqm_enabled                             = false
+  name                                    = "example_name"
+  probe_profile_id                        = "<probe_profile_id>"
+  tags                                    = ["terraform"]
+  use_for_application_reachability_probes = false
+  use_for_controller_connections          = false
+  use_lqm_for_non_hub_paths               = false
   vpnlink_configuration = {
-    keep_alive_failure_count = 1234
-    keep_alive_interval = 1234
+    keep_alive_failure_count = 3
+    keep_alive_interval      = 100
   }
 }

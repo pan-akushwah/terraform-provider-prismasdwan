@@ -22,6 +22,6 @@
 #   }
 
 resource "prismasdwan_security_zone" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  name        = "example_name"
 }

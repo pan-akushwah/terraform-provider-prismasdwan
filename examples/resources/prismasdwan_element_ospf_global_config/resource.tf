@@ -22,13 +22,13 @@
 #   }
 
 resource "prismasdwan_element_ospf_global_config" "example" {
-  cost = 1234
-  dead_interval = 1234
-  hello_interval = 1234
-  md5_key_id = 1234
-  md5_secret = "base64(<secret-string>)"
-  prefix_adv_type_to_lan = "Lorem-Ipsum"
-  retransmit_interval = 1234
-  router_id = "123456789"
-  transmit_delay = 1234
+  cost                   = 1
+  dead_interval          = 30
+  hello_interval         = 30
+  md5_key_id             = 10
+  md5_secret             = "<secret>"
+  prefix_adv_type_to_lan = "example_prefix_adv_type_to_lan"
+  retransmit_interval    = 30
+  router_id              = "<router_id>"
+  transmit_delay         = 10
 }

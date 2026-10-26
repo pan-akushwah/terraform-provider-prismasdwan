@@ -23,40 +23,40 @@
 
 resource "prismasdwan_site" "example" {
   address = {
-    city = "Lorem-Ipsum"
-    country = "Lorem-Ipsum"
-    post_code = "Lorem-Ipsum"
-    state = "Lorem-Ipsum"
-    street = "Lorem-Ipsum"
-    street2 = "Lorem-Ipsum"
+    city      = "Santa Clara"
+    country   = "United States"
+    post_code = "95054"
+    state     = "California"
+    street    = "3000 Tannery Way"
+    street2   = "Building A"
   }
-  admin_state = "Lorem-Ipsum"
-  app_acceleration_enabled = true
-  branch_gateway = true
-  description = "Lorem-Ipsum"
-  element_cluster_role = "Lorem-Ipsum"
-  element_system_limit_profile_id = "123456789"
+  admin_state                     = "active"
+  app_acceleration_enabled        = false
+  branch_gateway                  = false
+  description                     = "Managed by Terraform"
+  element_cluster_role            = "SPOKE"
+  element_system_limit_profile_id = "<element_system_limit_profile_id>"
   extended_tags = [{
-    key = "Lorem-Ipsum"
-    value = "Lorem-Ipsum"
-    value_type = "Lorem-Ipsum"
+    key        = "example_key"
+    value      = "example_value"
+    value_type = "example_value_type"
   }]
   location = {
-    description = "Lorem-Ipsum"
-    latitude = 0.1234
-    longitude = 0.1234
+    description = "Managed by Terraform"
+    latitude    = 37.3541
+    longitude   = -121.9552
   }
-  multicast_peer_group_id = "123456789"
-  name = "Lorem-Ipsum"
-  nat_policysetstack_id = "123456789"
-  policy_set_id = "123456789"
-  prefer_lan_default_over_wan_default_route = true
-  security_policyset_id = "123456789"
-  security_policysetstack_id = "123456789"
-  service_binding = "Lorem-Ipsum"
+  multicast_peer_group_id                   = "<multicast_peer_group_id>"
+  name                                      = "example_name"
+  nat_policysetstack_id                     = "<nat_policysetstack_id>"
+  policy_set_id                             = "<policy_set_id>"
+  prefer_lan_default_over_wan_default_route = false
+  security_policyset_id                     = "<security_policyset_id>"
+  security_policysetstack_id                = "<security_policysetstack_id>"
+  service_binding                           = "<domain_id>"
   sgi_config = {
-    sgi_tag = 1234
-    sgi_vendor_id = "123456789"
+    sgi_tag       = 10
+    sgi_vendor_id = "SGI_VENDOR_ID_TYPE_8909"
   }
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

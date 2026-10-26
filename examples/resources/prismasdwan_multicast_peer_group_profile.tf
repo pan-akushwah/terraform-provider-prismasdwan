@@ -40,7 +40,7 @@ resource "prismasdwan_site" "dc_site" {
 resource "prismasdwan_multicast_peer_group_profile" "multicast_peer_group_profile" {
   name        = "tf managed profile"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags        = ["ipsum", "lorem"]
+  tags        = ["example", "terraform"]
   peer_sites = [
     {
       peer_site_id = prismasdwan_site.dc_site.id
@@ -75,7 +75,7 @@ data "prismasdwan_multicast_peer_group_profile" "find_by_id" {
 # by a value in the tags list (gjson query: <list>.#(=="value"))
 data "prismasdwan_multicast_peer_group_profile" "find_by_tags_member" {
   filters = {
-    "tags.#(==\"ipsum\")" = "ipsum"
+    "tags.#(==\"example\")" = "example"
   }
   depends_on = [prismasdwan_multicast_peer_group_profile.multicast_peer_group_profile]
 }

@@ -24,228 +24,228 @@
 resource "prismasdwan_element_shell_interface" "example" {
   admin_up = true
   attached_lan_networks = [{
-    lan_network_id = "123456789"
-    vlan_id = 1234
+    lan_network_id = "<lan_network_id>"
+    vlan_id        = 100
   }]
   authentication_config = {
-    fallback_retry_count = 1234
-    mode = "Lorem-Ipsum"
-    reauthentication_timeout = 1234
+    fallback_retry_count     = 3
+    mode                     = "none"
+    reauthentication_timeout = 30
   }
-  bound_interfaces = ["Lorem-Ipsum"]
+  bound_interfaces = ["example_bound_interfaces"]
   bypass_pair = {
-    lan = "Lorem-Ipsum"
-    lan_state_propagation = true
-    use_relay = true
-    wan = "Lorem-Ipsum"
+    lan                   = "example_lan"
+    lan_state_propagation = false
+    use_relay             = false
+    wan                   = "example_wan"
   }
   cellular_config = {
     apn_config = {
-      apn = "Lorem-Ipsum"
-      authentication = "Lorem-Ipsum"
-      clear_password = true
-      password = "base64(<secret-string>)"
-      password_encrypted = "base64(<secret-string>)"
-      user_name = "Lorem-Ipsum"
+      apn                = "example_apn"
+      authentication     = "none"
+      clear_password     = false
+      password           = "<secret>"
+      password_encrypted = "<secret>"
+      user_name          = "example_user"
     }
-    apnprofile_id = "123456789"
-    auto_apn = true
-    ip_address_type = "Lorem-Ipsum"
-    parent_module_id = "123456789"
-    parent_sim_slot_number = 1234
+    apnprofile_id          = "<apnprofile_id>"
+    auto_apn               = false
+    ip_address_type        = "ipv4"
+    parent_module_id       = "<parent_module_id>"
+    parent_sim_slot_number = 10
   }
-  description = "Lorem-Ipsum"
-  devicemgmt_policysetstack_id = "123456789"
+  description                  = "Managed by Terraform"
+  devicemgmt_policysetstack_id = "<devicemgmt_policysetstack_id>"
   dhcp_relay = {
     enabled = true
     option_82 = {
-      circuit_id = "123456789"
-      enabled = true
-      reforwarding_policy = "Lorem-Ipsum"
-      remote_id = "123456789"
+      circuit_id          = "<circuit_id>"
+      enabled             = true
+      reforwarding_policy = "replace"
+      remote_id           = "<remote_id>"
     }
-    server_ips = ["Lorem-Ipsum"]
-    source_interface = "Lorem-Ipsum"
+    server_ips       = ["example_server_ips"]
+    source_interface = "example_source_interface"
   }
   ethernet_port = {
   }
-  fec_mode = "Lorem-Ipsum"
-  interface_profile_id = "123456789"
-  ipfixcollectorcontext_id = "123456789"
-  ipfixfiltercontext_id = "123456789"
+  fec_mode                 = "auto"
+  interface_profile_id     = "<interface_profile_id>"
+  ipfixcollectorcontext_id = "<ipfixcollectorcontext_id>"
+  ipfixfiltercontext_id    = "<ipfixfiltercontext_id>"
   ipv4_config = {
     dhcp_config = {
-      client_id = "123456789"
-      hostname = "Lorem-Ipsum"
+      client_id = "<client_id>"
+      hostname  = "server.example.com"
     }
     dns_v4_config = {
-      name_servers = ["Lorem-Ipsum"]
-      search = ["Lorem-Ipsum"]
+      name_servers = ["example_name_servers"]
+      search       = ["example_search"]
     }
     routes = [{
-      destination = "Lorem-Ipsum"
-      via = "Lorem-Ipsum"
+      destination = "example_destination"
+      via         = "example_via"
     }]
     static_config = {
-      address = "Lorem-Ipsum"
+      address = "10.0.0.1"
     }
-    type = "Lorem-Ipsum"
+    type = "example_type"
   }
   ipv6_config = {
     dhcp_config = {
-      client_id = "123456789"
-      hostname = "Lorem-Ipsum"
+      client_id = "<client_id>"
+      hostname  = "server.example.com"
     }
     dns_v6_config = {
-      name_servers = ["Lorem-Ipsum"]
-      search = ["Lorem-Ipsum"]
+      name_servers = ["example_name_servers"]
+      search       = ["example_search"]
     }
     routes = [{
-      destination = "Lorem-Ipsum"
-      via = "Lorem-Ipsum"
+      destination = "example_destination"
+      via         = "example_via"
     }]
     static_config = {
-      address = "Lorem-Ipsum"
-      enable_prefix_distribution = true
+      address                    = "10.0.0.1"
+      enable_prefix_distribution = false
     }
-    type = "Lorem-Ipsum"
+    type = "example_type"
   }
   loopback_config = {
-    binding_interface_id = "123456789"
+    binding_interface_id = "<binding_interface_id>"
   }
-  mac_address = "Lorem-Ipsum"
+  mac_address = "00:11:22:33:44:55"
   multicast_config = {
-    dr_priority = 1234
+    dr_priority = 1
     igmp_static_joins = [{
-      igmp_static_grp_ipv4 = "Lorem-Ipsum"
-      igmp_static_src_ipv4 = "Lorem-Ipsum"
+      igmp_static_grp_ipv4 = "10.0.0.1"
+      igmp_static_src_ipv4 = "10.0.0.1"
     }]
-    igmp_version = "Lorem-Ipsum"
-    multicast_enabled = true
+    igmp_version      = "IGMPV2"
+    multicast_enabled = false
   }
-  nat_address = "Lorem-Ipsum"
-  nat_address_v6 = "Lorem-Ipsum"
+  nat_address    = "10.0.0.1"
+  nat_address_v6 = "2001:db8::1"
   nat_pools = [{
     ipv4_ranges = [{
-      end = "Lorem-Ipsum"
-      start = "Lorem-Ipsum"
+      end   = "example_end"
+      start = "example_start"
     }]
-    nat_pool_id = "123456789"
+    nat_pool_id = "<nat_pool_id>"
   }]
-  nat_zone_id = "123456789"
-  network_context_id = "123456789"
-  parent = "Lorem-Ipsum"
+  nat_zone_id        = "<nat_zone_id>"
+  network_context_id = "<network_context_id>"
+  parent             = "example_parent"
   port_channel_config = {
-    lacp_enabled = true
-    transmission_mode = "Lorem-Ipsum"
+    lacp_enabled      = false
+    transmission_mode = "Slow"
   }
   pppoe_config = {
-    host_uniq = "Lorem-Ipsum"
-    ip_address_type = "Lorem-Ipsum"
-    password = "base64(<secret-string>)"
-    reconnection_delay = 1234
-    service_name = "Lorem-Ipsum"
-    username = "Lorem-Ipsum"
+    host_uniq          = "example_host_uniq"
+    ip_address_type    = "example_ip_address_type"
+    password           = "<secret>"
+    reconnection_delay = 10
+    service_name       = "example_service"
+    username           = "example_username"
   }
-  scope = "Lorem-Ipsum"
+  scope = "local"
   secondary_ip_configs = [{
-    ipv4_address = "Lorem-Ipsum"
-    scope = "Lorem-Ipsum"
+    ipv4_address = "10.0.0.1"
+    scope        = "example_scope"
   }]
   service_link_config = {
     gre_config = {
-      csum = true
-      keepalive_enable = true
-      keepalive_fail_count = 1234
-      keepalive_interval = 1234
+      csum                 = false
+      keepalive_enable     = false
+      keepalive_fail_count = 3
+      keepalive_interval   = 30
     }
     ipsec_config = {
       authentication = {
-        certificate = "Lorem-Ipsum"
-        certificate_profile_id = "123456789"
-        comment = "Lorem-Ipsum"
+        certificate            = "example_certificate"
+        certificate_profile_id = "<certificate_profile_id>"
+        comment                = "example_comment"
         ikev1_params = {
-          xauth_id = "123456789"
-          xauth_secret = "base64(<secret-string>)"
-          xauth_secret_encrypted = "base64(<secret-string>)"
-          xauth_secret_hash = "base64(<secret-string>)"
-          xauth_type = "Lorem-Ipsum"
+          xauth_id               = "<xauth_id>"
+          xauth_secret           = "<secret>"
+          xauth_secret_encrypted = "<secret>"
+          xauth_secret_hash      = "<secret>"
+          xauth_type             = "none"
         }
-        local_ca_certificate = "Lorem-Ipsum"
-        local_id = "123456789"
-        local_id_custom = "Lorem-Ipsum"
-        local_pa_certificate_id = "123456789"
-        pa_master_key_id = "123456789"
-        passphrase = "base64(<secret-string>)"
-        passphrase_encrypted = "base64(<secret-string>)"
-        peer_id_check = "Lorem-Ipsum"
-        permit_peer_id_mismatch = true
+        local_ca_certificate    = "example_local_ca_certificate"
+        local_id                = "local_ip"
+        local_id_custom         = "example_local_id_custom"
+        local_pa_certificate_id = "<local_pa_certificate_id>"
+        pa_master_key_id        = "<pa_master_key_id>"
+        passphrase              = "<secret>"
+        passphrase_encrypted    = "<secret>"
+        peer_id_check           = "EXACT"
+        permit_peer_id_mismatch = false
         ppk_config = {
-          enabled = true
-          key_enabled = true
-          mode = "Lorem-Ipsum"
-          ppk_key_id = "123456789"
-          ppk_secret = "base64(<secret-string>)"
-          ppk_secret_configured = true
-          ppk_secret_encrypted = "base64(<secret-string>)"
-          ppk_secret_hash = "base64(<secret-string>)"
+          enabled               = true
+          key_enabled           = false
+          mode                  = "preferred"
+          ppk_key_id            = "<ppk_key_id>"
+          ppk_secret            = "<secret>"
+          ppk_secret_configured = false
+          ppk_secret_encrypted  = "<secret>"
+          ppk_secret_hash       = "<secret>"
         }
-        private_key = "base64(<secret-string>)"
-        private_key_encrypted = "base64(<secret-string>)"
-        remote_ca_certificate = "Lorem-Ipsum"
-        remote_id = "123456789"
-        secret = "base64(<secret-string>)"
-        secret_encrypted = "base64(<secret-string>)"
-        secret_hash = "base64(<secret-string>)"
-        strict_validation_peer_extended_key_use = true
-        type = "Lorem-Ipsum"
+        private_key                             = "<secret>"
+        private_key_encrypted                   = "<secret>"
+        remote_ca_certificate                   = "example_remote_ca_certificate"
+        remote_id                               = "<remote_id>"
+        secret                                  = "<secret>"
+        secret_encrypted                        = "<secret>"
+        secret_hash                             = "<secret>"
+        strict_validation_peer_extended_key_use = false
+        type                                    = "none"
       }
-      ipsec_profile_id = "123456789"
+      ipsec_profile_id = "<ipsec_profile_id>"
     }
-    last_parent = "Lorem-Ipsum"
-    parent = "Lorem-Ipsum"
+    last_parent = "example_last_parent"
+    parent      = "example_parent"
     passive_mode = {
       enable = true
     }
     peer = {
-      hostname = "Lorem-Ipsum"
-      ip_addresses = ["Lorem-Ipsum"]
+      hostname     = "server.example.com"
+      ip_addresses = ["example_ip_addresses"]
     }
-    service_endpoint_id = "123456789"
-    type = "Lorem-Ipsum"
+    service_endpoint_id = "<service_endpoint_id>"
+    type                = "ipsec"
   }
-  site_wan_interface_ids = ["Lorem-Ipsum"]
+  site_wan_interface_ids = ["<site_wan_interface_id>"]
   static_arp_configs = [{
-    ipv4_address = "Lorem-Ipsum"
-    mac_address = "Lorem-Ipsum"
+    ipv4_address = "10.0.0.1"
+    mac_address  = "00:11:22:33:44:55"
   }]
   sub_interface = {
-    native_vlan = true
-    vlan_id = 1234
+    native_vlan = false
+    vlan_id     = 100
   }
   switch_port_config = {
-    access_vlan_id = 1234
-    bpdu_guard_enabled = true
-    forward_fast_enabled = true
-    native_vlan_id = 1234
-    root_guard_enabled = true
+    access_vlan_id       = 100
+    bpdu_guard_enabled   = false
+    forward_fast_enabled = false
+    native_vlan_id       = 100
+    root_guard_enabled   = false
     storm_control_config = {
-      broadcast_threshold = 1234
-      multicast_threshold = 1234
-      unicast_threshold = 1234
+      broadcast_threshold = 64
+      multicast_threshold = 64
+      unicast_threshold   = 64
     }
-    stp_port_cost = 1234
-    stp_port_enabled = true
-    stp_port_priority = 1234
-    trunk_vlans = ["Lorem-Ipsum"]
-    vlan_mode = "Lorem-Ipsum"
-    voice_vlan_id = 1234
+    stp_port_cost     = 443
+    stp_port_enabled  = false
+    stp_port_priority = 240
+    trunk_vlans       = ["example_trunk_vlans"]
+    vlan_mode         = "access"
+    voice_vlan_id     = 100
   }
-  tags = ["lorem"]
-  type = "Lorem-Ipsum"
+  tags = ["terraform"]
+  type = "service_link"
   vlan_config = {
-    mstp_instance = 1234
-    vlan_id = 1234
-    voice_enabled = true
+    mstp_instance = 10
+    vlan_id       = 100
+    voice_enabled = false
   }
 }

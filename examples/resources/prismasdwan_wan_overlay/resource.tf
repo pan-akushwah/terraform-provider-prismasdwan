@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_wan_overlay" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  vni = 1234
+  description = "Managed by Terraform"
+  name        = "example_name"
+  vni         = 10
 }

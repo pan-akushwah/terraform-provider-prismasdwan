@@ -22,12 +22,12 @@
 #   }
 
 resource "prismasdwan_domain" "example" {
-  description = "Lorem-Ipsum"
-  is_default = true
-  name = "Lorem-Ipsum"
+  description = "Managed by Terraform"
+  is_default  = false
+  name        = "example_name"
   service_bindings = [{
-    service_endpoint_ids = ["Lorem-Ipsum"]
-    service_label_id = "123456789"
+    service_endpoint_ids = ["<service_endpoint_id>"]
+    service_label_id     = "<service_label_id>"
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

@@ -21,7 +21,7 @@
 resource "prismasdwan_service_endpoint" "service_endpoint_1" {
   name        = "tf managed service endpoint 1"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags        = ["lorem", "ipsum"]
+  tags        = ["terraform", "example"]
   type        = "non-cg-transit" # one of: cg-transit, non-cg-transit, sase
   # site_id = null
   admin_up = true
@@ -70,7 +70,7 @@ resource "prismasdwan_service_endpoint" "service_endpoint_1" {
 resource "prismasdwan_service_endpoint" "service_endpoint_2" {
   name        = "tf managed service endpoint 2"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags        = ["lorem", "ipsum"]
+  tags        = ["terraform", "example"]
   type        = "non-cg-transit" # one of: cg-transit, non-cg-transit, sase
   # site_id = null
   admin_up = true
@@ -140,7 +140,7 @@ data "prismasdwan_service_endpoint" "find_by_id" {
 # by a value in the tags list (gjson query: <list>.#(=="value"))
 data "prismasdwan_service_endpoint" "find_by_tags_member" {
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_service_endpoint.service_endpoint_1]
 }

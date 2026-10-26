@@ -22,35 +22,35 @@
 #   }
 
 resource "prismasdwan_site_wan_interface" "example" {
-  app_acceleration_enabled = true
-  bw_config_mode = "Lorem-Ipsum"
-  bwc_enabled = true
-  description = "Lorem-Ipsum"
+  app_acceleration_enabled = false
+  bw_config_mode           = "auto"
+  bwc_enabled              = false
+  description              = "Managed by Terraform"
   l3_reachability = {
-    probe_config_ids = ["Lorem-Ipsum"]
-    use_element_default = true
+    probe_config_ids    = ["<probe_config_id>"]
+    use_element_default = false
   }
-  label_id = "123456789"
-  link_bw_down = 0.1234
-  link_bw_up = 0.1234
+  label_id     = "<label_id>"
+  link_bw_down = 1.5
+  link_bw_up   = 1.5
   lqm_config = {
-    hub_site_ids = ["Lorem-Ipsum"]
-    inter_packet_gap = 1234
-    statistic = "Lorem-Ipsum"
-    use_hub_sites = true
-    use_prisma_access_service_endpoints = true
+    hub_site_ids                        = ["<hub_site_id>"]
+    inter_packet_gap                    = 10
+    statistic                           = "example_statistic"
+    use_hub_sites                       = false
+    use_prisma_access_service_endpoints = false
   }
-  lqm_enabled = true
-  name = "Lorem-Ipsum"
-  network_id = "123456789"
-  probe_profile_id = "123456789"
-  tags = ["lorem"]
-  type = "Lorem-Ipsum"
-  use_for_application_reachability_probes = true
-  use_for_controller_connections = true
-  use_lqm_for_non_hub_paths = true
+  lqm_enabled                             = false
+  name                                    = "example_name"
+  network_id                              = "<network_id>"
+  probe_profile_id                        = "<probe_profile_id>"
+  tags                                    = ["terraform"]
+  type                                    = "PUBLIC_WAN"
+  use_for_application_reachability_probes = false
+  use_for_controller_connections          = false
+  use_lqm_for_non_hub_paths               = false
   vpnlink_configuration = {
-    keep_alive_failure_count = 1234
-    keep_alive_interval = 1234
+    keep_alive_failure_count = 3
+    keep_alive_interval      = 100
   }
 }

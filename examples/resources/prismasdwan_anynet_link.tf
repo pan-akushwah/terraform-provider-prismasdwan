@@ -102,7 +102,7 @@ resource "prismasdwan_anynet_link" "manual_anynet_link" {
   name        = "Tf Managed Link 01"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
   tags = [
-    "lorem", "ipsum"
+    "terraform", "example"
   ]
   ep1_site_id          = prismasdwan_site.site_a.id
   ep1_wan_interface_id = prismasdwan_site_wan_interface.public_a.id

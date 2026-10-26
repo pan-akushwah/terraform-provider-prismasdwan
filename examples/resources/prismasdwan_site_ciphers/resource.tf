@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_site_ciphers" "example" {
-  controller_connection_cipher = "Lorem-Ipsum"
-  site_id = "123456789"
-  vpn_ciphers = ["Lorem-Ipsum"]
+  controller_connection_cipher = "RSA-AES256-GCM-SHA384"
+  site_id                      = "<site_id>"
+  vpn_ciphers                  = ["AES_256_GCM"]
 }

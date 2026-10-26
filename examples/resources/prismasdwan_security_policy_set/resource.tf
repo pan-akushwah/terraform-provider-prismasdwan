@@ -22,9 +22,9 @@
 #   }
 
 resource "prismasdwan_security_policy_set" "example" {
-  clone_from = "Lorem-Ipsum"
-  defaultrule_policyset = true
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  clone_from            = "example_clone_from"
+  defaultrule_policyset = false
+  description           = "Managed by Terraform"
+  name                  = "example_name"
+  tags                  = ["terraform"]
 }

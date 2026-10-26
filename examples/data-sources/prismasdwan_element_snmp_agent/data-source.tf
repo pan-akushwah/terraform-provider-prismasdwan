@@ -24,7 +24,7 @@
 data "prismasdwan_element_snmp_agent" "example" {
   # Path parameters that locate the parent object(s).
   x_parameters = {
-    site_id = "123456789"
+    site_id    = "123456789"
     element_id = "123456789"
   }
   # Select an item by matching one or more of its attributes.

@@ -22,10 +22,10 @@
 #   }
 
 resource "prismasdwan_element_cellular_module_sim_security" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  pin = "Lorem-Ipsum"
-  remove_pin = true
-  slot_number = 1234
-  tags = ["lorem"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  pin         = "example_pin"
+  remove_pin  = false
+  slot_number = 10
+  tags        = ["terraform"]
 }

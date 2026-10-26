@@ -22,27 +22,27 @@
 #   }
 
 resource "prismasdwan_event_correlation_policy_rule" "example" {
-  dampening_duration = 1234
-  description = "Lorem-Ipsum"
-  enabled = true
-  end_time = 1234
+  dampening_duration = 10
+  description        = "Managed by Terraform"
+  enabled            = true
+  end_time           = 30
   escalation_rules = {
     flap_rule = {
-      flap_duration = 1234
-      flap_rate = 1234
+      flap_duration = 10
+      flap_rate     = 10
     }
     standing_rule = {
-      priority = "Lorem-Ipsum"
-      standing_for = 1234
+      priority     = "p1"
+      standing_for = 10
     }
   }
-  event_codes = ["Lorem-Ipsum"]
-  name = "Lorem-Ipsum"
-  priority = "Lorem-Ipsum"
-  resource_ids = ["Lorem-Ipsum"]
-  resource_type = "Lorem-Ipsum"
-  start_time = 1234
-  sub_resource_type = "Lorem-Ipsum"
-  suppress = "Lorem-Ipsum"
-  tags = ["lorem"]
+  event_codes       = ["DEVICEHW_POWER_LOST"]
+  name              = "example_name"
+  priority          = "p1"
+  resource_ids      = ["<resource_id>"]
+  resource_type     = "site"
+  start_time        = 30
+  sub_resource_type = "public"
+  suppress          = "yes"
+  tags              = ["terraform"]
 }

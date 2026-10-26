@@ -22,29 +22,29 @@
 #   }
 
 resource "prismasdwan_element_bgp_config" "example" {
-  admin_distance = 1234
-  adv_interval = 1234
-  graceful_restart = true
-  hold_time = 1234
-  ipv6_prefixes_to_adv_to_wan = ["Lorem-Ipsum"]
-  keepalive_time = 1234
-  local_as_num = "Lorem-Ipsum"
-  maximum_paths = 1234
-  md5_secret = "base64(<secret-string>)"
-  multi_hop_limit = 1234
+  admin_distance              = 1
+  adv_interval                = 30
+  graceful_restart            = false
+  hold_time                   = 30
+  ipv6_prefixes_to_adv_to_wan = ["2001:db8::1"]
+  keepalive_time              = 30
+  local_as_num                = "65000"
+  maximum_paths               = 10
+  md5_secret                  = "<secret>"
+  multi_hop_limit             = 3
   ospf_redistribution = [{
-    route_map_id = "123456789"
-    vrf_context_id = "123456789"
+    route_map_id   = "<route_map_id>"
+    vrf_context_id = "<vrf_context_id>"
   }]
-  peer_auth_type = "Lorem-Ipsum"
-  peer_retry_time = 1234
-  prefix_adv_type = "Lorem-Ipsum"
-  prefix_adv_type_to_lan = "Lorem-Ipsum"
-  prefixes_to_adv_to_wan = ["Lorem-Ipsum"]
-  router_id = "123456789"
-  stalepath_time = 1234
+  peer_auth_type         = "md5"
+  peer_retry_time        = 30
+  prefix_adv_type        = "example_prefix_adv_type"
+  prefix_adv_type_to_lan = "example_prefix_adv_type_to_lan"
+  prefixes_to_adv_to_wan = ["example_prefixes_to_adv_to_wan"]
+  router_id              = "<router_id>"
+  stalepath_time         = 30
   vrf_router_id_map = [{
-    router_id = "123456789"
-    vrf_context_id = "123456789"
+    router_id      = "<router_id>"
+    vrf_context_id = "<vrf_context_id>"
   }]
 }

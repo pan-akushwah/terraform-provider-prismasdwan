@@ -22,9 +22,9 @@
 #   }
 
 resource "prismasdwan_site_hub_prefix_filter_association" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  path_prefix_distribution_filter_id = "123456789"
-  peer_site_ids = ["Lorem-Ipsum"]
-  tags = ["lorem"]
+  description                        = "Managed by Terraform"
+  name                               = "example_name"
+  path_prefix_distribution_filter_id = "<path_prefix_distribution_filter_id>"
+  peer_site_ids                      = ["<peer_site_id>"]
+  tags                               = ["terraform"]
 }

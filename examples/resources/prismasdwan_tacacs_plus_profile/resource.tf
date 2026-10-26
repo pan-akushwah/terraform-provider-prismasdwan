@@ -22,16 +22,16 @@
 #   }
 
 resource "prismasdwan_tacacs_plus_profile" "example" {
-  authentication_protocol = "Lorem-Ipsum"
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
+  authentication_protocol = "chap"
+  description             = "Managed by Terraform"
+  name                    = "example_name"
   tacacs_plus_servers = [{
-    secret = "base64(<secret-string>)"
-    server_fqdn = "Lorem-Ipsum"
-    server_ip = "Lorem-Ipsum"
-    server_ipv6 = "Lorem-Ipsum"
-    server_port = 1234
-    timeout = 1234
+    secret      = "<secret>"
+    server_fqdn = "server.example.com"
+    server_ip   = "10.0.0.1"
+    server_ipv6 = "2001:db8::1"
+    server_port = 443
+    timeout     = 30
   }]
-  tags = ["lorem"]
+  tags = ["terraform"]
 }

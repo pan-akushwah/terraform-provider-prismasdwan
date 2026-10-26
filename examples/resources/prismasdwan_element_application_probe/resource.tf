@@ -22,9 +22,9 @@
 #   }
 
 resource "prismasdwan_element_application_probe" "example" {
-  description = "Lorem-Ipsum"
-  enable_probe = true
-  name = "Lorem-Ipsum"
-  source_interface_id = "123456789"
-  tags = ["lorem"]
+  description         = "Managed by Terraform"
+  enable_probe        = true
+  name                = "example_name"
+  source_interface_id = "<source_interface_id>"
+  tags                = ["terraform"]
 }

@@ -22,18 +22,18 @@
 #   }
 
 resource "prismasdwan_external_ca_config" "example" {
-  ca_sign_timeout = 1234
-  manual_renew_trigger_threshold = 1234
-  renewal_window_from_expiry = 1234
+  ca_sign_timeout                = 30
+  manual_renew_trigger_threshold = 10
+  renewal_window_from_expiry     = 30
   scep_config = {
-    challenge_uri = "Lorem-Ipsum"
-    enrollment_uri = "Lorem-Ipsum"
-    https = true
-    num_challenge_passwords = 1234
-    server_certificate = "Lorem-Ipsum"
-    server_password = "base64(<secret-string>)"
-    server_primary_address = "Lorem-Ipsum"
-    server_username = "Lorem-Ipsum"
+    challenge_uri           = "https://example.com"
+    enrollment_uri          = "https://example.com"
+    https                   = false
+    num_challenge_passwords = 10
+    server_certificate      = "example_server_certificate"
+    server_password         = "<secret>"
+    server_primary_address  = "10.0.0.1"
+    server_username         = "example_server_username"
   }
-  type = "Lorem-Ipsum"
+  type = "LOCAL"
 }

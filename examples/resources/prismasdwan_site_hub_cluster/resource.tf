@@ -22,14 +22,14 @@
 #   }
 
 resource "prismasdwan_site_hub_cluster" "example" {
-  default_cluster = true
-  description = "Lorem-Ipsum"
+  default_cluster = false
+  description     = "Managed by Terraform"
   elements = [{
-    hub_element_id = "123456789"
-    locked = true
+    hub_element_id = "<hub_element_id>"
+    locked         = false
   }]
-  name = "Lorem-Ipsum"
-  peer_sites = ["Lorem-Ipsum"]
-  site_count_alarm_threshold = 1234
-  tags = ["lorem"]
+  name                       = "example_name"
+  peer_sites                 = ["example_peer_sites"]
+  site_count_alarm_threshold = 3
+  tags                       = ["terraform"]
 }

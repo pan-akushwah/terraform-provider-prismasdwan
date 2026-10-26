@@ -22,8 +22,8 @@
 #   }
 
 resource "prismasdwan_nat_global_prefix" "example" {
-  description = "Lorem-Ipsum"
-  ipv4_prefixes = ["Lorem-Ipsum"]
-  name = "Lorem-Ipsum"
-  tags = ["lorem"]
+  description   = "Managed by Terraform"
+  ipv4_prefixes = ["10.10.0.0/16"]
+  name          = "example_name"
+  tags          = ["terraform"]
 }

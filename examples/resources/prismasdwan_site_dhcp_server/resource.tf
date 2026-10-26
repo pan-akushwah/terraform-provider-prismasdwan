@@ -22,31 +22,31 @@
 #   }
 
 resource "prismasdwan_site_dhcp_server" "example" {
-  address_family = "Lorem-Ipsum"
-  broadcast_address = "Lorem-Ipsum"
+  address_family    = "ipv4"
+  broadcast_address = "10.0.0.1"
   custom_options = [{
-    option_definition = "Lorem-Ipsum"
-    option_value = "Lorem-Ipsum"
-    vendor_class_identifier = "Lorem-Ipsum"
+    option_definition       = "example_option_definition"
+    option_value            = "example_option_value"
+    vendor_class_identifier = "example_vendor_class_identifier"
   }]
-  default_lease_time = 1234
-  description = "Lorem-Ipsum"
-  disabled = true
-  dns_servers = ["Lorem-Ipsum"]
-  domain_name = "Lorem-Ipsum"
-  gateway = "Lorem-Ipsum"
+  default_lease_time = 300
+  description        = "Managed by Terraform"
+  disabled           = false
+  dns_servers        = ["example_dns_servers"]
+  domain_name        = "example.com"
+  gateway            = "10.0.0.1"
   ip_ranges = [{
-    end_ip = "Lorem-Ipsum"
-    start_ip = "Lorem-Ipsum"
+    end_ip   = "10.0.0.1"
+    start_ip = "10.0.0.1"
   }]
-  max_lease_time = 1234
-  network_context_id = "123456789"
+  max_lease_time     = 300
+  network_context_id = "<network_context_id>"
   static_mappings = [{
-    client_duid = "Lorem-Ipsum"
-    ip_address = "Lorem-Ipsum"
-    mac = "Lorem-Ipsum"
-    name = "Lorem-Ipsum"
+    client_duid = "example_client_duid"
+    ip_address  = "10.0.0.1"
+    mac         = "00:11:22:33:44:55"
+    name        = "example_name"
   }]
-  subnet = "Lorem-Ipsum"
-  tags = ["lorem"]
+  subnet = "10.10.0.0/16"
+  tags   = ["terraform"]
 }

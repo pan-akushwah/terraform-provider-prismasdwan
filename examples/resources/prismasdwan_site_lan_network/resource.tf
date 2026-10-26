@@ -22,39 +22,39 @@
 #   }
 
 resource "prismasdwan_site_lan_network" "example" {
-  description = "Lorem-Ipsum"
+  description = "Managed by Terraform"
   ipv4_config = {
-    default_routers = ["Lorem-Ipsum"]
+    default_routers = ["example_default_routers"]
     dhcp_relay = {
       enabled = true
       option_82 = {
-        circuit_id = "123456789"
-        enabled = true
-        reforwarding_policy = "Lorem-Ipsum"
-        remote_id = "123456789"
+        circuit_id          = "<circuit_id>"
+        enabled             = true
+        reforwarding_policy = "replace"
+        remote_id           = "<remote_id>"
       }
-      server_ips = ["Lorem-Ipsum"]
-      source_interface = "Lorem-Ipsum"
+      server_ips       = ["example_server_ips"]
+      source_interface = "example_source_interface"
     }
     dhcp_server = {
-      domain_name = "Lorem-Ipsum"
-      domain_name_servers = ["Lorem-Ipsum"]
+      domain_name         = "example.com"
+      domain_name_servers = ["example_domain_name_servers"]
       ip_address_pool = [{
-        end = "Lorem-Ipsum"
-        start = "Lorem-Ipsum"
+        end   = "example_end"
+        start = "example_start"
       }]
-      lease_expiry_time = 1234
-      lease_renew_time = 1234
+      lease_expiry_time = 30
+      lease_renew_time  = 30
     }
-    prefixes = ["Lorem-Ipsum"]
+    prefixes = ["10.10.0.0/16"]
   }
   ipv6_config = {
-    default_routers = ["Lorem-Ipsum"]
-    prefixes = ["Lorem-Ipsum"]
+    default_routers = ["example_default_routers"]
+    prefixes        = ["10.10.0.0/16"]
   }
-  name = "Lorem-Ipsum"
-  network_context_id = "123456789"
-  scope = "Lorem-Ipsum"
-  tags = ["lorem"]
-  vrf_context_id = "123456789"
+  name               = "example_name"
+  network_context_id = "<network_context_id>"
+  scope              = "local"
+  tags               = ["terraform"]
+  vrf_context_id     = "<vrf_context_id>"
 }

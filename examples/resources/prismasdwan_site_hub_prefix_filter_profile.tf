@@ -53,7 +53,7 @@ resource "prismasdwan_site_hub_prefix_filter_profile" "hub_prefix_filter_profile
   }
   name        = "tf managed hub prefix filter profile"
   description = "Managed by Prisma SDWAN Terraform IaaC Provider"
-  tags        = ["lorem", "ipsum"]
+  tags        = ["terraform", "example"]
   path_prefix_filter_list = [
     {
       vrf_context_id = prismasdwan_resource_locator.global_vrf_context.result
@@ -108,7 +108,7 @@ data "prismasdwan_site_hub_prefix_filter_profile" "find_by_tags_member" {
     site_id = prismasdwan_site.dc_site.id
   }
   filters = {
-    "tags.#(==\"lorem\")" = "lorem"
+    "tags.#(==\"terraform\")" = "terraform"
   }
   depends_on = [prismasdwan_site_hub_prefix_filter_profile.hub_prefix_filter_profile_1]
 }

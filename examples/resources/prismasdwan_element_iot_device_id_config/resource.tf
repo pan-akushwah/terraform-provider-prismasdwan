@@ -22,8 +22,8 @@
 #   }
 
 resource "prismasdwan_element_iot_device_id_config" "example" {
-  description = "Lorem-Ipsum"
-  name = "Lorem-Ipsum"
-  snmp_discovery_source_interface_id = "123456789"
-  tags = ["lorem"]
+  description                        = "Managed by Terraform"
+  name                               = "example_name"
+  snmp_discovery_source_interface_id = "<snmp_discovery_source_interface_id>"
+  tags                               = ["terraform"]
 }

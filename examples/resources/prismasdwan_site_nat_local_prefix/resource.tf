@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_site_nat_local_prefix" "example" {
-  ipv4_prefixes = ["Lorem-Ipsum"]
-  prefix_id = "123456789"
-  tags = ["lorem"]
+  ipv4_prefixes = ["10.10.0.0/16"]
+  prefix_id     = "<prefix_id>"
+  tags          = ["terraform"]
 }
