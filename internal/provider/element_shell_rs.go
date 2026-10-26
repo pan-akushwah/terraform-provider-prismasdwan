@@ -754,6 +754,10 @@ func (r *elementShellResource) doPost(ctx context.Context, plan *rsModelElementS
 	body.Role = StringValueOrNil(plan.Role)
 	body.Name = StringValueOrNil(plan.Name)
 	body.TenantId = StringValueOrNil(plan.TenantId)
+	if body.TenantId == nil {
+		// the API requires tenant_id; the provider's scope ("tsg_id:<tenant>") already names the tenant
+		body.TenantId = TenantIdFromScope(r.client.Scope)
+	}
 	body.ClusterId = StringValueOrNil(plan.ClusterId)
 
 	// convert body to map

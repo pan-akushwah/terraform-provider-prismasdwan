@@ -28,13 +28,18 @@ func (e Response) Error() string {
 
 	buf.WriteString(fmt.Sprintf("[HTTP %d]", e.StatusCode))
 
-	for i := 0; i < len(e.Errors); i++ {
+	// some APIs report request errors in _warning and leave _error empty
+	entries := e.Errors
+	if len(entries) == 0 {
+		entries = e.Warning
+	}
+	for i := 0; i < len(entries); i++ {
 		buf.WriteString(" ")
 		if i > 0 {
 			buf.WriteString("|| ")
 		}
 
-		buf.WriteString(e.Errors[i].Error())
+		buf.WriteString(entries[i].Error())
 	}
 
 	return buf.String()

@@ -39,6 +39,8 @@ func init() {
 		// concurrent site creates fail with INVALID_REQUEST_DUPLICATE_KEY ("Resource already exists")
 		"prismasdwan_site",
 		"prismasdwan_vrf_context",
+		// rules are written into their policy set, so concurrent creates in one set conflict ("Entity of type PerfMgmtPolicySet")
+		"prismasdwan_performance_policy_rule",
 	} {
 		serializedResourceTypes.Store(resourceType, &sync.Mutex{})
 	}
@@ -142,6 +144,10 @@ func (c *Client) ExecuteSdwanRequest(ctx context.Context, request *SdwanClientRe
 		request.ResponseErr = &r_err
 		if len(r_bytes) > 0 {
 			err_code, err := jsonslice.Get(r_bytes, "$._error[0].code")
+			if err != nil || len(err_code) == 0 {
+				// some APIs report request errors in _warning and leave _error empty
+				err_code, err = jsonslice.Get(r_bytes, "$._warning[0].code")
+			}
 			if err == nil {
 				// json slice will give you values with quotes
 				err_code_name := string(err_code)

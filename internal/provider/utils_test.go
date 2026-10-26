@@ -57,3 +57,25 @@ func TestValueStringPointerFromPlanOrState(t *testing.T) {
 		t.Errorf("unknown plan with null state must send null, got %q", *got)
 	}
 }
+
+func TestTenantIdFromScope(t *testing.T) {
+	for scope, want := range map[string]string{"tsg_id:1413225143": "1413225143", "profile tsg_id:42 email": "42", "": "", "profile": ""} {
+		got := TenantIdFromScope(scope)
+		if (want == "") != (got == nil) || (got != nil && *got != want) {
+			t.Errorf("TenantIdFromScope(%q) = %v, want %q", scope, got, want)
+		}
+	}
+}
+
+func TestDeleteIfNull(t *testing.T) {
+	cases := map[string]string{
+		`{"a":null,"b":1}`:   `{"b":1}`,
+		`{"a":"port","b":1}`: `{"a":"port","b":1}`,
+		`{"b":1}`:            `{"b":1}`,
+	}
+	for in, want := range cases {
+		if got := DeleteIfNull(in, "a"); got != want {
+			t.Errorf("DeleteIfNull(%s) = %s, want %s", in, got, want)
+		}
+	}
+}

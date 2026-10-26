@@ -24,7 +24,6 @@
 resource "prismasdwan_element_toolkit" "example" {
   account_disable_interval = 1234
   inactive_interval = 1234
-  otpkey_version = 1234
   retry_login_count = 1234
   ssh_enabled = true
   ssh_outbound_enabled = true

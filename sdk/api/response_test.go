@@ -2,13 +2,14 @@ package api
 
 import (
 	"net/http"
+	"strings"
 	"testing"
 )
 
 func TestParseResponse(t *testing.T) {
 	data := []byte(`
 {
-    "_errors":[
+    "_error":[
         {
             "code":"API_I00035",
             "message":"Invalid Request Payload ",
@@ -36,5 +37,17 @@ func TestParseResponse(t *testing.T) {
 	}
 	if ans.Errors[0].Details == nil {
 		t.Errorf("Details is nil")
+	}
+}
+
+// The SD-WAN API reports some request errors in _warning with an empty _error; they must not be lost.
+func TestResponseErrorFallsBackToWarning(t *testing.T) {
+	data := []byte(`{"_status_code":"400","_warning":[{"code":"INVALID_REQUEST_ERROR_0001",
+		"message":"Invalid API request: Entity of type PerfMgmtPolicySet"}]}`)
+	got := NewResponse(http.StatusBadRequest, data).Error()
+	for _, want := range []string{"[HTTP 400]", "INVALID_REQUEST_ERROR_0001", "Entity of type PerfMgmtPolicySet"} {
+		if !strings.Contains(got, want) {
+			t.Errorf("Error() = %q, missing %q", got, want)
+		}
 	}
 }

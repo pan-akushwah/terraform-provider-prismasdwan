@@ -16,6 +16,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+	"github.com/tidwall/gjson"
+	"github.com/tidwall/sjson"
 )
 
 func ValueStringPointerFromPlanOrState(planVal, stateVal types.String) *string {
@@ -348,4 +350,25 @@ func ValidateRequiredXParameters(ctx context.Context, config tfsdk.Config, requi
 		}
 	}
 	return diags
+}
+
+// TenantIdFromScope returns the tenant id from a provider scope such as "tsg_id:1234567890", or nil.
+func TenantIdFromScope(scope string) *string {
+	for _, part := range strings.Fields(scope) {
+		if id, ok := strings.CutPrefix(part, "tsg_id:"); ok && id != "" {
+			return &id
+		}
+	}
+	return nil
+}
+
+// DeleteIfNull removes path from a JSON body when its value is null or absent, for APIs that reject null for an
+// optional field. A real value is left alone.
+func DeleteIfNull(body, path string) string {
+	if gjson.Get(body, path).Type == gjson.Null {
+		if out, err := sjson.Delete(body, path); err == nil {
+			return out
+		}
+	}
+	return body
 }

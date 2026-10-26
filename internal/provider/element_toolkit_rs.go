@@ -136,7 +136,7 @@ func (r *elementToolkitResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=otpkey_version, type=INTEGER macro=rss_schema
 			"otpkey_version": rsschema.Int64Attribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Otpkey Version",

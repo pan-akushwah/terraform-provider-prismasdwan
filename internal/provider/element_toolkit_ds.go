@@ -154,7 +154,7 @@ func (d *elementToolkitDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=otpkey_version, type=INTEGER macro=rss_schema
 						"otpkey_version": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Otpkey Version",
