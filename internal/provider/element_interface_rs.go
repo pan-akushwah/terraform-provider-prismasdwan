@@ -2887,7 +2887,7 @@ func (r *elementInterfaceResource) doPost(ctx context.Context, plan *rsModelInte
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_id")
 	tflog.Debug(ctx, "http json override: delete request_body_string::ethernet_port.port_name")
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_name")
-	request_body_string = DeleteIfNull(request_body_string, "peer_bypasspair_wan_port_type")
+	request_body_string = SetIfNull(request_body_string, "peer_bypasspair_wan_port_type", "none")
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 4)
 	// copy pointer
@@ -6234,7 +6234,7 @@ func (r *elementInterfaceResource) doPut(ctx context.Context, plan *rsModelInter
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_id")
 	tflog.Debug(ctx, "http json override: delete request_body_string::ethernet_port.port_name")
 	request_body_string, _ = sjson.Delete(request_body_string, "ethernet_port.port_name")
-	request_body_string = DeleteIfNull(request_body_string, "peer_bypasspair_wan_port_type")
+	request_body_string = SetIfNull(request_body_string, "peer_bypasspair_wan_port_type", "none")
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 4)
 	// copy pointer

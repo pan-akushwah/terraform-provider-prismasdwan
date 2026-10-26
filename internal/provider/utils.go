@@ -372,3 +372,13 @@ func DeleteIfNull(body, path string) string {
 	}
 	return body
 }
+
+// SetIfNull sets path in a JSON body to value when the path is null or absent; a real value is left alone.
+func SetIfNull(body, path string, value interface{}) string {
+	if gjson.Get(body, path).Type == gjson.Null {
+		if out, err := sjson.Set(body, path, value); err == nil {
+			return out
+		}
+	}
+	return body
+}

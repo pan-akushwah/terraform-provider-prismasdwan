@@ -79,3 +79,16 @@ func TestDeleteIfNull(t *testing.T) {
 		}
 	}
 }
+
+func TestSetIfNull(t *testing.T) {
+	cases := map[string]string{
+		`{"a":null}`:       `{"a":"none"}`,
+		`{"b":1}`:          `{"b":1,"a":"none"}`,
+		`{"a":"cellular"}`: `{"a":"cellular"}`,
+	}
+	for in, want := range cases {
+		if got := SetIfNull(in, "a", "none"); got != want {
+			t.Errorf("SetIfNull(%s) = %s, want %s", in, got, want)
+		}
+	}
+}
