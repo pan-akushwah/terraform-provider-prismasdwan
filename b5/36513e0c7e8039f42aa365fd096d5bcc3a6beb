@@ -1,0 +1,35 @@
+internal/provider/element_interface_rs.go
+  s_a281bc52404319::t_3c724e807b961e 2890,6237
+internal/provider/element_shell_rs.go
+  s_a281bc52404319::t_35ae1863e4dd85 757-760
+internal/provider/element_toolkit_ds.go
+  s_a281bc52404319::t_6cb07bdb12e6fd 157
+internal/provider/element_toolkit_rs.go
+  s_a281bc52404319::t_d91ff763c48864 139
+internal/provider/utils.go
+  s_a281bc52404319::t_84fde283ab0ea5 19-20,354-374
+internal/provider/utils_test.go
+  s_a281bc52404319::t_3eebf887982376 60-81
+sdk/api/response.go
+  s_a281bc52404319::t_343b8847077596 31-36,42
+sdk/api/response_test.go
+  s_a281bc52404319::t_2ed6d69e62b6a9 5,12,42-53
+sdk/sdwan/services/sdwan_client.go
+  s_a281bc52404319::t_483becdf93fa53 42-43,147-150
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "b536513e0c7e8039f42aa365fd096d5bcc3a6beb",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
