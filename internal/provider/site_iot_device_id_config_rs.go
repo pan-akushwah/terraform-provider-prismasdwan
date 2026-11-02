@@ -136,7 +136,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 			// property: name=site_id, type=STRING macro=rss_schema
 			"site_id": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Site Id",
@@ -224,9 +224,6 @@ func (r *siteIotDeviceIdConfigResource) doPost(ctx context.Context, plan *rsMode
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
-	// inject overrides
-	tflog.Debug(ctx, "http json override: delete request_body_string::deviceid_profile_id")
-	request_body_string, _ = sjson.Delete(request_body_string, "deviceid_profile_id")
 	// copy pointer
 	create_request.RequestBody = &request_body_string
 
@@ -302,6 +299,10 @@ func (r *siteIotDeviceIdConfigResource) doPost(ctx context.Context, plan *rsMode
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// the api never returns this value: keep the configured (or previously known) one
+	if ans.SiteId == nil {
+		state.SiteId = plan.SiteId
+	}
 	return true
 }
 
@@ -401,6 +402,10 @@ func (r *siteIotDeviceIdConfigResource) doGet(ctx context.Context, state *rsMode
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// the api never returns this value: keep the configured (or previously known) one
+	if ans.SiteId == nil {
+		state.SiteId = savestate.SiteId
+	}
 	return true
 }
 
@@ -557,6 +562,10 @@ func (r *siteIotDeviceIdConfigResource) doPut(ctx context.Context, plan *rsModel
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// the api never returns this value: keep the configured (or previously known) one
+	if ans.SiteId == nil {
+		state.SiteId = plan.SiteId
+	}
 	return true
 }
 
@@ -571,10 +580,72 @@ func (r *siteIotDeviceIdConfigResource) Create(ctx context.Context, req resource
 		return
 	}
 
-	// make post call
-	var state rsModelDeviceIdConfigV2N1
-	if r.doPost(ctx, &plan, &state, resp) {
-		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	// Every site already has exactly one device-id configuration, created with the site, so "create" adopts it: look
+	// up its id, then read and update it (a POST would create a second one and is rejected).
+	params := MapStringValueOrNil(ctx, plan.TfParameters)
+	site_id, ok := params["site_id"]
+	if !ok || site_id == nil {
+		resp.Diagnostics.AddError("could not find site_id in x_parameters", "missing parameter")
+		return
+	}
+
+	// the API also needs site_id in the body; take it from x_parameters unless it is configured
+	if plan.SiteId.IsNull() || plan.SiteId.IsUnknown() {
+		plan.SiteId = types.StringValue(*site_id)
+	}
+
+	svc := sdwan_client.NewClient(r.client)
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.ResourceType = "prismasdwan_site_iot_device_id_config"
+	list_request.Method = "GET"
+	list_request.Path = "/sdwan/v2.1/api/sites/{site_id}/deviceidconfigs"
+	list_request.PathParameters = &map[string]*string{"site_id": site_id}
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		resp.Diagnostics.AddError("error reading the site's device-id configuration", (*list_request.ResponseErr).Error())
+		return
+	}
+	var configs struct {
+		Items []struct {
+			Id *string `json:"id"`
+		} `json:"items"`
+	}
+	if err := json.Unmarshal(*list_request.ResponseBytes, &configs); err != nil || len(configs.Items) == 0 || configs.Items[0].Id == nil {
+		resp.Diagnostics.AddError("site has no device-id configuration to manage", "GET "+*list_request.FinalPath+" returned no item")
+		return
+	}
+
+	// same tfid format as a created object: <config_id>, then the path parameters
+	var idBuilder strings.Builder
+	idBuilder.WriteString(*configs.Items[0].Id)
+	for p, v := range params {
+		if v != nil && p != "config_id" {
+			idBuilder.WriteString(IdSeparator)
+			idBuilder.WriteString(p)
+			idBuilder.WriteString("=")
+			idBuilder.WriteString(*v)
+		}
+	}
+	plan.Tfid = types.StringValue(idBuilder.String())
+
+	var save rsModelDeviceIdConfigV2N1
+	save.Tfid = plan.Tfid
+	gResp := resource.ReadResponse{
+		Private:     resp.Private,
+		Diagnostics: resp.Diagnostics,
+	}
+	if r.doGet(ctx, &save, &plan, &resp.State, &gResp) {
+		uResp := resource.UpdateResponse{
+			Private:     resp.Private,
+			Diagnostics: resp.Diagnostics,
+		}
+		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			resp.Diagnostics = uResp.Diagnostics
+		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 
