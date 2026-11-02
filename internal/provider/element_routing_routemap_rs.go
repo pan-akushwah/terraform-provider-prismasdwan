@@ -174,7 +174,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=as_path_id, type=STRING macro=rss_schema
 								"as_path_id": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "As Path Id",
@@ -183,7 +183,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=community_list_id, type=STRING macro=rss_schema
 								"community_list_id": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Community List Id",
@@ -192,7 +192,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=ip_next_hop_id, type=STRING macro=rss_schema
 								"ip_next_hop_id": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Ip Next Hop Id",
@@ -201,7 +201,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=ip_prefix_list_id, type=STRING macro=rss_schema
 								"ip_prefix_list_id": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Ip Prefix List Id",
@@ -210,7 +210,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=metric, type=INTEGER macro=rss_schema
 								"metric": rsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Metric",
@@ -219,7 +219,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=service_binding_id, type=STRING macro=rss_schema
 								"service_binding_id": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Service Binding Id",
@@ -228,7 +228,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=tag, type=INTEGER macro=rss_schema
 								"tag": rsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Tag",
@@ -266,7 +266,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=additive_community, type=BOOLEAN macro=rss_schema
 								"additive_community": rsschema.BoolAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Additive Community",
@@ -275,7 +275,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=as_path_prepend, type=STRING macro=rss_schema
 								"as_path_prepend": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "As Path Prepend",
@@ -284,7 +284,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=community, type=STRING macro=rss_schema
 								"community": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Community",
@@ -293,7 +293,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=ip_next_hop, type=STRING macro=rss_schema
 								"ip_next_hop": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Ip Next Hop",
@@ -302,7 +302,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=ip_v6_next_hop, type=STRING macro=rss_schema
 								"ip_v6_next_hop": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Ip V6 Next Hop",
@@ -311,7 +311,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=local_preference, type=INTEGER macro=rss_schema
 								"local_preference": rsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Local Preference",
@@ -320,7 +320,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=metric, type=INTEGER macro=rss_schema
 								"metric": rsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Metric",
@@ -329,7 +329,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=tag, type=INTEGER macro=rss_schema
 								"tag": rsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Tag",
@@ -338,7 +338,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=type, type=STRING macro=rss_schema
 								"type": rsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Type",
@@ -347,7 +347,7 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 								// property: name=weight, type=INTEGER macro=rss_schema
 								"weight": rsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Weight",

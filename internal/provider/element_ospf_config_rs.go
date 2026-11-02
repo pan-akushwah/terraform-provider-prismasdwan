@@ -112,7 +112,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 			// property: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			"advertise_fabric_default_route": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Advertise Fabric Default Route",

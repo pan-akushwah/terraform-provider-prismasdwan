@@ -22,13 +22,12 @@
 #   }
 
 resource "prismasdwan_performance_policy_set" "example" {
-  clone_from            = "example_clone_from"
-  defaultrule_policyset = false
-  description           = "Managed by Terraform"
-  disabled              = false
-  disabled_reason       = "example_disabled_reason"
-  inactive              = false
-  inactive_reason       = "example_inactive_reason"
+  clone_from      = "example_clone_from"
+  description     = "Managed by Terraform"
+  disabled        = false
+  disabled_reason = "example_disabled_reason"
+  inactive        = false
+  inactive_reason = "example_inactive_reason"
   link_health_rules = [{
     actions = [{
       action_type = "raise_alarm"
@@ -167,7 +166,6 @@ resource "prismasdwan_performance_policy_set" "example" {
     region          = "example_region"
     tags            = ["terraform"]
   }]
-  region          = "example_region"
-  send_to_element = false
-  tags            = ["terraform"]
+  region = "example_region"
+  tags   = ["terraform"]
 }

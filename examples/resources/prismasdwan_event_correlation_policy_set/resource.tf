@@ -22,10 +22,9 @@
 #   }
 
 resource "prismasdwan_event_correlation_policy_set" "example" {
-  active_policyset = false
-  clone_from       = "example_clone_from"
-  description      = "Managed by Terraform"
-  name             = "example_name"
+  clone_from  = "example_clone_from"
+  description = "Managed by Terraform"
+  name        = "example_name"
   severity_priority_mapping = [{
     priority = "p1"
     severity = "major"

@@ -168,7 +168,7 @@ func (d *appDefDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 						// property: name=category, type=STRING macro=rss_schema
 						"category": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Category",
@@ -359,7 +359,7 @@ func (d *appDefDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 						// property: name=p_parent_id, type=STRING macro=rss_schema
 						"p_parent_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "P Parent Id",
@@ -404,7 +404,7 @@ func (d *appDefDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 						// property: name=supported_base_software_version, type=STRING macro=rss_schema
 						"supported_base_software_version": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Supported Base Software Version",
@@ -413,7 +413,7 @@ func (d *appDefDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 						// property: name=supported_engines, type=STRING macro=rss_schema
 						"supported_engines": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Supported Engines",

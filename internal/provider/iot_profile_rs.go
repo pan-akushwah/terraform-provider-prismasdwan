@@ -120,7 +120,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 			// property: name=disabled, type=BOOLEAN macro=rss_schema
 			"disabled": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Disabled",
@@ -147,7 +147,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 			// property: name=inactive, type=BOOLEAN macro=rss_schema
 			"inactive": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Inactive",
@@ -579,13 +579,31 @@ func (r *iotProfileResource) doPost(ctx context.Context, plan *rsModelDeviceIdPr
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	priorDisabled := state.Disabled
 	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Disabled == nil {
+		if !plan.Disabled.IsUnknown() {
+			state.Disabled = plan.Disabled
+		} else {
+			state.Disabled = priorDisabled
+		}
+	}
 	// property: name=disabled_reason, type=STRING macro=copy_to_state
 	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	priorInactive := state.Inactive
 	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Inactive == nil {
+		if !plan.Inactive.IsUnknown() {
+			state.Inactive = plan.Inactive
+		} else {
+			state.Inactive = priorInactive
+		}
+	}
 	// property: name=inactive_reason, type=STRING macro=copy_to_state
 	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
@@ -788,13 +806,31 @@ func (r *iotProfileResource) doGet(ctx context.Context, state *rsModelDeviceIdPr
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	priorDisabled := state.Disabled
 	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Disabled == nil {
+		if !savestate.Disabled.IsUnknown() {
+			state.Disabled = savestate.Disabled
+		} else {
+			state.Disabled = priorDisabled
+		}
+	}
 	// property: name=disabled_reason, type=STRING macro=copy_to_state
 	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	priorInactive := state.Inactive
 	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Inactive == nil {
+		if !savestate.Inactive.IsUnknown() {
+			state.Inactive = savestate.Inactive
+		} else {
+			state.Inactive = priorInactive
+		}
+	}
 	// property: name=inactive_reason, type=STRING macro=copy_to_state
 	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state
@@ -1179,13 +1215,31 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	priorDisabled := state.Disabled
 	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Disabled == nil {
+		if !plan.Disabled.IsUnknown() {
+			state.Disabled = plan.Disabled
+		} else {
+			state.Disabled = priorDisabled
+		}
+	}
 	// property: name=disabled_reason, type=STRING macro=copy_to_state
 	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	priorInactive := state.Inactive
 	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Inactive == nil {
+		if !plan.Inactive.IsUnknown() {
+			state.Inactive = plan.Inactive
+		} else {
+			state.Inactive = priorInactive
+		}
+	}
 	// property: name=inactive_reason, type=STRING macro=copy_to_state
 	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
 	// property: name=name, type=STRING macro=copy_to_state

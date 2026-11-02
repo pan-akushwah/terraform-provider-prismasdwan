@@ -150,7 +150,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// property: name=category, type=STRING macro=rss_schema
 			"category": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Category",
@@ -341,7 +341,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// property: name=p_parent_id, type=STRING macro=rss_schema
 			"p_parent_id": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "P Parent Id",
@@ -386,7 +386,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// property: name=supported_base_software_version, type=STRING macro=rss_schema
 			"supported_base_software_version": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Supported Base Software Version",
@@ -395,7 +395,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			// property: name=supported_engines, type=STRING macro=rss_schema
 			"supported_engines": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Supported Engines",
@@ -985,7 +985,16 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	// property: name=app_unreachability_detection, type=BOOLEAN macro=copy_to_state
 	state.AppUnreachabilityDetection = types.BoolPointerValue(ans.AppUnreachabilityDetection)
 	// property: name=category, type=STRING macro=copy_to_state
+	priorCategory := state.Category
 	state.Category = types.StringPointerValue(ans.Category)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Category == nil {
+		if !plan.Category.IsUnknown() {
+			state.Category = plan.Category
+		} else {
+			state.Category = priorCategory
+		}
+	}
 	// property: name=conn_idle_timeout, type=INTEGER macro=copy_to_state
 	state.ConnIdleTimeout = types.Int64PointerValue(ans.ConnIdleTimeout)
 	// property: name=description, type=STRING macro=copy_to_state
@@ -1053,7 +1062,16 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	// property: name=p_category, type=STRING macro=copy_to_state
 	state.PCategory = types.StringPointerValue(ans.PCategory)
 	// property: name=p_parent_id, type=STRING macro=copy_to_state
+	priorPParentId := state.PParentId
 	state.PParentId = types.StringPointerValue(ans.PParentId)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.PParentId == nil {
+		if !plan.PParentId.IsUnknown() {
+			state.PParentId = plan.PParentId
+		} else {
+			state.PParentId = priorPParentId
+		}
+	}
 	// property: name=p_sub_category, type=STRING macro=copy_to_state
 	state.PSubCategory = types.StringPointerValue(ans.PSubCategory)
 	// property: name=parent_id, type=STRING macro=copy_to_state
@@ -1063,7 +1081,16 @@ func (r *appDefResource) doPost(ctx context.Context, plan *rsModelAppDefScreenV2
 	// property: name=session_timeout, type=INTEGER macro=copy_to_state
 	state.SessionTimeout = types.Int64PointerValue(ans.SessionTimeout)
 	// property: name=supported_base_software_version, type=STRING macro=copy_to_state
+	priorSupportedBaseSoftwareVersion := state.SupportedBaseSoftwareVersion
 	state.SupportedBaseSoftwareVersion = types.StringPointerValue(ans.SupportedBaseSoftwareVersion)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SupportedBaseSoftwareVersion == nil {
+		if !plan.SupportedBaseSoftwareVersion.IsUnknown() {
+			state.SupportedBaseSoftwareVersion = plan.SupportedBaseSoftwareVersion
+		} else {
+			state.SupportedBaseSoftwareVersion = priorSupportedBaseSoftwareVersion
+		}
+	}
 	// property: name=supported_engines, type=STRING macro=copy_to_state
 	state.SupportedEngines = types.StringPointerValue(ans.SupportedEngines)
 	// property: name=system_app_overridden, type=BOOLEAN macro=copy_to_state
@@ -1288,7 +1315,16 @@ func (r *appDefResource) doGet(ctx context.Context, state *rsModelAppDefScreenV2
 	// property: name=app_unreachability_detection, type=BOOLEAN macro=copy_to_state
 	state.AppUnreachabilityDetection = types.BoolPointerValue(ans.AppUnreachabilityDetection)
 	// property: name=category, type=STRING macro=copy_to_state
+	priorCategory := state.Category
 	state.Category = types.StringPointerValue(ans.Category)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Category == nil {
+		if !savestate.Category.IsUnknown() {
+			state.Category = savestate.Category
+		} else {
+			state.Category = priorCategory
+		}
+	}
 	// property: name=conn_idle_timeout, type=INTEGER macro=copy_to_state
 	state.ConnIdleTimeout = types.Int64PointerValue(ans.ConnIdleTimeout)
 	// property: name=description, type=STRING macro=copy_to_state
@@ -1356,7 +1392,16 @@ func (r *appDefResource) doGet(ctx context.Context, state *rsModelAppDefScreenV2
 	// property: name=p_category, type=STRING macro=copy_to_state
 	state.PCategory = types.StringPointerValue(ans.PCategory)
 	// property: name=p_parent_id, type=STRING macro=copy_to_state
+	priorPParentId := state.PParentId
 	state.PParentId = types.StringPointerValue(ans.PParentId)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.PParentId == nil {
+		if !savestate.PParentId.IsUnknown() {
+			state.PParentId = savestate.PParentId
+		} else {
+			state.PParentId = priorPParentId
+		}
+	}
 	// property: name=p_sub_category, type=STRING macro=copy_to_state
 	state.PSubCategory = types.StringPointerValue(ans.PSubCategory)
 	// property: name=parent_id, type=STRING macro=copy_to_state
@@ -1366,7 +1411,16 @@ func (r *appDefResource) doGet(ctx context.Context, state *rsModelAppDefScreenV2
 	// property: name=session_timeout, type=INTEGER macro=copy_to_state
 	state.SessionTimeout = types.Int64PointerValue(ans.SessionTimeout)
 	// property: name=supported_base_software_version, type=STRING macro=copy_to_state
+	priorSupportedBaseSoftwareVersion := state.SupportedBaseSoftwareVersion
 	state.SupportedBaseSoftwareVersion = types.StringPointerValue(ans.SupportedBaseSoftwareVersion)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SupportedBaseSoftwareVersion == nil {
+		if !savestate.SupportedBaseSoftwareVersion.IsUnknown() {
+			state.SupportedBaseSoftwareVersion = savestate.SupportedBaseSoftwareVersion
+		} else {
+			state.SupportedBaseSoftwareVersion = priorSupportedBaseSoftwareVersion
+		}
+	}
 	// property: name=supported_engines, type=STRING macro=copy_to_state
 	state.SupportedEngines = types.StringPointerValue(ans.SupportedEngines)
 	// property: name=system_app_overridden, type=BOOLEAN macro=copy_to_state
@@ -1926,7 +1980,16 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	// property: name=app_unreachability_detection, type=BOOLEAN macro=copy_to_state
 	state.AppUnreachabilityDetection = types.BoolPointerValue(ans.AppUnreachabilityDetection)
 	// property: name=category, type=STRING macro=copy_to_state
+	priorCategory := state.Category
 	state.Category = types.StringPointerValue(ans.Category)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Category == nil {
+		if !plan.Category.IsUnknown() {
+			state.Category = plan.Category
+		} else {
+			state.Category = priorCategory
+		}
+	}
 	// property: name=conn_idle_timeout, type=INTEGER macro=copy_to_state
 	state.ConnIdleTimeout = types.Int64PointerValue(ans.ConnIdleTimeout)
 	// property: name=description, type=STRING macro=copy_to_state
@@ -1994,7 +2057,16 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	// property: name=p_category, type=STRING macro=copy_to_state
 	state.PCategory = types.StringPointerValue(ans.PCategory)
 	// property: name=p_parent_id, type=STRING macro=copy_to_state
+	priorPParentId := state.PParentId
 	state.PParentId = types.StringPointerValue(ans.PParentId)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.PParentId == nil {
+		if !plan.PParentId.IsUnknown() {
+			state.PParentId = plan.PParentId
+		} else {
+			state.PParentId = priorPParentId
+		}
+	}
 	// property: name=p_sub_category, type=STRING macro=copy_to_state
 	state.PSubCategory = types.StringPointerValue(ans.PSubCategory)
 	// property: name=parent_id, type=STRING macro=copy_to_state
@@ -2004,7 +2076,16 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 	// property: name=session_timeout, type=INTEGER macro=copy_to_state
 	state.SessionTimeout = types.Int64PointerValue(ans.SessionTimeout)
 	// property: name=supported_base_software_version, type=STRING macro=copy_to_state
+	priorSupportedBaseSoftwareVersion := state.SupportedBaseSoftwareVersion
 	state.SupportedBaseSoftwareVersion = types.StringPointerValue(ans.SupportedBaseSoftwareVersion)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SupportedBaseSoftwareVersion == nil {
+		if !plan.SupportedBaseSoftwareVersion.IsUnknown() {
+			state.SupportedBaseSoftwareVersion = plan.SupportedBaseSoftwareVersion
+		} else {
+			state.SupportedBaseSoftwareVersion = priorSupportedBaseSoftwareVersion
+		}
+	}
 	// property: name=supported_engines, type=STRING macro=copy_to_state
 	state.SupportedEngines = types.StringPointerValue(ans.SupportedEngines)
 	// property: name=system_app_overridden, type=BOOLEAN macro=copy_to_state

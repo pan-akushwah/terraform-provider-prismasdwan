@@ -22,7 +22,6 @@
 #   }
 
 resource "prismasdwan_element_ospf_config" "example" {
-  advertise_fabric_default_route = false
   areas = [{
     area_id   = 10
     area_type = "NORMAL"

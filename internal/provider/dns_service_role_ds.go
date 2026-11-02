@@ -136,7 +136,7 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=disabled, type=BOOLEAN macro=rss_schema
 						"disabled": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Disabled",
@@ -145,7 +145,7 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=disabled_reason, type=STRING macro=rss_schema
 						"disabled_reason": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Disabled Reason",
@@ -163,7 +163,7 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=inactive, type=BOOLEAN macro=rss_schema
 						"inactive": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Inactive",
@@ -172,7 +172,7 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=inactive_reason, type=STRING macro=rss_schema
 						"inactive_reason": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Inactive Reason",
@@ -190,7 +190,7 @@ func (d *dnsServiceRoleDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=region, type=STRING macro=rss_schema
 						"region": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Region",

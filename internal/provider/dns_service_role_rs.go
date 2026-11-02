@@ -118,7 +118,7 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=disabled, type=BOOLEAN macro=rss_schema
 			"disabled": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Disabled",
@@ -127,7 +127,7 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=disabled_reason, type=STRING macro=rss_schema
 			"disabled_reason": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Disabled Reason",
@@ -145,7 +145,7 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=inactive, type=BOOLEAN macro=rss_schema
 			"inactive": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Inactive",
@@ -154,7 +154,7 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=inactive_reason, type=STRING macro=rss_schema
 			"inactive_reason": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Inactive Reason",
@@ -172,7 +172,7 @@ func (r *dnsServiceRoleResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=region, type=STRING macro=rss_schema
 			"region": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Region",
@@ -350,19 +350,64 @@ func (r *dnsServiceRoleResource) doPost(ctx context.Context, plan *rsModelDnsSer
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	priorDisabled := state.Disabled
 	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Disabled == nil {
+		if !plan.Disabled.IsUnknown() {
+			state.Disabled = plan.Disabled
+		} else {
+			state.Disabled = priorDisabled
+		}
+	}
 	// property: name=disabled_reason, type=STRING macro=copy_to_state
+	priorDisabledReason := state.DisabledReason
 	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.DisabledReason == nil {
+		if !plan.DisabledReason.IsUnknown() {
+			state.DisabledReason = plan.DisabledReason
+		} else {
+			state.DisabledReason = priorDisabledReason
+		}
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	priorInactive := state.Inactive
 	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Inactive == nil {
+		if !plan.Inactive.IsUnknown() {
+			state.Inactive = plan.Inactive
+		} else {
+			state.Inactive = priorInactive
+		}
+	}
 	// property: name=inactive_reason, type=STRING macro=copy_to_state
+	priorInactiveReason := state.InactiveReason
 	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.InactiveReason == nil {
+		if !plan.InactiveReason.IsUnknown() {
+			state.InactiveReason = plan.InactiveReason
+		} else {
+			state.InactiveReason = priorInactiveReason
+		}
+	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=region, type=STRING macro=copy_to_state
+	priorRegion := state.Region
 	state.Region = types.StringPointerValue(ans.Region)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Region == nil {
+		if !plan.Region.IsUnknown() {
+			state.Region = plan.Region
+		} else {
+			state.Region = priorRegion
+		}
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -461,19 +506,64 @@ func (r *dnsServiceRoleResource) doGet(ctx context.Context, state *rsModelDnsSer
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	priorDisabled := state.Disabled
 	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Disabled == nil {
+		if !savestate.Disabled.IsUnknown() {
+			state.Disabled = savestate.Disabled
+		} else {
+			state.Disabled = priorDisabled
+		}
+	}
 	// property: name=disabled_reason, type=STRING macro=copy_to_state
+	priorDisabledReason := state.DisabledReason
 	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.DisabledReason == nil {
+		if !savestate.DisabledReason.IsUnknown() {
+			state.DisabledReason = savestate.DisabledReason
+		} else {
+			state.DisabledReason = priorDisabledReason
+		}
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	priorInactive := state.Inactive
 	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Inactive == nil {
+		if !savestate.Inactive.IsUnknown() {
+			state.Inactive = savestate.Inactive
+		} else {
+			state.Inactive = priorInactive
+		}
+	}
 	// property: name=inactive_reason, type=STRING macro=copy_to_state
+	priorInactiveReason := state.InactiveReason
 	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.InactiveReason == nil {
+		if !savestate.InactiveReason.IsUnknown() {
+			state.InactiveReason = savestate.InactiveReason
+		} else {
+			state.InactiveReason = priorInactiveReason
+		}
+	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=region, type=STRING macro=copy_to_state
+	priorRegion := state.Region
 	state.Region = types.StringPointerValue(ans.Region)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Region == nil {
+		if !savestate.Region.IsUnknown() {
+			state.Region = savestate.Region
+		} else {
+			state.Region = priorRegion
+		}
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -660,19 +750,64 @@ func (r *dnsServiceRoleResource) doPut(ctx context.Context, plan *rsModelDnsServ
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=disabled, type=BOOLEAN macro=copy_to_state
+	priorDisabled := state.Disabled
 	state.Disabled = types.BoolPointerValue(ans.Disabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Disabled == nil {
+		if !plan.Disabled.IsUnknown() {
+			state.Disabled = plan.Disabled
+		} else {
+			state.Disabled = priorDisabled
+		}
+	}
 	// property: name=disabled_reason, type=STRING macro=copy_to_state
+	priorDisabledReason := state.DisabledReason
 	state.DisabledReason = types.StringPointerValue(ans.DisabledReason)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.DisabledReason == nil {
+		if !plan.DisabledReason.IsUnknown() {
+			state.DisabledReason = plan.DisabledReason
+		} else {
+			state.DisabledReason = priorDisabledReason
+		}
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=inactive, type=BOOLEAN macro=copy_to_state
+	priorInactive := state.Inactive
 	state.Inactive = types.BoolPointerValue(ans.Inactive)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Inactive == nil {
+		if !plan.Inactive.IsUnknown() {
+			state.Inactive = plan.Inactive
+		} else {
+			state.Inactive = priorInactive
+		}
+	}
 	// property: name=inactive_reason, type=STRING macro=copy_to_state
+	priorInactiveReason := state.InactiveReason
 	state.InactiveReason = types.StringPointerValue(ans.InactiveReason)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.InactiveReason == nil {
+		if !plan.InactiveReason.IsUnknown() {
+			state.InactiveReason = plan.InactiveReason
+		} else {
+			state.InactiveReason = priorInactiveReason
+		}
+	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=region, type=STRING macro=copy_to_state
+	priorRegion := state.Region
 	state.Region = types.StringPointerValue(ans.Region)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Region == nil {
+		if !plan.Region.IsUnknown() {
+			state.Region = plan.Region
+		} else {
+			state.Region = priorRegion
+		}
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags

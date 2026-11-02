@@ -110,7 +110,7 @@ func (r *eventCorrelationPolicySetResource) Schema(_ context.Context, _ resource
 			// property: name=active_policyset, type=BOOLEAN macro=rss_schema
 			"active_policyset": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Active Policyset",

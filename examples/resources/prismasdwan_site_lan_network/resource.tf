@@ -56,5 +56,4 @@ resource "prismasdwan_site_lan_network" "example" {
   network_context_id = "<network_context_id>"
   scope              = "local"
   tags               = ["terraform"]
-  vrf_context_id     = "<vrf_context_id>"
 }

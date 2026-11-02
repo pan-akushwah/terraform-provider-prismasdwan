@@ -164,7 +164,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 			// property: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
 			"nexthop_reachability_probe": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Nexthop Reachability Probe",
@@ -241,7 +241,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 			// property: name=vrf_context_id, type=STRING macro=rss_schema
 			"vrf_context_id": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Vrf Context Id",

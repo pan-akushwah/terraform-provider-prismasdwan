@@ -22,7 +22,6 @@
 #   }
 
 resource "prismasdwan_element_routing_ipcommunitylist" "example" {
-  auto_generated = false
   community_list = [{
     community_str = "example-community"
     permit        = false

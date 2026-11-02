@@ -22,19 +22,17 @@
 #   }
 
 resource "prismasdwan_element_static_route" "example" {
-  address_family             = "ipv4"
-  description                = "Managed by Terraform"
-  destination_prefix         = "10.10.0.0/16"
-  name                       = "example_name"
-  network_context_id         = "<network_context_id>"
-  nexthop_reachability_probe = false
+  address_family     = "ipv4"
+  description        = "Managed by Terraform"
+  destination_prefix = "10.10.0.0/16"
+  name               = "example_name"
+  network_context_id = "<network_context_id>"
   nexthops = [{
     admin_distance       = 1
     nexthop_interface_id = "<nexthop_interface_id>"
     nexthop_ip           = "10.0.0.1"
     self                 = false
   }]
-  scope          = "local"
-  tags           = ["terraform"]
-  vrf_context_id = "<vrf_context_id>"
+  scope = "local"
+  tags  = ["terraform"]
 }

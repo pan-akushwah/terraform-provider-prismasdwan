@@ -133,7 +133,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 			// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 			"defaultrule_policyset": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Defaultrule Policyset",
@@ -219,6 +219,11 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 							Optional:    true,
 							ElementType: types.StringType,
 							Description: "Path parameters for the resource, managed automatically by the provider.",
+						},
+						// the Go model of this struct has Tfid whether it is nested or a resource of its own
+						"tfid": rsschema.StringAttribute{
+							Computed:    true,
+							Description: "The Terraform internal identifier for this object.",
 						},
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": rsschema.Int64Attribute{
@@ -739,6 +744,11 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 									ElementType: types.StringType,
 									Description: "Path parameters for the resource, managed automatically by the provider.",
 								},
+								// the Go model of this struct has Tfid whether it is nested or a resource of its own
+								"tfid": rsschema.StringAttribute{
+									Computed:    true,
+									Description: "The Terraform internal identifier for this object.",
+								},
 								// property: name=_etag, type=INTEGER macro=rss_schema
 								"x_etag": rsschema.Int64Attribute{
 									Required:    false,
@@ -1256,6 +1266,11 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 							ElementType: types.StringType,
 							Description: "Path parameters for the resource, managed automatically by the provider.",
 						},
+						// the Go model of this struct has Tfid whether it is nested or a resource of its own
+						"tfid": rsschema.StringAttribute{
+							Computed:    true,
+							Description: "The Terraform internal identifier for this object.",
+						},
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": rsschema.Int64Attribute{
 							Required:    false,
@@ -1381,7 +1396,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 			// property: name=send_to_element, type=BOOLEAN macro=rss_schema
 			"send_to_element": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Send To Element",
@@ -2432,7 +2447,16 @@ func (r *performancePolicySetResource) doPost(ctx context.Context, plan *rsModel
 	// property: name=region, type=STRING macro=copy_to_state
 	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+	priorSendToElement := state.SendToElement
 	state.SendToElement = types.BoolPointerValue(ans.SendToElement)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SendToElement == nil {
+		if !plan.SendToElement.IsUnknown() {
+			state.SendToElement = plan.SendToElement
+		} else {
+			state.SendToElement = priorSendToElement
+		}
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -2995,7 +3019,16 @@ func (r *performancePolicySetResource) doGet(ctx context.Context, state *rsModel
 	// property: name=region, type=STRING macro=copy_to_state
 	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+	priorSendToElement := state.SendToElement
 	state.SendToElement = types.BoolPointerValue(ans.SendToElement)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SendToElement == nil {
+		if !savestate.SendToElement.IsUnknown() {
+			state.SendToElement = savestate.SendToElement
+		} else {
+			state.SendToElement = priorSendToElement
+		}
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
@@ -4082,7 +4115,16 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 	// property: name=region, type=STRING macro=copy_to_state
 	state.Region = types.StringPointerValue(ans.Region)
 	// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+	priorSendToElement := state.SendToElement
 	state.SendToElement = types.BoolPointerValue(ans.SendToElement)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SendToElement == nil {
+		if !plan.SendToElement.IsUnknown() {
+			state.SendToElement = plan.SendToElement
+		} else {
+			state.SendToElement = priorSendToElement
+		}
+	}
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags

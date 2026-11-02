@@ -17,14 +17,6 @@ import (
 var knownSchemaModelMismatches = map[string]string{
 	"sdwanapps_config":       "empty-object property (user_config) is generated as an attribute without fields: Draft 2",
 	"site_hub_prefix_filter": "empty-object property (site) is generated as an attribute without fields: Draft 2",
-
-	// Draft 3: a nested struct gets x_parameters in the schema but no tfid, while the Go model shared with the
-	// top-level resource has both, so any non-empty value for these attributes fails to convert.
-	"nat_policy_set":           "policy_rules: Draft 3",
-	"path_policy_set":          "policy_rules: Draft 3",
-	"path_policy_stack":        "defaultrule_policyset, policysets: Draft 3",
-	"performance_policy_set":   "link_health_rules, policy_rules: Draft 3",
-	"performance_policy_stack": "defaultrule_policyset, policysets: Draft 3",
 }
 
 // skeleton builds a value of the given type in which every nested object, list, set and map is present (a single

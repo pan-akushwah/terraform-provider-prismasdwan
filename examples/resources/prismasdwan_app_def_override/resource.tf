@@ -39,15 +39,10 @@ resource "prismasdwan_app_def_override" "example" {
     protocol    = "ospf"
     src_filters = ["example_src_filters"]
   }]
-  override_default_ip_rules  = false
-  override_default_tcp_rules = false
-  override_default_udp_rules = false
-  override_domains           = false
-  overrides_disable          = false
-  p_category                 = "business-systems"
-  path_affinity              = "none"
-  session_timeout            = 30
-  tags                       = ["terraform"]
+  p_category      = "business-systems"
+  path_affinity   = "none"
+  session_timeout = 30
+  tags            = ["terraform"]
   tcp_rules = [{
     client_filters = ["example_client_filters"]
     client_port = {

@@ -269,7 +269,7 @@ func (r *appDefOverrideResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=override_default_ip_rules, type=BOOLEAN macro=rss_schema
 			"override_default_ip_rules": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Override Default Ip Rules",
@@ -278,7 +278,7 @@ func (r *appDefOverrideResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=override_default_tcp_rules, type=BOOLEAN macro=rss_schema
 			"override_default_tcp_rules": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Override Default Tcp Rules",
@@ -287,7 +287,7 @@ func (r *appDefOverrideResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=override_default_udp_rules, type=BOOLEAN macro=rss_schema
 			"override_default_udp_rules": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Override Default Udp Rules",
@@ -296,7 +296,7 @@ func (r *appDefOverrideResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=override_domains, type=BOOLEAN macro=rss_schema
 			"override_domains": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Override Domains",
@@ -305,7 +305,7 @@ func (r *appDefOverrideResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=overrides_disable, type=BOOLEAN macro=rss_schema
 			"overrides_disable": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Overrides Disable",

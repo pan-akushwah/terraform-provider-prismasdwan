@@ -47,7 +47,6 @@ resource "prismasdwan_element_shell" "example" {
   nat_policysetstack_id      = "<nat_policysetstack_id>"
   network_policysetstack_id  = "<network_policysetstack_id>"
   priority_policysetstack_id = "<priority_policysetstack_id>"
-  site_id                    = "<site_id>"
   spoke_ha_config = {
     cluster_id       = "<cluster_id>"
     enable           = true

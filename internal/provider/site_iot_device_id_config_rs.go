@@ -298,10 +298,15 @@ func (r *siteIotDeviceIdConfigResource) doPost(ctx context.Context, plan *rsMode
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
+	priorSiteId := state.SiteId
 	state.SiteId = types.StringPointerValue(ans.SiteId)
-	// the api never returns this value: keep the configured (or previously known) one
+	// the api never returns this value: keep the configured one, else the one known before
 	if ans.SiteId == nil {
-		state.SiteId = plan.SiteId
+		if !plan.SiteId.IsUnknown() {
+			state.SiteId = plan.SiteId
+		} else {
+			state.SiteId = priorSiteId
+		}
 	}
 	return true
 }
@@ -401,10 +406,15 @@ func (r *siteIotDeviceIdConfigResource) doGet(ctx context.Context, state *rsMode
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
+	priorSiteId := state.SiteId
 	state.SiteId = types.StringPointerValue(ans.SiteId)
-	// the api never returns this value: keep the configured (or previously known) one
+	// the api never returns this value: keep the configured one, else the one known before
 	if ans.SiteId == nil {
-		state.SiteId = savestate.SiteId
+		if !savestate.SiteId.IsUnknown() {
+			state.SiteId = savestate.SiteId
+		} else {
+			state.SiteId = priorSiteId
+		}
 	}
 	return true
 }
@@ -561,10 +571,15 @@ func (r *siteIotDeviceIdConfigResource) doPut(ctx context.Context, plan *rsModel
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=site_id, type=STRING macro=copy_to_state
+	priorSiteId := state.SiteId
 	state.SiteId = types.StringPointerValue(ans.SiteId)
-	// the api never returns this value: keep the configured (or previously known) one
+	// the api never returns this value: keep the configured one, else the one known before
 	if ans.SiteId == nil {
-		state.SiteId = plan.SiteId
+		if !plan.SiteId.IsUnknown() {
+			state.SiteId = plan.SiteId
+		} else {
+			state.SiteId = priorSiteId
+		}
 	}
 	return true
 }

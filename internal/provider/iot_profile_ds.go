@@ -138,7 +138,7 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// property: name=disabled, type=BOOLEAN macro=rss_schema
 						"disabled": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Disabled",
@@ -165,7 +165,7 @@ func (d *iotProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						// property: name=inactive, type=BOOLEAN macro=rss_schema
 						"inactive": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Inactive",

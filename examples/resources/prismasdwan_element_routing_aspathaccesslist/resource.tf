@@ -27,8 +27,7 @@ resource "prismasdwan_element_routing_aspathaccesslist" "example" {
     order         = 1
     permit        = false
   }]
-  auto_generated = false
-  description    = "Managed by Terraform"
-  name           = "example_name"
-  tags           = ["terraform"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

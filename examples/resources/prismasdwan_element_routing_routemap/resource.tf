@@ -28,27 +28,10 @@ resource "prismasdwan_element_routing_routemap" "example" {
   route_map_entries = [{
     continue_entry = "example_continue_entry"
     match = {
-      as_path_id         = "<as_path_id>"
-      community_list_id  = "<community_list_id>"
-      ip_next_hop_id     = "<ip_next_hop_id>"
-      ip_prefix_list_id  = "<ip_prefix_list_id>"
-      metric             = 1
-      service_binding_id = "<service_binding_id>"
-      tag                = 10
     }
     order  = 1
     permit = false
     set = {
-      additive_community = false
-      as_path_prepend    = "example_as_path_prepend"
-      community          = "example-community"
-      ip_next_hop        = "example_ip_next_hop"
-      ip_v6_next_hop     = "example_ip_v6_next_hop"
-      local_preference   = 10
-      metric             = 1
-      tag                = 10
-      type               = "type-1"
-      weight             = 10
     }
   }]
   tags     = ["terraform"]

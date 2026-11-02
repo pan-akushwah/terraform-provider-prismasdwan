@@ -22,12 +22,7 @@
 #   }
 
 resource "prismasdwan_dns_service_role" "example" {
-  description     = "Managed by Terraform"
-  disabled        = false
-  disabled_reason = "example_disabled_reason"
-  inactive        = false
-  inactive_reason = "example_inactive_reason"
-  name            = "example_name"
-  region          = "example_region"
-  tags            = ["terraform"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

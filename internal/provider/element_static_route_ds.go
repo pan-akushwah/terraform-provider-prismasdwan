@@ -182,7 +182,7 @@ func (d *elementStaticRouteDataSource) Schema(_ context.Context, _ datasource.Sc
 						// property: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
 						"nexthop_reachability_probe": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Nexthop Reachability Probe",
@@ -259,7 +259,7 @@ func (d *elementStaticRouteDataSource) Schema(_ context.Context, _ datasource.Sc
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Vrf Context Id",

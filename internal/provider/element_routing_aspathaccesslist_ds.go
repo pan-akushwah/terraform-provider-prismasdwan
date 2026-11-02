@@ -168,7 +168,7 @@ func (d *elementRoutingAspathaccesslistDataSource) Schema(_ context.Context, _ d
 						// property: name=auto_generated, type=BOOLEAN macro=rss_schema
 						"auto_generated": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Auto Generated",

@@ -128,7 +128,7 @@ func (d *elementRoutingPrefixlistDataSource) Schema(_ context.Context, _ datasou
 						// property: name=auto_generated, type=BOOLEAN macro=rss_schema
 						"auto_generated": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Auto Generated",

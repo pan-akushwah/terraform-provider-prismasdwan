@@ -220,6 +220,11 @@ func (r *pathPolicySetResource) Schema(_ context.Context, _ resource.SchemaReque
 							ElementType: types.StringType,
 							Description: "Path parameters for the resource, managed automatically by the provider.",
 						},
+						// the Go model of this struct has Tfid whether it is nested or a resource of its own
+						"tfid": rsschema.StringAttribute{
+							Computed:    true,
+							Description: "The Terraform internal identifier for this object.",
+						},
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": rsschema.Int64Attribute{
 							Required:    false,
@@ -329,6 +334,11 @@ func (r *pathPolicySetResource) Schema(_ context.Context, _ resource.SchemaReque
 									Optional:    true,
 									ElementType: types.StringType,
 									Description: "Path parameters for the resource, managed automatically by the provider.",
+								},
+								// the Go model of this struct has Tfid whether it is nested or a resource of its own
+								"tfid": rsschema.StringAttribute{
+									Computed:    true,
+									Description: "The Terraform internal identifier for this object.",
 								},
 								// property: name=_etag, type=INTEGER macro=rss_schema
 								"x_etag": rsschema.Int64Attribute{
@@ -691,6 +701,11 @@ func (r *pathPolicySetResource) Schema(_ context.Context, _ resource.SchemaReque
 									Optional:    true,
 									ElementType: types.StringType,
 									Description: "Path parameters for the resource, managed automatically by the provider.",
+								},
+								// the Go model of this struct has Tfid whether it is nested or a resource of its own
+								"tfid": rsschema.StringAttribute{
+									Computed:    true,
+									Description: "The Terraform internal identifier for this object.",
 								},
 								// property: name=_etag, type=INTEGER macro=rss_schema
 								"x_etag": rsschema.Int64Attribute{

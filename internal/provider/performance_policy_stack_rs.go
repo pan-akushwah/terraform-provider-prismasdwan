@@ -148,6 +148,11 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 						ElementType: types.StringType,
 						Description: "Path parameters for the resource, managed automatically by the provider.",
 					},
+					// the Go model of this struct has Tfid whether it is nested or a resource of its own
+					"tfid": rsschema.StringAttribute{
+						Computed:    true,
+						Description: "The Terraform internal identifier for this object.",
+					},
 					// property: name=_etag, type=INTEGER macro=rss_schema
 					"x_etag": rsschema.Int64Attribute{
 						Required:    false,
@@ -178,7 +183,7 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 					// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 					"defaultrule_policyset": rsschema.BoolAttribute{
 						Required:    false,
-						Computed:    false,
+						Computed:    true,
 						Optional:    true,
 						Sensitive:   false,
 						Description: "Defaultrule Policyset",
@@ -264,6 +269,11 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 									Optional:    true,
 									ElementType: types.StringType,
 									Description: "Path parameters for the resource, managed automatically by the provider.",
+								},
+								// the Go model of this struct has Tfid whether it is nested or a resource of its own
+								"tfid": rsschema.StringAttribute{
+									Computed:    true,
+									Description: "The Terraform internal identifier for this object.",
 								},
 								// property: name=_etag, type=INTEGER macro=rss_schema
 								"x_etag": rsschema.Int64Attribute{
@@ -784,6 +794,11 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 											ElementType: types.StringType,
 											Description: "Path parameters for the resource, managed automatically by the provider.",
 										},
+										// the Go model of this struct has Tfid whether it is nested or a resource of its own
+										"tfid": rsschema.StringAttribute{
+											Computed:    true,
+											Description: "The Terraform internal identifier for this object.",
+										},
 										// property: name=_etag, type=INTEGER macro=rss_schema
 										"x_etag": rsschema.Int64Attribute{
 											Required:    false,
@@ -1301,6 +1316,11 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 									ElementType: types.StringType,
 									Description: "Path parameters for the resource, managed automatically by the provider.",
 								},
+								// the Go model of this struct has Tfid whether it is nested or a resource of its own
+								"tfid": rsschema.StringAttribute{
+									Computed:    true,
+									Description: "The Terraform internal identifier for this object.",
+								},
 								// property: name=_etag, type=INTEGER macro=rss_schema
 								"x_etag": rsschema.Int64Attribute{
 									Required:    false,
@@ -1426,7 +1446,7 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 					// property: name=send_to_element, type=BOOLEAN macro=rss_schema
 					"send_to_element": rsschema.BoolAttribute{
 						Required:    false,
-						Computed:    false,
+						Computed:    true,
 						Optional:    true,
 						Sensitive:   false,
 						Description: "Send To Element",
@@ -1553,6 +1573,11 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 							ElementType: types.StringType,
 							Description: "Path parameters for the resource, managed automatically by the provider.",
 						},
+						// the Go model of this struct has Tfid whether it is nested or a resource of its own
+						"tfid": rsschema.StringAttribute{
+							Computed:    true,
+							Description: "The Terraform internal identifier for this object.",
+						},
 						// property: name=_etag, type=INTEGER macro=rss_schema
 						"x_etag": rsschema.Int64Attribute{
 							Required:    false,
@@ -1659,6 +1684,11 @@ func (r *performancePolicyStackResource) Schema(_ context.Context, _ resource.Sc
 										Optional:    true,
 										ElementType: types.StringType,
 										Description: "Path parameters for the resource, managed automatically by the provider.",
+									},
+									// the Go model of this struct has Tfid whether it is nested or a resource of its own
+									"tfid": rsschema.StringAttribute{
+										Computed:    true,
+										Description: "The Terraform internal identifier for this object.",
 									},
 									// property: name=_etag, type=INTEGER macro=rss_schema
 									"x_etag": rsschema.Int64Attribute{
@@ -2982,7 +3012,16 @@ func (r *performancePolicyStackResource) doPost(ctx context.Context, plan *rsMod
 		// property: name=region, type=STRING macro=copy_to_state
 		state.DefaultrulePolicyset.Region = types.StringPointerValue(ans.DefaultrulePolicyset.Region)
 		// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+		priorSendToElement := state.DefaultrulePolicyset.SendToElement
 		state.DefaultrulePolicyset.SendToElement = types.BoolPointerValue(ans.DefaultrulePolicyset.SendToElement)
+		// the api never returns this value: keep the configured one, else the one known before
+		if ans.DefaultrulePolicyset.SendToElement == nil {
+			if plan.DefaultrulePolicyset != nil && !plan.DefaultrulePolicyset.SendToElement.IsUnknown() {
+				state.DefaultrulePolicyset.SendToElement = plan.DefaultrulePolicyset.SendToElement
+			} else {
+				state.DefaultrulePolicyset.SendToElement = priorSendToElement
+			}
+		}
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DefaultrulePolicyset.Tags)
 		state.DefaultrulePolicyset.Tags = varTags
@@ -3669,7 +3708,16 @@ func (r *performancePolicyStackResource) doGet(ctx context.Context, state *rsMod
 		// property: name=region, type=STRING macro=copy_to_state
 		state.DefaultrulePolicyset.Region = types.StringPointerValue(ans.DefaultrulePolicyset.Region)
 		// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+		priorSendToElement := state.DefaultrulePolicyset.SendToElement
 		state.DefaultrulePolicyset.SendToElement = types.BoolPointerValue(ans.DefaultrulePolicyset.SendToElement)
+		// the api never returns this value: keep the configured one, else the one known before
+		if ans.DefaultrulePolicyset.SendToElement == nil {
+			if savestate.DefaultrulePolicyset != nil && !savestate.DefaultrulePolicyset.SendToElement.IsUnknown() {
+				state.DefaultrulePolicyset.SendToElement = savestate.DefaultrulePolicyset.SendToElement
+			} else {
+				state.DefaultrulePolicyset.SendToElement = priorSendToElement
+			}
+		}
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DefaultrulePolicyset.Tags)
 		state.DefaultrulePolicyset.Tags = varTags
@@ -5059,7 +5107,16 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 		// property: name=region, type=STRING macro=copy_to_state
 		state.DefaultrulePolicyset.Region = types.StringPointerValue(ans.DefaultrulePolicyset.Region)
 		// property: name=send_to_element, type=BOOLEAN macro=copy_to_state
+		priorSendToElement := state.DefaultrulePolicyset.SendToElement
 		state.DefaultrulePolicyset.SendToElement = types.BoolPointerValue(ans.DefaultrulePolicyset.SendToElement)
+		// the api never returns this value: keep the configured one, else the one known before
+		if ans.DefaultrulePolicyset.SendToElement == nil {
+			if plan.DefaultrulePolicyset != nil && !plan.DefaultrulePolicyset.SendToElement.IsUnknown() {
+				state.DefaultrulePolicyset.SendToElement = plan.DefaultrulePolicyset.SendToElement
+			} else {
+				state.DefaultrulePolicyset.SendToElement = priorSendToElement
+			}
+		}
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.DefaultrulePolicyset.Tags)
 		state.DefaultrulePolicyset.Tags = varTags

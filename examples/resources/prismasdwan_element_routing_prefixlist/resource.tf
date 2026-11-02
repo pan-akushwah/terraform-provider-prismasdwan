@@ -22,9 +22,8 @@
 #   }
 
 resource "prismasdwan_element_routing_prefixlist" "example" {
-  auto_generated = false
-  description    = "Managed by Terraform"
-  name           = "example_name"
+  description = "Managed by Terraform"
+  name        = "example_name"
   prefix_filter_list = [{
     ge          = 10
     ipv6_prefix = "2001:db8:10::/48"

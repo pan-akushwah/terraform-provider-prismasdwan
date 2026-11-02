@@ -110,7 +110,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 			// property: name=auto_generated, type=BOOLEAN macro=rss_schema
 			"auto_generated": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Auto Generated",

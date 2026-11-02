@@ -188,7 +188,7 @@ func (d *performancePolicyStackDataSource) Schema(_ context.Context, _ datasourc
 								// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 								"defaultrule_policyset": dsschema.BoolAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Defaultrule Policyset",
@@ -1412,7 +1412,7 @@ func (d *performancePolicyStackDataSource) Schema(_ context.Context, _ datasourc
 								// property: name=send_to_element, type=BOOLEAN macro=rss_schema
 								"send_to_element": dsschema.BoolAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Send To Element",
