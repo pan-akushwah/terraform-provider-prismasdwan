@@ -6,8 +6,10 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"io"
+	"reflect"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
@@ -381,4 +383,41 @@ func SetIfNull(body, path string, value interface{}) string {
 		}
 	}
 	return body
+}
+
+// JSONStringToMap turns a JSON text attribute (x_flag_json_string) into the object sent to the API. A null, unknown or
+// empty value is no object; text that is not a JSON object is an error on the response.
+func JSONStringToMap(v types.String, diags *diag.Diagnostics) *map[string]interface{} {
+	if v.IsNull() || v.IsUnknown() || strings.TrimSpace(v.ValueString()) == "" {
+		return nil
+	}
+	var object map[string]interface{}
+	if err := json.Unmarshal([]byte(v.ValueString()), &object); err != nil || object == nil {
+		detail := "the value must be a JSON object, for example jsonencode({ key = \"value\" })"
+		if err != nil {
+			detail = err.Error() + ": " + detail
+		}
+		diags.AddError("invalid JSON object", detail)
+		return nil
+	}
+	return &object
+}
+
+// JSONStringFromMap is the reverse: the object the API returned as JSON text. When the text the user configured (prior)
+// holds the same object it is kept as written, so formatting or key order never shows up as a change.
+func JSONStringFromMap(object *map[string]interface{}, prior types.String) types.String {
+	if object == nil {
+		return types.StringNull()
+	}
+	if !prior.IsNull() && !prior.IsUnknown() {
+		var configured map[string]interface{}
+		if json.Unmarshal([]byte(prior.ValueString()), &configured) == nil && reflect.DeepEqual(configured, *object) {
+			return prior
+		}
+	}
+	text, err := json.Marshal(*object)
+	if err != nil {
+		return types.StringNull()
+	}
+	return types.StringValue(string(text))
 }

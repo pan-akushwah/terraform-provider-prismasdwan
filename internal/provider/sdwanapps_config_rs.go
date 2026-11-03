@@ -124,15 +124,15 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Description: "State",
 			},
 			// key name holder for attribute: name=state, type=STRING macro=rss_schema
-			// property: name=user_config, type=OBJECT macro=rss_schema
-			"user_config": rsschema.SingleNestedAttribute{
+			// property: name=user_config, type=JSON_STRING macro=rss_schema
+			"user_config": rsschema.StringAttribute{
 				Required:    false,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "",
 			},
-			// key name holder for attribute: name=user_config, type=OBJECT macro=rss_schema
+			// key name holder for attribute: name=user_config, type=JSON_STRING macro=rss_schema
 			// property: name=version, type=STRING macro=rss_schema
 			"version": rsschema.StringAttribute{
 				Required:    false,
@@ -203,7 +203,8 @@ func (r *sdwanappsConfigResource) doPost(ctx context.Context, plan *rsModelSDWAN
 	body.Id = StringValueOrNil(plan.Id)
 	// property: name=state, type=STRING macro=copy_from_plan
 	body.State = StringValueOrNil(plan.State)
-	// property: name=user_config, type=OBJECT macro=copy_from_plan
+	// property: name=user_config, type=JSON_STRING macro=copy_from_plan
+	body.UserConfig = JSONStringToMap(plan.UserConfig, &resp.Diagnostics)
 	// property: name=version, type=STRING macro=copy_from_plan
 	body.Version = StringValueOrNil(plan.Version)
 
@@ -294,7 +295,13 @@ func (r *sdwanappsConfigResource) doPost(ctx context.Context, plan *rsModelSDWAN
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=state, type=STRING macro=copy_to_state
 	state.State = types.StringPointerValue(ans.State)
-	// property: name=user_config, type=OBJECT macro=copy_to_state
+	// property: name=user_config, type=JSON_STRING macro=copy_to_state
+	// x_flag_json_string: the api returns an object, terraform holds it as JSON text; keep the configured text when it means the same
+	priorUserConfigJson := types.StringNull()
+	if true {
+		priorUserConfigJson = plan.UserConfig
+	}
+	state.UserConfig = JSONStringFromMap(ans.UserConfig, priorUserConfigJson)
 	// property: name=version, type=STRING macro=copy_to_state
 	state.Version = types.StringPointerValue(ans.Version)
 	return true
@@ -392,7 +399,13 @@ func (r *sdwanappsConfigResource) doGet(ctx context.Context, state *rsModelSDWAN
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=state, type=STRING macro=copy_to_state
 	state.State = types.StringPointerValue(ans.State)
-	// property: name=user_config, type=OBJECT macro=copy_to_state
+	// property: name=user_config, type=JSON_STRING macro=copy_to_state
+	// x_flag_json_string: the api returns an object, terraform holds it as JSON text; keep the configured text when it means the same
+	priorUserConfigJson := types.StringNull()
+	if true {
+		priorUserConfigJson = savestate.UserConfig
+	}
+	state.UserConfig = JSONStringFromMap(ans.UserConfig, priorUserConfigJson)
 	// property: name=version, type=STRING macro=copy_to_state
 	state.Version = types.StringPointerValue(ans.Version)
 	return true
@@ -475,7 +488,11 @@ func (r *sdwanappsConfigResource) doPut(ctx context.Context, plan *rsModelSDWANA
 	} else {
 		body.State = StringValueOrNil(plan.State)
 	}
-	// property: name=user_config, type=OBJECT macro=copy_from_plan_or_state
+	// property: name=user_config, type=JSON_STRING macro=copy_from_plan_or_state
+	body.UserConfig = JSONStringToMap(plan.UserConfig, &resp.Diagnostics)
+	if body.UserConfig == nil && state != nil {
+		body.UserConfig = JSONStringToMap(state.UserConfig, &resp.Diagnostics)
+	}
 	// property: name=version, type=STRING macro=copy_from_plan_or_state
 	if state != nil {
 		body.Version = ValueStringPointerFromPlanOrState(plan.Version, state.Version)
@@ -542,7 +559,13 @@ func (r *sdwanappsConfigResource) doPut(ctx context.Context, plan *rsModelSDWANA
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=state, type=STRING macro=copy_to_state
 	state.State = types.StringPointerValue(ans.State)
-	// property: name=user_config, type=OBJECT macro=copy_to_state
+	// property: name=user_config, type=JSON_STRING macro=copy_to_state
+	// x_flag_json_string: the api returns an object, terraform holds it as JSON text; keep the configured text when it means the same
+	priorUserConfigJson := types.StringNull()
+	if true {
+		priorUserConfigJson = plan.UserConfig
+	}
+	state.UserConfig = JSONStringFromMap(ans.UserConfig, priorUserConfigJson)
 	// property: name=version, type=STRING macro=copy_to_state
 	state.Version = types.StringPointerValue(ans.Version)
 	return true

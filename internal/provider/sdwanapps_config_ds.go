@@ -142,15 +142,15 @@ func (d *sdwanappsConfigDataSource) Schema(_ context.Context, _ datasource.Schem
 							Description: "State",
 						},
 						// key name holder for attribute: name=state, type=STRING macro=rss_schema
-						// property: name=user_config, type=OBJECT macro=rss_schema
-						"user_config": dsschema.SingleNestedAttribute{
+						// property: name=user_config, type=JSON_STRING macro=rss_schema
+						"user_config": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "",
 						},
-						// key name holder for attribute: name=user_config, type=OBJECT macro=rss_schema
+						// key name holder for attribute: name=user_config, type=JSON_STRING macro=rss_schema
 						// property: name=version, type=STRING macro=rss_schema
 						"version": dsschema.StringAttribute{
 							Required:    false,
@@ -298,7 +298,10 @@ func (d *sdwanappsConfigDataSource) Read(ctx context.Context, req datasource.Rea
 		state.Id = types.StringPointerValue(ans.Id)
 		// property: name=state, type=STRING macro=copy_to_state
 		state.State = types.StringPointerValue(ans.State)
-		// property: name=user_config, type=OBJECT macro=copy_to_state
+		// property: name=user_config, type=JSON_STRING macro=copy_to_state
+		// x_flag_json_string: the api returns an object, terraform holds it as JSON text; keep the configured text when it means the same
+		priorUserConfigJson := types.StringNull()
+		state.UserConfig = JSONStringFromMap(ans.UserConfig, priorUserConfigJson)
 		// property: name=version, type=STRING macro=copy_to_state
 		state.Version = types.StringPointerValue(ans.Version)
 

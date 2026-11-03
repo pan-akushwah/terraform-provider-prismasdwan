@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -90,5 +91,34 @@ func TestSetIfNull(t *testing.T) {
 		if got := SetIfNull(in, "a", "none"); got != want {
 			t.Errorf("SetIfNull(%s) = %s, want %s", in, got, want)
 		}
+	}
+}
+
+func TestJSONStringToMapAndBack(t *testing.T) {
+	var diags diag.Diagnostics
+	if JSONStringToMap(types.StringNull(), &diags) != nil || JSONStringToMap(types.StringValue(" "), &diags) != nil || diags.HasError() {
+		t.Fatalf("null and blank are no object, without an error: %v", diags)
+	}
+	object := JSONStringToMap(types.StringValue(`{"email":"a@b.c","eventcodes":["X"],"get_suppressed":false}`), &diags)
+	if diags.HasError() || object == nil || (*object)["email"] != "a@b.c" {
+		t.Fatalf("object not decoded: %v %v", object, diags)
+	}
+	JSONStringToMap(types.StringValue(`["not","an","object"]`), &diags)
+	if !diags.HasError() {
+		t.Fatalf("a JSON array must be an error")
+	}
+
+	// the same object keeps the configured text, whatever its formatting
+	written := types.StringValue("{ \"get_suppressed\": false,\n  \"email\": \"a@b.c\", \"eventcodes\": [\"X\"] }")
+	if got := JSONStringFromMap(object, written); !got.Equal(written) {
+		t.Fatalf("configured text not kept: %s", got)
+	}
+	// a changed object is returned as compact JSON
+	changed := types.StringValue(`{"email":"other@b.c"}`)
+	if got := JSONStringFromMap(object, changed); got.Equal(changed) || got.IsNull() {
+		t.Fatalf("a different object must not keep the old text: %s", got)
+	}
+	if got := JSONStringFromMap(nil, written); !got.IsNull() {
+		t.Fatalf("no object is null: %s", got)
 	}
 }

@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_sdwanapps_config" "example" {
-  state = "enabled"
-  # user_config (unsupported type OBJECT)
-  version = "example_version"
+  state       = "enabled"
+  user_config = jsonencode({})
+  version     = "example_version"
 }

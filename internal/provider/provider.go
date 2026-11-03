@@ -295,6 +295,7 @@ func (p *SdwanProvider) DataSources(_ context.Context) []func() datasource.DataS
 		NewQosPolicyRuleDataSource,
 		NewQosPolicySetDataSource,
 		NewQosPolicyStackDataSource,
+		NewSdwanappDataSource, // hand-written (sdwanapp_manual.go), not generated
 		NewSdwanappsConfigDataSource,
 		NewSecurityPolicyGlobalPrefixDataSource,
 		NewSecurityPolicyLocalPrefixDataSource,

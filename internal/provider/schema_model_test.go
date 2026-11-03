@@ -15,7 +15,6 @@ import (
 // knownSchemaModelMismatches lists resources whose generated schema cannot be converted into their Go model, with
 // the reason. TestSchemaMatchesModel fails when an entry starts to work, so it is removed as soon as it is fixed.
 var knownSchemaModelMismatches = map[string]string{
-	"sdwanapps_config":       "empty-object property (user_config) is generated as an attribute without fields: Draft 2",
 	"site_hub_prefix_filter": "empty-object property (site) is generated as an attribute without fields: Draft 2",
 }
 

@@ -25886,8 +25886,8 @@ type dsModelSDWANAppConfigScreen struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=user_config type=OBJECT
-	UserConfig types.Map `tfsdk:"user_config"`
+	// propertyName=user_config type=JSON_STRING
+	UserConfig types.String `tfsdk:"user_config"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
@@ -30620,8 +30620,8 @@ type dsModelSDWANAppConfig struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
-	// propertyName=user_config type=OBJECT
-	UserConfig types.Map `tfsdk:"user_config"`
+	// propertyName=user_config type=JSON_STRING
+	UserConfig types.String `tfsdk:"user_config"`
 	// propertyName=version type=STRING
 	Version types.String `tfsdk:"version"`
 }
