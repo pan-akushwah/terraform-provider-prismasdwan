@@ -16871,7 +16871,7 @@ type SDWANAppConfigScreen struct {
 	Schema     *int64                  `json:"_schema"`     // propertyName=_schema type=INTEGER
 	Id         *string                 `json:"id"`          // propertyName=id type=STRING
 	State      *string                 `json:"state"`       // propertyName=state type=STRING
-	UserConfig *map[string]interface{} `json:"user_config"` // propertyName=user_config type=OBJECT
+	UserConfig *map[string]interface{} `json:"user_config"` // propertyName=user_config type=JSON_STRING
 	Version    *string                 `json:"version"`     // propertyName=version type=STRING
 }
 
@@ -19751,7 +19751,7 @@ type SDWANAppConfig struct {
 	Schema     *int64                  `json:"_schema"`     // propertyName=_schema type=INTEGER
 	Id         *string                 `json:"id"`          // propertyName=id type=STRING
 	State      *string                 `json:"state"`       // propertyName=state type=STRING
-	UserConfig *map[string]interface{} `json:"user_config"` // propertyName=user_config type=OBJECT
+	UserConfig *map[string]interface{} `json:"user_config"` // propertyName=user_config type=JSON_STRING
 	Version    *string                 `json:"version"`     // propertyName=version type=STRING
 }
 
