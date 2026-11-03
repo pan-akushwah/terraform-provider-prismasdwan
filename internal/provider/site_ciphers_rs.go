@@ -576,6 +576,11 @@ func (r *siteCiphersResource) Create(ctx context.Context, req resource.CreateReq
 		}
 	} else {
 		resp.Diagnostics = gResp.Diagnostics
+		if !resp.Diagnostics.HasError() {
+			// doGet only removes the resource from the state when nothing is found: say why there is no state
+			resp.Diagnostics.AddError("existing object not found for prismasdwan_site_ciphers",
+				"this resource only updates an object that already exists, and nothing was found at the path built from x_parameters")
+		}
 	}
 }
 

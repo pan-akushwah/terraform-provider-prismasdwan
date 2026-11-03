@@ -1857,6 +1857,11 @@ func (r *elementResource) Create(ctx context.Context, req resource.CreateRequest
 		}
 	} else {
 		resp.Diagnostics = gResp.Diagnostics
+		if !resp.Diagnostics.HasError() {
+			// doGet only removes the resource from the state when nothing is found: say why there is no state
+			resp.Diagnostics.AddError("existing object not found for prismasdwan_element",
+				"this resource only updates an object that already exists, and nothing was found at the path built from x_parameters")
+		}
 	}
 }
 

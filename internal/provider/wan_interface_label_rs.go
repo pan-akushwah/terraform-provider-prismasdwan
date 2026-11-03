@@ -807,6 +807,11 @@ func (r *wanInterfaceLabelResource) Create(ctx context.Context, req resource.Cre
 		}
 	} else {
 		resp.Diagnostics = gResp.Diagnostics
+		if !resp.Diagnostics.HasError() {
+			// doGet only removes the resource from the state when nothing is found: say why there is no state
+			resp.Diagnostics.AddError("existing object not found for prismasdwan_wan_interface_label",
+				"this resource only updates an object that already exists, and nothing was found at the path built from x_parameters")
+		}
 	}
 }
 

@@ -718,6 +718,11 @@ func (r *elementMulticastGlobalConfigResource) Create(ctx context.Context, req r
 		}
 	} else {
 		resp.Diagnostics = gResp.Diagnostics
+		if !resp.Diagnostics.HasError() {
+			// doGet only removes the resource from the state when nothing is found: say why there is no state
+			resp.Diagnostics.AddError("existing object not found for prismasdwan_element_multicast_global_config",
+				"this resource only updates an object that already exists, and nothing was found at the path built from x_parameters")
+		}
 	}
 }
 

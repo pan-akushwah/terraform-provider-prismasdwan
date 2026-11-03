@@ -202,7 +202,6 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	resourceTypeToUrlMap["prismasdwan_iot_profile"] = "/sdwan/v2.0/api/deviceidprofiles/{profile_id}"
 	resourceTypeToUrlMap["prismasdwan_nat_policy_pool"] = "/sdwan/v2.0/api/natpolicypools/{natpolicy_pool_id}"
 	resourceTypeToUrlMap["prismasdwan_nat_local_prefix"] = "/sdwan/v2.0/api/natlocalprefixes/{prefix_id}"
-	resourceTypeToUrlMap["prismasdwan_site_hub_cluster_member"] = "/sdwan/v3.0/api/sites/{site_id}/hubclusters/{hub_cluster_id}/hubclustermembers/{hub_cluster_member_id}"
 	resourceTypeToUrlMap["prismasdwan_path_global_prefix"] = "/sdwan/v2.1/api/networkpolicyglobalprefixes/{prefix_id}"
 	resourceTypeToUrlMap["prismasdwan_element_shell"] = "/sdwan/v2.1/api/sites/{site_id}/elementshells/{element_shell_id}"
 	resourceTypeToUrlMap["prismasdwan_nat_global_prefix"] = "/sdwan/v2.0/api/natglobalprefixes/{prefix_id}"
