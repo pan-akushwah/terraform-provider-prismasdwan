@@ -118,7 +118,7 @@ func (r *elementApplicationProbeResource) Schema(_ context.Context, _ resource.S
 			// property: name=enable_probe, type=BOOLEAN macro=rss_schema
 			"enable_probe": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Enable Probe",
