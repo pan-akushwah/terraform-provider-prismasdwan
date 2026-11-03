@@ -35,5 +35,5 @@ resource "prismasdwan_external_ca_config" "example" {
     server_primary_address  = "10.0.0.1"
     server_username         = "example_server_username"
   }
-  type = "LOCAL"
+  type = "local"
 }

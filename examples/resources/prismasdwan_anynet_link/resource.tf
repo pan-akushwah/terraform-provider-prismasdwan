@@ -33,7 +33,7 @@ resource "prismasdwan_anynet_link" "example" {
   forced               = false
   name                 = "example_name"
   tags                 = ["terraform"]
-  type                 = "AUTO"
+  type                 = "AUTO-PUBLIC"
   vpnlink_configuration = {
     keep_alive_failure_count = 3
     keep_alive_interval      = 100

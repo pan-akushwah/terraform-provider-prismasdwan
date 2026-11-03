@@ -33,11 +33,11 @@ resource "prismasdwan_element_snmp_trap" "example" {
   v3_config = {
     user_access = {
       auth_phrase    = "<secret>"
-      auth_type      = "NONE"
+      auth_type      = "none"
       enc_phrase     = "<secret>"
-      enc_type       = "NONE"
+      enc_type       = "none"
       engine_id      = "<engine_id>"
-      security_level = "NOAUTH"
+      security_level = "noauth"
       user_name      = "example_user"
     }
   }

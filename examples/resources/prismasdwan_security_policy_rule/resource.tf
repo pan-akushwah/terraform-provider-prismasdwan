@@ -22,7 +22,7 @@
 #   }
 
 resource "prismasdwan_security_policy_rule" "example" {
-  action                    = "ALLOW"
+  action                    = "allow"
   app_def_ids               = ["<app_def_id>"]
   description               = "Managed by Terraform"
   dest_device_ids           = ["<dest_device_id>"]

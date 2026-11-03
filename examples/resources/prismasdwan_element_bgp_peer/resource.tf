@@ -53,7 +53,7 @@ resource "prismasdwan_element_bgp_peer" "example" {
   route_map_in_id  = "<route_map_in_id>"
   route_map_out_id = "<route_map_out_id>"
   router_id        = "<router_id>"
-  scope            = "GLOBAL"
+  scope            = "local"
   shutdown         = false
   tags             = ["terraform"]
   update_source    = "10.0.0.1"

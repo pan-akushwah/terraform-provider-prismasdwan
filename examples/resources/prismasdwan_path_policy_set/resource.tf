@@ -75,9 +75,9 @@ resource "prismasdwan_path_policy_set" "example" {
     region       = "example_region"
     service_context = {
       active_service_label_id   = "<active_service_label_id>"
-      active_service_label_type = "CG_TRANSIT"
+      active_service_label_type = "cg-transit"
       backup_service_label_id   = "<backup_service_label_id>"
-      backup_service_label_type = "CG_TRANSIT"
+      backup_service_label_type = "cg-transit"
       type                      = "allowed-transit"
     }
     source_prefixes = {

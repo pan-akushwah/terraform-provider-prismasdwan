@@ -24,7 +24,7 @@
 resource "prismasdwan_element_ospf_config" "example" {
   areas = [{
     area_id   = 10
-    area_type = "NORMAL"
+    area_type = "normal"
   }]
   cost_for_default_route = 1
   description            = "Managed by Terraform"

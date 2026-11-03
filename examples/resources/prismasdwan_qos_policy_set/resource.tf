@@ -46,7 +46,7 @@ resource "prismasdwan_qos_policy_set" "example" {
   default_rule_dscp_mappings = [{
     dscp            = [10]
     priority_number = 1
-    transfer_type   = "RT_AUDIO"
+    transfer_type   = "rt-audio"
   }]
   defaultrule_policyset = false
   description           = "Managed by Terraform"

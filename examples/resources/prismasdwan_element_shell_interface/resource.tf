@@ -178,7 +178,7 @@ resource "prismasdwan_element_shell_interface" "example" {
         pa_master_key_id        = "<pa_master_key_id>"
         passphrase              = "<secret>"
         passphrase_encrypted    = "<secret>"
-        peer_id_check           = "EXACT"
+        peer_id_check           = "Exact"
         permit_peer_id_mismatch = false
         ppk_config = {
           enabled               = true

@@ -5,7 +5,7 @@ package schemas
 //
 
 // +-----------------------------------------------------------------
-// | Schema Map Summary (size=goLangStructMap=1,823)
+// | Schema Map Summary (size=goLangStructMap=1,877)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -63,6 +63,9 @@ package schemas
 // | HubCluster HasID=true
 // | PortRange HasID=false
 // | ApplicationFilter HasID=false
+// | TrafficRiskExposureData HasID=false
+// | TrafficRiskExposureResponse HasID=false
+// | SysMetricsInterfaceFifoErrorsMetricV2N4 HasID=false
 // | HealthscoreMetric HasID=false
 // | RecoveryTokenScreen HasID=true
 // | PointData HasID=false
@@ -104,6 +107,7 @@ package schemas
 // | OspfConfigQuery HasID=true
 // | ClientDetails HasID=false
 // | InterfaceAuthenticationState HasID=true
+// | SysMetricsInterfacePoePowerConsumptionMetricV2N4 HasID=false
 // | DemSiteConfigQuery HasID=true
 // | SimSecurityScreen HasID=true
 // | PathPrefixDistributionFiltersQuery HasID=true
@@ -165,6 +169,7 @@ package schemas
 // | IPFixTemplate HasID=true
 // | TenantCacheQueryFilter HasID=true
 // | CmSecurityProfileInfo HasID=true
+// | SysMetricsInterfaceIngressCRCErrorsMetricV2N4 HasID=false
 // | AppNormalizedNetworkTransferTimeMetric HasID=false
 // | EventCorrelationPolicyRuleQueryV2N1 HasID=true
 // | ExtendedTunnelCidr HasID=false
@@ -198,6 +203,10 @@ package schemas
 // | IcmpPingProbe HasID=false
 // | SEPLivelinessProbeV2N2 HasID=false
 // | VRFContextProfileScreen HasID=true
+// | IdQueryOperator HasID=false
+// | StringQueryOperator HasID=false
+// | SiteCorrelationEventQueryParams HasID=false
+// | SysMetricsDeviceModemTemperatureMetricV2N4 HasID=false
 // | SNMPTrapUserAccess HasID=false
 // | AppDefScreenV2N1 HasID=true
 // | BaseCustomDHCPOptions HasID=false
@@ -227,6 +236,9 @@ package schemas
 // | CustomRoleV2N1 HasID=true
 // | SecurityZoneQueryFilter HasID=true
 // | TenantPassageConf HasID=true
+// | DistributionDataV3N0 HasID=false
+// | DistributionV3N0 HasID=false
+// | DistributionResponseV3N0 HasID=false
 // | AppStatsAggregateData HasID=false
 // | AppStatsAggregateQueryResponse HasID=false
 // | FirmwareState HasID=false
@@ -285,10 +297,6 @@ package schemas
 // | SysMetricsQueryDTOV2N1Filter HasID=false
 // | SysMetricsQueryDTOV2N1View HasID=false
 // | SysMetricsQueryDTOV2N1 HasID=false
-// | SysMetricsQueryDTOV2N4ItemMetrics HasID=false
-// | SysMetricsQueryDTOV2N4Filter HasID=false
-// | SysMetricsQueryDTOV2N4View HasID=false
-// | SysMetricsQueryDTOV2N4 HasID=false
 // | SysMetricsQueryDTOV2N3ItemMetrics HasID=false
 // | SysMetricsQueryDTOV2N3Filter HasID=false
 // | SysMetricsQueryDTOV2N3View HasID=false
@@ -324,6 +332,7 @@ package schemas
 // | PerfMgmtActionV2N1 HasID=false
 // | WANInterfaceQueryFilterV2N9 HasID=true
 // | SaseConnectionGlobalConfigV3 HasID=true
+// | SysMetricsInterfaceStpRxBpduMetricV2N4 HasID=false
 // | FlapRule HasID=false
 // | StandingRule HasID=false
 // | EscalationRule HasID=false
@@ -393,6 +402,7 @@ package schemas
 // | Zone HasID=false
 // | Server HasID=false
 // | AuthoritativeConfig HasID=false
+// | WANInterfaceCorrelationEventQueryParams HasID=false
 // | SaseConnectionScreenV2N1 HasID=true
 // | Subnet HasID=false
 // | CustomerPremisesEquipment HasID=false
@@ -408,8 +418,6 @@ package schemas
 // | SaseConnectionRemoteNetwork HasID=true
 // | BGPConfig HasID=false
 // | BGPPeerConfig HasID=true
-// | HealthFilter HasID=false
-// | HealthScoreQuery HasID=false
 // | SiteSecurityPolicyV2PrefixAssociation HasID=true
 // | MachineCellularModuleState HasID=true
 // | BaseInsightsResponse HasID=false
@@ -486,12 +494,12 @@ package schemas
 // | NetworkNode HasID=true
 // | DirectoryUserQueryFilter HasID=true
 // | CellularModuleImage HasID=true
+// | SysMetricsDeviceOutletTemperatureMetricV2N4 HasID=false
 // | RemoteNetwork HasID=false
 // | PrismaAccessConfigQueryResponse HasID=true
 // | MulticastRouteWanpathStatsData HasID=false
 // | VlanPort HasID=true
 // | SwitchPortVlanPorts HasID=true
-// | StringQueryOperator HasID=false
 // | IPFixContext HasID=true
 // | NATPolicyPoolQueryFilter HasID=true
 // | EventBodyV3AcknowledgementInfo HasID=false
@@ -518,8 +526,6 @@ package schemas
 // | SiteOperations HasID=true
 // | SiteIPFixPrefixAssociation HasID=true
 // | AppDefScreenV2 HasID=true
-// | AggregateBWStatsFilter HasID=false
-// | AggregateBWStatsQuery HasID=false
 // | RoutingAccessListV2N1 HasID=true
 // | AppStatsTopNView HasID=false
 // | Adjustment HasID=false
@@ -725,17 +731,20 @@ package schemas
 // | Session HasID=true
 // | RoutingRouteMapV2N4 HasID=true
 // | PassageQueryFilter HasID=true
+// | SysMetricsInterfacePoeOverloadCounterMetricV2N4 HasID=false
 // | LANNetworkV3N3 HasID=true
 // | LANNetworkV3N2 HasID=true
 // | LANNetworkV3N1 HasID=true
 // | SysMetricsMemoryUsageMetricV3N0 HasID=false
 // | PathCapacityMetric HasID=false
 // | ConfiguredPrefixSet HasID=false
+// | SysMetricsCPUUsageMetricV2N4 HasID=false
 // | ElementSecurityZoneQueryFilter HasID=true
 // | SwitchPort HasID=true
 // | VlanPortSwitchPorts HasID=true
 // | DemSiteConfigScreen HasID=true
 // | SwitchState HasID=false
+// | AggregateBWStatsFilterV2N0 HasID=false
 // | VPNFailoverHostStatus HasID=false
 // | HubClusterTrackingStatus HasID=false
 // | SaseConnectionStatusQuery HasID=true
@@ -793,9 +802,11 @@ package schemas
 // | NATPolicyPool HasID=true
 // | WANInterfaceScreenV2N9 HasID=true
 // | MulticastRouteOutgoingInterfaceStatsData HasID=false
+// | SysMetricsDeviceCpuTemperatureMetricV2N4 HasID=false
 // | FlowsQueryV3N9 HasID=false
 // | WANInterfaceScreenV2N3 HasID=true
 // | WANInterfaceScreenV2N4 HasID=true
+// | SysMetricsDevicePoePowerConsumptionMetricV2N4 HasID=false
 // | ApplicationProbe HasID=true
 // | WANInterfaceScreenV2N2 HasID=true
 // | WANInterfaceScreenV2N7 HasID=true
@@ -855,7 +866,10 @@ package schemas
 // | BGPPeerQueryFilterV2N1 HasID=true
 // | BGPPeerQueryFilterV2N2 HasID=true
 // | DeviceIdMappingsQuery HasID=true
+// | HealthScoreFilterV2N0 HasID=false
+// | HealthScoreQueryV2N0 HasID=false
 // | SecurityPolicyGlobalPrefixScreenV2N1 HasID=true
+// | SysMetricsInterfaceStpRxTopologyChangeMetricV2N4 HasID=false
 // | AppAccelerationData HasID=false
 // | AppAccelerationQueryResponse HasID=false
 // | BasePolicyPrefixS HasID=true
@@ -885,9 +899,6 @@ package schemas
 // | EventQueryRequestV3_5SuppressedInfo HasID=false
 // | EventQueryRequestV3_5View HasID=false
 // | EventQueryRequestV3_5 HasID=false
-// | DistributionData HasID=false
-// | Distribution HasID=false
-// | DistributionResponse HasID=false
 // | EventQueryRequestV3_7Limit HasID=false
 // | EventQueryRequestV3_7SuppressedInfo HasID=false
 // | EventQueryRequestV3_7View HasID=false
@@ -902,6 +913,7 @@ package schemas
 // | RadiusMetricsResponse HasID=false
 // | OspfConfigQueryFilterV2N1 HasID=true
 // | TacacsPlusProfile HasID=true
+// | SysMetricsDeviceModem2TemperatureMetricV2N4 HasID=false
 // | ObjectStatsType HasID=false
 // | UrlListInfo HasID=false
 // | WANInterfaceLabelScreenV2N5 HasID=true
@@ -914,8 +926,11 @@ package schemas
 // | WANInterfaceLabelScreenV2N1 HasID=true
 // | WANInterfaceLabelScreenV2N2 HasID=true
 // | LqmMosMetric HasID=false
+// | AggregateBWStatsDatapointV2N0 HasID=false
+// | AggregateBWStatsDataV2N0 HasID=false
 // | UserIDAgentAuthentication HasID=false
 // | UserIDAgentScreen HasID=true
+// | SysMetricsDeviceTopologyChangeCountMetricV2N4 HasID=false
 // | DirectoryGroupAttribute HasID=false
 // | DirectoryService HasID=true
 // | CellularModuleQueryFilter HasID=true
@@ -955,6 +970,7 @@ package schemas
 // | BandwidthUsageMetric HasID=false
 // | IPFixContextScreen HasID=true
 // | EventCorrelationPolicyRuleQuery HasID=true
+// | DistributionQueryV3N0 HasID=false
 // | RoutingCommunityListScreen HasID=true
 // | ElementShellQueryFilterV2N1 HasID=true
 // | NetworkPolicySetQueryFilter HasID=true
@@ -1010,6 +1026,10 @@ package schemas
 // | StaticAppMetricConfigV2N1 HasID=false
 // | GetEventResponseBodyPolicyInfo HasID=false
 // | MulticastDynamicRpQueryFilter HasID=true
+// | PointSeriesV2N0 HasID=false
+// | LqmSiteV2N0 HasID=false
+// | LqmMetricsV2N0 HasID=false
+// | LqmPointMetricsResponseV2N0 HasID=false
 // | ConcurrentFlowsAltMetric HasID=false
 // | InterfaceTypeOperator HasID=false
 // | SiteScreenV4N10 HasID=true
@@ -1035,6 +1055,8 @@ package schemas
 // | WANInterfaceLabelQueryFilterV2N4 HasID=true
 // | SiteWanPath HasID=false
 // | PolicyRule HasID=true
+// | AnynetlinkCorrelationEventQueryParams HasID=false
+// | AnynetlinkCorrelationEventQueryRequest HasID=false
 // | PerfMgmtPolicyRule HasID=true
 // | PerfMgmtPolicySet HasID=true
 // | PerfMgmtPolicySetStack HasID=true
@@ -1055,9 +1077,13 @@ package schemas
 // | ServiceEndpointV2N4 HasID=true
 // | AnynetLinkV3N1 HasID=true
 // | AppAccelerationFilter HasID=false
+// | LqmLatencyPointMetricV2N0 HasID=false
 // | RoutingAccessListQuery HasID=true
 // | AggregatesQueryResponse HasID=false
 // | Element HasID=true
+// | AggregateBWStatsMetricV2N0 HasID=false
+// | AggregateBWStatsViewV2N0 HasID=false
+// | AggregateBWStatsQueryV2N0 HasID=false
 // | ClientPermissions HasID=true
 // | UDPConcurrentFlowsMetric HasID=false
 // | ApplicationHealthScore HasID=false
@@ -1083,9 +1109,10 @@ package schemas
 // | SecurityPolicyRuleScreen HasID=true
 // | RoutingCommunityListQuery HasID=true
 // | VPNLinkQuery HasID=true
+// | SysMetricsInterfaceLldpTxTotalFramesMetricV2N4 HasID=false
 // | SamlResponse HasID=false
 // | StaticRoute HasID=true
-// | LocalPrefixSetDTO HasID=true
+// | LocalPrefixSetDTO HasID=false
 // | SysMetricsInterfaceStpTxTopologyChangeMetricV3N0 HasID=false
 // | InterfaceScreenV4N17 HasID=true
 // | ElementShellInterfaceScreen HasID=false
@@ -1108,6 +1135,8 @@ package schemas
 // | ElementImageV2N3 HasID=true
 // | ElementImageV2N4 HasID=true
 // | NtpLastSelected HasID=false
+// | ElementCorrelationEventQueryParams HasID=false
+// | ElementCorrelationEventQueryRequest HasID=false
 // | OspfDiscoveredNeighborQuery HasID=true
 // | CreateMachineInfoV2N2 HasID=false
 // | PerfMgmtPolicyRuleQuery HasID=true
@@ -1122,7 +1151,6 @@ package schemas
 // | FlowsFilterV3N12 HasID=false
 // | FlowsFilterV3N13 HasID=false
 // | FlowsFilterV3N10 HasID=false
-// | AggregateBWStatsResponse HasID=false
 // | MulticastDynamicRpQuery HasID=true
 // | DnsSecurityCategory HasID=true
 // | FlowsQueryResponse HasID=false
@@ -1137,8 +1165,10 @@ package schemas
 // | ElementInterfaces HasID=false
 // | RoutingPrefixListQueryFilter HasID=true
 // | EventBodyPolicyInfo HasID=false
+// | LqmLinkHealthPointMetricV2N0 HasID=false
 // | UDPFlowCountMetric HasID=false
 // | MetricSchemaResponse HasID=false
+// | SysMetricsInterfaceEgressCarrierErrorsMetricV2N4 HasID=false
 // | DirectPath HasID=false
 // | MachineCellularModuleInfo HasID=true
 // | ElementShellQuery HasID=true
@@ -1161,18 +1191,23 @@ package schemas
 // | SitePriorityPrefixAssociationV2N1 HasID=true
 // | AppStatsTopNResponseData HasID=false
 // | AppStatsTopNResponse HasID=false
+// | SysMetricsInterfaceStpTransitionForwardMetricV2N4 HasID=false
 // | EventsOperationsResponseBody HasID=false
 // | AppStatsAggregate HasID=false
 // | AppStatsAggregatesQuery HasID=false
+// | InterfaceCorrelationEventQueryParams HasID=false
+// | InterfaceCorrelationEventQueryRequest HasID=false
 // | SaseConnectionGlobalConfigV2N1 HasID=true
 // | Author HasID=false
 // | GetEventResponseBodyV2Info HasID=false
 // | CellularModuleFirmwareUpgradeImageState HasID=false
 // | BulkConfigCreate HasID=true
 // | DeviceIdStartNodeScreen HasID=true
+// | SysMetricsMemoryUsageMetricV2N4 HasID=false
 // | Machine HasID=true
 // | DnsServiceQuery HasID=true
 // | InterfaceConfig HasID=false
+// | WANInterfaceCorrelationEventQueryRequest HasID=false
 // | AggregateStatsFilter HasID=false
 // | SysMetricsInterfacePoeOverloadCounterMetricV3N0 HasID=false
 // | SiteEndpoints HasID=false
@@ -1214,6 +1249,7 @@ package schemas
 // | MulticastSourceSideRpQuery HasID=true
 // | LocalPrefixFilterScreen HasID=true
 // | AppObjectStatsResponse HasID=false
+// | SysMetricsInterfaceStpTxBpduMetricV2N4 HasID=false
 // | VffLicenseQuery HasID=true
 // | DemSiteConfig HasID=true
 // | AppdefOverrideV2N1 HasID=true
@@ -1250,12 +1286,14 @@ package schemas
 // | ElementSecurityZoneScreen HasID=true
 // | LicenseCount HasID=false
 // | EventCodesDataItemItems HasID=false
+// | SysMetricsInterfaceBandwidthUsageMetricV2N4 HasID=false
 // | PriorityPolicySetState HasID=true
 // | SecurityPolicyV2SetStack HasID=true
 // | ElementScreen HasID=true
 // | RoutingRouteMapScreenV2N3 HasID=true
 // | RoutingRouteMapScreenV2N4 HasID=true
 // | RoutingRouteMapScreenV2N1 HasID=true
+// | SysMetricsDiskUsageMetricV2N4 HasID=false
 // | RoutingRouteMapScreenV2N2 HasID=true
 // | MulticastStatusQuery HasID=true
 // | MachineSoftware HasID=true
@@ -1265,16 +1303,17 @@ package schemas
 // | FlowsQuery HasID=false
 // | SDWANAppRelease HasID=true
 // | CellularmetricsResponse HasID=false
-// | DistributionQuery HasID=false
 // | LqmPacketLossThresholdMetric HasID=false
 // | CorrelationEventBase HasID=true
 // | EventCorrelationPolicyRule HasID=true
+// | LqmJitterPointMetricV2N0 HasID=false
 // | LQMThresholdConfigV2N1 HasID=false
 // | SecurityPolicyV2SetQueryFilter HasID=true
 // | LqmJitterMetric HasID=false
 // | CellularModuleStatusQueryFilterV2N1 HasID=true
 // | RoutingRouteMapQueryFilter HasID=true
 // | MicrosegmentQueryFilter HasID=true
+// | LqmMosPointMetricV2N0 HasID=false
 // | SystemHealthMetricsThresholds HasID=false
 // | RoutingPrefixListQueryFilterV2N1 HasID=true
 // | NATPolicyRuleQuery HasID=true
@@ -1300,12 +1339,14 @@ package schemas
 // | ElemDnsQueriesMetadata HasID=false
 // | DnsService HasID=true
 // | SysMetricsInterfaceStpRxTopologyChangeMetricV3N0 HasID=false
+// | SiteCorrelationEventQueryRequest HasID=false
 // | PolicySetQuery HasID=true
 // | PolicyRuleQuery HasID=true
 // | UsedForOperator HasID=false
 // | NATPolicyRuleQueryFilter HasID=true
 // | SecurityProfileGroupScreen HasID=true
 // | InterfaceReset HasID=true
+// | SysMetricsInterfacePoePowerDeniedCounterMetricV2N4 HasID=false
 // | BooleanQueryOperator HasID=false
 // | PolicySetPOSTScreen HasID=true
 // | PriorityPolicyRuleQuery HasID=true
@@ -1313,6 +1354,7 @@ package schemas
 // | SnapshotExportQueryFilter HasID=true
 // | UserIdentity HasID=true
 // | ElementMetaModel HasID=true
+// | TrafficRiskExposureQuery HasID=false
 // | CellularModuleFirmwareStatusQuery HasID=true
 // | DeviceIdSNMPV3Config HasID=false
 // | TenantV2N9 HasID=true
@@ -1323,6 +1365,7 @@ package schemas
 // | TopologyLinksQuery HasID=true
 // | CorrelationEventSyncRequest HasID=false
 // | CertificatePOSTScreen HasID=true
+// | LqmPktLossPointMetricV2N0 HasID=false
 // | TenantV2N7 HasID=true
 // | TenantV2N4 HasID=true
 // | TenantV2N5 HasID=true
@@ -1345,6 +1388,7 @@ package schemas
 // | ServiceConnection HasID=true
 // | TrafficVolumeMetric HasID=false
 // | ElementAccessConfigQuery HasID=true
+// | LqmPointMetricsFilterV2N0 HasID=false
 // | CellularModuleFirmwareConfigScreen HasID=true
 // | AppStatsTopNQuery HasID=false
 // | ElementRadiusStatus HasID=true
@@ -1355,6 +1399,7 @@ package schemas
 // | SnapshotImport HasID=true
 // | MonitorMetricsFilter HasID=false
 // | IncidentResourceSettingsQuery HasID=true
+// | SysMetricsInterfaceDroppedPacketsMetricV2N4 HasID=false
 // | BaseQueryDTO HasID=true
 // | WANNetworkScreen HasID=true
 // | SecurityZone HasID=true
@@ -1409,7 +1454,6 @@ package schemas
 // | SiteQueryFilterV4N2 HasID=true
 // | InterfaceScreenV4N16 HasID=true
 // | SiteQueryFilterV4N3 HasID=true
-// | IdQueryOperator HasID=false
 // | MulticastWANTrafficStatsResponse HasID=false
 // | SiteQueryFilterV4N4 HasID=true
 // | SiteQueryFilterV4N5 HasID=true
@@ -1455,12 +1499,15 @@ package schemas
 // | MachineInfoV2N3 HasID=true
 // | IdpV3N1 HasID=true
 // | IdpV3N3 HasID=true
+// | SysMetricsInterfaceStpTransitionBulkMetricV2N4 HasID=false
 // | IdpV3N2 HasID=true
 // | MachineV2N2 HasID=true
 // | MachineV2N1 HasID=true
 // | IPFixProfileScreen HasID=true
 // | PPKSecretResponse HasID=false
+// | SysMetricsInterfaceStpTxTopologyChangeMetricV2N4 HasID=false
 // | CellularModuleFirmwareStatusQueryFilter HasID=true
+// | LocalPrefixSetResponse HasID=true
 // | MonitorMetricsResponse HasID=false
 // | AppAccelerationStatusQuery HasID=true
 // | InterfaceStateQueryFilter HasID=true
@@ -1515,6 +1562,7 @@ package schemas
 // | PasswordReset HasID=false
 // | LqmLatencyMetric HasID=false
 // | DeviceIdConfidence HasID=true
+// | SysMetricsDeviceAcpiTemperatureMetricV2N4 HasID=false
 // | HardwareBypass HasID=true
 // | AppVideoMosMetric HasID=false
 // | AppDefTenantVersion HasID=true
@@ -1529,6 +1577,7 @@ package schemas
 // | ProfileV2N1 HasID=true
 // | PerfMgmtPolicyRuleV2N2 HasID=true
 // | AppTotalConnectionsMetric HasID=false
+// | SysMetricsDevicePseTemperatureMetricV2N4 HasID=false
 // | AppStatsCombinedMetrics HasID=false
 // | ProbeProfileScreen HasID=true
 // | IncidentResourceQueryResponse HasID=true
@@ -1667,6 +1716,7 @@ package schemas
 // | BGPPeerConfigEtag HasID=true
 // | HubClusterStatusV4 HasID=true
 // | RoutingAccessList HasID=true
+// | SysMetricsInterfaceIngressFrameErrorsMetricV2N4 HasID=false
 // | BGPPeerConfigV2N2 HasID=true
 // | BGPPeerConfigV2N1 HasID=true
 // | BGPPeerConfigV2N4 HasID=true
@@ -1696,6 +1746,7 @@ package schemas
 // | VPLStatus HasID=true
 // | WANNetworkV2N1 HasID=true
 // | DeviceIdProfile HasID=true
+// | SysMetricsDeviceInletTemperatureMetricV2N4 HasID=false
 // | MSTPInstanceQuery HasID=true
 // | Idp HasID=true
 // | OspfConfig HasID=true
@@ -1752,15 +1803,16 @@ package schemas
 // | BGPGlobalConfigScreenV2N5 HasID=true
 // | BGPGlobalConfigScreenV2N4 HasID=true
 // | SaseConnectionGlobalConfigScreenV3N1 HasID=true
-// | ElementAccessConfigV2N3 HasID=true
 // | ElementAccessConfigV2N2 HasID=true
 // | SysMetricsResponse HasID=false
 // | LicenseCategory HasID=false
 // | Licenses HasID=false
 // | LicenseResponse HasID=true
 // | MicrosegmentScreen HasID=true
+// | SysMetricsDeviceLastTopologyChangeSinceMetricV2N4 HasID=false
 // | SyslogServerV2N1 HasID=true
 // | SaseConnectionGlobalConfigScreenV3N2 HasID=true
+// | SysMetricsInterfaceLldpRxTotalFramesMetricV2N4 HasID=false
 // | NATPolicyZone HasID=true
 // | OspfReachablePrefixesQuery HasID=true
 // | Insights HasID=false
@@ -1773,6 +1825,7 @@ package schemas
 // | CorrelationEventSyncResponse HasID=true
 // | APNProfileQueryFilter HasID=true
 // | ObjectStatsTypeResponse HasID=false
+// | SysMetricsInterfaceErrorsMetricV2N4 HasID=false
 // | OspfReachablePrefixesFilter HasID=true
 // | DirectoryUserQuery HasID=true
 // | NetworkPointMetricsBandwidthQueryFilter HasID=false
@@ -1789,6 +1842,7 @@ package schemas
 // | AuditLog HasID=true
 // | ProbeConfigQuery HasID=true
 // | BGPPeerStatusV2N3 HasID=true
+// | SysMetricsInterfaceLldpTxFailedFramesMetricV2N4 HasID=false
 // | SiteAggregateQueryFilter HasID=true
 // | VPLStatusV2N2 HasID=true
 // | ElementStatusV2N4 HasID=true
@@ -2003,6 +2057,7 @@ type LicenseQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -2057,6 +2112,7 @@ type MulticastIgmpMembershipQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -2272,6 +2328,7 @@ type ErrorMessage struct {
 type BadServiceLink struct {
 	BgppeerId       *string       `json:"bgppeer_id"`        // propertyName=bgppeer_id type=STRING
 	ElementId       *string       `json:"element_id"`        // propertyName=element_id type=STRING
+	ElementName     *string       `json:"element_name"`      // propertyName=element_name type=STRING
 	Error           *ErrorMessage `json:"error"`             // propertyName=error type=REFERENCE
 	IkeGatewayId    *string       `json:"ike_gateway_id"`    // propertyName=ike_gateway_id type=STRING
 	IpsecTunnelId   *string       `json:"ipsec_tunnel_id"`   // propertyName=ipsec_tunnel_id type=STRING
@@ -2313,8 +2370,6 @@ type MigrateCBToEZBResponse struct {
 	FailedSites       []CompatibleSite   `json:"failed_sites"`       // propertyName=failed_sites type=ARRAY_REFERENCE
 	Id                *string            `json:"id"`                 // propertyName=id type=STRING
 	IncompatibleSites []IncompatibleSite `json:"incompatible_sites"` // propertyName=incompatible_sites type=ARRAY_REFERENCE
-	IsFawkes          *bool              `json:"is_fawkes"`          // propertyName=is_fawkes type=BOOLEAN
-	JobId             *string            `json:"job_id"`             // propertyName=job_id type=STRING
 	MigratedSites     []CompatibleSite   `json:"migrated_sites"`     // propertyName=migrated_sites type=ARRAY_REFERENCE
 	Status            *string            `json:"status"`             // propertyName=status type=STRING
 	Steps             []MigrationStep    `json:"steps"`              // propertyName=steps type=ARRAY_REFERENCE
@@ -2487,6 +2542,7 @@ type WANInterfaceLabelQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -2506,7 +2562,7 @@ type WANInterfaceLabelQuery struct {
 type HubCluster struct {
 	Etag               *int64   `json:"_etag"`                // propertyName=_etag type=INTEGER
 	Schema             *int64   `json:"_schema"`              // propertyName=_schema type=INTEGER
-	AdminUp            *string  `json:"admin_up"`             // propertyName=admin_up type=STRING
+	AdminUp            *bool    `json:"admin_up"`             // propertyName=admin_up type=BOOLEAN
 	Id                 *string  `json:"id"`                   // propertyName=id type=STRING
 	LoadAlarmThreshold *int64   `json:"load_alarm_threshold"` // propertyName=load_alarm_threshold type=INTEGER
 	Name               *string  `json:"name"`                 // propertyName=name type=STRING
@@ -2527,6 +2583,36 @@ type PortRange struct {
 type ApplicationFilter struct {
 	AppTransferTypes []string `json:"app_transfer_types"` // propertyName=app_transfer_types type=ARRAY_PRIMITIVE
 	ApplicationIds   []string `json:"application_ids"`    // propertyName=application_ids type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `TrafficRiskExposureData`
+// +-----------------------------------------------------------------
+type TrafficRiskExposureData struct {
+	EstimatedThreats      *int64   `json:"estimated_threats"`       // propertyName=estimated_threats type=INTEGER
+	RiskPercent           *float64 `json:"risk_percent"`            // propertyName=risk_percent type=NUMBER
+	TotalFlowCount        *int64   `json:"total_flow_count"`        // propertyName=total_flow_count type=INTEGER
+	TotalTrafficBytes     *int64   `json:"total_traffic_bytes"`     // propertyName=total_traffic_bytes type=INTEGER
+	TotalTrafficGb        *float64 `json:"total_traffic_gb"`        // propertyName=total_traffic_gb type=NUMBER
+	UnclassifiedFlowCount *int64   `json:"unclassified_flow_count"` // propertyName=unclassified_flow_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `TrafficRiskExposureResponse`
+// +-----------------------------------------------------------------
+type TrafficRiskExposureResponse struct {
+	EndTime             *string                  `json:"end_time"`              // propertyName=end_time type=STRING
+	StartTime           *string                  `json:"start_time"`            // propertyName=start_time type=STRING
+	TrafficRiskExposure *TrafficRiskExposureData `json:"traffic_risk_exposure"` // propertyName=traffic_risk_exposure type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceFifoErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceFifoErrorsMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -3031,6 +3117,7 @@ type OspfConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -3078,6 +3165,15 @@ type InterfaceAuthenticationState struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfacePoePowerConsumptionMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfacePoePowerConsumptionMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `DemSiteConfigQuery`
 // +-----------------------------------------------------------------
 type DemSiteConfigQuery struct {
@@ -3085,6 +3181,7 @@ type DemSiteConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -3121,6 +3218,7 @@ type PathPrefixDistributionFiltersQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -3142,6 +3240,7 @@ type VRFContextProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -3650,6 +3749,7 @@ type CellularModuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -3922,6 +4022,15 @@ type CmSecurityProfileInfo struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceIngressCRCErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceIngressCRCErrorsMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `AppNormalizedNetworkTransferTimeMetric`
 // +-----------------------------------------------------------------
 type AppNormalizedNetworkTransferTimeMetric struct {
@@ -3938,6 +4047,7 @@ type EventCorrelationPolicyRuleQueryV2N1 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -4350,6 +4460,50 @@ type VRFContextProfileScreen struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `IdQueryOperator`
+// +-----------------------------------------------------------------
+type IdQueryOperator struct {
+	Eq     *string  `json:"eq"`     // propertyName=eq type=STRING
+	Exists *bool    `json:"exists"` // propertyName=exists type=BOOLEAN
+	In     []string `json:"in"`     // propertyName=in type=ARRAY_PRIMITIVE
+	Neq    *string  `json:"neq"`    // propertyName=neq type=STRING
+	Nin    []string `json:"nin"`    // propertyName=nin type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `StringQueryOperator`
+// +-----------------------------------------------------------------
+type StringQueryOperator struct {
+	Eq     *string  `json:"eq"`     // propertyName=eq type=STRING
+	Exists *bool    `json:"exists"` // propertyName=exists type=BOOLEAN
+	In     []string `json:"in"`     // propertyName=in type=ARRAY_PRIMITIVE
+	Neq    *string  `json:"neq"`    // propertyName=neq type=STRING
+	Nin    []string `json:"nin"`    // propertyName=nin type=ARRAY_PRIMITIVE
+	Re     *string  `json:"re"`     // propertyName=re type=STRING
+	Regex  *string  `json:"regex"`  // propertyName=regex type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SiteCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type SiteCorrelationEventQueryParams struct {
+	CreatedOnUtc  *NumberQueryOperator `json:"_created_on_utc"` // propertyName=_created_on_utc type=REFERENCE
+	UpdatedOnUtc  *NumberQueryOperator `json:"_updated_on_utc"` // propertyName=_updated_on_utc type=REFERENCE
+	SiteId        *IdQueryOperator     `json:"site_id"`         // propertyName=site_id type=REFERENCE
+	SiteName      *StringQueryOperator `json:"site_name"`       // propertyName=site_name type=REFERENCE
+	StandingState *StringQueryOperator `json:"standing_state"`  // propertyName=standing_state type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceModemTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceModemTemperatureMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SNMPTrapUserAccess`
 // +-----------------------------------------------------------------
 type SNMPTrapUserAccess struct {
@@ -4710,6 +4864,7 @@ type ExtensionQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -4746,11 +4901,7 @@ type AppStatsQuery struct {
 // | Auto Generated for Schema `NetworkPointMetricsHealthScoreQueryFilter`
 // +-----------------------------------------------------------------
 type NetworkPointMetricsHealthScoreQueryFilter struct {
-	Direction    []string `json:"direction"`    // propertyName=direction type=ARRAY_PRIMITIVE
-	Element      []string `json:"element"`      // propertyName=element type=ARRAY_PRIMITIVE
-	Interface    []string `json:"interface"`    // propertyName=interface type=ARRAY_PRIMITIVE
-	Sites        []string `json:"sites"`        // propertyName=sites type=ARRAY_PRIMITIVE
-	Waninterface []string `json:"waninterface"` // propertyName=waninterface type=ARRAY_PRIMITIVE
+	Sites []string `json:"sites"` // propertyName=sites type=ARRAY_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -4821,6 +4972,31 @@ type TenantPassageConf struct {
 	Id              *string `json:"id"`               // propertyName=id type=STRING
 	PassageAllowed  *bool   `json:"passage_allowed"`  // propertyName=passage_allowed type=BOOLEAN
 	PassagePassword *string `json:"passage_password"` // propertyName=passage_password type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionDataV3N0`
+// +-----------------------------------------------------------------
+type DistributionDataV3N0 struct {
+	Count *int64   `json:"count"` // propertyName=count type=INTEGER
+	Score *float64 `json:"score"` // propertyName=score type=NUMBER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionV3N0`
+// +-----------------------------------------------------------------
+type DistributionV3N0 struct {
+	Downlink []DistributionDataV3N0 `json:"downlink"` // propertyName=downlink type=ARRAY_REFERENCE
+	Latency  []DistributionDataV3N0 `json:"latency"`  // propertyName=latency type=ARRAY_REFERENCE
+	Uplink   []DistributionDataV3N0 `json:"uplink"`   // propertyName=uplink type=ARRAY_REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionResponseV3N0`
+// +-----------------------------------------------------------------
+type DistributionResponseV3N0 struct {
+	StatusCode   *int64            `json:"_status_code"` // propertyName=_status_code type=INTEGER
+	Distribution *DistributionV3N0 `json:"distribution"` // propertyName=distribution type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -5009,6 +5185,7 @@ type DirectoryUserGroupQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -5120,6 +5297,7 @@ type AppDefQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -5141,6 +5319,7 @@ type BGPPeerQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -5201,6 +5380,7 @@ type BulkConfigCreateQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -5548,45 +5728,6 @@ type SysMetricsQueryDTOV2N1 struct {
 	Metrics       *SysMetricsQueryDTOV2N1ItemMetrics `json:"metrics"`        // propertyName=metrics type=REFERENCE
 	StartTime     *string                            `json:"start_time"`     // propertyName=start_time type=STRING
 	View          *SysMetricsQueryDTOV2N1View        `json:"view"`           // propertyName=view type=REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4ItemMetrics`
-// +-----------------------------------------------------------------
-type SysMetricsQueryDTOV2N4ItemMetrics struct {
-	Name       *string  `json:"name"`       // propertyName=name type=STRING
-	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
-	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4Filter`
-// +-----------------------------------------------------------------
-type SysMetricsQueryDTOV2N4Filter struct {
-	Direction *string  `json:"direction"` // propertyName=direction type=STRING
-	Element   []string `json:"element"`   // propertyName=element type=ARRAY_PRIMITIVE
-	Interface []string `json:"interface"` // propertyName=interface type=ARRAY_PRIMITIVE
-	Site      []string `json:"site"`      // propertyName=site type=ARRAY_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4View`
-// +-----------------------------------------------------------------
-type SysMetricsQueryDTOV2N4View struct {
-	Individual *string `json:"individual"` // propertyName=individual type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4`
-// +-----------------------------------------------------------------
-type SysMetricsQueryDTOV2N4 struct {
-	EndTime       *string                            `json:"end_time"`       // propertyName=end_time type=STRING
-	Filter        *SysMetricsQueryDTOV2N4Filter      `json:"filter"`         // propertyName=filter type=REFERENCE
-	Interval      *string                            `json:"interval"`       // propertyName=interval type=STRING
-	MaxDatapoints *int64                             `json:"max_datapoints"` // propertyName=max_datapoints type=INTEGER
-	Metrics       *SysMetricsQueryDTOV2N4ItemMetrics `json:"metrics"`        // propertyName=metrics type=REFERENCE
-	StartTime     *string                            `json:"start_time"`     // propertyName=start_time type=STRING
-	View          *SysMetricsQueryDTOV2N4View        `json:"view"`           // propertyName=view type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -6118,6 +6259,15 @@ type SaseConnectionGlobalConfigV3 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpRxBpduMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceStpRxBpduMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `FlapRule`
 // +-----------------------------------------------------------------
 type FlapRule struct {
@@ -6190,6 +6340,7 @@ type SpokeClusterQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -6568,6 +6719,7 @@ type OspfConfigQueryV2N1 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -6609,6 +6761,7 @@ type PassageQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -6685,6 +6838,7 @@ type IPFixContextQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -7065,6 +7219,18 @@ type AuthoritativeConfig struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `WANInterfaceCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type WANInterfaceCorrelationEventQueryParams struct {
+	CreatedOnUtc     *NumberQueryOperator `json:"_created_on_utc"`    // propertyName=_created_on_utc type=REFERENCE
+	UpdatedOnUtc     *NumberQueryOperator `json:"_updated_on_utc"`    // propertyName=_updated_on_utc type=REFERENCE
+	SiteId           *IdQueryOperator     `json:"site_id"`            // propertyName=site_id type=REFERENCE
+	StandingState    *StringQueryOperator `json:"standing_state"`     // propertyName=standing_state type=REFERENCE
+	WanInterfaceId   *IdQueryOperator     `json:"wan_interface_id"`   // propertyName=wan_interface_id type=REFERENCE
+	WanInterfaceName *StringQueryOperator `json:"wan_interface_name"` // propertyName=wan_interface_name type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SaseConnectionScreenV2N1`
 // +-----------------------------------------------------------------
 type SaseConnectionScreenV2N1 struct {
@@ -7161,6 +7327,7 @@ type ElementSystemLimitProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -7270,27 +7437,6 @@ type BGPPeerConfig struct {
 	RouteMapOutId *string    `json:"route_map_out_id"` // propertyName=route_map_out_id type=STRING
 	Tags          []string   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
 	UpdateSource  *string    `json:"update_source"`    // propertyName=update_source type=STRING
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `HealthFilter`
-// +-----------------------------------------------------------------
-type HealthFilter struct {
-	ApplicationHealth []string `json:"application_health"` // propertyName=application_health type=ARRAY_PRIMITIVE
-	LinkHealth        []string `json:"link_health"`        // propertyName=link_health type=ARRAY_PRIMITIVE
-	SiteHealth        []string `json:"site_health"`        // propertyName=site_health type=ARRAY_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `HealthScoreQuery`
-// +-----------------------------------------------------------------
-type HealthScoreQuery struct {
-	EndTime   *string       `json:"end_time"`   // propertyName=end_time type=STRING
-	Filter    *HealthFilter `json:"filter"`     // propertyName=filter type=REFERENCE
-	Interval  *string       `json:"interval"`   // propertyName=interval type=STRING
-	Name      *string       `json:"name"`       // propertyName=name type=STRING
-	StartTime *string       `json:"start_time"` // propertyName=start_time type=STRING
-	View      *string       `json:"view"`       // propertyName=view type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -8177,6 +8323,7 @@ type ServiceLabelQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -8478,6 +8625,15 @@ type CellularModuleImage struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceOutletTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceOutletTemperatureMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `RemoteNetwork`
 // +-----------------------------------------------------------------
 type RemoteNetwork struct {
@@ -8533,18 +8689,6 @@ type SwitchPortVlanPorts struct {
 	Name       *string    `json:"name"`        // propertyName=name type=STRING
 	Type       *string    `json:"type"`        // propertyName=type type=STRING
 	Vlans      []VlanPort `json:"vlans"`       // propertyName=vlans type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `StringQueryOperator`
-// +-----------------------------------------------------------------
-type StringQueryOperator struct {
-	Eq     *string  `json:"eq"`     // propertyName=eq type=STRING
-	Exists *bool    `json:"exists"` // propertyName=exists type=BOOLEAN
-	In     []string `json:"in"`     // propertyName=in type=ARRAY_PRIMITIVE
-	Neq    *string  `json:"neq"`    // propertyName=neq type=STRING
-	Nin    []string `json:"nin"`    // propertyName=nin type=ARRAY_PRIMITIVE
-	Re     *string  `json:"re"`     // propertyName=re type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -8700,6 +8844,7 @@ type DnsServiceRoleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -8946,27 +9091,6 @@ type AppDefScreenV2 struct {
 	TcpRules          []TcpRule `json:"tcp_rules"`           // propertyName=tcp_rules type=ARRAY_REFERENCE
 	TransferType      *string   `json:"transfer_type"`       // propertyName=transfer_type type=STRING
 	UdpRules          []UdpRule `json:"udp_rules"`           // propertyName=udp_rules type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `AggregateBWStatsFilter`
-// +-----------------------------------------------------------------
-type AggregateBWStatsFilter struct {
-	Site []string `json:"site"` // propertyName=site type=ARRAY_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `AggregateBWStatsQuery`
-// +-----------------------------------------------------------------
-type AggregateBWStatsQuery struct {
-	EndTime       *string                 `json:"end_time"`       // propertyName=end_time type=STRING
-	Filter        *AggregateBWStatsFilter `json:"filter"`         // propertyName=filter type=REFERENCE
-	Interval      *string                 `json:"interval"`       // propertyName=interval type=STRING
-	MaxDatapoints *int64                  `json:"max_datapoints"` // propertyName=max_datapoints type=INTEGER
-	Metrics       []Metrics               `json:"metrics"`        // propertyName=metrics type=ARRAY_REFERENCE
-	Name          *string                 `json:"name"`           // propertyName=name type=STRING
-	StartTime     *string                 `json:"start_time"`     // propertyName=start_time type=STRING
-	View          *View                   `json:"view"`           // propertyName=view type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -10238,7 +10362,6 @@ type StaticAppMetricConfig struct {
 // +-----------------------------------------------------------------
 type NetworkPointMetricsHealthScoreQueryItemMetrics struct {
 	Name *string `json:"name"` // propertyName=name type=STRING
-	Unit *string `json:"unit"` // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -10368,6 +10491,7 @@ type SitePrefixAssociationQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -11110,6 +11234,7 @@ type ServiceLabelQueryFilter struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -11226,6 +11351,7 @@ type SoftwareDownloadHistoryQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -12417,6 +12543,7 @@ type SecurityZoneQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -12582,6 +12709,15 @@ type PassageQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfacePoeOverloadCounterMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfacePoeOverloadCounterMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `LANNetworkV3N3`
 // +-----------------------------------------------------------------
 type LANNetworkV3N3 struct {
@@ -12653,6 +12789,15 @@ type PathCapacityMetric struct {
 type ConfiguredPrefixSet struct {
 	LocalPrefixSet *LocalPrefixSet `json:"local_prefix_set"` // propertyName=local_prefix_set type=REFERENCE
 	Type           *string         `json:"type"`             // propertyName=type type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsCPUUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsCPUUsageMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -12730,6 +12875,13 @@ type SwitchState struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsFilterV2N0`
+// +-----------------------------------------------------------------
+type AggregateBWStatsFilterV2N0 struct {
+	Site []string `json:"site"` // propertyName=site type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `VPNFailoverHostStatus`
 // +-----------------------------------------------------------------
 type VPNFailoverHostStatus struct {
@@ -12755,6 +12907,7 @@ type SaseConnectionStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -13149,6 +13302,7 @@ type ServiceBindingMapQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -13322,6 +13476,7 @@ type UserIDAgentQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -13543,6 +13698,15 @@ type MulticastRouteOutgoingInterfaceStatsData struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceCpuTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceCpuTemperatureMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `FlowsQueryV3N9`
 // +-----------------------------------------------------------------
 type FlowsQueryV3N9 struct {
@@ -13598,6 +13762,15 @@ type WANInterfaceScreenV2N4 struct {
 	Name         *string    `json:"name"`           // propertyName=name type=STRING
 	NetworkId    *string    `json:"network_id"`     // propertyName=network_id type=STRING
 	Tags         []string   `json:"tags"`           // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDevicePoePowerConsumptionMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDevicePoePowerConsumptionMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -13761,6 +13934,7 @@ type MachineSoftwareQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -13986,6 +14160,7 @@ type WANInterfaceQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -14277,6 +14452,7 @@ type ProbeProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -14328,6 +14504,7 @@ type ElementMetaModelV3N9 struct {
 	DeviceChangeModeSupported     *bool                          `json:"device_change_mode_supported"`    // propertyName=device_change_mode_supported type=BOOLEAN
 	DisabledInterfaceTypes        []string                       `json:"disabled_interface_types"`        // propertyName=disabled_interface_types type=ARRAY_PRIMITIVE
 	EolSwVersion                  *string                        `json:"eol_sw_version"`                  // propertyName=eol_sw_version type=STRING
+	FecPorts                      []string                       `json:"fec_ports"`                       // propertyName=fec_ports type=ARRAY_PRIMITIVE
 	FecSupported                  *bool                          `json:"fec_supported"`                   // propertyName=fec_supported type=BOOLEAN
 	FipsChangeMode                *string                        `json:"fips_change_mode"`                // propertyName=fips_change_mode type=STRING
 	Id                            *string                        `json:"id"`                              // propertyName=id type=STRING
@@ -14476,6 +14653,7 @@ type PriorityPolicySetQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -14646,6 +14824,7 @@ type DeviceIdMappingsQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -14660,6 +14839,26 @@ type DeviceIdMappingsQuery struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `HealthScoreFilterV2N0`
+// +-----------------------------------------------------------------
+type HealthScoreFilterV2N0 struct {
+	ApplicationHealth []string `json:"application_health"` // propertyName=application_health type=ARRAY_PRIMITIVE
+	LinkHealth        []string `json:"link_health"`        // propertyName=link_health type=ARRAY_PRIMITIVE
+	SiteHealth        []string `json:"site_health"`        // propertyName=site_health type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `HealthScoreQueryV2N0`
+// +-----------------------------------------------------------------
+type HealthScoreQueryV2N0 struct {
+	EndTime   *string                `json:"end_time"`   // propertyName=end_time type=STRING
+	Filter    *HealthScoreFilterV2N0 `json:"filter"`     // propertyName=filter type=REFERENCE
+	Interval  *string                `json:"interval"`   // propertyName=interval type=STRING
+	StartTime *string                `json:"start_time"` // propertyName=start_time type=STRING
+	View      *string                `json:"view"`       // propertyName=view type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SecurityPolicyGlobalPrefixScreenV2N1`
 // +-----------------------------------------------------------------
 type SecurityPolicyGlobalPrefixScreenV2N1 struct {
@@ -14671,6 +14870,15 @@ type SecurityPolicyGlobalPrefixScreenV2N1 struct {
 	Ipv6Prefixes []string `json:"ipv6_prefixes"` // propertyName=ipv6_prefixes type=ARRAY_PRIMITIVE
 	Name         *string  `json:"name"`          // propertyName=name type=STRING
 	Tags         []string `json:"tags"`          // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpRxTopologyChangeMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceStpRxTopologyChangeMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -15064,30 +15272,6 @@ type EventQueryRequestV3_5 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `DistributionData`
-// +-----------------------------------------------------------------
-type DistributionData struct {
-	Count *int64   `json:"count"` // propertyName=count type=INTEGER
-	Score *float64 `json:"score"` // propertyName=score type=NUMBER
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `Distribution`
-// +-----------------------------------------------------------------
-type Distribution struct {
-	Downlink []DistributionData `json:"downlink"` // propertyName=downlink type=ARRAY_REFERENCE
-	Latency  []DistributionData `json:"latency"`  // propertyName=latency type=ARRAY_REFERENCE
-	Uplink   []DistributionData `json:"uplink"`   // propertyName=uplink type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `DistributionResponse`
-// +-----------------------------------------------------------------
-type DistributionResponse struct {
-	Distribution *Distribution `json:"distribution"` // propertyName=distribution type=REFERENCE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EventQueryRequestV3_7Limit`
 // +-----------------------------------------------------------------
 type EventQueryRequestV3_7Limit struct {
@@ -15176,6 +15360,7 @@ type CellularModuleStatusQueryV2N1 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -15306,6 +15491,15 @@ type TacacsPlusProfile struct {
 	Name                   *string                  `json:"name"`                    // propertyName=name type=STRING
 	TacacsPlusServers      []TacacsPlusServerConfig `json:"tacacs_plus_servers"`     // propertyName=tacacs_plus_servers type=ARRAY_REFERENCE
 	Tags                   []string                 `json:"tags"`                    // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceModem2TemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceModem2TemperatureMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -15513,6 +15707,23 @@ type LqmMosMetric struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsDatapointV2N0`
+// +-----------------------------------------------------------------
+type AggregateBWStatsDatapointV2N0 struct {
+	MaxValueTime *string  `json:"max_value_time"` // propertyName=max_value_time type=STRING
+	Time         *string  `json:"time"`           // propertyName=time type=STRING
+	Value        *float64 `json:"value"`          // propertyName=value type=NUMBER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsDataV2N0`
+// +-----------------------------------------------------------------
+type AggregateBWStatsDataV2N0 struct {
+	Datapoints []AggregateBWStatsDatapointV2N0 `json:"datapoints"` // propertyName=datapoints type=ARRAY_REFERENCE
+	Statistics *string                         `json:"statistics"` // propertyName=statistics type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `UserIDAgentAuthentication`
 // +-----------------------------------------------------------------
 type UserIDAgentAuthentication struct {
@@ -15542,6 +15753,15 @@ type UserIDAgentScreen struct {
 	SiteId          *string                    `json:"site_id"`          // propertyName=site_id type=STRING
 	SourceInterface *string                    `json:"source_interface"` // propertyName=source_interface type=STRING
 	Tags            []string                   `json:"tags"`             // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceTopologyChangeCountMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceTopologyChangeCountMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -15652,6 +15872,7 @@ type RoutingRouteMapQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -16137,6 +16358,7 @@ type EventCorrelationPolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -16148,6 +16370,16 @@ type EventCorrelationPolicyRuleQuery struct {
 	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
 	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
 	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionQueryV3N0`
+// +-----------------------------------------------------------------
+type DistributionQueryV3N0 struct {
+	Aggregation *string `json:"aggregation"` // propertyName=aggregation type=STRING
+	Interval    *string `json:"interval"`    // propertyName=interval type=STRING
+	SiteId      *string `json:"site_id"`     // propertyName=site_id type=STRING
+	StartTime   *string `json:"start_time"`  // propertyName=start_time type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -16301,6 +16533,7 @@ type IPSECProfileQueryV2N3 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -16570,7 +16803,6 @@ type MigrateCBToEZBRequest struct {
 	DryRun    *bool   `json:"dry_run"`    // propertyName=dry_run type=BOOLEAN
 	Forced    *bool   `json:"forced"`     // propertyName=forced type=BOOLEAN
 	Id        *string `json:"id"`         // propertyName=id type=STRING
-	IsFawkes  *bool   `json:"is_fawkes"`  // propertyName=is_fawkes type=BOOLEAN
 	Retry     *bool   `json:"retry"`      // propertyName=retry type=BOOLEAN
 	SdwanOnly *bool   `json:"sdwan_only"` // propertyName=sdwan_only type=BOOLEAN
 }
@@ -16617,6 +16849,7 @@ type EventCorrelationPolicySetQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -16846,6 +17079,7 @@ type AnynetLinkQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -16867,6 +17101,7 @@ type BaseQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -16934,6 +17169,7 @@ type IPFixProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -17006,6 +17242,43 @@ type MulticastDynamicRpQueryFilter struct {
 	Schema     *int64      `json:"_schema"`     // propertyName=_schema type=INTEGER
 	DynamicRps []DynamicRp `json:"dynamic_rps"` // propertyName=dynamic_rps type=ARRAY_REFERENCE
 	Id         *string     `json:"id"`          // propertyName=id type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `PointSeriesV2N0`
+// +-----------------------------------------------------------------
+type PointSeriesV2N0 struct {
+	Data          *PointData `json:"data"`            // propertyName=data type=REFERENCE
+	ElementId     *string    `json:"element_id"`      // propertyName=element_id type=STRING
+	PathId        *string    `json:"path_id"`         // propertyName=path_id type=STRING
+	WnInterfaceId *string    `json:"wn_interface_id"` // propertyName=wn_interface_id type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmSiteV2N0`
+// +-----------------------------------------------------------------
+type LqmSiteV2N0 struct {
+	Paths  []PointSeriesV2N0 `json:"paths"`   // propertyName=paths type=ARRAY_REFERENCE
+	SiteId *string           `json:"site_id"` // propertyName=site_id type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmMetricsV2N0`
+// +-----------------------------------------------------------------
+type LqmMetricsV2N0 struct {
+	Name  *string       `json:"name"`  // propertyName=name type=STRING
+	Sites []LqmSiteV2N0 `json:"sites"` // propertyName=sites type=ARRAY_REFERENCE
+	Unit  *string       `json:"unit"`  // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmPointMetricsResponseV2N0`
+// +-----------------------------------------------------------------
+type LqmPointMetricsResponseV2N0 struct {
+	Interval  *string          `json:"interval"`   // propertyName=interval type=STRING
+	Metrics   []LqmMetricsV2N0 `json:"metrics"`    // propertyName=metrics type=ARRAY_REFERENCE
+	StartTime *string          `json:"start_time"` // propertyName=start_time type=STRING
+	View      *View            `json:"view"`       // propertyName=view type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -17376,6 +17649,7 @@ type LocalPrefixQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -17463,6 +17737,31 @@ type PolicyRule struct {
 	Region           *string          `json:"region"`             // propertyName=region type=STRING
 	ServiceContext   []ServiceContext `json:"service_context"`    // propertyName=service_context type=ARRAY_REFERENCE
 	SitePathsAllowed []SiteWanPath    `json:"site_paths_allowed"` // propertyName=site_paths_allowed type=ARRAY_REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AnynetlinkCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type AnynetlinkCorrelationEventQueryParams struct {
+	CreatedOnUtc   *NumberQueryOperator `json:"_created_on_utc"` // propertyName=_created_on_utc type=REFERENCE
+	UpdatedOnUtc   *NumberQueryOperator `json:"_updated_on_utc"` // propertyName=_updated_on_utc type=REFERENCE
+	AnynetlinkId   *IdQueryOperator     `json:"anynetlink_id"`   // propertyName=anynetlink_id type=REFERENCE
+	AnynetlinkName *StringQueryOperator `json:"anynetlink_name"` // propertyName=anynetlink_name type=REFERENCE
+	SourceSiteId   *IdQueryOperator     `json:"source_site_id"`  // propertyName=source_site_id type=REFERENCE
+	StandingState  *StringQueryOperator `json:"standing_state"`  // propertyName=standing_state type=REFERENCE
+	TargetSiteId   *IdQueryOperator     `json:"target_site_id"`  // propertyName=target_site_id type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AnynetlinkCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type AnynetlinkCorrelationEventQueryRequest struct {
+	LastQueryTs         *int64                                 `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                                 `json:"limit"`                 // propertyName=limit type=INTEGER
+	QueryParams         *AnynetlinkCorrelationEventQueryParams `json:"query_params"`          // propertyName=query_params type=REFERENCE
+	RetrievedFields     []string                               `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                                  `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortParams          *map[string]interface{}                `json:"sort_params"`           // propertyName=sort_params type=OBJECT
 }
 
 // +-----------------------------------------------------------------
@@ -17561,6 +17860,7 @@ type VRFContextQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -17820,6 +18120,14 @@ type AppAccelerationFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmLatencyPointMetricV2N0`
+// +-----------------------------------------------------------------
+type LqmLatencyPointMetricV2N0 struct {
+	Name *string `json:"name"` // propertyName=name type=STRING
+	Unit *string `json:"unit"` // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `RoutingAccessListQuery`
 // +-----------------------------------------------------------------
 type RoutingAccessListQuery struct {
@@ -17827,6 +18135,7 @@ type RoutingAccessListQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -17869,6 +18178,36 @@ type Element struct {
 	SiteId               *string  `json:"site_id"`                // propertyName=site_id type=STRING
 	SoftwareVersion      *string  `json:"software_version"`       // propertyName=software_version type=STRING
 	State                *string  `json:"state"`                  // propertyName=state type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsMetricV2N0`
+// +-----------------------------------------------------------------
+type AggregateBWStatsMetricV2N0 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsViewV2N0`
+// +-----------------------------------------------------------------
+type AggregateBWStatsViewV2N0 struct {
+	Individual *string `json:"individual"` // propertyName=individual type=STRING
+	Summary    *bool   `json:"summary"`    // propertyName=summary type=BOOLEAN
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsQueryV2N0`
+// +-----------------------------------------------------------------
+type AggregateBWStatsQueryV2N0 struct {
+	EndTime   *string                      `json:"end_time"`   // propertyName=end_time type=STRING
+	Filter    *AggregateBWStatsFilterV2N0  `json:"filter"`     // propertyName=filter type=REFERENCE
+	Interval  *string                      `json:"interval"`   // propertyName=interval type=STRING
+	Metrics   []AggregateBWStatsMetricV2N0 `json:"metrics"`    // propertyName=metrics type=ARRAY_REFERENCE
+	Name      *string                      `json:"name"`       // propertyName=name type=STRING
+	StartTime *string                      `json:"start_time"` // propertyName=start_time type=STRING
+	View      *AggregateBWStatsViewV2N0    `json:"view"`       // propertyName=view type=REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -18057,6 +18396,7 @@ type MulticastRouteTableQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18127,6 +18467,7 @@ type DeviceIdStartNodeQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18265,6 +18606,7 @@ type RoutingCommunityListQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18286,6 +18628,7 @@ type VPNLinkQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18297,6 +18640,15 @@ type VPNLinkQuery struct {
 	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
 	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
 	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceLldpTxTotalFramesMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceLldpTxTotalFramesMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -18326,11 +18678,7 @@ type StaticRoute struct {
 // | Auto Generated for Schema `LocalPrefixSetDTO`
 // +-----------------------------------------------------------------
 type LocalPrefixSetDTO struct {
-	Etag       *int64               `json:"_etag"`      // propertyName=_etag type=INTEGER
-	Schema     *int64               `json:"_schema"`    // propertyName=_schema type=INTEGER
-	Configured *ConfiguredPrefixSet `json:"configured"` // propertyName=configured type=REFERENCE
-	Discovered *LocalPrefixSet      `json:"discovered"` // propertyName=discovered type=REFERENCE
-	Id         *string              `json:"id"`         // propertyName=id type=STRING
+	LocalNetworks []LocalNetwork `json:"local_networks"` // propertyName=local_networks type=ARRAY_REFERENCE
 }
 
 // +-----------------------------------------------------------------
@@ -18425,6 +18773,7 @@ type VffLicenseStateQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18500,6 +18849,7 @@ type SecurityPolicyV2SetQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18795,6 +19145,28 @@ type NtpLastSelected struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type ElementCorrelationEventQueryParams struct {
+	CreatedOnUtc  *NumberQueryOperator `json:"_created_on_utc"` // propertyName=_created_on_utc type=REFERENCE
+	UpdatedOnUtc  *NumberQueryOperator `json:"_updated_on_utc"` // propertyName=_updated_on_utc type=REFERENCE
+	ElementId     *IdQueryOperator     `json:"element_id"`      // propertyName=element_id type=REFERENCE
+	ElementName   *StringQueryOperator `json:"element_name"`    // propertyName=element_name type=REFERENCE
+	SiteId        *IdQueryOperator     `json:"site_id"`         // propertyName=site_id type=REFERENCE
+	StandingState *StringQueryOperator `json:"standing_state"`  // propertyName=standing_state type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type ElementCorrelationEventQueryRequest struct {
+	LastQueryTs *int64                              `json:"last_query_ts"` // propertyName=last_query_ts type=INTEGER
+	Limit       *int64                              `json:"limit"`         // propertyName=limit type=INTEGER
+	QueryParams *ElementCorrelationEventQueryParams `json:"query_params"`  // propertyName=query_params type=REFERENCE
+	SortParams  *map[string]interface{}             `json:"sort_params"`   // propertyName=sort_params type=OBJECT
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `OspfDiscoveredNeighborQuery`
 // +-----------------------------------------------------------------
 type OspfDiscoveredNeighborQuery struct {
@@ -18802,6 +19174,7 @@ type OspfDiscoveredNeighborQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18836,6 +19209,7 @@ type PerfMgmtPolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -18857,6 +19231,7 @@ type MachineSoftwareStateQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19061,13 +19436,6 @@ type FlowsFilterV3N10 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `AggregateBWStatsResponse`
-// +-----------------------------------------------------------------
-type AggregateBWStatsResponse struct {
-	Metrics []MetricArray `json:"metrics"` // propertyName=metrics type=ARRAY_REFERENCE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastDynamicRpQuery`
 // +-----------------------------------------------------------------
 type MulticastDynamicRpQuery struct {
@@ -19075,6 +19443,7 @@ type MulticastDynamicRpQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19145,6 +19514,7 @@ type PolicySetStackQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19177,6 +19547,7 @@ type URLCategoryQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19198,6 +19569,7 @@ type HubClusterQueryV4 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19272,6 +19644,14 @@ type EventBodyPolicyInfo struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmLinkHealthPointMetricV2N0`
+// +-----------------------------------------------------------------
+type LqmLinkHealthPointMetricV2N0 struct {
+	Name *string `json:"name"` // propertyName=name type=STRING
+	Unit *string `json:"unit"` // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `UDPFlowCountMetric`
 // +-----------------------------------------------------------------
 type UDPFlowCountMetric struct {
@@ -19285,6 +19665,15 @@ type UDPFlowCountMetric struct {
 // +-----------------------------------------------------------------
 type MetricSchemaResponse struct {
 	Metrics []MetricSchema `json:"metrics"` // propertyName=metrics type=ARRAY_REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceEgressCarrierErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceEgressCarrierErrorsMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -19317,6 +19706,7 @@ type ElementShellQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19436,6 +19826,7 @@ type BulkConfigPushQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19604,6 +19995,15 @@ type AppStatsTopNResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTransitionForwardMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceStpTransitionForwardMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EventsOperationsResponseBody`
 // +-----------------------------------------------------------------
 type EventsOperationsResponseBody struct {
@@ -19627,6 +20027,29 @@ type AppStatsAggregatesQuery struct {
 	Filter     *AppStatsAggregateFilter `json:"filter"`     // propertyName=filter type=REFERENCE
 	Name       *string                  `json:"name"`       // propertyName=name type=STRING
 	StartTime  *string                  `json:"start_time"` // propertyName=start_time type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `InterfaceCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type InterfaceCorrelationEventQueryParams struct {
+	CreatedOnUtc  *NumberQueryOperator `json:"_created_on_utc"` // propertyName=_created_on_utc type=REFERENCE
+	UpdatedOnUtc  *NumberQueryOperator `json:"_updated_on_utc"` // propertyName=_updated_on_utc type=REFERENCE
+	ElementId     *IdQueryOperator     `json:"element_id"`      // propertyName=element_id type=REFERENCE
+	InterfaceId   *IdQueryOperator     `json:"interface_id"`    // propertyName=interface_id type=REFERENCE
+	InterfaceName *StringQueryOperator `json:"interface_name"`  // propertyName=interface_name type=REFERENCE
+	SiteId        *IdQueryOperator     `json:"site_id"`         // propertyName=site_id type=REFERENCE
+	StandingState *StringQueryOperator `json:"standing_state"`  // propertyName=standing_state type=REFERENCE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `InterfaceCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type InterfaceCorrelationEventQueryRequest struct {
+	LastQueryTs *int64                                `json:"last_query_ts"` // propertyName=last_query_ts type=INTEGER
+	Limit       *int64                                `json:"limit"`         // propertyName=limit type=INTEGER
+	QueryParams *InterfaceCorrelationEventQueryParams `json:"query_params"`  // propertyName=query_params type=REFERENCE
+	SortParams  *map[string]interface{}               `json:"sort_params"`   // propertyName=sort_params type=OBJECT
 }
 
 // +-----------------------------------------------------------------
@@ -19705,6 +20128,15 @@ type DeviceIdStartNodeScreen struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsMemoryUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsMemoryUsageMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `Machine`
 // +-----------------------------------------------------------------
 type Machine struct {
@@ -19736,6 +20168,7 @@ type DnsServiceQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -19756,6 +20189,16 @@ type InterfaceConfig struct {
 	AreaId              *int64               `json:"area_id"`              // propertyName=area_id type=INTEGER
 	DiscoveredNeighbors []DiscoveredNeighbor `json:"discovered_neighbors"` // propertyName=discovered_neighbors type=ARRAY_REFERENCE
 	InterfaceId         *string              `json:"interface_id"`         // propertyName=interface_id type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `WANInterfaceCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type WANInterfaceCorrelationEventQueryRequest struct {
+	LastQueryTs *int64                                   `json:"last_query_ts"` // propertyName=last_query_ts type=INTEGER
+	Limit       *int64                                   `json:"limit"`         // propertyName=limit type=INTEGER
+	QueryParams *WANInterfaceCorrelationEventQueryParams `json:"query_params"`  // propertyName=query_params type=REFERENCE
+	SortParams  *map[string]interface{}                  `json:"sort_params"`   // propertyName=sort_params type=OBJECT
 }
 
 // +-----------------------------------------------------------------
@@ -19792,6 +20235,7 @@ type IPSECProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -20189,6 +20633,7 @@ type TopologyNodesQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -20390,6 +20835,7 @@ type ElementStateQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -20485,6 +20931,7 @@ type MulticastSourceSideRpQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -20521,6 +20968,15 @@ type AppObjectStatsResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTxBpduMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceStpTxBpduMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `VffLicenseQuery`
 // +-----------------------------------------------------------------
 type VffLicenseQuery struct {
@@ -20528,6 +20984,7 @@ type VffLicenseQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -20807,6 +21264,7 @@ type DeviceIdConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21001,6 +21459,15 @@ type EventCodesDataItemItems struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceBandwidthUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceBandwidthUsageMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `PriorityPolicySetState`
 // +-----------------------------------------------------------------
 type PriorityPolicySetState struct {
@@ -21085,6 +21552,15 @@ type RoutingRouteMapScreenV2N1 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDiskUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDiskUsageMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `RoutingRouteMapScreenV2N2`
 // +-----------------------------------------------------------------
 type RoutingRouteMapScreenV2N2 struct {
@@ -21106,6 +21582,7 @@ type MulticastStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21217,19 +21694,6 @@ type CellularmetricsResponse struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `DistributionQuery`
-// +-----------------------------------------------------------------
-type DistributionQuery struct {
-	Aggregation *string `json:"aggregation"` // propertyName=aggregation type=STRING
-	EndTime     *string `json:"end_time"`    // propertyName=end_time type=STRING
-	Interval    *string `json:"interval"`    // propertyName=interval type=STRING
-	MetricName  *string `json:"metric_name"` // propertyName=metric_name type=STRING
-	Name        *string `json:"name"`        // propertyName=name type=STRING
-	SiteId      *string `json:"site_id"`     // propertyName=site_id type=STRING
-	StartTime   *string `json:"start_time"`  // propertyName=start_time type=STRING
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `LqmPacketLossThresholdMetric`
 // +-----------------------------------------------------------------
 type LqmPacketLossThresholdMetric struct {
@@ -21270,6 +21734,14 @@ type EventCorrelationPolicyRule struct {
 	SubResourceType *string         `json:"sub_resource_type"` // propertyName=sub_resource_type type=STRING
 	Suppress        *string         `json:"suppress"`          // propertyName=suppress type=STRING
 	Tags            []string        `json:"tags"`              // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmJitterPointMetricV2N0`
+// +-----------------------------------------------------------------
+type LqmJitterPointMetricV2N0 struct {
+	Name *string `json:"name"` // propertyName=name type=STRING
+	Unit *string `json:"unit"` // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -21362,6 +21834,14 @@ type MicrosegmentQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmMosPointMetricV2N0`
+// +-----------------------------------------------------------------
+type LqmMosPointMetricV2N0 struct {
+	Name *string `json:"name"` // propertyName=name type=STRING
+	Unit *string `json:"unit"` // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SystemHealthMetricsThresholds`
 // +-----------------------------------------------------------------
 type SystemHealthMetricsThresholds struct {
@@ -21392,6 +21872,7 @@ type NATPolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21439,6 +21920,7 @@ type NetworkPolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21580,6 +22062,7 @@ type ElementStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21616,6 +22099,7 @@ type ElementQueryV3N1 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21765,6 +22249,18 @@ type SysMetricsInterfaceStpRxTopologyChangeMetricV3N0 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SiteCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type SiteCorrelationEventQueryRequest struct {
+	LastQueryTs         *int64                           `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
+	Limit               *int64                           `json:"limit"`                 // propertyName=limit type=INTEGER
+	QueryParams         *SiteCorrelationEventQueryParams `json:"query_params"`          // propertyName=query_params type=REFERENCE
+	RetrievedFields     []string                         `json:"retrieved_fields"`      // propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFieldsMask *bool                            `json:"retrieved_fields_mask"` // propertyName=retrieved_fields_mask type=BOOLEAN
+	SortParams          *map[string]interface{}          `json:"sort_params"`           // propertyName=sort_params type=OBJECT
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `PolicySetQuery`
 // +-----------------------------------------------------------------
 type PolicySetQuery struct {
@@ -21772,6 +22268,7 @@ type PolicySetQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21793,6 +22290,7 @@ type PolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21865,6 +22363,15 @@ type InterfaceReset struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfacePoePowerDeniedCounterMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfacePoePowerDeniedCounterMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `BooleanQueryOperator`
 // +-----------------------------------------------------------------
 type BooleanQueryOperator struct {
@@ -21897,6 +22404,7 @@ type PriorityPolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -21973,6 +22481,7 @@ type ElementMetaModel struct {
 	DisabledInterfaceTypes        []string                       `json:"disabled_interface_types"`        // propertyName=disabled_interface_types type=ARRAY_PRIMITIVE
 	DisabledReason                *string                        `json:"disabled_reason"`                 // propertyName=disabled_reason type=STRING
 	EolSwVersion                  *string                        `json:"eol_sw_version"`                  // propertyName=eol_sw_version type=STRING
+	FecPorts                      []string                       `json:"fec_ports"`                       // propertyName=fec_ports type=ARRAY_PRIMITIVE
 	FecSupported                  *bool                          `json:"fec_supported"`                   // propertyName=fec_supported type=BOOLEAN
 	FipsChangeMode                *string                        `json:"fips_change_mode"`                // propertyName=fips_change_mode type=STRING
 	Id                            *string                        `json:"id"`                              // propertyName=id type=STRING
@@ -22000,6 +22509,15 @@ type ElementMetaModel struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `TrafficRiskExposureQuery`
+// +-----------------------------------------------------------------
+type TrafficRiskExposureQuery struct {
+	EndTime   *string `json:"end_time"`   // propertyName=end_time type=STRING
+	Name      *string `json:"name"`       // propertyName=name type=STRING
+	StartTime *string `json:"start_time"` // propertyName=start_time type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `CellularModuleFirmwareStatusQuery`
 // +-----------------------------------------------------------------
 type CellularModuleFirmwareStatusQuery struct {
@@ -22007,6 +22525,7 @@ type CellularModuleFirmwareStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22110,6 +22629,7 @@ type ServiceEndpointQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22131,6 +22651,7 @@ type TopologyLinksQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22165,6 +22686,14 @@ type CertificatePOSTScreen struct {
 	Name            *string  `json:"name"`             // propertyName=name type=STRING
 	Passphrase      *string  `json:"passphrase"`       // propertyName=passphrase type=STRING
 	UsedFor         []string `json:"used_for"`         // propertyName=used_for type=ARRAY_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmPktLossPointMetricV2N0`
+// +-----------------------------------------------------------------
+type LqmPktLossPointMetricV2N0 struct {
+	Name *string `json:"name"` // propertyName=name type=STRING
+	Unit *string `json:"unit"` // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -22518,6 +23047,7 @@ type MachineQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22539,6 +23069,7 @@ type VffTokenQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22595,6 +23126,7 @@ type ElementAccessConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22606,6 +23138,15 @@ type ElementAccessConfigQuery struct {
 	SortCaseInsensitive *bool                   `json:"sort_case_insensitive"` // propertyName=sort_case_insensitive type=BOOLEAN
 	SortParams          *map[string]interface{} `json:"sort_params"`           // propertyName=sort_params type=OBJECT
 	TotalCount          *int64                  `json:"total_count"`           // propertyName=total_count type=INTEGER
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmPointMetricsFilterV2N0`
+// +-----------------------------------------------------------------
+type LqmPointMetricsFilterV2N0 struct {
+	Path   []string `json:"path"`    // propertyName=path type=ARRAY_PRIMITIVE
+	Site   []string `json:"site"`    // propertyName=site type=ARRAY_PRIMITIVE
+	WnPath []string `json:"wn_path"` // propertyName=wn_path type=ARRAY_PRIMITIVE
 }
 
 // +-----------------------------------------------------------------
@@ -22676,6 +23217,7 @@ type GlobalPrefixQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -22750,6 +23292,15 @@ type IncidentResourceSettingsQuery struct {
 	Schema *int64  `json:"_schema"` // propertyName=_schema type=INTEGER
 	Filter *Filter `json:"filter"`  // propertyName=filter type=REFERENCE
 	Id     *string `json:"id"`      // propertyName=id type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceDroppedPacketsMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceDroppedPacketsMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -22931,6 +23482,7 @@ type SecurityPolicySetQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -23409,6 +23961,7 @@ type DnsServiceProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -23974,17 +24527,6 @@ type SiteQueryFilterV4N3 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `IdQueryOperator`
-// +-----------------------------------------------------------------
-type IdQueryOperator struct {
-	Eq     *string  `json:"eq"`     // propertyName=eq type=STRING
-	Exists *bool    `json:"exists"` // propertyName=exists type=BOOLEAN
-	In     []string `json:"in"`     // propertyName=in type=ARRAY_PRIMITIVE
-	Neq    *string  `json:"neq"`    // propertyName=neq type=STRING
-	Nin    []string `json:"nin"`    // propertyName=nin type=ARRAY_PRIMITIVE
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastWANTrafficStatsResponse`
 // +-----------------------------------------------------------------
 type MulticastWANTrafficStatsResponse struct {
@@ -24068,6 +24610,7 @@ type ThreatMetadataQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -24107,6 +24650,7 @@ type PrefixQueryV3 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	Ge                  *int64                  `json:"ge"`                    // propertyName=ge type=INTEGER
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
@@ -24131,6 +24675,7 @@ type SiteQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -24583,6 +25128,7 @@ type PathGroupQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -24815,6 +25361,15 @@ type IdpV3N3 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTransitionBulkMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceStpTransitionBulkMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IdpV3N2`
 // +-----------------------------------------------------------------
 type IdpV3N2 struct {
@@ -24922,6 +25477,15 @@ type PPKSecretResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTxTopologyChangeMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceStpTxTopologyChangeMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `CellularModuleFirmwareStatusQueryFilter`
 // +-----------------------------------------------------------------
 type CellularModuleFirmwareStatusQueryFilter struct {
@@ -24945,6 +25509,17 @@ type CellularModuleFirmwareStatusQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LocalPrefixSetResponse`
+// +-----------------------------------------------------------------
+type LocalPrefixSetResponse struct {
+	Etag       *int64               `json:"_etag"`      // propertyName=_etag type=INTEGER
+	Schema     *int64               `json:"_schema"`    // propertyName=_schema type=INTEGER
+	Configured *ConfiguredPrefixSet `json:"configured"` // propertyName=configured type=REFERENCE
+	Discovered *LocalPrefixSet      `json:"discovered"` // propertyName=discovered type=REFERENCE
+	Id         *string              `json:"id"`         // propertyName=id type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MonitorMetricsResponse`
 // +-----------------------------------------------------------------
 type MonitorMetricsResponse struct {
@@ -24959,6 +25534,7 @@ type AppAccelerationStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -25064,6 +25640,7 @@ type PriorityPolicyRuleQueryV2N2 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -25107,6 +25684,7 @@ type PriorityPolicyRuleQueryV2N1 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -25197,6 +25775,7 @@ type PANetworkQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -25525,6 +26104,7 @@ type SpokeClusterElementStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -25998,6 +26578,15 @@ type DeviceIdConfidence struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceAcpiTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceAcpiTemperatureMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `HardwareBypass`
 // +-----------------------------------------------------------------
 type HardwareBypass struct {
@@ -26204,6 +26793,15 @@ type PerfMgmtPolicyRuleV2N2 struct {
 // | Auto Generated for Schema `AppTotalConnectionsMetric`
 // +-----------------------------------------------------------------
 type AppTotalConnectionsMetric struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDevicePseTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDevicePseTemperatureMetricV2N4 struct {
 	Name       *string  `json:"name"`       // propertyName=name type=STRING
 	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
 	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
@@ -26712,6 +27310,7 @@ type SecurityProfileGroupQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -26861,6 +27460,7 @@ type IPFixConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -26882,6 +27482,7 @@ type SaseConnectionQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -27001,6 +27602,7 @@ type PrefixQueryV3N1 struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	Ge                  *int64                  `json:"ge"`                    // propertyName=ge type=INTEGER
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
@@ -27263,6 +27865,7 @@ type SnapshotExportQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -27434,6 +28037,7 @@ type InterfaceStateQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -27540,6 +28144,7 @@ type LANNetworkQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -27796,6 +28401,7 @@ type ElementQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -28152,6 +28758,7 @@ type ElementSecurityZoneQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -28205,6 +28812,7 @@ type SnapshotImportQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -28243,6 +28851,7 @@ type ElementImageStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -28490,6 +29099,7 @@ type MulticastRPConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -28537,6 +29147,15 @@ type RoutingAccessList struct {
 	Id              *string       `json:"id"`                 // propertyName=id type=STRING
 	Name            *string       `json:"name"`               // propertyName=name type=STRING
 	Tags            []string      `json:"tags"`               // propertyName=tags type=SET_PRIMITIVE
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceIngressFrameErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceIngressFrameErrorsMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -29063,6 +29682,15 @@ type DeviceIdProfile struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceInletTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceInletTemperatureMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MSTPInstanceQuery`
 // +-----------------------------------------------------------------
 type MSTPInstanceQuery struct {
@@ -29070,6 +29698,7 @@ type MSTPInstanceQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -29347,6 +29976,7 @@ type WANNetworkQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -29413,6 +30043,7 @@ type BGPPeerStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -29490,6 +30121,7 @@ type PathPrefixDistributionAssociationQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -29536,6 +30168,7 @@ type ActiveUserIPQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -29833,6 +30466,7 @@ type MulticastWanStatusQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -29854,6 +30488,7 @@ type SecurityPolicyRuleQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -30085,21 +30720,6 @@ type SaseConnectionGlobalConfigScreenV3N1 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementAccessConfigV2N3`
-// +-----------------------------------------------------------------
-type ElementAccessConfigV2N3 struct {
-	Etag                   *int64  `json:"_etag"`                    // propertyName=_etag type=INTEGER
-	Schema                 *int64  `json:"_schema"`                  // propertyName=_schema type=INTEGER
-	AccountDisableInterval *int64  `json:"account_disable_interval"` // propertyName=account_disable_interval type=INTEGER
-	Id                     *string `json:"id"`                       // propertyName=id type=STRING
-	InactiveInterval       *int64  `json:"inactive_interval"`        // propertyName=inactive_interval type=INTEGER
-	OtpkeyVersion          *int64  `json:"otpkey_version"`           // propertyName=otpkey_version type=INTEGER
-	RetryLoginCount        *int64  `json:"retry_login_count"`        // propertyName=retry_login_count type=INTEGER
-	SshEnabled             *bool   `json:"ssh_enabled"`              // propertyName=ssh_enabled type=BOOLEAN
-	SshOutboundEnabled     *bool   `json:"ssh_outbound_enabled"`     // propertyName=ssh_outbound_enabled type=BOOLEAN
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `ElementAccessConfigV2N2`
 // +-----------------------------------------------------------------
 type ElementAccessConfigV2N2 struct {
@@ -30166,6 +30786,15 @@ type MicrosegmentScreen struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceLastTopologyChangeSinceMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsDeviceLastTopologyChangeSinceMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SyslogServerV2N1`
 // +-----------------------------------------------------------------
 type SyslogServerV2N1 struct {
@@ -30201,6 +30830,15 @@ type SaseConnectionGlobalConfigScreenV3N2 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceLldpRxTotalFramesMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceLldpRxTotalFramesMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `NATPolicyZone`
 // +-----------------------------------------------------------------
 type NATPolicyZone struct {
@@ -30226,6 +30864,7 @@ type OspfReachablePrefixesQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -30267,6 +30906,7 @@ type DeviceIdDictionaryQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -30377,6 +31017,15 @@ type ObjectStatsTypeResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceErrorsMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `OspfReachablePrefixesFilter`
 // +-----------------------------------------------------------------
 type OspfReachablePrefixesFilter struct {
@@ -30398,6 +31047,7 @@ type DirectoryUserQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -30604,6 +31254,7 @@ type MicrosegmentQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -30664,6 +31315,7 @@ type ProbeConfigQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER
@@ -30691,6 +31343,15 @@ type BGPPeerStatusV2N3 struct {
 	Uptime                 *string `json:"uptime"`                   // propertyName=uptime type=STRING
 	V4CapabilityNegotiated *bool   `json:"v4_capability_negotiated"` // propertyName=v4_capability_negotiated type=BOOLEAN
 	V6CapabilityNegotiated *bool   `json:"v6_capability_negotiated"` // propertyName=v6_capability_negotiated type=BOOLEAN
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceLldpTxFailedFramesMetricV2N4`
+// +-----------------------------------------------------------------
+type SysMetricsInterfaceLldpTxFailedFramesMetricV2N4 struct {
+	Name       *string  `json:"name"`       // propertyName=name type=STRING
+	Statistics []string `json:"statistics"` // propertyName=statistics type=ARRAY_PRIMITIVE
+	Unit       *string  `json:"unit"`       // propertyName=unit type=STRING
 }
 
 // +-----------------------------------------------------------------
@@ -31166,6 +31827,7 @@ type APNProfileQuery struct {
 	Schema              *int64                  `json:"_schema"`               // propertyName=_schema type=INTEGER
 	Aggregate           *Aggregate              `json:"aggregate"`             // propertyName=aggregate type=REFERENCE
 	DestPage            *int64                  `json:"dest_page"`             // propertyName=dest_page type=INTEGER
+	DistinctField       *string                 `json:"distinct_field"`        // propertyName=distinct_field type=STRING
 	GroupBy             []string                `json:"group_by"`              // propertyName=group_by type=ARRAY_PRIMITIVE
 	Id                  *string                 `json:"id"`                    // propertyName=id type=STRING
 	LastQueryTs         *int64                  `json:"last_query_ts"`         // propertyName=last_query_ts type=INTEGER

@@ -45,7 +45,7 @@ resource "prismasdwan_site_wan_interface" "example" {
   network_id                              = "<network_id>"
   probe_profile_id                        = "<probe_profile_id>"
   tags                                    = ["terraform"]
-  type                                    = "PUBLIC_WAN"
+  type                                    = "publicwan"
   use_for_application_reachability_probes = false
   use_for_controller_connections          = false
   use_lqm_for_non_hub_paths               = false

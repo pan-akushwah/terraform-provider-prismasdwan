@@ -8,7 +8,7 @@ import (
 )
 
 // +-----------------------------------------------------------------
-// | All Schema Map Summary (size=allGoLangStructMap=1,823)
+// | All Schema Map Summary (size=allGoLangStructMap=1,877)
 // +-----------------------------------------------------------------
 // | LedConfig HasID=false
 // | SwitchConfig HasID=false
@@ -66,6 +66,9 @@ import (
 // | HubCluster HasID=true
 // | PortRange HasID=false
 // | ApplicationFilter HasID=false
+// | TrafficRiskExposureData HasID=false
+// | TrafficRiskExposureResponse HasID=false
+// | SysMetricsInterfaceFifoErrorsMetricV2N4 HasID=false
 // | HealthscoreMetric HasID=false
 // | RecoveryTokenScreen HasID=true
 // | PointData HasID=false
@@ -107,6 +110,7 @@ import (
 // | OspfConfigQuery HasID=true
 // | ClientDetails HasID=false
 // | InterfaceAuthenticationState HasID=true
+// | SysMetricsInterfacePoePowerConsumptionMetricV2N4 HasID=false
 // | DemSiteConfigQuery HasID=true
 // | SimSecurityScreen HasID=true
 // | PathPrefixDistributionFiltersQuery HasID=true
@@ -168,6 +172,7 @@ import (
 // | IPFixTemplate HasID=true
 // | TenantCacheQueryFilter HasID=true
 // | CmSecurityProfileInfo HasID=true
+// | SysMetricsInterfaceIngressCRCErrorsMetricV2N4 HasID=false
 // | AppNormalizedNetworkTransferTimeMetric HasID=false
 // | EventCorrelationPolicyRuleQueryV2N1 HasID=true
 // | ExtendedTunnelCidr HasID=false
@@ -201,6 +206,10 @@ import (
 // | IcmpPingProbe HasID=false
 // | SEPLivelinessProbeV2N2 HasID=false
 // | VRFContextProfileScreen HasID=true
+// | IdQueryOperator HasID=false
+// | StringQueryOperator HasID=false
+// | SiteCorrelationEventQueryParams HasID=false
+// | SysMetricsDeviceModemTemperatureMetricV2N4 HasID=false
 // | SNMPTrapUserAccess HasID=false
 // | AppDefScreenV2N1 HasID=true
 // | BaseCustomDHCPOptions HasID=false
@@ -230,6 +239,9 @@ import (
 // | CustomRoleV2N1 HasID=true
 // | SecurityZoneQueryFilter HasID=true
 // | TenantPassageConf HasID=true
+// | DistributionDataV3N0 HasID=false
+// | DistributionV3N0 HasID=false
+// | DistributionResponseV3N0 HasID=false
 // | AppStatsAggregateData HasID=false
 // | AppStatsAggregateQueryResponse HasID=false
 // | FirmwareState HasID=false
@@ -288,10 +300,6 @@ import (
 // | SysMetricsQueryDTOV2N1Filter HasID=false
 // | SysMetricsQueryDTOV2N1View HasID=false
 // | SysMetricsQueryDTOV2N1 HasID=false
-// | SysMetricsQueryDTOV2N4ItemMetrics HasID=false
-// | SysMetricsQueryDTOV2N4Filter HasID=false
-// | SysMetricsQueryDTOV2N4View HasID=false
-// | SysMetricsQueryDTOV2N4 HasID=false
 // | SysMetricsQueryDTOV2N3ItemMetrics HasID=false
 // | SysMetricsQueryDTOV2N3Filter HasID=false
 // | SysMetricsQueryDTOV2N3View HasID=false
@@ -327,6 +335,7 @@ import (
 // | PerfMgmtActionV2N1 HasID=false
 // | WANInterfaceQueryFilterV2N9 HasID=true
 // | SaseConnectionGlobalConfigV3 HasID=true
+// | SysMetricsInterfaceStpRxBpduMetricV2N4 HasID=false
 // | FlapRule HasID=false
 // | StandingRule HasID=false
 // | EscalationRule HasID=false
@@ -396,6 +405,7 @@ import (
 // | Zone HasID=false
 // | Server HasID=false
 // | AuthoritativeConfig HasID=false
+// | WANInterfaceCorrelationEventQueryParams HasID=false
 // | SaseConnectionScreenV2N1 HasID=true
 // | Subnet HasID=false
 // | CustomerPremisesEquipment HasID=false
@@ -411,8 +421,6 @@ import (
 // | SaseConnectionRemoteNetwork HasID=true
 // | BGPConfig HasID=false
 // | BGPPeerConfig HasID=true
-// | HealthFilter HasID=false
-// | HealthScoreQuery HasID=false
 // | SiteSecurityPolicyV2PrefixAssociation HasID=true
 // | MachineCellularModuleState HasID=true
 // | BaseInsightsResponse HasID=false
@@ -489,12 +497,12 @@ import (
 // | NetworkNode HasID=true
 // | DirectoryUserQueryFilter HasID=true
 // | CellularModuleImage HasID=true
+// | SysMetricsDeviceOutletTemperatureMetricV2N4 HasID=false
 // | RemoteNetwork HasID=false
 // | PrismaAccessConfigQueryResponse HasID=true
 // | MulticastRouteWanpathStatsData HasID=false
 // | VlanPort HasID=true
 // | SwitchPortVlanPorts HasID=true
-// | StringQueryOperator HasID=false
 // | IPFixContext HasID=true
 // | NATPolicyPoolQueryFilter HasID=true
 // | EventBodyV3AcknowledgementInfo HasID=false
@@ -521,8 +529,6 @@ import (
 // | SiteOperations HasID=true
 // | SiteIPFixPrefixAssociation HasID=true
 // | AppDefScreenV2 HasID=true
-// | AggregateBWStatsFilter HasID=false
-// | AggregateBWStatsQuery HasID=false
 // | RoutingAccessListV2N1 HasID=true
 // | AppStatsTopNView HasID=false
 // | Adjustment HasID=false
@@ -728,17 +734,20 @@ import (
 // | Session HasID=true
 // | RoutingRouteMapV2N4 HasID=true
 // | PassageQueryFilter HasID=true
+// | SysMetricsInterfacePoeOverloadCounterMetricV2N4 HasID=false
 // | LANNetworkV3N3 HasID=true
 // | LANNetworkV3N2 HasID=true
 // | LANNetworkV3N1 HasID=true
 // | SysMetricsMemoryUsageMetricV3N0 HasID=false
 // | PathCapacityMetric HasID=false
 // | ConfiguredPrefixSet HasID=false
+// | SysMetricsCPUUsageMetricV2N4 HasID=false
 // | ElementSecurityZoneQueryFilter HasID=true
 // | SwitchPort HasID=true
 // | VlanPortSwitchPorts HasID=true
 // | DemSiteConfigScreen HasID=true
 // | SwitchState HasID=false
+// | AggregateBWStatsFilterV2N0 HasID=false
 // | VPNFailoverHostStatus HasID=false
 // | HubClusterTrackingStatus HasID=false
 // | SaseConnectionStatusQuery HasID=true
@@ -796,9 +805,11 @@ import (
 // | NATPolicyPool HasID=true
 // | WANInterfaceScreenV2N9 HasID=true
 // | MulticastRouteOutgoingInterfaceStatsData HasID=false
+// | SysMetricsDeviceCpuTemperatureMetricV2N4 HasID=false
 // | FlowsQueryV3N9 HasID=false
 // | WANInterfaceScreenV2N3 HasID=true
 // | WANInterfaceScreenV2N4 HasID=true
+// | SysMetricsDevicePoePowerConsumptionMetricV2N4 HasID=false
 // | ApplicationProbe HasID=true
 // | WANInterfaceScreenV2N2 HasID=true
 // | WANInterfaceScreenV2N7 HasID=true
@@ -858,7 +869,10 @@ import (
 // | BGPPeerQueryFilterV2N1 HasID=true
 // | BGPPeerQueryFilterV2N2 HasID=true
 // | DeviceIdMappingsQuery HasID=true
+// | HealthScoreFilterV2N0 HasID=false
+// | HealthScoreQueryV2N0 HasID=false
 // | SecurityPolicyGlobalPrefixScreenV2N1 HasID=true
+// | SysMetricsInterfaceStpRxTopologyChangeMetricV2N4 HasID=false
 // | AppAccelerationData HasID=false
 // | AppAccelerationQueryResponse HasID=false
 // | BasePolicyPrefixS HasID=true
@@ -888,9 +902,6 @@ import (
 // | EventQueryRequestV3_5SuppressedInfo HasID=false
 // | EventQueryRequestV3_5View HasID=false
 // | EventQueryRequestV3_5 HasID=false
-// | DistributionData HasID=false
-// | Distribution HasID=false
-// | DistributionResponse HasID=false
 // | EventQueryRequestV3_7Limit HasID=false
 // | EventQueryRequestV3_7SuppressedInfo HasID=false
 // | EventQueryRequestV3_7View HasID=false
@@ -905,6 +916,7 @@ import (
 // | RadiusMetricsResponse HasID=false
 // | OspfConfigQueryFilterV2N1 HasID=true
 // | TacacsPlusProfile HasID=true
+// | SysMetricsDeviceModem2TemperatureMetricV2N4 HasID=false
 // | ObjectStatsType HasID=false
 // | UrlListInfo HasID=false
 // | WANInterfaceLabelScreenV2N5 HasID=true
@@ -917,8 +929,11 @@ import (
 // | WANInterfaceLabelScreenV2N1 HasID=true
 // | WANInterfaceLabelScreenV2N2 HasID=true
 // | LqmMosMetric HasID=false
+// | AggregateBWStatsDatapointV2N0 HasID=false
+// | AggregateBWStatsDataV2N0 HasID=false
 // | UserIDAgentAuthentication HasID=false
 // | UserIDAgentScreen HasID=true
+// | SysMetricsDeviceTopologyChangeCountMetricV2N4 HasID=false
 // | DirectoryGroupAttribute HasID=false
 // | DirectoryService HasID=true
 // | CellularModuleQueryFilter HasID=true
@@ -958,6 +973,7 @@ import (
 // | BandwidthUsageMetric HasID=false
 // | IPFixContextScreen HasID=true
 // | EventCorrelationPolicyRuleQuery HasID=true
+// | DistributionQueryV3N0 HasID=false
 // | RoutingCommunityListScreen HasID=true
 // | ElementShellQueryFilterV2N1 HasID=true
 // | NetworkPolicySetQueryFilter HasID=true
@@ -1013,6 +1029,10 @@ import (
 // | StaticAppMetricConfigV2N1 HasID=false
 // | GetEventResponseBodyPolicyInfo HasID=false
 // | MulticastDynamicRpQueryFilter HasID=true
+// | PointSeriesV2N0 HasID=false
+// | LqmSiteV2N0 HasID=false
+// | LqmMetricsV2N0 HasID=false
+// | LqmPointMetricsResponseV2N0 HasID=false
 // | ConcurrentFlowsAltMetric HasID=false
 // | InterfaceTypeOperator HasID=false
 // | SiteScreenV4N10 HasID=true
@@ -1038,6 +1058,8 @@ import (
 // | WANInterfaceLabelQueryFilterV2N4 HasID=true
 // | SiteWanPath HasID=false
 // | PolicyRule HasID=true
+// | AnynetlinkCorrelationEventQueryParams HasID=false
+// | AnynetlinkCorrelationEventQueryRequest HasID=false
 // | PerfMgmtPolicyRule HasID=true
 // | PerfMgmtPolicySet HasID=true
 // | PerfMgmtPolicySetStack HasID=true
@@ -1058,9 +1080,13 @@ import (
 // | ServiceEndpointV2N4 HasID=true
 // | AnynetLinkV3N1 HasID=true
 // | AppAccelerationFilter HasID=false
+// | LqmLatencyPointMetricV2N0 HasID=false
 // | RoutingAccessListQuery HasID=true
 // | AggregatesQueryResponse HasID=false
 // | Element HasID=true
+// | AggregateBWStatsMetricV2N0 HasID=false
+// | AggregateBWStatsViewV2N0 HasID=false
+// | AggregateBWStatsQueryV2N0 HasID=false
 // | ClientPermissions HasID=true
 // | UDPConcurrentFlowsMetric HasID=false
 // | ApplicationHealthScore HasID=false
@@ -1086,9 +1112,10 @@ import (
 // | SecurityPolicyRuleScreen HasID=true
 // | RoutingCommunityListQuery HasID=true
 // | VPNLinkQuery HasID=true
+// | SysMetricsInterfaceLldpTxTotalFramesMetricV2N4 HasID=false
 // | SamlResponse HasID=false
 // | StaticRoute HasID=true
-// | LocalPrefixSetDTO HasID=true
+// | LocalPrefixSetDTO HasID=false
 // | SysMetricsInterfaceStpTxTopologyChangeMetricV3N0 HasID=false
 // | InterfaceScreenV4N17 HasID=true
 // | ElementShellInterfaceScreen HasID=false
@@ -1111,6 +1138,8 @@ import (
 // | ElementImageV2N3 HasID=true
 // | ElementImageV2N4 HasID=true
 // | NtpLastSelected HasID=false
+// | ElementCorrelationEventQueryParams HasID=false
+// | ElementCorrelationEventQueryRequest HasID=false
 // | OspfDiscoveredNeighborQuery HasID=true
 // | CreateMachineInfoV2N2 HasID=false
 // | PerfMgmtPolicyRuleQuery HasID=true
@@ -1125,7 +1154,6 @@ import (
 // | FlowsFilterV3N12 HasID=false
 // | FlowsFilterV3N13 HasID=false
 // | FlowsFilterV3N10 HasID=false
-// | AggregateBWStatsResponse HasID=false
 // | MulticastDynamicRpQuery HasID=true
 // | DnsSecurityCategory HasID=true
 // | FlowsQueryResponse HasID=false
@@ -1140,8 +1168,10 @@ import (
 // | ElementInterfaces HasID=false
 // | RoutingPrefixListQueryFilter HasID=true
 // | EventBodyPolicyInfo HasID=false
+// | LqmLinkHealthPointMetricV2N0 HasID=false
 // | UDPFlowCountMetric HasID=false
 // | MetricSchemaResponse HasID=false
+// | SysMetricsInterfaceEgressCarrierErrorsMetricV2N4 HasID=false
 // | DirectPath HasID=false
 // | MachineCellularModuleInfo HasID=true
 // | ElementShellQuery HasID=true
@@ -1164,18 +1194,23 @@ import (
 // | SitePriorityPrefixAssociationV2N1 HasID=true
 // | AppStatsTopNResponseData HasID=false
 // | AppStatsTopNResponse HasID=false
+// | SysMetricsInterfaceStpTransitionForwardMetricV2N4 HasID=false
 // | EventsOperationsResponseBody HasID=false
 // | AppStatsAggregate HasID=false
 // | AppStatsAggregatesQuery HasID=false
+// | InterfaceCorrelationEventQueryParams HasID=false
+// | InterfaceCorrelationEventQueryRequest HasID=false
 // | SaseConnectionGlobalConfigV2N1 HasID=true
 // | Author HasID=false
 // | GetEventResponseBodyV2Info HasID=false
 // | CellularModuleFirmwareUpgradeImageState HasID=false
 // | BulkConfigCreate HasID=true
 // | DeviceIdStartNodeScreen HasID=true
+// | SysMetricsMemoryUsageMetricV2N4 HasID=false
 // | Machine HasID=true
 // | DnsServiceQuery HasID=true
 // | InterfaceConfig HasID=false
+// | WANInterfaceCorrelationEventQueryRequest HasID=false
 // | AggregateStatsFilter HasID=false
 // | SysMetricsInterfacePoeOverloadCounterMetricV3N0 HasID=false
 // | SiteEndpoints HasID=false
@@ -1217,6 +1252,7 @@ import (
 // | MulticastSourceSideRpQuery HasID=true
 // | LocalPrefixFilterScreen HasID=true
 // | AppObjectStatsResponse HasID=false
+// | SysMetricsInterfaceStpTxBpduMetricV2N4 HasID=false
 // | VffLicenseQuery HasID=true
 // | DemSiteConfig HasID=true
 // | AppdefOverrideV2N1 HasID=true
@@ -1253,12 +1289,14 @@ import (
 // | ElementSecurityZoneScreen HasID=true
 // | LicenseCount HasID=false
 // | EventCodesDataItemItems HasID=false
+// | SysMetricsInterfaceBandwidthUsageMetricV2N4 HasID=false
 // | PriorityPolicySetState HasID=true
 // | SecurityPolicyV2SetStack HasID=true
 // | ElementScreen HasID=true
 // | RoutingRouteMapScreenV2N3 HasID=true
 // | RoutingRouteMapScreenV2N4 HasID=true
 // | RoutingRouteMapScreenV2N1 HasID=true
+// | SysMetricsDiskUsageMetricV2N4 HasID=false
 // | RoutingRouteMapScreenV2N2 HasID=true
 // | MulticastStatusQuery HasID=true
 // | MachineSoftware HasID=true
@@ -1268,16 +1306,17 @@ import (
 // | FlowsQuery HasID=false
 // | SDWANAppRelease HasID=true
 // | CellularmetricsResponse HasID=false
-// | DistributionQuery HasID=false
 // | LqmPacketLossThresholdMetric HasID=false
 // | CorrelationEventBase HasID=true
 // | EventCorrelationPolicyRule HasID=true
+// | LqmJitterPointMetricV2N0 HasID=false
 // | LQMThresholdConfigV2N1 HasID=false
 // | SecurityPolicyV2SetQueryFilter HasID=true
 // | LqmJitterMetric HasID=false
 // | CellularModuleStatusQueryFilterV2N1 HasID=true
 // | RoutingRouteMapQueryFilter HasID=true
 // | MicrosegmentQueryFilter HasID=true
+// | LqmMosPointMetricV2N0 HasID=false
 // | SystemHealthMetricsThresholds HasID=false
 // | RoutingPrefixListQueryFilterV2N1 HasID=true
 // | NATPolicyRuleQuery HasID=true
@@ -1303,12 +1342,14 @@ import (
 // | ElemDnsQueriesMetadata HasID=false
 // | DnsService HasID=true
 // | SysMetricsInterfaceStpRxTopologyChangeMetricV3N0 HasID=false
+// | SiteCorrelationEventQueryRequest HasID=false
 // | PolicySetQuery HasID=true
 // | PolicyRuleQuery HasID=true
 // | UsedForOperator HasID=false
 // | NATPolicyRuleQueryFilter HasID=true
 // | SecurityProfileGroupScreen HasID=true
 // | InterfaceReset HasID=true
+// | SysMetricsInterfacePoePowerDeniedCounterMetricV2N4 HasID=false
 // | BooleanQueryOperator HasID=false
 // | PolicySetPOSTScreen HasID=true
 // | PriorityPolicyRuleQuery HasID=true
@@ -1316,6 +1357,7 @@ import (
 // | SnapshotExportQueryFilter HasID=true
 // | UserIdentity HasID=true
 // | ElementMetaModel HasID=true
+// | TrafficRiskExposureQuery HasID=false
 // | CellularModuleFirmwareStatusQuery HasID=true
 // | DeviceIdSNMPV3Config HasID=false
 // | TenantV2N9 HasID=true
@@ -1326,6 +1368,7 @@ import (
 // | TopologyLinksQuery HasID=true
 // | CorrelationEventSyncRequest HasID=false
 // | CertificatePOSTScreen HasID=true
+// | LqmPktLossPointMetricV2N0 HasID=false
 // | TenantV2N7 HasID=true
 // | TenantV2N4 HasID=true
 // | TenantV2N5 HasID=true
@@ -1348,6 +1391,7 @@ import (
 // | ServiceConnection HasID=true
 // | TrafficVolumeMetric HasID=false
 // | ElementAccessConfigQuery HasID=true
+// | LqmPointMetricsFilterV2N0 HasID=false
 // | CellularModuleFirmwareConfigScreen HasID=true
 // | AppStatsTopNQuery HasID=false
 // | ElementRadiusStatus HasID=true
@@ -1358,6 +1402,7 @@ import (
 // | SnapshotImport HasID=true
 // | MonitorMetricsFilter HasID=false
 // | IncidentResourceSettingsQuery HasID=true
+// | SysMetricsInterfaceDroppedPacketsMetricV2N4 HasID=false
 // | BaseQueryDTO HasID=true
 // | WANNetworkScreen HasID=true
 // | SecurityZone HasID=true
@@ -1412,7 +1457,6 @@ import (
 // | SiteQueryFilterV4N2 HasID=true
 // | InterfaceScreenV4N16 HasID=true
 // | SiteQueryFilterV4N3 HasID=true
-// | IdQueryOperator HasID=false
 // | MulticastWANTrafficStatsResponse HasID=false
 // | SiteQueryFilterV4N4 HasID=true
 // | SiteQueryFilterV4N5 HasID=true
@@ -1458,12 +1502,15 @@ import (
 // | MachineInfoV2N3 HasID=true
 // | IdpV3N1 HasID=true
 // | IdpV3N3 HasID=true
+// | SysMetricsInterfaceStpTransitionBulkMetricV2N4 HasID=false
 // | IdpV3N2 HasID=true
 // | MachineV2N2 HasID=true
 // | MachineV2N1 HasID=true
 // | IPFixProfileScreen HasID=true
 // | PPKSecretResponse HasID=false
+// | SysMetricsInterfaceStpTxTopologyChangeMetricV2N4 HasID=false
 // | CellularModuleFirmwareStatusQueryFilter HasID=true
+// | LocalPrefixSetResponse HasID=true
 // | MonitorMetricsResponse HasID=false
 // | AppAccelerationStatusQuery HasID=true
 // | InterfaceStateQueryFilter HasID=true
@@ -1518,6 +1565,7 @@ import (
 // | PasswordReset HasID=false
 // | LqmLatencyMetric HasID=false
 // | DeviceIdConfidence HasID=true
+// | SysMetricsDeviceAcpiTemperatureMetricV2N4 HasID=false
 // | HardwareBypass HasID=true
 // | AppVideoMosMetric HasID=false
 // | AppDefTenantVersion HasID=true
@@ -1532,6 +1580,7 @@ import (
 // | ProfileV2N1 HasID=true
 // | PerfMgmtPolicyRuleV2N2 HasID=true
 // | AppTotalConnectionsMetric HasID=false
+// | SysMetricsDevicePseTemperatureMetricV2N4 HasID=false
 // | AppStatsCombinedMetrics HasID=false
 // | ProbeProfileScreen HasID=true
 // | IncidentResourceQueryResponse HasID=true
@@ -1670,6 +1719,7 @@ import (
 // | BGPPeerConfigEtag HasID=true
 // | HubClusterStatusV4 HasID=true
 // | RoutingAccessList HasID=true
+// | SysMetricsInterfaceIngressFrameErrorsMetricV2N4 HasID=false
 // | BGPPeerConfigV2N2 HasID=true
 // | BGPPeerConfigV2N1 HasID=true
 // | BGPPeerConfigV2N4 HasID=true
@@ -1699,6 +1749,7 @@ import (
 // | VPLStatus HasID=true
 // | WANNetworkV2N1 HasID=true
 // | DeviceIdProfile HasID=true
+// | SysMetricsDeviceInletTemperatureMetricV2N4 HasID=false
 // | MSTPInstanceQuery HasID=true
 // | Idp HasID=true
 // | OspfConfig HasID=true
@@ -1755,15 +1806,16 @@ import (
 // | BGPGlobalConfigScreenV2N5 HasID=true
 // | BGPGlobalConfigScreenV2N4 HasID=true
 // | SaseConnectionGlobalConfigScreenV3N1 HasID=true
-// | ElementAccessConfigV2N3 HasID=true
 // | ElementAccessConfigV2N2 HasID=true
 // | SysMetricsResponse HasID=false
 // | LicenseCategory HasID=false
 // | Licenses HasID=false
 // | LicenseResponse HasID=true
 // | MicrosegmentScreen HasID=true
+// | SysMetricsDeviceLastTopologyChangeSinceMetricV2N4 HasID=false
 // | SyslogServerV2N1 HasID=true
 // | SaseConnectionGlobalConfigScreenV3N2 HasID=true
+// | SysMetricsInterfaceLldpRxTotalFramesMetricV2N4 HasID=false
 // | NATPolicyZone HasID=true
 // | OspfReachablePrefixesQuery HasID=true
 // | Insights HasID=false
@@ -1776,6 +1828,7 @@ import (
 // | CorrelationEventSyncResponse HasID=true
 // | APNProfileQueryFilter HasID=true
 // | ObjectStatsTypeResponse HasID=false
+// | SysMetricsInterfaceErrorsMetricV2N4 HasID=false
 // | OspfReachablePrefixesFilter HasID=true
 // | DirectoryUserQuery HasID=true
 // | NetworkPointMetricsBandwidthQueryFilter HasID=false
@@ -1792,6 +1845,7 @@ import (
 // | AuditLog HasID=true
 // | ProbeConfigQuery HasID=true
 // | BGPPeerStatusV2N3 HasID=true
+// | SysMetricsInterfaceLldpTxFailedFramesMetricV2N4 HasID=false
 // | SiteAggregateQueryFilter HasID=true
 // | VPLStatusV2N2 HasID=true
 // | ElementStatusV2N4 HasID=true
@@ -1835,7 +1889,7 @@ import (
 // | NetworkPolicyRuleV2N2 HasID=true
 // +-----------------------------------------------------------------
 
-// template=schema.datasource.model.tpl allGoLangStructMap=1,823
+// template=schema.datasource.model.tpl allGoLangStructMap=1,877
 // +-----------------------------------------------------------------
 // | Auto Generated for Schema `LedConfig`
 // +-----------------------------------------------------------------
@@ -2096,6 +2150,8 @@ type dsModelLicenseQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -2180,6 +2236,8 @@ type dsModelMulticastIgmpMembershipQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -2496,6 +2554,8 @@ type dsModelBadServiceLink struct {
 	BgppeerId types.String `tfsdk:"bgppeer_id"`
 	// propertyName=element_id type=STRING
 	ElementId types.String `tfsdk:"element_id"`
+	// propertyName=element_name type=STRING
+	ElementName types.String `tfsdk:"element_name"`
 	// propertyName=error type=REFERENCE
 	Error *dsModelErrorMessage `tfsdk:"error"`
 	// propertyName=ike_gateway_id type=STRING
@@ -2560,10 +2620,6 @@ type dsModelMigrateCBToEZBResponse struct {
 	Id types.String `tfsdk:"id"`
 	// propertyName=incompatible_sites type=ARRAY_REFERENCE
 	IncompatibleSites []dsModelIncompatibleSite `tfsdk:"incompatible_sites"`
-	// propertyName=is_fawkes type=BOOLEAN
-	IsFawkes types.Bool `tfsdk:"is_fawkes"`
-	// propertyName=job_id type=STRING
-	JobId types.String `tfsdk:"job_id"`
 	// propertyName=migrated_sites type=ARRAY_REFERENCE
 	MigratedSites []dsModelCompatibleSite `tfsdk:"migrated_sites"`
 	// propertyName=status type=STRING
@@ -2830,6 +2886,8 @@ type dsModelWANInterfaceLabelQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -2862,8 +2920,8 @@ type dsModelHubCluster struct {
 	Etag types.Int64 `tfsdk:"x_etag"`
 	// propertyName=_schema type=INTEGER
 	Schema types.Int64 `tfsdk:"x_schema"`
-	// propertyName=admin_up type=STRING
-	AdminUp types.String `tfsdk:"admin_up"`
+	// propertyName=admin_up type=BOOLEAN
+	AdminUp types.Bool `tfsdk:"admin_up"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
 	// propertyName=load_alarm_threshold type=INTEGER
@@ -2892,6 +2950,48 @@ type dsModelApplicationFilter struct {
 	AppTransferTypes types.List `tfsdk:"app_transfer_types"`
 	// propertyName=application_ids type=ARRAY_PRIMITIVE
 	ApplicationIds types.List `tfsdk:"application_ids"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `TrafficRiskExposureData`
+// +-----------------------------------------------------------------
+type dsModelTrafficRiskExposureData struct {
+	// propertyName=estimated_threats type=INTEGER
+	EstimatedThreats types.Int64 `tfsdk:"estimated_threats"`
+	// propertyName=risk_percent type=NUMBER
+	RiskPercent types.Float64 `tfsdk:"risk_percent"`
+	// propertyName=total_flow_count type=INTEGER
+	TotalFlowCount types.Int64 `tfsdk:"total_flow_count"`
+	// propertyName=total_traffic_bytes type=INTEGER
+	TotalTrafficBytes types.Int64 `tfsdk:"total_traffic_bytes"`
+	// propertyName=total_traffic_gb type=NUMBER
+	TotalTrafficGb types.Float64 `tfsdk:"total_traffic_gb"`
+	// propertyName=unclassified_flow_count type=INTEGER
+	UnclassifiedFlowCount types.Int64 `tfsdk:"unclassified_flow_count"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `TrafficRiskExposureResponse`
+// +-----------------------------------------------------------------
+type dsModelTrafficRiskExposureResponse struct {
+	// propertyName=end_time type=STRING
+	EndTime types.String `tfsdk:"end_time"`
+	// propertyName=start_time type=STRING
+	StartTime types.String `tfsdk:"start_time"`
+	// propertyName=traffic_risk_exposure type=REFERENCE
+	TrafficRiskExposure *dsModelTrafficRiskExposureData `tfsdk:"traffic_risk_exposure"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceFifoErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceFifoErrorsMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -3666,6 +3766,8 @@ type dsModelOspfConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -3745,6 +3847,18 @@ type dsModelInterfaceAuthenticationState struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfacePoePowerConsumptionMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfacePoePowerConsumptionMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `DemSiteConfigQuery`
 // +-----------------------------------------------------------------
 type dsModelDemSiteConfigQuery struct {
@@ -3756,6 +3870,8 @@ type dsModelDemSiteConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -3816,6 +3932,8 @@ type dsModelPathPrefixDistributionFiltersQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -3852,6 +3970,8 @@ type dsModelVRFContextProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -4622,6 +4742,8 @@ type dsModelCellularModuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -5067,6 +5189,18 @@ type dsModelCmSecurityProfileInfo struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceIngressCRCErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceIngressCRCErrorsMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `AppNormalizedNetworkTransferTimeMetric`
 // +-----------------------------------------------------------------
 type dsModelAppNormalizedNetworkTransferTimeMetric struct {
@@ -5090,6 +5224,8 @@ type dsModelEventCorrelationPolicyRuleQueryV2N1 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -5725,6 +5861,70 @@ type dsModelVRFContextProfileScreen struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `IdQueryOperator`
+// +-----------------------------------------------------------------
+type dsModelIdQueryOperator struct {
+	// propertyName=eq type=STRING
+	Eq types.String `tfsdk:"eq"`
+	// propertyName=exists type=BOOLEAN
+	Exists types.Bool `tfsdk:"exists"`
+	// propertyName=in type=ARRAY_PRIMITIVE
+	In types.List `tfsdk:"in"`
+	// propertyName=neq type=STRING
+	Neq types.String `tfsdk:"neq"`
+	// propertyName=nin type=ARRAY_PRIMITIVE
+	Nin types.List `tfsdk:"nin"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `StringQueryOperator`
+// +-----------------------------------------------------------------
+type dsModelStringQueryOperator struct {
+	// propertyName=eq type=STRING
+	Eq types.String `tfsdk:"eq"`
+	// propertyName=exists type=BOOLEAN
+	Exists types.Bool `tfsdk:"exists"`
+	// propertyName=in type=ARRAY_PRIMITIVE
+	In types.List `tfsdk:"in"`
+	// propertyName=neq type=STRING
+	Neq types.String `tfsdk:"neq"`
+	// propertyName=nin type=ARRAY_PRIMITIVE
+	Nin types.List `tfsdk:"nin"`
+	// propertyName=re type=STRING
+	Re types.String `tfsdk:"re"`
+	// propertyName=regex type=STRING
+	Regex types.String `tfsdk:"regex"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SiteCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type dsModelSiteCorrelationEventQueryParams struct {
+	// propertyName=_created_on_utc type=REFERENCE
+	CreatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_created_on_utc"`
+	// propertyName=_updated_on_utc type=REFERENCE
+	UpdatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_updated_on_utc"`
+	// propertyName=site_id type=REFERENCE
+	SiteId *dsModelIdQueryOperator `tfsdk:"site_id"`
+	// propertyName=site_name type=REFERENCE
+	SiteName *dsModelStringQueryOperator `tfsdk:"site_name"`
+	// propertyName=standing_state type=REFERENCE
+	StandingState *dsModelStringQueryOperator `tfsdk:"standing_state"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceModemTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceModemTemperatureMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SNMPTrapUserAccess`
 // +-----------------------------------------------------------------
 type dsModelSNMPTrapUserAccess struct {
@@ -6328,6 +6528,8 @@ type dsModelExtensionQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -6382,16 +6584,8 @@ type dsModelAppStatsQuery struct {
 // | Auto Generated for Schema `NetworkPointMetricsHealthScoreQueryFilter`
 // +-----------------------------------------------------------------
 type dsModelNetworkPointMetricsHealthScoreQueryFilter struct {
-	// propertyName=direction type=ARRAY_PRIMITIVE
-	Direction types.List `tfsdk:"direction"`
-	// propertyName=element type=ARRAY_PRIMITIVE
-	Element types.List `tfsdk:"element"`
-	// propertyName=interface type=ARRAY_PRIMITIVE
-	Interface types.List `tfsdk:"interface"`
 	// propertyName=sites type=ARRAY_PRIMITIVE
 	Sites types.List `tfsdk:"sites"`
-	// propertyName=waninterface type=ARRAY_PRIMITIVE
-	Waninterface types.List `tfsdk:"waninterface"`
 }
 
 // +-----------------------------------------------------------------
@@ -6496,6 +6690,38 @@ type dsModelTenantPassageConf struct {
 	PassageAllowed types.Bool `tfsdk:"passage_allowed"`
 	// propertyName=passage_password type=STRING
 	PassagePassword types.String `tfsdk:"passage_password"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionDataV3N0`
+// +-----------------------------------------------------------------
+type dsModelDistributionDataV3N0 struct {
+	// propertyName=count type=INTEGER
+	Count types.Int64 `tfsdk:"count"`
+	// propertyName=score type=NUMBER
+	Score types.Float64 `tfsdk:"score"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionV3N0`
+// +-----------------------------------------------------------------
+type dsModelDistributionV3N0 struct {
+	// propertyName=downlink type=ARRAY_REFERENCE
+	Downlink []dsModelDistributionDataV3N0 `tfsdk:"downlink"`
+	// propertyName=latency type=ARRAY_REFERENCE
+	Latency []dsModelDistributionDataV3N0 `tfsdk:"latency"`
+	// propertyName=uplink type=ARRAY_REFERENCE
+	Uplink []dsModelDistributionDataV3N0 `tfsdk:"uplink"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionResponseV3N0`
+// +-----------------------------------------------------------------
+type dsModelDistributionResponseV3N0 struct {
+	// propertyName=_status_code type=INTEGER
+	StatusCode types.Int64 `tfsdk:"x_status_code"`
+	// propertyName=distribution type=REFERENCE
+	Distribution *dsModelDistributionV3N0 `tfsdk:"distribution"`
 }
 
 // +-----------------------------------------------------------------
@@ -6788,6 +7014,8 @@ type dsModelDirectoryUserGroupQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -6950,6 +7178,8 @@ type dsModelAppDefQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -6986,6 +7216,8 @@ type dsModelBGPPeerQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -7082,6 +7314,8 @@ type dsModelBulkConfigCreateQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -7602,60 +7836,6 @@ type dsModelSysMetricsQueryDTOV2N1 struct {
 	StartTime types.String `tfsdk:"start_time"`
 	// propertyName=view type=REFERENCE
 	View *dsModelSysMetricsQueryDTOV2N1View `tfsdk:"view"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4ItemMetrics`
-// +-----------------------------------------------------------------
-type dsModelSysMetricsQueryDTOV2N4ItemMetrics struct {
-	// propertyName=name type=STRING
-	Name types.String `tfsdk:"name"`
-	// propertyName=statistics type=ARRAY_PRIMITIVE
-	Statistics types.List `tfsdk:"statistics"`
-	// propertyName=unit type=STRING
-	Unit types.String `tfsdk:"unit"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4Filter`
-// +-----------------------------------------------------------------
-type dsModelSysMetricsQueryDTOV2N4Filter struct {
-	// propertyName=direction type=STRING
-	Direction types.String `tfsdk:"direction"`
-	// propertyName=element type=ARRAY_PRIMITIVE
-	Element types.List `tfsdk:"element"`
-	// propertyName=interface type=ARRAY_PRIMITIVE
-	Interface types.List `tfsdk:"interface"`
-	// propertyName=site type=ARRAY_PRIMITIVE
-	Site types.List `tfsdk:"site"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4View`
-// +-----------------------------------------------------------------
-type dsModelSysMetricsQueryDTOV2N4View struct {
-	// propertyName=individual type=STRING
-	Individual types.String `tfsdk:"individual"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `SysMetricsQueryDTOV2N4`
-// +-----------------------------------------------------------------
-type dsModelSysMetricsQueryDTOV2N4 struct {
-	// propertyName=end_time type=STRING
-	EndTime types.String `tfsdk:"end_time"`
-	// propertyName=filter type=REFERENCE
-	Filter *dsModelSysMetricsQueryDTOV2N4Filter `tfsdk:"filter"`
-	// propertyName=interval type=STRING
-	Interval types.String `tfsdk:"interval"`
-	// propertyName=max_datapoints type=INTEGER
-	MaxDatapoints types.Int64 `tfsdk:"max_datapoints"`
-	// propertyName=metrics type=REFERENCE
-	Metrics *dsModelSysMetricsQueryDTOV2N4ItemMetrics `tfsdk:"metrics"`
-	// propertyName=start_time type=STRING
-	StartTime types.String `tfsdk:"start_time"`
-	// propertyName=view type=REFERENCE
-	View *dsModelSysMetricsQueryDTOV2N4View `tfsdk:"view"`
 }
 
 // +-----------------------------------------------------------------
@@ -8505,6 +8685,18 @@ type dsModelSaseConnectionGlobalConfigV3 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpRxBpduMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceStpRxBpduMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `FlapRule`
 // +-----------------------------------------------------------------
 type dsModelFlapRule struct {
@@ -8610,6 +8802,8 @@ type dsModelSpokeClusterQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -9216,6 +9410,8 @@ type dsModelOspfConfigQueryV2N1 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -9280,6 +9476,8 @@ type dsModelPassageQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -9402,6 +9600,8 @@ type dsModelIPFixContextQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -9985,6 +10185,24 @@ type dsModelAuthoritativeConfig struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `WANInterfaceCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type dsModelWANInterfaceCorrelationEventQueryParams struct {
+	// propertyName=_created_on_utc type=REFERENCE
+	CreatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_created_on_utc"`
+	// propertyName=_updated_on_utc type=REFERENCE
+	UpdatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_updated_on_utc"`
+	// propertyName=site_id type=REFERENCE
+	SiteId *dsModelIdQueryOperator `tfsdk:"site_id"`
+	// propertyName=standing_state type=REFERENCE
+	StandingState *dsModelStringQueryOperator `tfsdk:"standing_state"`
+	// propertyName=wan_interface_id type=REFERENCE
+	WanInterfaceId *dsModelIdQueryOperator `tfsdk:"wan_interface_id"`
+	// propertyName=wan_interface_name type=REFERENCE
+	WanInterfaceName *dsModelStringQueryOperator `tfsdk:"wan_interface_name"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SaseConnectionScreenV2N1`
 // +-----------------------------------------------------------------
 type dsModelSaseConnectionScreenV2N1 struct {
@@ -10132,6 +10350,8 @@ type dsModelElementSystemLimitProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -10308,36 +10528,6 @@ type dsModelBGPPeerConfig struct {
 	Tags types.Set `tfsdk:"tags"`
 	// propertyName=update_source type=STRING
 	UpdateSource types.String `tfsdk:"update_source"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `HealthFilter`
-// +-----------------------------------------------------------------
-type dsModelHealthFilter struct {
-	// propertyName=application_health type=ARRAY_PRIMITIVE
-	ApplicationHealth types.List `tfsdk:"application_health"`
-	// propertyName=link_health type=ARRAY_PRIMITIVE
-	LinkHealth types.List `tfsdk:"link_health"`
-	// propertyName=site_health type=ARRAY_PRIMITIVE
-	SiteHealth types.List `tfsdk:"site_health"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `HealthScoreQuery`
-// +-----------------------------------------------------------------
-type dsModelHealthScoreQuery struct {
-	// propertyName=end_time type=STRING
-	EndTime types.String `tfsdk:"end_time"`
-	// propertyName=filter type=REFERENCE
-	Filter *dsModelHealthFilter `tfsdk:"filter"`
-	// propertyName=interval type=STRING
-	Interval types.String `tfsdk:"interval"`
-	// propertyName=name type=STRING
-	Name types.String `tfsdk:"name"`
-	// propertyName=start_time type=STRING
-	StartTime types.String `tfsdk:"start_time"`
-	// propertyName=view type=STRING
-	View types.String `tfsdk:"view"`
 }
 
 // +-----------------------------------------------------------------
@@ -11768,6 +11958,8 @@ type dsModelServiceLabelQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -12253,6 +12445,18 @@ type dsModelCellularModuleImage struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceOutletTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceOutletTemperatureMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `RemoteNetwork`
 // +-----------------------------------------------------------------
 type dsModelRemoteNetwork struct {
@@ -12336,24 +12540,6 @@ type dsModelSwitchPortVlanPorts struct {
 	Type types.String `tfsdk:"type"`
 	// propertyName=vlans type=ARRAY_REFERENCE
 	Vlans []dsModelVlanPort `tfsdk:"vlans"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `StringQueryOperator`
-// +-----------------------------------------------------------------
-type dsModelStringQueryOperator struct {
-	// propertyName=eq type=STRING
-	Eq types.String `tfsdk:"eq"`
-	// propertyName=exists type=BOOLEAN
-	Exists types.Bool `tfsdk:"exists"`
-	// propertyName=in type=ARRAY_PRIMITIVE
-	In types.List `tfsdk:"in"`
-	// propertyName=neq type=STRING
-	Neq types.String `tfsdk:"neq"`
-	// propertyName=nin type=ARRAY_PRIMITIVE
-	Nin types.List `tfsdk:"nin"`
-	// propertyName=re type=STRING
-	Re types.String `tfsdk:"re"`
 }
 
 // +-----------------------------------------------------------------
@@ -12592,6 +12778,8 @@ type dsModelDnsServiceRoleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -13000,36 +13188,6 @@ type dsModelAppDefScreenV2 struct {
 	TransferType types.String `tfsdk:"transfer_type"`
 	// propertyName=udp_rules type=ARRAY_REFERENCE
 	UdpRules []dsModelUdpRule `tfsdk:"udp_rules"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `AggregateBWStatsFilter`
-// +-----------------------------------------------------------------
-type dsModelAggregateBWStatsFilter struct {
-	// propertyName=site type=ARRAY_PRIMITIVE
-	Site types.List `tfsdk:"site"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `AggregateBWStatsQuery`
-// +-----------------------------------------------------------------
-type dsModelAggregateBWStatsQuery struct {
-	// propertyName=end_time type=STRING
-	EndTime types.String `tfsdk:"end_time"`
-	// propertyName=filter type=REFERENCE
-	Filter *dsModelAggregateBWStatsFilter `tfsdk:"filter"`
-	// propertyName=interval type=STRING
-	Interval types.String `tfsdk:"interval"`
-	// propertyName=max_datapoints type=INTEGER
-	MaxDatapoints types.Int64 `tfsdk:"max_datapoints"`
-	// propertyName=metrics type=ARRAY_REFERENCE
-	Metrics []dsModelMetrics `tfsdk:"metrics"`
-	// propertyName=name type=STRING
-	Name types.String `tfsdk:"name"`
-	// propertyName=start_time type=STRING
-	StartTime types.String `tfsdk:"start_time"`
-	// propertyName=view type=REFERENCE
-	View *dsModelView `tfsdk:"view"`
 }
 
 // +-----------------------------------------------------------------
@@ -15074,8 +15232,6 @@ type dsModelStaticAppMetricConfig struct {
 type dsModelNetworkPointMetricsHealthScoreQueryItemMetrics struct {
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
-	// propertyName=unit type=STRING
-	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -15268,6 +15424,8 @@ type dsModelSitePrefixAssociationQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -16452,6 +16610,8 @@ type dsModelServiceLabelQueryFilter struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -16648,6 +16808,8 @@ type dsModelSoftwareDownloadHistoryQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -18760,6 +18922,8 @@ type dsModelSecurityZoneQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -19027,6 +19191,18 @@ type dsModelPassageQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfacePoeOverloadCounterMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfacePoeOverloadCounterMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `LANNetworkV3N3`
 // +-----------------------------------------------------------------
 type dsModelLANNetworkV3N3 struct {
@@ -19136,6 +19312,18 @@ type dsModelConfiguredPrefixSet struct {
 	LocalPrefixSet *dsModelLocalPrefixSet `tfsdk:"local_prefix_set"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsCPUUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsCPUUsageMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -19257,6 +19445,14 @@ type dsModelSwitchState struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsFilterV2N0`
+// +-----------------------------------------------------------------
+type dsModelAggregateBWStatsFilterV2N0 struct {
+	// propertyName=site type=ARRAY_PRIMITIVE
+	Site types.List `tfsdk:"site"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `VPNFailoverHostStatus`
 // +-----------------------------------------------------------------
 type dsModelVPNFailoverHostStatus struct {
@@ -19292,6 +19488,8 @@ type dsModelSaseConnectionStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -19936,6 +20134,8 @@ type dsModelServiceBindingMapQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -20198,6 +20398,8 @@ type dsModelUserIDAgentQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -20541,6 +20743,18 @@ type dsModelMulticastRouteOutgoingInterfaceStatsData struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceCpuTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceCpuTemperatureMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `FlowsQueryV3N9`
 // +-----------------------------------------------------------------
 type dsModelFlowsQueryV3N9 struct {
@@ -20636,6 +20850,18 @@ type dsModelWANInterfaceScreenV2N4 struct {
 	NetworkId types.String `tfsdk:"network_id"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDevicePoePowerConsumptionMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDevicePoePowerConsumptionMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -20914,6 +21140,8 @@ type dsModelMachineSoftwareQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -21268,6 +21496,8 @@ type dsModelWANInterfaceQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -21766,6 +21996,8 @@ type dsModelProbeProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -21850,6 +22082,8 @@ type dsModelElementMetaModelV3N9 struct {
 	DisabledInterfaceTypes types.List `tfsdk:"disabled_interface_types"`
 	// propertyName=eol_sw_version type=STRING
 	EolSwVersion types.String `tfsdk:"eol_sw_version"`
+	// propertyName=fec_ports type=ARRAY_PRIMITIVE
+	FecPorts types.List `tfsdk:"fec_ports"`
 	// propertyName=fec_supported type=BOOLEAN
 	FecSupported types.Bool `tfsdk:"fec_supported"`
 	// propertyName=fips_change_mode type=STRING
@@ -22080,6 +22314,8 @@ type dsModelPriorityPolicySetQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -22378,6 +22614,8 @@ type dsModelDeviceIdMappingsQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -22403,6 +22641,34 @@ type dsModelDeviceIdMappingsQuery struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `HealthScoreFilterV2N0`
+// +-----------------------------------------------------------------
+type dsModelHealthScoreFilterV2N0 struct {
+	// propertyName=application_health type=ARRAY_PRIMITIVE
+	ApplicationHealth types.List `tfsdk:"application_health"`
+	// propertyName=link_health type=ARRAY_PRIMITIVE
+	LinkHealth types.List `tfsdk:"link_health"`
+	// propertyName=site_health type=ARRAY_PRIMITIVE
+	SiteHealth types.List `tfsdk:"site_health"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `HealthScoreQueryV2N0`
+// +-----------------------------------------------------------------
+type dsModelHealthScoreQueryV2N0 struct {
+	// propertyName=end_time type=STRING
+	EndTime types.String `tfsdk:"end_time"`
+	// propertyName=filter type=REFERENCE
+	Filter *dsModelHealthScoreFilterV2N0 `tfsdk:"filter"`
+	// propertyName=interval type=STRING
+	Interval types.String `tfsdk:"interval"`
+	// propertyName=start_time type=STRING
+	StartTime types.String `tfsdk:"start_time"`
+	// propertyName=view type=STRING
+	View types.String `tfsdk:"view"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SecurityPolicyGlobalPrefixScreenV2N1`
 // +-----------------------------------------------------------------
 type dsModelSecurityPolicyGlobalPrefixScreenV2N1 struct {
@@ -22422,6 +22688,18 @@ type dsModelSecurityPolicyGlobalPrefixScreenV2N1 struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpRxTopologyChangeMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceStpRxTopologyChangeMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -23031,36 +23309,6 @@ type dsModelEventQueryRequestV3_5 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `DistributionData`
-// +-----------------------------------------------------------------
-type dsModelDistributionData struct {
-	// propertyName=count type=INTEGER
-	Count types.Int64 `tfsdk:"count"`
-	// propertyName=score type=NUMBER
-	Score types.Float64 `tfsdk:"score"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `Distribution`
-// +-----------------------------------------------------------------
-type dsModelDistribution struct {
-	// propertyName=downlink type=ARRAY_REFERENCE
-	Downlink []dsModelDistributionData `tfsdk:"downlink"`
-	// propertyName=latency type=ARRAY_REFERENCE
-	Latency []dsModelDistributionData `tfsdk:"latency"`
-	// propertyName=uplink type=ARRAY_REFERENCE
-	Uplink []dsModelDistributionData `tfsdk:"uplink"`
-}
-
-// +-----------------------------------------------------------------
-// | Auto Generated for Schema `DistributionResponse`
-// +-----------------------------------------------------------------
-type dsModelDistributionResponse struct {
-	// propertyName=distribution type=REFERENCE
-	Distribution *dsModelDistribution `tfsdk:"distribution"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EventQueryRequestV3_7Limit`
 // +-----------------------------------------------------------------
 type dsModelEventQueryRequestV3_7Limit struct {
@@ -23204,6 +23452,8 @@ type dsModelCellularModuleStatusQueryV2N1 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -23416,6 +23666,18 @@ type dsModelTacacsPlusProfile struct {
 	TacacsPlusServers []dsModelTacacsPlusServerConfig `tfsdk:"tacacs_plus_servers"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceModem2TemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceModem2TemperatureMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -23755,6 +24017,28 @@ type dsModelLqmMosMetric struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsDatapointV2N0`
+// +-----------------------------------------------------------------
+type dsModelAggregateBWStatsDatapointV2N0 struct {
+	// propertyName=max_value_time type=STRING
+	MaxValueTime types.String `tfsdk:"max_value_time"`
+	// propertyName=time type=STRING
+	Time types.String `tfsdk:"time"`
+	// propertyName=value type=NUMBER
+	Value types.Float64 `tfsdk:"value"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsDataV2N0`
+// +-----------------------------------------------------------------
+type dsModelAggregateBWStatsDataV2N0 struct {
+	// propertyName=datapoints type=ARRAY_REFERENCE
+	Datapoints []dsModelAggregateBWStatsDatapointV2N0 `tfsdk:"datapoints"`
+	// propertyName=statistics type=STRING
+	Statistics types.String `tfsdk:"statistics"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `UserIDAgentAuthentication`
 // +-----------------------------------------------------------------
 type dsModelUserIDAgentAuthentication struct {
@@ -23804,6 +24088,18 @@ type dsModelUserIDAgentScreen struct {
 	SourceInterface types.String `tfsdk:"source_interface"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceTopologyChangeCountMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceTopologyChangeCountMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -23988,6 +24284,8 @@ type dsModelRoutingRouteMapQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -24760,6 +25058,8 @@ type dsModelEventCorrelationPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -24782,6 +25082,20 @@ type dsModelEventCorrelationPolicyRuleQuery struct {
 	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `DistributionQueryV3N0`
+// +-----------------------------------------------------------------
+type dsModelDistributionQueryV3N0 struct {
+	// propertyName=aggregation type=STRING
+	Aggregation types.String `tfsdk:"aggregation"`
+	// propertyName=interval type=STRING
+	Interval types.String `tfsdk:"interval"`
+	// propertyName=site_id type=STRING
+	SiteId types.String `tfsdk:"site_id"`
+	// propertyName=start_time type=STRING
+	StartTime types.String `tfsdk:"start_time"`
 }
 
 // +-----------------------------------------------------------------
@@ -25028,6 +25342,8 @@ type dsModelIPSECProfileQueryV2N3 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -25464,8 +25780,6 @@ type dsModelMigrateCBToEZBRequest struct {
 	Forced types.Bool `tfsdk:"forced"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
-	// propertyName=is_fawkes type=BOOLEAN
-	IsFawkes types.Bool `tfsdk:"is_fawkes"`
 	// propertyName=retry type=BOOLEAN
 	Retry types.Bool `tfsdk:"retry"`
 	// propertyName=sdwan_only type=BOOLEAN
@@ -25534,6 +25848,8 @@ type dsModelEventCorrelationPolicySetQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -25908,6 +26224,8 @@ type dsModelAnynetLinkQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -25944,6 +26262,8 @@ type dsModelBaseQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -26060,6 +26380,8 @@ type dsModelIPFixProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -26168,6 +26490,56 @@ type dsModelMulticastDynamicRpQueryFilter struct {
 	DynamicRps []dsModelDynamicRp `tfsdk:"dynamic_rps"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `PointSeriesV2N0`
+// +-----------------------------------------------------------------
+type dsModelPointSeriesV2N0 struct {
+	// propertyName=data type=REFERENCE
+	Data *dsModelPointData `tfsdk:"data"`
+	// propertyName=element_id type=STRING
+	ElementId types.String `tfsdk:"element_id"`
+	// propertyName=path_id type=STRING
+	PathId types.String `tfsdk:"path_id"`
+	// propertyName=wn_interface_id type=STRING
+	WnInterfaceId types.String `tfsdk:"wn_interface_id"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmSiteV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmSiteV2N0 struct {
+	// propertyName=paths type=ARRAY_REFERENCE
+	Paths []dsModelPointSeriesV2N0 `tfsdk:"paths"`
+	// propertyName=site_id type=STRING
+	SiteId types.String `tfsdk:"site_id"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmMetricsV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmMetricsV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=sites type=ARRAY_REFERENCE
+	Sites []dsModelLqmSiteV2N0 `tfsdk:"sites"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmPointMetricsResponseV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmPointMetricsResponseV2N0 struct {
+	// propertyName=interval type=STRING
+	Interval types.String `tfsdk:"interval"`
+	// propertyName=metrics type=ARRAY_REFERENCE
+	Metrics []dsModelLqmMetricsV2N0 `tfsdk:"metrics"`
+	// propertyName=start_time type=STRING
+	StartTime types.String `tfsdk:"start_time"`
+	// propertyName=view type=REFERENCE
+	View *dsModelView `tfsdk:"view"`
 }
 
 // +-----------------------------------------------------------------
@@ -26788,6 +27160,8 @@ type dsModelLocalPrefixQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -26932,6 +27306,44 @@ type dsModelPolicyRule struct {
 	ServiceContext []dsModelServiceContext `tfsdk:"service_context"`
 	// propertyName=site_paths_allowed type=ARRAY_REFERENCE
 	SitePathsAllowed []dsModelSiteWanPath `tfsdk:"site_paths_allowed"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AnynetlinkCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type dsModelAnynetlinkCorrelationEventQueryParams struct {
+	// propertyName=_created_on_utc type=REFERENCE
+	CreatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_created_on_utc"`
+	// propertyName=_updated_on_utc type=REFERENCE
+	UpdatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_updated_on_utc"`
+	// propertyName=anynetlink_id type=REFERENCE
+	AnynetlinkId *dsModelIdQueryOperator `tfsdk:"anynetlink_id"`
+	// propertyName=anynetlink_name type=REFERENCE
+	AnynetlinkName *dsModelStringQueryOperator `tfsdk:"anynetlink_name"`
+	// propertyName=source_site_id type=REFERENCE
+	SourceSiteId *dsModelIdQueryOperator `tfsdk:"source_site_id"`
+	// propertyName=standing_state type=REFERENCE
+	StandingState *dsModelStringQueryOperator `tfsdk:"standing_state"`
+	// propertyName=target_site_id type=REFERENCE
+	TargetSiteId *dsModelIdQueryOperator `tfsdk:"target_site_id"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AnynetlinkCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type dsModelAnynetlinkCorrelationEventQueryRequest struct {
+	// propertyName=last_query_ts type=INTEGER
+	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
+	// propertyName=limit type=INTEGER
+	Limit types.Int64 `tfsdk:"limit"`
+	// propertyName=query_params type=REFERENCE
+	QueryParams *dsModelAnynetlinkCorrelationEventQueryParams `tfsdk:"query_params"`
+	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFields types.List `tfsdk:"retrieved_fields"`
+	// propertyName=retrieved_fields_mask type=BOOLEAN
+	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
+	// propertyName=sort_params type=OBJECT
+	SortParams types.Map `tfsdk:"sort_params"`
 }
 
 // +-----------------------------------------------------------------
@@ -27098,6 +27510,8 @@ type dsModelVRFContextQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -27523,6 +27937,16 @@ type dsModelAppAccelerationFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmLatencyPointMetricV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmLatencyPointMetricV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `RoutingAccessListQuery`
 // +-----------------------------------------------------------------
 type dsModelRoutingAccessListQuery struct {
@@ -27534,6 +27958,8 @@ type dsModelRoutingAccessListQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -27606,6 +28032,48 @@ type dsModelElement struct {
 	SoftwareVersion types.String `tfsdk:"software_version"`
 	// propertyName=state type=STRING
 	State types.String `tfsdk:"state"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsMetricV2N0`
+// +-----------------------------------------------------------------
+type dsModelAggregateBWStatsMetricV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsViewV2N0`
+// +-----------------------------------------------------------------
+type dsModelAggregateBWStatsViewV2N0 struct {
+	// propertyName=individual type=STRING
+	Individual types.String `tfsdk:"individual"`
+	// propertyName=summary type=BOOLEAN
+	Summary types.Bool `tfsdk:"summary"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `AggregateBWStatsQueryV2N0`
+// +-----------------------------------------------------------------
+type dsModelAggregateBWStatsQueryV2N0 struct {
+	// propertyName=end_time type=STRING
+	EndTime types.String `tfsdk:"end_time"`
+	// propertyName=filter type=REFERENCE
+	Filter *dsModelAggregateBWStatsFilterV2N0 `tfsdk:"filter"`
+	// propertyName=interval type=STRING
+	Interval types.String `tfsdk:"interval"`
+	// propertyName=metrics type=ARRAY_REFERENCE
+	Metrics []dsModelAggregateBWStatsMetricV2N0 `tfsdk:"metrics"`
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=start_time type=STRING
+	StartTime types.String `tfsdk:"start_time"`
+	// propertyName=view type=REFERENCE
+	View *dsModelAggregateBWStatsViewV2N0 `tfsdk:"view"`
 }
 
 // +-----------------------------------------------------------------
@@ -27928,6 +28396,8 @@ type dsModelMulticastRouteTableQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -28038,6 +28508,8 @@ type dsModelDeviceIdStartNodeQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -28254,6 +28726,8 @@ type dsModelRoutingCommunityListQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -28290,6 +28764,8 @@ type dsModelVPNLinkQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -28312,6 +28788,18 @@ type dsModelVPNLinkQuery struct {
 	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceLldpTxTotalFramesMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceLldpTxTotalFramesMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -28352,16 +28840,8 @@ type dsModelStaticRoute struct {
 // | Auto Generated for Schema `LocalPrefixSetDTO`
 // +-----------------------------------------------------------------
 type dsModelLocalPrefixSetDTO struct {
-	// propertyName=_etag type=INTEGER
-	Etag types.Int64 `tfsdk:"x_etag"`
-	// propertyName=_schema type=INTEGER
-	Schema types.Int64 `tfsdk:"x_schema"`
-	// propertyName=configured type=REFERENCE
-	Configured *dsModelConfiguredPrefixSet `tfsdk:"configured"`
-	// propertyName=discovered type=REFERENCE
-	Discovered *dsModelLocalPrefixSet `tfsdk:"discovered"`
-	// propertyName=id type=STRING
-	Id types.String `tfsdk:"id"`
+	// propertyName=local_networks type=ARRAY_REFERENCE
+	LocalNetworks []dsModelLocalNetwork `tfsdk:"local_networks"`
 }
 
 // +-----------------------------------------------------------------
@@ -28520,6 +29000,8 @@ type dsModelVffLicenseStateQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -28640,6 +29122,8 @@ type dsModelSecurityPolicyV2SetQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29155,6 +29639,38 @@ type dsModelNtpLastSelected struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type dsModelElementCorrelationEventQueryParams struct {
+	// propertyName=_created_on_utc type=REFERENCE
+	CreatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_created_on_utc"`
+	// propertyName=_updated_on_utc type=REFERENCE
+	UpdatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_updated_on_utc"`
+	// propertyName=element_id type=REFERENCE
+	ElementId *dsModelIdQueryOperator `tfsdk:"element_id"`
+	// propertyName=element_name type=REFERENCE
+	ElementName *dsModelStringQueryOperator `tfsdk:"element_name"`
+	// propertyName=site_id type=REFERENCE
+	SiteId *dsModelIdQueryOperator `tfsdk:"site_id"`
+	// propertyName=standing_state type=REFERENCE
+	StandingState *dsModelStringQueryOperator `tfsdk:"standing_state"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `ElementCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type dsModelElementCorrelationEventQueryRequest struct {
+	// propertyName=last_query_ts type=INTEGER
+	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
+	// propertyName=limit type=INTEGER
+	Limit types.Int64 `tfsdk:"limit"`
+	// propertyName=query_params type=REFERENCE
+	QueryParams *dsModelElementCorrelationEventQueryParams `tfsdk:"query_params"`
+	// propertyName=sort_params type=OBJECT
+	SortParams types.Map `tfsdk:"sort_params"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `OspfDiscoveredNeighborQuery`
 // +-----------------------------------------------------------------
 type dsModelOspfDiscoveredNeighborQuery struct {
@@ -29166,6 +29682,8 @@ type dsModelOspfDiscoveredNeighborQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29222,6 +29740,8 @@ type dsModelPerfMgmtPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29258,6 +29778,8 @@ type dsModelMachineSoftwareStateQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29603,14 +30125,6 @@ type dsModelFlowsFilterV3N10 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `AggregateBWStatsResponse`
-// +-----------------------------------------------------------------
-type dsModelAggregateBWStatsResponse struct {
-	// propertyName=metrics type=ARRAY_REFERENCE
-	Metrics []dsModelMetricArray `tfsdk:"metrics"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastDynamicRpQuery`
 // +-----------------------------------------------------------------
 type dsModelMulticastDynamicRpQuery struct {
@@ -29622,6 +30136,8 @@ type dsModelMulticastDynamicRpQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29732,6 +30248,8 @@ type dsModelPolicySetStackQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29784,6 +30302,8 @@ type dsModelURLCategoryQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29820,6 +30340,8 @@ type dsModelHubClusterQueryV4 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -29935,6 +30457,16 @@ type dsModelEventBodyPolicyInfo struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmLinkHealthPointMetricV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmLinkHealthPointMetricV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `UDPFlowCountMetric`
 // +-----------------------------------------------------------------
 type dsModelUDPFlowCountMetric struct {
@@ -29952,6 +30484,18 @@ type dsModelUDPFlowCountMetric struct {
 type dsModelMetricSchemaResponse struct {
 	// propertyName=metrics type=ARRAY_REFERENCE
 	Metrics []dsModelMetricSchema `tfsdk:"metrics"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceEgressCarrierErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceEgressCarrierErrorsMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -29998,6 +30542,8 @@ type dsModelElementShellQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -30188,6 +30734,8 @@ type dsModelBulkConfigPushQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -30455,6 +31003,18 @@ type dsModelAppStatsTopNResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTransitionForwardMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceStpTransitionForwardMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `EventsOperationsResponseBody`
 // +-----------------------------------------------------------------
 type dsModelEventsOperationsResponseBody struct {
@@ -30486,6 +31046,40 @@ type dsModelAppStatsAggregatesQuery struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=start_time type=STRING
 	StartTime types.String `tfsdk:"start_time"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `InterfaceCorrelationEventQueryParams`
+// +-----------------------------------------------------------------
+type dsModelInterfaceCorrelationEventQueryParams struct {
+	// propertyName=_created_on_utc type=REFERENCE
+	CreatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_created_on_utc"`
+	// propertyName=_updated_on_utc type=REFERENCE
+	UpdatedOnUtc *dsModelNumberQueryOperator `tfsdk:"x_updated_on_utc"`
+	// propertyName=element_id type=REFERENCE
+	ElementId *dsModelIdQueryOperator `tfsdk:"element_id"`
+	// propertyName=interface_id type=REFERENCE
+	InterfaceId *dsModelIdQueryOperator `tfsdk:"interface_id"`
+	// propertyName=interface_name type=REFERENCE
+	InterfaceName *dsModelStringQueryOperator `tfsdk:"interface_name"`
+	// propertyName=site_id type=REFERENCE
+	SiteId *dsModelIdQueryOperator `tfsdk:"site_id"`
+	// propertyName=standing_state type=REFERENCE
+	StandingState *dsModelStringQueryOperator `tfsdk:"standing_state"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `InterfaceCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type dsModelInterfaceCorrelationEventQueryRequest struct {
+	// propertyName=last_query_ts type=INTEGER
+	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
+	// propertyName=limit type=INTEGER
+	Limit types.Int64 `tfsdk:"limit"`
+	// propertyName=query_params type=REFERENCE
+	QueryParams *dsModelInterfaceCorrelationEventQueryParams `tfsdk:"query_params"`
+	// propertyName=sort_params type=OBJECT
+	SortParams types.Map `tfsdk:"sort_params"`
 }
 
 // +-----------------------------------------------------------------
@@ -30603,6 +31197,18 @@ type dsModelDeviceIdStartNodeScreen struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsMemoryUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsMemoryUsageMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `Machine`
 // +-----------------------------------------------------------------
 type dsModelMachine struct {
@@ -30656,6 +31262,8 @@ type dsModelDnsServiceQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -30690,6 +31298,20 @@ type dsModelInterfaceConfig struct {
 	DiscoveredNeighbors []dsModelDiscoveredNeighbor `tfsdk:"discovered_neighbors"`
 	// propertyName=interface_id type=STRING
 	InterfaceId types.String `tfsdk:"interface_id"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `WANInterfaceCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type dsModelWANInterfaceCorrelationEventQueryRequest struct {
+	// propertyName=last_query_ts type=INTEGER
+	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
+	// propertyName=limit type=INTEGER
+	Limit types.Int64 `tfsdk:"limit"`
+	// propertyName=query_params type=REFERENCE
+	QueryParams *dsModelWANInterfaceCorrelationEventQueryParams `tfsdk:"query_params"`
+	// propertyName=sort_params type=OBJECT
+	SortParams types.Map `tfsdk:"sort_params"`
 }
 
 // +-----------------------------------------------------------------
@@ -30738,6 +31360,8 @@ type dsModelIPSECProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -31400,6 +32024,8 @@ type dsModelTopologyNodesQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -31748,6 +32374,8 @@ type dsModelElementStateQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -31914,6 +32542,8 @@ type dsModelMulticastSourceSideRpQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -31971,6 +32601,18 @@ type dsModelAppObjectStatsResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTxBpduMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceStpTxBpduMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `VffLicenseQuery`
 // +-----------------------------------------------------------------
 type dsModelVffLicenseQuery struct {
@@ -31982,6 +32624,8 @@ type dsModelVffLicenseQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -32420,6 +33064,8 @@ type dsModelDeviceIdConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -32715,6 +33361,18 @@ type dsModelEventCodesDataItemItems struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceBandwidthUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceBandwidthUsageMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `PriorityPolicySetState`
 // +-----------------------------------------------------------------
 type dsModelPriorityPolicySetState struct {
@@ -32847,6 +33505,18 @@ type dsModelRoutingRouteMapScreenV2N1 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDiskUsageMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDiskUsageMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `RoutingRouteMapScreenV2N2`
 // +-----------------------------------------------------------------
 type dsModelRoutingRouteMapScreenV2N2 struct {
@@ -32880,6 +33550,8 @@ type dsModelMulticastStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -33057,26 +33729,6 @@ type dsModelCellularmetricsResponse struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `DistributionQuery`
-// +-----------------------------------------------------------------
-type dsModelDistributionQuery struct {
-	// propertyName=aggregation type=STRING
-	Aggregation types.String `tfsdk:"aggregation"`
-	// propertyName=end_time type=STRING
-	EndTime types.String `tfsdk:"end_time"`
-	// propertyName=interval type=STRING
-	Interval types.String `tfsdk:"interval"`
-	// propertyName=metric_name type=STRING
-	MetricName types.String `tfsdk:"metric_name"`
-	// propertyName=name type=STRING
-	Name types.String `tfsdk:"name"`
-	// propertyName=site_id type=STRING
-	SiteId types.String `tfsdk:"site_id"`
-	// propertyName=start_time type=STRING
-	StartTime types.String `tfsdk:"start_time"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `LqmPacketLossThresholdMetric`
 // +-----------------------------------------------------------------
 type dsModelLqmPacketLossThresholdMetric struct {
@@ -33142,6 +33794,16 @@ type dsModelEventCorrelationPolicyRule struct {
 	Suppress types.String `tfsdk:"suppress"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmJitterPointMetricV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmJitterPointMetricV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -33287,6 +33949,16 @@ type dsModelMicrosegmentQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmMosPointMetricV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmMosPointMetricV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SystemHealthMetricsThresholds`
 // +-----------------------------------------------------------------
 type dsModelSystemHealthMetricsThresholds struct {
@@ -33332,6 +34004,8 @@ type dsModelNATPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -33414,6 +34088,8 @@ type dsModelNetworkPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -33654,6 +34330,8 @@ type dsModelElementStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -33714,6 +34392,8 @@ type dsModelElementQueryV3N1 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -33943,6 +34623,24 @@ type dsModelSysMetricsInterfaceStpRxTopologyChangeMetricV3N0 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SiteCorrelationEventQueryRequest`
+// +-----------------------------------------------------------------
+type dsModelSiteCorrelationEventQueryRequest struct {
+	// propertyName=last_query_ts type=INTEGER
+	LastQueryTs types.Int64 `tfsdk:"last_query_ts"`
+	// propertyName=limit type=INTEGER
+	Limit types.Int64 `tfsdk:"limit"`
+	// propertyName=query_params type=REFERENCE
+	QueryParams *dsModelSiteCorrelationEventQueryParams `tfsdk:"query_params"`
+	// propertyName=retrieved_fields type=ARRAY_PRIMITIVE
+	RetrievedFields types.List `tfsdk:"retrieved_fields"`
+	// propertyName=retrieved_fields_mask type=BOOLEAN
+	RetrievedFieldsMask types.Bool `tfsdk:"retrieved_fields_mask"`
+	// propertyName=sort_params type=OBJECT
+	SortParams types.Map `tfsdk:"sort_params"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `PolicySetQuery`
 // +-----------------------------------------------------------------
 type dsModelPolicySetQuery struct {
@@ -33954,6 +34652,8 @@ type dsModelPolicySetQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -33990,6 +34690,8 @@ type dsModelPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -34107,6 +34809,18 @@ type dsModelInterfaceReset struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfacePoePowerDeniedCounterMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfacePoePowerDeniedCounterMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `BooleanQueryOperator`
 // +-----------------------------------------------------------------
 type dsModelBooleanQueryOperator struct {
@@ -34156,6 +34870,8 @@ type dsModelPriorityPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -34284,6 +35000,8 @@ type dsModelElementMetaModel struct {
 	DisabledReason types.String `tfsdk:"disabled_reason"`
 	// propertyName=eol_sw_version type=STRING
 	EolSwVersion types.String `tfsdk:"eol_sw_version"`
+	// propertyName=fec_ports type=ARRAY_PRIMITIVE
+	FecPorts types.List `tfsdk:"fec_ports"`
 	// propertyName=fec_supported type=BOOLEAN
 	FecSupported types.Bool `tfsdk:"fec_supported"`
 	// propertyName=fips_change_mode type=STRING
@@ -34335,6 +35053,18 @@ type dsModelElementMetaModel struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `TrafficRiskExposureQuery`
+// +-----------------------------------------------------------------
+type dsModelTrafficRiskExposureQuery struct {
+	// propertyName=end_time type=STRING
+	EndTime types.String `tfsdk:"end_time"`
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=start_time type=STRING
+	StartTime types.String `tfsdk:"start_time"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `CellularModuleFirmwareStatusQuery`
 // +-----------------------------------------------------------------
 type dsModelCellularModuleFirmwareStatusQuery struct {
@@ -34346,6 +35076,8 @@ type dsModelCellularModuleFirmwareStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -34516,6 +35248,8 @@ type dsModelServiceEndpointQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -34552,6 +35286,8 @@ type dsModelTopologyLinksQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -34608,6 +35344,16 @@ type dsModelCertificatePOSTScreen struct {
 	Passphrase types.String `tfsdk:"passphrase"`
 	// propertyName=used_for type=ARRAY_PRIMITIVE
 	UsedFor types.List `tfsdk:"used_for"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmPktLossPointMetricV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmPktLossPointMetricV2N0 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -35212,6 +35958,8 @@ type dsModelMachineQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -35248,6 +35996,8 @@ type dsModelVffTokenQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -35336,6 +36086,8 @@ type dsModelElementAccessConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -35358,6 +36110,18 @@ type dsModelElementAccessConfigQuery struct {
 	SortParams types.Map `tfsdk:"sort_params"`
 	// propertyName=total_count type=INTEGER
 	TotalCount types.Int64 `tfsdk:"total_count"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `LqmPointMetricsFilterV2N0`
+// +-----------------------------------------------------------------
+type dsModelLqmPointMetricsFilterV2N0 struct {
+	// propertyName=path type=ARRAY_PRIMITIVE
+	Path types.List `tfsdk:"path"`
+	// propertyName=site type=ARRAY_PRIMITIVE
+	Site types.List `tfsdk:"site"`
+	// propertyName=wn_path type=ARRAY_PRIMITIVE
+	WnPath types.List `tfsdk:"wn_path"`
 }
 
 // +-----------------------------------------------------------------
@@ -35468,6 +36232,8 @@ type dsModelGlobalPrefixQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -35586,6 +36352,18 @@ type dsModelIncidentResourceSettingsQuery struct {
 	Filter *dsModelFilter `tfsdk:"filter"`
 	// propertyName=id type=STRING
 	Id types.String `tfsdk:"id"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceDroppedPacketsMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceDroppedPacketsMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -35864,6 +36642,8 @@ type dsModelSecurityPolicySetQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -36682,6 +37462,8 @@ type dsModelDnsServiceProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -37707,22 +38489,6 @@ type dsModelSiteQueryFilterV4N3 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `IdQueryOperator`
-// +-----------------------------------------------------------------
-type dsModelIdQueryOperator struct {
-	// propertyName=eq type=STRING
-	Eq types.String `tfsdk:"eq"`
-	// propertyName=exists type=BOOLEAN
-	Exists types.Bool `tfsdk:"exists"`
-	// propertyName=in type=ARRAY_PRIMITIVE
-	In types.List `tfsdk:"in"`
-	// propertyName=neq type=STRING
-	Neq types.String `tfsdk:"neq"`
-	// propertyName=nin type=ARRAY_PRIMITIVE
-	Nin types.List `tfsdk:"nin"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MulticastWANTrafficStatsResponse`
 // +-----------------------------------------------------------------
 type dsModelMulticastWANTrafficStatsResponse struct {
@@ -37862,6 +38628,8 @@ type dsModelThreatMetadataQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -37922,6 +38690,8 @@ type dsModelPrefixQueryV3 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=ge type=INTEGER
 	Ge types.Int64 `tfsdk:"ge"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
@@ -37964,6 +38734,8 @@ type dsModelSiteQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -38712,6 +39484,8 @@ type dsModelPathGroupQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -39113,6 +39887,18 @@ type dsModelIdpV3N3 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTransitionBulkMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceStpTransitionBulkMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `IdpV3N2`
 // +-----------------------------------------------------------------
 type dsModelIdpV3N2 struct {
@@ -39297,6 +40083,18 @@ type dsModelPPKSecretResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceStpTxTopologyChangeMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceStpTxTopologyChangeMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `CellularModuleFirmwareStatusQueryFilter`
 // +-----------------------------------------------------------------
 type dsModelCellularModuleFirmwareStatusQueryFilter struct {
@@ -39337,6 +40135,22 @@ type dsModelCellularModuleFirmwareStatusQueryFilter struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `LocalPrefixSetResponse`
+// +-----------------------------------------------------------------
+type dsModelLocalPrefixSetResponse struct {
+	// propertyName=_etag type=INTEGER
+	Etag types.Int64 `tfsdk:"x_etag"`
+	// propertyName=_schema type=INTEGER
+	Schema types.Int64 `tfsdk:"x_schema"`
+	// propertyName=configured type=REFERENCE
+	Configured *dsModelConfiguredPrefixSet `tfsdk:"configured"`
+	// propertyName=discovered type=REFERENCE
+	Discovered *dsModelLocalPrefixSet `tfsdk:"discovered"`
+	// propertyName=id type=STRING
+	Id types.String `tfsdk:"id"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MonitorMetricsResponse`
 // +-----------------------------------------------------------------
 type dsModelMonitorMetricsResponse struct {
@@ -39356,6 +40170,8 @@ type dsModelAppAccelerationStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -39536,6 +40352,8 @@ type dsModelPriorityPolicyRuleQueryV2N2 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -39604,6 +40422,8 @@ type dsModelPriorityPolicyRuleQueryV2N1 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -39742,6 +40562,8 @@ type dsModelPANetworkQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -40308,6 +41130,8 @@ type dsModelSpokeClusterElementStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -41119,6 +41943,18 @@ type dsModelDeviceIdConfidence struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceAcpiTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceAcpiTemperatureMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `HardwareBypass`
 // +-----------------------------------------------------------------
 type dsModelHardwareBypass struct {
@@ -41450,6 +42286,18 @@ type dsModelPerfMgmtPolicyRuleV2N2 struct {
 // | Auto Generated for Schema `AppTotalConnectionsMetric`
 // +-----------------------------------------------------------------
 type dsModelAppTotalConnectionsMetric struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDevicePseTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDevicePseTemperatureMetricV2N4 struct {
 	// propertyName=name type=STRING
 	Name types.String `tfsdk:"name"`
 	// propertyName=statistics type=ARRAY_PRIMITIVE
@@ -42286,6 +43134,8 @@ type dsModelSecurityProfileGroupQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -42524,6 +43374,8 @@ type dsModelIPFixConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -42560,6 +43412,8 @@ type dsModelSaseConnectionQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -42744,6 +43598,8 @@ type dsModelPrefixQueryV3N1 struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=ge type=INTEGER
 	Ge types.Int64 `tfsdk:"ge"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
@@ -43190,6 +44046,8 @@ type dsModelSnapshotExportQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -43460,6 +44318,8 @@ type dsModelInterfaceStateQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -43642,6 +44502,8 @@ type dsModelLANNetworkQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -44082,6 +44944,8 @@ type dsModelElementQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -44674,6 +45538,8 @@ type dsModelElementSecurityZoneQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -44756,6 +45622,8 @@ type dsModelSnapshotImportQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -44820,6 +45688,8 @@ type dsModelElementImageStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -45212,6 +46082,8 @@ type dsModelMulticastRPConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -45288,6 +46160,18 @@ type dsModelRoutingAccessList struct {
 	Name types.String `tfsdk:"name"`
 	// propertyName=tags type=SET_PRIMITIVE
 	Tags types.Set `tfsdk:"tags"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceIngressFrameErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceIngressFrameErrorsMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -46163,6 +47047,18 @@ type dsModelDeviceIdProfile struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceInletTemperatureMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceInletTemperatureMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `MSTPInstanceQuery`
 // +-----------------------------------------------------------------
 type dsModelMSTPInstanceQuery struct {
@@ -46174,6 +47070,8 @@ type dsModelMSTPInstanceQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -46650,6 +47548,8 @@ type dsModelWANNetworkQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -46770,6 +47670,8 @@ type dsModelBGPPeerStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -46906,6 +47808,8 @@ type dsModelPathPrefixDistributionAssociationQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -46980,6 +47884,8 @@ type dsModelActiveUserIPQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -47442,6 +48348,8 @@ type dsModelMulticastWanStatusQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -47478,6 +48386,8 @@ type dsModelSecurityPolicyRuleQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -47871,30 +48781,6 @@ type dsModelSaseConnectionGlobalConfigScreenV3N1 struct {
 }
 
 // +-----------------------------------------------------------------
-// | Auto Generated for Schema `ElementAccessConfigV2N3`
-// +-----------------------------------------------------------------
-type dsModelElementAccessConfigV2N3 struct {
-	// propertyName=_etag type=INTEGER
-	Etag types.Int64 `tfsdk:"x_etag"`
-	// propertyName=_schema type=INTEGER
-	Schema types.Int64 `tfsdk:"x_schema"`
-	// propertyName=account_disable_interval type=INTEGER
-	AccountDisableInterval types.Int64 `tfsdk:"account_disable_interval"`
-	// propertyName=id type=STRING
-	Id types.String `tfsdk:"id"`
-	// propertyName=inactive_interval type=INTEGER
-	InactiveInterval types.Int64 `tfsdk:"inactive_interval"`
-	// propertyName=otpkey_version type=INTEGER
-	OtpkeyVersion types.Int64 `tfsdk:"otpkey_version"`
-	// propertyName=retry_login_count type=INTEGER
-	RetryLoginCount types.Int64 `tfsdk:"retry_login_count"`
-	// propertyName=ssh_enabled type=BOOLEAN
-	SshEnabled types.Bool `tfsdk:"ssh_enabled"`
-	// propertyName=ssh_outbound_enabled type=BOOLEAN
-	SshOutboundEnabled types.Bool `tfsdk:"ssh_outbound_enabled"`
-}
-
-// +-----------------------------------------------------------------
 // | Auto Generated for Schema `ElementAccessConfigV2N2`
 // +-----------------------------------------------------------------
 type dsModelElementAccessConfigV2N2 struct {
@@ -47991,6 +48877,18 @@ type dsModelMicrosegmentScreen struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsDeviceLastTopologyChangeSinceMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsDeviceLastTopologyChangeSinceMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `SyslogServerV2N1`
 // +-----------------------------------------------------------------
 type dsModelSyslogServerV2N1 struct {
@@ -48049,6 +48947,18 @@ type dsModelSaseConnectionGlobalConfigScreenV3N2 struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceLldpRxTotalFramesMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceLldpRxTotalFramesMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `NATPolicyZone`
 // +-----------------------------------------------------------------
 type dsModelNATPolicyZone struct {
@@ -48090,6 +49000,8 @@ type dsModelOspfReachablePrefixesQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -48154,6 +49066,8 @@ type dsModelDeviceIdDictionaryQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -48329,6 +49243,18 @@ type dsModelObjectStatsTypeResponse struct {
 }
 
 // +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceErrorsMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceErrorsMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
+}
+
+// +-----------------------------------------------------------------
 // | Auto Generated for Schema `OspfReachablePrefixesFilter`
 // +-----------------------------------------------------------------
 type dsModelOspfReachablePrefixesFilter struct {
@@ -48362,6 +49288,8 @@ type dsModelDirectoryUserQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -48714,6 +49642,8 @@ type dsModelMicrosegmentQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -48816,6 +49746,8 @@ type dsModelProbeConfigQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING
@@ -48864,6 +49796,18 @@ type dsModelBGPPeerStatusV2N3 struct {
 	V4CapabilityNegotiated types.Bool `tfsdk:"v4_capability_negotiated"`
 	// propertyName=v6_capability_negotiated type=BOOLEAN
 	V6CapabilityNegotiated types.Bool `tfsdk:"v6_capability_negotiated"`
+}
+
+// +-----------------------------------------------------------------
+// | Auto Generated for Schema `SysMetricsInterfaceLldpTxFailedFramesMetricV2N4`
+// +-----------------------------------------------------------------
+type dsModelSysMetricsInterfaceLldpTxFailedFramesMetricV2N4 struct {
+	// propertyName=name type=STRING
+	Name types.String `tfsdk:"name"`
+	// propertyName=statistics type=ARRAY_PRIMITIVE
+	Statistics types.List `tfsdk:"statistics"`
+	// propertyName=unit type=STRING
+	Unit types.String `tfsdk:"unit"`
 }
 
 // +-----------------------------------------------------------------
@@ -49706,6 +50650,8 @@ type dsModelAPNProfileQuery struct {
 	Aggregate *dsModelAggregate `tfsdk:"aggregate"`
 	// propertyName=dest_page type=INTEGER
 	DestPage types.Int64 `tfsdk:"dest_page"`
+	// propertyName=distinct_field type=STRING
+	DistinctField types.String `tfsdk:"distinct_field"`
 	// propertyName=group_by type=ARRAY_PRIMITIVE
 	GroupBy types.List `tfsdk:"group_by"`
 	// propertyName=id type=STRING

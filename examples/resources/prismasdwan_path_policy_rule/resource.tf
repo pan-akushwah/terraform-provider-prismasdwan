@@ -24,8 +24,8 @@
 resource "prismasdwan_path_policy_rule" "example" {
   app_def_ids = ["<app_def_id>"]
   best_path_config = {
-    metric          = "LATENCY"
-    metric_type     = "PROBE"
+    metric          = "latency"
+    metric_type     = "probe"
     probe_config_id = "<probe_config_id>"
   }
   description             = "Managed by Terraform"
@@ -51,9 +51,9 @@ resource "prismasdwan_path_policy_rule" "example" {
   }
   service_context = {
     active_service_label_id   = "<active_service_label_id>"
-    active_service_label_type = "CG_TRANSIT"
+    active_service_label_type = "cg-transit"
     backup_service_label_id   = "<backup_service_label_id>"
-    backup_service_label_type = "CG_TRANSIT"
+    backup_service_label_type = "cg-transit"
     type                      = "allowed-transit"
   }
   source_prefixes_id = "<source_prefixes_id>"

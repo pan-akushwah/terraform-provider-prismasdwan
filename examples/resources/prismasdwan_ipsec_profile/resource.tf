@@ -40,7 +40,7 @@ resource "prismasdwan_ipsec_profile" "example" {
     pa_master_key_id        = "<pa_master_key_id>"
     passphrase              = "<secret>"
     passphrase_encrypted    = "<secret>"
-    peer_id_check           = "EXACT"
+    peer_id_check           = "Exact"
     permit_peer_id_mismatch = false
     ppk_config = {
       enabled               = true
@@ -93,9 +93,9 @@ resource "prismasdwan_ipsec_profile" "example" {
       prf        = "md5"
     }]
     responder_sase_proposals = {
-      dh_group   = ["NONE"]
-      encryption = ["NONE"]
-      hash       = ["MD5"]
+      dh_group   = ["none"]
+      encryption = ["none"]
+      hash       = ["md5"]
     }
   }
   ike_group = {
