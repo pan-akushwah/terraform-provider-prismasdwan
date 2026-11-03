@@ -188,7 +188,7 @@ func (r *siteDhcpServerResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=disabled, type=BOOLEAN macro=rss_schema
 			"disabled": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Disabled",

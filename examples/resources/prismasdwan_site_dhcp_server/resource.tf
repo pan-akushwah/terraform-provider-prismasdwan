@@ -31,7 +31,6 @@ resource "prismasdwan_site_dhcp_server" "example" {
   }]
   default_lease_time = 300
   description        = "Managed by Terraform"
-  disabled           = false
   dns_servers        = ["example_dns_servers"]
   domain_name        = "example.com"
   gateway            = "10.0.0.1"

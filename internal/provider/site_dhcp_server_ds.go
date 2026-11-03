@@ -206,7 +206,7 @@ func (d *siteDhcpServerDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=disabled, type=BOOLEAN macro=rss_schema
 						"disabled": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Disabled",
