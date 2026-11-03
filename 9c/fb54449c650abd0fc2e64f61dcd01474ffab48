@@ -1,0 +1,35 @@
+examples/resources/prismasdwan_site_hub_prefix_filter/resource.tf
+  s_a281bc52404319::t_003cf0f5b5c4e2 29-31
+internal/provider/schema_datasource.go
+  s_a281bc52404319::t_530400c02e8659 25465-25466
+internal/provider/schema_model_test.go
+  s_a281bc52404319::t_a08287514beb21 17
+internal/provider/schema_resource.go
+  s_a281bc52404319::t_cdd8f877500937 27363-27364
+internal/provider/site_hub_prefix_filter_ds.go
+  s_a281bc52404319::t_09a73995d37578 167-168,175,375-378
+internal/provider/site_hub_prefix_filter_rs.go
+  s_a281bc52404319::t_a764d7a6f42bfa 149-150,157,274-275,303-307,399-405,547-553,657-658,687-691,768-774
+internal/provider/utils.go
+  s_a281bc52404319::t_df6fde1669af19 370-377
+internal/provider/utils_test.go
+  s_a281bc52404319::t_ff8f3cb0772596 125-136
+sdk/sdwan/schemas/all_schema.go
+  s_a281bc52404319::t_9aef31665ad843 16608
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "9cfb54449c650abd0fc2e64f61dcd01474ffab48",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
