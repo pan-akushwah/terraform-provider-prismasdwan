@@ -1057,10 +1057,78 @@ func (r *elementRadiusResource) Create(ctx context.Context, req resource.CreateR
 		return
 	}
 
-	// make post call
-	var state rsModelElementRadiusScreen
-	if r.doPost(ctx, &plan, &state, resp) {
-		resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+	// Every switch-capable element has exactly one RADIUS configuration: once it exists (created by Terraform, the portal or
+	// a direct call) a POST is answered with INVALID_REQUEST_DUPLICATE_KEY for ever, and a DELETE only clears its fields.
+	// "Create" therefore adopts the existing one (GET, then PUT) and only POSTs when the element has none.
+	params := MapStringValueOrNil(ctx, plan.TfParameters)
+	element_id, ok := params["element_id"]
+	if !ok || element_id == nil {
+		resp.Diagnostics.AddError("could not find element_id in x_parameters", "missing parameter")
+		return
+	}
+
+	svc := sdwan_client.NewClient(r.client)
+	list_request := &sdwan_client.SdwanClientRequestResponse{}
+	list_request.ResourceType = "prismasdwan_element_radius"
+	list_request.Method = "GET"
+	list_request.Path = "/sdwan/v2.0/api/elements/{element_id}/radii"
+	list_request.PathParameters = &map[string]*string{"element_id": element_id}
+	svc.ExecuteSdwanRequest(ctx, list_request)
+	if list_request.ResponseErr != nil {
+		resp.Diagnostics.AddError("error reading the element's RADIUS configuration",
+			(*list_request.ResponseErr).Error()+" (GET "+*list_request.FinalPath+")")
+		return
+	}
+	var existing struct {
+		Items []struct {
+			Id *string `json:"id"`
+		} `json:"items"`
+	}
+	if err := json.Unmarshal(*list_request.ResponseBytes, &existing); err != nil {
+		resp.Diagnostics.AddError("error reading the element's RADIUS configuration", err.Error())
+		return
+	}
+
+	if len(existing.Items) == 0 || existing.Items[0].Id == nil {
+		// none yet: the normal create
+		var state rsModelElementRadiusScreen
+		if r.doPost(ctx, &plan, &state, resp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+		}
+		return
+	}
+
+	// adopt: same tfid format as a created object, <id>, then the path parameters
+	var idBuilder strings.Builder
+	idBuilder.WriteString(*existing.Items[0].Id)
+	for p, v := range params {
+		if v != nil && p != "radius_id" {
+			idBuilder.WriteString(IdSeparator)
+			idBuilder.WriteString(p)
+			idBuilder.WriteString("=")
+			idBuilder.WriteString(*v)
+		}
+	}
+	plan.Tfid = types.StringValue(idBuilder.String())
+
+	var save rsModelElementRadiusScreen
+	save.Tfid = plan.Tfid
+	gResp := resource.ReadResponse{
+		Private:     resp.Private,
+		Diagnostics: resp.Diagnostics,
+	}
+	if r.doGet(ctx, &save, &plan, &resp.State, &gResp) {
+		uResp := resource.UpdateResponse{
+			Private:     resp.Private,
+			Diagnostics: resp.Diagnostics,
+		}
+		if r.doPut(ctx, &plan, &save, &resp.State, &uResp) {
+			resp.Diagnostics.Append(resp.State.Set(ctx, &save)...)
+		} else {
+			resp.Diagnostics = uResp.Diagnostics
+		}
+	} else {
+		resp.Diagnostics = gResp.Diagnostics
 	}
 }
 
