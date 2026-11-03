@@ -1,0 +1,19 @@
+internal/provider/site_ciphers_rs.go
+  s_a281bc52404319::t_abd6ec14bee081 285,287-294,296,298-305,479,481-488,490,492-499
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "d984e34eae2169223f3ab0d0db90759de4d0c8df",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
