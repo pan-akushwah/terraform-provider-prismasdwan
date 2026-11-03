@@ -1,0 +1,39 @@
+examples/data-sources/prismasdwan_sdwanapp/data-source.tf
+  s_a281bc52404319::t_8e55531a260475 1-13
+examples/resources/prismasdwan_sdwanapps_config/resource.tf
+  s_a281bc52404319::t_6f39285791d30b 25-27
+internal/provider/provider.go
+  s_a281bc52404319::t_3881289570cd6f 298
+internal/provider/schema_datasource.go
+  s_a281bc52404319::t_777bbcaf6a02a5 25889-25890,30623-30624
+internal/provider/schema_resource.go
+  s_a281bc52404319::t_6ba87aee0e5ee8 27823-27824,32973-32974
+internal/provider/sdwanapp_manual.go
+  s_a281bc52404319::t_49aa7e52a9f52d 1-254
+internal/provider/sdwanapp_manual_test.go
+  s_a281bc52404319::t_2c1d803ac65c5f 1-35
+internal/provider/sdwanapps_config_ds.go
+  s_a281bc52404319::t_7bbc8c4de8d5f6 145-146,153,301-304
+internal/provider/sdwanapps_config_rs.go
+  s_a281bc52404319::t_feb7f9bc62fe0b 127-128,135,206-207,298-304,402-408,491-495,562-568
+internal/provider/utils.go
+  s_a281bc52404319::t_7bce498d159efa 9,12,387-423
+internal/provider/utils_test.go
+  s_a281bc52404319::t_75cc87183dd5ba 7,96-124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "13e3a2bf7864793f9bb7b0b406fb50c0069b7d1d",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
