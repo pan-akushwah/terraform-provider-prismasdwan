@@ -1626,6 +1626,23 @@ func (r *siteResource) Delete(ctx context.Context, req resource.DeleteRequest, r
 		return
 	}
 
+	// The API refuses to delete a site that still has a multicast peer group (DELETE_FORBIDDEN_MULTICAST_PEER_GROUP_EXISTS),
+	// and the group cannot be deleted while a site is attached (MULTICAST_PEER_GROUP_IN_USE): detach it first, the way the
+	// portal does, with a PUT whose multicast_peer_group_id is null.
+	if !state.MulticastPeerGroupId.IsNull() && !state.MulticastPeerGroupId.IsUnknown() && state.MulticastPeerGroupId.ValueString() != "" {
+		detach := state
+		detach.MulticastPeerGroupId = types.StringNull()
+		update_resp := &resource.UpdateResponse{
+			Diagnostics: resp.Diagnostics,
+			State:       resp.State,
+			Private:     resp.Private,
+		}
+		if !r.doPut(ctx, &detach, &state, &resp.State, update_resp) {
+			resp.Diagnostics.Append(update_resp.Diagnostics...)
+			return
+		}
+	}
+
 	// make a delete call
 	if r.doDelete(ctx, &state, resp) {
 		resp.State.RemoveResource(ctx)
