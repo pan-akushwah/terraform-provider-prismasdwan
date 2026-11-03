@@ -282,9 +282,27 @@ func (r *siteCiphersResource) doGet(ctx context.Context, state *rsModelSiteCiphe
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tls13_controller_connection_cipher, type=STRING macro=copy_to_state
+	priorTls13ControllerConnectionCipher := state.Tls13ControllerConnectionCipher
 	state.Tls13ControllerConnectionCipher = types.StringPointerValue(ans.Tls13ControllerConnectionCipher)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Tls13ControllerConnectionCipher == nil {
+		if !savestate.Tls13ControllerConnectionCipher.IsUnknown() {
+			state.Tls13ControllerConnectionCipher = savestate.Tls13ControllerConnectionCipher
+		} else {
+			state.Tls13ControllerConnectionCipher = priorTls13ControllerConnectionCipher
+		}
+	}
 	// property: name=tls13_enabled, type=BOOLEAN macro=copy_to_state
+	priorTls13Enabled := state.Tls13Enabled
 	state.Tls13Enabled = types.BoolPointerValue(ans.Tls13Enabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Tls13Enabled == nil {
+		if !savestate.Tls13Enabled.IsUnknown() {
+			state.Tls13Enabled = savestate.Tls13Enabled
+		} else {
+			state.Tls13Enabled = priorTls13Enabled
+		}
+	}
 	// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varVpnCiphers, errVpnCiphers := types.ListValueFrom(ctx, types.StringType, ans.VpnCiphers)
 	state.VpnCiphers = varVpnCiphers
@@ -458,9 +476,27 @@ func (r *siteCiphersResource) doPut(ctx context.Context, plan *rsModelSiteCipher
 	// property: name=site_id, type=STRING macro=copy_to_state
 	state.SiteId = types.StringPointerValue(ans.SiteId)
 	// property: name=tls13_controller_connection_cipher, type=STRING macro=copy_to_state
+	priorTls13ControllerConnectionCipher := state.Tls13ControllerConnectionCipher
 	state.Tls13ControllerConnectionCipher = types.StringPointerValue(ans.Tls13ControllerConnectionCipher)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Tls13ControllerConnectionCipher == nil {
+		if !plan.Tls13ControllerConnectionCipher.IsUnknown() {
+			state.Tls13ControllerConnectionCipher = plan.Tls13ControllerConnectionCipher
+		} else {
+			state.Tls13ControllerConnectionCipher = priorTls13ControllerConnectionCipher
+		}
+	}
 	// property: name=tls13_enabled, type=BOOLEAN macro=copy_to_state
+	priorTls13Enabled := state.Tls13Enabled
 	state.Tls13Enabled = types.BoolPointerValue(ans.Tls13Enabled)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.Tls13Enabled == nil {
+		if !plan.Tls13Enabled.IsUnknown() {
+			state.Tls13Enabled = plan.Tls13Enabled
+		} else {
+			state.Tls13Enabled = priorTls13Enabled
+		}
+	}
 	// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varVpnCiphers, errVpnCiphers := types.ListValueFrom(ctx, types.StringType, ans.VpnCiphers)
 	state.VpnCiphers = varVpnCiphers
