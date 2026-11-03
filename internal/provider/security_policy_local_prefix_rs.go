@@ -547,6 +547,12 @@ func (r *securityPolicyLocalPrefixResource) doPut(ctx context.Context, plan *rsM
 		return false
 	}
 
+	// x_parameters is what the configuration says: after an import the prior state has none, and a state that
+	// differs from the plan ends in "Provider produced inconsistent result after apply"
+	if !plan.TfParameters.IsNull() && !plan.TfParameters.IsUnknown() {
+		state.TfParameters = plan.TfParameters
+	}
+
 	// Store the answer to state. schema=SecurityPolicyV2LocalPrefixScreen
 	// copy_to_state: state=state prefix=rsModel ans=ans properties=6
 	tflog.Debug(ctx, "copy_to_state state=state prefix=rsModel ans=ans")
