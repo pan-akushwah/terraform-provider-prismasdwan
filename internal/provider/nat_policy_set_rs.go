@@ -247,6 +247,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Actions",
+							Validators:  ListMaxItems(4),
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=nat_pool_id, type=STRING macro=rss_schema
@@ -274,6 +275,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 										Optional:    true,
 										Sensitive:   false,
 										Description: "Protocols",
+										Validators:  ListMaxItems(4),
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=protocols, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -306,6 +308,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Destination Ports",
+							Validators:  ListMaxItems(16),
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=from, type=INTEGER macro=rss_schema
@@ -391,6 +394,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Source Ports",
+							Validators:  ListMaxItems(16),
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=from, type=INTEGER macro=rss_schema
@@ -440,6 +444,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Tags",
+							Validators:  SetMaxItems(10),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -482,6 +487,7 @@ func (r *natPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

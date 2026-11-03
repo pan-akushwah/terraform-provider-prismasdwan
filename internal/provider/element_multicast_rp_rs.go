@@ -123,6 +123,7 @@ func (r *elementMulticastRpResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Groups",
+				Validators:  ListMaxItems(1024),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=ipv4_prefix, type=STRING macro=rss_schema
@@ -181,6 +182,7 @@ func (r *elementMulticastRpResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

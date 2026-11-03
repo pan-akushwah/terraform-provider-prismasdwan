@@ -119,6 +119,7 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Bandwidth Allocation Schemes",
+				Validators:  ListMaxItems(4),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=bandwidth_range, type=REFERENCE macro=rss_schema
@@ -239,6 +240,7 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Business Priority Names",
+				Validators:  ListMaxItems(4),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=priority_name, type=STRING macro=rss_schema
@@ -279,6 +281,7 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Default Rule Dscp Mappings",
+				Validators:  ListMaxItems(16),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=dscp, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -356,6 +359,7 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

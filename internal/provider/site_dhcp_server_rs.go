@@ -201,6 +201,7 @@ func (r *siteDhcpServerResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Dns Servers",
+				Validators:  ListMaxItems(3),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=dns_servers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -345,6 +346,7 @@ func (r *siteDhcpServerResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

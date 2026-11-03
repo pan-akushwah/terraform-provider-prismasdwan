@@ -177,6 +177,7 @@ func (r *elementTacacsPlusServerResource) Schema(_ context.Context, _ resource.S
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tacacs Plus Servers",
+				Validators:  ListMaxItems(4),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=secret, type=STRING macro=rss_schema
@@ -251,6 +252,7 @@ func (r *elementTacacsPlusServerResource) Schema(_ context.Context, _ resource.S
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

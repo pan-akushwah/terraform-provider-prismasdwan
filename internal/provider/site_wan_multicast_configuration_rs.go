@@ -123,6 +123,7 @@ func (r *siteWanMulticastConfigurationResource) Schema(_ context.Context, _ reso
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Site Configs",
+				Validators:  ListMaxItems(64),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=group_ipv4_prefix, type=STRING macro=rss_schema

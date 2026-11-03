@@ -265,6 +265,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Http Status Codes",
+									Validators:  ListMaxItems(8),
 									ElementType: types.Int64Type,
 								},
 								// key name holder for attribute: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -324,6 +325,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Ip Addresses",
+									Validators:  ListMaxItems(8),
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -434,6 +436,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Optional:    true,
 						Sensitive:   false,
 						Description: "Hostnames",
+						Validators:  ListMaxItems(128),
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -444,6 +447,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Optional:    true,
 						Sensitive:   false,
 						Description: "Ip Addresses",
+						Validators:  ListMaxItems(128),
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -466,6 +470,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

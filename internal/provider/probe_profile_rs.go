@@ -140,6 +140,7 @@ func (r *probeProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Probe Config Ids",
+				Validators:  ListMaxItems(8),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -150,6 +151,7 @@ func (r *probeProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

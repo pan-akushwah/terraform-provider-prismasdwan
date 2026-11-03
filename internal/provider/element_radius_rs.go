@@ -151,6 +151,7 @@ func (r *elementRadiusResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Radius Configuration",
+				Validators:  ListMaxItems(2),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=accounting_port, type=INTEGER macro=rss_schema
@@ -275,6 +276,7 @@ func (r *elementRadiusResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

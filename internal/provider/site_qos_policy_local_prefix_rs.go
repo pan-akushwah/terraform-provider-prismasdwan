@@ -151,6 +151,7 @@ func (r *siteQosPolicyLocalPrefixResource) Schema(_ context.Context, _ resource.
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -141,6 +141,7 @@ func (r *elementNtpResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Ntp Servers",
+				Validators:  ListMaxItems(10),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=host, type=STRING macro=rss_schema
@@ -190,6 +191,7 @@ func (r *elementNtpResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Source Interface Ids",
+				Validators:  ListMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=source_interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema

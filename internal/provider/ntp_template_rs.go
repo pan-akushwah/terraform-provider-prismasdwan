@@ -150,6 +150,7 @@ func (r *ntpTemplateResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Ntp Servers",
+				Validators:  ListMaxItems(10),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=host, type=STRING macro=rss_schema

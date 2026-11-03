@@ -115,6 +115,7 @@ func (r *qosPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "App Def Ids",
+				Validators:  ListMaxItems(256),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -134,6 +135,7 @@ func (r *qosPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Dest Device Ids",
+				Validators:  ListMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -236,6 +238,7 @@ func (r *qosPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Src Device Ids",
+				Validators:  ListMaxItems(256),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -246,6 +249,7 @@ func (r *qosPolicyRuleResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

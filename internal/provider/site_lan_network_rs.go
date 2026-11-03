@@ -219,6 +219,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Optional:    true,
 								Sensitive:   false,
 								Description: "Server Ips",
+								Validators:  ListMaxItems(16),
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=server_ips, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -391,6 +392,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -125,6 +125,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "App Def Ids",
+				Validators:  ListMaxItems(256),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -144,6 +145,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Dest Device Ids",
+				Validators:  ListMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -154,6 +156,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Destination Prefix Ids",
+				Validators:  ListMaxItems(16),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=destination_prefix_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -164,6 +167,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Destination Zone Ids",
+				Validators:  ListMaxItems(16),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=destination_zone_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -294,6 +298,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Source Prefix Ids",
+				Validators:  ListMaxItems(16),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -304,6 +309,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Source Zone Ids",
+				Validators:  ListMaxItems(16),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=source_zone_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -314,6 +320,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Src Device Ids",
+				Validators:  ListMaxItems(256),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=src_device_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -324,6 +331,7 @@ func (r *securityPolicyRuleResource) Schema(_ context.Context, _ resource.Schema
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

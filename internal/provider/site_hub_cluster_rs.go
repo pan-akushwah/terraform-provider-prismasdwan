@@ -181,6 +181,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Peer Sites",
+				Validators:  ListMaxItems(2147483647),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=peer_sites, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -200,6 +201,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -236,6 +236,7 @@ func (r *siteResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Extended Tags",
+				Validators:  ListMaxItems(10),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=key, type=STRING macro=rss_schema
@@ -451,6 +452,7 @@ func (r *siteResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -158,6 +158,7 @@ func (r *qosPolicyStackResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Policyset Ids",
+				Validators:  ListMaxItems(4),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=policyset_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -168,6 +169,7 @@ func (r *qosPolicyStackResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

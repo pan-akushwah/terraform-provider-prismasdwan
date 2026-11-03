@@ -1042,6 +1042,7 @@ func (r *dnsServiceProfileResource) Schema(_ context.Context, _ resource.SchemaR
 						Optional:    true,
 						Sensitive:   false,
 						Description: "Add Subnets",
+						Validators:  ListMaxItems(2),
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=ipv4_address, type=STRING macro=rss_schema
@@ -1478,6 +1479,7 @@ func (r *dnsServiceProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

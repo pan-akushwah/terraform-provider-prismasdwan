@@ -158,6 +158,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Vpn Ciphers",
+				Validators:  ListMaxItems(4),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema

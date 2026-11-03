@@ -117,6 +117,7 @@ func (r *elementIpfixResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Collector Config",
+				Validators:  ListMaxItems(4),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=host, type=STRING macro=rss_schema
@@ -193,6 +194,7 @@ func (r *elementIpfixResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Filters",
+				Validators:  ListMaxItems(8),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -418,6 +420,7 @@ func (r *elementIpfixResource) Schema(_ context.Context, _ resource.SchemaReques
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -150,6 +150,7 @@ func (r *siteIotSnmpStartNodeResource) Schema(_ context.Context, _ resource.Sche
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Scope",
+				Validators:  ListMaxItems(8),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=ipv4_prefix, type=STRING macro=rss_schema
@@ -172,6 +173,7 @@ func (r *siteIotSnmpStartNodeResource) Schema(_ context.Context, _ resource.Sche
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

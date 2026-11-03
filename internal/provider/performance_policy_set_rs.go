@@ -543,6 +543,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 									Optional:    true,
 									Sensitive:   false,
 									Description: "App Transfer Types",
+									Validators:  ListMaxItems(4),
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -553,6 +554,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Application Ids",
+									Validators:  ListMaxItems(64),
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=application_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -666,6 +668,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Path Filters",
+							Validators:  ListMaxItems(32),
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=label, type=STRING macro=rss_schema
@@ -715,6 +718,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Service Label Ids",
+							Validators:  ListMaxItems(32),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=service_label_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -725,6 +729,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Tags",
+							Validators:  SetMaxItems(10),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -1212,6 +1217,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 									Optional:    true,
 									Sensitive:   false,
 									Description: "Tags",
+									Validators:  SetMaxItems(10),
 									ElementType: types.StringType,
 								},
 								// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -1377,6 +1383,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Tags",
+							Validators:  SetMaxItems(10),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -1409,6 +1416,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -258,6 +258,7 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Resource Ids",
+				Validators:  ListMaxItems(2000),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=resource_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -304,6 +305,7 @@ func (r *eventCorrelationPolicyRuleResource) Schema(_ context.Context, _ resourc
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

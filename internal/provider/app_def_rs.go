@@ -190,6 +190,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Domains",
+				Validators:  ListMaxItems(16),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=domains, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -227,6 +228,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Dest Filters",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -247,6 +249,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Dest Prefixes",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -286,6 +289,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Src Filters",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=src_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -417,6 +421,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Tags",
+				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -436,6 +441,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Client Filters",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=client_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -495,6 +501,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Server Filters",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=server_filters, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -544,6 +551,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Server Prefixes",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=server_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -586,6 +594,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Dest Prefixes",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=dest_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -616,6 +625,7 @@ func (r *appDefResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Udp Filters",
+							Validators:  ListMaxItems(8),
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=udp_filters, type=ARRAY_PRIMITIVE macro=rss_schema

@@ -12,9 +12,12 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/setvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -436,4 +439,15 @@ func JSONStringFromMap(object *map[string]interface{}, prior types.String) types
 		return types.StringNull()
 	}
 	return types.StringValue(string(text))
+}
+
+// ListMaxItems is the validator of a list attribute whose spec says maxItems (the generated schema calls it), so that
+// plan fails with a message when the configuration has more items than the API accepts.
+func ListMaxItems(limit int) []validator.List {
+	return []validator.List{listvalidator.SizeAtMost(limit)}
+}
+
+// SetMaxItems is the same for a set attribute.
+func SetMaxItems(limit int) []validator.Set {
+	return []validator.Set{setvalidator.SizeAtMost(limit)}
 }
