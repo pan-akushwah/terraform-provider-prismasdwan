@@ -318,6 +318,14 @@ func (r *siteHubDistributionFabricResource) doPost(ctx context.Context, plan *rs
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -437,6 +445,14 @@ func (r *siteHubDistributionFabricResource) doGet(ctx context.Context, state *rs
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -613,6 +629,14 @@ func (r *siteHubDistributionFabricResource) doPut(ctx context.Context, plan *rsM
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

@@ -1350,6 +1350,14 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(plan.PolicyRules) > varLoopPolicyRulesIndex && plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes != nil && len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.Elements()) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags
+				}
 			}
 			// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
@@ -1484,6 +1492,14 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(plan.PolicyRules) > varLoopPolicyRulesIndex && plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes != nil && len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.Elements()) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags
+				}
 			}
 			// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
@@ -1495,6 +1511,14 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = plan.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 			// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 			if varLoopPolicyRules.UserOrGroup == nil {
 				state.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
@@ -1521,6 +1545,14 @@ func (r *pathPolicySetResource) doPost(ctx context.Context, plan *rsModelNetwork
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -1717,6 +1749,14 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(savestate.PolicyRules) > varLoopPolicyRulesIndex && savestate.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes != nil && len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 && !savestate.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.IsNull() && !savestate.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.IsUnknown() && len(savestate.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.Elements()) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = savestate.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags
+				}
 			}
 			// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
@@ -1851,6 +1891,14 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(savestate.PolicyRules) > varLoopPolicyRulesIndex && savestate.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes != nil && len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 && !savestate.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.IsNull() && !savestate.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.IsUnknown() && len(savestate.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.Elements()) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = savestate.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags
+				}
 			}
 			// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
@@ -1862,6 +1910,14 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(savestate.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = savestate.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 			// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 			if varLoopPolicyRules.UserOrGroup == nil {
 				state.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
@@ -1888,6 +1944,14 @@ func (r *pathPolicySetResource) doGet(ctx context.Context, state *rsModelNetwork
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -2408,6 +2472,14 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(plan.PolicyRules) > varLoopPolicyRulesIndex && plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes != nil && len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags.Elements()) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = plan.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags
+				}
 			}
 			// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
@@ -2542,6 +2614,14 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(plan.PolicyRules) > varLoopPolicyRulesIndex && plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes != nil && len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags.Elements()) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = plan.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags
+				}
 			}
 			// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 			state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
@@ -2553,6 +2633,14 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = plan.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 			// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 			if varLoopPolicyRules.UserOrGroup == nil {
 				state.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
@@ -2579,6 +2667,14 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

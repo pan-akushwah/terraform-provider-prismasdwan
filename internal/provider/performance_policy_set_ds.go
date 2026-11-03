@@ -1761,6 +1761,10 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Tags)
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopLinkHealthRules.Tags) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = types.SetNull(types.StringType)
+				}
 				// property: name=thresholdprofile, type=REFERENCE macro=copy_to_state
 				if varLoopLinkHealthRules.Thresholdprofile == nil {
 					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile = nil
@@ -1940,6 +1944,10 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Thresholdprofile.Tags)
 					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = varTags
 					resp.Diagnostics.Append(errTags.Errors()...)
+					// api does not accept empty list as missing value
+					if len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 {
+						state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = types.SetNull(types.StringType)
+					}
 				}
 				// property: name=thresholdprofile_id, type=STRING macro=copy_to_state
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].ThresholdprofileId = types.StringPointerValue(varLoopLinkHealthRules.ThresholdprofileId)
@@ -1987,6 +1995,10 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_to_state
@@ -1997,6 +2009,10 @@ func (d *performancePolicySetDataSource) Read(ctx context.Context, req datasourc
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 
 		// append the item scanned
 		state_with_filter.Items = append(state_with_filter.Items, &state)

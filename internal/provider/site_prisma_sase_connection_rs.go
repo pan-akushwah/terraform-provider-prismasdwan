@@ -988,6 +988,10 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].WanInterfaceId = types.StringPointerValue(varLoopIpsecTunnels.WanInterfaceId)
 				}
 			}
+			// the configuration states an empty list: keep it
+			if len(plan.RemoteNetworkGroups) > varLoopRemoteNetworkGroupsIndex && len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 && plan.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels != nil && len(plan.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels) == 0 {
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = plan.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels
+			}
 			// property: name=name, type=STRING macro=copy_to_state
 			state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].Name = types.StringPointerValue(varLoopRemoteNetworkGroups.Name)
 			// property: name=spn_name, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -1276,6 +1280,10 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 					// property: name=wan_interface_id, type=STRING macro=copy_to_state
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].WanInterfaceId = types.StringPointerValue(varLoopIpsecTunnels.WanInterfaceId)
 				}
+			}
+			// the configuration states an empty list: keep it
+			if len(savestate.RemoteNetworkGroups) > varLoopRemoteNetworkGroupsIndex && len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 && savestate.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels != nil && len(savestate.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels) == 0 {
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = savestate.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels
 			}
 			// property: name=name, type=STRING macro=copy_to_state
 			state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].Name = types.StringPointerValue(varLoopRemoteNetworkGroups.Name)
@@ -1840,6 +1848,10 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 					// property: name=wan_interface_id, type=STRING macro=copy_to_state
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels[varLoopIpsecTunnelsIndex].WanInterfaceId = types.StringPointerValue(varLoopIpsecTunnels.WanInterfaceId)
 				}
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.RemoteNetworkGroups) > varLoopRemoteNetworkGroupsIndex && len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 && plan.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels != nil && len(plan.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels) == 0 {
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = plan.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels
 			}
 			// property: name=name, type=STRING macro=copy_to_state
 			state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].Name = types.StringPointerValue(varLoopRemoteNetworkGroups.Name)

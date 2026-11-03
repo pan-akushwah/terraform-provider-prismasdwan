@@ -421,14 +421,26 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	body.Action = StringValueOrNil(plan.Action)
 	// property: name=app_def_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.AppDefIds = ListStringValueOrNil(ctx, plan.AppDefIds)
+	// api does not accept empty list as missing value
+	if len(body.AppDefIds) == 0 {
+		body.AppDefIds = nil
+	}
 	// property: name=description, type=STRING macro=copy_from_plan
 	body.Description = StringValueOrNil(plan.Description)
 	// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.DestDeviceIds = ListStringValueOrNil(ctx, plan.DestDeviceIds)
 	// property: name=destination_prefix_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.DestinationPrefixIds = ListStringValueOrNil(ctx, plan.DestinationPrefixIds)
+	// api does not accept empty list as missing value
+	if len(body.DestinationPrefixIds) == 0 {
+		body.DestinationPrefixIds = nil
+	}
 	// property: name=destination_zone_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.DestinationZoneIds = ListStringValueOrNil(ctx, plan.DestinationZoneIds)
+	// api does not accept empty list as missing value
+	if len(body.DestinationZoneIds) == 0 {
+		body.DestinationZoneIds = nil
+	}
 	// property: name=enabled, type=BOOLEAN macro=copy_from_plan
 	body.Enabled = BoolValueOrNil(plan.Enabled)
 	// property: name=id, type=STRING macro=copy_from_plan
@@ -441,7 +453,8 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	if plan.Services == nil {
 		body.Services = nil
 	} else if len(plan.Services) == 0 {
-		body.Services = []sdwan_schema.Service{}
+		// api does not accept empty list as missing value
+		body.Services = nil
 	} else {
 		body.Services = make([]sdwan_schema.Service, 0, len(plan.Services))
 		for varLoopServicesIndex, varLoopServices := range plan.Services {
@@ -491,8 +504,16 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	}
 	// property: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.SourcePrefixIds = ListStringValueOrNil(ctx, plan.SourcePrefixIds)
+	// api does not accept empty list as missing value
+	if len(body.SourcePrefixIds) == 0 {
+		body.SourcePrefixIds = nil
+	}
 	// property: name=source_zone_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.SourceZoneIds = ListStringValueOrNil(ctx, plan.SourceZoneIds)
+	// api does not accept empty list as missing value
+	if len(body.SourceZoneIds) == 0 {
+		body.SourceZoneIds = nil
+	}
 	// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.SrcDeviceIds = ListStringValueOrNil(ctx, plan.SrcDeviceIds)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
@@ -597,6 +618,14 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, ans.AppDefIds)
 	state.AppDefIds = varAppDefIds
 	resp.Diagnostics.Append(errAppDefIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.AppDefIds) == 0 {
+		state.AppDefIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.AppDefIds) == 0 && !plan.AppDefIds.IsNull() && !plan.AppDefIds.IsUnknown() && len(plan.AppDefIds.Elements()) == 0 {
+		state.AppDefIds = plan.AppDefIds
+	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -607,10 +636,26 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	varDestinationPrefixIds, errDestinationPrefixIds := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixIds)
 	state.DestinationPrefixIds = varDestinationPrefixIds
 	resp.Diagnostics.Append(errDestinationPrefixIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.DestinationPrefixIds) == 0 {
+		state.DestinationPrefixIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.DestinationPrefixIds) == 0 && !plan.DestinationPrefixIds.IsNull() && !plan.DestinationPrefixIds.IsUnknown() && len(plan.DestinationPrefixIds.Elements()) == 0 {
+		state.DestinationPrefixIds = plan.DestinationPrefixIds
+	}
 	// property: name=destination_zone_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varDestinationZoneIds, errDestinationZoneIds := types.ListValueFrom(ctx, types.StringType, ans.DestinationZoneIds)
 	state.DestinationZoneIds = varDestinationZoneIds
 	resp.Diagnostics.Append(errDestinationZoneIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.DestinationZoneIds) == 0 {
+		state.DestinationZoneIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.DestinationZoneIds) == 0 && !plan.DestinationZoneIds.IsNull() && !plan.DestinationZoneIds.IsUnknown() && len(plan.DestinationZoneIds.Elements()) == 0 {
+		state.DestinationZoneIds = plan.DestinationZoneIds
+	}
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -623,7 +668,8 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	if ans.Services == nil {
 		state.Services = nil
 	} else if len(ans.Services) == 0 {
-		state.Services = []rsModelService{}
+		// api does not accept empty list as missing value
+		state.Services = nil
 	} else {
 		state.Services = make([]rsModelService, 0, len(ans.Services))
 		for varLoopServicesIndex, varLoopServices := range ans.Services {
@@ -671,14 +717,34 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 			}
 		}
 	}
+	// the configuration states an empty list: keep it
+	if len(ans.Services) == 0 && plan.Services != nil && len(plan.Services) == 0 {
+		state.Services = plan.Services
+	}
 	// property: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSourcePrefixIds, errSourcePrefixIds := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixIds)
 	state.SourcePrefixIds = varSourcePrefixIds
 	resp.Diagnostics.Append(errSourcePrefixIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.SourcePrefixIds) == 0 {
+		state.SourcePrefixIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.SourcePrefixIds) == 0 && !plan.SourcePrefixIds.IsNull() && !plan.SourcePrefixIds.IsUnknown() && len(plan.SourcePrefixIds.Elements()) == 0 {
+		state.SourcePrefixIds = plan.SourcePrefixIds
+	}
 	// property: name=source_zone_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSourceZoneIds, errSourceZoneIds := types.ListValueFrom(ctx, types.StringType, ans.SourceZoneIds)
 	state.SourceZoneIds = varSourceZoneIds
 	resp.Diagnostics.Append(errSourceZoneIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.SourceZoneIds) == 0 {
+		state.SourceZoneIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.SourceZoneIds) == 0 && !plan.SourceZoneIds.IsNull() && !plan.SourceZoneIds.IsUnknown() && len(plan.SourceZoneIds.Elements()) == 0 {
+		state.SourceZoneIds = plan.SourceZoneIds
+	}
 	// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSrcDeviceIds, errSrcDeviceIds := types.ListValueFrom(ctx, types.StringType, ans.SrcDeviceIds)
 	state.SrcDeviceIds = varSrcDeviceIds
@@ -687,6 +753,14 @@ func (r *securityPolicyRuleResource) doPost(ctx context.Context, plan *rsModelSe
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 	if ans.UserOrGroup == nil {
 		state.UserOrGroup = nil
@@ -814,6 +888,14 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, ans.AppDefIds)
 	state.AppDefIds = varAppDefIds
 	resp.Diagnostics.Append(errAppDefIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.AppDefIds) == 0 {
+		state.AppDefIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.AppDefIds) == 0 && !savestate.AppDefIds.IsNull() && !savestate.AppDefIds.IsUnknown() && len(savestate.AppDefIds.Elements()) == 0 {
+		state.AppDefIds = savestate.AppDefIds
+	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -824,10 +906,26 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	varDestinationPrefixIds, errDestinationPrefixIds := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixIds)
 	state.DestinationPrefixIds = varDestinationPrefixIds
 	resp.Diagnostics.Append(errDestinationPrefixIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.DestinationPrefixIds) == 0 {
+		state.DestinationPrefixIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.DestinationPrefixIds) == 0 && !savestate.DestinationPrefixIds.IsNull() && !savestate.DestinationPrefixIds.IsUnknown() && len(savestate.DestinationPrefixIds.Elements()) == 0 {
+		state.DestinationPrefixIds = savestate.DestinationPrefixIds
+	}
 	// property: name=destination_zone_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varDestinationZoneIds, errDestinationZoneIds := types.ListValueFrom(ctx, types.StringType, ans.DestinationZoneIds)
 	state.DestinationZoneIds = varDestinationZoneIds
 	resp.Diagnostics.Append(errDestinationZoneIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.DestinationZoneIds) == 0 {
+		state.DestinationZoneIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.DestinationZoneIds) == 0 && !savestate.DestinationZoneIds.IsNull() && !savestate.DestinationZoneIds.IsUnknown() && len(savestate.DestinationZoneIds.Elements()) == 0 {
+		state.DestinationZoneIds = savestate.DestinationZoneIds
+	}
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -840,7 +938,8 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	if ans.Services == nil {
 		state.Services = nil
 	} else if len(ans.Services) == 0 {
-		state.Services = []rsModelService{}
+		// api does not accept empty list as missing value
+		state.Services = nil
 	} else {
 		state.Services = make([]rsModelService, 0, len(ans.Services))
 		for varLoopServicesIndex, varLoopServices := range ans.Services {
@@ -888,14 +987,34 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 			}
 		}
 	}
+	// the configuration states an empty list: keep it
+	if len(ans.Services) == 0 && savestate.Services != nil && len(savestate.Services) == 0 {
+		state.Services = savestate.Services
+	}
 	// property: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSourcePrefixIds, errSourcePrefixIds := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixIds)
 	state.SourcePrefixIds = varSourcePrefixIds
 	resp.Diagnostics.Append(errSourcePrefixIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.SourcePrefixIds) == 0 {
+		state.SourcePrefixIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.SourcePrefixIds) == 0 && !savestate.SourcePrefixIds.IsNull() && !savestate.SourcePrefixIds.IsUnknown() && len(savestate.SourcePrefixIds.Elements()) == 0 {
+		state.SourcePrefixIds = savestate.SourcePrefixIds
+	}
 	// property: name=source_zone_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSourceZoneIds, errSourceZoneIds := types.ListValueFrom(ctx, types.StringType, ans.SourceZoneIds)
 	state.SourceZoneIds = varSourceZoneIds
 	resp.Diagnostics.Append(errSourceZoneIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.SourceZoneIds) == 0 {
+		state.SourceZoneIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.SourceZoneIds) == 0 && !savestate.SourceZoneIds.IsNull() && !savestate.SourceZoneIds.IsUnknown() && len(savestate.SourceZoneIds.Elements()) == 0 {
+		state.SourceZoneIds = savestate.SourceZoneIds
+	}
 	// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSrcDeviceIds, errSrcDeviceIds := types.ListValueFrom(ctx, types.StringType, ans.SrcDeviceIds)
 	state.SrcDeviceIds = varSrcDeviceIds
@@ -904,6 +1023,14 @@ func (r *securityPolicyRuleResource) doGet(ctx context.Context, state *rsModelSe
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 	if ans.UserOrGroup == nil {
 		state.UserOrGroup = nil
@@ -1056,7 +1183,8 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	if plan.Services == nil && (state == nil || state.Services == nil) {
 		body.Services = nil
 	} else if len(plan.Services) == 0 && (state == nil || len(state.Services) == 0) {
-		body.Services = []sdwan_schema.Service{}
+		// api does not accept empty list as missing value
+		body.Services = nil
 	} else if len(plan.Services) != 0 || (state != nil && len(state.Services) != 0) {
 		ServicesToUse := plan.Services
 		if len(plan.Services) == 0 {
@@ -1227,6 +1355,14 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	varAppDefIds, errAppDefIds := types.ListValueFrom(ctx, types.StringType, ans.AppDefIds)
 	state.AppDefIds = varAppDefIds
 	resp.Diagnostics.Append(errAppDefIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.AppDefIds) == 0 {
+		state.AppDefIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.AppDefIds) == 0 && !plan.AppDefIds.IsNull() && !plan.AppDefIds.IsUnknown() && len(plan.AppDefIds.Elements()) == 0 {
+		state.AppDefIds = plan.AppDefIds
+	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=dest_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
@@ -1237,10 +1373,26 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	varDestinationPrefixIds, errDestinationPrefixIds := types.ListValueFrom(ctx, types.StringType, ans.DestinationPrefixIds)
 	state.DestinationPrefixIds = varDestinationPrefixIds
 	resp.Diagnostics.Append(errDestinationPrefixIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.DestinationPrefixIds) == 0 {
+		state.DestinationPrefixIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.DestinationPrefixIds) == 0 && !plan.DestinationPrefixIds.IsNull() && !plan.DestinationPrefixIds.IsUnknown() && len(plan.DestinationPrefixIds.Elements()) == 0 {
+		state.DestinationPrefixIds = plan.DestinationPrefixIds
+	}
 	// property: name=destination_zone_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varDestinationZoneIds, errDestinationZoneIds := types.ListValueFrom(ctx, types.StringType, ans.DestinationZoneIds)
 	state.DestinationZoneIds = varDestinationZoneIds
 	resp.Diagnostics.Append(errDestinationZoneIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.DestinationZoneIds) == 0 {
+		state.DestinationZoneIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.DestinationZoneIds) == 0 && !plan.DestinationZoneIds.IsNull() && !plan.DestinationZoneIds.IsUnknown() && len(plan.DestinationZoneIds.Elements()) == 0 {
+		state.DestinationZoneIds = plan.DestinationZoneIds
+	}
 	// property: name=enabled, type=BOOLEAN macro=copy_to_state
 	state.Enabled = types.BoolPointerValue(ans.Enabled)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -1253,7 +1405,8 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	if ans.Services == nil {
 		state.Services = nil
 	} else if len(ans.Services) == 0 {
-		state.Services = []rsModelService{}
+		// api does not accept empty list as missing value
+		state.Services = nil
 	} else {
 		state.Services = make([]rsModelService, 0, len(ans.Services))
 		for varLoopServicesIndex, varLoopServices := range ans.Services {
@@ -1301,14 +1454,34 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 			}
 		}
 	}
+	// the configuration states an empty list: keep it
+	if len(ans.Services) == 0 && plan.Services != nil && len(plan.Services) == 0 {
+		state.Services = plan.Services
+	}
 	// property: name=source_prefix_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSourcePrefixIds, errSourcePrefixIds := types.ListValueFrom(ctx, types.StringType, ans.SourcePrefixIds)
 	state.SourcePrefixIds = varSourcePrefixIds
 	resp.Diagnostics.Append(errSourcePrefixIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.SourcePrefixIds) == 0 {
+		state.SourcePrefixIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.SourcePrefixIds) == 0 && !plan.SourcePrefixIds.IsNull() && !plan.SourcePrefixIds.IsUnknown() && len(plan.SourcePrefixIds.Elements()) == 0 {
+		state.SourcePrefixIds = plan.SourcePrefixIds
+	}
 	// property: name=source_zone_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSourceZoneIds, errSourceZoneIds := types.ListValueFrom(ctx, types.StringType, ans.SourceZoneIds)
 	state.SourceZoneIds = varSourceZoneIds
 	resp.Diagnostics.Append(errSourceZoneIds.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.SourceZoneIds) == 0 {
+		state.SourceZoneIds = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.SourceZoneIds) == 0 && !plan.SourceZoneIds.IsNull() && !plan.SourceZoneIds.IsUnknown() && len(plan.SourceZoneIds.Elements()) == 0 {
+		state.SourceZoneIds = plan.SourceZoneIds
+	}
 	// property: name=src_device_ids, type=ARRAY_PRIMITIVE macro=copy_to_state
 	varSrcDeviceIds, errSrcDeviceIds := types.ListValueFrom(ctx, types.StringType, ans.SrcDeviceIds)
 	state.SrcDeviceIds = varSrcDeviceIds
@@ -1317,6 +1490,14 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 	if ans.UserOrGroup == nil {
 		state.UserOrGroup = nil

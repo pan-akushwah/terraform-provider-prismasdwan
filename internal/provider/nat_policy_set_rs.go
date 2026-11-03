@@ -904,6 +904,14 @@ func (r *natPolicySetResource) doPost(ctx context.Context, plan *rsModelNATPolic
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = plan.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 		}
 	}
 	// property: name=region, type=STRING macro=copy_to_state
@@ -918,6 +926,14 @@ func (r *natPolicySetResource) doPost(ctx context.Context, plan *rsModelNATPolic
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=update_order, type=BOOLEAN macro=copy_to_state
 	state.UpdateOrder = types.BoolPointerValue(ans.UpdateOrder)
 	return true
@@ -1145,6 +1161,14 @@ func (r *natPolicySetResource) doGet(ctx context.Context, state *rsModelNATPolic
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(savestate.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = savestate.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 		}
 	}
 	// property: name=region, type=STRING macro=copy_to_state
@@ -1159,6 +1183,14 @@ func (r *natPolicySetResource) doGet(ctx context.Context, state *rsModelNATPolic
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	// property: name=update_order, type=BOOLEAN macro=copy_to_state
 	state.UpdateOrder = types.BoolPointerValue(ans.UpdateOrder)
 	return true
@@ -1626,6 +1658,14 @@ func (r *natPolicySetResource) doPut(ctx context.Context, plan *rsModelNATPolicy
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = plan.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 		}
 	}
 	// property: name=region, type=STRING macro=copy_to_state
@@ -1640,6 +1680,14 @@ func (r *natPolicySetResource) doPut(ctx context.Context, plan *rsModelNATPolicy
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=update_order, type=BOOLEAN macro=copy_to_state
 	state.UpdateOrder = types.BoolPointerValue(ans.UpdateOrder)
 	return true

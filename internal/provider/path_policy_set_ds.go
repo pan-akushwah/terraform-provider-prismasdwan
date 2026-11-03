@@ -1081,6 +1081,10 @@ func (d *pathPolicySetDataSource) Read(ctx context.Context, req datasource.ReadR
 					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.DestinationPrefixes.Tags)
 					state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = varTags
 					resp.Diagnostics.Append(errTags.Errors()...)
+					// api does not accept empty list as missing value
+					if len(varLoopPolicyRules.DestinationPrefixes.Tags) == 0 {
+						state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixes.Tags = types.SetNull(types.StringType)
+					}
 				}
 				// property: name=destination_prefixes_id, type=STRING macro=copy_to_state
 				state.PolicyRules[varLoopPolicyRulesIndex].DestinationPrefixesId = types.StringPointerValue(varLoopPolicyRules.DestinationPrefixesId)
@@ -1215,6 +1219,10 @@ func (d *pathPolicySetDataSource) Read(ctx context.Context, req datasource.ReadR
 					varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.SourcePrefixes.Tags)
 					state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = varTags
 					resp.Diagnostics.Append(errTags.Errors()...)
+					// api does not accept empty list as missing value
+					if len(varLoopPolicyRules.SourcePrefixes.Tags) == 0 {
+						state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixes.Tags = types.SetNull(types.StringType)
+					}
 				}
 				// property: name=source_prefixes_id, type=STRING macro=copy_to_state
 				state.PolicyRules[varLoopPolicyRulesIndex].SourcePrefixesId = types.StringPointerValue(varLoopPolicyRules.SourcePrefixesId)
@@ -1226,6 +1234,10 @@ func (d *pathPolicySetDataSource) Read(ctx context.Context, req datasource.ReadR
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+				}
 				// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 				if varLoopPolicyRules.UserOrGroup == nil {
 					state.PolicyRules[varLoopPolicyRulesIndex].UserOrGroup = nil
@@ -1252,6 +1264,10 @@ func (d *pathPolicySetDataSource) Read(ctx context.Context, req datasource.ReadR
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 
 		// append the item scanned
 		state_with_filter.Items = append(state_with_filter.Items, &state)

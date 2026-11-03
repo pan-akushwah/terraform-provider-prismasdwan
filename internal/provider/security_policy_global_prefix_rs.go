@@ -230,6 +230,10 @@ func (r *securityPolicyGlobalPrefixResource) doPost(ctx context.Context, plan *r
 	body.Ipv4Prefixes = ListStringValueOrNil(ctx, plan.Ipv4Prefixes)
 	// property: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan
 	body.Ipv6Prefixes = ListStringValueOrNil(ctx, plan.Ipv6Prefixes)
+	// api does not accept empty list as missing value
+	if len(body.Ipv6Prefixes) == 0 {
+		body.Ipv6Prefixes = nil
+	}
 	// property: name=name, type=STRING macro=copy_from_plan
 	body.Name = StringValueOrNil(plan.Name)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan
@@ -330,12 +334,28 @@ func (r *securityPolicyGlobalPrefixResource) doPost(ctx context.Context, plan *r
 	varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Prefixes)
 	state.Ipv6Prefixes = varIpv6Prefixes
 	resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Ipv6Prefixes) == 0 {
+		state.Ipv6Prefixes = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Ipv6Prefixes) == 0 && !plan.Ipv6Prefixes.IsNull() && !plan.Ipv6Prefixes.IsUnknown() && len(plan.Ipv6Prefixes.Elements()) == 0 {
+		state.Ipv6Prefixes = plan.Ipv6Prefixes
+	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -453,12 +473,28 @@ func (r *securityPolicyGlobalPrefixResource) doGet(ctx context.Context, state *r
 	varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Prefixes)
 	state.Ipv6Prefixes = varIpv6Prefixes
 	resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Ipv6Prefixes) == 0 {
+		state.Ipv6Prefixes = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Ipv6Prefixes) == 0 && !savestate.Ipv6Prefixes.IsNull() && !savestate.Ipv6Prefixes.IsUnknown() && len(savestate.Ipv6Prefixes.Elements()) == 0 {
+		state.Ipv6Prefixes = savestate.Ipv6Prefixes
+	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -640,12 +676,28 @@ func (r *securityPolicyGlobalPrefixResource) doPut(ctx context.Context, plan *rs
 	varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Prefixes)
 	state.Ipv6Prefixes = varIpv6Prefixes
 	resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Ipv6Prefixes) == 0 {
+		state.Ipv6Prefixes = types.ListNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Ipv6Prefixes) == 0 && !plan.Ipv6Prefixes.IsNull() && !plan.Ipv6Prefixes.IsUnknown() && len(plan.Ipv6Prefixes.Elements()) == 0 {
+		state.Ipv6Prefixes = plan.Ipv6Prefixes
+	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
 	// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

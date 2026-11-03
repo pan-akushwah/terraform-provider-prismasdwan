@@ -295,7 +295,8 @@ func (r *vrfContextProfileResource) doPost(ctx context.Context, plan *rsModelVRF
 	if plan.VrfContextRouteLeakRules == nil {
 		body.VrfContextRouteLeakRules = nil
 	} else if len(plan.VrfContextRouteLeakRules) == 0 {
-		body.VrfContextRouteLeakRules = []sdwan_schema.VRFContextRouteLeakRule{}
+		// api does not accept empty list as missing value
+		body.VrfContextRouteLeakRules = nil
 	} else {
 		body.VrfContextRouteLeakRules = make([]sdwan_schema.VRFContextRouteLeakRule, 0, len(plan.VrfContextRouteLeakRules))
 		for varLoopVrfContextRouteLeakRulesIndex, varLoopVrfContextRouteLeakRules := range plan.VrfContextRouteLeakRules {
@@ -411,6 +412,14 @@ func (r *vrfContextProfileResource) doPost(ctx context.Context, plan *rsModelVRF
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=vrf_context_ids, type=SET_PRIMITIVE macro=copy_to_state
 	varVrfContextIds, errVrfContextIds := types.SetValueFrom(ctx, types.StringType, ans.VrfContextIds)
 	state.VrfContextIds = varVrfContextIds
@@ -419,7 +428,8 @@ func (r *vrfContextProfileResource) doPost(ctx context.Context, plan *rsModelVRF
 	if ans.VrfContextRouteLeakRules == nil {
 		state.VrfContextRouteLeakRules = nil
 	} else if len(ans.VrfContextRouteLeakRules) == 0 {
-		state.VrfContextRouteLeakRules = []rsModelVRFContextRouteLeakRule{}
+		// api does not accept empty list as missing value
+		state.VrfContextRouteLeakRules = nil
 	} else {
 		state.VrfContextRouteLeakRules = make([]rsModelVRFContextRouteLeakRule, 0, len(ans.VrfContextRouteLeakRules))
 		for varLoopVrfContextRouteLeakRulesIndex, varLoopVrfContextRouteLeakRules := range ans.VrfContextRouteLeakRules {
@@ -440,6 +450,10 @@ func (r *vrfContextProfileResource) doPost(ctx context.Context, plan *rsModelVRF
 			// property: name=src_vrf_context_id, type=STRING macro=copy_to_state
 			state.VrfContextRouteLeakRules[varLoopVrfContextRouteLeakRulesIndex].SrcVrfContextId = types.StringPointerValue(varLoopVrfContextRouteLeakRules.SrcVrfContextId)
 		}
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.VrfContextRouteLeakRules) == 0 && plan.VrfContextRouteLeakRules != nil && len(plan.VrfContextRouteLeakRules) == 0 {
+		state.VrfContextRouteLeakRules = plan.VrfContextRouteLeakRules
 	}
 	return true
 }
@@ -558,6 +572,14 @@ func (r *vrfContextProfileResource) doGet(ctx context.Context, state *rsModelVRF
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	// property: name=vrf_context_ids, type=SET_PRIMITIVE macro=copy_to_state
 	varVrfContextIds, errVrfContextIds := types.SetValueFrom(ctx, types.StringType, ans.VrfContextIds)
 	state.VrfContextIds = varVrfContextIds
@@ -566,7 +588,8 @@ func (r *vrfContextProfileResource) doGet(ctx context.Context, state *rsModelVRF
 	if ans.VrfContextRouteLeakRules == nil {
 		state.VrfContextRouteLeakRules = nil
 	} else if len(ans.VrfContextRouteLeakRules) == 0 {
-		state.VrfContextRouteLeakRules = []rsModelVRFContextRouteLeakRule{}
+		// api does not accept empty list as missing value
+		state.VrfContextRouteLeakRules = nil
 	} else {
 		state.VrfContextRouteLeakRules = make([]rsModelVRFContextRouteLeakRule, 0, len(ans.VrfContextRouteLeakRules))
 		for varLoopVrfContextRouteLeakRulesIndex, varLoopVrfContextRouteLeakRules := range ans.VrfContextRouteLeakRules {
@@ -587,6 +610,10 @@ func (r *vrfContextProfileResource) doGet(ctx context.Context, state *rsModelVRF
 			// property: name=src_vrf_context_id, type=STRING macro=copy_to_state
 			state.VrfContextRouteLeakRules[varLoopVrfContextRouteLeakRulesIndex].SrcVrfContextId = types.StringPointerValue(varLoopVrfContextRouteLeakRules.SrcVrfContextId)
 		}
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.VrfContextRouteLeakRules) == 0 && savestate.VrfContextRouteLeakRules != nil && len(savestate.VrfContextRouteLeakRules) == 0 {
+		state.VrfContextRouteLeakRules = savestate.VrfContextRouteLeakRules
 	}
 	return true
 }
@@ -698,7 +725,8 @@ func (r *vrfContextProfileResource) doPut(ctx context.Context, plan *rsModelVRFC
 	if plan.VrfContextRouteLeakRules == nil && (state == nil || state.VrfContextRouteLeakRules == nil) {
 		body.VrfContextRouteLeakRules = nil
 	} else if len(plan.VrfContextRouteLeakRules) == 0 && (state == nil || len(state.VrfContextRouteLeakRules) == 0) {
-		body.VrfContextRouteLeakRules = []sdwan_schema.VRFContextRouteLeakRule{}
+		// api does not accept empty list as missing value
+		body.VrfContextRouteLeakRules = nil
 	} else if len(plan.VrfContextRouteLeakRules) != 0 || (state != nil && len(state.VrfContextRouteLeakRules) != 0) {
 		VrfContextRouteLeakRulesToUse := plan.VrfContextRouteLeakRules
 		if len(plan.VrfContextRouteLeakRules) == 0 {
@@ -797,6 +825,14 @@ func (r *vrfContextProfileResource) doPut(ctx context.Context, plan *rsModelVRFC
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=vrf_context_ids, type=SET_PRIMITIVE macro=copy_to_state
 	varVrfContextIds, errVrfContextIds := types.SetValueFrom(ctx, types.StringType, ans.VrfContextIds)
 	state.VrfContextIds = varVrfContextIds
@@ -805,7 +841,8 @@ func (r *vrfContextProfileResource) doPut(ctx context.Context, plan *rsModelVRFC
 	if ans.VrfContextRouteLeakRules == nil {
 		state.VrfContextRouteLeakRules = nil
 	} else if len(ans.VrfContextRouteLeakRules) == 0 {
-		state.VrfContextRouteLeakRules = []rsModelVRFContextRouteLeakRule{}
+		// api does not accept empty list as missing value
+		state.VrfContextRouteLeakRules = nil
 	} else {
 		state.VrfContextRouteLeakRules = make([]rsModelVRFContextRouteLeakRule, 0, len(ans.VrfContextRouteLeakRules))
 		for varLoopVrfContextRouteLeakRulesIndex, varLoopVrfContextRouteLeakRules := range ans.VrfContextRouteLeakRules {
@@ -826,6 +863,10 @@ func (r *vrfContextProfileResource) doPut(ctx context.Context, plan *rsModelVRFC
 			// property: name=src_vrf_context_id, type=STRING macro=copy_to_state
 			state.VrfContextRouteLeakRules[varLoopVrfContextRouteLeakRulesIndex].SrcVrfContextId = types.StringPointerValue(varLoopVrfContextRouteLeakRules.SrcVrfContextId)
 		}
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.VrfContextRouteLeakRules) == 0 && plan.VrfContextRouteLeakRules != nil && len(plan.VrfContextRouteLeakRules) == 0 {
+		state.VrfContextRouteLeakRules = plan.VrfContextRouteLeakRules
 	}
 	return true
 }

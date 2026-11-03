@@ -438,6 +438,14 @@ func (r *wanInterfaceLabelResource) doGet(ctx context.Context, state *rsModelWAN
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=copy_to_state
 	state.UseForApplicationReachabilityProbes = types.BoolPointerValue(ans.UseForApplicationReachabilityProbes)
 	// property: name=use_for_controller_connections, type=BOOLEAN macro=copy_to_state
@@ -734,6 +742,14 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=copy_to_state
 	state.UseForApplicationReachabilityProbes = types.BoolPointerValue(ans.UseForApplicationReachabilityProbes)
 	// property: name=use_for_controller_connections, type=BOOLEAN macro=copy_to_state

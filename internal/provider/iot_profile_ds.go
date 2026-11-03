@@ -531,6 +531,10 @@ func (d *iotProfileDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=v2_config, type=REFERENCE macro=copy_to_state
 		if ans.V2Config == nil {
 			state.V2Config = nil

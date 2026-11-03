@@ -477,6 +477,10 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 			if len(varLoopEndpoints.HttpResponseCodes) == 0 {
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
 			}
+			// the configuration states an empty list: keep it
+			if len(plan.Endpoints) > varLoopEndpointsIndex && len(varLoopEndpoints.HttpResponseCodes) == 0 && !plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.IsNull() && !plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.IsUnknown() && len(plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.Elements()) == 0 {
+				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes
+			}
 			// property: name=http_response_string, type=STRING macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
@@ -501,6 +505,14 @@ func (r *probeConfigResource) doPost(ctx context.Context, plan *rsModelProbeConf
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -636,6 +648,10 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 			if len(varLoopEndpoints.HttpResponseCodes) == 0 {
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
 			}
+			// the configuration states an empty list: keep it
+			if len(savestate.Endpoints) > varLoopEndpointsIndex && len(varLoopEndpoints.HttpResponseCodes) == 0 && !savestate.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.IsNull() && !savestate.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.IsUnknown() && len(savestate.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.Elements()) == 0 {
+				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = savestate.Endpoints[varLoopEndpointsIndex].HttpResponseCodes
+			}
 			// property: name=http_response_string, type=STRING macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
@@ -660,6 +676,14 @@ func (r *probeConfigResource) doGet(ctx context.Context, state *rsModelProbeConf
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -894,6 +918,10 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 			if len(varLoopEndpoints.HttpResponseCodes) == 0 {
 				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = types.ListNull(types.Int64Type)
 			}
+			// the configuration states an empty list: keep it
+			if len(plan.Endpoints) > varLoopEndpointsIndex && len(varLoopEndpoints.HttpResponseCodes) == 0 && !plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.IsNull() && !plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.IsUnknown() && len(plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes.Elements()) == 0 {
+				state.Endpoints[varLoopEndpointsIndex].HttpResponseCodes = plan.Endpoints[varLoopEndpointsIndex].HttpResponseCodes
+			}
 			// property: name=http_response_string, type=STRING macro=copy_to_state
 			state.Endpoints[varLoopEndpointsIndex].HttpResponseString = types.StringPointerValue(varLoopEndpoints.HttpResponseString)
 			// property: name=ipv4_address, type=STRING macro=copy_to_state
@@ -918,6 +946,14 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

@@ -327,12 +327,20 @@ func (d *securityPolicyGlobalPrefixDataSource) Read(ctx context.Context, req dat
 		varIpv6Prefixes, errIpv6Prefixes := types.ListValueFrom(ctx, types.StringType, ans.Ipv6Prefixes)
 		state.Ipv6Prefixes = varIpv6Prefixes
 		resp.Diagnostics.Append(errIpv6Prefixes.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Ipv6Prefixes) == 0 {
+			state.Ipv6Prefixes = types.ListNull(types.StringType)
+		}
 		// property: name=name, type=STRING macro=copy_to_state
 		state.Name = types.StringPointerValue(ans.Name)
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_to_state
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 
 		// append the item scanned
 		state_with_filter.Items = append(state_with_filter.Items, &state)

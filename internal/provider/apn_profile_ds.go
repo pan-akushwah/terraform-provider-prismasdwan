@@ -358,6 +358,10 @@ func (d *apnProfileDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=user_name, type=STRING macro=copy_to_state
 		state.UserName = types.StringPointerValue(ans.UserName)
 

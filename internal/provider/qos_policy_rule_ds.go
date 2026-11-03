@@ -476,6 +476,10 @@ func (d *qosPolicyRuleDataSource) Read(ctx context.Context, req datasource.ReadR
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 		if ans.UserOrGroup == nil {
 			state.UserOrGroup = nil

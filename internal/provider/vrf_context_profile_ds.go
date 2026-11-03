@@ -386,6 +386,10 @@ func (d *vrfContextProfileDataSource) Read(ctx context.Context, req datasource.R
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=vrf_context_ids, type=SET_PRIMITIVE macro=copy_to_state
 		varVrfContextIds, errVrfContextIds := types.SetValueFrom(ctx, types.StringType, ans.VrfContextIds)
 		state.VrfContextIds = varVrfContextIds
@@ -394,7 +398,8 @@ func (d *vrfContextProfileDataSource) Read(ctx context.Context, req datasource.R
 		if ans.VrfContextRouteLeakRules == nil {
 			state.VrfContextRouteLeakRules = nil
 		} else if len(ans.VrfContextRouteLeakRules) == 0 {
-			state.VrfContextRouteLeakRules = []dsModelVRFContextRouteLeakRule{}
+			// api does not accept empty list as missing value
+			state.VrfContextRouteLeakRules = nil
 		} else {
 			state.VrfContextRouteLeakRules = make([]dsModelVRFContextRouteLeakRule, 0, len(ans.VrfContextRouteLeakRules))
 			for varLoopVrfContextRouteLeakRulesIndex, varLoopVrfContextRouteLeakRules := range ans.VrfContextRouteLeakRules {

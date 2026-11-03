@@ -2216,6 +2216,14 @@ func (r *performancePolicySetResource) doPost(ctx context.Context, plan *rsModel
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Tags)
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopLinkHealthRules.Tags) == 0 {
+				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.LinkHealthRules) > varLoopLinkHealthRulesIndex && len(varLoopLinkHealthRules.Tags) == 0 && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.IsNull() && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.IsUnknown() && len(plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.Elements()) == 0 {
+				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags
+			}
 			// property: name=thresholdprofile, type=REFERENCE macro=copy_to_state
 			if varLoopLinkHealthRules.Thresholdprofile == nil {
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile = nil
@@ -2395,6 +2403,14 @@ func (r *performancePolicySetResource) doPost(ctx context.Context, plan *rsModel
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Thresholdprofile.Tags)
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(plan.LinkHealthRules) > varLoopLinkHealthRulesIndex && plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile != nil && len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.IsNull() && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.IsUnknown() && len(plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.Elements()) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags
+				}
 			}
 			// property: name=thresholdprofile_id, type=STRING macro=copy_to_state
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].ThresholdprofileId = types.StringPointerValue(varLoopLinkHealthRules.ThresholdprofileId)
@@ -2442,6 +2458,14 @@ func (r *performancePolicySetResource) doPost(ctx context.Context, plan *rsModel
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = plan.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 		}
 	}
 	// property: name=region, type=STRING macro=copy_to_state
@@ -2461,6 +2485,14 @@ func (r *performancePolicySetResource) doPost(ctx context.Context, plan *rsModel
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -2802,6 +2834,14 @@ func (r *performancePolicySetResource) doGet(ctx context.Context, state *rsModel
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Tags)
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopLinkHealthRules.Tags) == 0 {
+				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(savestate.LinkHealthRules) > varLoopLinkHealthRulesIndex && len(varLoopLinkHealthRules.Tags) == 0 && !savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.IsNull() && !savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.IsUnknown() && len(savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.Elements()) == 0 {
+				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags
+			}
 			// property: name=thresholdprofile, type=REFERENCE macro=copy_to_state
 			if varLoopLinkHealthRules.Thresholdprofile == nil {
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile = nil
@@ -2981,6 +3021,14 @@ func (r *performancePolicySetResource) doGet(ctx context.Context, state *rsModel
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Thresholdprofile.Tags)
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(savestate.LinkHealthRules) > varLoopLinkHealthRulesIndex && savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile != nil && len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 && !savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.IsNull() && !savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.IsUnknown() && len(savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.Elements()) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = savestate.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags
+				}
 			}
 			// property: name=thresholdprofile_id, type=STRING macro=copy_to_state
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].ThresholdprofileId = types.StringPointerValue(varLoopLinkHealthRules.ThresholdprofileId)
@@ -3028,6 +3076,14 @@ func (r *performancePolicySetResource) doGet(ctx context.Context, state *rsModel
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(savestate.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(savestate.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = savestate.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 		}
 	}
 	// property: name=region, type=STRING macro=copy_to_state
@@ -3047,6 +3103,14 @@ func (r *performancePolicySetResource) doGet(ctx context.Context, state *rsModel
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -3904,6 +3968,14 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Tags)
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopLinkHealthRules.Tags) == 0 {
+				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.LinkHealthRules) > varLoopLinkHealthRulesIndex && len(varLoopLinkHealthRules.Tags) == 0 && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.IsNull() && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.IsUnknown() && len(plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags.Elements()) == 0 {
+				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags = plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Tags
+			}
 			// property: name=thresholdprofile, type=REFERENCE macro=copy_to_state
 			if varLoopLinkHealthRules.Thresholdprofile == nil {
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile = nil
@@ -4083,6 +4155,14 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopLinkHealthRules.Thresholdprofile.Tags)
 				state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = types.SetNull(types.StringType)
+				}
+				// the configuration states an empty list: keep it
+				if len(plan.LinkHealthRules) > varLoopLinkHealthRulesIndex && plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile != nil && len(varLoopLinkHealthRules.Thresholdprofile.Tags) == 0 && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.IsNull() && !plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.IsUnknown() && len(plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags.Elements()) == 0 {
+					state.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags = plan.LinkHealthRules[varLoopLinkHealthRulesIndex].Thresholdprofile.Tags
+				}
 			}
 			// property: name=thresholdprofile_id, type=STRING macro=copy_to_state
 			state.LinkHealthRules[varLoopLinkHealthRulesIndex].ThresholdprofileId = types.StringPointerValue(varLoopLinkHealthRules.ThresholdprofileId)
@@ -4130,6 +4210,14 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 			varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 			state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 			resp.Diagnostics.Append(errTags.Errors()...)
+			// api does not accept empty list as missing value
+			if len(varLoopPolicyRules.Tags) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+			}
+			// the configuration states an empty list: keep it
+			if len(plan.PolicyRules) > varLoopPolicyRulesIndex && len(varLoopPolicyRules.Tags) == 0 && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsNull() && !plan.PolicyRules[varLoopPolicyRulesIndex].Tags.IsUnknown() && len(plan.PolicyRules[varLoopPolicyRulesIndex].Tags.Elements()) == 0 {
+				state.PolicyRules[varLoopPolicyRulesIndex].Tags = plan.PolicyRules[varLoopPolicyRulesIndex].Tags
+			}
 		}
 	}
 	// property: name=region, type=STRING macro=copy_to_state
@@ -4149,6 +4237,14 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

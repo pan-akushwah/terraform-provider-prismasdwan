@@ -2110,12 +2110,20 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 			varBogusNxDomains, errBogusNxDomains := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.BogusNxDomains)
 			state.DnsResponseOverrides.BogusNxDomains = varBogusNxDomains
 			resp.Diagnostics.Append(errBogusNxDomains.Errors()...)
+			// api does not accept empty list as missing value
+			if len(ans.DnsResponseOverrides.BogusNxDomains) == 0 {
+				state.DnsResponseOverrides.BogusNxDomains = types.ListNull(types.StringType)
+			}
 			// property: name=disable_private_ip_lookups, type=BOOLEAN macro=copy_to_state
 			state.DnsResponseOverrides.DisablePrivateIpLookups = types.BoolPointerValue(ans.DnsResponseOverrides.DisablePrivateIpLookups)
 			// property: name=ignore_ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
 			varIgnoreIpAddresses, errIgnoreIpAddresses := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.IgnoreIpAddresses)
 			state.DnsResponseOverrides.IgnoreIpAddresses = varIgnoreIpAddresses
 			resp.Diagnostics.Append(errIgnoreIpAddresses.Errors()...)
+			// api does not accept empty list as missing value
+			if len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 {
+				state.DnsResponseOverrides.IgnoreIpAddresses = types.ListNull(types.StringType)
+			}
 			// property: name=local_ttl, type=INTEGER macro=copy_to_state
 			state.DnsResponseOverrides.LocalTtl = types.Int64PointerValue(ans.DnsResponseOverrides.LocalTtl)
 			// property: name=max_ttl, type=INTEGER macro=copy_to_state
@@ -2211,6 +2219,10 @@ func (d *dnsServiceProfileDataSource) Read(ctx context.Context, req datasource.R
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 
 		// append the item scanned
 		state_with_filter.Items = append(state_with_filter.Items, &state)

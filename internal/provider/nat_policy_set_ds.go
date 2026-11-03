@@ -753,6 +753,10 @@ func (d *natPolicySetDataSource) Read(ctx context.Context, req datasource.ReadRe
 				varTags, errTags := types.SetValueFrom(ctx, types.StringType, varLoopPolicyRules.Tags)
 				state.PolicyRules[varLoopPolicyRulesIndex].Tags = varTags
 				resp.Diagnostics.Append(errTags.Errors()...)
+				// api does not accept empty list as missing value
+				if len(varLoopPolicyRules.Tags) == 0 {
+					state.PolicyRules[varLoopPolicyRulesIndex].Tags = types.SetNull(types.StringType)
+				}
 			}
 		}
 		// property: name=region, type=STRING macro=copy_to_state
@@ -767,6 +771,10 @@ func (d *natPolicySetDataSource) Read(ctx context.Context, req datasource.ReadRe
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=update_order, type=BOOLEAN macro=copy_to_state
 		state.UpdateOrder = types.BoolPointerValue(ans.UpdateOrder)
 

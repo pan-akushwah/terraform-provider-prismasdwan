@@ -441,6 +441,10 @@ func (d *elementStaticRouteDataSource) Read(ctx context.Context, req datasource.
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=vrf_context_id, type=STRING macro=copy_to_state
 		state.VrfContextId = types.StringPointerValue(ans.VrfContextId)
 

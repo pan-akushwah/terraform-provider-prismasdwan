@@ -909,6 +909,10 @@ func (d *appDefDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_to_state
 		if ans.TcpRules == nil {
 			state.TcpRules = nil

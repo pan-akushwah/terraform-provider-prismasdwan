@@ -1979,10 +1979,18 @@ func (r *dnsServiceProfileResource) doPost(ctx context.Context, plan *rsModelDns
 		}
 		// property: name=bogus_nx_domains, type=ARRAY_PRIMITIVE macro=copy_from_plan
 		body.DnsResponseOverrides.BogusNxDomains = ListStringValueOrNil(ctx, plan.DnsResponseOverrides.BogusNxDomains)
+		// api does not accept empty list as missing value
+		if len(body.DnsResponseOverrides.BogusNxDomains) == 0 {
+			body.DnsResponseOverrides.BogusNxDomains = nil
+		}
 		// property: name=disable_private_ip_lookups, type=BOOLEAN macro=copy_from_plan
 		body.DnsResponseOverrides.DisablePrivateIpLookups = BoolValueOrNil(plan.DnsResponseOverrides.DisablePrivateIpLookups)
 		// property: name=ignore_ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan
 		body.DnsResponseOverrides.IgnoreIpAddresses = ListStringValueOrNil(ctx, plan.DnsResponseOverrides.IgnoreIpAddresses)
+		// api does not accept empty list as missing value
+		if len(body.DnsResponseOverrides.IgnoreIpAddresses) == 0 {
+			body.DnsResponseOverrides.IgnoreIpAddresses = nil
+		}
 		// property: name=local_ttl, type=INTEGER macro=copy_from_plan
 		body.DnsResponseOverrides.LocalTtl = Int64ValueOrNil(plan.DnsResponseOverrides.LocalTtl)
 		// property: name=max_ttl, type=INTEGER macro=copy_from_plan
@@ -2631,12 +2639,28 @@ func (r *dnsServiceProfileResource) doPost(ctx context.Context, plan *rsModelDns
 		varBogusNxDomains, errBogusNxDomains := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.BogusNxDomains)
 		state.DnsResponseOverrides.BogusNxDomains = varBogusNxDomains
 		resp.Diagnostics.Append(errBogusNxDomains.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.DnsResponseOverrides.BogusNxDomains) == 0 {
+			state.DnsResponseOverrides.BogusNxDomains = types.ListNull(types.StringType)
+		}
+		// the configuration states an empty list: keep it
+		if plan.DnsResponseOverrides != nil && len(ans.DnsResponseOverrides.BogusNxDomains) == 0 && !plan.DnsResponseOverrides.BogusNxDomains.IsNull() && !plan.DnsResponseOverrides.BogusNxDomains.IsUnknown() && len(plan.DnsResponseOverrides.BogusNxDomains.Elements()) == 0 {
+			state.DnsResponseOverrides.BogusNxDomains = plan.DnsResponseOverrides.BogusNxDomains
+		}
 		// property: name=disable_private_ip_lookups, type=BOOLEAN macro=copy_to_state
 		state.DnsResponseOverrides.DisablePrivateIpLookups = types.BoolPointerValue(ans.DnsResponseOverrides.DisablePrivateIpLookups)
 		// property: name=ignore_ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varIgnoreIpAddresses, errIgnoreIpAddresses := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.IgnoreIpAddresses)
 		state.DnsResponseOverrides.IgnoreIpAddresses = varIgnoreIpAddresses
 		resp.Diagnostics.Append(errIgnoreIpAddresses.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 {
+			state.DnsResponseOverrides.IgnoreIpAddresses = types.ListNull(types.StringType)
+		}
+		// the configuration states an empty list: keep it
+		if plan.DnsResponseOverrides != nil && len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 && !plan.DnsResponseOverrides.IgnoreIpAddresses.IsNull() && !plan.DnsResponseOverrides.IgnoreIpAddresses.IsUnknown() && len(plan.DnsResponseOverrides.IgnoreIpAddresses.Elements()) == 0 {
+			state.DnsResponseOverrides.IgnoreIpAddresses = plan.DnsResponseOverrides.IgnoreIpAddresses
+		}
 		// property: name=local_ttl, type=INTEGER macro=copy_to_state
 		state.DnsResponseOverrides.LocalTtl = types.Int64PointerValue(ans.DnsResponseOverrides.LocalTtl)
 		// property: name=max_ttl, type=INTEGER macro=copy_to_state
@@ -2732,6 +2756,14 @@ func (r *dnsServiceProfileResource) doPost(ctx context.Context, plan *rsModelDns
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -3314,12 +3346,28 @@ func (r *dnsServiceProfileResource) doGet(ctx context.Context, state *rsModelDns
 		varBogusNxDomains, errBogusNxDomains := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.BogusNxDomains)
 		state.DnsResponseOverrides.BogusNxDomains = varBogusNxDomains
 		resp.Diagnostics.Append(errBogusNxDomains.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.DnsResponseOverrides.BogusNxDomains) == 0 {
+			state.DnsResponseOverrides.BogusNxDomains = types.ListNull(types.StringType)
+		}
+		// the configuration states an empty list: keep it
+		if savestate.DnsResponseOverrides != nil && len(ans.DnsResponseOverrides.BogusNxDomains) == 0 && !savestate.DnsResponseOverrides.BogusNxDomains.IsNull() && !savestate.DnsResponseOverrides.BogusNxDomains.IsUnknown() && len(savestate.DnsResponseOverrides.BogusNxDomains.Elements()) == 0 {
+			state.DnsResponseOverrides.BogusNxDomains = savestate.DnsResponseOverrides.BogusNxDomains
+		}
 		// property: name=disable_private_ip_lookups, type=BOOLEAN macro=copy_to_state
 		state.DnsResponseOverrides.DisablePrivateIpLookups = types.BoolPointerValue(ans.DnsResponseOverrides.DisablePrivateIpLookups)
 		// property: name=ignore_ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varIgnoreIpAddresses, errIgnoreIpAddresses := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.IgnoreIpAddresses)
 		state.DnsResponseOverrides.IgnoreIpAddresses = varIgnoreIpAddresses
 		resp.Diagnostics.Append(errIgnoreIpAddresses.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 {
+			state.DnsResponseOverrides.IgnoreIpAddresses = types.ListNull(types.StringType)
+		}
+		// the configuration states an empty list: keep it
+		if savestate.DnsResponseOverrides != nil && len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 && !savestate.DnsResponseOverrides.IgnoreIpAddresses.IsNull() && !savestate.DnsResponseOverrides.IgnoreIpAddresses.IsUnknown() && len(savestate.DnsResponseOverrides.IgnoreIpAddresses.Elements()) == 0 {
+			state.DnsResponseOverrides.IgnoreIpAddresses = savestate.DnsResponseOverrides.IgnoreIpAddresses
+		}
 		// property: name=local_ttl, type=INTEGER macro=copy_to_state
 		state.DnsResponseOverrides.LocalTtl = types.Int64PointerValue(ans.DnsResponseOverrides.LocalTtl)
 		// property: name=max_ttl, type=INTEGER macro=copy_to_state
@@ -3415,6 +3463,14 @@ func (r *dnsServiceProfileResource) doGet(ctx context.Context, state *rsModelDns
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -4808,12 +4864,28 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		varBogusNxDomains, errBogusNxDomains := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.BogusNxDomains)
 		state.DnsResponseOverrides.BogusNxDomains = varBogusNxDomains
 		resp.Diagnostics.Append(errBogusNxDomains.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.DnsResponseOverrides.BogusNxDomains) == 0 {
+			state.DnsResponseOverrides.BogusNxDomains = types.ListNull(types.StringType)
+		}
+		// the configuration states an empty list: keep it
+		if plan.DnsResponseOverrides != nil && len(ans.DnsResponseOverrides.BogusNxDomains) == 0 && !plan.DnsResponseOverrides.BogusNxDomains.IsNull() && !plan.DnsResponseOverrides.BogusNxDomains.IsUnknown() && len(plan.DnsResponseOverrides.BogusNxDomains.Elements()) == 0 {
+			state.DnsResponseOverrides.BogusNxDomains = plan.DnsResponseOverrides.BogusNxDomains
+		}
 		// property: name=disable_private_ip_lookups, type=BOOLEAN macro=copy_to_state
 		state.DnsResponseOverrides.DisablePrivateIpLookups = types.BoolPointerValue(ans.DnsResponseOverrides.DisablePrivateIpLookups)
 		// property: name=ignore_ip_addresses, type=ARRAY_PRIMITIVE macro=copy_to_state
 		varIgnoreIpAddresses, errIgnoreIpAddresses := types.ListValueFrom(ctx, types.StringType, ans.DnsResponseOverrides.IgnoreIpAddresses)
 		state.DnsResponseOverrides.IgnoreIpAddresses = varIgnoreIpAddresses
 		resp.Diagnostics.Append(errIgnoreIpAddresses.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 {
+			state.DnsResponseOverrides.IgnoreIpAddresses = types.ListNull(types.StringType)
+		}
+		// the configuration states an empty list: keep it
+		if plan.DnsResponseOverrides != nil && len(ans.DnsResponseOverrides.IgnoreIpAddresses) == 0 && !plan.DnsResponseOverrides.IgnoreIpAddresses.IsNull() && !plan.DnsResponseOverrides.IgnoreIpAddresses.IsUnknown() && len(plan.DnsResponseOverrides.IgnoreIpAddresses.Elements()) == 0 {
+			state.DnsResponseOverrides.IgnoreIpAddresses = plan.DnsResponseOverrides.IgnoreIpAddresses
+		}
 		// property: name=local_ttl, type=INTEGER macro=copy_to_state
 		state.DnsResponseOverrides.LocalTtl = types.Int64PointerValue(ans.DnsResponseOverrides.LocalTtl)
 		// property: name=max_ttl, type=INTEGER macro=copy_to_state
@@ -4909,6 +4981,14 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

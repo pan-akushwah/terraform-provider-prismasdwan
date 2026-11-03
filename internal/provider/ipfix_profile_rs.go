@@ -501,7 +501,8 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	if plan.Filters == nil {
 		body.Filters = nil
 	} else if len(plan.Filters) == 0 {
-		body.Filters = []sdwan_schema.IPFixFilter{}
+		// api does not accept empty list as missing value
+		body.Filters = nil
 	} else {
 		body.Filters = make([]sdwan_schema.IPFixFilter, 0, len(plan.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range plan.Filters {
@@ -699,7 +700,8 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []rsModelIPFixFilter{}
+		// api does not accept empty list as missing value
+		state.Filters = nil
 	} else {
 		state.Filters = make([]rsModelIPFixFilter, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
@@ -769,6 +771,10 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 			state.Filters[varLoopFiltersIndex].WanPathDirection = types.StringPointerValue(varLoopFilters.WanPathDirection)
 		}
 	}
+	// the configuration states an empty list: keep it
+	if len(ans.Filters) == 0 && plan.Filters != nil && len(plan.Filters) == 0 {
+		state.Filters = plan.Filters
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ipfixtemplate_id, type=STRING macro=copy_to_state
@@ -793,6 +799,14 @@ func (r *ipfixProfileResource) doPost(ctx context.Context, plan *rsModelIPFixPro
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 
@@ -930,7 +944,8 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []rsModelIPFixFilter{}
+		// api does not accept empty list as missing value
+		state.Filters = nil
 	} else {
 		state.Filters = make([]rsModelIPFixFilter, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
@@ -1000,6 +1015,10 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 			state.Filters[varLoopFiltersIndex].WanPathDirection = types.StringPointerValue(varLoopFilters.WanPathDirection)
 		}
 	}
+	// the configuration states an empty list: keep it
+	if len(ans.Filters) == 0 && savestate.Filters != nil && len(savestate.Filters) == 0 {
+		state.Filters = savestate.Filters
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ipfixtemplate_id, type=STRING macro=copy_to_state
@@ -1024,6 +1043,14 @@ func (r *ipfixProfileResource) doGet(ctx context.Context, state *rsModelIPFixPro
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	return true
 }
 
@@ -1137,7 +1164,8 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	if plan.Filters == nil && (state == nil || state.Filters == nil) {
 		body.Filters = nil
 	} else if len(plan.Filters) == 0 && (state == nil || len(state.Filters) == 0) {
-		body.Filters = []sdwan_schema.IPFixFilter{}
+		// api does not accept empty list as missing value
+		body.Filters = nil
 	} else if len(plan.Filters) != 0 || (state != nil && len(state.Filters) != 0) {
 		FiltersToUse := plan.Filters
 		if len(plan.Filters) == 0 {
@@ -1349,7 +1377,8 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	if ans.Filters == nil {
 		state.Filters = nil
 	} else if len(ans.Filters) == 0 {
-		state.Filters = []rsModelIPFixFilter{}
+		// api does not accept empty list as missing value
+		state.Filters = nil
 	} else {
 		state.Filters = make([]rsModelIPFixFilter, 0, len(ans.Filters))
 		for varLoopFiltersIndex, varLoopFilters := range ans.Filters {
@@ -1419,6 +1448,10 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 			state.Filters[varLoopFiltersIndex].WanPathDirection = types.StringPointerValue(varLoopFilters.WanPathDirection)
 		}
 	}
+	// the configuration states an empty list: keep it
+	if len(ans.Filters) == 0 && plan.Filters != nil && len(plan.Filters) == 0 {
+		state.Filters = plan.Filters
+	}
 	// property: name=id, type=STRING macro=copy_to_state
 	state.Id = types.StringPointerValue(ans.Id)
 	// property: name=ipfixtemplate_id, type=STRING macro=copy_to_state
@@ -1443,6 +1476,14 @@ func (r *ipfixProfileResource) doPut(ctx context.Context, plan *rsModelIPFixProf
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	return true
 }
 

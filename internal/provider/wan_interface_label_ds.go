@@ -462,6 +462,10 @@ func (d *wanInterfaceLabelDataSource) Read(ctx context.Context, req datasource.R
 		varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 		state.Tags = varTags
 		resp.Diagnostics.Append(errTags.Errors()...)
+		// api does not accept empty list as missing value
+		if len(ans.Tags) == 0 {
+			state.Tags = types.SetNull(types.StringType)
+		}
 		// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=copy_to_state
 		state.UseForApplicationReachabilityProbes = types.BoolPointerValue(ans.UseForApplicationReachabilityProbes)
 		// property: name=use_for_controller_connections, type=BOOLEAN macro=copy_to_state

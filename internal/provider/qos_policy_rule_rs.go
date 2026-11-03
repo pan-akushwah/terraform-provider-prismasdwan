@@ -511,6 +511,14 @@ func (r *qosPolicyRuleResource) doPost(ctx context.Context, plan *rsModelPriorit
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 	if ans.UserOrGroup == nil {
 		state.UserOrGroup = nil
@@ -676,6 +684,14 @@ func (r *qosPolicyRuleResource) doGet(ctx context.Context, state *rsModelPriorit
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !savestate.Tags.IsNull() && !savestate.Tags.IsUnknown() && len(savestate.Tags.Elements()) == 0 {
+		state.Tags = savestate.Tags
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 	if ans.UserOrGroup == nil {
 		state.UserOrGroup = nil
@@ -984,6 +1000,14 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 	varTags, errTags := types.SetValueFrom(ctx, types.StringType, ans.Tags)
 	state.Tags = varTags
 	resp.Diagnostics.Append(errTags.Errors()...)
+	// api does not accept empty list as missing value
+	if len(ans.Tags) == 0 {
+		state.Tags = types.SetNull(types.StringType)
+	}
+	// the configuration states an empty list: keep it
+	if len(ans.Tags) == 0 && !plan.Tags.IsNull() && !plan.Tags.IsUnknown() && len(plan.Tags.Elements()) == 0 {
+		state.Tags = plan.Tags
+	}
 	// property: name=user_or_group, type=REFERENCE macro=copy_to_state
 	if ans.UserOrGroup == nil {
 		state.UserOrGroup = nil
