@@ -1,0 +1,19 @@
+sdk/sdwan/schemas/all_schema.go
+  s_a281bc52404319::t_3df98500b7112f 16874,19754
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "465ea676eadd0eead755d8c98c78f3b246372b4b",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
