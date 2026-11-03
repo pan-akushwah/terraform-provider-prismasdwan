@@ -27360,8 +27360,8 @@ type rsModelFilter struct {
 	IpPrefixes types.List `tfsdk:"ip_prefixes"`
 	// propertyName=path type=ARRAY_PRIMITIVE
 	Path types.List `tfsdk:"path"`
-	// propertyName=site type=OBJECT
-	Site types.Map `tfsdk:"site"`
+	// propertyName=site type=JSON_STRING
+	Site types.String `tfsdk:"site"`
 	// propertyName=type type=STRING
 	Type types.String `tfsdk:"type"`
 	// propertyName=wn_path type=ARRAY_PRIMITIVE

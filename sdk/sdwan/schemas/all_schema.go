@@ -16605,7 +16605,7 @@ type Filter struct {
 	Elements   []string                `json:"elements"`    // propertyName=elements type=ARRAY_PRIMITIVE
 	IpPrefixes []string                `json:"ip_prefixes"` // propertyName=ip_prefixes type=ARRAY_PRIMITIVE
 	Path       []string                `json:"path"`        // propertyName=path type=ARRAY_PRIMITIVE
-	Site       *map[string]interface{} `json:"site"`        // propertyName=site type=OBJECT
+	Site       *map[string]interface{} `json:"site"`        // propertyName=site type=JSON_STRING
 	Type       *string                 `json:"type"`        // propertyName=type type=STRING
 	WnPath     []string                `json:"wn_path"`     // propertyName=wn_path type=ARRAY_PRIMITIVE
 }

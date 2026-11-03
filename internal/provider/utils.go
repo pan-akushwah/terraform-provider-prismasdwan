@@ -367,6 +367,14 @@ func TenantIdFromScope(scope string) *string {
 // DeleteIfNull removes path from a JSON body when its value is null or absent, for APIs that reject null for an
 // optional field. A real value is left alone.
 func DeleteIfNull(body, path string) string {
+	// "list.#.key" applies to every element of list
+	if i := strings.Index(path, ".#."); i >= 0 {
+		count := int(gjson.Get(body, path[:i]+".#").Int())
+		for index := 0; index < count; index++ {
+			body = DeleteIfNull(body, fmt.Sprintf("%s.%d.%s", path[:i], index, path[i+3:]))
+		}
+		return body
+	}
 	if gjson.Get(body, path).Type == gjson.Null {
 		if out, err := sjson.Delete(body, path); err == nil {
 			return out

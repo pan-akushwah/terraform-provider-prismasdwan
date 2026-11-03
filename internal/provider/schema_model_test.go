@@ -14,9 +14,7 @@ import (
 
 // knownSchemaModelMismatches lists resources whose generated schema cannot be converted into their Go model, with
 // the reason. TestSchemaMatchesModel fails when an entry starts to work, so it is removed as soon as it is fixed.
-var knownSchemaModelMismatches = map[string]string{
-	"site_hub_prefix_filter": "empty-object property (site) is generated as an attribute without fields: Draft 2",
-}
+var knownSchemaModelMismatches = map[string]string{}
 
 // skeleton builds a value of the given type in which every nested object, list, set and map is present (a single
 // element each) and every primitive is null. Converting it into the Go model exercises every nested struct, which an

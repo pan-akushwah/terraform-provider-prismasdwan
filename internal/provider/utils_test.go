@@ -122,3 +122,15 @@ func TestJSONStringToMapAndBack(t *testing.T) {
 		t.Fatalf("no object is null: %s", got)
 	}
 }
+
+func TestDeleteIfNullInEveryListElement(t *testing.T) {
+	body := `{"name":"n","filters":[{"type":"ipv4","site":null,"path":["p"]},{"type":"ipv6","site":{"id":"s"},"path":null}]}`
+	got := DeleteIfNull(DeleteIfNull(body, "filters.#.site"), "filters.#.path")
+	want := `{"name":"n","filters":[{"type":"ipv4","path":["p"]},{"type":"ipv6","site":{"id":"s"}}]}`
+	if got != want {
+		t.Fatalf("got %s, want %s", got, want)
+	}
+	if got := DeleteIfNull(`{"name":null}`, "missing.#.x"); got != `{"name":null}` {
+		t.Fatalf("a missing list must leave the body alone, got %s", got)
+	}
+}

@@ -164,15 +164,15 @@ func (d *siteHubPrefixFilterDataSource) Schema(_ context.Context, _ datasource.S
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=path, type=ARRAY_PRIMITIVE macro=rss_schema
-									// property: name=site, type=OBJECT macro=rss_schema
-									"site": dsschema.SingleNestedAttribute{
+									// property: name=site, type=JSON_STRING macro=rss_schema
+									"site": dsschema.StringAttribute{
 										Required:    false,
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
 										Description: "Site",
 									},
-									// key name holder for attribute: name=site, type=OBJECT macro=rss_schema
+									// key name holder for attribute: name=site, type=JSON_STRING macro=rss_schema
 									// property: name=type, type=STRING macro=rss_schema
 									"type": dsschema.StringAttribute{
 										Required:    false,
@@ -372,7 +372,10 @@ func (d *siteHubPrefixFilterDataSource) Read(ctx context.Context, req datasource
 				varPath, errPath := types.ListValueFrom(ctx, types.StringType, varLoopFilters.Path)
 				state.Filters[varLoopFiltersIndex].Path = varPath
 				resp.Diagnostics.Append(errPath.Errors()...)
-				// property: name=site, type=OBJECT macro=copy_to_state
+				// property: name=site, type=JSON_STRING macro=copy_to_state
+				// x_flag_json_string: the api returns an object, terraform holds it as JSON text; keep the configured text when it means the same
+				priorSiteJson := types.StringNull()
+				state.Filters[varLoopFiltersIndex].Site = JSONStringFromMap(varLoopFilters.Site, priorSiteJson)
 				// property: name=type, type=STRING macro=copy_to_state
 				state.Filters[varLoopFiltersIndex].Type = types.StringPointerValue(varLoopFilters.Type)
 				// property: name=wn_path, type=ARRAY_PRIMITIVE macro=copy_to_state
