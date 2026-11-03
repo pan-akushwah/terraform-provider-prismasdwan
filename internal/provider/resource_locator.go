@@ -6,6 +6,8 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"sort"
 	"strings"
 	"sync"
 
@@ -122,7 +124,6 @@ func (r *newResourceLocatorResource) Configure(_ context.Context, req resource.C
 	}
 	// inject into map
 	resourceTypeToUrlMap = make(map[string]string)
-	resourceTypeToUrlMap["TEST"] = "SOME"
 	resourceTypeToUrlMap["prismasdwan_app_def_override"] = "/sdwan/v2.3/api/appdefs/{appdef_id}/overrides/{override_id}"
 	resourceTypeToUrlMap["prismasdwan_element_radius"] = "/sdwan/v2.0/api/elements/{element_id}/radii/{radius_id}"
 	resourceTypeToUrlMap["prismasdwan_element_ipfix"] = "/sdwan/v2.0/api/sites/{site_id}/elements/{element_id}/ipfix/{ipfix_id}"
@@ -316,7 +317,14 @@ func (r *newResourceLocatorResource) makeHttpGetLookUp(ctx context.Context, plan
 	// find the path
 	get_path, ok := resourceTypeToUrlMap[plan.ResourceType.ValueString()]
 	if !ok {
-		diagnostic.AddError("could not find supported resource type", plan.ResourceType.ValueString())
+		types := make([]string, 0, len(resourceTypeToUrlMap))
+		for name := range resourceTypeToUrlMap {
+			types = append(types, name)
+		}
+		sort.Strings(types)
+		diagnostic.AddError("could not find supported resource type",
+			fmt.Sprintf("%q is not a supported resource type. Use the name of a resource of this provider, one of: %s",
+				plan.ResourceType.ValueString(), strings.Join(types, ", ")))
 		return
 	}
 

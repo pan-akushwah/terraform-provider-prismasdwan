@@ -509,9 +509,15 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 		// https://pan.dev/prisma-cloud/api/cspm/api-errors/#reattempting-requests-that-fail-due-to-a-server-error
 		// TODO(shinmog): When/if this is implemented, verify backoff logic with eng.
 
+		// A POST the server may have processed before it answered 500, 502 or 504 must not be sent again: it can
+		// create a duplicate or answer "already exists". Only 429 and 503 (the request was not processed) are replayed.
+		if method == http.MethodPost && resp.StatusCode != http.StatusTooManyRequests && resp.StatusCode != http.StatusServiceUnavailable {
+			return body, resp.StatusCode, stat
+		}
+
 		// Only sleep if we're not running tests.
 		if len(c.testData) == 0 {
-			time.Sleep(time.Duration(len(retry)+1*2) * time.Second)
+			time.Sleep(retryBackoff(len(retry)))
 		}
 		return c.Do(ctx, method, path, queryParams, input, output, append(retry, stat)...)
 	default:
@@ -531,3 +537,8 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 
 // GetHost returns the Host property.
 func (c *Client) GetHost() string { return c.Host }
+
+// retryBackoff is the wait before the next attempt, exponential: 1s, 2s, 4s, 8s, 16s.
+func retryBackoff(attempt int) time.Duration {
+	return time.Duration(1<<attempt) * time.Second
+}

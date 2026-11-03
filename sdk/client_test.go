@@ -10,6 +10,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/paloaltonetworks/terraform-provider-prismasdwan/sdk/api"
 )
@@ -555,5 +556,38 @@ func TestDoWith400Response(t *testing.T) {
 	}
 	if e2.StatusCode != http.StatusBadRequest {
 		t.Fatalf("Status code is %d not %d", e2.StatusCode, http.StatusBadRequest)
+	}
+}
+
+func TestRetryBackoffIsExponential(t *testing.T) {
+	for attempt, want := range []time.Duration{1 * time.Second, 2 * time.Second, 4 * time.Second, 8 * time.Second, 16 * time.Second} {
+		if got := retryBackoff(attempt); got != want {
+			t.Fatalf("attempt %d: got %v, want %v", attempt, got, want)
+		}
+	}
+}
+
+func testResponses(codes ...int) []*http.Response {
+	responses := make([]*http.Response, 0, len(codes))
+	for _, code := range codes {
+		responses = append(responses, &http.Response{StatusCode: code, Body: io.NopCloser(strings.NewReader(""))})
+	}
+	return responses
+}
+
+// a POST the server may have processed (500, 502, 504) is not sent again; 429 and 503 are
+func TestPostIsOnlyReplayedWhenTheServerDidNotProcessIt(t *testing.T) {
+	ctx := context.TODO()
+	for _, code := range []int{http.StatusInternalServerError, http.StatusBadGateway, http.StatusGatewayTimeout} {
+		c := Client{apiPrefix: "https://testing-api-prefix", Logging: api.LogDetailed, testData: testResponses(code, http.StatusOK)}
+		if _, _, err := c.Do(ctx, http.MethodPost, "/one/two", nil, nil, nil); err == nil || c.testIndex != 1 {
+			t.Fatalf("POST answered %d must fail after 1 attempt, got %d attempts and error %v", code, c.testIndex, err)
+		}
+	}
+	for _, code := range []int{http.StatusTooManyRequests, http.StatusServiceUnavailable} {
+		c := Client{apiPrefix: "https://testing-api-prefix", Logging: api.LogDetailed, testData: testResponses(code, http.StatusOK)}
+		if _, _, err := c.Do(ctx, http.MethodPost, "/one/two", nil, nil, nil); err != nil || c.testIndex != 2 {
+			t.Fatalf("POST answered %d must be replayed once, got %d attempts and error %v", code, c.testIndex, err)
+		}
 	}
 }
