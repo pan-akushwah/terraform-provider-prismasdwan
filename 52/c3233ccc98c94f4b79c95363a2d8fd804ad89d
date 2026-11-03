@@ -1,0 +1,39 @@
+internal/provider/element_application_probe_rs.go
+  s_a281bc52404319::t_97b233b857a2f8 553-557
+internal/provider/element_bgp_config_rs.go
+  s_a281bc52404319::t_fa310983b97652 1004-1008
+internal/provider/element_cellular_module_rs.go
+  s_a281bc52404319::t_f92bfba45d8797 570-574
+internal/provider/element_cellular_module_sim_security_rs.go
+  s_a281bc52404319::t_77a8760225b5e3 579-583
+internal/provider/element_multicast_global_config_rs.go
+  s_a281bc52404319::t_f59d292b240385 721-725
+internal/provider/element_ntp_rs.go
+  s_a281bc52404319::t_60450613f14737 662-666
+internal/provider/element_ospf_global_config_rs.go
+  s_a281bc52404319::t_159a1777d4f9ee 655-659
+internal/provider/element_rs.go
+  s_a281bc52404319::t_739e27b150e53d 1860-1864
+internal/provider/element_toolkit_rs.go
+  s_a281bc52404319::t_4df72c6efac522 564-568
+internal/provider/site_ciphers_rs.go
+  s_a281bc52404319::t_431fab795e3e74 579-583
+internal/provider/wan_interface_label_rs.go
+  s_a281bc52404319::t_741872d1d5843d 810-814
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "52c3233ccc98c94f4b79c95363a2d8fd804ad89d",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
