@@ -197,7 +197,7 @@ func (d *sitePrismaAccessConfigDataSource) Schema(_ context.Context, _ datasourc
 						// property: name=site_id, type=STRING macro=rss_schema
 						"site_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Site Id",

@@ -179,7 +179,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 			// property: name=site_id, type=STRING macro=rss_schema
 			"site_id": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Site Id",
@@ -287,6 +287,8 @@ func (r *sitePrismaAccessConfigResource) doPost(ctx context.Context, plan *rsMod
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
+	// inject overrides
+	request_body_string = SetIfNull(request_body_string, "site_id", *params["site_id"])
 	// copy pointer
 	create_request.RequestBody = &request_body_string
 
@@ -385,7 +387,16 @@ func (r *sitePrismaAccessConfigResource) doPost(ctx context.Context, plan *rsMod
 		}
 	}
 	// property: name=site_id, type=STRING macro=copy_to_state
+	priorSiteId := state.SiteId
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SiteId == nil {
+		if !plan.SiteId.IsUnknown() {
+			state.SiteId = plan.SiteId
+		} else {
+			state.SiteId = priorSiteId
+		}
+	}
 	return true
 }
 
@@ -522,7 +533,16 @@ func (r *sitePrismaAccessConfigResource) doGet(ctx context.Context, state *rsMod
 		}
 	}
 	// property: name=site_id, type=STRING macro=copy_to_state
+	priorSiteId := state.SiteId
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SiteId == nil {
+		if !savestate.SiteId.IsUnknown() {
+			state.SiteId = savestate.SiteId
+		} else {
+			state.SiteId = priorSiteId
+		}
+	}
 	return true
 }
 
@@ -642,6 +662,8 @@ func (r *sitePrismaAccessConfigResource) doPut(ctx context.Context, plan *rsMode
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	request_body_string = SetIfNull(request_body_string, "site_id", *params["site_id"])
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 
@@ -725,7 +747,16 @@ func (r *sitePrismaAccessConfigResource) doPut(ctx context.Context, plan *rsMode
 		}
 	}
 	// property: name=site_id, type=STRING macro=copy_to_state
+	priorSiteId := state.SiteId
 	state.SiteId = types.StringPointerValue(ans.SiteId)
+	// the api never returns this value: keep the configured one, else the one known before
+	if ans.SiteId == nil {
+		if !plan.SiteId.IsUnknown() {
+			state.SiteId = plan.SiteId
+		} else {
+			state.SiteId = priorSiteId
+		}
+	}
 	return true
 }
 

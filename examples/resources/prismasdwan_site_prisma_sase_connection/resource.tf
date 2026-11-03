@@ -38,7 +38,6 @@ resource "prismasdwan_site_prisma_sase_connection" "example" {
   prismaaccess_edge_location_config = ["example_prismaaccess_edge_location_config"]
   prismaaccess_qos_cir_mbps         = 10
   prismaaccess_qos_profile_id       = "<prismaaccess_qos_profile_id>"
-  prismasase_connection_id          = "<prismasase_connection_id>"
   remote_network_groups = [{
     ipsec_tunnels = [{
       authentication = {
@@ -65,7 +64,6 @@ resource "prismasdwan_site_prisma_sase_connection" "example" {
   }]
   routing_configs = {
     advertise_default_route                  = false
-    bgp_secret                               = "<secret>"
     branch_as_number                         = "65000"
     deployment_mode                          = "example_deployment_mode"
     export_routes                            = false

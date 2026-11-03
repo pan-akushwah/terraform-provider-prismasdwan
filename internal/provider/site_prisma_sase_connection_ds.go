@@ -282,7 +282,7 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 						// property: name=prismasase_connection_id, type=STRING macro=rss_schema
 						"prismasase_connection_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
+							Computed:    true,
 							Optional:    true,
 							Sensitive:   false,
 							Description: "Prismasase Connection Id",
@@ -494,7 +494,7 @@ func (d *sitePrismaSaseConnectionDataSource) Schema(_ context.Context, _ datasou
 								// property: name=bgp_secret, type=STRING macro=rss_schema
 								"bgp_secret": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
+									Computed:    true,
 									Optional:    true,
 									Sensitive:   true,
 									Description: "Bgp Secret",
@@ -751,7 +751,8 @@ func (d *sitePrismaSaseConnectionDataSource) Read(ctx context.Context, req datas
 				if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 				} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []dsModelIPSecTunnel{}
+					// api does not accept empty list as missing value
+					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 				} else {
 					state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]dsModelIPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
 					for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {

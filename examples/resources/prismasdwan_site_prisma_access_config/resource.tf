@@ -29,5 +29,4 @@ resource "prismasdwan_site_prisma_access_config" "example" {
     service_link_ids      = ["<service_link_id>"]
     spn_name              = "example_spn"
   }]
-  site_id = "<site_id>"
 }

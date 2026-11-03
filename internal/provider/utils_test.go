@@ -134,3 +134,12 @@ func TestDeleteIfNullInEveryListElement(t *testing.T) {
 		t.Fatalf("a missing list must leave the body alone, got %s", got)
 	}
 }
+
+func TestSetIfNullInEveryListElement(t *testing.T) {
+	body := `{"groups":[{"name":"a","tunnels":null},{"name":"b","tunnels":["t"]},{"name":"c"}]}`
+	got := SetIfNull(body, "groups.#.tunnels", []interface{}{})
+	want := `{"groups":[{"name":"a","tunnels":[]},{"name":"b","tunnels":["t"]},{"name":"c","tunnels":[]}]}`
+	if got != want {
+		t.Fatalf("got %s, want %s", got, want)
+	}
+}

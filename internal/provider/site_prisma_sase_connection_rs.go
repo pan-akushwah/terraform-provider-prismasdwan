@@ -264,7 +264,7 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 			// property: name=prismasase_connection_id, type=STRING macro=rss_schema
 			"prismasase_connection_id": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Prismasase Connection Id",
@@ -490,7 +490,7 @@ func (r *sitePrismaSaseConnectionResource) Schema(_ context.Context, _ resource.
 					// property: name=bgp_secret, type=STRING macro=rss_schema
 					"bgp_secret": rsschema.StringAttribute{
 						Required:    false,
-						Computed:    false,
+						Computed:    true,
 						Optional:    true,
 						Sensitive:   true,
 						Description: "Bgp Secret",
@@ -671,7 +671,8 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []sdwan_schema.IPSecTunnel{}
+				// api does not accept empty list as missing value
+				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else {
 				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]sdwan_schema.IPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
 				for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
@@ -768,6 +769,13 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 	request_body_string, _ = sjson.Delete(request_body_string, "_etag")
 	tflog.Debug(ctx, "http json override: set request_body_string::_schema")
 	request_body_string, _ = sjson.Set(request_body_string, "_schema", 0)
+	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::site_id")
+	request_body_string, _ = sjson.Delete(request_body_string, "site_id")
+	tflog.Debug(ctx, "http json override: delete request_body_string::prismasase_connection_id")
+	request_body_string, _ = sjson.Delete(request_body_string, "prismasase_connection_id")
+	// inject overrides
+	request_body_string = SetIfNull(request_body_string, "remote_network_groups.#.ipsec_tunnels", []interface{}{})
 	// copy pointer
 	create_request.RequestBody = &request_body_string
 
@@ -895,7 +903,8 @@ func (r *sitePrismaSaseConnectionResource) doPost(ctx context.Context, plan *rsM
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []rsModelIPSecTunnel{}
+				// api does not accept empty list as missing value
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]rsModelIPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
 				for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
@@ -1189,7 +1198,8 @@ func (r *sitePrismaSaseConnectionResource) doGet(ctx context.Context, state *rsM
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []rsModelIPSecTunnel{}
+				// api does not accept empty list as missing value
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]rsModelIPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
 				for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
@@ -1504,7 +1514,8 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []sdwan_schema.IPSecTunnel{}
+				// api does not accept empty list as missing value
+				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else {
 				body.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]sdwan_schema.IPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
 				for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
@@ -1628,6 +1639,11 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 
 	// process http json path
 	request_body_string := string(json_body)
+	// inject overrides
+	request_body_string = SetIfNull(request_body_string, "remote_network_groups.#.ipsec_tunnels", []interface{}{})
+	// inject overrides
+	tflog.Debug(ctx, "http json override: delete request_body_string::site_id")
+	request_body_string, _ = sjson.Delete(request_body_string, "site_id")
 	// copy pointer
 	put_request.RequestBody = &request_body_string
 
@@ -1740,7 +1756,8 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 			if varLoopRemoteNetworkGroups.IpsecTunnels == nil {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else if len(varLoopRemoteNetworkGroups.IpsecTunnels) == 0 {
-				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = []rsModelIPSecTunnel{}
+				// api does not accept empty list as missing value
+				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = nil
 			} else {
 				state.RemoteNetworkGroups[varLoopRemoteNetworkGroupsIndex].IpsecTunnels = make([]rsModelIPSecTunnel, 0, len(varLoopRemoteNetworkGroups.IpsecTunnels))
 				for varLoopIpsecTunnelsIndex, varLoopIpsecTunnels := range varLoopRemoteNetworkGroups.IpsecTunnels {
