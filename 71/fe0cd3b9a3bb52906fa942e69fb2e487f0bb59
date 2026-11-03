@@ -1,0 +1,23 @@
+internal/provider/resource_locator.go
+  s_a281bc52404319::t_a10df1da488289 9-10,320-327
+sdk/client.go
+  s_a281bc52404319::t_0209184373451f 512-517,520,540-544
+sdk/client_test.go
+  s_a281bc52404319::t_7a851072d69e1f 13,561-593
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "71fe0cd3b9a3bb52906fa942e69fb2e487f0bb59",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
