@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"reflect"
 	"strings"
 
@@ -450,4 +451,16 @@ func ListMaxItems(limit int) []validator.List {
 // SetMaxItems is the same for a set attribute.
 func SetMaxItems(limit int) []validator.Set {
 	return []validator.Set{setvalidator.SizeAtMost(limit)}
+}
+
+// Float64KeepPlanWhenNear is the state value of a floating point attribute: the configured value when the API's answer
+// is the same number to six decimals (the API rounds, so -98.497408 is read back as -98.497406), otherwise the answer.
+func Float64KeepPlanWhenNear(answer *float64, plan types.Float64) types.Float64 {
+	if answer == nil || plan.IsNull() || plan.IsUnknown() {
+		return types.Float64PointerValue(answer)
+	}
+	if math.Abs(plan.ValueFloat64()-*answer) <= 0.000005 {
+		return plan
+	}
+	return types.Float64PointerValue(answer)
 }

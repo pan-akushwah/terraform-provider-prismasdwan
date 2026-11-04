@@ -143,3 +143,19 @@ func TestSetIfNullInEveryListElement(t *testing.T) {
 		t.Fatalf("got %s, want %s", got, want)
 	}
 }
+
+func TestFloat64KeepPlanWhenNear(t *testing.T) {
+	answer := -98.497406
+	if got := Float64KeepPlanWhenNear(&answer, types.Float64Value(-98.497408)); got.ValueFloat64() != -98.497408 {
+		t.Fatalf("a rounded answer must keep the configured value, got %v", got)
+	}
+	if got := Float64KeepPlanWhenNear(&answer, types.Float64Value(-98.5)); got.ValueFloat64() != answer {
+		t.Fatalf("a different answer must win, got %v", got)
+	}
+	if got := Float64KeepPlanWhenNear(&answer, types.Float64Null()); got.ValueFloat64() != answer {
+		t.Fatalf("no configured value: the answer, got %v", got)
+	}
+	if got := Float64KeepPlanWhenNear(nil, types.Float64Value(1)); !got.IsNull() {
+		t.Fatalf("no answer is null, got %v", got)
+	}
+}
