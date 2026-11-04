@@ -1,0 +1,379 @@
+internal/provider/anynet_link_ds.go
+  s_a281bc52404319::t_d872ee0df9f004 362-364
+internal/provider/anynet_link_rs.go
+  s_a281bc52404319::t_894225f2d6dda7 814,820
+internal/provider/apn_profile_ds.go
+  s_a281bc52404319::t_235bfee7fa7204 287-289
+internal/provider/app_def_ds.go
+  s_a281bc52404319::t_d0e0ae264f2c08 760-762
+internal/provider/app_def_override_ds.go
+  s_a281bc52404319::t_eaec167b11d726 688-690
+internal/provider/app_def_override_rs.go
+  s_a281bc52404319::t_b7351c6f53b6f5 1535,1537,1627,1629,1688,1690
+internal/provider/app_def_rs.go
+  s_a281bc52404319::t_ee741af9b9e0be 1724,1726,1846,1848,1907,1909
+internal/provider/dns_service_profile_ds.go
+  s_a281bc52404319::t_00b6f83b8b1a65 1580-1582
+internal/provider/dns_service_profile_rs.go
+  s_a281bc52404319::t_deae548c900a27 3552,3554,3556,3579,3581,3583,3604,3606,3608,3629,3631,3633,3656,3658,3660,3681,3683,3685,3714,3721,3723,3725,3744,3751,3753,3755,3774,3776,3778,3803,3805,3807,3836,3838,3840,3865,3871,3873,3875,3894,3896,3898,3927,3933,3939,3945,3951,3971,3973,3975,4004,4010,4016,4037,4051,4057,4064,4066,4068,4099,4105,4112,4126,4128,4130,4155,4162,4168,4175,4181,4195,4201,4207,4213,4215,4217,4251,4253
+internal/provider/dns_service_role_ds.go
+  s_a281bc52404319::t_f248f7e5c3c7f9 287-289
+internal/provider/domain_ds.go
+  s_a281bc52404319::t_5c5a2e11c39a4c 284-286
+internal/provider/domain_rs.go
+  s_a281bc52404319::t_cd538b901da214 645,647
+internal/provider/element_application_probe_ds.go
+  s_a281bc52404319::t_21f173ad2d4638 261-263
+internal/provider/element_bgp_config_ds.go
+  s_a281bc52404319::t_2337b30713bdd0 433-435
+internal/provider/element_bgp_config_rs.go
+  s_a281bc52404319::t_65126401c02b08 692,694,758,760
+internal/provider/element_bgp_peer_ds.go
+  s_a281bc52404319::t_5e5eff86fbbdc2 533-535
+internal/provider/element_bgp_peer_rs.go
+  s_a281bc52404319::t_f2ef926782044d 1113,1119,1125,1131,1137,1143,1149,1155,1211,1213,1215,1234,1240,1246
+internal/provider/element_cellular_module_ds.go
+  s_a281bc52404319::t_8c378f49da29c8 269-271
+internal/provider/element_cellular_module_sim_security_ds.go
+  s_a281bc52404319::t_e7884835644142 269-271
+internal/provider/element_dns_service_ds.go
+  s_a281bc52404319::t_b8143ee2ce6df5 521-523
+internal/provider/element_dns_service_rs.go
+  s_a281bc52404319::t_8e3dae77a7397e 1191,1218,1224,1231,1233,1235,1265,1267,1304,1306,1329,1331
+internal/provider/element_ds.go
+  s_a281bc52404319::t_48e6087abd94c3 787-789
+internal/provider/element_interface_ds.go
+  s_a281bc52404319::t_75deed09ae9a9d 2164-2166
+internal/provider/element_interface_rs.go
+  s_a281bc52404319::t_e707199c1b0f1c 4943,4945,4973,4979,4985,5006,5012,5018,5024,5045,5051,5057,5063,5069,5075,5082,5088,5094,5100,5106,5132,5145,5151,5157,5163,5170,5177,5197,5203,5254,5260,5274,5281,5289,5291,5293,5319,5326,5347,5353,5367,5374,5382,5384,5386,5412,5418,5425,5445,5471,5477,5479,5481,5500,5506,5531,5533,5619,5625,5645,5651,5657,5663,5669,5675,5688,5690,5725,5731,5737,5743,5764,5770,5776,5789,5795,5801,5807,5813,5820,5826,5832,5838,5844,5850,5856,5862,5868,5881,5887,5893,5899,5905,5911,5917,5923,5930,5936,5942,5948,5954,5960,5966,5972,5978,5985,5992,5998,6011,6025,6031,6039,6045,6065,6067,6095,6101,6115,6121,6127,6133,6139,6152,6158,6164,6171,6177,6183,6189,6196,6202,6235,6241,6247
+internal/provider/element_iot_device_id_config_ds.go
+  s_a281bc52404319::t_c71ac1bd436ab3 251-253
+internal/provider/element_ipfix_ds.go
+  s_a281bc52404319::t_3337e733a7c989 520-522
+internal/provider/element_ipfix_rs.go
+  s_a281bc52404319::t_ad72f82eed82d1 1130,1132,1171,1173,1273,1279,1285
+internal/provider/element_multicast_global_config_ds.go
+  s_a281bc52404319::t_7b107c6931f282 328-330
+internal/provider/element_multicast_global_config_rs.go
+  s_a281bc52404319::t_7c60e5667de5cc 492,498,504,510,524,530,536
+internal/provider/element_multicast_rp_ds.go
+  s_a281bc52404319::t_0b87d6ce32ee28 283-285
+internal/provider/element_multicast_rp_rs.go
+  s_a281bc52404319::t_04032daf5b9b56 614,616
+internal/provider/element_ntp_ds.go
+  s_a281bc52404319::t_5c93a8bb29d741 302-304
+internal/provider/element_ntp_rs.go
+  s_a281bc52404319::t_18734c2dccf468 467,469
+internal/provider/element_ospf_config_ds.go
+  s_a281bc52404319::t_ce5b76ec7179bc 471-473
+internal/provider/element_ospf_config_rs.go
+  s_a281bc52404319::t_12d5ac15d2b23b 1003,1005,1044,1046
+internal/provider/element_ospf_global_config_ds.go
+  s_a281bc52404319::t_457479a06988ad 295-297
+internal/provider/element_radius_ds.go
+  s_a281bc52404319::t_96b9eebbd24dee 356-358
+internal/provider/element_radius_rs.go
+  s_a281bc52404319::t_796784a16a1080 825,827
+internal/provider/element_routing_aspathaccesslist_ds.go
+  s_a281bc52404319::t_67d2e4d6e88bbb 292-294
+internal/provider/element_routing_aspathaccesslist_rs.go
+  s_a281bc52404319::t_17749af412e394 622,624
+internal/provider/element_routing_ipcommunitylist_ds.go
+  s_a281bc52404319::t_e1ad153c918562 283-285
+internal/provider/element_routing_ipcommunitylist_rs.go
+  s_a281bc52404319::t_630ce2dea7ff9b 613,615
+internal/provider/element_routing_prefixlist_ds.go
+  s_a281bc52404319::t_9e9590490e2d19 319-321
+internal/provider/element_routing_prefixlist_rs.go
+  s_a281bc52404319::t_8f15575ec0396a 691,693
+internal/provider/element_routing_routemap_ds.go
+  s_a281bc52404319::t_c12e87971b5eb9 478-480
+internal/provider/element_routing_routemap_rs.go
+  s_a281bc52404319::t_bdd063b96d3aab 984,986
+internal/provider/element_rs.go
+  s_a281bc52404319::t_8b7171c08da424 1170,1176,1191,1193,1195,1249,1317,1323,1329,1335,1348,1350,1352,1371,1373,1375,1409,1415,1429,1435,1441,1447,1453,1459,1465,1471
+internal/provider/element_security_zone_ds.go
+  s_a281bc52404319::t_2437dd4d8207ec 281-283
+internal/provider/element_shell_ds.go
+  s_a281bc52404319::t_7400522d04f8e0 787-789
+internal/provider/element_shell_interface_ds.go
+  s_a281bc52404319::t_9edaa268280abd 2164-2166
+internal/provider/element_shell_interface_rs.go
+  s_a281bc52404319::t_c25a8855a723a8 4935,4937,4965,4971,4977,4998,5004,5010,5016,5037,5043,5049,5055,5061,5067,5074,5080,5086,5092,5098,5124,5137,5143,5149,5155,5162,5169,5189,5195,5246,5252,5266,5273,5281,5283,5285,5311,5318,5339,5345,5359,5366,5374,5376,5378,5404,5410,5417,5437,5463,5469,5471,5473,5492,5498,5523,5525,5611,5617,5637,5643,5649,5655,5661,5667,5680,5682,5717,5723,5729,5735,5756,5762,5768,5781,5787,5793,5799,5805,5812,5818,5824,5830,5836,5842,5848,5854,5860,5873,5879,5885,5891,5897,5903,5909,5915,5922,5928,5934,5940,5946,5952,5958,5964,5970,5977,5984,5990,6003,6017,6023,6031,6037,6057,6059,6087,6093,6107,6113,6119,6125,6131,6144,6150,6156,6163,6169,6175,6181,6188,6194,6227,6233,6239,7328-7330,7334
+internal/provider/element_shell_rs.go
+  s_a281bc52404319::t_4a3363c3bfaa22 1067-1069,1071-1073,1077-1080,1535,1541,1556,1558,1560,1614,1682,1688,1694,1700,1713,1715,1717,1736,1738,1740,1774,1780,1794,1800,1806,1812,1818,1824,1830,1836
+internal/provider/element_snmp_agent_ds.go
+  s_a281bc52404319::t_c995f61556d405 379-381
+internal/provider/element_snmp_agent_rs.go
+  s_a281bc52404319::t_2a0b16c627cdc9 923,929,943,949,951,953
+internal/provider/element_snmp_trap_ds.go
+  s_a281bc52404319::t_81b9cbc3ae8acd 377-379
+internal/provider/element_snmp_trap_rs.go
+  s_a281bc52404319::t_a6635bc6979655 907,928,934,940,946,952,958,964
+internal/provider/element_static_route_ds.go
+  s_a281bc52404319::t_fc3125e4144833 346-348
+internal/provider/element_static_route_rs.go
+  s_a281bc52404319::t_5cd5bab46d1632 754,756
+internal/provider/element_syslog_server_ds.go
+  s_a281bc52404319::t_4e18ea473bb3a5 359-361
+internal/provider/element_tacacs_plus_server_ds.go
+  s_a281bc52404319::t_36e302917fadaa 346-348
+internal/provider/element_tacacs_plus_server_rs.go
+  s_a281bc52404319::t_ae0b1b87bfcc5a 785,787
+internal/provider/element_toolkit_ds.go
+  s_a281bc52404319::t_15cea89d62007f 269-271
+internal/provider/event_correlation_policy_rule_ds.go
+  s_a281bc52404319::t_9bd2719d9d3859 406-408
+internal/provider/event_correlation_policy_rule_rs.go
+  s_a281bc52404319::t_91657d640c37ad 867,873,887,893
+internal/provider/event_correlation_policy_set_ds.go
+  s_a281bc52404319::t_c64fe70fd60f5f 302-304
+internal/provider/event_correlation_policy_set_rs.go
+  s_a281bc52404319::t_8d630e474b1824 680,682
+internal/provider/external_ca_config_ds.go
+  s_a281bc52404319::t_f7c22d17332b5e 334-336
+internal/provider/external_ca_config_rs.go
+  s_a281bc52404319::t_892b13d824606e 714,720,726,732,738,744,750,756
+internal/provider/global_prefix_filter_ds.go
+  s_a281bc52404319::t_bb4224a97046d3 265-267
+internal/provider/global_prefix_filter_rs.go
+  s_a281bc52404319::t_dd77c724a415ca 566,568
+internal/provider/iot_profile_ds.go
+  s_a281bc52404319::t_27d4d5dbfcc363 446-448
+internal/provider/iot_profile_rs.go
+  s_a281bc52404319::t_66779285ea5d61 1128,1142,1148,1154,1160,1166,1172,1178,1184
+internal/provider/ipfix_collector_context_ds.go
+  s_a281bc52404319::t_ac2d9efff85037 232-234
+internal/provider/ipfix_filter_context_ds.go
+  s_a281bc52404319::t_7ddd5d2517ecd0 232-234
+internal/provider/ipfix_global_prefix_ds.go
+  s_a281bc52404319::t_b60d05ee944071 252-254
+internal/provider/ipfix_local_prefix_ds.go
+  s_a281bc52404319::t_0fd39ac9260f9a 242-244
+internal/provider/ipfix_profile_ds.go
+  s_a281bc52404319::t_b18a569a45791d 511-513
+internal/provider/ipfix_profile_rs.go
+  s_a281bc52404319::t_6202917760e243 1126,1128,1167,1169,1264,1270,1276
+internal/provider/ipfix_template_ds.go
+  s_a281bc52404319::t_59b25ccb20a412 289-291
+internal/provider/ipsec_profile_ds.go
+  s_a281bc52404319::t_9d25daa629b8f2 1113-1115
+internal/provider/ipsec_profile_rs.go
+  s_a281bc52404319::t_5e9dc6e6937535 2652,2658,2664,2677,2683,2689,2695,2701,2708,2714,2720,2726,2732,2738,2744,2750,2756,2769,2775,2781,2787,2793,2799,2805,2811,2818,2824,2830,2836,2842,2848,2854,2860,2866,2904,2917,2923,2930,2936,2942,2955,2961,2967,2974,2981,2988,2995,3002,3009,3017,3019,3021,3051,3058,3065,3087,3093,3099,3105,3111,3117,3130,3136,3142,3149,3156,3163,3170,3177,3184,3192,3194,3196,3219
+internal/provider/local_prefix_filter_ds.go
+  s_a281bc52404319::t_d6a9039ff00548 232-234
+internal/provider/multicast_peer_group_profile_ds.go
+  s_a281bc52404319::t_e559f3db24683b 274-276
+internal/provider/multicast_peer_group_profile_rs.go
+  s_a281bc52404319::t_e57d7508721ff0 616,618
+internal/provider/nat_global_prefix_ds.go
+  s_a281bc52404319::t_3de04e292466e2 252-254
+internal/provider/nat_local_prefix_ds.go
+  s_a281bc52404319::t_47633f53777aff 242-244
+internal/provider/nat_policy_pool_ds.go
+  s_a281bc52404319::t_452f0b4fdbc7e7 242-244
+internal/provider/nat_policy_rule_ds.go
+  s_a281bc52404319::t_3d8b11ae774f98 410-412
+internal/provider/nat_policy_rule_rs.go
+  s_a281bc52404319::t_c991019d26ff90 925,927,958,960,1017,1019
+internal/provider/nat_policy_set_ds.go
+  s_a281bc52404319::t_47caad1aa0566e 580-582
+internal/provider/nat_policy_set_rs.go
+  s_a281bc52404319::t_c0d4d62fa8d6e8 1332,1334
+internal/provider/nat_policy_set_stack_ds.go
+  s_a281bc52404319::t_d22dd89d2168f2 261-263
+internal/provider/nat_zone_ds.go
+  s_a281bc52404319::t_4c52721de0da4b 296-298
+internal/provider/network_context_ds.go
+  s_a281bc52404319::t_ce05696da4bf8e 232-234
+internal/provider/ntp_template_ds.go
+  s_a281bc52404319::t_470a9dd55b8ba3 301-303
+internal/provider/ntp_template_rs.go
+  s_a281bc52404319::t_8968c2b6ae78e7 661,663
+internal/provider/path_global_prefix_ds.go
+  s_a281bc52404319::t_36262c206fb21e 262-264
+internal/provider/path_group_ds.go
+  s_a281bc52404319::t_a06528c758f402 264-266
+internal/provider/path_group_rs.go
+  s_a281bc52404319::t_171744ed6983f4 573,575
+internal/provider/path_local_prefix_ds.go
+  s_a281bc52404319::t_45cfd4fe0344a5 242-244
+internal/provider/path_policy_rule_ds.go
+  s_a281bc52404319::t_6b016ba1e5bbd4 551-553
+internal/provider/path_policy_rule_rs.go
+  s_a281bc52404319::t_e499a8b78eea07 1210,1216,1222,1285,1287,1289,1308,1310,1312,1331,1333,1335,1362,1368,1374,1380,1386,1420,1427
+internal/provider/path_policy_set_ds.go
+  s_a281bc52404319::t_6596e2f4425c2c 937-939
+internal/provider/path_policy_set_rs.go
+  s_a281bc52404319::t_bd0917a67791bb 2089,2091
+internal/provider/path_policy_stack_ds.go
+  s_a281bc52404319::t_d2ac9dc89b377c 1350-1352
+internal/provider/path_policy_stack_rs.go
+  s_a281bc52404319::t_a2207183a8ed2d 2939,2945,2951,2957,2963,2969,2975,2981,2987,2993,2999,3005,3011,3013,3015,3214,3220,3226,3301,3303
+internal/provider/performance_policy_rule_ds.go
+  s_a281bc52404319::t_d7e313bee17e44 632-634
+internal/provider/performance_policy_rule_rs.go
+  s_a281bc52404319::t_7dbdbedb1f528d 1398,1400,1518,1525,1564,1566
+internal/provider/performance_policy_set_ds.go
+  s_a281bc52404319::t_c2d14a2e0b690a 1472-1474
+internal/provider/performance_policy_set_rs.go
+  s_a281bc52404319::t_b48d3bae66ba3c 3246,3248,3599,3601
+internal/provider/performance_policy_stack_ds.go
+  s_a281bc52404319::t_3a176e5e44159f 1875-1877
+internal/provider/performance_policy_stack_rs.go
+  s_a281bc52404319::t_3a63c56a42a756 4056,4062,4068,4074,4080,4086,4092,4098,4104,4110,4116,4123,4125,4127,4470,4476,4478,4480,4519,4525,4531,4600,4602
+internal/provider/performance_profile_ds.go
+  s_a281bc52404319::t_bde86808a36ee5 606-608
+internal/provider/performance_profile_rs.go
+  s_a281bc52404319::t_9438d7d642217d 1304,1324,1338,1344,1350,1370,1376,1382,1388,1408,1414,1420,1441,1447,1461,1467,1481,1487,1501,1507,1521,1527,1542,1548,1554
+internal/provider/probe_config_ds.go
+  s_a281bc52404319::t_93630d92fc1a2e 357-359
+internal/provider/probe_config_rs.go
+  s_a281bc52404319::t_c7edcc03e37a23 769,771
+internal/provider/probe_profile_ds.go
+  s_a281bc52404319::t_3c94eb35f71f0b 252-254
+internal/provider/qos_policy_global_prefix_ds.go
+  s_a281bc52404319::t_d5acacdeb7e659 262-264
+internal/provider/qos_policy_local_prefix_ds.go
+  s_a281bc52404319::t_03314add0a0375 242-244
+internal/provider/qos_policy_rule_ds.go
+  s_a281bc52404319::t_e23c59c5631f2f 379-381
+internal/provider/qos_policy_rule_rs.go
+  s_a281bc52404319::t_1162dab974f5e3 817,887,894
+internal/provider/qos_policy_set_ds.go
+  s_a281bc52404319::t_aaebbb9ef28ce0 467-469
+internal/provider/qos_policy_set_rs.go
+  s_a281bc52404319::t_20fe09b0b79898 647-651,654-658,674-678,688-692,695-699,702-706,709-713,911-915,918-922,938-942,952-956,959-963,966-970,973-977,1118,1120,1179,1181,1208,1210,1352-1356,1359-1363,1379-1383,1393-1397,1400-1404,1407-1411,1414-1418
+internal/provider/qos_policy_stack_ds.go
+  s_a281bc52404319::t_b5898f1e8a4908 270-272
+internal/provider/sdwanapps_config_ds.go
+  s_a281bc52404319::t_bd2e7b425db58b 241-243
+internal/provider/security_policy_global_prefix_ds.go
+  s_a281bc52404319::t_25e89d87070107 262-264
+internal/provider/security_policy_local_prefix_ds.go
+  s_a281bc52404319::t_1c1f3acdabce4e 242-244
+internal/provider/security_policy_rule_ds.go
+  s_a281bc52404319::t_a068edfab6f559 457-459
+internal/provider/security_policy_rule_rs.go
+  s_a281bc52404319::t_84b620a4007df8 1191,1193,1284,1291
+internal/provider/security_policy_set_ds.go
+  s_a281bc52404319::t_d5525133e795fb 270-272
+internal/provider/security_policy_stack_ds.go
+  s_a281bc52404319::t_df26ae172e1c06 261-263
+internal/provider/security_zone_ds.go
+  s_a281bc52404319::t_b85937773c2759 250-252
+internal/provider/service_endpoint_ds.go
+  s_a281bc52404319::t_9fe3e71a20c4ea 577-579
+internal/provider/service_endpoint_rs.go
+  s_a281bc52404319::t_0b938d69e7eb43 846-850,853-857,1109-1113,1116-1120,1244,1250,1256,1262,1268,1274,1324,1326,1328,1351,1353,1355,1376,1390,1396,1402,1422,1428,1442,1449,1636-1640,1643-1647
+internal/provider/service_group_ds.go
+  s_a281bc52404319::t_62dc5013ad66bb 272-274
+internal/provider/service_group_rs.go
+  s_a281bc52404319::t_bca0b1f95c4f3f 595
+internal/provider/site_ciphers_ds.go
+  s_a281bc52404319::t_f1d3e9fc19ca4e 261-263
+internal/provider/site_dhcp_server_ds.go
+  s_a281bc52404319::t_9edbdc78904a8a 456-458
+internal/provider/site_dhcp_server_rs.go
+  s_a281bc52404319::t_f08a8113572b24 977,979,1045,1047,1080,1082
+internal/provider/site_ds.go
+  s_a281bc52404319::t_6c935b95749686 562-564
+internal/provider/site_hub_cluster_ds.go
+  s_a281bc52404319::t_6f1066f100d122 302-304
+internal/provider/site_hub_cluster_rs.go
+  s_a281bc52404319::t_87f21b938d2016 655,657
+internal/provider/site_hub_distribution_fabric_ds.go
+  s_a281bc52404319::t_d5f3e21cba0cbb 252-254
+internal/provider/site_hub_prefix_filter_association_ds.go
+  s_a281bc52404319::t_d2d771ee5af9a6 261-263
+internal/provider/site_hub_prefix_filter_ds.go
+  s_a281bc52404319::t_de00f8150b6d55 295-297
+internal/provider/site_hub_prefix_filter_profile_ds.go
+  s_a281bc52404319::t_29d459e2c199cf 315-317
+internal/provider/site_hub_prefix_filter_profile_rs.go
+  s_a281bc52404319::t_33882f757a496f 710,712
+internal/provider/site_hub_prefix_filter_rs.go
+  s_a281bc52404319::t_2fdbf99b9f0d26 635,637
+internal/provider/site_iot_device_id_config_ds.go
+  s_a281bc52404319::t_d9eaf38473fb7e 241-243
+internal/provider/site_iot_snmp_start_node_ds.go
+  s_a281bc52404319::t_a30a5bb85de2a4 274-276
+internal/provider/site_iot_snmp_start_node_rs.go
+  s_a281bc52404319::t_4a03525f7f3fef 617,619
+internal/provider/site_ipfix_local_prefix_ds.go
+  s_a281bc52404319::t_804871d237d0a7 243-245
+internal/provider/site_lan_network_ds.go
+  s_a281bc52404319::t_4c52b50c0c9d8d 502-504
+internal/provider/site_lan_network_rs.go
+  s_a281bc52404319::t_5d29b23e7df2ab 1082,1096,1109,1115,1121,1127,1134,1141,1155,1161,1168,1170,1172,1191,1197,1204,1219,1226
+internal/provider/site_nat_local_prefix_ds.go
+  s_a281bc52404319::t_19194e9673182a 243-245
+internal/provider/site_path_policy_local_prefix_ds.go
+  s_a281bc52404319::t_2b0080b1adb8ce 253-255
+internal/provider/site_prisma_access_config_ds.go
+  s_a281bc52404319::t_03c7441b612ff1 284-286
+internal/provider/site_prisma_access_config_rs.go
+  s_a281bc52404319::t_f92fa5aae5fb9e 621,623
+internal/provider/site_prisma_sase_connection_ds.go
+  s_a281bc52404319::t_3ab61e711f4b67 638-640
+internal/provider/site_prisma_sase_connection_rs.go
+  s_a281bc52404319::t_d2f4136d026166 1419,1425,1431,1437,1443,1449,1455,1505,1507,1592,1598,1604,1610,1616,1622,1628
+internal/provider/site_qos_policy_local_prefix_ds.go
+  s_a281bc52404319::t_c29b2c91bb7e2f 253-255
+internal/provider/site_rs.go
+  s_a281bc52404319::t_fee2bb2f120bdf 774-778,781-785,1005-1009,1012-1016,1142,1148,1154,1160,1166,1172,1215,1217,1253,1259,1265,1345,1351,1497-1501,1504-1508
+internal/provider/site_security_policy_local_prefix_ds.go
+  s_a281bc52404319::t_8561cb9a5bd350 253-255
+internal/provider/site_security_zone_ds.go
+  s_a281bc52404319::t_55911e32df6448 288-290
+internal/provider/site_security_zone_rs.go
+  s_a281bc52404319::t_d51ec0f4fdb6e0 631,633,660,662
+internal/provider/site_spoke_cluster_ds.go
+  s_a281bc52404319::t_de130b3346d26a 260-262
+internal/provider/site_spoke_cluster_rs.go
+  s_a281bc52404319::t_f2983835721a68 320-324,452-456,646-650
+internal/provider/site_wan_interface_ds.go
+  s_a281bc52404319::t_622f0f92756304 496-498
+internal/provider/site_wan_interface_rs.go
+  s_a281bc52404319::t_a0685f04e948e7 648-652,655-659,857-861,864-868,1047,1054,1086,1093,1099,1105,1111,1180,1186,1286-1290,1293-1297
+internal/provider/site_wan_multicast_configuration_ds.go
+  s_a281bc52404319::t_5e259c906a35c1 246-248
+internal/provider/site_wan_multicast_configuration_rs.go
+  s_a281bc52404319::t_e330d021a72d5b 532,534
+internal/provider/syslog_profile_ds.go
+  s_a281bc52404319::t_e084206901dd69 332-334
+internal/provider/tacacs_plus_profile_ds.go
+  s_a281bc52404319::t_f4598cfe7deef8 319-321
+internal/provider/tacacs_plus_profile_rs.go
+  s_a281bc52404319::t_77ed15bf89a1b2 722,724
+internal/provider/vrf_context_ds.go
+  s_a281bc52404319::t_3d305e907afc17 242-244
+internal/provider/vrf_context_profile_ds.go
+  s_a281bc52404319::t_2a26b4011d536e 321-323
+internal/provider/vrf_context_profile_rs.go
+  s_a281bc52404319::t_cf908b92eed401 726,728
+internal/provider/wan_interface_label_ds.go
+  s_a281bc52404319::t_6a6494ee445bf5 375-377
+internal/provider/wan_interface_label_rs.go
+  s_a281bc52404319::t_4093c3d06526c9 568,575,638,644
+internal/provider/wan_network_ds.go
+  s_a281bc52404319::t_d842516a8b7e2f 261-263
+internal/provider/wan_overlay_ds.go
+  s_a281bc52404319::t_68145f1d3f8a14 241-243
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "766ef61a22632c0b25d0e64398ae202b57f4bdc3",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
