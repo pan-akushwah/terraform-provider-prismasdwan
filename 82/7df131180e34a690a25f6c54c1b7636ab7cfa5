@@ -1,0 +1,21 @@
+internal/provider/utils.go
+  s_a281bc52404319::t_a8c8c60cdd07f4 12,455-466
+internal/provider/utils_test.go
+  s_a281bc52404319::t_23ebdfacfb198e 146-161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "827df131180e34a690a25f6c54c1b7636ab7cfa5",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
