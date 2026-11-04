@@ -111,55 +111,55 @@ func (d *globalPrefixFilterDataSource) Schema(_ context.Context, _ datasource.Sc
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 256 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=filters, type=ARRAY_REFERENCE macro=rss_schema
 						"filters": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Filters",
+							Description: "Filters.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									"ip_prefixes": dsschema.ListAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "IPV4 Prefixes",
+										Description: "IPV4 Prefixes.",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 									// property: name=type, type=STRING macro=rss_schema
 									"type": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "",
+										Description: "Type. Value: one of ipv4.",
 									},
 									// key name holder for attribute: name=type, type=STRING macro=rss_schema
 								},
@@ -170,18 +170,18 @@ func (d *globalPrefixFilterDataSource) Schema(_ context.Context, _ datasource.Sc
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: length 1 to 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 					},

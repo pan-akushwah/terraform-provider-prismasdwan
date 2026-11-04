@@ -110,108 +110,108 @@ func (d *elementOspfGlobalConfigDataSource) Schema(_ context.Context, _ datasour
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=cost, type=INTEGER macro=rss_schema
 						"cost": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Cost",
+							Description: "Cost. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 						// property: name=dead_interval, type=INTEGER macro=rss_schema
 						"dead_interval": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Dead Interval",
+							Description: "Dead interval. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=dead_interval, type=INTEGER macro=rss_schema
 						// property: name=hello_interval, type=INTEGER macro=rss_schema
 						"hello_interval": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Hello Interval",
+							Description: "Hello interval. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=md5_key_id, type=INTEGER macro=rss_schema
 						"md5_key_id": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Md5 Key Id",
+							Description: "Md5 key id. Value: between 1 and 255.",
 						},
 						// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
 						// property: name=md5_secret, type=STRING macro=rss_schema
 						"md5_secret": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   true,
-							Description: "Md5 Secret",
+							Description: "Md5 secret. Value: length 1 to 16 characters.",
 						},
 						// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 						// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 						"prefix_adv_type_to_lan": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Prefix Adv Type To Lan",
+							Description: "Prefix adv type to lan.",
 						},
 						// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 						// property: name=retransmit_interval, type=INTEGER macro=rss_schema
 						"retransmit_interval": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Retransmit Interval",
+							Description: "Retransmit interval. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=retransmit_interval, type=INTEGER macro=rss_schema
 						// property: name=router_id, type=STRING macro=rss_schema
 						"router_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Router Id",
+							Description: "Router id.",
 						},
 						// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 						// property: name=transmit_delay, type=INTEGER macro=rss_schema
 						"transmit_delay": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Transmit Delay",
+							Description: "Transmit delay. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
 					},

@@ -101,7 +101,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -110,7 +110,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=address, type=REFERENCE macro=rss_schema
@@ -119,7 +119,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Address.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=city, type=STRING macro=rss_schema
 					"city": rsschema.StringAttribute{
@@ -127,7 +127,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "City",
+						Description: "City. Value: at most 100 characters.",
 					},
 					// key name holder for attribute: name=city, type=STRING macro=rss_schema
 					// property: name=country, type=STRING macro=rss_schema
@@ -136,7 +136,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Country",
+						Description: "Country. Value: at most 100 characters.",
 					},
 					// key name holder for attribute: name=country, type=STRING macro=rss_schema
 					// property: name=post_code, type=STRING macro=rss_schema
@@ -145,7 +145,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Post Code",
+						Description: "Post code. Value: at most 100 characters.",
 					},
 					// key name holder for attribute: name=post_code, type=STRING macro=rss_schema
 					// property: name=state, type=STRING macro=rss_schema
@@ -154,7 +154,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "State",
+						Description: "State. Value: at most 100 characters.",
 					},
 					// key name holder for attribute: name=state, type=STRING macro=rss_schema
 					// property: name=street, type=STRING macro=rss_schema
@@ -163,7 +163,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Street",
+						Description: "Street. Value: at most 100 characters.",
 					},
 					// key name holder for attribute: name=street, type=STRING macro=rss_schema
 					// property: name=street2, type=STRING macro=rss_schema
@@ -172,7 +172,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Street2",
+						Description: "Street2. Value: at most 100 characters.",
 					},
 					// key name holder for attribute: name=street2, type=STRING macro=rss_schema
 				},
@@ -184,7 +184,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Admin Up",
+				Description: "Admin up.",
 			},
 			// key name holder for attribute: name=admin_up, type=BOOLEAN macro=rss_schema
 			// property: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
@@ -193,7 +193,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Allow Enterprise Traffic",
+				Description: "Allow enterprise traffic.",
 			},
 			// key name holder for attribute: name=allow_enterprise_traffic, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -202,7 +202,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
@@ -211,7 +211,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Disable Tunnel Reoptimization",
+				Description: "Disable tunnel reoptimization.",
 			},
 			// key name holder for attribute: name=disable_tunnel_reoptimization, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -220,7 +220,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=is_sase, type=BOOLEAN macro=rss_schema
@@ -229,7 +229,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Is Sase",
+				Description: "Is sase.",
 			},
 			// key name holder for attribute: name=is_sase, type=BOOLEAN macro=rss_schema
 			// property: name=liveliness_probe, type=REFERENCE macro=rss_schema
@@ -238,7 +238,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Liveliness probe.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=http, type=ARRAY_REFERENCE macro=rss_schema
 					"http": rsschema.ListNestedAttribute{
@@ -246,7 +246,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Http",
+						Description: "Http.",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=failure_count, type=INTEGER macro=rss_schema
@@ -255,7 +255,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Failure Count",
+									Description: "Failure count. Value: between 3 and 300.",
 								},
 								// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
 								// property: name=http_status_codes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -264,7 +264,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Http Status Codes",
+									Description: "Http status codes. At most 8 items. Each item: between 100 and 600.",
 									Validators:  ListMaxItems(8),
 									ElementType: types.Int64Type,
 								},
@@ -275,7 +275,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Interval",
+									Description: "Interval. Value: between 10 and 3600.",
 								},
 								// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
 								// property: name=url, type=STRING macro=rss_schema
@@ -284,7 +284,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Url",
+									Description: "Url. Value: at most 1024 characters.",
 								},
 								// key name holder for attribute: name=url, type=STRING macro=rss_schema
 							},
@@ -297,7 +297,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Icmp Ping",
+						Description: "Icmp ping.",
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=failure_count, type=INTEGER macro=rss_schema
@@ -306,7 +306,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Failure Count",
+									Description: "Failure count. Value: between 3 and 300.",
 								},
 								// key name holder for attribute: name=failure_count, type=INTEGER macro=rss_schema
 								// property: name=interval, type=INTEGER macro=rss_schema
@@ -315,7 +315,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Interval",
+									Description: "Interval. Value: between 1 and 30.",
 								},
 								// key name holder for attribute: name=interval, type=INTEGER macro=rss_schema
 								// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -324,7 +324,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Ip Addresses",
+									Description: "Ip addresses. At most 8 items.",
 									Validators:  ListMaxItems(8),
 									ElementType: types.StringType,
 								},
@@ -339,7 +339,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Use Tunnel For Url Dns Resolution",
+						Description: "Use tunnel for url dns resolution.",
 					},
 					// key name holder for attribute: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=rss_schema
 				},
@@ -351,7 +351,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Location.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=description, type=STRING macro=rss_schema
 					"description": rsschema.StringAttribute{
@@ -359,7 +359,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Description",
+						Description: "Description.",
 					},
 					// key name holder for attribute: name=description, type=STRING macro=rss_schema
 					// property: name=latitude, type=NUMBER macro=rss_schema
@@ -368,7 +368,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Latitude",
+						Description: "Latitude. Value: between -90 and 90.",
 					},
 					// key name holder for attribute: name=latitude, type=NUMBER macro=rss_schema
 					// property: name=longitude, type=NUMBER macro=rss_schema
@@ -377,7 +377,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Longitude",
+						Description: "Longitude. Value: between -180 and 180.",
 					},
 					// key name holder for attribute: name=longitude, type=NUMBER macro=rss_schema
 				},
@@ -389,7 +389,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=sase_properties, type=REFERENCE macro=rss_schema
@@ -398,7 +398,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Sase properties.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=active, type=BOOLEAN macro=rss_schema
 					"active": rsschema.BoolAttribute{
@@ -406,7 +406,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Active",
+						Description: "Active.",
 					},
 					// key name holder for attribute: name=active, type=BOOLEAN macro=rss_schema
 					// property: name=lqm_enabled, type=BOOLEAN macro=rss_schema
@@ -415,7 +415,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Lqm Enabled",
+						Description: "Lqm enabled.",
 					},
 					// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 				},
@@ -427,7 +427,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Service link peers.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hostnames, type=ARRAY_PRIMITIVE macro=rss_schema
 					"hostnames": rsschema.ListAttribute{
@@ -435,7 +435,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Hostnames",
+						Description: "Hostnames. At most 128 items.",
 						Validators:  ListMaxItems(128),
 						ElementType: types.StringType,
 					},
@@ -446,7 +446,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Ip Addresses",
+						Description: "Ip addresses. At most 128 items.",
 						Validators:  ListMaxItems(128),
 						ElementType: types.StringType,
 					},
@@ -460,7 +460,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Id",
+				Description: "Site id.",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -469,7 +469,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -480,7 +480,7 @@ func (r *serviceEndpointResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Type",
+				Description: "Type. Value: one of cg-transit, non-cg-transit, sase.",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 		},

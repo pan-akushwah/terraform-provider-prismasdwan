@@ -97,7 +97,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -106,7 +106,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
@@ -115,7 +115,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "App Acceleration Enabled",
+				Description: "App acceleration enabled.",
 			},
 			// key name holder for attribute: name=app_acceleration_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=bfd_mode, type=STRING macro=rss_schema
@@ -124,7 +124,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Bfd Mode",
+				Description: "Bfd mode. Value: one of aggressive, non_aggressive. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=bfd_mode, type=STRING macro=rss_schema
 			// property: name=bw_config_mode, type=STRING macro=rss_schema
@@ -133,7 +133,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Bw Config Mode",
+				Description: "Bw config mode. Value: one of auto, manual, manual_bwm_disabled.",
 			},
 			// key name holder for attribute: name=bw_config_mode, type=STRING macro=rss_schema
 			// property: name=bwc_enabled, type=BOOLEAN macro=rss_schema
@@ -142,7 +142,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Bwc Enabled",
+				Description: "Bwc enabled.",
 			},
 			// key name holder for attribute: name=bwc_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=cost, type=INTEGER macro=rss_schema
@@ -151,7 +151,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Cost",
+				Description: "Cost. Value: between 0 and 1024. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -160,7 +160,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -169,7 +169,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=l3_reachability, type=REFERENCE macro=rss_schema
@@ -178,7 +178,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "L3 reachability.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"probe_config_ids": rsschema.ListAttribute{
@@ -186,7 +186,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Probe Config Ids",
+						Description: "Probe config ids.",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -196,7 +196,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    false,
 						Sensitive:   false,
-						Description: "Use Element Default",
+						Description: "Use element default.",
 					},
 					// key name holder for attribute: name=use_element_default, type=BOOLEAN macro=rss_schema
 				},
@@ -208,7 +208,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Label Id",
+				Description: "Label id. Value: at least 1 characters.",
 			},
 			// key name holder for attribute: name=label_id, type=STRING macro=rss_schema
 			// property: name=link_bw_down, type=NUMBER macro=rss_schema
@@ -217,7 +217,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Link Bw Down",
+				Description: "Link bw down.",
 			},
 			// key name holder for attribute: name=link_bw_down, type=NUMBER macro=rss_schema
 			// property: name=link_bw_up, type=NUMBER macro=rss_schema
@@ -226,7 +226,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Link Bw Up",
+				Description: "Link bw up.",
 			},
 			// key name holder for attribute: name=link_bw_up, type=NUMBER macro=rss_schema
 			// property: name=lqm_config, type=REFERENCE macro=rss_schema
@@ -235,7 +235,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Lqm config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 					"hub_site_ids": rsschema.ListAttribute{
@@ -243,7 +243,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Hub Site Ids",
+						Description: "Hub site ids.",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=hub_site_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -253,7 +253,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Inter Packet Gap",
+						Description: "Inter packet gap.",
 					},
 					// key name holder for attribute: name=inter_packet_gap, type=INTEGER macro=rss_schema
 					// property: name=statistic, type=STRING macro=rss_schema
@@ -262,7 +262,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Statistic",
+						Description: "Statistic.",
 					},
 					// key name holder for attribute: name=statistic, type=STRING macro=rss_schema
 					// property: name=use_hub_sites, type=BOOLEAN macro=rss_schema
@@ -271,7 +271,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Use Hub Sites",
+						Description: "Use hub sites.",
 					},
 					// key name holder for attribute: name=use_hub_sites, type=BOOLEAN macro=rss_schema
 					// property: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
@@ -280,7 +280,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Use Prisma Access Service Endpoints",
+						Description: "Use prisma access service endpoints.",
 					},
 					// key name holder for attribute: name=use_prisma_access_service_endpoints, type=BOOLEAN macro=rss_schema
 				},
@@ -292,7 +292,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Lqm Enabled",
+				Description: "Lqm enabled.",
 			},
 			// key name holder for attribute: name=lqm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -301,7 +301,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_id, type=STRING macro=rss_schema
@@ -310,7 +310,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Network Id",
+				Description: "Network id. Value: at least 1 characters.",
 			},
 			// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 			// property: name=probe_profile_id, type=STRING macro=rss_schema
@@ -319,7 +319,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Probe Profile Id",
+				Description: "Probe profile id.",
 			},
 			// key name holder for attribute: name=probe_profile_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -328,7 +328,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -339,7 +339,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Type",
+				Description: "Type. Value: one of publicwan, privatewan.",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 			// property: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
@@ -348,7 +348,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Use For Application Reachability Probes",
+				Description: "Use for application reachability probes.",
 			},
 			// key name holder for attribute: name=use_for_application_reachability_probes, type=BOOLEAN macro=rss_schema
 			// property: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
@@ -357,7 +357,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Use For Controller Connections",
+				Description: "Use for controller connections.",
 			},
 			// key name holder for attribute: name=use_for_controller_connections, type=BOOLEAN macro=rss_schema
 			// property: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
@@ -366,7 +366,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Use Lqm For Non Hub Paths",
+				Description: "Use lqm for non hub paths.",
 			},
 			// key name holder for attribute: name=use_lqm_for_non_hub_paths, type=BOOLEAN macro=rss_schema
 			// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
@@ -375,7 +375,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Vpnlink configuration.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
@@ -383,7 +383,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    false,
 						Sensitive:   false,
-						Description: "Keep Alive Failure Count",
+						Description: "Keep alive failure count. Value: between 3 and 30.",
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
@@ -392,7 +392,7 @@ func (r *siteWanInterfaceResource) Schema(_ context.Context, _ resource.SchemaRe
 						Computed:    false,
 						Optional:    false,
 						Sensitive:   false,
-						Description: "Keep Alive Interval",
+						Description: "Keep alive interval. Value: between 100 and 1740000.",
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
 				},

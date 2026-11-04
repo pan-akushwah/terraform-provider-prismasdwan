@@ -96,7 +96,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -105,7 +105,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=element_interfaces, type=ARRAY_REFERENCE macro=rss_schema
@@ -114,7 +114,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Element Interfaces",
+				Description: "Element interfaces.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=element_id, type=STRING macro=rss_schema
@@ -123,7 +123,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Element Id",
+							Description: "Element id.",
 						},
 						// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 						// property: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -132,7 +132,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Interfaces",
+							Description: "Interfaces. At least 1 items.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -146,7 +146,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=networks, type=ARRAY_REFERENCE macro=rss_schema
@@ -155,7 +155,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Networks",
+				Description: "Networks.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=network_id, type=STRING macro=rss_schema
@@ -164,7 +164,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Network Id",
+							Description: "Network id.",
 						},
 						// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 						// property: name=network_type, type=STRING macro=rss_schema
@@ -173,7 +173,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Network Type",
+							Description: "Network type. Value: one of wan_network, lan_network, wan_overlay, pa_network.",
 						},
 						// key name holder for attribute: name=network_type, type=STRING macro=rss_schema
 					},
@@ -186,7 +186,7 @@ func (r *siteSecurityZoneResource) Schema(_ context.Context, _ resource.SchemaRe
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Zone Id",
+				Description: "Zone id.",
 			},
 			// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 		},

@@ -99,7 +99,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -108,7 +108,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=actions, type=ARRAY_REFERENCE macro=rss_schema
@@ -117,7 +117,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Actions",
+				Description: "Actions.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=action_type, type=STRING macro=rss_schema
@@ -126,7 +126,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Action Type",
+							Description: "Action type. Value: one of raise_alarm, move_flows, move_flows_forced, fec, visibility, app_acceleration, packet_duplication.",
 						},
 						// key name holder for attribute: name=action_type, type=STRING macro=rss_schema
 						// property: name=always_on, type=BOOLEAN macro=rss_schema
@@ -135,7 +135,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Always On",
+							Description: "Always on.",
 						},
 						// key name holder for attribute: name=always_on, type=BOOLEAN macro=rss_schema
 						// property: name=app_perf, type=REFERENCE macro=rss_schema
@@ -144,7 +144,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "",
+							Description: "App perf.",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 								"bad_health_thresholds": rsschema.SingleNestedAttribute{
@@ -152,7 +152,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "",
+									Description: "Bad health thresholds.",
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=clear_below, type=INTEGER macro=rss_schema
 										"clear_below": rsschema.Int64Attribute{
@@ -160,7 +160,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Clear Below",
+											Description: "Clear below. Value: between 1 and 80.",
 										},
 										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 										// property: name=raise_above, type=INTEGER macro=rss_schema
@@ -169,7 +169,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Raise Above",
+											Description: "Raise above. Value: between 10 and 100.",
 										},
 										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 									},
@@ -181,7 +181,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Monitoring Approach",
+									Description: "Monitoring approach. Value: one of aggressive, moderate, conservative.",
 								},
 								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 							},
@@ -193,7 +193,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "",
+							Description: "Circuit utilization perf.",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 								"bad_health_thresholds": rsschema.SingleNestedAttribute{
@@ -201,7 +201,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "",
+									Description: "Bad health thresholds.",
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=clear_below, type=INTEGER macro=rss_schema
 										"clear_below": rsschema.Int64Attribute{
@@ -209,7 +209,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Clear Below",
+											Description: "Clear below. Value: between 1 and 80.",
 										},
 										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 										// property: name=raise_above, type=INTEGER macro=rss_schema
@@ -218,7 +218,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Raise Above",
+											Description: "Raise above. Value: between 10 and 100.",
 										},
 										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 									},
@@ -230,7 +230,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Monitoring Approach",
+									Description: "Monitoring approach. Value: one of aggressive, moderate, conservative.",
 								},
 								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 							},
@@ -242,7 +242,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "",
+							Description: "Lqm perf.",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 								"bad_health_thresholds": rsschema.SingleNestedAttribute{
@@ -250,7 +250,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "",
+									Description: "Bad health thresholds.",
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=clear_below, type=INTEGER macro=rss_schema
 										"clear_below": rsschema.Int64Attribute{
@@ -258,7 +258,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Clear Below",
+											Description: "Clear below. Value: between 1 and 80.",
 										},
 										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 										// property: name=raise_above, type=INTEGER macro=rss_schema
@@ -267,7 +267,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Raise Above",
+											Description: "Raise above. Value: between 10 and 100.",
 										},
 										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 									},
@@ -279,7 +279,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Monitoring Approach",
+									Description: "Monitoring approach. Value: one of aggressive, moderate, conservative.",
 								},
 								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 							},
@@ -291,7 +291,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "",
+							Description: "Probe perf.",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 								"bad_health_thresholds": rsschema.SingleNestedAttribute{
@@ -299,7 +299,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "",
+									Description: "Bad health thresholds.",
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=clear_below, type=INTEGER macro=rss_schema
 										"clear_below": rsschema.Int64Attribute{
@@ -307,7 +307,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Clear Below",
+											Description: "Clear below. Value: between 1 and 80.",
 										},
 										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 										// property: name=raise_above, type=INTEGER macro=rss_schema
@@ -316,7 +316,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Raise Above",
+											Description: "Raise above. Value: between 10 and 100.",
 										},
 										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 									},
@@ -328,7 +328,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Monitoring Approach",
+									Description: "Monitoring approach. Value: one of aggressive, moderate, conservative.",
 								},
 								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 							},
@@ -340,7 +340,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "",
+							Description: "Sys perf.",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=bad_health_thresholds, type=REFERENCE macro=rss_schema
 								"bad_health_thresholds": rsschema.SingleNestedAttribute{
@@ -348,7 +348,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "",
+									Description: "Bad health thresholds.",
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=clear_below, type=INTEGER macro=rss_schema
 										"clear_below": rsschema.Int64Attribute{
@@ -356,7 +356,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Clear Below",
+											Description: "Clear below. Value: between 1 and 80.",
 										},
 										// key name holder for attribute: name=clear_below, type=INTEGER macro=rss_schema
 										// property: name=raise_above, type=INTEGER macro=rss_schema
@@ -365,7 +365,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Raise Above",
+											Description: "Raise above. Value: between 10 and 100.",
 										},
 										// key name holder for attribute: name=raise_above, type=INTEGER macro=rss_schema
 									},
@@ -377,7 +377,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Monitoring Approach",
+									Description: "Monitoring approach. Value: one of aggressive, moderate, conservative.",
 								},
 								// key name holder for attribute: name=monitoring_approach, type=STRING macro=rss_schema
 							},
@@ -393,7 +393,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "App filters.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=rss_schema
 					"app_transfer_types": rsschema.ListAttribute{
@@ -401,7 +401,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "App Transfer Types",
+						Description: "App transfer types. At most 4 items. Each item: one of rt-audio, rt-video, transactional, bulk.",
 						Validators:  ListMaxItems(4),
 						ElementType: types.StringType,
 					},
@@ -412,7 +412,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Application Ids",
+						Description: "Application ids. At most 64 items.",
 						Validators:  ListMaxItems(64),
 						ElementType: types.StringType,
 					},
@@ -426,7 +426,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -435,7 +435,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enabled",
+				Description: "Enabled.",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -444,7 +444,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -453,7 +453,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -462,7 +462,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Network Context Ids",
+				Description: "Network context ids.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=network_context_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -472,7 +472,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Path Filters",
+				Description: "Path filters. At most 32 items.",
 				Validators:  ListMaxItems(32),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
@@ -482,7 +482,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Label",
+							Description: "Label.",
 						},
 						// key name holder for attribute: name=label, type=STRING macro=rss_schema
 						// property: name=path_type, type=STRING macro=rss_schema
@@ -491,7 +491,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Path Type",
+							Description: "Path type. Value: one of vpn, direct, servicelink, pa_vpn, all.",
 						},
 						// key name holder for attribute: name=path_type, type=STRING macro=rss_schema
 					},
@@ -504,7 +504,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Service Label Ids",
+				Description: "Service label ids. At most 32 items.",
 				Validators:  ListMaxItems(32),
 				ElementType: types.StringType,
 			},
@@ -515,7 +515,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -526,7 +526,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Thresholdprofile Id",
+				Description: "Thresholdprofile id.",
 			},
 			// key name holder for attribute: name=thresholdprofile_id, type=STRING macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
@@ -535,7 +535,7 @@ func (r *performancePolicyRuleResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Type",
+				Description: "Type. Value: one of app_circuit_health, system_site_health.",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 		},

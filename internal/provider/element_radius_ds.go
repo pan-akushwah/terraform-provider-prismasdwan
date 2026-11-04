@@ -111,136 +111,136 @@ func (d *elementRadiusDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 256 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=override_indicator, type=ARRAY_PRIMITIVE macro=rss_schema
 						"override_indicator": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Override Indicator",
+							Description: "Override indicator.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=override_indicator, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=radius_configuration, type=ARRAY_REFERENCE macro=rss_schema
 						"radius_configuration": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Radius Configuration",
+							Description: "Radius configuration. At most 2 items.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=accounting_port, type=INTEGER macro=rss_schema
 									"accounting_port": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Accounting Port",
+										Description: "Accounting port. Value: between 0 and 65535.",
 									},
 									// key name holder for attribute: name=accounting_port, type=INTEGER macro=rss_schema
 									// property: name=authentication_port, type=INTEGER macro=rss_schema
 									"authentication_port": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Authentication Port",
+										Description: "Authentication port. Value: between 0 and 65535.",
 									},
 									// key name holder for attribute: name=authentication_port, type=INTEGER macro=rss_schema
 									// property: name=ip_version, type=INTEGER macro=rss_schema
 									"ip_version": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Ip Version",
+										Description: "Ip version.",
 									},
 									// key name holder for attribute: name=ip_version, type=INTEGER macro=rss_schema
 									// property: name=priority, type=INTEGER macro=rss_schema
 									"priority": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Priority",
+										Description: "Priority. Value: between 0 and 255.",
 									},
 									// key name holder for attribute: name=priority, type=INTEGER macro=rss_schema
 									// property: name=retain_shared_secret, type=BOOLEAN macro=rss_schema
 									"retain_shared_secret": dsschema.BoolAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   true,
-										Description: "Retain Shared Secret",
+										Description: "Retain shared secret.",
 									},
 									// key name holder for attribute: name=retain_shared_secret, type=BOOLEAN macro=rss_schema
 									// property: name=server_ip_address, type=STRING macro=rss_schema
 									"server_ip_address": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Server Ip Address",
+										Description: "Server ip address.",
 									},
 									// key name holder for attribute: name=server_ip_address, type=STRING macro=rss_schema
 									// property: name=shared_secret, type=STRING macro=rss_schema
 									"shared_secret": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   true,
-										Description: "Shared Secret",
+										Description: "Shared secret.",
 									},
 									// key name holder for attribute: name=shared_secret, type=STRING macro=rss_schema
 									// property: name=shared_secret_encrypted, type=STRING macro=rss_schema
 									"shared_secret_encrypted": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   true,
-										Description: "Shared Secret Encrypted",
+										Description: "Shared secret encrypted.",
 									},
 									// key name holder for attribute: name=shared_secret_encrypted, type=STRING macro=rss_schema
 								},
@@ -250,28 +250,28 @@ func (d *elementRadiusDataSource) Schema(_ context.Context, _ datasource.SchemaR
 						// property: name=radius_profile_id, type=STRING macro=rss_schema
 						"radius_profile_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Radius Profile Id",
+							Description: "Radius profile id.",
 						},
 						// key name holder for attribute: name=radius_profile_id, type=STRING macro=rss_schema
 						// property: name=source_interface_id, type=STRING macro=rss_schema
 						"source_interface_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Source Interface Id",
+							Description: "Source interface id.",
 						},
 						// key name holder for attribute: name=source_interface_id, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

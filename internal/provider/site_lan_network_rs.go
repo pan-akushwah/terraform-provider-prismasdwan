@@ -100,7 +100,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -109,7 +109,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -118,7 +118,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 1024 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -127,7 +127,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv4_config, type=REFERENCE macro=rss_schema
@@ -136,7 +136,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Ipv4 config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 					"default_routers": rsschema.ListAttribute{
@@ -144,7 +144,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Default Routers",
+						Description: "Default routers.",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -154,7 +154,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Dhcp relay.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=enabled, type=BOOLEAN macro=rss_schema
 							"enabled": rsschema.BoolAttribute{
@@ -162,7 +162,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Enabled",
+								Description: "Enabled.",
 							},
 							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 							// property: name=option_82, type=REFERENCE macro=rss_schema
@@ -171,7 +171,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "",
+								Description: "Option 82.",
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=circuit_id, type=STRING macro=rss_schema
 									"circuit_id": rsschema.StringAttribute{
@@ -179,7 +179,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Circuit Id",
+										Description: "Circuit id. Value: at most 255 characters.",
 									},
 									// key name holder for attribute: name=circuit_id, type=STRING macro=rss_schema
 									// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -188,7 +188,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Enabled",
+										Description: "Enabled.",
 									},
 									// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 									// property: name=reforwarding_policy, type=STRING macro=rss_schema
@@ -197,7 +197,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Reforwarding Policy",
+										Description: "Reforwarding policy. Value: one of replace, keep, append, drop.",
 									},
 									// key name holder for attribute: name=reforwarding_policy, type=STRING macro=rss_schema
 									// property: name=remote_id, type=STRING macro=rss_schema
@@ -206,7 +206,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Remote Id",
+										Description: "Remote id. Value: at most 255 characters.",
 									},
 									// key name holder for attribute: name=remote_id, type=STRING macro=rss_schema
 								},
@@ -218,7 +218,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Server Ips",
+								Description: "Server ips. At most 16 items.",
 								Validators:  ListMaxItems(16),
 								ElementType: types.StringType,
 							},
@@ -229,7 +229,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Source Interface",
+								Description: "Source interface.",
 							},
 							// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 						},
@@ -241,7 +241,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Dhcp server.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=domain_name, type=STRING macro=rss_schema
 							"domain_name": rsschema.StringAttribute{
@@ -249,7 +249,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Domain Name",
+								Description: "Domain name.",
 							},
 							// key name holder for attribute: name=domain_name, type=STRING macro=rss_schema
 							// property: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -258,7 +258,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Domain Name Servers",
+								Description: "Domain name servers.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -268,7 +268,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Ip Address Pool",
+								Description: "Ip address pool.",
 								NestedObject: rsschema.NestedAttributeObject{
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=end, type=STRING macro=rss_schema
@@ -277,7 +277,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "End",
+											Description: "End.",
 										},
 										// key name holder for attribute: name=end, type=STRING macro=rss_schema
 										// property: name=start, type=STRING macro=rss_schema
@@ -286,7 +286,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Start",
+											Description: "Start.",
 										},
 										// key name holder for attribute: name=start, type=STRING macro=rss_schema
 									},
@@ -299,7 +299,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Lease Expiry Time",
+								Description: "Lease expiry time.",
 							},
 							// key name holder for attribute: name=lease_expiry_time, type=INTEGER macro=rss_schema
 							// property: name=lease_renew_time, type=INTEGER macro=rss_schema
@@ -308,7 +308,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Lease Renew Time",
+								Description: "Lease renew time.",
 							},
 							// key name holder for attribute: name=lease_renew_time, type=INTEGER macro=rss_schema
 						},
@@ -320,7 +320,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Prefixes",
+						Description: "Prefixes.",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -333,7 +333,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Ipv6 config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
 					"default_routers": rsschema.ListAttribute{
@@ -341,7 +341,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Default Routers",
+						Description: "Default routers.",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=default_routers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -351,7 +351,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Prefixes",
+						Description: "Prefixes.",
 						ElementType: types.StringType,
 					},
 					// key name holder for attribute: name=prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -364,7 +364,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_context_id, type=STRING macro=rss_schema
@@ -373,7 +373,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Network Context Id",
+				Description: "Network context id. Value: at most 30 characters, matching `^-?[0-9]{1,30}$`.",
 			},
 			// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 			// property: name=scope, type=STRING macro=rss_schema
@@ -382,7 +382,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Scope",
+				Description: "Scope. Value: one of global, local.",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -391,7 +391,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -402,7 +402,7 @@ func (r *siteLanNetworkResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vrf Context Id",
+				Description: "Vrf context id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},

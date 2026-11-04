@@ -94,7 +94,7 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -112,7 +112,7 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=state, type=STRING macro=rss_schema
@@ -121,7 +121,7 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "State",
+				Description: "State. Value: one of enabled, disabled, paused.",
 			},
 			// key name holder for attribute: name=state, type=STRING macro=rss_schema
 			// property: name=user_config, type=JSON_STRING macro=rss_schema
@@ -130,7 +130,7 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "User config.",
 			},
 			// key name holder for attribute: name=user_config, type=JSON_STRING macro=rss_schema
 			// property: name=version, type=STRING macro=rss_schema
@@ -139,7 +139,7 @@ func (r *sdwanappsConfigResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Version",
+				Description: "Version.",
 			},
 			// key name holder for attribute: name=version, type=STRING macro=rss_schema
 		},

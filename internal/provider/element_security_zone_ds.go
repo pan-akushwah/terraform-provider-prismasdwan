@@ -110,94 +110,94 @@ func (d *elementSecurityZoneDataSource) Schema(_ context.Context, _ datasource.S
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"interface_ids": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Interface Ids",
+							Description: "Interface ids. Each item: matching `[0-9]{1,30}`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"lannetwork_ids": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Lannetwork Ids",
+							Description: "Lannetwork ids. Each item: matching `[0-9]{1,30}`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=pa_network_id, type=STRING macro=rss_schema
 						"pa_network_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Pa Network Id",
+							Description: "Pa network id.",
 						},
 						// key name holder for attribute: name=pa_network_id, type=STRING macro=rss_schema
 						// property: name=site_id, type=STRING macro=rss_schema
 						"site_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Site Id",
+							Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`.",
 						},
 						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 						// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"waninterface_ids": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Waninterface Ids",
+							Description: "Waninterface ids. Each item: matching `[0-9]{1,30}`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=wanoverlay_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						"wanoverlay_ids": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Wanoverlay Ids",
+							Description: "Wanoverlay ids. Each item: matching `[0-9]{1,30}`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=wanoverlay_ids, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=zone_id, type=STRING macro=rss_schema
 						"zone_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Zone Id",
+							Description: "Zone id. Value: at most 30 characters, matching `^-?[0-9]{1,30}$`.",
 						},
 						// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 					},

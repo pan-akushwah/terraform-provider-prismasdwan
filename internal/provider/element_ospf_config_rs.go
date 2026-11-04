@@ -97,7 +97,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -106,7 +106,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
@@ -115,7 +115,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Advertise Fabric Default Route",
+				Description: "Advertise fabric default route. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=advertise_fabric_default_route, type=BOOLEAN macro=rss_schema
 			// property: name=areas, type=ARRAY_REFERENCE macro=rss_schema
@@ -124,7 +124,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Areas",
+				Description: "Areas.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=area_id, type=INTEGER macro=rss_schema
@@ -133,7 +133,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Area Id",
+							Description: "Area id.",
 						},
 						// key name holder for attribute: name=area_id, type=INTEGER macro=rss_schema
 						// property: name=area_type, type=STRING macro=rss_schema
@@ -142,7 +142,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Area Type",
+							Description: "Area type. Value: one of normal, stub, nssa.",
 						},
 						// key name holder for attribute: name=area_type, type=STRING macro=rss_schema
 					},
@@ -155,7 +155,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Cost For Default Route",
+				Description: "Cost for default route. Value: between 0 and 16777214.",
 			},
 			// key name holder for attribute: name=cost_for_default_route, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -164,7 +164,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 1024 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -173,7 +173,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
@@ -182,7 +182,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Interfaces",
+				Description: "Interfaces.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=area_id, type=INTEGER macro=rss_schema
@@ -191,7 +191,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Area Id",
+							Description: "Area id.",
 						},
 						// key name holder for attribute: name=area_id, type=INTEGER macro=rss_schema
 						// property: name=interface_id, type=STRING macro=rss_schema
@@ -200,7 +200,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Interface Id",
+							Description: "Interface id.",
 						},
 						// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 						// property: name=ospf_config_override, type=REFERENCE macro=rss_schema
@@ -209,7 +209,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "",
+							Description: "Ospf config override.",
 							Attributes: map[string]rsschema.Attribute{
 								// property: name=cost, type=INTEGER macro=rss_schema
 								"cost": rsschema.Int64Attribute{
@@ -217,7 +217,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Cost",
+									Description: "Cost.",
 								},
 								// key name holder for attribute: name=cost, type=INTEGER macro=rss_schema
 								// property: name=dead_interval, type=INTEGER macro=rss_schema
@@ -226,7 +226,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Dead Interval",
+									Description: "Dead interval.",
 								},
 								// key name holder for attribute: name=dead_interval, type=INTEGER macro=rss_schema
 								// property: name=hello_interval, type=INTEGER macro=rss_schema
@@ -235,7 +235,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Hello Interval",
+									Description: "Hello interval.",
 								},
 								// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 								// property: name=md5_key_id, type=INTEGER macro=rss_schema
@@ -244,7 +244,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Md5 Key Id",
+									Description: "Md5 key id.",
 								},
 								// key name holder for attribute: name=md5_key_id, type=INTEGER macro=rss_schema
 								// property: name=md5_secret, type=STRING macro=rss_schema
@@ -253,7 +253,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   true,
-									Description: "Md5 Secret",
+									Description: "Md5 secret.",
 								},
 								// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret_internal_key_name": rsschema.StringAttribute{
@@ -269,7 +269,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Retransmit Interval",
+									Description: "Retransmit interval.",
 								},
 								// key name holder for attribute: name=retransmit_interval, type=INTEGER macro=rss_schema
 								// property: name=transmit_delay, type=INTEGER macro=rss_schema
@@ -278,7 +278,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Transmit Delay",
+									Description: "Transmit delay.",
 								},
 								// key name holder for attribute: name=transmit_delay, type=INTEGER macro=rss_schema
 							},
@@ -294,7 +294,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=prefix_adv_route_map_id, type=STRING macro=rss_schema
@@ -303,7 +303,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Prefix Adv Route Map Id",
+				Description: "Prefix adv route map id.",
 			},
 			// key name holder for attribute: name=prefix_adv_route_map_id, type=STRING macro=rss_schema
 			// property: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
@@ -312,7 +312,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Prefix Adv Type To Lan",
+				Description: "Prefix adv type to lan.",
 			},
 			// key name holder for attribute: name=prefix_adv_type_to_lan, type=STRING macro=rss_schema
 			// property: name=redistribute_bgp, type=BOOLEAN macro=rss_schema
@@ -321,7 +321,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Redistribute Bgp",
+				Description: "Redistribute bgp. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=redistribute_bgp, type=BOOLEAN macro=rss_schema
 			// property: name=redistribute_route_map_id, type=STRING macro=rss_schema
@@ -330,7 +330,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Redistribute Route Map Id",
+				Description: "Redistribute route map id.",
 			},
 			// key name holder for attribute: name=redistribute_route_map_id, type=STRING macro=rss_schema
 			// property: name=router_id, type=STRING macro=rss_schema
@@ -339,7 +339,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Router Id",
+				Description: "Router id.",
 			},
 			// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 			// property: name=scope, type=STRING macro=rss_schema
@@ -348,7 +348,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Scope",
+				Description: "Scope.",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=shutdown, type=BOOLEAN macro=rss_schema
@@ -357,7 +357,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Shutdown",
+				Description: "Shutdown.",
 			},
 			// key name holder for attribute: name=shutdown, type=BOOLEAN macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -366,7 +366,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -377,7 +377,7 @@ func (r *elementOspfConfigResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vrf Context Id",
+				Description: "Vrf context id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`.",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},

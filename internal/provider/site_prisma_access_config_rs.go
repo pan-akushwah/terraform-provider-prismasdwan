@@ -95,7 +95,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -113,7 +113,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=remote_networks, type=ARRAY_REFERENCE macro=rss_schema
@@ -122,7 +122,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Remote Networks",
+				Description: "Remote networks.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=edge_location_display, type=STRING macro=rss_schema
@@ -131,7 +131,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Edge Location Display",
+							Description: "Edge location display.",
 						},
 						// key name holder for attribute: name=edge_location_display, type=STRING macro=rss_schema
 						// property: name=edge_location_value, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Edge Location Value",
+							Description: "Edge location value.",
 						},
 						// key name holder for attribute: name=edge_location_value, type=STRING macro=rss_schema
 						// property: name=remote_network_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -149,7 +149,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Remote Network Names",
+							Description: "Remote network names.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=remote_network_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -159,7 +159,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Service Link Ids",
+							Description: "Service link ids.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=service_link_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -169,7 +169,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Spn Name",
+							Description: "Spn name.",
 						},
 						// key name holder for attribute: name=spn_name, type=STRING macro=rss_schema
 					},
@@ -182,7 +182,7 @@ func (r *sitePrismaAccessConfigResource) Schema(_ context.Context, _ resource.Sc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Id",
+				Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 		},

@@ -110,81 +110,81 @@ func (d *elementToolkitDataSource) Schema(_ context.Context, _ datasource.Schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=account_disable_interval, type=INTEGER macro=rss_schema
 						"account_disable_interval": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Account Disable Interval",
+							Description: "Account disable interval. Value: between 5 and 60.",
 						},
 						// key name holder for attribute: name=account_disable_interval, type=INTEGER macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=inactive_interval, type=INTEGER macro=rss_schema
 						"inactive_interval": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Inactive Interval",
+							Description: "Inactive interval. Value: between 15 and 60.",
 						},
 						// key name holder for attribute: name=inactive_interval, type=INTEGER macro=rss_schema
 						// property: name=otpkey_version, type=INTEGER macro=rss_schema
 						"otpkey_version": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Otpkey Version",
+							Description: "Otpkey version. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=otpkey_version, type=INTEGER macro=rss_schema
 						// property: name=retry_login_count, type=INTEGER macro=rss_schema
 						"retry_login_count": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Retry Login Count",
+							Description: "Retry login count. Value: between 5 and 20.",
 						},
 						// key name holder for attribute: name=retry_login_count, type=INTEGER macro=rss_schema
 						// property: name=ssh_enabled, type=BOOLEAN macro=rss_schema
 						"ssh_enabled": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Ssh Enabled",
+							Description: "Ssh enabled.",
 						},
 						// key name holder for attribute: name=ssh_enabled, type=BOOLEAN macro=rss_schema
 						// property: name=ssh_outbound_enabled, type=BOOLEAN macro=rss_schema
 						"ssh_outbound_enabled": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Ssh Outbound Enabled",
+							Description: "Ssh outbound enabled.",
 						},
 						// key name holder for attribute: name=ssh_outbound_enabled, type=BOOLEAN macro=rss_schema
 					},

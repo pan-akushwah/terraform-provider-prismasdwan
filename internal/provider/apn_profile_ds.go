@@ -110,100 +110,100 @@ func (d *apnProfileDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=apn, type=STRING macro=rss_schema
 						"apn": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Apn",
+							Description: "Apn. Value: at most 100 characters.",
 						},
 						// key name holder for attribute: name=apn, type=STRING macro=rss_schema
 						// property: name=authentication, type=STRING macro=rss_schema
 						"authentication": dsschema.StringAttribute{
-							Required:    true,
-							Computed:    false,
+							Required:    false,
+							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Authentication",
+							Description: "Authentication. Value: one of none, pap, chap, pap_or_chap.",
 						},
 						// key name holder for attribute: name=authentication, type=STRING macro=rss_schema
 						// property: name=clear_password, type=BOOLEAN macro=rss_schema
 						"clear_password": dsschema.BoolAttribute{
-							Required:    true,
-							Computed:    false,
+							Required:    false,
+							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Clear Password",
+							Description: "Clear password.",
 						},
 						// key name holder for attribute: name=clear_password, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 256 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
-							Required:    true,
-							Computed:    false,
+							Required:    false,
+							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=password, type=STRING macro=rss_schema
 						"password": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   true,
-							Description: "Password",
+							Description: "Password.",
 						},
 						// key name holder for attribute: name=password, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=user_name, type=STRING macro=rss_schema
 						"user_name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "User Name",
+							Description: "User name. Value: at most 100 characters.",
 						},
 						// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 					},

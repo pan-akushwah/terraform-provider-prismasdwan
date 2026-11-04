@@ -98,7 +98,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -107,7 +107,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=collector_config, type=ARRAY_REFERENCE macro=rss_schema
@@ -116,7 +116,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Collector Config",
+				Description: "Collector config. At most 4 items. At least 1 items.",
 				Validators:  ListMaxItems(4),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
@@ -126,7 +126,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Host",
+							Description: "Host.",
 						},
 						// key name holder for attribute: name=host, type=STRING macro=rss_schema
 						// property: name=host_port, type=INTEGER macro=rss_schema
@@ -135,7 +135,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Host Port",
+							Description: "Host port.",
 						},
 						// key name holder for attribute: name=host_port, type=INTEGER macro=rss_schema
 						// property: name=ipfixcollectorcontext_id, type=STRING macro=rss_schema
@@ -144,7 +144,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ipfixcollectorcontext Id",
+							Description: "Ipfixcollectorcontext id.",
 						},
 						// key name holder for attribute: name=ipfixcollectorcontext_id, type=STRING macro=rss_schema
 						// property: name=max_message_size, type=INTEGER macro=rss_schema
@@ -153,7 +153,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Max Message Size",
+							Description: "Max message size.",
 						},
 						// key name holder for attribute: name=max_message_size, type=INTEGER macro=rss_schema
 						// property: name=protocol, type=STRING macro=rss_schema
@@ -162,7 +162,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Protocol",
+							Description: "Protocol. Value: one of tcp, udp.",
 						},
 						// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 					},
@@ -175,7 +175,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=export_cache_timeout, type=INTEGER macro=rss_schema
@@ -184,7 +184,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Export Cache Timeout",
+				Description: "Export cache timeout. Value: between 10 and 600.",
 			},
 			// key name holder for attribute: name=export_cache_timeout, type=INTEGER macro=rss_schema
 			// property: name=filters, type=ARRAY_REFERENCE macro=rss_schema
@@ -193,7 +193,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Filters",
+				Description: "Filters. At most 8 items.",
 				Validators:  ListMaxItems(8),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
@@ -203,7 +203,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "App Def Ids",
+							Description: "App def ids.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=app_def_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -213,7 +213,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Dst Ports",
+							Description: "Dst ports.",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=end, type=INTEGER macro=rss_schema
@@ -222,7 +222,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "",
+										Description: "End.",
 									},
 									// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
 									// property: name=start, type=INTEGER macro=rss_schema
@@ -231,7 +231,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "",
+										Description: "Start.",
 									},
 									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
 								},
@@ -244,7 +244,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Dst Prefixes Id",
+							Description: "Dst prefixes id.",
 						},
 						// key name holder for attribute: name=dst_prefixes_id, type=STRING macro=rss_schema
 						// property: name=ipfixfiltercontext_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -253,7 +253,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ipfixfiltercontext Ids",
+							Description: "Ipfixfiltercontext ids.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=ipfixfiltercontext_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -263,7 +263,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Priority Traffic Types",
+							Description: "Priority traffic types. Each item: one of P1_Video, P1_Audio, P1_Xact, P1_Bulk, P2_Video, P2_Audio, P2_Xact, P2_Bulk, P3_Video, P3_Audio, P3_Xact, P3_Bulk, P4_Video, P4_Audio, P4_Xact, P4_Bulk.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=priority_traffic_types, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -273,7 +273,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Protocols",
+							Description: "Protocols. Each item: one of tcp, udp, ospf, ipv6, is-is-over-ipv4, ipv6-nonxt, etherip, ipv6-icmp, igmp, udplite, ipv6-opts, icmp, esp, crtp, ipip, eigrp, egp, gre, l2tpv3, sctp, ip-in-ip, rsvp, pim, scps, mpls-in-ip, ah, vrrp, ipv6-route, igp, ipv6-frag.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=protocols, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -283,7 +283,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Rtp Transport Type",
+							Description: "Rtp transport type. Value: one of audio, video.",
 						},
 						// key name holder for attribute: name=rtp_transport_type, type=STRING macro=rss_schema
 						// property: name=src_ports, type=ARRAY_REFERENCE macro=rss_schema
@@ -292,7 +292,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Src Ports",
+							Description: "Src ports.",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=end, type=INTEGER macro=rss_schema
@@ -301,7 +301,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "",
+										Description: "End.",
 									},
 									// key name holder for attribute: name=end, type=INTEGER macro=rss_schema
 									// property: name=start, type=INTEGER macro=rss_schema
@@ -310,7 +310,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "",
+										Description: "Start.",
 									},
 									// key name holder for attribute: name=start, type=INTEGER macro=rss_schema
 								},
@@ -323,7 +323,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Src Prefixes Id",
+							Description: "Src prefixes id.",
 						},
 						// key name holder for attribute: name=src_prefixes_id, type=STRING macro=rss_schema
 						// property: name=wan_path_direction, type=STRING macro=rss_schema
@@ -332,7 +332,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Wan Path Direction",
+							Description: "Wan path direction. Value: one of lan_to_wan, wan_to_lan.",
 						},
 						// key name holder for attribute: name=wan_path_direction, type=STRING macro=rss_schema
 					},
@@ -345,7 +345,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipfixtemplate_id, type=STRING macro=rss_schema
@@ -354,7 +354,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ipfixtemplate Id",
+				Description: "Ipfixtemplate id.",
 			},
 			// key name holder for attribute: name=ipfixtemplate_id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -363,7 +363,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=sampler, type=REFERENCE macro=rss_schema
@@ -372,7 +372,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Sampler.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=algorithm, type=STRING macro=rss_schema
 					"algorithm": rsschema.StringAttribute{
@@ -380,7 +380,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Algorithm",
+						Description: "Algorithm. Value: one of time_based, none.",
 					},
 					// key name holder for attribute: name=algorithm, type=STRING macro=rss_schema
 					// property: name=time_interval, type=INTEGER macro=rss_schema
@@ -389,7 +389,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Time Interval",
+						Description: "Time interval.",
 					},
 					// key name holder for attribute: name=time_interval, type=INTEGER macro=rss_schema
 					// property: name=time_spacing, type=INTEGER macro=rss_schema
@@ -398,7 +398,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Time Spacing",
+						Description: "Time spacing.",
 					},
 					// key name holder for attribute: name=time_spacing, type=INTEGER macro=rss_schema
 				},
@@ -410,7 +410,7 @@ func (r *ipfixProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

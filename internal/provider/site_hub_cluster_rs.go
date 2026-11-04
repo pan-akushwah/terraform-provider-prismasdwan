@@ -95,7 +95,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=default_cluster, type=BOOLEAN macro=rss_schema
@@ -113,7 +113,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Default Cluster",
+				Description: "Default cluster.",
 			},
 			// key name holder for attribute: name=default_cluster, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 4096 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=elements, type=ARRAY_REFERENCE macro=rss_schema
@@ -131,7 +131,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Elements",
+				Description: "Elements.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=hub_element_id, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Hub Element Id",
+							Description: "Hub element id.",
 						},
 						// key name holder for attribute: name=hub_element_id, type=STRING macro=rss_schema
 						// property: name=locked, type=BOOLEAN macro=rss_schema
@@ -149,7 +149,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Locked",
+							Description: "Locked.",
 						},
 						// key name holder for attribute: name=locked, type=BOOLEAN macro=rss_schema
 					},
@@ -162,7 +162,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -171,7 +171,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: length 1 to 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=peer_sites, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -180,7 +180,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Peer Sites",
+				Description: "Peer sites. At most 2147483647 items.",
 				Validators:  ListMaxItems(2147483647),
 				ElementType: types.StringType,
 			},
@@ -191,7 +191,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Count Alarm Threshold",
+				Description: "Site count alarm threshold. Value: at least 0.",
 			},
 			// key name holder for attribute: name=site_count_alarm_threshold, type=INTEGER macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -200,7 +200,7 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

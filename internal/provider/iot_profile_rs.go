@@ -96,7 +96,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -105,7 +105,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -114,7 +114,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=disabled, type=BOOLEAN macro=rss_schema
@@ -123,7 +123,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Disabled",
+				Description: "Disabled. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
 			// property: name=disabled_reason, type=STRING macro=rss_schema
@@ -132,7 +132,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Disabled Reason",
+				Description: "Disabled reason. Value: at most 5000 characters.",
 			},
 			// key name holder for attribute: name=disabled_reason, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -141,7 +141,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=inactive, type=BOOLEAN macro=rss_schema
@@ -150,7 +150,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Inactive",
+				Description: "Inactive. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=inactive, type=BOOLEAN macro=rss_schema
 			// property: name=inactive_reason, type=STRING macro=rss_schema
@@ -159,7 +159,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Inactive Reason",
+				Description: "Inactive reason. Value: at most 5000 characters.",
 			},
 			// key name holder for attribute: name=inactive_reason, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -168,7 +168,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=num_associated_sites, type=INTEGER macro=rss_schema
@@ -177,7 +177,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Num Associated Sites",
+				Description: "Num associated sites. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=num_associated_sites, type=INTEGER macro=rss_schema
 			// property: name=region, type=STRING macro=rss_schema
@@ -186,7 +186,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Region",
+				Description: "Region.",
 			},
 			// key name holder for attribute: name=region, type=STRING macro=rss_schema
 			// property: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
@@ -195,7 +195,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Snmp Discovery Device Refresh Frequency",
+				Description: "Snmp discovery device refresh frequency. Value: at least 30.",
 			},
 			// key name holder for attribute: name=snmp_discovery_device_refresh_frequency, type=INTEGER macro=rss_schema
 			// property: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
@@ -204,7 +204,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Snmp Discovery Enabled",
+				Description: "Snmp discovery enabled.",
 			},
 			// key name holder for attribute: name=snmp_discovery_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
@@ -213,7 +213,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Snmp Discovery Network Refresh Frequency",
+				Description: "Snmp discovery network refresh frequency.",
 			},
 			// key name holder for attribute: name=snmp_discovery_network_refresh_frequency, type=INTEGER macro=rss_schema
 			// property: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
@@ -222,7 +222,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Snmp Discovery Use Local Neighbours",
+				Description: "Snmp discovery use local neighbours.",
 			},
 			// key name holder for attribute: name=snmp_discovery_use_local_neighbours, type=BOOLEAN macro=rss_schema
 			// property: name=snmp_version, type=STRING macro=rss_schema
@@ -231,7 +231,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Snmp Version",
+				Description: "Snmp version. Value: one of v2, v3.",
 			},
 			// key name holder for attribute: name=snmp_version, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -240,7 +240,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -251,7 +251,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "V2 config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=snmp_community_string, type=STRING macro=rss_schema
 					"snmp_community_string": rsschema.StringAttribute{
@@ -259,7 +259,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Snmp Community String",
+						Description: "Snmp community string. Value: at most 32 characters, matching `^\\S+$`.",
 					},
 					// key name holder for attribute: name=snmp_community_string, type=STRING macro=rss_schema
 				},
@@ -271,7 +271,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "V3 config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=snmp_auth_password, type=STRING macro=rss_schema
 					"snmp_auth_password": rsschema.StringAttribute{
@@ -279,7 +279,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Snmp Auth Password",
+						Description: "Snmp auth password. Value: length 5 to 256 characters, matching `^\\S+$`.",
 					},
 					// key name holder for attribute: name=snmp_auth_password, type=STRING macro=rss_schema
 					"snmp_auth_password_internal_key_name": rsschema.StringAttribute{
@@ -295,7 +295,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Snmp Auth Password Encrypted",
+						Description: "Snmp auth password encrypted.",
 					},
 					// key name holder for attribute: name=snmp_auth_password_encrypted, type=STRING macro=rss_schema
 					"snmp_auth_password_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -311,7 +311,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Snmp Auth Protocol",
+						Description: "Snmp auth protocol. Value: one of none, md5, sha.",
 					},
 					// key name holder for attribute: name=snmp_auth_protocol, type=STRING macro=rss_schema
 					// property: name=snmp_privacy_password, type=STRING macro=rss_schema
@@ -320,7 +320,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Snmp Privacy Password",
+						Description: "Snmp privacy password. Value: length 5 to 256 characters, matching `^\\S+$`.",
 					},
 					// key name holder for attribute: name=snmp_privacy_password, type=STRING macro=rss_schema
 					"snmp_privacy_password_internal_key_name": rsschema.StringAttribute{
@@ -336,7 +336,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Snmp Privacy Password Encrypted",
+						Description: "Snmp privacy password encrypted.",
 					},
 					// key name holder for attribute: name=snmp_privacy_password_encrypted, type=STRING macro=rss_schema
 					"snmp_privacy_password_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -352,7 +352,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Snmp Privacy Protocol",
+						Description: "Snmp privacy protocol. Value: one of none, aes, des.",
 					},
 					// key name holder for attribute: name=snmp_privacy_protocol, type=STRING macro=rss_schema
 					// property: name=snmp_security_level, type=STRING macro=rss_schema
@@ -361,7 +361,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Snmp Security Level",
+						Description: "Snmp security level. Value: one of noauth, auth, private.",
 					},
 					// key name holder for attribute: name=snmp_security_level, type=STRING macro=rss_schema
 					// property: name=snmp_username, type=STRING macro=rss_schema
@@ -370,7 +370,7 @@ func (r *iotProfileResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Snmp Username",
+						Description: "Snmp username. Value: length 4 to 256 characters, matching `^\\S+$`.",
 					},
 					// key name holder for attribute: name=snmp_username, type=STRING macro=rss_schema
 				},

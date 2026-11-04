@@ -103,7 +103,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -112,7 +112,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=authentication, type=REFERENCE macro=rss_schema
@@ -121,7 +121,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Authentication.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=certificate, type=STRING macro=rss_schema
 					"certificate": rsschema.StringAttribute{
@@ -129,7 +129,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Certificate",
+						Description: "Certificate.",
 					},
 					// key name holder for attribute: name=certificate, type=STRING macro=rss_schema
 					// property: name=certificate_profile_id, type=STRING macro=rss_schema
@@ -138,7 +138,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Certificate Profile Id",
+						Description: "Certificate profile id.",
 					},
 					// key name holder for attribute: name=certificate_profile_id, type=STRING macro=rss_schema
 					// property: name=comment, type=STRING macro=rss_schema
@@ -147,7 +147,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Comment",
+						Description: "Comment.",
 					},
 					// key name holder for attribute: name=comment, type=STRING macro=rss_schema
 					// property: name=ikev1_params, type=REFERENCE macro=rss_schema
@@ -156,7 +156,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Ikev1 params.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=xauth_id, type=STRING macro=rss_schema
 							"xauth_id": rsschema.StringAttribute{
@@ -164,7 +164,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Xauth Id",
+								Description: "Xauth id.",
 							},
 							// key name holder for attribute: name=xauth_id, type=STRING macro=rss_schema
 							// property: name=xauth_secret, type=STRING macro=rss_schema
@@ -173,7 +173,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Xauth Secret",
+								Description: "Xauth secret. Value: length 4 to 128 characters.",
 							},
 							// key name holder for attribute: name=xauth_secret, type=STRING macro=rss_schema
 							"xauth_secret_internal_key_name": rsschema.StringAttribute{
@@ -189,7 +189,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Xauth Secret Encrypted",
+								Description: "Xauth secret encrypted.",
 							},
 							// key name holder for attribute: name=xauth_secret_encrypted, type=STRING macro=rss_schema
 							"xauth_secret_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -205,7 +205,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Xauth Secret Hash",
+								Description: "Xauth secret hash.",
 							},
 							// key name holder for attribute: name=xauth_secret_hash, type=STRING macro=rss_schema
 							"xauth_secret_hash_internal_key_name": rsschema.StringAttribute{
@@ -221,7 +221,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Xauth Type",
+								Description: "Xauth type. Value: one of none, secret.",
 							},
 							// key name holder for attribute: name=xauth_type, type=STRING macro=rss_schema
 						},
@@ -233,7 +233,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Local Ca Certificate",
+						Description: "Local ca certificate.",
 					},
 					// key name holder for attribute: name=local_ca_certificate, type=STRING macro=rss_schema
 					// property: name=local_id, type=STRING macro=rss_schema
@@ -242,7 +242,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Local Id",
+						Description: "Local id. Value: one of local_ip, dn, hostname, custom, none.",
 					},
 					// key name holder for attribute: name=local_id, type=STRING macro=rss_schema
 					// property: name=local_id_custom, type=STRING macro=rss_schema
@@ -251,7 +251,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Local Id Custom",
+						Description: "Local id custom. Value: length 2 to 255 characters.",
 					},
 					// key name holder for attribute: name=local_id_custom, type=STRING macro=rss_schema
 					// property: name=local_pa_certificate_id, type=STRING macro=rss_schema
@@ -260,7 +260,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Local Pa Certificate Id",
+						Description: "Local pa certificate id.",
 					},
 					// key name holder for attribute: name=local_pa_certificate_id, type=STRING macro=rss_schema
 					// property: name=pa_master_key_id, type=STRING macro=rss_schema
@@ -269,7 +269,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Pa Master Key Id",
+						Description: "Pa master key id.",
 					},
 					// key name holder for attribute: name=pa_master_key_id, type=STRING macro=rss_schema
 					// property: name=passphrase, type=STRING macro=rss_schema
@@ -278,7 +278,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Passphrase",
+						Description: "Passphrase.",
 					},
 					// key name holder for attribute: name=passphrase, type=STRING macro=rss_schema
 					"passphrase_internal_key_name": rsschema.StringAttribute{
@@ -294,7 +294,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Passphrase Encrypted",
+						Description: "Passphrase encrypted.",
 					},
 					// key name holder for attribute: name=passphrase_encrypted, type=STRING macro=rss_schema
 					"passphrase_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -310,7 +310,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Peer Id Check",
+						Description: "Peer id check. Value: one of Exact, Wildcard.",
 					},
 					// key name holder for attribute: name=peer_id_check, type=STRING macro=rss_schema
 					// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
@@ -319,7 +319,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Permit Peer Id Mismatch",
+						Description: "Permit peer id mismatch.",
 					},
 					// key name holder for attribute: name=permit_peer_id_mismatch, type=BOOLEAN macro=rss_schema
 					// property: name=ppk_config, type=REFERENCE macro=rss_schema
@@ -328,7 +328,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Ppk config.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=enabled, type=BOOLEAN macro=rss_schema
 							"enabled": rsschema.BoolAttribute{
@@ -336,7 +336,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Enabled",
+								Description: "Enabled.",
 							},
 							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 							// property: name=key_enabled, type=BOOLEAN macro=rss_schema
@@ -345,7 +345,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Key Enabled",
+								Description: "Key enabled.",
 							},
 							// key name holder for attribute: name=key_enabled, type=BOOLEAN macro=rss_schema
 							// property: name=mode, type=STRING macro=rss_schema
@@ -354,7 +354,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Mode",
+								Description: "Mode. Value: one of preferred, mandatory.",
 							},
 							// key name holder for attribute: name=mode, type=STRING macro=rss_schema
 							// property: name=ppk_key_id, type=STRING macro=rss_schema
@@ -363,7 +363,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Ppk Key Id",
+								Description: "Ppk key id.",
 							},
 							// key name holder for attribute: name=ppk_key_id, type=STRING macro=rss_schema
 							// property: name=ppk_secret, type=STRING macro=rss_schema
@@ -372,7 +372,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Ppk Secret",
+								Description: "Ppk secret.",
 							},
 							// key name holder for attribute: name=ppk_secret, type=STRING macro=rss_schema
 							"ppk_secret_internal_key_name": rsschema.StringAttribute{
@@ -388,7 +388,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Ppk Secret Configured",
+								Description: "Ppk secret configured.",
 							},
 							// key name holder for attribute: name=ppk_secret_configured, type=BOOLEAN macro=rss_schema
 							"ppk_secret_configured_internal_key_name": rsschema.BoolAttribute{
@@ -404,7 +404,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Ppk Secret Encrypted",
+								Description: "Ppk secret encrypted.",
 							},
 							// key name holder for attribute: name=ppk_secret_encrypted, type=STRING macro=rss_schema
 							"ppk_secret_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -420,7 +420,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Ppk Secret Hash",
+								Description: "Ppk secret hash.",
 							},
 							// key name holder for attribute: name=ppk_secret_hash, type=STRING macro=rss_schema
 							"ppk_secret_hash_internal_key_name": rsschema.StringAttribute{
@@ -439,7 +439,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Private Key",
+						Description: "Private key.",
 					},
 					// key name holder for attribute: name=private_key, type=STRING macro=rss_schema
 					"private_key_internal_key_name": rsschema.StringAttribute{
@@ -455,7 +455,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Private Key Encrypted",
+						Description: "Private key encrypted.",
 					},
 					// key name holder for attribute: name=private_key_encrypted, type=STRING macro=rss_schema
 					"private_key_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -471,7 +471,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Remote Ca Certificate",
+						Description: "Remote ca certificate.",
 					},
 					// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
 					// property: name=remote_id, type=STRING macro=rss_schema
@@ -480,7 +480,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Remote Id",
+						Description: "Remote id. Value: length 2 to 255 characters.",
 					},
 					// key name holder for attribute: name=remote_id, type=STRING macro=rss_schema
 					// property: name=secret, type=STRING macro=rss_schema
@@ -489,7 +489,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Secret",
+						Description: "Secret.",
 					},
 					// key name holder for attribute: name=secret, type=STRING macro=rss_schema
 					"secret_internal_key_name": rsschema.StringAttribute{
@@ -505,7 +505,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Secret Encrypted",
+						Description: "Secret encrypted.",
 					},
 					// key name holder for attribute: name=secret_encrypted, type=STRING macro=rss_schema
 					"secret_encrypted_internal_key_name": rsschema.StringAttribute{
@@ -521,7 +521,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Secret Hash",
+						Description: "Secret hash.",
 					},
 					// key name holder for attribute: name=secret_hash, type=STRING macro=rss_schema
 					"secret_hash_internal_key_name": rsschema.StringAttribute{
@@ -537,7 +537,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Strict Validation Peer Extended Key Use",
+						Description: "Strict validation peer extended key use.",
 					},
 					// key name holder for attribute: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=rss_schema
 					// property: name=type, type=STRING macro=rss_schema
@@ -546,7 +546,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Type",
+						Description: "Type. Value: one of none, psk, x509.",
 					},
 					// key name holder for attribute: name=type, type=STRING macro=rss_schema
 				},
@@ -558,7 +558,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=dpd_delay, type=INTEGER macro=rss_schema
@@ -567,7 +567,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Dpd Delay",
+				Description: "Dpd delay. Value: between 1 and 60.",
 			},
 			// key name holder for attribute: name=dpd_delay, type=INTEGER macro=rss_schema
 			// property: name=dpd_enable, type=BOOLEAN macro=rss_schema
@@ -576,7 +576,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Dpd Enable",
+				Description: "Dpd enable.",
 			},
 			// key name holder for attribute: name=dpd_enable, type=BOOLEAN macro=rss_schema
 			// property: name=dpd_timeout, type=INTEGER macro=rss_schema
@@ -585,7 +585,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Dpd Timeout",
+				Description: "Dpd timeout. Value: between 2 and 300.",
 			},
 			// key name holder for attribute: name=dpd_timeout, type=INTEGER macro=rss_schema
 			// property: name=esp_group, type=REFERENCE macro=rss_schema
@@ -594,7 +594,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Esp group.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=force_encapsulation, type=BOOLEAN macro=rss_schema
 					"force_encapsulation": rsschema.BoolAttribute{
@@ -602,7 +602,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Force Encapsulation",
+						Description: "Force encapsulation.",
 					},
 					// key name holder for attribute: name=force_encapsulation, type=BOOLEAN macro=rss_schema
 					// property: name=lifesize, type=REFERENCE macro=rss_schema
@@ -611,7 +611,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Lifesize.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=units, type=STRING macro=rss_schema
 							"units": rsschema.StringAttribute{
@@ -619,7 +619,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Units",
+								Description: "Units.",
 							},
 							// key name holder for attribute: name=units, type=STRING macro=rss_schema
 							// property: name=value, type=INTEGER macro=rss_schema
@@ -628,7 +628,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Value",
+								Description: "Value.",
 							},
 							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
@@ -640,7 +640,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Lifetime",
+						Description: "Lifetime. Value: between 1 and 72.",
 					},
 					// key name holder for attribute: name=lifetime, type=INTEGER macro=rss_schema
 					// property: name=lifetime_units, type=STRING macro=rss_schema
@@ -649,7 +649,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Lifetime Units",
+						Description: "Lifetime units.",
 					},
 					// key name holder for attribute: name=lifetime_units, type=STRING macro=rss_schema
 					// property: name=mode, type=STRING macro=rss_schema
@@ -658,7 +658,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Mode",
+						Description: "Mode. Value: one of tunnel, transport.",
 					},
 					// key name holder for attribute: name=mode, type=STRING macro=rss_schema
 					// property: name=pqc_kem_config, type=REFERENCE macro=rss_schema
@@ -667,7 +667,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Pqc kem config.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
 							"block_vulnerable_cipher": rsschema.BoolAttribute{
@@ -675,7 +675,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Block Vulnerable Cipher",
+								Description: "Block vulnerable cipher.",
 							},
 							// key name holder for attribute: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
 							// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -684,7 +684,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Enabled",
+								Description: "Enabled.",
 							},
 							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 							// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -693,7 +693,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_1 Algorithms",
+								Description: "Round_1 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -703,7 +703,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_2 Algorithms",
+								Description: "Round_2 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -713,7 +713,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_3 Algorithms",
+								Description: "Round_3 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -723,7 +723,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_4 Algorithms",
+								Description: "Round_4 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -733,7 +733,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_5 Algorithms",
+								Description: "Round_5 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -743,7 +743,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_6 Algorithms",
+								Description: "Round_6 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -753,7 +753,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_7 Algorithms",
+								Description: "Round_7 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -766,7 +766,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Proposals",
+						Description: "Proposals. At most 1 items. At least 1 items.",
 						Validators:  ListMaxItems(1),
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
@@ -776,7 +776,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Dh Groups",
+									Description: "Dh groups. Value: one of modp768, ecp384bp, modp6144, modp3072, modp2048s224, none, ecp512bp, ecp521, ecp192, ecp256, ecp384, ecp224, modp1024s160, modp4096, modp1536, ecp224bp, modp1024, curve25519, modp8192, modp2048, ecp256bp, modp2048s256.",
 								},
 								// key name holder for attribute: name=dh_groups, type=STRING macro=rss_schema
 								// property: name=encryption, type=STRING macro=rss_schema
@@ -785,7 +785,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Encryption",
+									Description: "Encryption. Value: one of aes256gcm16, aes256, aes128ccm128, aes128ccm16, twofish192, aes128, aes192, aes192gcm64, camellia256, aes256gcm96, aes192gcm128, aes256ctr, camellia192, aes192gmac, aes128gcm96, blowfish256, aes192ccm128, 3des, aes256ccm64, aes192ccm96, aes192ccm64, aes128ccm96, twofish256, camellia128, blowfish128, serpent256, blowfish192, aes128ctr, twofish128, aes192gcm96, aes128ccm64, aes128gmac, serpent128, aes256gcm64, aes256ccm96, aes192ctr, aes128gcm128, serpent192, aes256gmac, aes128gcm64, aes256ccm128, none, aes128gcm16, aes256gcm128.",
 								},
 								// key name holder for attribute: name=encryption, type=STRING macro=rss_schema
 								// property: name=hash, type=STRING macro=rss_schema
@@ -794,7 +794,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Hash",
+									Description: "Hash. Value: one of sha256, md5, sha384, aesxcbc, aes128gmac, none, sha1, aes192gmac, sha512, sha256_96, aes256gmac.",
 								},
 								// key name holder for attribute: name=hash, type=STRING macro=rss_schema
 								// property: name=prf, type=STRING macro=rss_schema
@@ -803,7 +803,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Prf",
+									Description: "Prf. Value: one of md5, sha1, sha256, sha384, sha512, sha256_96, aesxcbc, aes128gmac, aes192gmac, aes256gmac, none.",
 								},
 								// key name holder for attribute: name=prf, type=STRING macro=rss_schema
 							},
@@ -816,7 +816,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Responder sase proposals.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=dh_group, type=ARRAY_PRIMITIVE macro=rss_schema
 							"dh_group": rsschema.ListAttribute{
@@ -824,7 +824,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Dh Group",
+								Description: "Dh group. Each item: one of none, modp768, modp1024, modp1536, modp2048, modp3072, modp4096, modp6144, modp8192, modp1024s160, modp2048s224, modp2048s256, ecp192, ecp224, ecp256, ecp384, ecp521, ecp224bp, ecp256bp, ecp384bp, ecp512bp, curve25519.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=dh_group, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -834,7 +834,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Encryption",
+								Description: "Encryption. Each item: one of none, aes128, aes192, aes256, aes128ctr, aes192ctr, aes256ctr, aes128ccm16, aes128ccm64, aes192ccm64, aes256ccm64, aes128ccm96, aes192ccm96, aes256ccm96, aes128ccm128, aes192ccm128, aes256ccm128, aes128gcm16, aes128gcm64, aes192gcm64, aes256gcm16, aes256gcm64, aes128gcm96, aes192gcm96, aes256gcm96, aes128gcm128, aes192gcm128, aes256gcm128, aes128gmac, aes192gmac, aes256gmac, 3des, blowfish128, blowfish192, blowfish256, camellia128, camellia192, camellia256, serpent128, serpent192, serpent256, twofish128, twofish192, twofish256.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=encryption, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -844,7 +844,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Hash",
+								Description: "Hash. Each item: one of md5, sha1, sha256, sha384, sha512, sha256_96, aesxcbc, aes128gmac, aes192gmac, aes256gmac, none.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=hash, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -860,7 +860,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ike_group, type=REFERENCE macro=rss_schema
@@ -869,7 +869,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Ike group.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=aggressive, type=BOOLEAN macro=rss_schema
 					"aggressive": rsschema.BoolAttribute{
@@ -877,7 +877,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Aggressive",
+						Description: "Aggressive.",
 					},
 					// key name holder for attribute: name=aggressive, type=BOOLEAN macro=rss_schema
 					// property: name=authentication_multiple, type=INTEGER macro=rss_schema
@@ -886,7 +886,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Authentication Multiple",
+						Description: "Authentication multiple.",
 					},
 					// key name holder for attribute: name=authentication_multiple, type=INTEGER macro=rss_schema
 					// property: name=key_exchange, type=STRING macro=rss_schema
@@ -895,7 +895,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Key Exchange",
+						Description: "Key exchange. Value: one of ikev1, ikev2.",
 					},
 					// key name holder for attribute: name=key_exchange, type=STRING macro=rss_schema
 					// property: name=lifetime, type=INTEGER macro=rss_schema
@@ -904,7 +904,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Lifetime",
+						Description: "Lifetime. Value: between 1 and 72.",
 					},
 					// key name holder for attribute: name=lifetime, type=INTEGER macro=rss_schema
 					// property: name=lifetime_units, type=STRING macro=rss_schema
@@ -913,7 +913,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Lifetime Units",
+						Description: "Lifetime units.",
 					},
 					// key name holder for attribute: name=lifetime_units, type=STRING macro=rss_schema
 					// property: name=port, type=INTEGER macro=rss_schema
@@ -922,7 +922,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Port",
+						Description: "Port. Value: between 1 and 65535.",
 					},
 					// key name holder for attribute: name=port, type=INTEGER macro=rss_schema
 					// property: name=pqc_kem_config, type=REFERENCE macro=rss_schema
@@ -931,7 +931,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Pqc kem config.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
 							"block_vulnerable_cipher": rsschema.BoolAttribute{
@@ -939,7 +939,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Block Vulnerable Cipher",
+								Description: "Block vulnerable cipher.",
 							},
 							// key name holder for attribute: name=block_vulnerable_cipher, type=BOOLEAN macro=rss_schema
 							// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -948,7 +948,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Enabled",
+								Description: "Enabled.",
 							},
 							// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 							// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -957,7 +957,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_1 Algorithms",
+								Description: "Round_1 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -967,7 +967,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_2 Algorithms",
+								Description: "Round_2 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -977,7 +977,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_3 Algorithms",
+								Description: "Round_3 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -987,7 +987,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_4 Algorithms",
+								Description: "Round_4 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -997,7 +997,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_5 Algorithms",
+								Description: "Round_5 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -1007,7 +1007,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_6 Algorithms",
+								Description: "Round_6 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -1017,7 +1017,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Round_7 Algorithms",
+								Description: "Round_7 Algorithms.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -1030,7 +1030,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Proposals",
+						Description: "Proposals. At most 1 items. At least 1 items.",
 						Validators:  ListMaxItems(1),
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
@@ -1040,7 +1040,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Dh Groups",
+									Description: "Dh groups. Value: one of modp768, ecp384bp, modp6144, modp3072, modp2048s224, none, ecp512bp, ecp521, ecp192, ecp256, ecp384, ecp224, modp1024s160, modp4096, modp1536, ecp224bp, modp1024, curve25519, modp8192, modp2048, ecp256bp, modp2048s256.",
 								},
 								// key name holder for attribute: name=dh_groups, type=STRING macro=rss_schema
 								// property: name=encryption, type=STRING macro=rss_schema
@@ -1049,7 +1049,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Encryption",
+									Description: "Encryption. Value: one of aes256gcm16, aes256, aes128ccm128, aes128ccm16, twofish192, aes128, aes192, aes192gcm64, camellia256, aes256gcm96, aes192gcm128, aes256ctr, camellia192, aes192gmac, aes128gcm96, blowfish256, aes192ccm128, 3des, aes256ccm64, aes192ccm96, aes192ccm64, aes128ccm96, twofish256, camellia128, blowfish128, serpent256, blowfish192, aes128ctr, twofish128, aes192gcm96, aes128ccm64, aes128gmac, serpent128, aes256gcm64, aes256ccm96, aes192ctr, aes128gcm128, serpent192, aes256gmac, aes128gcm64, aes256ccm128, none, aes128gcm16, aes256gcm128.",
 								},
 								// key name holder for attribute: name=encryption, type=STRING macro=rss_schema
 								// property: name=hash, type=STRING macro=rss_schema
@@ -1058,7 +1058,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Hash",
+									Description: "Hash. Value: one of sha256, md5, sha384, aesxcbc, aes128gmac, none, sha1, aes192gmac, sha512, sha256_96, aes256gmac.",
 								},
 								// key name holder for attribute: name=hash, type=STRING macro=rss_schema
 								// property: name=prf, type=STRING macro=rss_schema
@@ -1067,7 +1067,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Prf",
+									Description: "Prf. Value: one of md5, sha1, sha256, sha384, sha512, sha256_96, aesxcbc, aes128gmac, aes192gmac, aes256gmac, none.",
 								},
 								// key name holder for attribute: name=prf, type=STRING macro=rss_schema
 							},
@@ -1080,7 +1080,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Reauth",
+						Description: "Reauth.",
 					},
 					// key name holder for attribute: name=reauth, type=BOOLEAN macro=rss_schema
 				},
@@ -1092,7 +1092,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -1101,7 +1101,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -1112,7 +1112,7 @@ func (r *ipsecProfileResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Used For",
+				Description: "Used for. Value: one of fabric_vpn.",
 			},
 			// key name holder for attribute: name=used_for, type=STRING macro=rss_schema
 		},

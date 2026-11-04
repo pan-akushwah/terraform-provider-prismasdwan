@@ -97,7 +97,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -106,7 +106,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -115,7 +115,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -124,7 +124,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enabled",
+				Description: "Enabled.",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -133,7 +133,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=server_ip, type=STRING macro=rss_schema
@@ -142,7 +142,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Server Ip",
+				Description: "Server ip.",
 			},
 			// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 			// property: name=source_interface, type=STRING macro=rss_schema
@@ -151,7 +151,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Source Interface",
+				Description: "Source interface.",
 			},
 			// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -160,7 +160,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -171,7 +171,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "V2 config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=community, type=STRING macro=rss_schema
 					"community": rsschema.StringAttribute{
@@ -179,7 +179,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   true,
-						Description: "Community",
+						Description: "Community.",
 					},
 					// key name holder for attribute: name=community, type=STRING macro=rss_schema
 					"community_internal_key_name": rsschema.StringAttribute{
@@ -198,7 +198,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "V3 config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=user_access, type=REFERENCE macro=rss_schema
 					"user_access": rsschema.SingleNestedAttribute{
@@ -206,7 +206,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "User access.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=auth_phrase, type=STRING macro=rss_schema
 							"auth_phrase": rsschema.StringAttribute{
@@ -214,7 +214,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Auth Phrase",
+								Description: "Auth phrase.",
 							},
 							// key name holder for attribute: name=auth_phrase, type=STRING macro=rss_schema
 							"auth_phrase_internal_key_name": rsschema.StringAttribute{
@@ -230,7 +230,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Auth Type",
+								Description: "Auth type. Value: one of none, md5, sha.",
 							},
 							// key name holder for attribute: name=auth_type, type=STRING macro=rss_schema
 							// property: name=enc_phrase, type=STRING macro=rss_schema
@@ -239,7 +239,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   true,
-								Description: "Enc Phrase",
+								Description: "Enc phrase.",
 							},
 							// key name holder for attribute: name=enc_phrase, type=STRING macro=rss_schema
 							"enc_phrase_internal_key_name": rsschema.StringAttribute{
@@ -255,7 +255,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Enc Type",
+								Description: "Enc type. Value: one of none, aes, des.",
 							},
 							// key name holder for attribute: name=enc_type, type=STRING macro=rss_schema
 							// property: name=engine_id, type=STRING macro=rss_schema
@@ -264,7 +264,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Engine Id",
+								Description: "Engine id.",
 							},
 							// key name holder for attribute: name=engine_id, type=STRING macro=rss_schema
 							// property: name=security_level, type=STRING macro=rss_schema
@@ -273,7 +273,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Security Level",
+								Description: "Security level. Value: one of noauth, auth, private.",
 							},
 							// key name holder for attribute: name=security_level, type=STRING macro=rss_schema
 							// property: name=user_name, type=STRING macro=rss_schema
@@ -282,7 +282,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "User Name",
+								Description: "User name.",
 							},
 							// key name holder for attribute: name=user_name, type=STRING macro=rss_schema
 						},
@@ -297,7 +297,7 @@ func (r *elementSnmpTrapResource) Schema(_ context.Context, _ resource.SchemaReq
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Version",
+				Description: "Version. Value: one of v2, v3.",
 			},
 			// key name holder for attribute: name=version, type=STRING macro=rss_schema
 		},

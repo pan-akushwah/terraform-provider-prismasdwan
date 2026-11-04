@@ -101,7 +101,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -110,7 +110,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=circuit_utilization_metrics_thresholds, type=REFERENCE macro=rss_schema
@@ -119,7 +119,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Circuit utilization metrics thresholds.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
 					"percentage_circuit_utilization": rsschema.Int64Attribute{
@@ -127,7 +127,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Percentage Circuit Utilization",
+						Description: "Percentage circuit utilization. Value: between 1 and 100.",
 					},
 					// key name holder for attribute: name=percentage_circuit_utilization, type=INTEGER macro=rss_schema
 				},
@@ -139,7 +139,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=flow_metrics_thresholds, type=REFERENCE macro=rss_schema
@@ -148,7 +148,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Flow metrics thresholds.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
 					"percentage_flow_utilization": rsschema.Int64Attribute{
@@ -156,7 +156,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Percentage Flow Utilization",
+						Description: "Percentage flow utilization. Value: between 1 and 100.",
 					},
 					// key name holder for attribute: name=percentage_flow_utilization, type=INTEGER macro=rss_schema
 				},
@@ -168,7 +168,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Hard limit app metrics.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 					"max_init_failure_rate": rsschema.Int64Attribute{
@@ -176,7 +176,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Init Failure Rate",
+						Description: "Max init failure rate. Value: between 0 and 100.",
 					},
 					// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 					// property: name=max_rtt, type=INTEGER macro=rss_schema
@@ -185,7 +185,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Rtt",
+						Description: "Max rtt. Value: between 0 and 500.",
 					},
 					// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
 					// property: name=udp_trt, type=INTEGER macro=rss_schema
@@ -194,7 +194,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Udp Trt",
+						Description: "Udp trt.",
 					},
 					// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
 				},
@@ -206,7 +206,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=lqm_thresholds, type=REFERENCE macro=rss_schema
@@ -215,7 +215,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Lqm thresholds.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=max_jitter, type=INTEGER macro=rss_schema
 					"max_jitter": rsschema.Int64Attribute{
@@ -223,7 +223,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Jitter",
+						Description: "Max jitter.",
 					},
 					// key name holder for attribute: name=max_jitter, type=INTEGER macro=rss_schema
 					// property: name=max_latency, type=INTEGER macro=rss_schema
@@ -232,7 +232,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Latency",
+						Description: "Max latency.",
 					},
 					// key name holder for attribute: name=max_latency, type=INTEGER macro=rss_schema
 					// property: name=max_packet_loss, type=INTEGER macro=rss_schema
@@ -241,7 +241,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Packet Loss",
+						Description: "Max packet loss.",
 					},
 					// key name holder for attribute: name=max_packet_loss, type=INTEGER macro=rss_schema
 					// property: name=min_mos, type=INTEGER macro=rss_schema
@@ -250,7 +250,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Min Mos",
+						Description: "Min mos.",
 					},
 					// key name holder for attribute: name=min_mos, type=INTEGER macro=rss_schema
 				},
@@ -262,7 +262,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=soft_limit_app_metrics, type=REFERENCE macro=rss_schema
@@ -271,7 +271,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Soft limit app metrics.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 					"max_init_failure_rate": rsschema.Int64Attribute{
@@ -279,7 +279,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Init Failure Rate",
+						Description: "Max init failure rate. Value: between 0 and 100.",
 					},
 					// key name holder for attribute: name=max_init_failure_rate, type=INTEGER macro=rss_schema
 					// property: name=max_rtt, type=INTEGER macro=rss_schema
@@ -288,7 +288,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Max Rtt",
+						Description: "Max rtt. Value: between 0 and 500.",
 					},
 					// key name holder for attribute: name=max_rtt, type=INTEGER macro=rss_schema
 					// property: name=udp_trt, type=INTEGER macro=rss_schema
@@ -297,7 +297,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Udp Trt",
+						Description: "Udp trt.",
 					},
 					// key name holder for attribute: name=udp_trt, type=INTEGER macro=rss_schema
 				},
@@ -309,7 +309,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Synthetic probe thresholds.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=dns_txn_failure_pct, type=REFERENCE macro=rss_schema
 					"dns_txn_failure_pct": rsschema.SingleNestedAttribute{
@@ -317,7 +317,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Dns txn failure pct.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=probe_config_id, type=STRING macro=rss_schema
 							"probe_config_id": rsschema.StringAttribute{
@@ -325,7 +325,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Probe Config Id",
+								Description: "Probe config id.",
 							},
 							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 							// property: name=value, type=INTEGER macro=rss_schema
@@ -334,7 +334,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Value",
+								Description: "Value.",
 							},
 							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
@@ -346,7 +346,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Init failure pct.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=probe_config_id, type=STRING macro=rss_schema
 							"probe_config_id": rsschema.StringAttribute{
@@ -354,7 +354,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Probe Config Id",
+								Description: "Probe config id.",
 							},
 							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 							// property: name=value, type=INTEGER macro=rss_schema
@@ -363,7 +363,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Value",
+								Description: "Value.",
 							},
 							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
@@ -375,7 +375,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Jitter.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=probe_config_id, type=STRING macro=rss_schema
 							"probe_config_id": rsschema.StringAttribute{
@@ -383,7 +383,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Probe Config Id",
+								Description: "Probe config id.",
 							},
 							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 							// property: name=value, type=INTEGER macro=rss_schema
@@ -392,7 +392,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Value",
+								Description: "Value.",
 							},
 							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
@@ -404,7 +404,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Latency.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=probe_config_id, type=STRING macro=rss_schema
 							"probe_config_id": rsschema.StringAttribute{
@@ -412,7 +412,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Probe Config Id",
+								Description: "Probe config id.",
 							},
 							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 							// property: name=value, type=INTEGER macro=rss_schema
@@ -421,7 +421,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Value",
+								Description: "Value.",
 							},
 							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
@@ -433,7 +433,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Packet loss.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=probe_config_id, type=STRING macro=rss_schema
 							"probe_config_id": rsschema.StringAttribute{
@@ -441,7 +441,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Probe Config Id",
+								Description: "Probe config id.",
 							},
 							// key name holder for attribute: name=probe_config_id, type=STRING macro=rss_schema
 							// property: name=value, type=INTEGER macro=rss_schema
@@ -450,7 +450,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Value",
+								Description: "Value.",
 							},
 							// key name holder for attribute: name=value, type=INTEGER macro=rss_schema
 						},
@@ -465,7 +465,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "System health metrics thresholds.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=cpu_utilization, type=INTEGER macro=rss_schema
 					"cpu_utilization": rsschema.Int64Attribute{
@@ -473,7 +473,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Cpu Utilization",
+						Description: "Cpu utilization.",
 					},
 					// key name holder for attribute: name=cpu_utilization, type=INTEGER macro=rss_schema
 					// property: name=disk_utilization, type=INTEGER macro=rss_schema
@@ -482,7 +482,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Disk Utilization",
+						Description: "Disk utilization.",
 					},
 					// key name holder for attribute: name=disk_utilization, type=INTEGER macro=rss_schema
 					// property: name=memory_utilization, type=INTEGER macro=rss_schema
@@ -491,7 +491,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Memory Utilization",
+						Description: "Memory utilization.",
 					},
 					// key name holder for attribute: name=memory_utilization, type=INTEGER macro=rss_schema
 				},
@@ -503,7 +503,7 @@ func (r *performanceProfileResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

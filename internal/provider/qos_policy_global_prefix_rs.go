@@ -94,7 +94,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -112,7 +112,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -121,7 +121,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -130,7 +130,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ipv4 Prefixes",
+				Description: "Ipv4 prefixes.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -140,7 +140,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ipv6 Prefixes",
+				Description: "Ipv6 prefixes.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=ipv6_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -150,7 +150,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -159,7 +159,7 @@ func (r *qosPolicyGlobalPrefixResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

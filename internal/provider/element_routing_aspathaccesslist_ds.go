@@ -111,54 +111,54 @@ func (d *elementRoutingAspathaccesslistDataSource) Schema(_ context.Context, _ d
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=as_path_regex_list, type=ARRAY_REFERENCE macro=rss_schema
 						"as_path_regex_list": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "As Path Regex List",
+							Description: "As path regex list.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=as_path_regex, type=STRING macro=rss_schema
 									"as_path_regex": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "As Path Regex",
+										Description: "As path regex.",
 									},
 									// key name holder for attribute: name=as_path_regex, type=STRING macro=rss_schema
 									// property: name=order, type=INTEGER macro=rss_schema
 									"order": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Order",
+										Description: "Order. Value: between 1 and 65535.",
 									},
 									// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
 									// property: name=permit, type=BOOLEAN macro=rss_schema
 									"permit": dsschema.BoolAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Permit",
+										Description: "Permit.",
 									},
 									// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
 								},
@@ -169,45 +169,45 @@ func (d *elementRoutingAspathaccesslistDataSource) Schema(_ context.Context, _ d
 						"auto_generated": dsschema.BoolAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Auto Generated",
+							Description: "Auto generated. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 1024 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

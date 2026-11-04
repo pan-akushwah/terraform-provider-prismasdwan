@@ -94,7 +94,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -112,7 +112,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=flow_fields, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -121,7 +121,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Flow Fields",
+				Description: "Flow fields. Each item: one of INTERFACES, TIME_STAMPS, DST_IPV4_ADDRESS, DST_PORT, SRC_IPV4_ADDRESS, SRC_PORT, PROTOCOL, DSCP_MAP, DSCP_LAST, QOS_QUEUE, WAN_PATH, APP_DEF_ID, RTP_TRANSPORT_TYPE, TRANSPORT_TCP_WINDOWSIZE, CONNECTION_UNIFLOW_BYTES, CONNECTION_UNIFLOW_PACKETS, CONNECTION_BIFLOW_BYTES, CONNECTION_BIFLOW_PACKETS, CONNECTION_RTT, CONNECTION_NTT, CONNECTION_SRT, APPLICATION_HOST, CONNECTION_INIT, CONNECTION_XACT, CONNECTION_UDPTRT, MEDIA_CODEC, MEDIA_JITTER, MEDIA_LOSS, MEDIA_MOS, TROUBLESHOOT_TCP, TROUBLESHOOT_DECISION_MAP, VRF_NAME.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=flow_fields, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -131,7 +131,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Generate Biflow",
+				Description: "Generate biflow.",
 			},
 			// key name holder for attribute: name=generate_biflow, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -149,7 +149,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=option_export_timeout, type=INTEGER macro=rss_schema
@@ -158,7 +158,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Option Export Timeout",
+				Description: "Option export timeout.",
 			},
 			// key name holder for attribute: name=option_export_timeout, type=INTEGER macro=rss_schema
 			// property: name=options, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -167,7 +167,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Options",
+				Description: "Options. Each item: one of APP_DEF_ID_TABLE, LINK_QUALITY_METRICS, WAN_PATH_ID_TABLE, TYPE_INFO_FOR_IPFIX_IE, DEVICE_IDENTIFICATION.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=options, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -177,7 +177,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -187,7 +187,7 @@ func (r *ipfixTemplateResource) Schema(_ context.Context, _ resource.SchemaReque
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Template Export Timeout",
+				Description: "Template export timeout.",
 			},
 			// key name holder for attribute: name=template_export_timeout, type=INTEGER macro=rss_schema
 		},

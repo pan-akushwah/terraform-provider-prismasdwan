@@ -111,100 +111,100 @@ func (d *eventCorrelationPolicySetDataSource) Schema(_ context.Context, _ dataso
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=active_policyset, type=BOOLEAN macro=rss_schema
 						"active_policyset": dsschema.BoolAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Active Policyset",
+							Description: "Active policyset. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=active_policyset, type=BOOLEAN macro=rss_schema
 						// property: name=clone_from, type=STRING macro=rss_schema
 						"clone_from": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Clone From",
+							Description: "Clone from. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`.",
 						},
 						// key name holder for attribute: name=clone_from, type=STRING macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 256 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
 						"policyrule_order": dsschema.ListAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Policyrule Order",
+							Description: "Policyrule order. At most 1024 items. Filled in by the server when it is not set.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=policyrule_order, type=ARRAY_PRIMITIVE macro=rss_schema
 						// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=rss_schema
 						"severity_priority_mapping": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Severity Priority Mapping",
+							Description: "Severity priority mapping. At least 1 items.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=priority, type=STRING macro=rss_schema
 									"priority": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Priority",
+										Description: "Priority. Value: one of p1, p2, p3, p4, p5, none.",
 									},
 									// key name holder for attribute: name=priority, type=STRING macro=rss_schema
 									// property: name=severity, type=STRING macro=rss_schema
 									"severity": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Severity",
+										Description: "Severity. Value: one of major, minor, critical.",
 									},
 									// key name holder for attribute: name=severity, type=STRING macro=rss_schema
 								},
@@ -214,10 +214,10 @@ func (d *eventCorrelationPolicySetDataSource) Schema(_ context.Context, _ dataso
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

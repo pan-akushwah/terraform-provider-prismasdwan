@@ -102,7 +102,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -111,7 +111,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=cache_config, type=REFERENCE macro=rss_schema
@@ -120,7 +120,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Cache config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=cache_size, type=INTEGER macro=rss_schema
 					"cache_size": rsschema.Int64Attribute{
@@ -128,7 +128,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Cache Size",
+						Description: "Cache size. Value: at least 0.",
 					},
 					// key name holder for attribute: name=cache_size, type=INTEGER macro=rss_schema
 				},
@@ -140,7 +140,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 1024 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=dns_queries_metadata, type=REFERENCE macro=rss_schema
@@ -149,7 +149,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Dns queries metadata.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=add_customer_premises_equipment, type=REFERENCE macro=rss_schema
 					"add_customer_premises_equipment": rsschema.SingleNestedAttribute{
@@ -157,7 +157,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Add customer premises equipment.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=identifier_text, type=STRING macro=rss_schema
 							"identifier_text": rsschema.StringAttribute{
@@ -165,7 +165,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Identifier Text",
+								Description: "Identifier text.",
 							},
 							// key name holder for attribute: name=identifier_text, type=STRING macro=rss_schema
 							// property: name=type, type=STRING macro=rss_schema
@@ -174,7 +174,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Type",
+								Description: "Type. Value: one of text, element_id, element_name.",
 							},
 							// key name holder for attribute: name=type, type=STRING macro=rss_schema
 						},
@@ -186,7 +186,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Add Subnets",
+						Description: "Add subnets. At most 2 items.",
 						Validators:  ListMaxItems(2),
 						NestedObject: rsschema.NestedAttributeObject{
 							Attributes: map[string]rsschema.Attribute{
@@ -196,7 +196,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Ipv4 Address",
+									Description: "Ipv4 address.",
 								},
 								// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
 								// property: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
@@ -205,7 +205,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Ipv4 Prefix Length",
+									Description: "Ipv4 prefix length. Value: between 0 and 32.",
 								},
 								// key name holder for attribute: name=ipv4_prefix_length, type=INTEGER macro=rss_schema
 								// property: name=ipv6_address, type=STRING macro=rss_schema
@@ -214,7 +214,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Ipv6 Address",
+									Description: "Ipv6 address.",
 								},
 								// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
 								// property: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
@@ -223,7 +223,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 									Computed:    false,
 									Optional:    true,
 									Sensitive:   false,
-									Description: "Ipv6 Prefix Length",
+									Description: "Ipv6 prefix length. Value: between 0 and 128.",
 								},
 								// key name holder for attribute: name=ipv6_prefix_length, type=INTEGER macro=rss_schema
 							},
@@ -239,7 +239,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Dnsservice Profile Id",
+				Description: "Dnsservice profile id.",
 			},
 			// key name holder for attribute: name=dnsservice_profile_id, type=STRING macro=rss_schema
 			// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=rss_schema
@@ -248,7 +248,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Dnsservicerole Bindings",
+				Description: "Dnsservicerole bindings.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=dnsservicerole_id, type=STRING macro=rss_schema
@@ -257,7 +257,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Dnsservicerole Id",
+							Description: "Dnsservicerole id.",
 						},
 						// key name holder for attribute: name=dnsservicerole_id, type=STRING macro=rss_schema
 						// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
@@ -266,7 +266,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Interfaces",
+							Description: "Interfaces. At least 1 items.",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=interface_id, type=STRING macro=rss_schema
@@ -275,7 +275,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Interface Id",
+										Description: "Interface id.",
 									},
 									// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 									// property: name=interface_ip, type=STRING macro=rss_schema
@@ -284,7 +284,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Interface Ip",
+										Description: "Interface ip.",
 									},
 									// key name holder for attribute: name=interface_ip, type=STRING macro=rss_schema
 								},
@@ -301,7 +301,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Domains To Addresses",
+				Description: "Domains to addresses.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -310,7 +310,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Domain Names",
+							Description: "Domain names.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -320,7 +320,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ipv4 Address",
+							Description: "Ipv4 address.",
 						},
 						// key name holder for attribute: name=ipv4_address, type=STRING macro=rss_schema
 						// property: name=ipv6_address, type=STRING macro=rss_schema
@@ -329,7 +329,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ipv6 Address",
+							Description: "Ipv6 address.",
 						},
 						// key name holder for attribute: name=ipv6_address, type=STRING macro=rss_schema
 					},
@@ -342,7 +342,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Domains To Interfaces",
+				Description: "Domains to interfaces.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -351,7 +351,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Domain Names",
+							Description: "Domain names. At least 1 items.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=domain_names, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -361,7 +361,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Interface Id",
+							Description: "Interface id. Value: at least 1 characters.",
 						},
 						// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 					},
@@ -374,7 +374,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Element Id",
+				Description: "Element id. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -383,7 +383,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enabled",
+				Description: "Enabled.",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -392,7 +392,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
@@ -401,7 +401,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Max Concurrent Dns Queries",
+				Description: "Max concurrent dns queries. Value: at least 1.",
 			},
 			// key name holder for attribute: name=max_concurrent_dns_queries, type=INTEGER macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -410,7 +410,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -419,7 +419,7 @@ func (r *elementDnsServiceResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

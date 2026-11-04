@@ -113,143 +113,143 @@ func (d *elementRoutingRoutemapDataSource) Schema(_ context.Context, _ datasourc
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=auto_generated, type=BOOLEAN macro=rss_schema
 						"auto_generated": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Auto Generated",
+							Description: "Auto generated.",
 						},
 						// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 1024 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=route_map_entries, type=ARRAY_REFERENCE macro=rss_schema
 						"route_map_entries": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Route Map Entries",
+							Description: "Route map entries.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=continue_entry, type=STRING macro=rss_schema
 									"continue_entry": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Continue Entry",
+										Description: "Continue entry. Value: matching `^(0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$`.",
 									},
 									// key name holder for attribute: name=continue_entry, type=STRING macro=rss_schema
 									// property: name=match, type=REFERENCE macro=rss_schema
 									"match": dsschema.SingleNestedAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "",
+										Description: "Match.",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=as_path_id, type=STRING macro=rss_schema
 											"as_path_id": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "As Path Id",
+												Description: "As path id. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=as_path_id, type=STRING macro=rss_schema
 											// property: name=community_list_id, type=STRING macro=rss_schema
 											"community_list_id": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Community List Id",
+												Description: "Community list id. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=community_list_id, type=STRING macro=rss_schema
 											// property: name=ip_next_hop_id, type=STRING macro=rss_schema
 											"ip_next_hop_id": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Ip Next Hop Id",
+												Description: "Ip next hop id. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=ip_next_hop_id, type=STRING macro=rss_schema
 											// property: name=ip_prefix_list_id, type=STRING macro=rss_schema
 											"ip_prefix_list_id": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Ip Prefix List Id",
+												Description: "Ip prefix list id. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=ip_prefix_list_id, type=STRING macro=rss_schema
 											// property: name=metric, type=INTEGER macro=rss_schema
 											"metric": dsschema.Int64Attribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Metric",
+												Description: "Metric. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=metric, type=INTEGER macro=rss_schema
 											// property: name=service_binding_id, type=STRING macro=rss_schema
 											"service_binding_id": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Service Binding Id",
+												Description: "Service binding id. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=service_binding_id, type=STRING macro=rss_schema
 											// property: name=tag, type=INTEGER macro=rss_schema
 											"tag": dsschema.Int64Attribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Tag",
+												Description: "Tag. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=tag, type=INTEGER macro=rss_schema
 										},
@@ -258,117 +258,117 @@ func (d *elementRoutingRoutemapDataSource) Schema(_ context.Context, _ datasourc
 									// property: name=order, type=INTEGER macro=rss_schema
 									"order": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Order",
+										Description: "Order. Value: between 1 and 65535.",
 									},
 									// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
 									// property: name=permit, type=BOOLEAN macro=rss_schema
 									"permit": dsschema.BoolAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Permit",
+										Description: "Permit.",
 									},
 									// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
 									// property: name=set, type=REFERENCE macro=rss_schema
 									"set": dsschema.SingleNestedAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "",
+										Description: "Set.",
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=additive_community, type=BOOLEAN macro=rss_schema
 											"additive_community": dsschema.BoolAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Additive Community",
+												Description: "Additive community. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=additive_community, type=BOOLEAN macro=rss_schema
 											// property: name=as_path_prepend, type=STRING macro=rss_schema
 											"as_path_prepend": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "As Path Prepend",
+												Description: "As path prepend. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=as_path_prepend, type=STRING macro=rss_schema
 											// property: name=community, type=STRING macro=rss_schema
 											"community": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Community",
+												Description: "Community. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=community, type=STRING macro=rss_schema
 											// property: name=ip_next_hop, type=STRING macro=rss_schema
 											"ip_next_hop": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Ip Next Hop",
+												Description: "Ip next hop. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=ip_next_hop, type=STRING macro=rss_schema
 											// property: name=ip_v6_next_hop, type=STRING macro=rss_schema
 											"ip_v6_next_hop": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Ip V6 Next Hop",
+												Description: "Ip v6 next hop. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=ip_v6_next_hop, type=STRING macro=rss_schema
 											// property: name=local_preference, type=INTEGER macro=rss_schema
 											"local_preference": dsschema.Int64Attribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Local Preference",
+												Description: "Local preference. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=local_preference, type=INTEGER macro=rss_schema
 											// property: name=metric, type=INTEGER macro=rss_schema
 											"metric": dsschema.Int64Attribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Metric",
+												Description: "Metric. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=metric, type=INTEGER macro=rss_schema
 											// property: name=tag, type=INTEGER macro=rss_schema
 											"tag": dsschema.Int64Attribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Tag",
+												Description: "Tag. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=tag, type=INTEGER macro=rss_schema
 											// property: name=type, type=STRING macro=rss_schema
 											"type": dsschema.StringAttribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Type",
+												Description: "Type. Value: one of type-1, type-2. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=type, type=STRING macro=rss_schema
 											// property: name=weight, type=INTEGER macro=rss_schema
 											"weight": dsschema.Int64Attribute{
 												Required:    false,
 												Computed:    true,
-												Optional:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Weight",
+												Description: "Weight. Filled in by the server when it is not set.",
 											},
 											// key name holder for attribute: name=weight, type=INTEGER macro=rss_schema
 										},
@@ -381,20 +381,20 @@ func (d *elementRoutingRoutemapDataSource) Schema(_ context.Context, _ datasourc
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=used_for, type=STRING macro=rss_schema
 						"used_for": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Used For",
+							Description: "Used for. Value: one of bgp, ospf.",
 						},
 						// key name holder for attribute: name=used_for, type=STRING macro=rss_schema
 					},

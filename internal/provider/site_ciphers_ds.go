@@ -110,72 +110,72 @@ func (d *siteCiphersDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=controller_connection_cipher, type=STRING macro=rss_schema
 						"controller_connection_cipher": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Controller Connection Cipher",
+							Description: "Controller connection cipher. Value: one of RSA-AES256-GCM-SHA384, RSA-AES128-GCM-SHA256.",
 						},
 						// key name holder for attribute: name=controller_connection_cipher, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=site_id, type=STRING macro=rss_schema
 						"site_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Site Id",
+							Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`.",
 						},
 						// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 						// property: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
 						"tls13_controller_connection_cipher": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tls13 Controller Connection Cipher",
+							Description: "Tls13 controller connection cipher. Value: one of TLS_AES_256_GCM_SHA384, TLS_CHACHA20_POLY1305_SHA256, TLS_AES_128_GCM_SHA256. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
 						// property: name=tls13_enabled, type=BOOLEAN macro=rss_schema
 						"tls13_enabled": dsschema.BoolAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tls13 Enabled",
+							Description: "Tls13 enabled. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=tls13_enabled, type=BOOLEAN macro=rss_schema
 						// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema
 						"vpn_ciphers": dsschema.ListAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Vpn Ciphers",
+							Description: "Vpn ciphers. At most 4 items. Each item: one of AES_256_GCM, AES_256_CBC, AES_128_GCM, AES_128_CBC.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema

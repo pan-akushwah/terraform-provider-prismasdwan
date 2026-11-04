@@ -94,7 +94,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -112,7 +112,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -121,7 +121,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Interface Ids",
+				Description: "Interface ids. Each item: matching `[0-9]{1,30}`.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=interface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -131,7 +131,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Lannetwork Ids",
+				Description: "Lannetwork ids. Each item: matching `[0-9]{1,30}`.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=lannetwork_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -141,7 +141,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Pa Network Id",
+				Description: "Pa network id.",
 			},
 			// key name holder for attribute: name=pa_network_id, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
@@ -150,7 +150,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Id",
+				Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`.",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -159,7 +159,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Waninterface Ids",
+				Description: "Waninterface ids. Each item: matching `[0-9]{1,30}`.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=waninterface_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -169,7 +169,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Wanoverlay Ids",
+				Description: "Wanoverlay ids. Each item: matching `[0-9]{1,30}`.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=wanoverlay_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -179,7 +179,7 @@ func (r *elementSecurityZoneResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Zone Id",
+				Description: "Zone id. Value: at most 30 characters, matching `^-?[0-9]{1,30}$`.",
 			},
 			// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 		},

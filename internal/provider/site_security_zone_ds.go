@@ -112,45 +112,45 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=element_interfaces, type=ARRAY_REFERENCE macro=rss_schema
 						"element_interfaces": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Element Interfaces",
+							Description: "Element interfaces.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=element_id, type=STRING macro=rss_schema
 									"element_id": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Element Id",
+										Description: "Element id.",
 									},
 									// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 									// property: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
 									"interfaces": dsschema.ListAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Interfaces",
+										Description: "Interfaces. At least 1 items.",
 										ElementType: types.StringType,
 									},
 									// key name holder for attribute: name=interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -162,36 +162,36 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=networks, type=ARRAY_REFERENCE macro=rss_schema
 						"networks": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Networks",
+							Description: "Networks.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=network_id, type=STRING macro=rss_schema
 									"network_id": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Network Id",
+										Description: "Network id.",
 									},
 									// key name holder for attribute: name=network_id, type=STRING macro=rss_schema
 									// property: name=network_type, type=STRING macro=rss_schema
 									"network_type": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Network Type",
+										Description: "Network type. Value: one of wan_network, lan_network, wan_overlay, pa_network.",
 									},
 									// key name holder for attribute: name=network_type, type=STRING macro=rss_schema
 								},
@@ -201,10 +201,10 @@ func (d *siteSecurityZoneDataSource) Schema(_ context.Context, _ datasource.Sche
 						// property: name=zone_id, type=STRING macro=rss_schema
 						"zone_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Zone Id",
+							Description: "Zone id.",
 						},
 						// key name holder for attribute: name=zone_id, type=STRING macro=rss_schema
 					},

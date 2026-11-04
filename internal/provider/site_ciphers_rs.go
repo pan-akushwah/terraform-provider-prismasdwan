@@ -94,7 +94,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=controller_connection_cipher, type=STRING macro=rss_schema
@@ -112,7 +112,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Controller Connection Cipher",
+				Description: "Controller connection cipher. Value: one of RSA-AES256-GCM-SHA384, RSA-AES128-GCM-SHA256.",
 			},
 			// key name holder for attribute: name=controller_connection_cipher, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -121,7 +121,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
@@ -130,7 +130,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Id",
+				Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`.",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
@@ -139,7 +139,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tls13 Controller Connection Cipher",
+				Description: "Tls13 controller connection cipher. Value: one of TLS_AES_256_GCM_SHA384, TLS_CHACHA20_POLY1305_SHA256, TLS_AES_128_GCM_SHA256. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=tls13_controller_connection_cipher, type=STRING macro=rss_schema
 			// property: name=tls13_enabled, type=BOOLEAN macro=rss_schema
@@ -148,7 +148,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tls13 Enabled",
+				Description: "Tls13 enabled. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=tls13_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=vpn_ciphers, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -157,7 +157,7 @@ func (r *siteCiphersResource) Schema(_ context.Context, _ resource.SchemaRequest
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vpn Ciphers",
+				Description: "Vpn ciphers. At most 4 items. Each item: one of AES_256_GCM, AES_256_CBC, AES_128_GCM, AES_128_CBC.",
 				Validators:  ListMaxItems(4),
 				ElementType: types.StringType,
 			},

@@ -115,7 +115,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -124,7 +124,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -133,7 +133,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Allowed roles. Filled in by the server when it is not set.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=allowed_roles, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -143,7 +143,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Cluster Id",
+				Description: "Cluster id.",
 			},
 			// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
 			// property: name=cluster_insertion_mode, type=STRING macro=rss_schema
@@ -152,7 +152,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Cluster insertion mode.",
 			},
 			// key name holder for attribute: name=cluster_insertion_mode, type=STRING macro=rss_schema
 			// property: name=cluster_member_id, type=STRING macro=rss_schema
@@ -161,7 +161,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Cluster member id.",
 			},
 			// key name holder for attribute: name=cluster_member_id, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -170,7 +170,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=device_mode, type=STRING macro=rss_schema
@@ -179,7 +179,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Device mode. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=device_mode, type=STRING macro=rss_schema
 			// property: name=device_profile_id, type=STRING macro=rss_schema
@@ -188,7 +188,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Device Profile Id",
+				Description: "Device profile id.",
 			},
 			// key name holder for attribute: name=device_profile_id, type=STRING macro=rss_schema
 			// property: name=element_id, type=STRING macro=rss_schema
@@ -197,7 +197,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Element id. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=element_id, type=STRING macro=rss_schema
 			// property: name=hub_cluster_config, type=REFERENCE macro=rss_schema
@@ -206,7 +206,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Hub cluster config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=intra_cluster_tunnel, type=REFERENCE macro=rss_schema
 					"intra_cluster_tunnel": rsschema.SingleNestedAttribute{
@@ -214,7 +214,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Intra cluster tunnel.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=disabled, type=BOOLEAN macro=rss_schema
 							"disabled": rsschema.BoolAttribute{
@@ -222,7 +222,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Disabled",
+								Description: "Disabled.",
 							},
 							// key name holder for attribute: name=disabled, type=BOOLEAN macro=rss_schema
 							// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -231,7 +231,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Source Interfaces",
+								Description: "Source interfaces.",
 								ElementType: types.StringType,
 							},
 							// key name holder for attribute: name=source_interfaces, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -244,7 +244,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Track.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=hosts, type=ARRAY_REFERENCE macro=rss_schema
 							"hosts": rsschema.ListNestedAttribute{
@@ -252,7 +252,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Hosts",
+								Description: "Hosts.",
 								NestedObject: rsschema.NestedAttributeObject{
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=address_v4, type=STRING macro=rss_schema
@@ -261,7 +261,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Address V4",
+											Description: "Address v4.",
 										},
 										// key name holder for attribute: name=address_v4, type=STRING macro=rss_schema
 										// property: name=address_v6, type=STRING macro=rss_schema
@@ -270,7 +270,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Address V6",
+											Description: "Address v6.",
 										},
 										// key name holder for attribute: name=address_v6, type=STRING macro=rss_schema
 										// property: name=vrf_context_id, type=STRING macro=rss_schema
@@ -279,7 +279,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Vrf Context Id",
+											Description: "Vrf context id.",
 										},
 										// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 									},
@@ -298,7 +298,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Hw id. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=hw_id, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -307,7 +307,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
@@ -316,7 +316,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "L3 Direct Private Wan Forwarding",
+				Description: "L3 direct private wan forwarding. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=l3_direct_private_wan_forwarding, type=BOOLEAN macro=rss_schema
 			// property: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
@@ -325,7 +325,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "L3 Lan Forwarding",
+				Description: "L3 lan forwarding. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=l3_lan_forwarding, type=BOOLEAN macro=rss_schema
 			// property: name=led_config, type=REFERENCE macro=rss_schema
@@ -334,7 +334,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Led config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=service_led_on, type=BOOLEAN macro=rss_schema
 					"service_led_on": rsschema.BoolAttribute{
@@ -342,7 +342,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Service Led On",
+						Description: "Service led on.",
 					},
 					// key name holder for attribute: name=service_led_on, type=BOOLEAN macro=rss_schema
 				},
@@ -354,7 +354,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Main Power Usage Threshold",
+				Description: "Main power usage threshold. Value: between 50 and 100. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=main_power_usage_threshold, type=INTEGER macro=rss_schema
 			// property: name=model_name, type=STRING macro=rss_schema
@@ -363,7 +363,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Model name. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=model_name, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -372,7 +372,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=nat_policysetstack_id, type=STRING macro=rss_schema
@@ -381,7 +381,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Nat Policysetstack Id",
+				Description: "Nat policysetstack id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`.",
 			},
 			// key name holder for attribute: name=nat_policysetstack_id, type=STRING macro=rss_schema
 			// property: name=network_policysetstack_id, type=STRING macro=rss_schema
@@ -390,7 +390,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Network Policysetstack Id",
+				Description: "Network policysetstack id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`.",
 			},
 			// key name holder for attribute: name=network_policysetstack_id, type=STRING macro=rss_schema
 			// property: name=priority_policysetstack_id, type=STRING macro=rss_schema
@@ -399,7 +399,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Priority Policysetstack Id",
+				Description: "Priority policysetstack id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`.",
 			},
 			// key name holder for attribute: name=priority_policysetstack_id, type=STRING macro=rss_schema
 			// property: name=role, type=STRING macro=rss_schema
@@ -408,7 +408,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Role. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=role, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
@@ -417,7 +417,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Id",
+				Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 			// property: name=software_version, type=STRING macro=rss_schema
@@ -426,7 +426,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Software version. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=software_version, type=STRING macro=rss_schema
 			// property: name=spoke_ha_config, type=REFERENCE macro=rss_schema
@@ -435,7 +435,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Spoke ha config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=cluster_id, type=STRING macro=rss_schema
 					"cluster_id": rsschema.StringAttribute{
@@ -443,7 +443,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Cluster Id",
+						Description: "Cluster id.",
 					},
 					// key name holder for attribute: name=cluster_id, type=STRING macro=rss_schema
 					// property: name=enable, type=BOOLEAN macro=rss_schema
@@ -452,7 +452,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Enable",
+						Description: "Enable.",
 					},
 					// key name holder for attribute: name=enable, type=BOOLEAN macro=rss_schema
 					// property: name=priority, type=INTEGER macro=rss_schema
@@ -461,7 +461,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Priority",
+						Description: "Priority. Value: between 1 and 254.",
 					},
 					// key name holder for attribute: name=priority, type=INTEGER macro=rss_schema
 					// property: name=source_interface, type=STRING macro=rss_schema
@@ -470,7 +470,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Source Interface",
+						Description: "Source interface.",
 					},
 					// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 					// property: name=track, type=REFERENCE macro=rss_schema
@@ -479,7 +479,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "",
+						Description: "Track.",
 						Attributes: map[string]rsschema.Attribute{
 							// property: name=interfaces, type=ARRAY_REFERENCE macro=rss_schema
 							"interfaces": rsschema.ListNestedAttribute{
@@ -487,7 +487,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Interfaces",
+								Description: "Interfaces.",
 								NestedObject: rsschema.NestedAttributeObject{
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=interface_id, type=STRING macro=rss_schema
@@ -496,7 +496,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Interface Id",
+											Description: "Interface id.",
 										},
 										// key name holder for attribute: name=interface_id, type=STRING macro=rss_schema
 										// property: name=reduce_priority, type=INTEGER macro=rss_schema
@@ -505,7 +505,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Reduce Priority",
+											Description: "Reduce priority. Value: between 1 and 254.",
 										},
 										// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
 									},
@@ -518,7 +518,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 								Computed:    false,
 								Optional:    true,
 								Sensitive:   false,
-								Description: "Waninterfaces",
+								Description: "Waninterfaces.",
 								NestedObject: rsschema.NestedAttributeObject{
 									Attributes: map[string]rsschema.Attribute{
 										// property: name=reduce_priority, type=INTEGER macro=rss_schema
@@ -527,7 +527,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Reduce Priority",
+											Description: "Reduce priority. Value: between 1 and 254.",
 										},
 										// key name holder for attribute: name=reduce_priority, type=INTEGER macro=rss_schema
 										// property: name=wan_interface_id, type=STRING macro=rss_schema
@@ -536,7 +536,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 											Computed:    false,
 											Optional:    true,
 											Sensitive:   false,
-											Description: "Wan Interface Id",
+											Description: "Wan interface id.",
 										},
 										// key name holder for attribute: name=wan_interface_id, type=STRING macro=rss_schema
 									},
@@ -555,7 +555,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "State. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=state, type=STRING macro=rss_schema
 			// property: name=sw_obj, type=REFERENCE macro=rss_schema
@@ -564,7 +564,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Sw obj.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=location, type=STRING macro=rss_schema
 					"location": rsschema.StringAttribute{
@@ -572,7 +572,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Location",
+						Description: "Location.",
 					},
 					// key name holder for attribute: name=location, type=STRING macro=rss_schema
 					// property: name=version, type=STRING macro=rss_schema
@@ -581,7 +581,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Version",
+						Description: "Version.",
 					},
 					// key name holder for attribute: name=version, type=STRING macro=rss_schema
 				},
@@ -593,7 +593,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Switch config.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=default_vlan_id, type=INTEGER macro=rss_schema
 					"default_vlan_id": rsschema.Int64Attribute{
@@ -601,7 +601,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Default Vlan Id",
+						Description: "Default vlan id. Value: between 1 and 4000.",
 					},
 					// key name holder for attribute: name=default_vlan_id, type=INTEGER macro=rss_schema
 					// property: name=mstp_enabled, type=BOOLEAN macro=rss_schema
@@ -610,7 +610,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Mstp Enabled",
+						Description: "Mstp enabled.",
 					},
 					// key name holder for attribute: name=mstp_enabled, type=BOOLEAN macro=rss_schema
 					// property: name=stp_aging_timer, type=INTEGER macro=rss_schema
@@ -619,7 +619,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Stp Aging Timer",
+						Description: "Stp aging timer. Value: between 10 and 1000000.",
 					},
 					// key name holder for attribute: name=stp_aging_timer, type=INTEGER macro=rss_schema
 					// property: name=stp_forward_delay, type=INTEGER macro=rss_schema
@@ -628,7 +628,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Stp Forward Delay",
+						Description: "Stp forward delay. Value: between 4 and 30.",
 					},
 					// key name holder for attribute: name=stp_forward_delay, type=INTEGER macro=rss_schema
 					// property: name=stp_hello_time, type=INTEGER macro=rss_schema
@@ -637,7 +637,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Stp Hello Time",
+						Description: "Stp hello time. Value: between 1 and 10.",
 					},
 					// key name holder for attribute: name=stp_hello_time, type=INTEGER macro=rss_schema
 					// property: name=stp_max_age, type=INTEGER macro=rss_schema
@@ -646,7 +646,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Stp Max Age",
+						Description: "Stp max age. Value: between 6 and 40.",
 					},
 					// key name holder for attribute: name=stp_max_age, type=INTEGER macro=rss_schema
 					// property: name=stp_mode, type=STRING macro=rss_schema
@@ -655,7 +655,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Stp Mode",
+						Description: "Stp mode. Value: one of rstp.",
 					},
 					// key name holder for attribute: name=stp_mode, type=STRING macro=rss_schema
 					// property: name=stp_priority, type=INTEGER macro=rss_schema
@@ -664,7 +664,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Stp Priority",
+						Description: "Stp priority. Value: between 0 and 61440.",
 					},
 					// key name holder for attribute: name=stp_priority, type=INTEGER macro=rss_schema
 				},
@@ -676,7 +676,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -687,7 +687,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Tenant id. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
 			// property: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
@@ -696,7 +696,7 @@ func (r *elementShellResource) Schema(_ context.Context, _ resource.SchemaReques
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vpn To Vpn Forwarding",
+				Description: "Vpn to vpn forwarding. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=vpn_to_vpn_forwarding, type=BOOLEAN macro=rss_schema
 		},

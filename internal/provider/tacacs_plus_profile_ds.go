@@ -111,117 +111,117 @@ func (d *tacacsPlusProfileDataSource) Schema(_ context.Context, _ datasource.Sch
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=authentication_protocol, type=STRING macro=rss_schema
 						"authentication_protocol": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Authentication Protocol",
+							Description: "Authentication protocol. Value: one of chap, pap.",
 						},
 						// key name holder for attribute: name=authentication_protocol, type=STRING macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 256 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=tacacs_plus_servers, type=ARRAY_REFERENCE macro=rss_schema
 						"tacacs_plus_servers": dsschema.ListNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tacacs Plus Servers",
+							Description: "Tacacs plus servers. At most 4 items. At least 1 items.",
 							NestedObject: dsschema.NestedAttributeObject{
 								Attributes: map[string]dsschema.Attribute{
 									// property: name=secret, type=STRING macro=rss_schema
 									"secret": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   true,
-										Description: "Secret",
+										Description: "Secret.",
 									},
 									// key name holder for attribute: name=secret, type=STRING macro=rss_schema
 									// property: name=server_fqdn, type=STRING macro=rss_schema
 									"server_fqdn": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Server Fqdn",
+										Description: "Server fqdn.",
 									},
 									// key name holder for attribute: name=server_fqdn, type=STRING macro=rss_schema
 									// property: name=server_ip, type=STRING macro=rss_schema
 									"server_ip": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Server Ip",
+										Description: "Server ip.",
 									},
 									// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 									// property: name=server_ipv6, type=STRING macro=rss_schema
 									"server_ipv6": dsschema.StringAttribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Server Ipv6",
+										Description: "Server ipv6.",
 									},
 									// key name holder for attribute: name=server_ipv6, type=STRING macro=rss_schema
 									// property: name=server_port, type=INTEGER macro=rss_schema
 									"server_port": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Server Port",
+										Description: "Server port.",
 									},
 									// key name holder for attribute: name=server_port, type=INTEGER macro=rss_schema
 									// property: name=timeout, type=INTEGER macro=rss_schema
 									"timeout": dsschema.Int64Attribute{
 										Required:    false,
-										Computed:    false,
-										Optional:    true,
+										Computed:    true,
+										Optional:    false,
 										Sensitive:   false,
-										Description: "Timeout",
+										Description: "Timeout.",
 									},
 									// key name holder for attribute: name=timeout, type=INTEGER macro=rss_schema
 								},
@@ -231,10 +231,10 @@ func (d *tacacsPlusProfileDataSource) Schema(_ context.Context, _ datasource.Sch
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

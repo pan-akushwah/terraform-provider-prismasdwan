@@ -94,7 +94,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=cfg_device_id_enabled, type=BOOLEAN macro=rss_schema
@@ -112,7 +112,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Cfg Device Id Enabled",
+				Description: "Cfg device id enabled.",
 			},
 			// key name holder for attribute: name=cfg_device_id_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=deviceid_profile_id, type=STRING macro=rss_schema
@@ -121,7 +121,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Deviceid Profile Id",
+				Description: "Deviceid profile id.",
 			},
 			// key name holder for attribute: name=deviceid_profile_id, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -130,7 +130,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=site_id, type=STRING macro=rss_schema
@@ -139,7 +139,7 @@ func (r *siteIotDeviceIdConfigResource) Schema(_ context.Context, _ resource.Sch
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Site Id",
+				Description: "Site id. Value: at most 50 characters, matching `^-?[0-9]{1,50}$`. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=site_id, type=STRING macro=rss_schema
 		},

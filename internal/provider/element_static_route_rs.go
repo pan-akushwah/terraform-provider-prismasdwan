@@ -95,7 +95,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=address_family, type=STRING macro=rss_schema
@@ -113,7 +113,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Address Family",
+				Description: "Address family. Value: one of ipv4, ipv6.",
 			},
 			// key name holder for attribute: name=address_family, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=destination_prefix, type=STRING macro=rss_schema
@@ -131,7 +131,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Destination Prefix",
+				Description: "Destination prefix.",
 			},
 			// key name holder for attribute: name=destination_prefix, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -149,7 +149,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=network_context_id, type=STRING macro=rss_schema
@@ -158,7 +158,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Network Context Id",
+				Description: "Network context id.",
 			},
 			// key name holder for attribute: name=network_context_id, type=STRING macro=rss_schema
 			// property: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
@@ -167,7 +167,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Nexthop Reachability Probe",
+				Description: "Nexthop reachability probe. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=nexthop_reachability_probe, type=BOOLEAN macro=rss_schema
 			// property: name=nexthops, type=ARRAY_REFERENCE macro=rss_schema
@@ -176,7 +176,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Nexthops",
+				Description: "Nexthops.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=admin_distance, type=INTEGER macro=rss_schema
@@ -185,7 +185,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Admin Distance",
+							Description: "Admin distance.",
 						},
 						// key name holder for attribute: name=admin_distance, type=INTEGER macro=rss_schema
 						// property: name=nexthop_interface_id, type=STRING macro=rss_schema
@@ -194,7 +194,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Nexthop Interface Id",
+							Description: "Nexthop interface id.",
 						},
 						// key name holder for attribute: name=nexthop_interface_id, type=STRING macro=rss_schema
 						// property: name=nexthop_ip, type=STRING macro=rss_schema
@@ -203,7 +203,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Nexthop Ip",
+							Description: "Nexthop ip.",
 						},
 						// key name holder for attribute: name=nexthop_ip, type=STRING macro=rss_schema
 						// property: name=self, type=BOOLEAN macro=rss_schema
@@ -212,7 +212,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Self",
+							Description: "Self.",
 						},
 						// key name holder for attribute: name=self, type=BOOLEAN macro=rss_schema
 					},
@@ -225,7 +225,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Scope",
+				Description: "Scope. Value: one of global, local.",
 			},
 			// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -234,7 +234,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -245,7 +245,7 @@ func (r *elementStaticRouteResource) Schema(_ context.Context, _ resource.Schema
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vrf Context Id",
+				Description: "Vrf context id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 		},

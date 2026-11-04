@@ -95,7 +95,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -113,7 +113,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=is_default, type=BOOLEAN macro=rss_schema
@@ -131,7 +131,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    false,
 				Sensitive:   false,
-				Description: "Is Default",
+				Description: "Is default.",
 			},
 			// key name holder for attribute: name=is_default, type=BOOLEAN macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    false,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=service_bindings, type=ARRAY_REFERENCE macro=rss_schema
@@ -149,7 +149,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Service Bindings",
+				Description: "Service bindings.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -158,7 +158,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Service Endpoint Ids",
+							Description: "Service endpoint ids.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=service_endpoint_ids, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -168,7 +168,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Service Label Id",
+							Description: "Service label id.",
 						},
 						// key name holder for attribute: name=service_label_id, type=STRING macro=rss_schema
 					},
@@ -181,7 +181,7 @@ func (r *domainResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

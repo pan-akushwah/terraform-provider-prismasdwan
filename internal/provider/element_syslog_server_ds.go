@@ -110,171 +110,171 @@ func (d *elementSyslogServerDataSource) Schema(_ context.Context, _ datasource.S
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 1024 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 						"enable_dns_logging": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Enable Dns Logging",
+							Description: "Enable dns logging.",
 						},
 						// key name holder for attribute: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 						// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 						"enable_flow_logging": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Enable Flow Logging",
+							Description: "Enable flow logging.",
 						},
 						// key name holder for attribute: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 						// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 						"enable_threat_logging": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Enable Threat Logging",
+							Description: "Enable threat logging.",
 						},
 						// key name holder for attribute: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 						// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 						"enable_url_logging": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Enable Url Logging",
+							Description: "Enable url logging.",
 						},
 						// key name holder for attribute: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 						// property: name=enabled, type=BOOLEAN macro=rss_schema
 						"enabled": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Enabled",
+							Description: "Enabled.",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=protocol, type=STRING macro=rss_schema
 						"protocol": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Protocol",
+							Description: "Protocol.",
 						},
 						// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 						// property: name=remote_ca_certificate, type=STRING macro=rss_schema
 						"remote_ca_certificate": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Remote Ca Certificate",
+							Description: "Remote ca certificate.",
 						},
 						// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
 						// property: name=server_fqdn, type=STRING macro=rss_schema
 						"server_fqdn": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Server Fqdn",
+							Description: "Server fqdn.",
 						},
 						// key name holder for attribute: name=server_fqdn, type=STRING macro=rss_schema
 						// property: name=server_ip, type=STRING macro=rss_schema
 						"server_ip": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Server Ip",
+							Description: "Server ip.",
 						},
 						// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 						// property: name=server_port, type=INTEGER macro=rss_schema
 						"server_port": dsschema.Int64Attribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Server Port",
+							Description: "Server port. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=server_port, type=INTEGER macro=rss_schema
 						// property: name=severity_level, type=STRING macro=rss_schema
 						"severity_level": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Severity Level",
+							Description: "Severity level.",
 						},
 						// key name holder for attribute: name=severity_level, type=STRING macro=rss_schema
 						// property: name=source_interface, type=STRING macro=rss_schema
 						"source_interface": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Source Interface",
+							Description: "Source interface.",
 						},
 						// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 						// property: name=syslog_profile_id, type=STRING macro=rss_schema
 						"syslog_profile_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Syslog Profile Id",
+							Description: "Syslog profile id.",
 						},
 						// key name holder for attribute: name=syslog_profile_id, type=STRING macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

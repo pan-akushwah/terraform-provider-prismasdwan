@@ -96,7 +96,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -105,7 +105,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=bsm_enabled, type=BOOLEAN macro=rss_schema
@@ -114,7 +114,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Bsm Enabled",
+				Description: "Bsm enabled.",
 			},
 			// key name holder for attribute: name=bsm_enabled, type=BOOLEAN macro=rss_schema
 			// property: name=dr_priority, type=INTEGER macro=rss_schema
@@ -123,7 +123,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Dr Priority",
+				Description: "Dr priority. Value: between 1 and 4294967295.",
 			},
 			// key name holder for attribute: name=dr_priority, type=INTEGER macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -132,7 +132,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=igmp_protocol_parameters, type=REFERENCE macro=rss_schema
@@ -141,7 +141,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Igmp protocol parameters.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=last_member_query_count, type=INTEGER macro=rss_schema
 					"last_member_query_count": rsschema.Int64Attribute{
@@ -149,7 +149,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Last Member Query Count",
+						Description: "Last member query count.",
 					},
 					// key name holder for attribute: name=last_member_query_count, type=INTEGER macro=rss_schema
 					// property: name=last_member_query_interval, type=INTEGER macro=rss_schema
@@ -158,7 +158,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Last Member Query Interval",
+						Description: "Last member query interval.",
 					},
 					// key name holder for attribute: name=last_member_query_interval, type=INTEGER macro=rss_schema
 					// property: name=query_interval, type=INTEGER macro=rss_schema
@@ -167,7 +167,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Query Interval",
+						Description: "Query interval.",
 					},
 					// key name holder for attribute: name=query_interval, type=INTEGER macro=rss_schema
 					// property: name=query_max_response_time, type=INTEGER macro=rss_schema
@@ -176,7 +176,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Query Max Response Time",
+						Description: "Query max response time.",
 					},
 					// key name holder for attribute: name=query_max_response_time, type=INTEGER macro=rss_schema
 				},
@@ -188,7 +188,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Pim protocol parameters.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=hello_hold_time, type=INTEGER macro=rss_schema
 					"hello_hold_time": rsschema.Int64Attribute{
@@ -196,7 +196,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Hello Hold Time",
+						Description: "Hello hold time.",
 					},
 					// key name holder for attribute: name=hello_hold_time, type=INTEGER macro=rss_schema
 					// property: name=hello_interval, type=INTEGER macro=rss_schema
@@ -205,7 +205,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Hello Interval",
+						Description: "Hello interval.",
 					},
 					// key name holder for attribute: name=hello_interval, type=INTEGER macro=rss_schema
 					// property: name=join_prune_interval, type=INTEGER macro=rss_schema
@@ -214,7 +214,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 						Computed:    false,
 						Optional:    true,
 						Sensitive:   false,
-						Description: "Join Prune Interval",
+						Description: "Join prune interval.",
 					},
 					// key name holder for attribute: name=join_prune_interval, type=INTEGER macro=rss_schema
 				},
@@ -226,7 +226,7 @@ func (r *elementMulticastGlobalConfigResource) Schema(_ context.Context, _ resou
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Spt Switchover Enabled",
+				Description: "Spt switchover enabled.",
 			},
 			// key name holder for attribute: name=spt_switchover_enabled, type=BOOLEAN macro=rss_schema
 		},

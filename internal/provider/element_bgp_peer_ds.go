@@ -113,125 +113,125 @@ func (d *elementBgpPeerDataSource) Schema(_ context.Context, _ datasource.Schema
 						"x_etag": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Etag for this object",
+							Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 						// property: name=_schema, type=INTEGER macro=rss_schema
 						"x_schema": dsschema.Int64Attribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Schema version for this object",
+							Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 						// property: name=advertise_default_route, type=BOOLEAN macro=rss_schema
 						"advertise_default_route": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Advertise Default Route",
+							Description: "Advertise default route.",
 						},
 						// key name holder for attribute: name=advertise_default_route, type=BOOLEAN macro=rss_schema
 						// property: name=allow_v4_prefixes, type=BOOLEAN macro=rss_schema
 						"allow_v4_prefixes": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Allow V4 Prefixes",
+							Description: "Allow v4 prefixes.",
 						},
 						// key name holder for attribute: name=allow_v4_prefixes, type=BOOLEAN macro=rss_schema
 						// property: name=allow_v6_prefixes, type=BOOLEAN macro=rss_schema
 						"allow_v6_prefixes": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Allow V6 Prefixes",
+							Description: "Allow v6 prefixes.",
 						},
 						// key name holder for attribute: name=allow_v6_prefixes, type=BOOLEAN macro=rss_schema
 						// property: name=bgp_config, type=REFERENCE macro=rss_schema
 						"bgp_config": dsschema.SingleNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "",
+							Description: "Bgp config.",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=adv_interval, type=INTEGER macro=rss_schema
 								"adv_interval": dsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Adv Interval",
+									Description: "Adv interval.",
 								},
 								// key name holder for attribute: name=adv_interval, type=INTEGER macro=rss_schema
 								// property: name=hold_time, type=INTEGER macro=rss_schema
 								"hold_time": dsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Hold Time",
+									Description: "Hold time.",
 								},
 								// key name holder for attribute: name=hold_time, type=INTEGER macro=rss_schema
 								// property: name=keepalive_time, type=INTEGER macro=rss_schema
 								"keepalive_time": dsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Keepalive Time",
+									Description: "Keepalive time.",
 								},
 								// key name holder for attribute: name=keepalive_time, type=INTEGER macro=rss_schema
 								// property: name=local_as_num, type=STRING macro=rss_schema
 								"local_as_num": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Local As Num",
+									Description: "Local as num.",
 								},
 								// key name holder for attribute: name=local_as_num, type=STRING macro=rss_schema
 								// property: name=md5_secret, type=STRING macro=rss_schema
 								"md5_secret": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   true,
-									Description: "Md5 Secret",
+									Description: "Md5 secret.",
 								},
 								// key name holder for attribute: name=md5_secret, type=STRING macro=rss_schema
 								// property: name=multi_hop_limit, type=INTEGER macro=rss_schema
 								"multi_hop_limit": dsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Multi Hop Limit",
+									Description: "Multi hop limit.",
 								},
 								// key name holder for attribute: name=multi_hop_limit, type=INTEGER macro=rss_schema
 								// property: name=peer_auth_type, type=STRING macro=rss_schema
 								"peer_auth_type": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Peer Auth Type",
+									Description: "Peer auth type. Value: one of md5, none.",
 								},
 								// key name holder for attribute: name=peer_auth_type, type=STRING macro=rss_schema
 								// property: name=peer_retry_time, type=INTEGER macro=rss_schema
 								"peer_retry_time": dsschema.Int64Attribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Peer Retry Time",
+									Description: "Peer retry time.",
 								},
 								// key name holder for attribute: name=peer_retry_time, type=INTEGER macro=rss_schema
 							},
@@ -240,100 +240,100 @@ func (d *elementBgpPeerDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=description, type=STRING macro=rss_schema
 						"description": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description. Value: at most 1024 characters.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
 						"id": dsschema.StringAttribute{
 							Required:    false,
 							Computed:    true,
-							Optional:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Id",
+							Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=id, type=STRING macro=rss_schema
 						// property: name=name, type=STRING macro=rss_schema
 						"name": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name. Value: at most 128 characters.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=peer_ip, type=STRING macro=rss_schema
 						"peer_ip": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Peer Ip",
+							Description: "Peer ip.",
 						},
 						// key name holder for attribute: name=peer_ip, type=STRING macro=rss_schema
 						// property: name=peer_ip_v6, type=STRING macro=rss_schema
 						"peer_ip_v6": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Peer Ip V6",
+							Description: "Peer ip v6.",
 						},
 						// key name holder for attribute: name=peer_ip_v6, type=STRING macro=rss_schema
 						// property: name=peer_type, type=STRING macro=rss_schema
 						"peer_type": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Peer Type",
+							Description: "Peer type.",
 						},
 						// key name holder for attribute: name=peer_type, type=STRING macro=rss_schema
 						// property: name=remote_as_num, type=STRING macro=rss_schema
 						"remote_as_num": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Remote As Num",
+							Description: "Remote as num. Value: at least 1 characters.",
 						},
 						// key name holder for attribute: name=remote_as_num, type=STRING macro=rss_schema
 						// property: name=route_aggregation, type=REFERENCE macro=rss_schema
 						"route_aggregation": dsschema.SingleNestedAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "",
+							Description: "Route aggregation.",
 							Attributes: map[string]dsschema.Attribute{
 								// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=rss_schema
 								"aggregate_prefixes": dsschema.ListNestedAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Aggregate Prefixes",
+									Description: "Aggregate prefixes.",
 									NestedObject: dsschema.NestedAttributeObject{
 										Attributes: map[string]dsschema.Attribute{
 											// property: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 											"ip_prefixes": dsschema.ListAttribute{
 												Required:    false,
-												Computed:    false,
-												Optional:    true,
+												Computed:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Ip Prefixes",
+												Description: "Ip prefixes.",
 												ElementType: types.StringType,
 											},
 											// key name holder for attribute: name=ip_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
 											// property: name=type, type=STRING macro=rss_schema
 											"type": dsschema.StringAttribute{
 												Required:    false,
-												Computed:    false,
-												Optional:    true,
+												Computed:    true,
+												Optional:    false,
 												Sensitive:   false,
-												Description: "Type",
+												Description: "Type. Value: one of ipv4, ipv6, ipv4v6.",
 											},
 											// key name holder for attribute: name=type, type=STRING macro=rss_schema
 										},
@@ -343,28 +343,28 @@ func (d *elementBgpPeerDataSource) Schema(_ context.Context, _ datasource.Schema
 								// property: name=aggregate_type, type=STRING macro=rss_schema
 								"aggregate_type": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Aggregate Type",
+									Description: "Aggregate type. Value: one of unaggregated, aggregate-auto, aggregate-manual, aggregate-manual-summary-only, default.",
 								},
 								// key name holder for attribute: name=aggregate_type, type=STRING macro=rss_schema
 								// property: name=ipv4_prefix_list_id, type=STRING macro=rss_schema
 								"ipv4_prefix_list_id": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Ipv4 Prefix List Id",
+									Description: "Ipv4 prefix list id.",
 								},
 								// key name holder for attribute: name=ipv4_prefix_list_id, type=STRING macro=rss_schema
 								// property: name=ipv6_prefix_list_id, type=STRING macro=rss_schema
 								"ipv6_prefix_list_id": dsschema.StringAttribute{
 									Required:    false,
-									Computed:    false,
-									Optional:    true,
+									Computed:    true,
+									Optional:    false,
 									Sensitive:   false,
-									Description: "Ipv6 Prefix List Id",
+									Description: "Ipv6 prefix list id.",
 								},
 								// key name holder for attribute: name=ipv6_prefix_list_id, type=STRING macro=rss_schema
 							},
@@ -373,83 +373,83 @@ func (d *elementBgpPeerDataSource) Schema(_ context.Context, _ datasource.Schema
 						// property: name=route_map_in_id, type=STRING macro=rss_schema
 						"route_map_in_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Route Map In Id",
+							Description: "Route map in id.",
 						},
 						// key name holder for attribute: name=route_map_in_id, type=STRING macro=rss_schema
 						// property: name=route_map_out_id, type=STRING macro=rss_schema
 						"route_map_out_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Route Map Out Id",
+							Description: "Route map out id.",
 						},
 						// key name holder for attribute: name=route_map_out_id, type=STRING macro=rss_schema
 						// property: name=router_id, type=STRING macro=rss_schema
 						"router_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Router Id",
+							Description: "Router id.",
 						},
 						// key name holder for attribute: name=router_id, type=STRING macro=rss_schema
 						// property: name=scope, type=STRING macro=rss_schema
 						"scope": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Scope",
+							Description: "Scope. Value: one of global, local.",
 						},
 						// key name holder for attribute: name=scope, type=STRING macro=rss_schema
 						// property: name=shutdown, type=BOOLEAN macro=rss_schema
 						"shutdown": dsschema.BoolAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Shutdown",
+							Description: "Shutdown.",
 						},
 						// key name holder for attribute: name=shutdown, type=BOOLEAN macro=rss_schema
 						// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						"tags": dsschema.SetAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Tags",
+							Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
 						// property: name=update_source, type=STRING macro=rss_schema
 						"update_source": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Update Source",
+							Description: "Update source.",
 						},
 						// key name holder for attribute: name=update_source, type=STRING macro=rss_schema
 						// property: name=update_source_v6, type=STRING macro=rss_schema
 						"update_source_v6": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Update Source V6",
+							Description: "Update source v6.",
 						},
 						// key name holder for attribute: name=update_source_v6, type=STRING macro=rss_schema
 						// property: name=vrf_context_id, type=STRING macro=rss_schema
 						"vrf_context_id": dsschema.StringAttribute{
 							Required:    false,
-							Computed:    false,
-							Optional:    true,
+							Computed:    true,
+							Optional:    false,
 							Sensitive:   false,
-							Description: "Vrf Context Id",
+							Description: "Vrf context id. Value: at most 20 characters, matching `^-?[0-9]{1,20}$`.",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},

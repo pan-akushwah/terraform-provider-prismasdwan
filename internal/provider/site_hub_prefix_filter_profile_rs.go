@@ -96,7 +96,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -105,7 +105,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -114,7 +114,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -123,7 +123,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -132,7 +132,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=path_prefix_filter_list, type=ARRAY_REFERENCE macro=rss_schema
@@ -141,7 +141,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Path Prefix Filter List",
+				Description: "Path prefix filter list.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=path_prefix_filters, type=ARRAY_REFERENCE macro=rss_schema
@@ -150,7 +150,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Path Prefix Filters",
+							Description: "Path prefix filters.",
 							NestedObject: rsschema.NestedAttributeObject{
 								Attributes: map[string]rsschema.Attribute{
 									// property: name=ipv4_prefix, type=STRING macro=rss_schema
@@ -159,7 +159,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Ipv4 Prefix",
+										Description: "Ipv4 prefix.",
 									},
 									// key name holder for attribute: name=ipv4_prefix, type=STRING macro=rss_schema
 									// property: name=ipv6_prefix, type=STRING macro=rss_schema
@@ -168,7 +168,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Ipv6 Prefix",
+										Description: "Ipv6 prefix.",
 									},
 									// key name holder for attribute: name=ipv6_prefix, type=STRING macro=rss_schema
 									// property: name=order, type=INTEGER macro=rss_schema
@@ -177,7 +177,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Order",
+										Description: "Order. Value: between 1 and 65535.",
 									},
 									// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
 									// property: name=permit, type=BOOLEAN macro=rss_schema
@@ -186,7 +186,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 										Computed:    false,
 										Optional:    true,
 										Sensitive:   false,
-										Description: "Permit",
+										Description: "Permit.",
 									},
 									// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
 								},
@@ -199,7 +199,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Vrf Context Id",
+							Description: "Vrf context id.",
 						},
 						// key name holder for attribute: name=vrf_context_id, type=STRING macro=rss_schema
 					},
@@ -212,7 +212,7 @@ func (r *siteHubPrefixFilterProfileResource) Schema(_ context.Context, _ resourc
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema

@@ -95,7 +95,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=admin_up, type=BOOLEAN macro=rss_schema
@@ -113,7 +113,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Admin Up",
+				Description: "Admin up.",
 			},
 			// key name holder for attribute: name=admin_up, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=ep1_hub_cluster_id, type=STRING macro=rss_schema
@@ -131,7 +131,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ep1 Hub Cluster Id",
+				Description: "Ep1 hub cluster id.",
 			},
 			// key name holder for attribute: name=ep1_hub_cluster_id, type=STRING macro=rss_schema
 			// property: name=ep1_site_id, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ep1 Site Id",
+				Description: "Ep1 site id.",
 			},
 			// key name holder for attribute: name=ep1_site_id, type=STRING macro=rss_schema
 			// property: name=ep1_wan_interface_id, type=STRING macro=rss_schema
@@ -149,7 +149,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ep1 Wan Interface Id",
+				Description: "Ep1 wan interface id.",
 			},
 			// key name holder for attribute: name=ep1_wan_interface_id, type=STRING macro=rss_schema
 			// property: name=ep2_hub_cluster_id, type=STRING macro=rss_schema
@@ -158,7 +158,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ep2 Hub Cluster Id",
+				Description: "Ep2 hub cluster id.",
 			},
 			// key name holder for attribute: name=ep2_hub_cluster_id, type=STRING macro=rss_schema
 			// property: name=ep2_site_id, type=STRING macro=rss_schema
@@ -167,7 +167,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ep2 Site Id",
+				Description: "Ep2 site id.",
 			},
 			// key name holder for attribute: name=ep2_site_id, type=STRING macro=rss_schema
 			// property: name=ep2_wan_interface_id, type=STRING macro=rss_schema
@@ -176,7 +176,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Ep2 Wan Interface Id",
+				Description: "Ep2 wan interface id.",
 			},
 			// key name holder for attribute: name=ep2_wan_interface_id, type=STRING macro=rss_schema
 			// property: name=forced, type=BOOLEAN macro=rss_schema
@@ -185,7 +185,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Forced",
+				Description: "Forced.",
 			},
 			// key name holder for attribute: name=forced, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -194,7 +194,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -203,7 +203,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -212,7 +212,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -222,7 +222,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Tenant id. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=tenant_id, type=STRING macro=rss_schema
 			// property: name=type, type=STRING macro=rss_schema
@@ -231,7 +231,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Type",
+				Description: "Type. Value: one of AUTO-PUBLIC, MANUAL-PUBLIC, AUTO-PRIVATE, MANUAL-PRIVATE, AUTO-SASE, DCI-MANUAL-PUBLIC, DCI-MANUAL-PRIVATE.",
 			},
 			// key name holder for attribute: name=type, type=STRING macro=rss_schema
 			// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema
@@ -240,7 +240,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "",
+				Description: "Vpnlink configuration.",
 				Attributes: map[string]rsschema.Attribute{
 					// property: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					"keep_alive_failure_count": rsschema.Int64Attribute{
@@ -248,7 +248,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    false,
 						Sensitive:   false,
-						Description: "Keep Alive Failure Count",
+						Description: "Keep alive failure count. Value: between 3 and 30.",
 					},
 					// key name holder for attribute: name=keep_alive_failure_count, type=INTEGER macro=rss_schema
 					// property: name=keep_alive_interval, type=INTEGER macro=rss_schema
@@ -257,7 +257,7 @@ func (r *anynetLinkResource) Schema(_ context.Context, _ resource.SchemaRequest,
 						Computed:    false,
 						Optional:    false,
 						Sensitive:   false,
-						Description: "Keep Alive Interval",
+						Description: "Keep alive interval. Value: between 100 and 1740000.",
 					},
 					// key name holder for attribute: name=keep_alive_interval, type=INTEGER macro=rss_schema
 				},

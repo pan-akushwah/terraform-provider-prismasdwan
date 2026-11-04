@@ -95,7 +95,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=authentication_protocol, type=STRING macro=rss_schema
@@ -113,7 +113,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Authentication Protocol",
+				Description: "Authentication protocol. Value: one of chap, pap.",
 			},
 			// key name holder for attribute: name=authentication_protocol, type=STRING macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -131,7 +131,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tacacs_plus_servers, type=ARRAY_REFERENCE macro=rss_schema
@@ -149,7 +149,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tacacs Plus Servers",
+				Description: "Tacacs plus servers. At most 4 items. At least 1 items.",
 				Validators:  ListMaxItems(4),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
@@ -159,7 +159,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   true,
-							Description: "Secret",
+							Description: "Secret.",
 						},
 						// key name holder for attribute: name=secret, type=STRING macro=rss_schema
 						"secret_internal_key_name": rsschema.StringAttribute{
@@ -175,7 +175,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Server Fqdn",
+							Description: "Server fqdn.",
 						},
 						// key name holder for attribute: name=server_fqdn, type=STRING macro=rss_schema
 						// property: name=server_ip, type=STRING macro=rss_schema
@@ -184,7 +184,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Server Ip",
+							Description: "Server ip.",
 						},
 						// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 						// property: name=server_ipv6, type=STRING macro=rss_schema
@@ -193,7 +193,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Server Ipv6",
+							Description: "Server ipv6.",
 						},
 						// key name holder for attribute: name=server_ipv6, type=STRING macro=rss_schema
 						// property: name=server_port, type=INTEGER macro=rss_schema
@@ -202,7 +202,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Server Port",
+							Description: "Server port.",
 						},
 						// key name holder for attribute: name=server_port, type=INTEGER macro=rss_schema
 						// property: name=timeout, type=INTEGER macro=rss_schema
@@ -211,7 +211,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Timeout",
+							Description: "Timeout.",
 						},
 						// key name holder for attribute: name=timeout, type=INTEGER macro=rss_schema
 					},
@@ -224,7 +224,7 @@ func (r *tacacsPlusProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 128 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

@@ -94,7 +94,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -103,7 +103,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -112,7 +112,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 1024 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
@@ -121,7 +121,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enable Dns Logging",
+				Description: "Enable dns logging.",
 			},
 			// key name holder for attribute: name=enable_dns_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
@@ -130,7 +130,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enable Flow Logging",
+				Description: "Enable flow logging.",
 			},
 			// key name holder for attribute: name=enable_flow_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
@@ -139,7 +139,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enable Threat Logging",
+				Description: "Enable threat logging.",
 			},
 			// key name holder for attribute: name=enable_threat_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enable_url_logging, type=BOOLEAN macro=rss_schema
@@ -148,7 +148,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enable Url Logging",
+				Description: "Enable url logging.",
 			},
 			// key name holder for attribute: name=enable_url_logging, type=BOOLEAN macro=rss_schema
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
@@ -157,7 +157,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enabled",
+				Description: "Enabled.",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -166,7 +166,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -175,7 +175,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=protocol, type=STRING macro=rss_schema
@@ -184,7 +184,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Protocol",
+				Description: "Protocol.",
 			},
 			// key name holder for attribute: name=protocol, type=STRING macro=rss_schema
 			// property: name=remote_ca_certificate, type=STRING macro=rss_schema
@@ -193,7 +193,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Remote Ca Certificate",
+				Description: "Remote ca certificate.",
 			},
 			// key name holder for attribute: name=remote_ca_certificate, type=STRING macro=rss_schema
 			// property: name=server_fqdn, type=STRING macro=rss_schema
@@ -202,7 +202,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Server Fqdn",
+				Description: "Server fqdn.",
 			},
 			// key name holder for attribute: name=server_fqdn, type=STRING macro=rss_schema
 			// property: name=server_ip, type=STRING macro=rss_schema
@@ -211,7 +211,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Server Ip",
+				Description: "Server ip.",
 			},
 			// key name holder for attribute: name=server_ip, type=STRING macro=rss_schema
 			// property: name=server_port, type=INTEGER macro=rss_schema
@@ -220,7 +220,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Server Port",
+				Description: "Server port. Value: between 1 and 65535.",
 			},
 			// key name holder for attribute: name=server_port, type=INTEGER macro=rss_schema
 			// property: name=severity_level, type=STRING macro=rss_schema
@@ -229,7 +229,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Severity Level",
+				Description: "Severity level.",
 			},
 			// key name holder for attribute: name=severity_level, type=STRING macro=rss_schema
 			// property: name=source_interface, type=STRING macro=rss_schema
@@ -238,7 +238,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Source Interface",
+				Description: "Source interface.",
 			},
 			// key name holder for attribute: name=source_interface, type=STRING macro=rss_schema
 			// property: name=syslog_profile_id, type=STRING macro=rss_schema
@@ -247,7 +247,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Syslog Profile Id",
+				Description: "Syslog profile id.",
 			},
 			// key name holder for attribute: name=syslog_profile_id, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -256,7 +256,7 @@ func (r *elementSyslogServerResource) Schema(_ context.Context, _ resource.Schem
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

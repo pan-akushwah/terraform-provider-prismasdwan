@@ -95,7 +95,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=auto_generated, type=BOOLEAN macro=rss_schema
@@ -113,7 +113,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Auto Generated",
+				Description: "Auto generated. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 1024 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -131,7 +131,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: at most 128 characters.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=prefix_filter_list, type=ARRAY_REFERENCE macro=rss_schema
@@ -149,7 +149,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Prefix Filter List",
+				Description: "Prefix filter list.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=ge, type=INTEGER macro=rss_schema
@@ -158,7 +158,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ge",
+							Description: "Ge. Value: between 0 and 128.",
 						},
 						// key name holder for attribute: name=ge, type=INTEGER macro=rss_schema
 						// property: name=ipv6_prefix, type=STRING macro=rss_schema
@@ -167,7 +167,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ipv6 Prefix",
+							Description: "Ipv6 prefix.",
 						},
 						// key name holder for attribute: name=ipv6_prefix, type=STRING macro=rss_schema
 						// property: name=le, type=INTEGER macro=rss_schema
@@ -176,7 +176,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Le",
+							Description: "Le. Value: between 0 and 128.",
 						},
 						// key name holder for attribute: name=le, type=INTEGER macro=rss_schema
 						// property: name=order, type=INTEGER macro=rss_schema
@@ -185,7 +185,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Order",
+							Description: "Order. Value: between 1 and 65535.",
 						},
 						// key name holder for attribute: name=order, type=INTEGER macro=rss_schema
 						// property: name=permit, type=BOOLEAN macro=rss_schema
@@ -194,7 +194,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Permit",
+							Description: "Permit.",
 						},
 						// key name holder for attribute: name=permit, type=BOOLEAN macro=rss_schema
 						// property: name=prefix, type=STRING macro=rss_schema
@@ -203,7 +203,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Prefix",
+							Description: "Prefix.",
 						},
 						// key name holder for attribute: name=prefix, type=STRING macro=rss_schema
 					},
@@ -216,7 +216,7 @@ func (r *elementRoutingPrefixlistResource) Schema(_ context.Context, _ resource.
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},

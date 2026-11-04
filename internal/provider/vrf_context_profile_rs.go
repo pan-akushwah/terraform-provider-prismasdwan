@@ -95,7 +95,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Etag for this object",
+				Description: "Etag for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_etag, type=INTEGER macro=rss_schema
 			// property: name=_schema, type=INTEGER macro=rss_schema
@@ -104,7 +104,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Schema version for this object",
+				Description: "Schema version for this object. Value: at least 1. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=_schema, type=INTEGER macro=rss_schema
 			// property: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
@@ -113,7 +113,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Default Vrf Context Profile",
+				Description: "Default vrf context profile.",
 			},
 			// key name holder for attribute: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -122,7 +122,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Description",
+				Description: "Description. Value: at most 256 characters.",
 			},
 			// key name holder for attribute: name=description, type=STRING macro=rss_schema
 			// property: name=id, type=STRING macro=rss_schema
@@ -131,7 +131,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Id",
+				Description: "Identifier of the object, assigned by the API. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=id, type=STRING macro=rss_schema
 			// property: name=name, type=STRING macro=rss_schema
@@ -140,7 +140,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Name",
+				Description: "Name. Value: length 1 to 128 characters, matching `^[A-Za-z][A-Za-z0-9_\\s-]*$`.",
 			},
 			// key name holder for attribute: name=name, type=STRING macro=rss_schema
 			// property: name=tags, type=SET_PRIMITIVE macro=rss_schema
@@ -149,7 +149,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Tags",
+				Description: "Tags. At most 10 items. Each item: at most 1024 characters, matching `[^,\\s]+`.",
 				Validators:  SetMaxItems(10),
 				ElementType: types.StringType,
 			},
@@ -160,7 +160,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vrf Context Ids",
+				Description: "Vrf context ids.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=vrf_context_ids, type=SET_PRIMITIVE macro=rss_schema
@@ -170,7 +170,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 				Computed:    false,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vrf Context Route Leak Rules",
+				Description: "Vrf context route leak rules.",
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// property: name=description, type=STRING macro=rss_schema
@@ -179,7 +179,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Description",
+							Description: "Description.",
 						},
 						// key name holder for attribute: name=description, type=STRING macro=rss_schema
 						// property: name=dest_vrf_context_id, type=STRING macro=rss_schema
@@ -188,7 +188,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Dest Vrf Context Id",
+							Description: "Dest vrf context id.",
 						},
 						// key name holder for attribute: name=dest_vrf_context_id, type=STRING macro=rss_schema
 						// property: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -197,7 +197,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Ipv4 Prefixes",
+							Description: "Ipv4 prefixes.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=ipv4_prefixes, type=ARRAY_PRIMITIVE macro=rss_schema
@@ -207,7 +207,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Name",
+							Description: "Name.",
 						},
 						// key name holder for attribute: name=name, type=STRING macro=rss_schema
 						// property: name=src_vrf_context_id, type=STRING macro=rss_schema
@@ -216,7 +216,7 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 							Computed:    false,
 							Optional:    true,
 							Sensitive:   false,
-							Description: "Src Vrf Context Id",
+							Description: "Src vrf context id.",
 						},
 						// key name holder for attribute: name=src_vrf_context_id, type=STRING macro=rss_schema
 					},
