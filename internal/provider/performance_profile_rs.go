@@ -1301,7 +1301,7 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 		// copy_from_plan_or_state: body=body.CircuitUtilizationMetricsThresholds prefix=rsModel state=state.CircuitUtilizationMetricsThresholds plan=plan.CircuitUtilizationMetricsThresholds properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.CircuitUtilizationMetricsThresholds prefix=rsModel state=state.CircuitUtilizationMetricsThresholds plan=plan.CircuitUtilizationMetricsThresholds")
 		// property: name=percentage_circuit_utilization, type=INTEGER macro=copy_from_plan_or_state
-		if state.CircuitUtilizationMetricsThresholds != nil {
+		if state != nil && state.CircuitUtilizationMetricsThresholds != nil {
 			body.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization = ValueInt64PointerFromPlanOrState(plan.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization, state.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization)
 		} else {
 			body.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization = Int64ValueOrNil(plan.CircuitUtilizationMetricsThresholds.PercentageCircuitUtilization)
@@ -1321,7 +1321,7 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 		// copy_from_plan_or_state: body=body.FlowMetricsThresholds prefix=rsModel state=state.FlowMetricsThresholds plan=plan.FlowMetricsThresholds properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.FlowMetricsThresholds prefix=rsModel state=state.FlowMetricsThresholds plan=plan.FlowMetricsThresholds")
 		// property: name=percentage_flow_utilization, type=INTEGER macro=copy_from_plan_or_state
-		if state.FlowMetricsThresholds != nil {
+		if state != nil && state.FlowMetricsThresholds != nil {
 			body.FlowMetricsThresholds.PercentageFlowUtilization = ValueInt64PointerFromPlanOrState(plan.FlowMetricsThresholds.PercentageFlowUtilization, state.FlowMetricsThresholds.PercentageFlowUtilization)
 		} else {
 			body.FlowMetricsThresholds.PercentageFlowUtilization = Int64ValueOrNil(plan.FlowMetricsThresholds.PercentageFlowUtilization)
@@ -1335,19 +1335,19 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 		// copy_from_plan_or_state: body=body.HardLimitAppMetrics prefix=rsModel state=state.HardLimitAppMetrics plan=plan.HardLimitAppMetrics properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.HardLimitAppMetrics prefix=rsModel state=state.HardLimitAppMetrics plan=plan.HardLimitAppMetrics")
 		// property: name=max_init_failure_rate, type=INTEGER macro=copy_from_plan_or_state
-		if state.HardLimitAppMetrics != nil {
+		if state != nil && state.HardLimitAppMetrics != nil {
 			body.HardLimitAppMetrics.MaxInitFailureRate = ValueInt64PointerFromPlanOrState(plan.HardLimitAppMetrics.MaxInitFailureRate, state.HardLimitAppMetrics.MaxInitFailureRate)
 		} else {
 			body.HardLimitAppMetrics.MaxInitFailureRate = Int64ValueOrNil(plan.HardLimitAppMetrics.MaxInitFailureRate)
 		}
 		// property: name=max_rtt, type=INTEGER macro=copy_from_plan_or_state
-		if state.HardLimitAppMetrics != nil {
+		if state != nil && state.HardLimitAppMetrics != nil {
 			body.HardLimitAppMetrics.MaxRtt = ValueInt64PointerFromPlanOrState(plan.HardLimitAppMetrics.MaxRtt, state.HardLimitAppMetrics.MaxRtt)
 		} else {
 			body.HardLimitAppMetrics.MaxRtt = Int64ValueOrNil(plan.HardLimitAppMetrics.MaxRtt)
 		}
 		// property: name=udp_trt, type=INTEGER macro=copy_from_plan_or_state
-		if state.HardLimitAppMetrics != nil {
+		if state != nil && state.HardLimitAppMetrics != nil {
 			body.HardLimitAppMetrics.UdpTrt = ValueInt64PointerFromPlanOrState(plan.HardLimitAppMetrics.UdpTrt, state.HardLimitAppMetrics.UdpTrt)
 		} else {
 			body.HardLimitAppMetrics.UdpTrt = Int64ValueOrNil(plan.HardLimitAppMetrics.UdpTrt)
@@ -1367,25 +1367,25 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 		// copy_from_plan_or_state: body=body.LqmThresholds prefix=rsModel state=state.LqmThresholds plan=plan.LqmThresholds properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LqmThresholds prefix=rsModel state=state.LqmThresholds plan=plan.LqmThresholds")
 		// property: name=max_jitter, type=INTEGER macro=copy_from_plan_or_state
-		if state.LqmThresholds != nil {
+		if state != nil && state.LqmThresholds != nil {
 			body.LqmThresholds.MaxJitter = ValueInt64PointerFromPlanOrState(plan.LqmThresholds.MaxJitter, state.LqmThresholds.MaxJitter)
 		} else {
 			body.LqmThresholds.MaxJitter = Int64ValueOrNil(plan.LqmThresholds.MaxJitter)
 		}
 		// property: name=max_latency, type=INTEGER macro=copy_from_plan_or_state
-		if state.LqmThresholds != nil {
+		if state != nil && state.LqmThresholds != nil {
 			body.LqmThresholds.MaxLatency = ValueInt64PointerFromPlanOrState(plan.LqmThresholds.MaxLatency, state.LqmThresholds.MaxLatency)
 		} else {
 			body.LqmThresholds.MaxLatency = Int64ValueOrNil(plan.LqmThresholds.MaxLatency)
 		}
 		// property: name=max_packet_loss, type=INTEGER macro=copy_from_plan_or_state
-		if state.LqmThresholds != nil {
+		if state != nil && state.LqmThresholds != nil {
 			body.LqmThresholds.MaxPacketLoss = ValueInt64PointerFromPlanOrState(plan.LqmThresholds.MaxPacketLoss, state.LqmThresholds.MaxPacketLoss)
 		} else {
 			body.LqmThresholds.MaxPacketLoss = Int64ValueOrNil(plan.LqmThresholds.MaxPacketLoss)
 		}
 		// property: name=min_mos, type=INTEGER macro=copy_from_plan_or_state
-		if state.LqmThresholds != nil {
+		if state != nil && state.LqmThresholds != nil {
 			body.LqmThresholds.MinMos = ValueInt64PointerFromPlanOrState(plan.LqmThresholds.MinMos, state.LqmThresholds.MinMos)
 		} else {
 			body.LqmThresholds.MinMos = Int64ValueOrNil(plan.LqmThresholds.MinMos)
@@ -1405,19 +1405,19 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 		// copy_from_plan_or_state: body=body.SoftLimitAppMetrics prefix=rsModel state=state.SoftLimitAppMetrics plan=plan.SoftLimitAppMetrics properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SoftLimitAppMetrics prefix=rsModel state=state.SoftLimitAppMetrics plan=plan.SoftLimitAppMetrics")
 		// property: name=max_init_failure_rate, type=INTEGER macro=copy_from_plan_or_state
-		if state.SoftLimitAppMetrics != nil {
+		if state != nil && state.SoftLimitAppMetrics != nil {
 			body.SoftLimitAppMetrics.MaxInitFailureRate = ValueInt64PointerFromPlanOrState(plan.SoftLimitAppMetrics.MaxInitFailureRate, state.SoftLimitAppMetrics.MaxInitFailureRate)
 		} else {
 			body.SoftLimitAppMetrics.MaxInitFailureRate = Int64ValueOrNil(plan.SoftLimitAppMetrics.MaxInitFailureRate)
 		}
 		// property: name=max_rtt, type=INTEGER macro=copy_from_plan_or_state
-		if state.SoftLimitAppMetrics != nil {
+		if state != nil && state.SoftLimitAppMetrics != nil {
 			body.SoftLimitAppMetrics.MaxRtt = ValueInt64PointerFromPlanOrState(plan.SoftLimitAppMetrics.MaxRtt, state.SoftLimitAppMetrics.MaxRtt)
 		} else {
 			body.SoftLimitAppMetrics.MaxRtt = Int64ValueOrNil(plan.SoftLimitAppMetrics.MaxRtt)
 		}
 		// property: name=udp_trt, type=INTEGER macro=copy_from_plan_or_state
-		if state.SoftLimitAppMetrics != nil {
+		if state != nil && state.SoftLimitAppMetrics != nil {
 			body.SoftLimitAppMetrics.UdpTrt = ValueInt64PointerFromPlanOrState(plan.SoftLimitAppMetrics.UdpTrt, state.SoftLimitAppMetrics.UdpTrt)
 		} else {
 			body.SoftLimitAppMetrics.UdpTrt = Int64ValueOrNil(plan.SoftLimitAppMetrics.UdpTrt)
@@ -1438,13 +1438,13 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 			// copy_from_plan_or_state: body=body.SyntheticProbeThresholds.DnsTxnFailurePct prefix=rsModel state=state.SyntheticProbeThresholds.DnsTxnFailurePct plan=plan.SyntheticProbeThresholds.DnsTxnFailurePct properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SyntheticProbeThresholds.DnsTxnFailurePct prefix=rsModel state=state.SyntheticProbeThresholds.DnsTxnFailurePct plan=plan.SyntheticProbeThresholds.DnsTxnFailurePct")
 			// property: name=probe_config_id, type=STRING macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.DnsTxnFailurePct != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.DnsTxnFailurePct != nil {
 				body.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId = ValueStringPointerFromPlanOrState(plan.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId, state.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId)
 			} else {
 				body.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId = StringValueOrNil(plan.SyntheticProbeThresholds.DnsTxnFailurePct.ProbeConfigId)
 			}
 			// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.DnsTxnFailurePct != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.DnsTxnFailurePct != nil {
 				body.SyntheticProbeThresholds.DnsTxnFailurePct.Value = ValueInt64PointerFromPlanOrState(plan.SyntheticProbeThresholds.DnsTxnFailurePct.Value, state.SyntheticProbeThresholds.DnsTxnFailurePct.Value)
 			} else {
 				body.SyntheticProbeThresholds.DnsTxnFailurePct.Value = Int64ValueOrNil(plan.SyntheticProbeThresholds.DnsTxnFailurePct.Value)
@@ -1458,13 +1458,13 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 			// copy_from_plan_or_state: body=body.SyntheticProbeThresholds.InitFailurePct prefix=rsModel state=state.SyntheticProbeThresholds.InitFailurePct plan=plan.SyntheticProbeThresholds.InitFailurePct properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SyntheticProbeThresholds.InitFailurePct prefix=rsModel state=state.SyntheticProbeThresholds.InitFailurePct plan=plan.SyntheticProbeThresholds.InitFailurePct")
 			// property: name=probe_config_id, type=STRING macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.InitFailurePct != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.InitFailurePct != nil {
 				body.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId = ValueStringPointerFromPlanOrState(plan.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId, state.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId)
 			} else {
 				body.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId = StringValueOrNil(plan.SyntheticProbeThresholds.InitFailurePct.ProbeConfigId)
 			}
 			// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.InitFailurePct != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.InitFailurePct != nil {
 				body.SyntheticProbeThresholds.InitFailurePct.Value = ValueInt64PointerFromPlanOrState(plan.SyntheticProbeThresholds.InitFailurePct.Value, state.SyntheticProbeThresholds.InitFailurePct.Value)
 			} else {
 				body.SyntheticProbeThresholds.InitFailurePct.Value = Int64ValueOrNil(plan.SyntheticProbeThresholds.InitFailurePct.Value)
@@ -1478,13 +1478,13 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 			// copy_from_plan_or_state: body=body.SyntheticProbeThresholds.Jitter prefix=rsModel state=state.SyntheticProbeThresholds.Jitter plan=plan.SyntheticProbeThresholds.Jitter properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SyntheticProbeThresholds.Jitter prefix=rsModel state=state.SyntheticProbeThresholds.Jitter plan=plan.SyntheticProbeThresholds.Jitter")
 			// property: name=probe_config_id, type=STRING macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.Jitter != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.Jitter != nil {
 				body.SyntheticProbeThresholds.Jitter.ProbeConfigId = ValueStringPointerFromPlanOrState(plan.SyntheticProbeThresholds.Jitter.ProbeConfigId, state.SyntheticProbeThresholds.Jitter.ProbeConfigId)
 			} else {
 				body.SyntheticProbeThresholds.Jitter.ProbeConfigId = StringValueOrNil(plan.SyntheticProbeThresholds.Jitter.ProbeConfigId)
 			}
 			// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.Jitter != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.Jitter != nil {
 				body.SyntheticProbeThresholds.Jitter.Value = ValueInt64PointerFromPlanOrState(plan.SyntheticProbeThresholds.Jitter.Value, state.SyntheticProbeThresholds.Jitter.Value)
 			} else {
 				body.SyntheticProbeThresholds.Jitter.Value = Int64ValueOrNil(plan.SyntheticProbeThresholds.Jitter.Value)
@@ -1498,13 +1498,13 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 			// copy_from_plan_or_state: body=body.SyntheticProbeThresholds.Latency prefix=rsModel state=state.SyntheticProbeThresholds.Latency plan=plan.SyntheticProbeThresholds.Latency properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SyntheticProbeThresholds.Latency prefix=rsModel state=state.SyntheticProbeThresholds.Latency plan=plan.SyntheticProbeThresholds.Latency")
 			// property: name=probe_config_id, type=STRING macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.Latency != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.Latency != nil {
 				body.SyntheticProbeThresholds.Latency.ProbeConfigId = ValueStringPointerFromPlanOrState(plan.SyntheticProbeThresholds.Latency.ProbeConfigId, state.SyntheticProbeThresholds.Latency.ProbeConfigId)
 			} else {
 				body.SyntheticProbeThresholds.Latency.ProbeConfigId = StringValueOrNil(plan.SyntheticProbeThresholds.Latency.ProbeConfigId)
 			}
 			// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.Latency != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.Latency != nil {
 				body.SyntheticProbeThresholds.Latency.Value = ValueInt64PointerFromPlanOrState(plan.SyntheticProbeThresholds.Latency.Value, state.SyntheticProbeThresholds.Latency.Value)
 			} else {
 				body.SyntheticProbeThresholds.Latency.Value = Int64ValueOrNil(plan.SyntheticProbeThresholds.Latency.Value)
@@ -1518,13 +1518,13 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 			// copy_from_plan_or_state: body=body.SyntheticProbeThresholds.PacketLoss prefix=rsModel state=state.SyntheticProbeThresholds.PacketLoss plan=plan.SyntheticProbeThresholds.PacketLoss properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SyntheticProbeThresholds.PacketLoss prefix=rsModel state=state.SyntheticProbeThresholds.PacketLoss plan=plan.SyntheticProbeThresholds.PacketLoss")
 			// property: name=probe_config_id, type=STRING macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.PacketLoss != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.PacketLoss != nil {
 				body.SyntheticProbeThresholds.PacketLoss.ProbeConfigId = ValueStringPointerFromPlanOrState(plan.SyntheticProbeThresholds.PacketLoss.ProbeConfigId, state.SyntheticProbeThresholds.PacketLoss.ProbeConfigId)
 			} else {
 				body.SyntheticProbeThresholds.PacketLoss.ProbeConfigId = StringValueOrNil(plan.SyntheticProbeThresholds.PacketLoss.ProbeConfigId)
 			}
 			// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-			if state.SyntheticProbeThresholds.PacketLoss != nil {
+			if state != nil && state.SyntheticProbeThresholds != nil && state.SyntheticProbeThresholds.PacketLoss != nil {
 				body.SyntheticProbeThresholds.PacketLoss.Value = ValueInt64PointerFromPlanOrState(plan.SyntheticProbeThresholds.PacketLoss.Value, state.SyntheticProbeThresholds.PacketLoss.Value)
 			} else {
 				body.SyntheticProbeThresholds.PacketLoss.Value = Int64ValueOrNil(plan.SyntheticProbeThresholds.PacketLoss.Value)
@@ -1539,19 +1539,19 @@ func (r *performanceProfileResource) doPut(ctx context.Context, plan *rsModelPer
 		// copy_from_plan_or_state: body=body.SystemHealthMetricsThresholds prefix=rsModel state=state.SystemHealthMetricsThresholds plan=plan.SystemHealthMetricsThresholds properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SystemHealthMetricsThresholds prefix=rsModel state=state.SystemHealthMetricsThresholds plan=plan.SystemHealthMetricsThresholds")
 		// property: name=cpu_utilization, type=INTEGER macro=copy_from_plan_or_state
-		if state.SystemHealthMetricsThresholds != nil {
+		if state != nil && state.SystemHealthMetricsThresholds != nil {
 			body.SystemHealthMetricsThresholds.CpuUtilization = ValueInt64PointerFromPlanOrState(plan.SystemHealthMetricsThresholds.CpuUtilization, state.SystemHealthMetricsThresholds.CpuUtilization)
 		} else {
 			body.SystemHealthMetricsThresholds.CpuUtilization = Int64ValueOrNil(plan.SystemHealthMetricsThresholds.CpuUtilization)
 		}
 		// property: name=disk_utilization, type=INTEGER macro=copy_from_plan_or_state
-		if state.SystemHealthMetricsThresholds != nil {
+		if state != nil && state.SystemHealthMetricsThresholds != nil {
 			body.SystemHealthMetricsThresholds.DiskUtilization = ValueInt64PointerFromPlanOrState(plan.SystemHealthMetricsThresholds.DiskUtilization, state.SystemHealthMetricsThresholds.DiskUtilization)
 		} else {
 			body.SystemHealthMetricsThresholds.DiskUtilization = Int64ValueOrNil(plan.SystemHealthMetricsThresholds.DiskUtilization)
 		}
 		// property: name=memory_utilization, type=INTEGER macro=copy_from_plan_or_state
-		if state.SystemHealthMetricsThresholds != nil {
+		if state != nil && state.SystemHealthMetricsThresholds != nil {
 			body.SystemHealthMetricsThresholds.MemoryUtilization = ValueInt64PointerFromPlanOrState(plan.SystemHealthMetricsThresholds.MemoryUtilization, state.SystemHealthMetricsThresholds.MemoryUtilization)
 		} else {
 			body.SystemHealthMetricsThresholds.MemoryUtilization = Int64ValueOrNil(plan.SystemHealthMetricsThresholds.MemoryUtilization)

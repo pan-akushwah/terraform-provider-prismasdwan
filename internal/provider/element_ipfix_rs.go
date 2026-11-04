@@ -1127,9 +1127,9 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=collector_config, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.CollectorConfig == nil && (state == nil || state.CollectorConfig == nil) {
+	if plan.CollectorConfig == nil && (!(state != nil) || state.CollectorConfig == nil) {
 		body.CollectorConfig = nil
-	} else if len(plan.CollectorConfig) == 0 && (state == nil || len(state.CollectorConfig) == 0) {
+	} else if len(plan.CollectorConfig) == 0 && (!(state != nil) || len(state.CollectorConfig) == 0) {
 		body.CollectorConfig = []sdwan_schema.CollectorConfig{}
 	} else if len(plan.CollectorConfig) != 0 || (state != nil && len(state.CollectorConfig) != 0) {
 		CollectorConfigToUse := plan.CollectorConfig
@@ -1168,9 +1168,9 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 		body.ExportCacheTimeout = Int64ValueOrNil(plan.ExportCacheTimeout)
 	}
 	// property: name=filters, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Filters == nil && (state == nil || state.Filters == nil) {
+	if plan.Filters == nil && (!(state != nil) || state.Filters == nil) {
 		body.Filters = nil
-	} else if len(plan.Filters) == 0 && (state == nil || len(state.Filters) == 0) {
+	} else if len(plan.Filters) == 0 && (!(state != nil) || len(state.Filters) == 0) {
 		body.Filters = []sdwan_schema.IPFixFilter{}
 	} else if len(plan.Filters) != 0 || (state != nil && len(state.Filters) != 0) {
 		FiltersToUse := plan.Filters
@@ -1270,19 +1270,19 @@ func (r *elementIpfixResource) doPut(ctx context.Context, plan *rsModelIPFixConf
 		// copy_from_plan_or_state: body=body.Sampler prefix=rsModel state=state.Sampler plan=plan.Sampler properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Sampler prefix=rsModel state=state.Sampler plan=plan.Sampler")
 		// property: name=algorithm, type=STRING macro=copy_from_plan_or_state
-		if state.Sampler != nil {
+		if state != nil && state.Sampler != nil {
 			body.Sampler.Algorithm = ValueStringPointerFromPlanOrState(plan.Sampler.Algorithm, state.Sampler.Algorithm)
 		} else {
 			body.Sampler.Algorithm = StringValueOrNil(plan.Sampler.Algorithm)
 		}
 		// property: name=time_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.Sampler != nil {
+		if state != nil && state.Sampler != nil {
 			body.Sampler.TimeInterval = ValueInt64PointerFromPlanOrState(plan.Sampler.TimeInterval, state.Sampler.TimeInterval)
 		} else {
 			body.Sampler.TimeInterval = Int64ValueOrNil(plan.Sampler.TimeInterval)
 		}
 		// property: name=time_spacing, type=INTEGER macro=copy_from_plan_or_state
-		if state.Sampler != nil {
+		if state != nil && state.Sampler != nil {
 			body.Sampler.TimeSpacing = ValueInt64PointerFromPlanOrState(plan.Sampler.TimeSpacing, state.Sampler.TimeSpacing)
 		} else {
 			body.Sampler.TimeSpacing = Int64ValueOrNil(plan.Sampler.TimeSpacing)

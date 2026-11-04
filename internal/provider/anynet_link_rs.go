@@ -811,13 +811,13 @@ func (r *anynetLinkResource) doPut(ctx context.Context, plan *rsModelAnynetLinkV
 		// copy_from_plan_or_state: body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_from_plan_or_state
-		if state.VpnlinkConfiguration != nil {
+		if state != nil && state.VpnlinkConfiguration != nil {
 			body.VpnlinkConfiguration.KeepAliveFailureCount = ValueInt64PointerFromPlanOrState(plan.VpnlinkConfiguration.KeepAliveFailureCount, state.VpnlinkConfiguration.KeepAliveFailureCount)
 		} else {
 			body.VpnlinkConfiguration.KeepAliveFailureCount = Int64ValueOrNil(plan.VpnlinkConfiguration.KeepAliveFailureCount)
 		}
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.VpnlinkConfiguration != nil {
+		if state != nil && state.VpnlinkConfiguration != nil {
 			body.VpnlinkConfiguration.KeepAliveInterval = ValueInt64PointerFromPlanOrState(plan.VpnlinkConfiguration.KeepAliveInterval, state.VpnlinkConfiguration.KeepAliveInterval)
 		} else {
 			body.VpnlinkConfiguration.KeepAliveInterval = Int64ValueOrNil(plan.VpnlinkConfiguration.KeepAliveInterval)

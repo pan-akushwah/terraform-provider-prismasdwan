@@ -1416,43 +1416,43 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 		// copy_from_plan_or_state: body=body.IpsecTunnelConfigs prefix=rsModel state=state.IpsecTunnelConfigs plan=plan.IpsecTunnelConfigs properties=7
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.IpsecTunnelConfigs prefix=rsModel state=state.IpsecTunnelConfigs plan=plan.IpsecTunnelConfigs")
 		// property: name=anti_replay, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.AntiReplay = ValueBoolPointerFromPlanOrState(plan.IpsecTunnelConfigs.AntiReplay, state.IpsecTunnelConfigs.AntiReplay)
 		} else {
 			body.IpsecTunnelConfigs.AntiReplay = BoolValueOrNil(plan.IpsecTunnelConfigs.AntiReplay)
 		}
 		// property: name=copy_tos, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.CopyTos = ValueBoolPointerFromPlanOrState(plan.IpsecTunnelConfigs.CopyTos, state.IpsecTunnelConfigs.CopyTos)
 		} else {
 			body.IpsecTunnelConfigs.CopyTos = BoolValueOrNil(plan.IpsecTunnelConfigs.CopyTos)
 		}
 		// property: name=enable_gre_encapsulation, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.EnableGreEncapsulation = ValueBoolPointerFromPlanOrState(plan.IpsecTunnelConfigs.EnableGreEncapsulation, state.IpsecTunnelConfigs.EnableGreEncapsulation)
 		} else {
 			body.IpsecTunnelConfigs.EnableGreEncapsulation = BoolValueOrNil(plan.IpsecTunnelConfigs.EnableGreEncapsulation)
 		}
 		// property: name=ike_key_exchange, type=STRING macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.IkeKeyExchange = ValueStringPointerFromPlanOrState(plan.IpsecTunnelConfigs.IkeKeyExchange, state.IpsecTunnelConfigs.IkeKeyExchange)
 		} else {
 			body.IpsecTunnelConfigs.IkeKeyExchange = StringValueOrNil(plan.IpsecTunnelConfigs.IkeKeyExchange)
 		}
 		// property: name=prismaaccess_ike_crypto_profile_id, type=STRING macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = ValueStringPointerFromPlanOrState(plan.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId, state.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
 		} else {
 			body.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId = StringValueOrNil(plan.IpsecTunnelConfigs.PrismaaccessIkeCryptoProfileId)
 		}
 		// property: name=prismaaccess_ipsec_profile_id, type=STRING macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.PrismaaccessIpsecProfileId = ValueStringPointerFromPlanOrState(plan.IpsecTunnelConfigs.PrismaaccessIpsecProfileId, state.IpsecTunnelConfigs.PrismaaccessIpsecProfileId)
 		} else {
 			body.IpsecTunnelConfigs.PrismaaccessIpsecProfileId = StringValueOrNil(plan.IpsecTunnelConfigs.PrismaaccessIpsecProfileId)
 		}
 		// property: name=tunnel_monitoring, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.IpsecTunnelConfigs != nil {
+		if state != nil && state.IpsecTunnelConfigs != nil {
 			body.IpsecTunnelConfigs.TunnelMonitoring = ValueBoolPointerFromPlanOrState(plan.IpsecTunnelConfigs.TunnelMonitoring, state.IpsecTunnelConfigs.TunnelMonitoring)
 		} else {
 			body.IpsecTunnelConfigs.TunnelMonitoring = BoolValueOrNil(plan.IpsecTunnelConfigs.TunnelMonitoring)
@@ -1502,9 +1502,9 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 		body.PrismasaseConnectionId = StringValueOrNil(plan.PrismasaseConnectionId)
 	}
 	// property: name=remote_network_groups, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.RemoteNetworkGroups == nil && (state == nil || state.RemoteNetworkGroups == nil) {
+	if plan.RemoteNetworkGroups == nil && (!(state != nil) || state.RemoteNetworkGroups == nil) {
 		body.RemoteNetworkGroups = nil
-	} else if len(plan.RemoteNetworkGroups) == 0 && (state == nil || len(state.RemoteNetworkGroups) == 0) {
+	} else if len(plan.RemoteNetworkGroups) == 0 && (!(state != nil) || len(state.RemoteNetworkGroups) == 0) {
 		body.RemoteNetworkGroups = []sdwan_schema.RemoteNetworkGroup{}
 	} else if len(plan.RemoteNetworkGroups) != 0 || (state != nil && len(state.RemoteNetworkGroups) != 0) {
 		RemoteNetworkGroupsToUse := plan.RemoteNetworkGroups
@@ -1589,43 +1589,43 @@ func (r *sitePrismaSaseConnectionResource) doPut(ctx context.Context, plan *rsMo
 		// copy_from_plan_or_state: body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs properties=7
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.RoutingConfigs prefix=rsModel state=state.RoutingConfigs plan=plan.RoutingConfigs")
 		// property: name=advertise_default_route, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.AdvertiseDefaultRoute = ValueBoolPointerFromPlanOrState(plan.RoutingConfigs.AdvertiseDefaultRoute, state.RoutingConfigs.AdvertiseDefaultRoute)
 		} else {
 			body.RoutingConfigs.AdvertiseDefaultRoute = BoolValueOrNil(plan.RoutingConfigs.AdvertiseDefaultRoute)
 		}
 		// property: name=bgp_secret, type=STRING macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.BgpSecret = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.BgpSecret, state.RoutingConfigs.BgpSecret)
 		} else {
 			body.RoutingConfigs.BgpSecret = StringValueOrNil(plan.RoutingConfigs.BgpSecret)
 		}
 		// property: name=branch_as_number, type=STRING macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.BranchAsNumber = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.BranchAsNumber, state.RoutingConfigs.BranchAsNumber)
 		} else {
 			body.RoutingConfigs.BranchAsNumber = StringValueOrNil(plan.RoutingConfigs.BranchAsNumber)
 		}
 		// property: name=deployment_mode, type=STRING macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.DeploymentMode = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.DeploymentMode, state.RoutingConfigs.DeploymentMode)
 		} else {
 			body.RoutingConfigs.DeploymentMode = StringValueOrNil(plan.RoutingConfigs.DeploymentMode)
 		}
 		// property: name=export_routes, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.ExportRoutes = ValueBoolPointerFromPlanOrState(plan.RoutingConfigs.ExportRoutes, state.RoutingConfigs.ExportRoutes)
 		} else {
 			body.RoutingConfigs.ExportRoutes = BoolValueOrNil(plan.RoutingConfigs.ExportRoutes)
 		}
 		// property: name=peering_type, type=STRING macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.PeeringType = ValueStringPointerFromPlanOrState(plan.RoutingConfigs.PeeringType, state.RoutingConfigs.PeeringType)
 		} else {
 			body.RoutingConfigs.PeeringType = StringValueOrNil(plan.RoutingConfigs.PeeringType)
 		}
 		// property: name=summarize_mobile_routes_before_advertise, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.RoutingConfigs != nil {
+		if state != nil && state.RoutingConfigs != nil {
 			body.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = ValueBoolPointerFromPlanOrState(plan.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise, state.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)
 		} else {
 			body.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise = BoolValueOrNil(plan.RoutingConfigs.SummarizeMobileRoutesBeforeAdvertise)

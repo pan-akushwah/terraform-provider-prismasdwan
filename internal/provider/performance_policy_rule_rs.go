@@ -1395,9 +1395,9 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=actions, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Actions == nil && (state == nil || state.Actions == nil) {
+	if plan.Actions == nil && (!(state != nil) || state.Actions == nil) {
 		body.Actions = nil
-	} else if len(plan.Actions) == 0 && (state == nil || len(state.Actions) == 0) {
+	} else if len(plan.Actions) == 0 && (!(state != nil) || len(state.Actions) == 0) {
 		body.Actions = []sdwan_schema.PerfMgmtActionV2N2{}
 	} else if len(plan.Actions) != 0 || (state != nil && len(state.Actions) != 0) {
 		ActionsToUse := plan.Actions
@@ -1515,14 +1515,14 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.AppFilters prefix=rsModel state=state.AppFilters plan=plan.AppFilters properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.AppFilters prefix=rsModel state=state.AppFilters plan=plan.AppFilters")
 		// property: name=app_transfer_types, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.AppFilters != nil && plan.AppFilters.AppTransferTypes.IsUnknown() {
+		if state != nil && state.AppFilters != nil && plan.AppFilters.AppTransferTypes.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.AppFilters.AppTransferTypes = ListStringValueOrNil(ctx, state.AppFilters.AppTransferTypes)
 		} else {
 			body.AppFilters.AppTransferTypes = ListStringValueOrNil(ctx, plan.AppFilters.AppTransferTypes)
 		}
 		// property: name=application_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.AppFilters != nil && plan.AppFilters.ApplicationIds.IsUnknown() {
+		if state != nil && state.AppFilters != nil && plan.AppFilters.ApplicationIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.AppFilters.ApplicationIds = ListStringValueOrNil(ctx, state.AppFilters.ApplicationIds)
 		} else {
@@ -1561,9 +1561,9 @@ func (r *performancePolicyRuleResource) doPut(ctx context.Context, plan *rsModel
 		body.NetworkContextIds = ListStringValueOrNil(ctx, plan.NetworkContextIds)
 	}
 	// property: name=path_filters, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.PathFilters == nil && (state == nil || state.PathFilters == nil) {
+	if plan.PathFilters == nil && (!(state != nil) || state.PathFilters == nil) {
 		body.PathFilters = nil
-	} else if len(plan.PathFilters) == 0 && (state == nil || len(state.PathFilters) == 0) {
+	} else if len(plan.PathFilters) == 0 && (!(state != nil) || len(state.PathFilters) == 0) {
 		body.PathFilters = []sdwan_schema.PerfMgmtPathFilterV2N3{}
 	} else if len(plan.PathFilters) != 0 || (state != nil && len(state.PathFilters) != 0) {
 		PathFiltersToUse := plan.PathFilters

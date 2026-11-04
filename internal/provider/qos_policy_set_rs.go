@@ -644,8 +644,18 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
+				// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+				// value when the answer is the same number to six decimals
+				if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange != nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = Float64KeepPlanWhenNear(varLoopBandwidthAllocationSchemes.BandwidthRange.High, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High)
+				}
 				// property: name=low, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.Low)
+				// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+				// value when the answer is the same number to six decimals
+				if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange != nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = Float64KeepPlanWhenNear(varLoopBandwidthAllocationSchemes.BandwidthRange.Low, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low)
+				}
 			}
 			// property: name=business_priorities, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopBandwidthAllocationSchemes.BusinessPriorities == nil {
@@ -661,6 +671,11 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
+					// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+					// value when the answer is the same number to six decimals
+					if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex {
+						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthAllocation, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation)
+					}
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
 					if varLoopBusinessPriorities.BandwidthSplitPerType == nil {
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = nil
@@ -670,12 +685,32 @@ func (r *qosPolicySetResource) doPost(ctx context.Context, plan *rsModelPriority
 						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk)
+						}
 						// property: name=rt_audio, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio)
+						}
 						// property: name=rt_video, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo)
+						}
 						// property: name=transactional, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional)
+						}
 					}
 					// property: name=priority_number, type=INTEGER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorities.PriorityNumber)
@@ -873,8 +908,18 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
+				// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+				// value when the answer is the same number to six decimals
+				if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange != nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = Float64KeepPlanWhenNear(varLoopBandwidthAllocationSchemes.BandwidthRange.High, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High)
+				}
 				// property: name=low, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.Low)
+				// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+				// value when the answer is the same number to six decimals
+				if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange != nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = Float64KeepPlanWhenNear(varLoopBandwidthAllocationSchemes.BandwidthRange.Low, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low)
+				}
 			}
 			// property: name=business_priorities, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopBandwidthAllocationSchemes.BusinessPriorities == nil {
@@ -890,6 +935,11 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
+					// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+					// value when the answer is the same number to six decimals
+					if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex {
+						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthAllocation, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation)
+					}
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
 					if varLoopBusinessPriorities.BandwidthSplitPerType == nil {
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = nil
@@ -899,12 +949,32 @@ func (r *qosPolicySetResource) doGet(ctx context.Context, state *rsModelPriority
 						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk)
+						}
 						// property: name=rt_audio, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio)
+						}
 						// property: name=rt_video, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo)
+						}
 						// property: name=transactional, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(savestate.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional, savestate.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional)
+						}
 					}
 					// property: name=priority_number, type=INTEGER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorities.PriorityNumber)
@@ -1045,9 +1115,9 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=bandwidth_allocation_schemes, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.BandwidthAllocationSchemes == nil && (state == nil || state.BandwidthAllocationSchemes == nil) {
+	if plan.BandwidthAllocationSchemes == nil && (!(state != nil) || state.BandwidthAllocationSchemes == nil) {
 		body.BandwidthAllocationSchemes = nil
-	} else if len(plan.BandwidthAllocationSchemes) == 0 && (state == nil || len(state.BandwidthAllocationSchemes) == 0) {
+	} else if len(plan.BandwidthAllocationSchemes) == 0 && (!(state != nil) || len(state.BandwidthAllocationSchemes) == 0) {
 		body.BandwidthAllocationSchemes = []sdwan_schema.BandwidthAllocationSchemeV2{}
 	} else if len(plan.BandwidthAllocationSchemes) != 0 || (state != nil && len(state.BandwidthAllocationSchemes) != 0) {
 		BandwidthAllocationSchemesToUse := plan.BandwidthAllocationSchemes
@@ -1106,9 +1176,9 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 		}
 	}
 	// property: name=business_priority_names, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.BusinessPriorityNames == nil && (state == nil || state.BusinessPriorityNames == nil) {
+	if plan.BusinessPriorityNames == nil && (!(state != nil) || state.BusinessPriorityNames == nil) {
 		body.BusinessPriorityNames = nil
-	} else if len(plan.BusinessPriorityNames) == 0 && (state == nil || len(state.BusinessPriorityNames) == 0) {
+	} else if len(plan.BusinessPriorityNames) == 0 && (!(state != nil) || len(state.BusinessPriorityNames) == 0) {
 		body.BusinessPriorityNames = []sdwan_schema.BusinessPriorityNameMapper{}
 	} else if len(plan.BusinessPriorityNames) != 0 || (state != nil && len(state.BusinessPriorityNames) != 0) {
 		BusinessPriorityNamesToUse := plan.BusinessPriorityNames
@@ -1135,9 +1205,9 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 		body.CloneFrom = StringValueOrNil(plan.CloneFrom)
 	}
 	// property: name=default_rule_dscp_mappings, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.DefaultRuleDscpMappings == nil && (state == nil || state.DefaultRuleDscpMappings == nil) {
+	if plan.DefaultRuleDscpMappings == nil && (!(state != nil) || state.DefaultRuleDscpMappings == nil) {
 		body.DefaultRuleDscpMappings = nil
-	} else if len(plan.DefaultRuleDscpMappings) == 0 && (state == nil || len(state.DefaultRuleDscpMappings) == 0) {
+	} else if len(plan.DefaultRuleDscpMappings) == 0 && (!(state != nil) || len(state.DefaultRuleDscpMappings) == 0) {
 		body.DefaultRuleDscpMappings = []sdwan_schema.DefaultRuleDSCPMapping{}
 	} else if len(plan.DefaultRuleDscpMappings) != 0 || (state != nil && len(state.DefaultRuleDscpMappings) != 0) {
 		DefaultRuleDscpMappingsToUse := plan.DefaultRuleDscpMappings
@@ -1279,8 +1349,18 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 				tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange prefix=rsModel ans=varLoopBandwidthAllocationSchemes.BandwidthRange")
 				// property: name=high, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.High)
+				// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+				// value when the answer is the same number to six decimals
+				if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange != nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High = Float64KeepPlanWhenNear(varLoopBandwidthAllocationSchemes.BandwidthRange.High, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.High)
+				}
 				// property: name=low, type=NUMBER macro=copy_to_state
 				state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = types.Float64PointerValue(varLoopBandwidthAllocationSchemes.BandwidthRange.Low)
+				// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+				// value when the answer is the same number to six decimals
+				if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange != nil {
+					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low = Float64KeepPlanWhenNear(varLoopBandwidthAllocationSchemes.BandwidthRange.Low, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BandwidthRange.Low)
+				}
 			}
 			// property: name=business_priorities, type=ARRAY_REFERENCE macro=copy_to_state
 			if varLoopBandwidthAllocationSchemes.BusinessPriorities == nil {
@@ -1296,6 +1376,11 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 					tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex] prefix=rsModel ans=varLoopBusinessPriorities")
 					// property: name=bandwidth_allocation, type=NUMBER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthAllocation)
+					// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+					// value when the answer is the same number to six decimals
+					if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex {
+						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthAllocation, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthAllocation)
+					}
 					// property: name=bandwidth_split_per_type, type=REFERENCE macro=copy_to_state
 					if varLoopBusinessPriorities.BandwidthSplitPerType == nil {
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType = nil
@@ -1305,12 +1390,32 @@ func (r *qosPolicySetResource) doPut(ctx context.Context, plan *rsModelPriorityP
 						tflog.Debug(ctx, "copy_to_state state=state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType prefix=rsModel ans=varLoopBusinessPriorities.BandwidthSplitPerType")
 						// property: name=bulk, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.Bulk, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Bulk)
+						}
 						// property: name=rt_audio, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.RtAudio, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtAudio)
+						}
 						// property: name=rt_video, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.RtVideo, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.RtVideo)
+						}
 						// property: name=transactional, type=NUMBER macro=copy_to_state
 						state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = types.Float64PointerValue(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional)
+						// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+						// value when the answer is the same number to six decimals
+						if len(plan.BandwidthAllocationSchemes) > varLoopBandwidthAllocationSchemesIndex && len(plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities) > varLoopBusinessPrioritiesIndex && plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType != nil {
+							state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional = Float64KeepPlanWhenNear(varLoopBusinessPriorities.BandwidthSplitPerType.Transactional, plan.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].BandwidthSplitPerType.Transactional)
+						}
 					}
 					// property: name=priority_number, type=INTEGER macro=copy_to_state
 					state.BandwidthAllocationSchemes[varLoopBandwidthAllocationSchemesIndex].BusinessPriorities[varLoopBusinessPrioritiesIndex].PriorityNumber = types.Int64PointerValue(varLoopBusinessPriorities.PriorityNumber)

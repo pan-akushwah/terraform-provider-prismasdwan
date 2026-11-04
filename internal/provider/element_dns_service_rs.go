@@ -1188,7 +1188,7 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.CacheConfig prefix=rsModel state=state.CacheConfig plan=plan.CacheConfig properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.CacheConfig prefix=rsModel state=state.CacheConfig plan=plan.CacheConfig")
 		// property: name=cache_size, type=INTEGER macro=copy_from_plan_or_state
-		if state.CacheConfig != nil {
+		if state != nil && state.CacheConfig != nil {
 			body.CacheConfig.CacheSize = ValueInt64PointerFromPlanOrState(plan.CacheConfig.CacheSize, state.CacheConfig.CacheSize)
 		} else {
 			body.CacheConfig.CacheSize = Int64ValueOrNil(plan.CacheConfig.CacheSize)
@@ -1215,24 +1215,24 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 			// copy_from_plan_or_state: body=body.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=rsModel state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment plan=plan.DnsQueriesMetadata.AddCustomerPremisesEquipment properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=rsModel state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment plan=plan.DnsQueriesMetadata.AddCustomerPremisesEquipment")
 			// property: name=identifier_text, type=STRING macro=copy_from_plan_or_state
-			if state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
+			if state != nil && state.DnsQueriesMetadata != nil && state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = ValueStringPointerFromPlanOrState(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText, state.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
 			} else {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = StringValueOrNil(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
 			}
 			// property: name=type, type=STRING macro=copy_from_plan_or_state
-			if state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
+			if state != nil && state.DnsQueriesMetadata != nil && state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type = ValueStringPointerFromPlanOrState(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type, state.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type)
 			} else {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type = StringValueOrNil(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type)
 			}
 		}
 		// property: name=add_subnets, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DnsQueriesMetadata.AddSubnets == nil && (state.DnsQueriesMetadata == nil || state.DnsQueriesMetadata.AddSubnets == nil) {
+		if plan.DnsQueriesMetadata.AddSubnets == nil && (!(state != nil && state.DnsQueriesMetadata != nil) || state.DnsQueriesMetadata.AddSubnets == nil) {
 			body.DnsQueriesMetadata.AddSubnets = nil
-		} else if len(plan.DnsQueriesMetadata.AddSubnets) == 0 && (state.DnsQueriesMetadata == nil || len(state.DnsQueriesMetadata.AddSubnets) == 0) {
+		} else if len(plan.DnsQueriesMetadata.AddSubnets) == 0 && (!(state != nil && state.DnsQueriesMetadata != nil) || len(state.DnsQueriesMetadata.AddSubnets) == 0) {
 			body.DnsQueriesMetadata.AddSubnets = []sdwan_schema.Subnet{}
-		} else if len(plan.DnsQueriesMetadata.AddSubnets) != 0 || (state.DnsQueriesMetadata != nil && len(state.DnsQueriesMetadata.AddSubnets) != 0) {
+		} else if len(plan.DnsQueriesMetadata.AddSubnets) != 0 || (state != nil && state.DnsQueriesMetadata != nil && len(state.DnsQueriesMetadata.AddSubnets) != 0) {
 			AddSubnetsToUse := plan.DnsQueriesMetadata.AddSubnets
 			if len(plan.DnsQueriesMetadata.AddSubnets) == 0 {
 				AddSubnetsToUse = state.DnsQueriesMetadata.AddSubnets
@@ -1262,9 +1262,9 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 		body.DnsserviceProfileId = StringValueOrNil(plan.DnsserviceProfileId)
 	}
 	// property: name=dnsservicerole_bindings, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.DnsserviceroleBindings == nil && (state == nil || state.DnsserviceroleBindings == nil) {
+	if plan.DnsserviceroleBindings == nil && (!(state != nil) || state.DnsserviceroleBindings == nil) {
 		body.DnsserviceroleBindings = nil
-	} else if len(plan.DnsserviceroleBindings) == 0 && (state == nil || len(state.DnsserviceroleBindings) == 0) {
+	} else if len(plan.DnsserviceroleBindings) == 0 && (!(state != nil) || len(state.DnsserviceroleBindings) == 0) {
 		body.DnsserviceroleBindings = []sdwan_schema.DnsServiceroleBindings{}
 	} else if len(plan.DnsserviceroleBindings) != 0 || (state != nil && len(state.DnsserviceroleBindings) != 0) {
 		DnsserviceroleBindingsToUse := plan.DnsserviceroleBindings
@@ -1301,9 +1301,9 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 		}
 	}
 	// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.DomainsToAddresses == nil && (state == nil || state.DomainsToAddresses == nil) {
+	if plan.DomainsToAddresses == nil && (!(state != nil) || state.DomainsToAddresses == nil) {
 		body.DomainsToAddresses = nil
-	} else if len(plan.DomainsToAddresses) == 0 && (state == nil || len(state.DomainsToAddresses) == 0) {
+	} else if len(plan.DomainsToAddresses) == 0 && (!(state != nil) || len(state.DomainsToAddresses) == 0) {
 		body.DomainsToAddresses = []sdwan_schema.DomainsToAddress{}
 	} else if len(plan.DomainsToAddresses) != 0 || (state != nil && len(state.DomainsToAddresses) != 0) {
 		DomainsToAddressesToUse := plan.DomainsToAddresses
@@ -1326,9 +1326,9 @@ func (r *elementDnsServiceResource) doPut(ctx context.Context, plan *rsModelDnsS
 		}
 	}
 	// property: name=domains_to_interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.DomainsToInterfaces == nil && (state == nil || state.DomainsToInterfaces == nil) {
+	if plan.DomainsToInterfaces == nil && (!(state != nil) || state.DomainsToInterfaces == nil) {
 		body.DomainsToInterfaces = nil
-	} else if len(plan.DomainsToInterfaces) == 0 && (state == nil || len(state.DomainsToInterfaces) == 0) {
+	} else if len(plan.DomainsToInterfaces) == 0 && (!(state != nil) || len(state.DomainsToInterfaces) == 0) {
 		body.DomainsToInterfaces = []sdwan_schema.DomainsToInterface{}
 	} else if len(plan.DomainsToInterfaces) != 0 || (state != nil && len(state.DomainsToInterfaces) != 0) {
 		DomainsToInterfacesToUse := plan.DomainsToInterfaces

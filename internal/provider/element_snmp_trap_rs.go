@@ -904,7 +904,7 @@ func (r *elementSnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPTr
 		// copy_from_plan_or_state: body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config")
 		// property: name=community, type=STRING macro=copy_from_plan_or_state
-		if state.V2Config != nil {
+		if state != nil && state.V2Config != nil {
 			body.V2Config.Community = ValueStringPointerFromPlanOrState(plan.V2Config.Community, state.V2Config.Community)
 		} else {
 			body.V2Config.Community = StringValueOrNil(plan.V2Config.Community)
@@ -925,43 +925,43 @@ func (r *elementSnmpTrapResource) doPut(ctx context.Context, plan *rsModelSNMPTr
 			// copy_from_plan_or_state: body=body.V3Config.UserAccess prefix=rsModel state=state.V3Config.UserAccess plan=plan.V3Config.UserAccess properties=7
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.V3Config.UserAccess prefix=rsModel state=state.V3Config.UserAccess plan=plan.V3Config.UserAccess")
 			// property: name=auth_phrase, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.AuthPhrase = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.AuthPhrase, state.V3Config.UserAccess.AuthPhrase)
 			} else {
 				body.V3Config.UserAccess.AuthPhrase = StringValueOrNil(plan.V3Config.UserAccess.AuthPhrase)
 			}
 			// property: name=auth_type, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.AuthType = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.AuthType, state.V3Config.UserAccess.AuthType)
 			} else {
 				body.V3Config.UserAccess.AuthType = StringValueOrNil(plan.V3Config.UserAccess.AuthType)
 			}
 			// property: name=enc_phrase, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.EncPhrase = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.EncPhrase, state.V3Config.UserAccess.EncPhrase)
 			} else {
 				body.V3Config.UserAccess.EncPhrase = StringValueOrNil(plan.V3Config.UserAccess.EncPhrase)
 			}
 			// property: name=enc_type, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.EncType = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.EncType, state.V3Config.UserAccess.EncType)
 			} else {
 				body.V3Config.UserAccess.EncType = StringValueOrNil(plan.V3Config.UserAccess.EncType)
 			}
 			// property: name=engine_id, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.EngineId = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.EngineId, state.V3Config.UserAccess.EngineId)
 			} else {
 				body.V3Config.UserAccess.EngineId = StringValueOrNil(plan.V3Config.UserAccess.EngineId)
 			}
 			// property: name=security_level, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.SecurityLevel = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.SecurityLevel, state.V3Config.UserAccess.SecurityLevel)
 			} else {
 				body.V3Config.UserAccess.SecurityLevel = StringValueOrNil(plan.V3Config.UserAccess.SecurityLevel)
 			}
 			// property: name=user_name, type=STRING macro=copy_from_plan_or_state
-			if state.V3Config.UserAccess != nil {
+			if state != nil && state.V3Config != nil && state.V3Config.UserAccess != nil {
 				body.V3Config.UserAccess.UserName = ValueStringPointerFromPlanOrState(plan.V3Config.UserAccess.UserName, state.V3Config.UserAccess.UserName)
 			} else {
 				body.V3Config.UserAccess.UserName = StringValueOrNil(plan.V3Config.UserAccess.UserName)

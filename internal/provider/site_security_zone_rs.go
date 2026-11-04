@@ -628,9 +628,9 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=element_interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.ElementInterfaces == nil && (state == nil || state.ElementInterfaces == nil) {
+	if plan.ElementInterfaces == nil && (!(state != nil) || state.ElementInterfaces == nil) {
 		body.ElementInterfaces = nil
-	} else if len(plan.ElementInterfaces) == 0 && (state == nil || len(state.ElementInterfaces) == 0) {
+	} else if len(plan.ElementInterfaces) == 0 && (!(state != nil) || len(state.ElementInterfaces) == 0) {
 		body.ElementInterfaces = []sdwan_schema.ElementInterfaces{}
 	} else if len(plan.ElementInterfaces) != 0 || (state != nil && len(state.ElementInterfaces) != 0) {
 		ElementInterfacesToUse := plan.ElementInterfaces
@@ -657,9 +657,9 @@ func (r *siteSecurityZoneResource) doPut(ctx context.Context, plan *rsModelSecur
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=networks, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Networks == nil && (state == nil || state.Networks == nil) {
+	if plan.Networks == nil && (!(state != nil) || state.Networks == nil) {
 		body.Networks = nil
-	} else if len(plan.Networks) == 0 && (state == nil || len(state.Networks) == 0) {
+	} else if len(plan.Networks) == 0 && (!(state != nil) || len(state.Networks) == 0) {
 		body.Networks = []sdwan_schema.SiteContextV2N1{}
 	} else if len(plan.Networks) != 0 || (state != nil && len(state.Networks) != 0) {
 		NetworksToUse := plan.Networks

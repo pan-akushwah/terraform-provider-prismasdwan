@@ -922,9 +922,9 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=actions, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Actions == nil && (state == nil || state.Actions == nil) {
+	if plan.Actions == nil && (!(state != nil) || state.Actions == nil) {
 		body.Actions = nil
-	} else if len(plan.Actions) == 0 && (state == nil || len(state.Actions) == 0) {
+	} else if len(plan.Actions) == 0 && (!(state != nil) || len(state.Actions) == 0) {
 		body.Actions = []sdwan_schema.NATAction{}
 	} else if len(plan.Actions) != 0 || (state != nil && len(state.Actions) != 0) {
 		ActionsToUse := plan.Actions
@@ -955,9 +955,9 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=destination_ports, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.DestinationPorts == nil && (state == nil || state.DestinationPorts == nil) {
+	if plan.DestinationPorts == nil && (!(state != nil) || state.DestinationPorts == nil) {
 		body.DestinationPorts = nil
-	} else if len(plan.DestinationPorts) == 0 && (state == nil || len(state.DestinationPorts) == 0) {
+	} else if len(plan.DestinationPorts) == 0 && (!(state != nil) || len(state.DestinationPorts) == 0) {
 		body.DestinationPorts = []sdwan_schema.PortRange{}
 	} else if len(plan.DestinationPorts) != 0 || (state != nil && len(state.DestinationPorts) != 0) {
 		DestinationPortsToUse := plan.DestinationPorts
@@ -1014,9 +1014,9 @@ func (r *natPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNATPolic
 		body.Protocol = Int64ValueOrNil(plan.Protocol)
 	}
 	// property: name=source_ports, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.SourcePorts == nil && (state == nil || state.SourcePorts == nil) {
+	if plan.SourcePorts == nil && (!(state != nil) || state.SourcePorts == nil) {
 		body.SourcePorts = nil
-	} else if len(plan.SourcePorts) == 0 && (state == nil || len(state.SourcePorts) == 0) {
+	} else if len(plan.SourcePorts) == 0 && (!(state != nil) || len(state.SourcePorts) == 0) {
 		body.SourcePorts = []sdwan_schema.PortRange{}
 	} else if len(plan.SourcePorts) != 0 || (state != nil && len(state.SourcePorts) != 0) {
 		SourcePortsToUse := plan.SourcePorts

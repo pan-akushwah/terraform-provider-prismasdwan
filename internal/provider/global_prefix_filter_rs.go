@@ -563,9 +563,9 @@ func (r *globalPrefixFilterResource) doPut(ctx context.Context, plan *rsModelGlo
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=filters, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Filters == nil && (state == nil || state.Filters == nil) {
+	if plan.Filters == nil && (!(state != nil) || state.Filters == nil) {
 		body.Filters = nil
-	} else if len(plan.Filters) == 0 && (state == nil || len(state.Filters) == 0) {
+	} else if len(plan.Filters) == 0 && (!(state != nil) || len(state.Filters) == 0) {
 		body.Filters = []sdwan_schema.GlobalPrefixIpPrefixes{}
 	} else if len(plan.Filters) != 0 || (state != nil && len(state.Filters) != 0) {
 		FiltersToUse := plan.Filters

@@ -1125,7 +1125,7 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 		// copy_from_plan_or_state: body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config")
 		// property: name=snmp_community_string, type=STRING macro=copy_from_plan_or_state
-		if state.V2Config != nil {
+		if state != nil && state.V2Config != nil {
 			body.V2Config.SnmpCommunityString = ValueStringPointerFromPlanOrState(plan.V2Config.SnmpCommunityString, state.V2Config.SnmpCommunityString)
 		} else {
 			body.V2Config.SnmpCommunityString = StringValueOrNil(plan.V2Config.SnmpCommunityString)
@@ -1139,49 +1139,49 @@ func (r *iotProfileResource) doPut(ctx context.Context, plan *rsModelDeviceIdPro
 		// copy_from_plan_or_state: body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config properties=8
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config")
 		// property: name=snmp_auth_password, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpAuthPassword = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpAuthPassword, state.V3Config.SnmpAuthPassword)
 		} else {
 			body.V3Config.SnmpAuthPassword = StringValueOrNil(plan.V3Config.SnmpAuthPassword)
 		}
 		// property: name=snmp_auth_password_encrypted, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpAuthPasswordEncrypted = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpAuthPasswordEncrypted, state.V3Config.SnmpAuthPasswordEncrypted)
 		} else {
 			body.V3Config.SnmpAuthPasswordEncrypted = StringValueOrNil(plan.V3Config.SnmpAuthPasswordEncrypted)
 		}
 		// property: name=snmp_auth_protocol, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpAuthProtocol = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpAuthProtocol, state.V3Config.SnmpAuthProtocol)
 		} else {
 			body.V3Config.SnmpAuthProtocol = StringValueOrNil(plan.V3Config.SnmpAuthProtocol)
 		}
 		// property: name=snmp_privacy_password, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpPrivacyPassword = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpPrivacyPassword, state.V3Config.SnmpPrivacyPassword)
 		} else {
 			body.V3Config.SnmpPrivacyPassword = StringValueOrNil(plan.V3Config.SnmpPrivacyPassword)
 		}
 		// property: name=snmp_privacy_password_encrypted, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpPrivacyPasswordEncrypted = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpPrivacyPasswordEncrypted, state.V3Config.SnmpPrivacyPasswordEncrypted)
 		} else {
 			body.V3Config.SnmpPrivacyPasswordEncrypted = StringValueOrNil(plan.V3Config.SnmpPrivacyPasswordEncrypted)
 		}
 		// property: name=snmp_privacy_protocol, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpPrivacyProtocol = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpPrivacyProtocol, state.V3Config.SnmpPrivacyProtocol)
 		} else {
 			body.V3Config.SnmpPrivacyProtocol = StringValueOrNil(plan.V3Config.SnmpPrivacyProtocol)
 		}
 		// property: name=snmp_security_level, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpSecurityLevel = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpSecurityLevel, state.V3Config.SnmpSecurityLevel)
 		} else {
 			body.V3Config.SnmpSecurityLevel = StringValueOrNil(plan.V3Config.SnmpSecurityLevel)
 		}
 		// property: name=snmp_username, type=STRING macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.SnmpUsername = ValueStringPointerFromPlanOrState(plan.V3Config.SnmpUsername, state.V3Config.SnmpUsername)
 		} else {
 			body.V3Config.SnmpUsername = StringValueOrNil(plan.V3Config.SnmpUsername)

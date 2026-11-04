@@ -822,9 +822,9 @@ func (r *elementRadiusResource) doPut(ctx context.Context, plan *rsModelElementR
 		body.OverrideIndicator = ListStringValueOrNil(ctx, plan.OverrideIndicator)
 	}
 	// property: name=radius_configuration, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.RadiusConfiguration == nil && (state == nil || state.RadiusConfiguration == nil) {
+	if plan.RadiusConfiguration == nil && (!(state != nil) || state.RadiusConfiguration == nil) {
 		body.RadiusConfiguration = nil
-	} else if len(plan.RadiusConfiguration) == 0 && (state == nil || len(state.RadiusConfiguration) == 0) {
+	} else if len(plan.RadiusConfiguration) == 0 && (!(state != nil) || len(state.RadiusConfiguration) == 0) {
 		body.RadiusConfiguration = []sdwan_schema.RadiusConfiguration{}
 	} else if len(plan.RadiusConfiguration) != 0 || (state != nil && len(state.RadiusConfiguration) != 0) {
 		RadiusConfigurationToUse := plan.RadiusConfiguration

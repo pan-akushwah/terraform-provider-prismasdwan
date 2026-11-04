@@ -619,9 +619,9 @@ func (r *elementRoutingAspathaccesslistResource) doPut(ctx context.Context, plan
 		body.Schema = Int64ValueOrNil(plan.Schema)
 	}
 	// property: name=as_path_regex_list, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.AsPathRegexList == nil && (state == nil || state.AsPathRegexList == nil) {
+	if plan.AsPathRegexList == nil && (!(state != nil) || state.AsPathRegexList == nil) {
 		body.AsPathRegexList = nil
-	} else if len(plan.AsPathRegexList) == 0 && (state == nil || len(state.AsPathRegexList) == 0) {
+	} else if len(plan.AsPathRegexList) == 0 && (!(state != nil) || len(state.AsPathRegexList) == 0) {
 		body.AsPathRegexList = []sdwan_schema.ASPathRegex{}
 	} else if len(plan.AsPathRegexList) != 0 || (state != nil && len(state.AsPathRegexList) != 0) {
 		AsPathRegexListToUse := plan.AsPathRegexList

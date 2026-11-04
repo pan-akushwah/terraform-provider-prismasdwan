@@ -1167,13 +1167,13 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			// copy_from_plan_or_state: body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.HubClusterConfig.IntraClusterTunnel prefix=rsModel state=state.HubClusterConfig.IntraClusterTunnel plan=plan.HubClusterConfig.IntraClusterTunnel")
 			// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.HubClusterConfig.IntraClusterTunnel != nil {
+			if state != nil && state.HubClusterConfig != nil && state.HubClusterConfig.IntraClusterTunnel != nil {
 				body.HubClusterConfig.IntraClusterTunnel.Disabled = ValueBoolPointerFromPlanOrState(plan.HubClusterConfig.IntraClusterTunnel.Disabled, state.HubClusterConfig.IntraClusterTunnel.Disabled)
 			} else {
 				body.HubClusterConfig.IntraClusterTunnel.Disabled = BoolValueOrNil(plan.HubClusterConfig.IntraClusterTunnel.Disabled)
 			}
 			// property: name=source_interfaces, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.HubClusterConfig.IntraClusterTunnel != nil && plan.HubClusterConfig.IntraClusterTunnel.SourceInterfaces.IsUnknown() {
+			if state != nil && state.HubClusterConfig != nil && state.HubClusterConfig.IntraClusterTunnel != nil && plan.HubClusterConfig.IntraClusterTunnel.SourceInterfaces.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.HubClusterConfig.IntraClusterTunnel.SourceInterfaces = ListStringValueOrNil(ctx, state.HubClusterConfig.IntraClusterTunnel.SourceInterfaces)
 			} else {
@@ -1188,11 +1188,11 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			// copy_from_plan_or_state: body=body.HubClusterConfig.Track prefix=rsModel state=state.HubClusterConfig.Track plan=plan.HubClusterConfig.Track properties=1
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.HubClusterConfig.Track prefix=rsModel state=state.HubClusterConfig.Track plan=plan.HubClusterConfig.Track")
 			// property: name=hosts, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-			if plan.HubClusterConfig.Track.Hosts == nil && (state.HubClusterConfig.Track == nil || state.HubClusterConfig.Track.Hosts == nil) {
+			if plan.HubClusterConfig.Track.Hosts == nil && (!(state != nil && state.HubClusterConfig != nil && state.HubClusterConfig.Track != nil) || state.HubClusterConfig.Track.Hosts == nil) {
 				body.HubClusterConfig.Track.Hosts = nil
-			} else if len(plan.HubClusterConfig.Track.Hosts) == 0 && (state.HubClusterConfig.Track == nil || len(state.HubClusterConfig.Track.Hosts) == 0) {
+			} else if len(plan.HubClusterConfig.Track.Hosts) == 0 && (!(state != nil && state.HubClusterConfig != nil && state.HubClusterConfig.Track != nil) || len(state.HubClusterConfig.Track.Hosts) == 0) {
 				body.HubClusterConfig.Track.Hosts = []sdwan_schema.Host{}
-			} else if len(plan.HubClusterConfig.Track.Hosts) != 0 || (state.HubClusterConfig.Track != nil && len(state.HubClusterConfig.Track.Hosts) != 0) {
+			} else if len(plan.HubClusterConfig.Track.Hosts) != 0 || (state != nil && state.HubClusterConfig != nil && state.HubClusterConfig.Track != nil && len(state.HubClusterConfig.Track.Hosts) != 0) {
 				HostsToUse := plan.HubClusterConfig.Track.Hosts
 				if len(plan.HubClusterConfig.Track.Hosts) == 0 {
 					HostsToUse = state.HubClusterConfig.Track.Hosts
@@ -1246,7 +1246,7 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 		// copy_from_plan_or_state: body=body.LedConfig prefix=rsModel state=state.LedConfig plan=plan.LedConfig properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LedConfig prefix=rsModel state=state.LedConfig plan=plan.LedConfig")
 		// property: name=service_led_on, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.LedConfig != nil {
+		if state != nil && state.LedConfig != nil {
 			body.LedConfig.ServiceLedOn = ValueBoolPointerFromPlanOrState(plan.LedConfig.ServiceLedOn, state.LedConfig.ServiceLedOn)
 		} else {
 			body.LedConfig.ServiceLedOn = BoolValueOrNil(plan.LedConfig.ServiceLedOn)
@@ -1314,25 +1314,25 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 		// copy_from_plan_or_state: body=body.SpokeHaConfig prefix=rsModel state=state.SpokeHaConfig plan=plan.SpokeHaConfig properties=5
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SpokeHaConfig prefix=rsModel state=state.SpokeHaConfig plan=plan.SpokeHaConfig")
 		// property: name=cluster_id, type=STRING macro=copy_from_plan_or_state
-		if state.SpokeHaConfig != nil {
+		if state != nil && state.SpokeHaConfig != nil {
 			body.SpokeHaConfig.ClusterId = ValueStringPointerFromPlanOrState(plan.SpokeHaConfig.ClusterId, state.SpokeHaConfig.ClusterId)
 		} else {
 			body.SpokeHaConfig.ClusterId = StringValueOrNil(plan.SpokeHaConfig.ClusterId)
 		}
 		// property: name=enable, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SpokeHaConfig != nil {
+		if state != nil && state.SpokeHaConfig != nil {
 			body.SpokeHaConfig.Enable = ValueBoolPointerFromPlanOrState(plan.SpokeHaConfig.Enable, state.SpokeHaConfig.Enable)
 		} else {
 			body.SpokeHaConfig.Enable = BoolValueOrNil(plan.SpokeHaConfig.Enable)
 		}
 		// property: name=priority, type=INTEGER macro=copy_from_plan_or_state
-		if state.SpokeHaConfig != nil {
+		if state != nil && state.SpokeHaConfig != nil {
 			body.SpokeHaConfig.Priority = ValueInt64PointerFromPlanOrState(plan.SpokeHaConfig.Priority, state.SpokeHaConfig.Priority)
 		} else {
 			body.SpokeHaConfig.Priority = Int64ValueOrNil(plan.SpokeHaConfig.Priority)
 		}
 		// property: name=source_interface, type=STRING macro=copy_from_plan_or_state
-		if state.SpokeHaConfig != nil {
+		if state != nil && state.SpokeHaConfig != nil {
 			body.SpokeHaConfig.SourceInterface = ValueStringPointerFromPlanOrState(plan.SpokeHaConfig.SourceInterface, state.SpokeHaConfig.SourceInterface)
 		} else {
 			body.SpokeHaConfig.SourceInterface = StringValueOrNil(plan.SpokeHaConfig.SourceInterface)
@@ -1345,11 +1345,11 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 			// copy_from_plan_or_state: body=body.SpokeHaConfig.Track prefix=rsModel state=state.SpokeHaConfig.Track plan=plan.SpokeHaConfig.Track properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SpokeHaConfig.Track prefix=rsModel state=state.SpokeHaConfig.Track plan=plan.SpokeHaConfig.Track")
 			// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-			if plan.SpokeHaConfig.Track.Interfaces == nil && (state.SpokeHaConfig.Track == nil || state.SpokeHaConfig.Track.Interfaces == nil) {
+			if plan.SpokeHaConfig.Track.Interfaces == nil && (!(state != nil && state.SpokeHaConfig != nil && state.SpokeHaConfig.Track != nil) || state.SpokeHaConfig.Track.Interfaces == nil) {
 				body.SpokeHaConfig.Track.Interfaces = nil
-			} else if len(plan.SpokeHaConfig.Track.Interfaces) == 0 && (state.SpokeHaConfig.Track == nil || len(state.SpokeHaConfig.Track.Interfaces) == 0) {
+			} else if len(plan.SpokeHaConfig.Track.Interfaces) == 0 && (!(state != nil && state.SpokeHaConfig != nil && state.SpokeHaConfig.Track != nil) || len(state.SpokeHaConfig.Track.Interfaces) == 0) {
 				body.SpokeHaConfig.Track.Interfaces = []sdwan_schema.TrackInterface{}
-			} else if len(plan.SpokeHaConfig.Track.Interfaces) != 0 || (state.SpokeHaConfig.Track != nil && len(state.SpokeHaConfig.Track.Interfaces) != 0) {
+			} else if len(plan.SpokeHaConfig.Track.Interfaces) != 0 || (state != nil && state.SpokeHaConfig != nil && state.SpokeHaConfig.Track != nil && len(state.SpokeHaConfig.Track.Interfaces) != 0) {
 				InterfacesToUse := plan.SpokeHaConfig.Track.Interfaces
 				if len(plan.SpokeHaConfig.Track.Interfaces) == 0 {
 					InterfacesToUse = state.SpokeHaConfig.Track.Interfaces
@@ -1368,11 +1368,11 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 				}
 			}
 			// property: name=waninterfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-			if plan.SpokeHaConfig.Track.Waninterfaces == nil && (state.SpokeHaConfig.Track == nil || state.SpokeHaConfig.Track.Waninterfaces == nil) {
+			if plan.SpokeHaConfig.Track.Waninterfaces == nil && (!(state != nil && state.SpokeHaConfig != nil && state.SpokeHaConfig.Track != nil) || state.SpokeHaConfig.Track.Waninterfaces == nil) {
 				body.SpokeHaConfig.Track.Waninterfaces = nil
-			} else if len(plan.SpokeHaConfig.Track.Waninterfaces) == 0 && (state.SpokeHaConfig.Track == nil || len(state.SpokeHaConfig.Track.Waninterfaces) == 0) {
+			} else if len(plan.SpokeHaConfig.Track.Waninterfaces) == 0 && (!(state != nil && state.SpokeHaConfig != nil && state.SpokeHaConfig.Track != nil) || len(state.SpokeHaConfig.Track.Waninterfaces) == 0) {
 				body.SpokeHaConfig.Track.Waninterfaces = []sdwan_schema.TrackWANInterface{}
-			} else if len(plan.SpokeHaConfig.Track.Waninterfaces) != 0 || (state.SpokeHaConfig.Track != nil && len(state.SpokeHaConfig.Track.Waninterfaces) != 0) {
+			} else if len(plan.SpokeHaConfig.Track.Waninterfaces) != 0 || (state != nil && state.SpokeHaConfig != nil && state.SpokeHaConfig.Track != nil && len(state.SpokeHaConfig.Track.Waninterfaces) != 0) {
 				WaninterfacesToUse := plan.SpokeHaConfig.Track.Waninterfaces
 				if len(plan.SpokeHaConfig.Track.Waninterfaces) == 0 {
 					WaninterfacesToUse = state.SpokeHaConfig.Track.Waninterfaces
@@ -1406,13 +1406,13 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 		// copy_from_plan_or_state: body=body.SwObj prefix=rsModel state=state.SwObj plan=plan.SwObj properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwObj prefix=rsModel state=state.SwObj plan=plan.SwObj")
 		// property: name=location, type=STRING macro=copy_from_plan_or_state
-		if state.SwObj != nil {
+		if state != nil && state.SwObj != nil {
 			body.SwObj.Location = ValueStringPointerFromPlanOrState(plan.SwObj.Location, state.SwObj.Location)
 		} else {
 			body.SwObj.Location = StringValueOrNil(plan.SwObj.Location)
 		}
 		// property: name=version, type=STRING macro=copy_from_plan_or_state
-		if state.SwObj != nil {
+		if state != nil && state.SwObj != nil {
 			body.SwObj.Version = ValueStringPointerFromPlanOrState(plan.SwObj.Version, state.SwObj.Version)
 		} else {
 			body.SwObj.Version = StringValueOrNil(plan.SwObj.Version)
@@ -1426,49 +1426,49 @@ func (r *elementResource) doPut(ctx context.Context, plan *rsModelElementScreenV
 		// copy_from_plan_or_state: body=body.SwitchConfig prefix=rsModel state=state.SwitchConfig plan=plan.SwitchConfig properties=8
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwitchConfig prefix=rsModel state=state.SwitchConfig plan=plan.SwitchConfig")
 		// property: name=default_vlan_id, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.DefaultVlanId = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.DefaultVlanId, state.SwitchConfig.DefaultVlanId)
 		} else {
 			body.SwitchConfig.DefaultVlanId = Int64ValueOrNil(plan.SwitchConfig.DefaultVlanId)
 		}
 		// property: name=mstp_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.MstpEnabled = ValueBoolPointerFromPlanOrState(plan.SwitchConfig.MstpEnabled, state.SwitchConfig.MstpEnabled)
 		} else {
 			body.SwitchConfig.MstpEnabled = BoolValueOrNil(plan.SwitchConfig.MstpEnabled)
 		}
 		// property: name=stp_aging_timer, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.StpAgingTimer = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.StpAgingTimer, state.SwitchConfig.StpAgingTimer)
 		} else {
 			body.SwitchConfig.StpAgingTimer = Int64ValueOrNil(plan.SwitchConfig.StpAgingTimer)
 		}
 		// property: name=stp_forward_delay, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.StpForwardDelay = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.StpForwardDelay, state.SwitchConfig.StpForwardDelay)
 		} else {
 			body.SwitchConfig.StpForwardDelay = Int64ValueOrNil(plan.SwitchConfig.StpForwardDelay)
 		}
 		// property: name=stp_hello_time, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.StpHelloTime = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.StpHelloTime, state.SwitchConfig.StpHelloTime)
 		} else {
 			body.SwitchConfig.StpHelloTime = Int64ValueOrNil(plan.SwitchConfig.StpHelloTime)
 		}
 		// property: name=stp_max_age, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.StpMaxAge = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.StpMaxAge, state.SwitchConfig.StpMaxAge)
 		} else {
 			body.SwitchConfig.StpMaxAge = Int64ValueOrNil(plan.SwitchConfig.StpMaxAge)
 		}
 		// property: name=stp_mode, type=STRING macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.StpMode = ValueStringPointerFromPlanOrState(plan.SwitchConfig.StpMode, state.SwitchConfig.StpMode)
 		} else {
 			body.SwitchConfig.StpMode = StringValueOrNil(plan.SwitchConfig.StpMode)
 		}
 		// property: name=stp_priority, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchConfig != nil {
+		if state != nil && state.SwitchConfig != nil {
 			body.SwitchConfig.StpPriority = ValueInt64PointerFromPlanOrState(plan.SwitchConfig.StpPriority, state.SwitchConfig.StpPriority)
 		} else {
 			body.SwitchConfig.StpPriority = Int64ValueOrNil(plan.SwitchConfig.StpPriority)

@@ -565,14 +565,14 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 		// copy_from_plan_or_state: body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.L3Reachability prefix=rsModel state=state.L3Reachability plan=plan.L3Reachability")
 		// property: name=probe_config_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.L3Reachability != nil && plan.L3Reachability.ProbeConfigIds.IsUnknown() {
+		if state != nil && state.L3Reachability != nil && plan.L3Reachability.ProbeConfigIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, state.L3Reachability.ProbeConfigIds)
 		} else {
 			body.L3Reachability.ProbeConfigIds = ListStringValueOrNil(ctx, plan.L3Reachability.ProbeConfigIds)
 		}
 		// property: name=use_element_default, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.L3Reachability != nil {
+		if state != nil && state.L3Reachability != nil {
 			body.L3Reachability.UseElementDefault = ValueBoolPointerFromPlanOrState(plan.L3Reachability.UseElementDefault, state.L3Reachability.UseElementDefault)
 		} else {
 			body.L3Reachability.UseElementDefault = BoolValueOrNil(plan.L3Reachability.UseElementDefault)
@@ -635,13 +635,13 @@ func (r *wanInterfaceLabelResource) doPut(ctx context.Context, plan *rsModelWANI
 		// copy_from_plan_or_state: body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.VpnlinkConfiguration prefix=rsModel state=state.VpnlinkConfiguration plan=plan.VpnlinkConfiguration")
 		// property: name=keep_alive_failure_count, type=INTEGER macro=copy_from_plan_or_state
-		if state.VpnlinkConfiguration != nil {
+		if state != nil && state.VpnlinkConfiguration != nil {
 			body.VpnlinkConfiguration.KeepAliveFailureCount = ValueInt64PointerFromPlanOrState(plan.VpnlinkConfiguration.KeepAliveFailureCount, state.VpnlinkConfiguration.KeepAliveFailureCount)
 		} else {
 			body.VpnlinkConfiguration.KeepAliveFailureCount = Int64ValueOrNil(plan.VpnlinkConfiguration.KeepAliveFailureCount)
 		}
 		// property: name=keep_alive_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.VpnlinkConfiguration != nil {
+		if state != nil && state.VpnlinkConfiguration != nil {
 			body.VpnlinkConfiguration.KeepAliveInterval = ValueInt64PointerFromPlanOrState(plan.VpnlinkConfiguration.KeepAliveInterval, state.VpnlinkConfiguration.KeepAliveInterval)
 		} else {
 			body.VpnlinkConfiguration.KeepAliveInterval = Int64ValueOrNil(plan.VpnlinkConfiguration.KeepAliveInterval)

@@ -652,9 +652,9 @@ func (r *siteHubClusterResource) doPut(ctx context.Context, plan *rsModelHubClus
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=elements, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Elements == nil && (state == nil || state.Elements == nil) {
+	if plan.Elements == nil && (!(state != nil) || state.Elements == nil) {
 		body.Elements = nil
-	} else if len(plan.Elements) == 0 && (state == nil || len(state.Elements) == 0) {
+	} else if len(plan.Elements) == 0 && (!(state != nil) || len(state.Elements) == 0) {
 		body.Elements = []sdwan_schema.HubClusterElement{}
 	} else if len(plan.Elements) != 0 || (state != nil && len(state.Elements) != 0) {
 		ElementsToUse := plan.Elements

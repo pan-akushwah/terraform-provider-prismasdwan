@@ -3243,9 +3243,9 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 		body.LinkHealthPolicyruleOrder = ListStringValueOrNil(ctx, plan.LinkHealthPolicyruleOrder)
 	}
 	// property: name=link_health_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.LinkHealthRules == nil && (state == nil || state.LinkHealthRules == nil) {
+	if plan.LinkHealthRules == nil && (!(state != nil) || state.LinkHealthRules == nil) {
 		body.LinkHealthRules = nil
-	} else if len(plan.LinkHealthRules) == 0 && (state == nil || len(state.LinkHealthRules) == 0) {
+	} else if len(plan.LinkHealthRules) == 0 && (!(state != nil) || len(state.LinkHealthRules) == 0) {
 		body.LinkHealthRules = []sdwan_schema.PerfMgmtPolicyRule{}
 	} else if len(plan.LinkHealthRules) != 0 || (state != nil && len(state.LinkHealthRules) != 0) {
 		LinkHealthRulesToUse := plan.LinkHealthRules
@@ -3596,9 +3596,9 @@ func (r *performancePolicySetResource) doPut(ctx context.Context, plan *rsModelP
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=policy_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.PolicyRules == nil && (state == nil || state.PolicyRules == nil) {
+	if plan.PolicyRules == nil && (!(state != nil) || state.PolicyRules == nil) {
 		body.PolicyRules = nil
-	} else if len(plan.PolicyRules) == 0 && (state == nil || len(state.PolicyRules) == 0) {
+	} else if len(plan.PolicyRules) == 0 && (!(state != nil) || len(state.PolicyRules) == 0) {
 		body.PolicyRules = []sdwan_schema.BasePolicyRule{}
 	} else if len(plan.PolicyRules) != 0 || (state != nil && len(state.PolicyRules) != 0) {
 		PolicyRulesToUse := plan.PolicyRules

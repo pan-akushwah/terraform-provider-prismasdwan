@@ -1188,9 +1188,9 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 		body.SecurityProfileGroupId = StringValueOrNil(plan.SecurityProfileGroupId)
 	}
 	// property: name=services, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Services == nil && (state == nil || state.Services == nil) {
+	if plan.Services == nil && (!(state != nil) || state.Services == nil) {
 		body.Services = nil
-	} else if len(plan.Services) == 0 && (state == nil || len(state.Services) == 0) {
+	} else if len(plan.Services) == 0 && (!(state != nil) || len(state.Services) == 0) {
 		// api does not accept empty list as missing value
 		body.Services = nil
 	} else if len(plan.Services) != 0 || (state != nil && len(state.Services) != 0) {
@@ -1281,14 +1281,14 @@ func (r *securityPolicyRuleResource) doPut(ctx context.Context, plan *rsModelSec
 		// copy_from_plan_or_state: body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
+		if state != nil && state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserGroupIds)
 		} else {
 			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
 		}
 		// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
+		if state != nil && state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.UserOrGroup.UserIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserIds)
 		} else {

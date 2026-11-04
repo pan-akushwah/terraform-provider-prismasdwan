@@ -751,9 +751,9 @@ func (r *elementStaticRouteResource) doPut(ctx context.Context, plan *rsModelSta
 		body.NexthopReachabilityProbe = BoolValueOrNil(plan.NexthopReachabilityProbe)
 	}
 	// property: name=nexthops, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Nexthops == nil && (state == nil || state.Nexthops == nil) {
+	if plan.Nexthops == nil && (!(state != nil) || state.Nexthops == nil) {
 		body.Nexthops = nil
-	} else if len(plan.Nexthops) == 0 && (state == nil || len(state.Nexthops) == 0) {
+	} else if len(plan.Nexthops) == 0 && (!(state != nil) || len(state.Nexthops) == 0) {
 		body.Nexthops = []sdwan_schema.NextHop{}
 	} else if len(plan.Nexthops) != 0 || (state != nil && len(state.Nexthops) != 0) {
 		NexthopsToUse := plan.Nexthops

@@ -1207,19 +1207,19 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		// copy_from_plan_or_state: body=body.BestPathConfig prefix=rsModel state=state.BestPathConfig plan=plan.BestPathConfig properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.BestPathConfig prefix=rsModel state=state.BestPathConfig plan=plan.BestPathConfig")
 		// property: name=metric, type=STRING macro=copy_from_plan_or_state
-		if state.BestPathConfig != nil {
+		if state != nil && state.BestPathConfig != nil {
 			body.BestPathConfig.Metric = ValueStringPointerFromPlanOrState(plan.BestPathConfig.Metric, state.BestPathConfig.Metric)
 		} else {
 			body.BestPathConfig.Metric = StringValueOrNil(plan.BestPathConfig.Metric)
 		}
 		// property: name=metric_type, type=STRING macro=copy_from_plan_or_state
-		if state.BestPathConfig != nil {
+		if state != nil && state.BestPathConfig != nil {
 			body.BestPathConfig.MetricType = ValueStringPointerFromPlanOrState(plan.BestPathConfig.MetricType, state.BestPathConfig.MetricType)
 		} else {
 			body.BestPathConfig.MetricType = StringValueOrNil(plan.BestPathConfig.MetricType)
 		}
 		// property: name=probe_config_id, type=STRING macro=copy_from_plan_or_state
-		if state.BestPathConfig != nil {
+		if state != nil && state.BestPathConfig != nil {
 			body.BestPathConfig.ProbeConfigId = ValueStringPointerFromPlanOrState(plan.BestPathConfig.ProbeConfigId, state.BestPathConfig.ProbeConfigId)
 		} else {
 			body.BestPathConfig.ProbeConfigId = StringValueOrNil(plan.BestPathConfig.ProbeConfigId)
@@ -1282,11 +1282,11 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		// copy_from_plan_or_state: body=body.PathsAllowed prefix=rsModel state=state.PathsAllowed plan=plan.PathsAllowed properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PathsAllowed prefix=rsModel state=state.PathsAllowed plan=plan.PathsAllowed")
 		// property: name=active_paths, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.PathsAllowed.ActivePaths == nil && (state.PathsAllowed == nil || state.PathsAllowed.ActivePaths == nil) {
+		if plan.PathsAllowed.ActivePaths == nil && (!(state != nil && state.PathsAllowed != nil) || state.PathsAllowed.ActivePaths == nil) {
 			body.PathsAllowed.ActivePaths = nil
-		} else if len(plan.PathsAllowed.ActivePaths) == 0 && (state.PathsAllowed == nil || len(state.PathsAllowed.ActivePaths) == 0) {
+		} else if len(plan.PathsAllowed.ActivePaths) == 0 && (!(state != nil && state.PathsAllowed != nil) || len(state.PathsAllowed.ActivePaths) == 0) {
 			body.PathsAllowed.ActivePaths = []sdwan_schema.WANPathV2N5{}
-		} else if len(plan.PathsAllowed.ActivePaths) != 0 || (state.PathsAllowed != nil && len(state.PathsAllowed.ActivePaths) != 0) {
+		} else if len(plan.PathsAllowed.ActivePaths) != 0 || (state != nil && state.PathsAllowed != nil && len(state.PathsAllowed.ActivePaths) != 0) {
 			ActivePathsToUse := plan.PathsAllowed.ActivePaths
 			if len(plan.PathsAllowed.ActivePaths) == 0 {
 				ActivePathsToUse = state.PathsAllowed.ActivePaths
@@ -1305,11 +1305,11 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 			}
 		}
 		// property: name=backup_paths, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.PathsAllowed.BackupPaths == nil && (state.PathsAllowed == nil || state.PathsAllowed.BackupPaths == nil) {
+		if plan.PathsAllowed.BackupPaths == nil && (!(state != nil && state.PathsAllowed != nil) || state.PathsAllowed.BackupPaths == nil) {
 			body.PathsAllowed.BackupPaths = nil
-		} else if len(plan.PathsAllowed.BackupPaths) == 0 && (state.PathsAllowed == nil || len(state.PathsAllowed.BackupPaths) == 0) {
+		} else if len(plan.PathsAllowed.BackupPaths) == 0 && (!(state != nil && state.PathsAllowed != nil) || len(state.PathsAllowed.BackupPaths) == 0) {
 			body.PathsAllowed.BackupPaths = []sdwan_schema.WANPathV2N5{}
-		} else if len(plan.PathsAllowed.BackupPaths) != 0 || (state.PathsAllowed != nil && len(state.PathsAllowed.BackupPaths) != 0) {
+		} else if len(plan.PathsAllowed.BackupPaths) != 0 || (state != nil && state.PathsAllowed != nil && len(state.PathsAllowed.BackupPaths) != 0) {
 			BackupPathsToUse := plan.PathsAllowed.BackupPaths
 			if len(plan.PathsAllowed.BackupPaths) == 0 {
 				BackupPathsToUse = state.PathsAllowed.BackupPaths
@@ -1328,11 +1328,11 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 			}
 		}
 		// property: name=l3_failure_paths, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.PathsAllowed.L3FailurePaths == nil && (state.PathsAllowed == nil || state.PathsAllowed.L3FailurePaths == nil) {
+		if plan.PathsAllowed.L3FailurePaths == nil && (!(state != nil && state.PathsAllowed != nil) || state.PathsAllowed.L3FailurePaths == nil) {
 			body.PathsAllowed.L3FailurePaths = nil
-		} else if len(plan.PathsAllowed.L3FailurePaths) == 0 && (state.PathsAllowed == nil || len(state.PathsAllowed.L3FailurePaths) == 0) {
+		} else if len(plan.PathsAllowed.L3FailurePaths) == 0 && (!(state != nil && state.PathsAllowed != nil) || len(state.PathsAllowed.L3FailurePaths) == 0) {
 			body.PathsAllowed.L3FailurePaths = []sdwan_schema.WANPathV2N5{}
-		} else if len(plan.PathsAllowed.L3FailurePaths) != 0 || (state.PathsAllowed != nil && len(state.PathsAllowed.L3FailurePaths) != 0) {
+		} else if len(plan.PathsAllowed.L3FailurePaths) != 0 || (state != nil && state.PathsAllowed != nil && len(state.PathsAllowed.L3FailurePaths) != 0) {
 			L3FailurePathsToUse := plan.PathsAllowed.L3FailurePaths
 			if len(plan.PathsAllowed.L3FailurePaths) == 0 {
 				L3FailurePathsToUse = state.PathsAllowed.L3FailurePaths
@@ -1359,31 +1359,31 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		// copy_from_plan_or_state: body=body.ServiceContext prefix=rsModel state=state.ServiceContext plan=plan.ServiceContext properties=5
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceContext prefix=rsModel state=state.ServiceContext plan=plan.ServiceContext")
 		// property: name=active_service_label_id, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceContext != nil {
+		if state != nil && state.ServiceContext != nil {
 			body.ServiceContext.ActiveServiceLabelId = ValueStringPointerFromPlanOrState(plan.ServiceContext.ActiveServiceLabelId, state.ServiceContext.ActiveServiceLabelId)
 		} else {
 			body.ServiceContext.ActiveServiceLabelId = StringValueOrNil(plan.ServiceContext.ActiveServiceLabelId)
 		}
 		// property: name=active_service_label_type, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceContext != nil {
+		if state != nil && state.ServiceContext != nil {
 			body.ServiceContext.ActiveServiceLabelType = ValueStringPointerFromPlanOrState(plan.ServiceContext.ActiveServiceLabelType, state.ServiceContext.ActiveServiceLabelType)
 		} else {
 			body.ServiceContext.ActiveServiceLabelType = StringValueOrNil(plan.ServiceContext.ActiveServiceLabelType)
 		}
 		// property: name=backup_service_label_id, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceContext != nil {
+		if state != nil && state.ServiceContext != nil {
 			body.ServiceContext.BackupServiceLabelId = ValueStringPointerFromPlanOrState(plan.ServiceContext.BackupServiceLabelId, state.ServiceContext.BackupServiceLabelId)
 		} else {
 			body.ServiceContext.BackupServiceLabelId = StringValueOrNil(plan.ServiceContext.BackupServiceLabelId)
 		}
 		// property: name=backup_service_label_type, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceContext != nil {
+		if state != nil && state.ServiceContext != nil {
 			body.ServiceContext.BackupServiceLabelType = ValueStringPointerFromPlanOrState(plan.ServiceContext.BackupServiceLabelType, state.ServiceContext.BackupServiceLabelType)
 		} else {
 			body.ServiceContext.BackupServiceLabelType = StringValueOrNil(plan.ServiceContext.BackupServiceLabelType)
 		}
 		// property: name=type, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceContext != nil {
+		if state != nil && state.ServiceContext != nil {
 			body.ServiceContext.Type = ValueStringPointerFromPlanOrState(plan.ServiceContext.Type, state.ServiceContext.Type)
 		} else {
 			body.ServiceContext.Type = StringValueOrNil(plan.ServiceContext.Type)
@@ -1417,14 +1417,14 @@ func (r *pathPolicyRuleResource) doPut(ctx context.Context, plan *rsModelNetwork
 		// copy_from_plan_or_state: body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
+		if state != nil && state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserGroupIds)
 		} else {
 			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
 		}
 		// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
+		if state != nil && state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.UserOrGroup.UserIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserIds)
 		} else {

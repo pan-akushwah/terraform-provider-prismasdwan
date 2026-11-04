@@ -464,9 +464,9 @@ func (r *elementNtpResource) doPut(ctx context.Context, plan *rsModelElementNTPV
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=ntp_servers, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.NtpServers == nil && (state == nil || state.NtpServers == nil) {
+	if plan.NtpServers == nil && (!(state != nil) || state.NtpServers == nil) {
 		body.NtpServers = nil
-	} else if len(plan.NtpServers) == 0 && (state == nil || len(state.NtpServers) == 0) {
+	} else if len(plan.NtpServers) == 0 && (!(state != nil) || len(state.NtpServers) == 0) {
 		body.NtpServers = []sdwan_schema.NTPServer{}
 	} else if len(plan.NtpServers) != 0 || (state != nil && len(state.NtpServers) != 0) {
 		NtpServersToUse := plan.NtpServers

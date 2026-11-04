@@ -771,8 +771,18 @@ func (r *siteResource) doPost(ctx context.Context, plan *rsModelSiteScreenV4N13,
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
 		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Latitude = Float64KeepPlanWhenNear(ans.Location.Latitude, plan.Location.Latitude)
+		}
 		// property: name=longitude, type=NUMBER macro=copy_to_state
 		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Longitude = Float64KeepPlanWhenNear(ans.Location.Longitude, plan.Location.Longitude)
+		}
 	}
 	// property: name=multicast_peer_group_id, type=STRING macro=copy_to_state
 	state.MulticastPeerGroupId = types.StringPointerValue(ans.MulticastPeerGroupId)
@@ -992,8 +1002,18 @@ func (r *siteResource) doGet(ctx context.Context, state *rsModelSiteScreenV4N13,
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
 		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if savestate.Location != nil {
+			state.Location.Latitude = Float64KeepPlanWhenNear(ans.Location.Latitude, savestate.Location.Latitude)
+		}
 		// property: name=longitude, type=NUMBER macro=copy_to_state
 		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if savestate.Location != nil {
+			state.Location.Longitude = Float64KeepPlanWhenNear(ans.Location.Longitude, savestate.Location.Longitude)
+		}
 	}
 	// property: name=multicast_peer_group_id, type=STRING macro=copy_to_state
 	state.MulticastPeerGroupId = types.StringPointerValue(ans.MulticastPeerGroupId)
@@ -1119,37 +1139,37 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N13, 
 		// copy_from_plan_or_state: body=body.Address prefix=rsModel state=state.Address plan=plan.Address properties=6
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Address prefix=rsModel state=state.Address plan=plan.Address")
 		// property: name=city, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.City = ValueStringPointerFromPlanOrState(plan.Address.City, state.Address.City)
 		} else {
 			body.Address.City = StringValueOrNil(plan.Address.City)
 		}
 		// property: name=country, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.Country = ValueStringPointerFromPlanOrState(plan.Address.Country, state.Address.Country)
 		} else {
 			body.Address.Country = StringValueOrNil(plan.Address.Country)
 		}
 		// property: name=post_code, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.PostCode = ValueStringPointerFromPlanOrState(plan.Address.PostCode, state.Address.PostCode)
 		} else {
 			body.Address.PostCode = StringValueOrNil(plan.Address.PostCode)
 		}
 		// property: name=state, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.State = ValueStringPointerFromPlanOrState(plan.Address.State, state.Address.State)
 		} else {
 			body.Address.State = StringValueOrNil(plan.Address.State)
 		}
 		// property: name=street, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.Street = ValueStringPointerFromPlanOrState(plan.Address.Street, state.Address.Street)
 		} else {
 			body.Address.Street = StringValueOrNil(plan.Address.Street)
 		}
 		// property: name=street2, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.Street2 = ValueStringPointerFromPlanOrState(plan.Address.Street2, state.Address.Street2)
 		} else {
 			body.Address.Street2 = StringValueOrNil(plan.Address.Street2)
@@ -1192,9 +1212,9 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N13, 
 		body.ElementSystemLimitProfileId = StringValueOrNil(plan.ElementSystemLimitProfileId)
 	}
 	// property: name=extended_tags, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.ExtendedTags == nil && (state == nil || state.ExtendedTags == nil) {
+	if plan.ExtendedTags == nil && (!(state != nil) || state.ExtendedTags == nil) {
 		body.ExtendedTags = nil
-	} else if len(plan.ExtendedTags) == 0 && (state == nil || len(state.ExtendedTags) == 0) {
+	} else if len(plan.ExtendedTags) == 0 && (!(state != nil) || len(state.ExtendedTags) == 0) {
 		body.ExtendedTags = []sdwan_schema.ExtendedTag{}
 	} else if len(plan.ExtendedTags) != 0 || (state != nil && len(state.ExtendedTags) != 0) {
 		ExtendedTagsToUse := plan.ExtendedTags
@@ -1230,19 +1250,19 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N13, 
 		// copy_from_plan_or_state: body=body.Location prefix=rsModel state=state.Location plan=plan.Location properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Location prefix=rsModel state=state.Location plan=plan.Location")
 		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.Location != nil {
+		if state != nil && state.Location != nil {
 			body.Location.Description = ValueStringPointerFromPlanOrState(plan.Location.Description, state.Location.Description)
 		} else {
 			body.Location.Description = StringValueOrNil(plan.Location.Description)
 		}
 		// property: name=latitude, type=NUMBER macro=copy_from_plan_or_state
-		if state.Location != nil {
+		if state != nil && state.Location != nil {
 			body.Location.Latitude = ValueFloat64PointerFromPlanOrState(plan.Location.Latitude, state.Location.Latitude)
 		} else {
 			body.Location.Latitude = Float64ValueOrNil(plan.Location.Latitude)
 		}
 		// property: name=longitude, type=NUMBER macro=copy_from_plan_or_state
-		if state.Location != nil {
+		if state != nil && state.Location != nil {
 			body.Location.Longitude = ValueFloat64PointerFromPlanOrState(plan.Location.Longitude, state.Location.Longitude)
 		} else {
 			body.Location.Longitude = Float64ValueOrNil(plan.Location.Longitude)
@@ -1322,13 +1342,13 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N13, 
 		// copy_from_plan_or_state: body=body.SgiConfig prefix=rsModel state=state.SgiConfig plan=plan.SgiConfig properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SgiConfig prefix=rsModel state=state.SgiConfig plan=plan.SgiConfig")
 		// property: name=sgi_tag, type=INTEGER macro=copy_from_plan_or_state
-		if state.SgiConfig != nil {
+		if state != nil && state.SgiConfig != nil {
 			body.SgiConfig.SgiTag = ValueInt64PointerFromPlanOrState(plan.SgiConfig.SgiTag, state.SgiConfig.SgiTag)
 		} else {
 			body.SgiConfig.SgiTag = Int64ValueOrNil(plan.SgiConfig.SgiTag)
 		}
 		// property: name=sgi_vendor_id, type=STRING macro=copy_from_plan_or_state
-		if state.SgiConfig != nil {
+		if state != nil && state.SgiConfig != nil {
 			body.SgiConfig.SgiVendorId = ValueStringPointerFromPlanOrState(plan.SgiConfig.SgiVendorId, state.SgiConfig.SgiVendorId)
 		} else {
 			body.SgiConfig.SgiVendorId = StringValueOrNil(plan.SgiConfig.SgiVendorId)
@@ -1474,8 +1494,18 @@ func (r *siteResource) doPut(ctx context.Context, plan *rsModelSiteScreenV4N13, 
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
 		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Latitude = Float64KeepPlanWhenNear(ans.Location.Latitude, plan.Location.Latitude)
+		}
 		// property: name=longitude, type=NUMBER macro=copy_to_state
 		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Longitude = Float64KeepPlanWhenNear(ans.Location.Longitude, plan.Location.Longitude)
+		}
 	}
 	// property: name=multicast_peer_group_id, type=STRING macro=copy_to_state
 	state.MulticastPeerGroupId = types.StringPointerValue(ans.MulticastPeerGroupId)

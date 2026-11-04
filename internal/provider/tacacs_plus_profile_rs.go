@@ -719,9 +719,9 @@ func (r *tacacsPlusProfileResource) doPut(ctx context.Context, plan *rsModelTaca
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=tacacs_plus_servers, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.TacacsPlusServers == nil && (state == nil || state.TacacsPlusServers == nil) {
+	if plan.TacacsPlusServers == nil && (!(state != nil) || state.TacacsPlusServers == nil) {
 		body.TacacsPlusServers = nil
-	} else if len(plan.TacacsPlusServers) == 0 && (state == nil || len(state.TacacsPlusServers) == 0) {
+	} else if len(plan.TacacsPlusServers) == 0 && (!(state != nil) || len(state.TacacsPlusServers) == 0) {
 		body.TacacsPlusServers = []sdwan_schema.TacacsPlusServerConfig{}
 	} else if len(plan.TacacsPlusServers) != 0 || (state != nil && len(state.TacacsPlusServers) != 0) {
 		TacacsPlusServersToUse := plan.TacacsPlusServers

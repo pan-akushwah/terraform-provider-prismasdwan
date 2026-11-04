@@ -814,7 +814,7 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 		// copy_from_plan_or_state: body=body.Dscp prefix=rsModel state=state.Dscp plan=plan.Dscp properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Dscp prefix=rsModel state=state.Dscp plan=plan.Dscp")
 		// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-		if state.Dscp != nil {
+		if state != nil && state.Dscp != nil {
 			body.Dscp.Value = ValueInt64PointerFromPlanOrState(plan.Dscp.Value, state.Dscp.Value)
 		} else {
 			body.Dscp.Value = Int64ValueOrNil(plan.Dscp.Value)
@@ -884,14 +884,14 @@ func (r *qosPolicyRuleResource) doPut(ctx context.Context, plan *rsModelPriority
 		// copy_from_plan_or_state: body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.UserOrGroup prefix=rsModel state=state.UserOrGroup plan=plan.UserOrGroup")
 		// property: name=user_group_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
+		if state != nil && state.UserOrGroup != nil && plan.UserOrGroup.UserGroupIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserGroupIds)
 		} else {
 			body.UserOrGroup.UserGroupIds = ListStringValueOrNil(ctx, plan.UserOrGroup.UserGroupIds)
 		}
 		// property: name=user_ids, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
+		if state != nil && state.UserOrGroup != nil && plan.UserOrGroup.UserIds.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.UserOrGroup.UserIds = ListStringValueOrNil(ctx, state.UserOrGroup.UserIds)
 		} else {

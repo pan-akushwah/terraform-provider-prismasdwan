@@ -920,13 +920,13 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 		// copy_from_plan_or_state: body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V2Config prefix=rsModel state=state.V2Config plan=plan.V2Config")
 		// property: name=community, type=STRING macro=copy_from_plan_or_state
-		if state.V2Config != nil {
+		if state != nil && state.V2Config != nil {
 			body.V2Config.Community = ValueStringPointerFromPlanOrState(plan.V2Config.Community, state.V2Config.Community)
 		} else {
 			body.V2Config.Community = StringValueOrNil(plan.V2Config.Community)
 		}
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.V2Config != nil {
+		if state != nil && state.V2Config != nil {
 			body.V2Config.Enabled = ValueBoolPointerFromPlanOrState(plan.V2Config.Enabled, state.V2Config.Enabled)
 		} else {
 			body.V2Config.Enabled = BoolValueOrNil(plan.V2Config.Enabled)
@@ -940,17 +940,17 @@ func (r *elementSnmpAgentResource) doPut(ctx context.Context, plan *rsModelSNMPA
 		// copy_from_plan_or_state: body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.V3Config prefix=rsModel state=state.V3Config plan=plan.V3Config")
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.V3Config != nil {
+		if state != nil && state.V3Config != nil {
 			body.V3Config.Enabled = ValueBoolPointerFromPlanOrState(plan.V3Config.Enabled, state.V3Config.Enabled)
 		} else {
 			body.V3Config.Enabled = BoolValueOrNil(plan.V3Config.Enabled)
 		}
 		// property: name=users_access, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.V3Config.UsersAccess == nil && (state.V3Config == nil || state.V3Config.UsersAccess == nil) {
+		if plan.V3Config.UsersAccess == nil && (!(state != nil && state.V3Config != nil) || state.V3Config.UsersAccess == nil) {
 			body.V3Config.UsersAccess = nil
-		} else if len(plan.V3Config.UsersAccess) == 0 && (state.V3Config == nil || len(state.V3Config.UsersAccess) == 0) {
+		} else if len(plan.V3Config.UsersAccess) == 0 && (!(state != nil && state.V3Config != nil) || len(state.V3Config.UsersAccess) == 0) {
 			body.V3Config.UsersAccess = []sdwan_schema.SNMPUserAccess{}
-		} else if len(plan.V3Config.UsersAccess) != 0 || (state.V3Config != nil && len(state.V3Config.UsersAccess) != 0) {
+		} else if len(plan.V3Config.UsersAccess) != 0 || (state != nil && state.V3Config != nil && len(state.V3Config.UsersAccess) != 0) {
 			UsersAccessToUse := plan.V3Config.UsersAccess
 			if len(plan.V3Config.UsersAccess) == 0 {
 				UsersAccessToUse = state.V3Config.UsersAccess

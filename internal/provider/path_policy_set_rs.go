@@ -2086,9 +2086,9 @@ func (r *pathPolicySetResource) doPut(ctx context.Context, plan *rsModelNetworkP
 		body.PolicyReqVersion = StringValueOrNil(plan.PolicyReqVersion)
 	}
 	// property: name=policy_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.PolicyRules == nil && (state == nil || state.PolicyRules == nil) {
+	if plan.PolicyRules == nil && (!(state != nil) || state.PolicyRules == nil) {
 		body.PolicyRules = nil
-	} else if len(plan.PolicyRules) == 0 && (state == nil || len(state.PolicyRules) == 0) {
+	} else if len(plan.PolicyRules) == 0 && (!(state != nil) || len(state.PolicyRules) == 0) {
 		body.PolicyRules = []sdwan_schema.NetworkPolicyRule{}
 	} else if len(plan.PolicyRules) != 0 || (state != nil && len(state.PolicyRules) != 0) {
 		PolicyRulesToUse := plan.PolicyRules

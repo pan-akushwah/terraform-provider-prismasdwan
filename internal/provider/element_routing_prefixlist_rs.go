@@ -688,9 +688,9 @@ func (r *elementRoutingPrefixlistResource) doPut(ctx context.Context, plan *rsMo
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=prefix_filter_list, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.PrefixFilterList == nil && (state == nil || state.PrefixFilterList == nil) {
+	if plan.PrefixFilterList == nil && (!(state != nil) || state.PrefixFilterList == nil) {
 		body.PrefixFilterList = nil
-	} else if len(plan.PrefixFilterList) == 0 && (state == nil || len(state.PrefixFilterList) == 0) {
+	} else if len(plan.PrefixFilterList) == 0 && (!(state != nil) || len(state.PrefixFilterList) == 0) {
 		body.PrefixFilterList = []sdwan_schema.RoutingPrefixFilterV2N1{}
 	} else if len(plan.PrefixFilterList) != 0 || (state != nil && len(state.PrefixFilterList) != 0) {
 		PrefixFilterListToUse := plan.PrefixFilterList

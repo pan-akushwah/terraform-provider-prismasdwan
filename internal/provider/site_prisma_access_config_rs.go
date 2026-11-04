@@ -618,9 +618,9 @@ func (r *sitePrismaAccessConfigResource) doPut(ctx context.Context, plan *rsMode
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=remote_networks, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.RemoteNetworks == nil && (state == nil || state.RemoteNetworks == nil) {
+	if plan.RemoteNetworks == nil && (!(state != nil) || state.RemoteNetworks == nil) {
 		body.RemoteNetworks = nil
-	} else if len(plan.RemoteNetworks) == 0 && (state == nil || len(state.RemoteNetworks) == 0) {
+	} else if len(plan.RemoteNetworks) == 0 && (!(state != nil) || len(state.RemoteNetworks) == 0) {
 		body.RemoteNetworks = []sdwan_schema.RemoteNetwork{}
 	} else if len(plan.RemoteNetworks) != 0 || (state != nil && len(state.RemoteNetworks) != 0) {
 		RemoteNetworksToUse := plan.RemoteNetworks

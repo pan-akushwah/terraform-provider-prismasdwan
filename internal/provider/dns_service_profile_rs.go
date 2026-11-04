@@ -3549,11 +3549,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.AuthoritativeConfig prefix=rsModel state=state.AuthoritativeConfig plan=plan.AuthoritativeConfig properties=16
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.AuthoritativeConfig prefix=rsModel state=state.AuthoritativeConfig plan=plan.AuthoritativeConfig")
 		// property: name=caa_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.CaaRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.CaaRecords == nil) {
+		if plan.AuthoritativeConfig.CaaRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.CaaRecords == nil) {
 			body.AuthoritativeConfig.CaaRecords = nil
-		} else if len(plan.AuthoritativeConfig.CaaRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.CaaRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.CaaRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.CaaRecords) == 0) {
 			body.AuthoritativeConfig.CaaRecords = []sdwan_schema.CaaRecord{}
-		} else if len(plan.AuthoritativeConfig.CaaRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.CaaRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.CaaRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.CaaRecords) != 0) {
 			CaaRecordsToUse := plan.AuthoritativeConfig.CaaRecords
 			if len(plan.AuthoritativeConfig.CaaRecords) == 0 {
 				CaaRecordsToUse = state.AuthoritativeConfig.CaaRecords
@@ -3576,11 +3576,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=cname_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.CnameRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.CnameRecords == nil) {
+		if plan.AuthoritativeConfig.CnameRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.CnameRecords == nil) {
 			body.AuthoritativeConfig.CnameRecords = nil
-		} else if len(plan.AuthoritativeConfig.CnameRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.CnameRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.CnameRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.CnameRecords) == 0) {
 			body.AuthoritativeConfig.CnameRecords = []sdwan_schema.CnameRecords{}
-		} else if len(plan.AuthoritativeConfig.CnameRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.CnameRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.CnameRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.CnameRecords) != 0) {
 			CnameRecordsToUse := plan.AuthoritativeConfig.CnameRecords
 			if len(plan.AuthoritativeConfig.CnameRecords) == 0 {
 				CnameRecordsToUse = state.AuthoritativeConfig.CnameRecords
@@ -3601,11 +3601,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=dns_resource_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.DnsResourceRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.DnsResourceRecords == nil) {
+		if plan.AuthoritativeConfig.DnsResourceRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.DnsResourceRecords == nil) {
 			body.AuthoritativeConfig.DnsResourceRecords = nil
-		} else if len(plan.AuthoritativeConfig.DnsResourceRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.DnsResourceRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.DnsResourceRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.DnsResourceRecords) == 0) {
 			body.AuthoritativeConfig.DnsResourceRecords = []sdwan_schema.DnsResourceRecords{}
-		} else if len(plan.AuthoritativeConfig.DnsResourceRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.DnsResourceRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.DnsResourceRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.DnsResourceRecords) != 0) {
 			DnsResourceRecordsToUse := plan.AuthoritativeConfig.DnsResourceRecords
 			if len(plan.AuthoritativeConfig.DnsResourceRecords) == 0 {
 				DnsResourceRecordsToUse = state.AuthoritativeConfig.DnsResourceRecords
@@ -3626,11 +3626,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=host_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.HostRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.HostRecords == nil) {
+		if plan.AuthoritativeConfig.HostRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.HostRecords == nil) {
 			body.AuthoritativeConfig.HostRecords = nil
-		} else if len(plan.AuthoritativeConfig.HostRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.HostRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.HostRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.HostRecords) == 0) {
 			body.AuthoritativeConfig.HostRecords = []sdwan_schema.HostRecord{}
-		} else if len(plan.AuthoritativeConfig.HostRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.HostRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.HostRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.HostRecords) != 0) {
 			HostRecordsToUse := plan.AuthoritativeConfig.HostRecords
 			if len(plan.AuthoritativeConfig.HostRecords) == 0 {
 				HostRecordsToUse = state.AuthoritativeConfig.HostRecords
@@ -3653,11 +3653,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=mx_host_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.MxHostRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.MxHostRecords == nil) {
+		if plan.AuthoritativeConfig.MxHostRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.MxHostRecords == nil) {
 			body.AuthoritativeConfig.MxHostRecords = nil
-		} else if len(plan.AuthoritativeConfig.MxHostRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.MxHostRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.MxHostRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.MxHostRecords) == 0) {
 			body.AuthoritativeConfig.MxHostRecords = []sdwan_schema.MxHostRecord{}
-		} else if len(plan.AuthoritativeConfig.MxHostRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.MxHostRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.MxHostRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.MxHostRecords) != 0) {
 			MxHostRecordsToUse := plan.AuthoritativeConfig.MxHostRecords
 			if len(plan.AuthoritativeConfig.MxHostRecords) == 0 {
 				MxHostRecordsToUse = state.AuthoritativeConfig.MxHostRecords
@@ -3678,11 +3678,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=naptr_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.NaptrRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.NaptrRecords == nil) {
+		if plan.AuthoritativeConfig.NaptrRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.NaptrRecords == nil) {
 			body.AuthoritativeConfig.NaptrRecords = nil
-		} else if len(plan.AuthoritativeConfig.NaptrRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.NaptrRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.NaptrRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.NaptrRecords) == 0) {
 			body.AuthoritativeConfig.NaptrRecords = []sdwan_schema.NaptrRecords{}
-		} else if len(plan.AuthoritativeConfig.NaptrRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.NaptrRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.NaptrRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.NaptrRecords) != 0) {
 			NaptrRecordsToUse := plan.AuthoritativeConfig.NaptrRecords
 			if len(plan.AuthoritativeConfig.NaptrRecords) == 0 {
 				NaptrRecordsToUse = state.AuthoritativeConfig.NaptrRecords
@@ -3711,18 +3711,18 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=peers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.AuthoritativeConfig != nil && plan.AuthoritativeConfig.Peers.IsUnknown() {
+		if state != nil && state.AuthoritativeConfig != nil && plan.AuthoritativeConfig.Peers.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.AuthoritativeConfig.Peers = ListStringValueOrNil(ctx, state.AuthoritativeConfig.Peers)
 		} else {
 			body.AuthoritativeConfig.Peers = ListStringValueOrNil(ctx, plan.AuthoritativeConfig.Peers)
 		}
 		// property: name=ptr_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.PtrRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.PtrRecords == nil) {
+		if plan.AuthoritativeConfig.PtrRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.PtrRecords == nil) {
 			body.AuthoritativeConfig.PtrRecords = nil
-		} else if len(plan.AuthoritativeConfig.PtrRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.PtrRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.PtrRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.PtrRecords) == 0) {
 			body.AuthoritativeConfig.PtrRecords = []sdwan_schema.PtrRecords{}
-		} else if len(plan.AuthoritativeConfig.PtrRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.PtrRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.PtrRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.PtrRecords) != 0) {
 			PtrRecordsToUse := plan.AuthoritativeConfig.PtrRecords
 			if len(plan.AuthoritativeConfig.PtrRecords) == 0 {
 				PtrRecordsToUse = state.AuthoritativeConfig.PtrRecords
@@ -3741,18 +3741,18 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=secondary_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.AuthoritativeConfig != nil && plan.AuthoritativeConfig.SecondaryServers.IsUnknown() {
+		if state != nil && state.AuthoritativeConfig != nil && plan.AuthoritativeConfig.SecondaryServers.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.AuthoritativeConfig.SecondaryServers = ListStringValueOrNil(ctx, state.AuthoritativeConfig.SecondaryServers)
 		} else {
 			body.AuthoritativeConfig.SecondaryServers = ListStringValueOrNil(ctx, plan.AuthoritativeConfig.SecondaryServers)
 		}
 		// property: name=servers, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.Servers == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.Servers == nil) {
+		if plan.AuthoritativeConfig.Servers == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.Servers == nil) {
 			body.AuthoritativeConfig.Servers = nil
-		} else if len(plan.AuthoritativeConfig.Servers) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.Servers) == 0) {
+		} else if len(plan.AuthoritativeConfig.Servers) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.Servers) == 0) {
 			body.AuthoritativeConfig.Servers = []sdwan_schema.Server{}
-		} else if len(plan.AuthoritativeConfig.Servers) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.Servers) != 0) {
+		} else if len(plan.AuthoritativeConfig.Servers) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.Servers) != 0) {
 			ServersToUse := plan.AuthoritativeConfig.Servers
 			if len(plan.AuthoritativeConfig.Servers) == 0 {
 				ServersToUse = state.AuthoritativeConfig.Servers
@@ -3771,11 +3771,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=soa, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.Soa == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.Soa == nil) {
+		if plan.AuthoritativeConfig.Soa == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.Soa == nil) {
 			body.AuthoritativeConfig.Soa = nil
-		} else if len(plan.AuthoritativeConfig.Soa) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.Soa) == 0) {
+		} else if len(plan.AuthoritativeConfig.Soa) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.Soa) == 0) {
 			body.AuthoritativeConfig.Soa = []sdwan_schema.SOA{}
-		} else if len(plan.AuthoritativeConfig.Soa) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.Soa) != 0) {
+		} else if len(plan.AuthoritativeConfig.Soa) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.Soa) != 0) {
 			SoaToUse := plan.AuthoritativeConfig.Soa
 			if len(plan.AuthoritativeConfig.Soa) == 0 {
 				SoaToUse = state.AuthoritativeConfig.Soa
@@ -3800,11 +3800,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=srv_hosts, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.SrvHosts == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.SrvHosts == nil) {
+		if plan.AuthoritativeConfig.SrvHosts == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.SrvHosts == nil) {
 			body.AuthoritativeConfig.SrvHosts = nil
-		} else if len(plan.AuthoritativeConfig.SrvHosts) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.SrvHosts) == 0) {
+		} else if len(plan.AuthoritativeConfig.SrvHosts) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.SrvHosts) == 0) {
 			body.AuthoritativeConfig.SrvHosts = []sdwan_schema.SrvHost{}
-		} else if len(plan.AuthoritativeConfig.SrvHosts) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.SrvHosts) != 0) {
+		} else if len(plan.AuthoritativeConfig.SrvHosts) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.SrvHosts) != 0) {
 			SrvHostsToUse := plan.AuthoritativeConfig.SrvHosts
 			if len(plan.AuthoritativeConfig.SrvHosts) == 0 {
 				SrvHostsToUse = state.AuthoritativeConfig.SrvHosts
@@ -3833,11 +3833,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=synth_domains, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.SynthDomains == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.SynthDomains == nil) {
+		if plan.AuthoritativeConfig.SynthDomains == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.SynthDomains == nil) {
 			body.AuthoritativeConfig.SynthDomains = nil
-		} else if len(plan.AuthoritativeConfig.SynthDomains) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.SynthDomains) == 0) {
+		} else if len(plan.AuthoritativeConfig.SynthDomains) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.SynthDomains) == 0) {
 			body.AuthoritativeConfig.SynthDomains = []sdwan_schema.SynthDomain{}
-		} else if len(plan.AuthoritativeConfig.SynthDomains) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.SynthDomains) != 0) {
+		} else if len(plan.AuthoritativeConfig.SynthDomains) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.SynthDomains) != 0) {
 			SynthDomainsToUse := plan.AuthoritativeConfig.SynthDomains
 			if len(plan.AuthoritativeConfig.SynthDomains) == 0 {
 				SynthDomainsToUse = state.AuthoritativeConfig.SynthDomains
@@ -3862,17 +3862,17 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=ttl, type=INTEGER macro=copy_from_plan_or_state
-		if state.AuthoritativeConfig != nil {
+		if state != nil && state.AuthoritativeConfig != nil {
 			body.AuthoritativeConfig.Ttl = ValueInt64PointerFromPlanOrState(plan.AuthoritativeConfig.Ttl, state.AuthoritativeConfig.Ttl)
 		} else {
 			body.AuthoritativeConfig.Ttl = Int64ValueOrNil(plan.AuthoritativeConfig.Ttl)
 		}
 		// property: name=txt_records, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.TxtRecords == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.TxtRecords == nil) {
+		if plan.AuthoritativeConfig.TxtRecords == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.TxtRecords == nil) {
 			body.AuthoritativeConfig.TxtRecords = nil
-		} else if len(plan.AuthoritativeConfig.TxtRecords) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.TxtRecords) == 0) {
+		} else if len(plan.AuthoritativeConfig.TxtRecords) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.TxtRecords) == 0) {
 			body.AuthoritativeConfig.TxtRecords = []sdwan_schema.TxtRecord{}
-		} else if len(plan.AuthoritativeConfig.TxtRecords) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.TxtRecords) != 0) {
+		} else if len(plan.AuthoritativeConfig.TxtRecords) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.TxtRecords) != 0) {
 			TxtRecordsToUse := plan.AuthoritativeConfig.TxtRecords
 			if len(plan.AuthoritativeConfig.TxtRecords) == 0 {
 				TxtRecordsToUse = state.AuthoritativeConfig.TxtRecords
@@ -3891,11 +3891,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=zones, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.AuthoritativeConfig.Zones == nil && (state.AuthoritativeConfig == nil || state.AuthoritativeConfig.Zones == nil) {
+		if plan.AuthoritativeConfig.Zones == nil && (!(state != nil && state.AuthoritativeConfig != nil) || state.AuthoritativeConfig.Zones == nil) {
 			body.AuthoritativeConfig.Zones = nil
-		} else if len(plan.AuthoritativeConfig.Zones) == 0 && (state.AuthoritativeConfig == nil || len(state.AuthoritativeConfig.Zones) == 0) {
+		} else if len(plan.AuthoritativeConfig.Zones) == 0 && (!(state != nil && state.AuthoritativeConfig != nil) || len(state.AuthoritativeConfig.Zones) == 0) {
 			body.AuthoritativeConfig.Zones = []sdwan_schema.Zone{}
-		} else if len(plan.AuthoritativeConfig.Zones) != 0 || (state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.Zones) != 0) {
+		} else if len(plan.AuthoritativeConfig.Zones) != 0 || (state != nil && state.AuthoritativeConfig != nil && len(state.AuthoritativeConfig.Zones) != 0) {
 			ZonesToUse := plan.AuthoritativeConfig.Zones
 			if len(plan.AuthoritativeConfig.Zones) == 0 {
 				ZonesToUse = state.AuthoritativeConfig.Zones
@@ -3924,31 +3924,31 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.CacheConfig prefix=rsModel state=state.CacheConfig plan=plan.CacheConfig properties=5
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.CacheConfig prefix=rsModel state=state.CacheConfig plan=plan.CacheConfig")
 		// property: name=cache_size, type=INTEGER macro=copy_from_plan_or_state
-		if state.CacheConfig != nil {
+		if state != nil && state.CacheConfig != nil {
 			body.CacheConfig.CacheSize = ValueInt64PointerFromPlanOrState(plan.CacheConfig.CacheSize, state.CacheConfig.CacheSize)
 		} else {
 			body.CacheConfig.CacheSize = Int64ValueOrNil(plan.CacheConfig.CacheSize)
 		}
 		// property: name=disable_negative_caching, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.CacheConfig != nil {
+		if state != nil && state.CacheConfig != nil {
 			body.CacheConfig.DisableNegativeCaching = ValueBoolPointerFromPlanOrState(plan.CacheConfig.DisableNegativeCaching, state.CacheConfig.DisableNegativeCaching)
 		} else {
 			body.CacheConfig.DisableNegativeCaching = BoolValueOrNil(plan.CacheConfig.DisableNegativeCaching)
 		}
 		// property: name=max_cache_ttl, type=INTEGER macro=copy_from_plan_or_state
-		if state.CacheConfig != nil {
+		if state != nil && state.CacheConfig != nil {
 			body.CacheConfig.MaxCacheTtl = ValueInt64PointerFromPlanOrState(plan.CacheConfig.MaxCacheTtl, state.CacheConfig.MaxCacheTtl)
 		} else {
 			body.CacheConfig.MaxCacheTtl = Int64ValueOrNil(plan.CacheConfig.MaxCacheTtl)
 		}
 		// property: name=min_cache_ttl, type=INTEGER macro=copy_from_plan_or_state
-		if state.CacheConfig != nil {
+		if state != nil && state.CacheConfig != nil {
 			body.CacheConfig.MinCacheTtl = ValueInt64PointerFromPlanOrState(plan.CacheConfig.MinCacheTtl, state.CacheConfig.MinCacheTtl)
 		} else {
 			body.CacheConfig.MinCacheTtl = Int64ValueOrNil(plan.CacheConfig.MinCacheTtl)
 		}
 		// property: name=negative_cache_ttl, type=INTEGER macro=copy_from_plan_or_state
-		if state.CacheConfig != nil {
+		if state != nil && state.CacheConfig != nil {
 			body.CacheConfig.NegativeCacheTtl = ValueInt64PointerFromPlanOrState(plan.CacheConfig.NegativeCacheTtl, state.CacheConfig.NegativeCacheTtl)
 		} else {
 			body.CacheConfig.NegativeCacheTtl = Int64ValueOrNil(plan.CacheConfig.NegativeCacheTtl)
@@ -3968,11 +3968,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.DnsForwardConfig prefix=rsModel state=state.DnsForwardConfig plan=plan.DnsForwardConfig properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnsForwardConfig prefix=rsModel state=state.DnsForwardConfig plan=plan.DnsForwardConfig")
 		// property: name=dns_servers, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DnsForwardConfig.DnsServers == nil && (state.DnsForwardConfig == nil || state.DnsForwardConfig.DnsServers == nil) {
+		if plan.DnsForwardConfig.DnsServers == nil && (!(state != nil && state.DnsForwardConfig != nil) || state.DnsForwardConfig.DnsServers == nil) {
 			body.DnsForwardConfig.DnsServers = nil
-		} else if len(plan.DnsForwardConfig.DnsServers) == 0 && (state.DnsForwardConfig == nil || len(state.DnsForwardConfig.DnsServers) == 0) {
+		} else if len(plan.DnsForwardConfig.DnsServers) == 0 && (!(state != nil && state.DnsForwardConfig != nil) || len(state.DnsForwardConfig.DnsServers) == 0) {
 			body.DnsForwardConfig.DnsServers = []sdwan_schema.DnsServersV2{}
-		} else if len(plan.DnsForwardConfig.DnsServers) != 0 || (state.DnsForwardConfig != nil && len(state.DnsForwardConfig.DnsServers) != 0) {
+		} else if len(plan.DnsForwardConfig.DnsServers) != 0 || (state != nil && state.DnsForwardConfig != nil && len(state.DnsForwardConfig.DnsServers) != 0) {
 			DnsServersToUse := plan.DnsForwardConfig.DnsServers
 			if len(plan.DnsForwardConfig.DnsServers) == 0 {
 				DnsServersToUse = state.DnsForwardConfig.DnsServers
@@ -4001,19 +4001,19 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=max_source_port, type=INTEGER macro=copy_from_plan_or_state
-		if state.DnsForwardConfig != nil {
+		if state != nil && state.DnsForwardConfig != nil {
 			body.DnsForwardConfig.MaxSourcePort = ValueInt64PointerFromPlanOrState(plan.DnsForwardConfig.MaxSourcePort, state.DnsForwardConfig.MaxSourcePort)
 		} else {
 			body.DnsForwardConfig.MaxSourcePort = Int64ValueOrNil(plan.DnsForwardConfig.MaxSourcePort)
 		}
 		// property: name=min_source_port, type=INTEGER macro=copy_from_plan_or_state
-		if state.DnsForwardConfig != nil {
+		if state != nil && state.DnsForwardConfig != nil {
 			body.DnsForwardConfig.MinSourcePort = ValueInt64PointerFromPlanOrState(plan.DnsForwardConfig.MinSourcePort, state.DnsForwardConfig.MinSourcePort)
 		} else {
 			body.DnsForwardConfig.MinSourcePort = Int64ValueOrNil(plan.DnsForwardConfig.MinSourcePort)
 		}
 		// property: name=send_to_all_dns_servers, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnsForwardConfig != nil {
+		if state != nil && state.DnsForwardConfig != nil {
 			body.DnsForwardConfig.SendToAllDnsServers = ValueBoolPointerFromPlanOrState(plan.DnsForwardConfig.SendToAllDnsServers, state.DnsForwardConfig.SendToAllDnsServers)
 		} else {
 			body.DnsForwardConfig.SendToAllDnsServers = BoolValueOrNil(plan.DnsForwardConfig.SendToAllDnsServers)
@@ -4034,7 +4034,7 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			// copy_from_plan_or_state: body=body.DnsQueriesMetadata.AddClientMac prefix=rsModel state=state.DnsQueriesMetadata.AddClientMac plan=plan.DnsQueriesMetadata.AddClientMac properties=1
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnsQueriesMetadata.AddClientMac prefix=rsModel state=state.DnsQueriesMetadata.AddClientMac plan=plan.DnsQueriesMetadata.AddClientMac")
 			// property: name=mac_encoding_format, type=STRING macro=copy_from_plan_or_state
-			if state.DnsQueriesMetadata.AddClientMac != nil {
+			if state != nil && state.DnsQueriesMetadata != nil && state.DnsQueriesMetadata.AddClientMac != nil {
 				body.DnsQueriesMetadata.AddClientMac.MacEncodingFormat = ValueStringPointerFromPlanOrState(plan.DnsQueriesMetadata.AddClientMac.MacEncodingFormat, state.DnsQueriesMetadata.AddClientMac.MacEncodingFormat)
 			} else {
 				body.DnsQueriesMetadata.AddClientMac.MacEncodingFormat = StringValueOrNil(plan.DnsQueriesMetadata.AddClientMac.MacEncodingFormat)
@@ -4048,24 +4048,24 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			// copy_from_plan_or_state: body=body.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=rsModel state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment plan=plan.DnsQueriesMetadata.AddCustomerPremisesEquipment properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnsQueriesMetadata.AddCustomerPremisesEquipment prefix=rsModel state=state.DnsQueriesMetadata.AddCustomerPremisesEquipment plan=plan.DnsQueriesMetadata.AddCustomerPremisesEquipment")
 			// property: name=identifier_text, type=STRING macro=copy_from_plan_or_state
-			if state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
+			if state != nil && state.DnsQueriesMetadata != nil && state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = ValueStringPointerFromPlanOrState(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText, state.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
 			} else {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText = StringValueOrNil(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.IdentifierText)
 			}
 			// property: name=type, type=STRING macro=copy_from_plan_or_state
-			if state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
+			if state != nil && state.DnsQueriesMetadata != nil && state.DnsQueriesMetadata.AddCustomerPremisesEquipment != nil {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type = ValueStringPointerFromPlanOrState(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type, state.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type)
 			} else {
 				body.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type = StringValueOrNil(plan.DnsQueriesMetadata.AddCustomerPremisesEquipment.Type)
 			}
 		}
 		// property: name=add_subnets, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DnsQueriesMetadata.AddSubnets == nil && (state.DnsQueriesMetadata == nil || state.DnsQueriesMetadata.AddSubnets == nil) {
+		if plan.DnsQueriesMetadata.AddSubnets == nil && (!(state != nil && state.DnsQueriesMetadata != nil) || state.DnsQueriesMetadata.AddSubnets == nil) {
 			body.DnsQueriesMetadata.AddSubnets = nil
-		} else if len(plan.DnsQueriesMetadata.AddSubnets) == 0 && (state.DnsQueriesMetadata == nil || len(state.DnsQueriesMetadata.AddSubnets) == 0) {
+		} else if len(plan.DnsQueriesMetadata.AddSubnets) == 0 && (!(state != nil && state.DnsQueriesMetadata != nil) || len(state.DnsQueriesMetadata.AddSubnets) == 0) {
 			body.DnsQueriesMetadata.AddSubnets = []sdwan_schema.Subnet{}
-		} else if len(plan.DnsQueriesMetadata.AddSubnets) != 0 || (state.DnsQueriesMetadata != nil && len(state.DnsQueriesMetadata.AddSubnets) != 0) {
+		} else if len(plan.DnsQueriesMetadata.AddSubnets) != 0 || (state != nil && state.DnsQueriesMetadata != nil && len(state.DnsQueriesMetadata.AddSubnets) != 0) {
 			AddSubnetsToUse := plan.DnsQueriesMetadata.AddSubnets
 			if len(plan.DnsQueriesMetadata.AddSubnets) == 0 {
 				AddSubnetsToUse = state.DnsQueriesMetadata.AddSubnets
@@ -4096,20 +4096,20 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.DnsRebindConfig prefix=rsModel state=state.DnsRebindConfig plan=plan.DnsRebindConfig properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnsRebindConfig prefix=rsModel state=state.DnsRebindConfig plan=plan.DnsRebindConfig")
 		// property: name=enable_localhost_rebind, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnsRebindConfig != nil {
+		if state != nil && state.DnsRebindConfig != nil {
 			body.DnsRebindConfig.EnableLocalhostRebind = ValueBoolPointerFromPlanOrState(plan.DnsRebindConfig.EnableLocalhostRebind, state.DnsRebindConfig.EnableLocalhostRebind)
 		} else {
 			body.DnsRebindConfig.EnableLocalhostRebind = BoolValueOrNil(plan.DnsRebindConfig.EnableLocalhostRebind)
 		}
 		// property: name=rebind_domains, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.DnsRebindConfig != nil && plan.DnsRebindConfig.RebindDomains.IsUnknown() {
+		if state != nil && state.DnsRebindConfig != nil && plan.DnsRebindConfig.RebindDomains.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.DnsRebindConfig.RebindDomains = ListStringValueOrNil(ctx, state.DnsRebindConfig.RebindDomains)
 		} else {
 			body.DnsRebindConfig.RebindDomains = ListStringValueOrNil(ctx, plan.DnsRebindConfig.RebindDomains)
 		}
 		// property: name=stop_dns_rebind_privateip, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnsRebindConfig != nil {
+		if state != nil && state.DnsRebindConfig != nil {
 			body.DnsRebindConfig.StopDnsRebindPrivateip = ValueBoolPointerFromPlanOrState(plan.DnsRebindConfig.StopDnsRebindPrivateip, state.DnsRebindConfig.StopDnsRebindPrivateip)
 		} else {
 			body.DnsRebindConfig.StopDnsRebindPrivateip = BoolValueOrNil(plan.DnsRebindConfig.StopDnsRebindPrivateip)
@@ -4123,11 +4123,11 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.DnsResponseOverrides prefix=rsModel state=state.DnsResponseOverrides plan=plan.DnsResponseOverrides properties=6
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnsResponseOverrides prefix=rsModel state=state.DnsResponseOverrides plan=plan.DnsResponseOverrides")
 		// property: name=aliases, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DnsResponseOverrides.Aliases == nil && (state.DnsResponseOverrides == nil || state.DnsResponseOverrides.Aliases == nil) {
+		if plan.DnsResponseOverrides.Aliases == nil && (!(state != nil && state.DnsResponseOverrides != nil) || state.DnsResponseOverrides.Aliases == nil) {
 			body.DnsResponseOverrides.Aliases = nil
-		} else if len(plan.DnsResponseOverrides.Aliases) == 0 && (state.DnsResponseOverrides == nil || len(state.DnsResponseOverrides.Aliases) == 0) {
+		} else if len(plan.DnsResponseOverrides.Aliases) == 0 && (!(state != nil && state.DnsResponseOverrides != nil) || len(state.DnsResponseOverrides.Aliases) == 0) {
 			body.DnsResponseOverrides.Aliases = []sdwan_schema.Alias{}
-		} else if len(plan.DnsResponseOverrides.Aliases) != 0 || (state.DnsResponseOverrides != nil && len(state.DnsResponseOverrides.Aliases) != 0) {
+		} else if len(plan.DnsResponseOverrides.Aliases) != 0 || (state != nil && state.DnsResponseOverrides != nil && len(state.DnsResponseOverrides.Aliases) != 0) {
 			AliasesToUse := plan.DnsResponseOverrides.Aliases
 			if len(plan.DnsResponseOverrides.Aliases) == 0 {
 				AliasesToUse = state.DnsResponseOverrides.Aliases
@@ -4152,33 +4152,33 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 			}
 		}
 		// property: name=bogus_nx_domains, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.DnsResponseOverrides != nil && plan.DnsResponseOverrides.BogusNxDomains.IsUnknown() {
+		if state != nil && state.DnsResponseOverrides != nil && plan.DnsResponseOverrides.BogusNxDomains.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.DnsResponseOverrides.BogusNxDomains = ListStringValueOrNil(ctx, state.DnsResponseOverrides.BogusNxDomains)
 		} else {
 			body.DnsResponseOverrides.BogusNxDomains = ListStringValueOrNil(ctx, plan.DnsResponseOverrides.BogusNxDomains)
 		}
 		// property: name=disable_private_ip_lookups, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnsResponseOverrides != nil {
+		if state != nil && state.DnsResponseOverrides != nil {
 			body.DnsResponseOverrides.DisablePrivateIpLookups = ValueBoolPointerFromPlanOrState(plan.DnsResponseOverrides.DisablePrivateIpLookups, state.DnsResponseOverrides.DisablePrivateIpLookups)
 		} else {
 			body.DnsResponseOverrides.DisablePrivateIpLookups = BoolValueOrNil(plan.DnsResponseOverrides.DisablePrivateIpLookups)
 		}
 		// property: name=ignore_ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.DnsResponseOverrides != nil && plan.DnsResponseOverrides.IgnoreIpAddresses.IsUnknown() {
+		if state != nil && state.DnsResponseOverrides != nil && plan.DnsResponseOverrides.IgnoreIpAddresses.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.DnsResponseOverrides.IgnoreIpAddresses = ListStringValueOrNil(ctx, state.DnsResponseOverrides.IgnoreIpAddresses)
 		} else {
 			body.DnsResponseOverrides.IgnoreIpAddresses = ListStringValueOrNil(ctx, plan.DnsResponseOverrides.IgnoreIpAddresses)
 		}
 		// property: name=local_ttl, type=INTEGER macro=copy_from_plan_or_state
-		if state.DnsResponseOverrides != nil {
+		if state != nil && state.DnsResponseOverrides != nil {
 			body.DnsResponseOverrides.LocalTtl = ValueInt64PointerFromPlanOrState(plan.DnsResponseOverrides.LocalTtl, state.DnsResponseOverrides.LocalTtl)
 		} else {
 			body.DnsResponseOverrides.LocalTtl = Int64ValueOrNil(plan.DnsResponseOverrides.LocalTtl)
 		}
 		// property: name=max_ttl, type=INTEGER macro=copy_from_plan_or_state
-		if state.DnsResponseOverrides != nil {
+		if state != nil && state.DnsResponseOverrides != nil {
 			body.DnsResponseOverrides.MaxTtl = ValueInt64PointerFromPlanOrState(plan.DnsResponseOverrides.MaxTtl, state.DnsResponseOverrides.MaxTtl)
 		} else {
 			body.DnsResponseOverrides.MaxTtl = Int64ValueOrNil(plan.DnsResponseOverrides.MaxTtl)
@@ -4192,29 +4192,29 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		// copy_from_plan_or_state: body=body.DnssecConfig prefix=rsModel state=state.DnssecConfig plan=plan.DnssecConfig properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DnssecConfig prefix=rsModel state=state.DnssecConfig plan=plan.DnssecConfig")
 		// property: name=disable_dnssec_timecheck, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnssecConfig != nil {
+		if state != nil && state.DnssecConfig != nil {
 			body.DnssecConfig.DisableDnssecTimecheck = ValueBoolPointerFromPlanOrState(plan.DnssecConfig.DisableDnssecTimecheck, state.DnssecConfig.DisableDnssecTimecheck)
 		} else {
 			body.DnssecConfig.DisableDnssecTimecheck = BoolValueOrNil(plan.DnssecConfig.DisableDnssecTimecheck)
 		}
 		// property: name=dns_check_unsigned, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnssecConfig != nil {
+		if state != nil && state.DnssecConfig != nil {
 			body.DnssecConfig.DnsCheckUnsigned = ValueBoolPointerFromPlanOrState(plan.DnssecConfig.DnsCheckUnsigned, state.DnssecConfig.DnsCheckUnsigned)
 		} else {
 			body.DnssecConfig.DnsCheckUnsigned = BoolValueOrNil(plan.DnssecConfig.DnsCheckUnsigned)
 		}
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DnssecConfig != nil {
+		if state != nil && state.DnssecConfig != nil {
 			body.DnssecConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.DnssecConfig.Enabled, state.DnssecConfig.Enabled)
 		} else {
 			body.DnssecConfig.Enabled = BoolValueOrNil(plan.DnssecConfig.Enabled)
 		}
 		// property: name=trust_anchors, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DnssecConfig.TrustAnchors == nil && (state.DnssecConfig == nil || state.DnssecConfig.TrustAnchors == nil) {
+		if plan.DnssecConfig.TrustAnchors == nil && (!(state != nil && state.DnssecConfig != nil) || state.DnssecConfig.TrustAnchors == nil) {
 			body.DnssecConfig.TrustAnchors = nil
-		} else if len(plan.DnssecConfig.TrustAnchors) == 0 && (state.DnssecConfig == nil || len(state.DnssecConfig.TrustAnchors) == 0) {
+		} else if len(plan.DnssecConfig.TrustAnchors) == 0 && (!(state != nil && state.DnssecConfig != nil) || len(state.DnssecConfig.TrustAnchors) == 0) {
 			body.DnssecConfig.TrustAnchors = []sdwan_schema.TrustAnchor{}
-		} else if len(plan.DnssecConfig.TrustAnchors) != 0 || (state.DnssecConfig != nil && len(state.DnssecConfig.TrustAnchors) != 0) {
+		} else if len(plan.DnssecConfig.TrustAnchors) != 0 || (state != nil && state.DnssecConfig != nil && len(state.DnssecConfig.TrustAnchors) != 0) {
 			TrustAnchorsToUse := plan.DnssecConfig.TrustAnchors
 			if len(plan.DnssecConfig.TrustAnchors) == 0 {
 				TrustAnchorsToUse = state.DnssecConfig.TrustAnchors
@@ -4248,9 +4248,9 @@ func (r *dnsServiceProfileResource) doPut(ctx context.Context, plan *rsModelDnsS
 		}
 	}
 	// property: name=domains_to_addresses, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.DomainsToAddresses == nil && (state == nil || state.DomainsToAddresses == nil) {
+	if plan.DomainsToAddresses == nil && (!(state != nil) || state.DomainsToAddresses == nil) {
 		body.DomainsToAddresses = nil
-	} else if len(plan.DomainsToAddresses) == 0 && (state == nil || len(state.DomainsToAddresses) == 0) {
+	} else if len(plan.DomainsToAddresses) == 0 && (!(state != nil) || len(state.DomainsToAddresses) == 0) {
 		body.DomainsToAddresses = []sdwan_schema.DomainsToAddress{}
 	} else if len(plan.DomainsToAddresses) != 0 || (state != nil && len(state.DomainsToAddresses) != 0) {
 		DomainsToAddressesToUse := plan.DomainsToAddresses

@@ -974,9 +974,9 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 		body.BroadcastAddress = StringValueOrNil(plan.BroadcastAddress)
 	}
 	// property: name=custom_options, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.CustomOptions == nil && (state == nil || state.CustomOptions == nil) {
+	if plan.CustomOptions == nil && (!(state != nil) || state.CustomOptions == nil) {
 		body.CustomOptions = nil
-	} else if len(plan.CustomOptions) == 0 && (state == nil || len(state.CustomOptions) == 0) {
+	} else if len(plan.CustomOptions) == 0 && (!(state != nil) || len(state.CustomOptions) == 0) {
 		body.CustomOptions = []sdwan_schema.CustomDHCPOptions{}
 	} else if len(plan.CustomOptions) != 0 || (state != nil && len(state.CustomOptions) != 0) {
 		CustomOptionsToUse := plan.CustomOptions
@@ -1042,9 +1042,9 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=ip_ranges, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.IpRanges == nil && (state == nil || state.IpRanges == nil) {
+	if plan.IpRanges == nil && (!(state != nil) || state.IpRanges == nil) {
 		body.IpRanges = nil
-	} else if len(plan.IpRanges) == 0 && (state == nil || len(state.IpRanges) == 0) {
+	} else if len(plan.IpRanges) == 0 && (!(state != nil) || len(state.IpRanges) == 0) {
 		body.IpRanges = []sdwan_schema.IPRange{}
 	} else if len(plan.IpRanges) != 0 || (state != nil && len(state.IpRanges) != 0) {
 		IpRangesToUse := plan.IpRanges
@@ -1077,9 +1077,9 @@ func (r *siteDhcpServerResource) doPut(ctx context.Context, plan *rsModelDHCPSer
 		body.NetworkContextId = StringValueOrNil(plan.NetworkContextId)
 	}
 	// property: name=static_mappings, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.StaticMappings == nil && (state == nil || state.StaticMappings == nil) {
+	if plan.StaticMappings == nil && (!(state != nil) || state.StaticMappings == nil) {
 		body.StaticMappings = nil
-	} else if len(plan.StaticMappings) == 0 && (state == nil || len(state.StaticMappings) == 0) {
+	} else if len(plan.StaticMappings) == 0 && (!(state != nil) || len(state.StaticMappings) == 0) {
 		body.StaticMappings = []sdwan_schema.StaticMappingV2{}
 	} else if len(plan.StaticMappings) != 0 || (state != nil && len(state.StaticMappings) != 0) {
 		StaticMappingsToUse := plan.StaticMappings

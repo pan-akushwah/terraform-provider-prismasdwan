@@ -707,9 +707,9 @@ func (r *siteHubPrefixFilterProfileResource) doPut(ctx context.Context, plan *rs
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=path_prefix_filter_list, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.PathPrefixFilterList == nil && (state == nil || state.PathPrefixFilterList == nil) {
+	if plan.PathPrefixFilterList == nil && (!(state != nil) || state.PathPrefixFilterList == nil) {
 		body.PathPrefixFilterList = nil
-	} else if len(plan.PathPrefixFilterList) == 0 && (state == nil || len(state.PathPrefixFilterList) == 0) {
+	} else if len(plan.PathPrefixFilterList) == 0 && (!(state != nil) || len(state.PathPrefixFilterList) == 0) {
 		body.PathPrefixFilterList = []sdwan_schema.PathPrefixFilterList{}
 	} else if len(plan.PathPrefixFilterList) != 0 || (state != nil && len(state.PathPrefixFilterList) != 0) {
 		PathPrefixFilterListToUse := plan.PathPrefixFilterList

@@ -1110,49 +1110,49 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 		// copy_from_plan_or_state: body=body.BgpConfig prefix=rsModel state=state.BgpConfig plan=plan.BgpConfig properties=8
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.BgpConfig prefix=rsModel state=state.BgpConfig plan=plan.BgpConfig")
 		// property: name=adv_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.AdvInterval = ValueInt64PointerFromPlanOrState(plan.BgpConfig.AdvInterval, state.BgpConfig.AdvInterval)
 		} else {
 			body.BgpConfig.AdvInterval = Int64ValueOrNil(plan.BgpConfig.AdvInterval)
 		}
 		// property: name=hold_time, type=INTEGER macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.HoldTime = ValueInt64PointerFromPlanOrState(plan.BgpConfig.HoldTime, state.BgpConfig.HoldTime)
 		} else {
 			body.BgpConfig.HoldTime = Int64ValueOrNil(plan.BgpConfig.HoldTime)
 		}
 		// property: name=keepalive_time, type=INTEGER macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.KeepaliveTime = ValueInt64PointerFromPlanOrState(plan.BgpConfig.KeepaliveTime, state.BgpConfig.KeepaliveTime)
 		} else {
 			body.BgpConfig.KeepaliveTime = Int64ValueOrNil(plan.BgpConfig.KeepaliveTime)
 		}
 		// property: name=local_as_num, type=STRING macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.LocalAsNum = ValueStringPointerFromPlanOrState(plan.BgpConfig.LocalAsNum, state.BgpConfig.LocalAsNum)
 		} else {
 			body.BgpConfig.LocalAsNum = StringValueOrNil(plan.BgpConfig.LocalAsNum)
 		}
 		// property: name=md5_secret, type=STRING macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.Md5Secret = ValueStringPointerFromPlanOrState(plan.BgpConfig.Md5Secret, state.BgpConfig.Md5Secret)
 		} else {
 			body.BgpConfig.Md5Secret = StringValueOrNil(plan.BgpConfig.Md5Secret)
 		}
 		// property: name=multi_hop_limit, type=INTEGER macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.MultiHopLimit = ValueInt64PointerFromPlanOrState(plan.BgpConfig.MultiHopLimit, state.BgpConfig.MultiHopLimit)
 		} else {
 			body.BgpConfig.MultiHopLimit = Int64ValueOrNil(plan.BgpConfig.MultiHopLimit)
 		}
 		// property: name=peer_auth_type, type=STRING macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.PeerAuthType = ValueStringPointerFromPlanOrState(plan.BgpConfig.PeerAuthType, state.BgpConfig.PeerAuthType)
 		} else {
 			body.BgpConfig.PeerAuthType = StringValueOrNil(plan.BgpConfig.PeerAuthType)
 		}
 		// property: name=peer_retry_time, type=INTEGER macro=copy_from_plan_or_state
-		if state.BgpConfig != nil {
+		if state != nil && state.BgpConfig != nil {
 			body.BgpConfig.PeerRetryTime = ValueInt64PointerFromPlanOrState(plan.BgpConfig.PeerRetryTime, state.BgpConfig.PeerRetryTime)
 		} else {
 			body.BgpConfig.PeerRetryTime = Int64ValueOrNil(plan.BgpConfig.PeerRetryTime)
@@ -1208,11 +1208,11 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 		// copy_from_plan_or_state: body=body.RouteAggregation prefix=rsModel state=state.RouteAggregation plan=plan.RouteAggregation properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.RouteAggregation prefix=rsModel state=state.RouteAggregation plan=plan.RouteAggregation")
 		// property: name=aggregate_prefixes, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.RouteAggregation.AggregatePrefixes == nil && (state.RouteAggregation == nil || state.RouteAggregation.AggregatePrefixes == nil) {
+		if plan.RouteAggregation.AggregatePrefixes == nil && (!(state != nil && state.RouteAggregation != nil) || state.RouteAggregation.AggregatePrefixes == nil) {
 			body.RouteAggregation.AggregatePrefixes = nil
-		} else if len(plan.RouteAggregation.AggregatePrefixes) == 0 && (state.RouteAggregation == nil || len(state.RouteAggregation.AggregatePrefixes) == 0) {
+		} else if len(plan.RouteAggregation.AggregatePrefixes) == 0 && (!(state != nil && state.RouteAggregation != nil) || len(state.RouteAggregation.AggregatePrefixes) == 0) {
 			body.RouteAggregation.AggregatePrefixes = []sdwan_schema.AggregatePrefixes{}
-		} else if len(plan.RouteAggregation.AggregatePrefixes) != 0 || (state.RouteAggregation != nil && len(state.RouteAggregation.AggregatePrefixes) != 0) {
+		} else if len(plan.RouteAggregation.AggregatePrefixes) != 0 || (state != nil && state.RouteAggregation != nil && len(state.RouteAggregation.AggregatePrefixes) != 0) {
 			AggregatePrefixesToUse := plan.RouteAggregation.AggregatePrefixes
 			if len(plan.RouteAggregation.AggregatePrefixes) == 0 {
 				AggregatePrefixesToUse = state.RouteAggregation.AggregatePrefixes
@@ -1231,19 +1231,19 @@ func (r *elementBgpPeerResource) doPut(ctx context.Context, plan *rsModelBGPPeer
 			}
 		}
 		// property: name=aggregate_type, type=STRING macro=copy_from_plan_or_state
-		if state.RouteAggregation != nil {
+		if state != nil && state.RouteAggregation != nil {
 			body.RouteAggregation.AggregateType = ValueStringPointerFromPlanOrState(plan.RouteAggregation.AggregateType, state.RouteAggregation.AggregateType)
 		} else {
 			body.RouteAggregation.AggregateType = StringValueOrNil(plan.RouteAggregation.AggregateType)
 		}
 		// property: name=ipv4_prefix_list_id, type=STRING macro=copy_from_plan_or_state
-		if state.RouteAggregation != nil {
+		if state != nil && state.RouteAggregation != nil {
 			body.RouteAggregation.Ipv4PrefixListId = ValueStringPointerFromPlanOrState(plan.RouteAggregation.Ipv4PrefixListId, state.RouteAggregation.Ipv4PrefixListId)
 		} else {
 			body.RouteAggregation.Ipv4PrefixListId = StringValueOrNil(plan.RouteAggregation.Ipv4PrefixListId)
 		}
 		// property: name=ipv6_prefix_list_id, type=STRING macro=copy_from_plan_or_state
-		if state.RouteAggregation != nil {
+		if state != nil && state.RouteAggregation != nil {
 			body.RouteAggregation.Ipv6PrefixListId = ValueStringPointerFromPlanOrState(plan.RouteAggregation.Ipv6PrefixListId, state.RouteAggregation.Ipv6PrefixListId)
 		} else {
 			body.RouteAggregation.Ipv6PrefixListId = StringValueOrNil(plan.RouteAggregation.Ipv6PrefixListId)

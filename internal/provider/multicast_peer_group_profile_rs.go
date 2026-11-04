@@ -613,9 +613,9 @@ func (r *multicastPeerGroupProfileResource) doPut(ctx context.Context, plan *rsM
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=peer_sites, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.PeerSites == nil && (state == nil || state.PeerSites == nil) {
+	if plan.PeerSites == nil && (!(state != nil) || state.PeerSites == nil) {
 		body.PeerSites = nil
-	} else if len(plan.PeerSites) == 0 && (state == nil || len(state.PeerSites) == 0) {
+	} else if len(plan.PeerSites) == 0 && (!(state != nil) || len(state.PeerSites) == 0) {
 		body.PeerSites = []sdwan_schema.MulticastPeerSite{}
 	} else if len(plan.PeerSites) != 0 || (state != nil && len(state.PeerSites) != 0) {
 		PeerSitesToUse := plan.PeerSites

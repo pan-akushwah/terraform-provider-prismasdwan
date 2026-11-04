@@ -1000,9 +1000,9 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 		body.AdvertiseFabricDefaultRoute = BoolValueOrNil(plan.AdvertiseFabricDefaultRoute)
 	}
 	// property: name=areas, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Areas == nil && (state == nil || state.Areas == nil) {
+	if plan.Areas == nil && (!(state != nil) || state.Areas == nil) {
 		body.Areas = nil
-	} else if len(plan.Areas) == 0 && (state == nil || len(state.Areas) == 0) {
+	} else if len(plan.Areas) == 0 && (!(state != nil) || len(state.Areas) == 0) {
 		body.Areas = []sdwan_schema.Area{}
 	} else if len(plan.Areas) != 0 || (state != nil && len(state.Areas) != 0) {
 		AreasToUse := plan.Areas
@@ -1041,9 +1041,9 @@ func (r *elementOspfConfigResource) doPut(ctx context.Context, plan *rsModelOspf
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=interfaces, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Interfaces == nil && (state == nil || state.Interfaces == nil) {
+	if plan.Interfaces == nil && (!(state != nil) || state.Interfaces == nil) {
 		body.Interfaces = nil
-	} else if len(plan.Interfaces) == 0 && (state == nil || len(state.Interfaces) == 0) {
+	} else if len(plan.Interfaces) == 0 && (!(state != nil) || len(state.Interfaces) == 0) {
 		body.Interfaces = []sdwan_schema.InterfaceOspfConfig{}
 	} else if len(plan.Interfaces) != 0 || (state != nil && len(state.Interfaces) != 0) {
 		InterfacesToUse := plan.Interfaces

@@ -711,49 +711,49 @@ func (r *externalCaConfigResource) doPut(ctx context.Context, plan *rsModelCerti
 		// copy_from_plan_or_state: body=body.ScepConfig prefix=rsModel state=state.ScepConfig plan=plan.ScepConfig properties=8
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.ScepConfig prefix=rsModel state=state.ScepConfig plan=plan.ScepConfig")
 		// property: name=challenge_uri, type=STRING macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.ChallengeUri = ValueStringPointerFromPlanOrState(plan.ScepConfig.ChallengeUri, state.ScepConfig.ChallengeUri)
 		} else {
 			body.ScepConfig.ChallengeUri = StringValueOrNil(plan.ScepConfig.ChallengeUri)
 		}
 		// property: name=enrollment_uri, type=STRING macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.EnrollmentUri = ValueStringPointerFromPlanOrState(plan.ScepConfig.EnrollmentUri, state.ScepConfig.EnrollmentUri)
 		} else {
 			body.ScepConfig.EnrollmentUri = StringValueOrNil(plan.ScepConfig.EnrollmentUri)
 		}
 		// property: name=https, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.Https = ValueBoolPointerFromPlanOrState(plan.ScepConfig.Https, state.ScepConfig.Https)
 		} else {
 			body.ScepConfig.Https = BoolValueOrNil(plan.ScepConfig.Https)
 		}
 		// property: name=num_challenge_passwords, type=INTEGER macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.NumChallengePasswords = ValueInt64PointerFromPlanOrState(plan.ScepConfig.NumChallengePasswords, state.ScepConfig.NumChallengePasswords)
 		} else {
 			body.ScepConfig.NumChallengePasswords = Int64ValueOrNil(plan.ScepConfig.NumChallengePasswords)
 		}
 		// property: name=server_certificate, type=STRING macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.ServerCertificate = ValueStringPointerFromPlanOrState(plan.ScepConfig.ServerCertificate, state.ScepConfig.ServerCertificate)
 		} else {
 			body.ScepConfig.ServerCertificate = StringValueOrNil(plan.ScepConfig.ServerCertificate)
 		}
 		// property: name=server_password, type=STRING macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.ServerPassword = ValueStringPointerFromPlanOrState(plan.ScepConfig.ServerPassword, state.ScepConfig.ServerPassword)
 		} else {
 			body.ScepConfig.ServerPassword = StringValueOrNil(plan.ScepConfig.ServerPassword)
 		}
 		// property: name=server_primary_address, type=STRING macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.ServerPrimaryAddress = ValueStringPointerFromPlanOrState(plan.ScepConfig.ServerPrimaryAddress, state.ScepConfig.ServerPrimaryAddress)
 		} else {
 			body.ScepConfig.ServerPrimaryAddress = StringValueOrNil(plan.ScepConfig.ServerPrimaryAddress)
 		}
 		// property: name=server_username, type=STRING macro=copy_from_plan_or_state
-		if state.ScepConfig != nil {
+		if state != nil && state.ScepConfig != nil {
 			body.ScepConfig.ServerUsername = ValueStringPointerFromPlanOrState(plan.ScepConfig.ServerUsername, state.ScepConfig.ServerUsername)
 		} else {
 			body.ScepConfig.ServerUsername = StringValueOrNil(plan.ScepConfig.ServerUsername)

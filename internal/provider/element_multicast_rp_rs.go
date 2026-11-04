@@ -611,9 +611,9 @@ func (r *elementMulticastRpResource) doPut(ctx context.Context, plan *rsModelMul
 		body.Description = StringValueOrNil(plan.Description)
 	}
 	// property: name=groups, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Groups == nil && (state == nil || state.Groups == nil) {
+	if plan.Groups == nil && (!(state != nil) || state.Groups == nil) {
 		body.Groups = nil
-	} else if len(plan.Groups) == 0 && (state == nil || len(state.Groups) == 0) {
+	} else if len(plan.Groups) == 0 && (!(state != nil) || len(state.Groups) == 0) {
 		body.Groups = []sdwan_schema.Group{}
 	} else if len(plan.Groups) != 0 || (state != nil && len(state.Groups) != 0) {
 		GroupsToUse := plan.Groups

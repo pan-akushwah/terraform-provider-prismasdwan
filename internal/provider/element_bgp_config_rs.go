@@ -689,9 +689,9 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 		body.MultiHopLimit = Int64ValueOrNil(plan.MultiHopLimit)
 	}
 	// property: name=ospf_redistribution, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.OspfRedistribution == nil && (state == nil || state.OspfRedistribution == nil) {
+	if plan.OspfRedistribution == nil && (!(state != nil) || state.OspfRedistribution == nil) {
 		body.OspfRedistribution = nil
-	} else if len(plan.OspfRedistribution) == 0 && (state == nil || len(state.OspfRedistribution) == 0) {
+	} else if len(plan.OspfRedistribution) == 0 && (!(state != nil) || len(state.OspfRedistribution) == 0) {
 		body.OspfRedistribution = []sdwan_schema.OspfRedistribution{}
 	} else if len(plan.OspfRedistribution) != 0 || (state != nil && len(state.OspfRedistribution) != 0) {
 		OspfRedistributionToUse := plan.OspfRedistribution
@@ -755,9 +755,9 @@ func (r *elementBgpConfigResource) doPut(ctx context.Context, plan *rsModelBGPGl
 		body.StalepathTime = Int64ValueOrNil(plan.StalepathTime)
 	}
 	// property: name=vrf_router_id_map, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.VrfRouterIdMap == nil && (state == nil || state.VrfRouterIdMap == nil) {
+	if plan.VrfRouterIdMap == nil && (!(state != nil) || state.VrfRouterIdMap == nil) {
 		body.VrfRouterIdMap = nil
-	} else if len(plan.VrfRouterIdMap) == 0 && (state == nil || len(state.VrfRouterIdMap) == 0) {
+	} else if len(plan.VrfRouterIdMap) == 0 && (!(state != nil) || len(state.VrfRouterIdMap) == 0) {
 		body.VrfRouterIdMap = []sdwan_schema.VRFRouterIDMapping{}
 	} else if len(plan.VrfRouterIdMap) != 0 || (state != nil && len(state.VrfRouterIdMap) != 0) {
 		VrfRouterIdMapToUse := plan.VrfRouterIdMap

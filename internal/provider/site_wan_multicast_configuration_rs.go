@@ -529,9 +529,9 @@ func (r *siteWanMulticastConfigurationResource) doPut(ctx context.Context, plan 
 		body.Id = StringValueOrNil(plan.Id)
 	}
 	// property: name=site_configs, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.SiteConfigs == nil && (state == nil || state.SiteConfigs == nil) {
+	if plan.SiteConfigs == nil && (!(state != nil) || state.SiteConfigs == nil) {
 		body.SiteConfigs = nil
-	} else if len(plan.SiteConfigs) == 0 && (state == nil || len(state.SiteConfigs) == 0) {
+	} else if len(plan.SiteConfigs) == 0 && (!(state != nil) || len(state.SiteConfigs) == 0) {
 		body.SiteConfigs = []sdwan_schema.SiteConfig{}
 	} else if len(plan.SiteConfigs) != 0 || (state != nil && len(state.SiteConfigs) != 0) {
 		SiteConfigsToUse := plan.SiteConfigs

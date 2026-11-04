@@ -864,13 +864,13 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 			// copy_from_plan_or_state: body=body.EscalationRules.FlapRule prefix=rsModel state=state.EscalationRules.FlapRule plan=plan.EscalationRules.FlapRule properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EscalationRules.FlapRule prefix=rsModel state=state.EscalationRules.FlapRule plan=plan.EscalationRules.FlapRule")
 			// property: name=flap_duration, type=INTEGER macro=copy_from_plan_or_state
-			if state.EscalationRules.FlapRule != nil {
+			if state != nil && state.EscalationRules != nil && state.EscalationRules.FlapRule != nil {
 				body.EscalationRules.FlapRule.FlapDuration = ValueInt64PointerFromPlanOrState(plan.EscalationRules.FlapRule.FlapDuration, state.EscalationRules.FlapRule.FlapDuration)
 			} else {
 				body.EscalationRules.FlapRule.FlapDuration = Int64ValueOrNil(plan.EscalationRules.FlapRule.FlapDuration)
 			}
 			// property: name=flap_rate, type=INTEGER macro=copy_from_plan_or_state
-			if state.EscalationRules.FlapRule != nil {
+			if state != nil && state.EscalationRules != nil && state.EscalationRules.FlapRule != nil {
 				body.EscalationRules.FlapRule.FlapRate = ValueInt64PointerFromPlanOrState(plan.EscalationRules.FlapRule.FlapRate, state.EscalationRules.FlapRule.FlapRate)
 			} else {
 				body.EscalationRules.FlapRule.FlapRate = Int64ValueOrNil(plan.EscalationRules.FlapRule.FlapRate)
@@ -884,13 +884,13 @@ func (r *eventCorrelationPolicyRuleResource) doPut(ctx context.Context, plan *rs
 			// copy_from_plan_or_state: body=body.EscalationRules.StandingRule prefix=rsModel state=state.EscalationRules.StandingRule plan=plan.EscalationRules.StandingRule properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EscalationRules.StandingRule prefix=rsModel state=state.EscalationRules.StandingRule plan=plan.EscalationRules.StandingRule")
 			// property: name=priority, type=STRING macro=copy_from_plan_or_state
-			if state.EscalationRules.StandingRule != nil {
+			if state != nil && state.EscalationRules != nil && state.EscalationRules.StandingRule != nil {
 				body.EscalationRules.StandingRule.Priority = ValueStringPointerFromPlanOrState(plan.EscalationRules.StandingRule.Priority, state.EscalationRules.StandingRule.Priority)
 			} else {
 				body.EscalationRules.StandingRule.Priority = StringValueOrNil(plan.EscalationRules.StandingRule.Priority)
 			}
 			// property: name=standing_for, type=INTEGER macro=copy_from_plan_or_state
-			if state.EscalationRules.StandingRule != nil {
+			if state != nil && state.EscalationRules != nil && state.EscalationRules.StandingRule != nil {
 				body.EscalationRules.StandingRule.StandingFor = ValueInt64PointerFromPlanOrState(plan.EscalationRules.StandingRule.StandingFor, state.EscalationRules.StandingRule.StandingFor)
 			} else {
 				body.EscalationRules.StandingRule.StandingFor = Int64ValueOrNil(plan.EscalationRules.StandingRule.StandingFor)

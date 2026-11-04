@@ -677,9 +677,9 @@ func (r *eventCorrelationPolicySetResource) doPut(ctx context.Context, plan *rsM
 		body.PolicyruleOrder = ListStringValueOrNil(ctx, plan.PolicyruleOrder)
 	}
 	// property: name=severity_priority_mapping, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.SeverityPriorityMapping == nil && (state == nil || state.SeverityPriorityMapping == nil) {
+	if plan.SeverityPriorityMapping == nil && (!(state != nil) || state.SeverityPriorityMapping == nil) {
 		body.SeverityPriorityMapping = nil
-	} else if len(plan.SeverityPriorityMapping) == 0 && (state == nil || len(state.SeverityPriorityMapping) == 0) {
+	} else if len(plan.SeverityPriorityMapping) == 0 && (!(state != nil) || len(state.SeverityPriorityMapping) == 0) {
 		body.SeverityPriorityMapping = []sdwan_schema.SeverityPriorityMapping{}
 	} else if len(plan.SeverityPriorityMapping) != 0 || (state != nil && len(state.SeverityPriorityMapping) != 0) {
 		SeverityPriorityMappingToUse := plan.SeverityPriorityMapping

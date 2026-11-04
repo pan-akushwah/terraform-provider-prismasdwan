@@ -299,7 +299,9 @@ func (d *eventCorrelationPolicySetDataSource) Read(ctx context.Context, req data
 		resp.Diagnostics.AddError("error in json unmarshal to generic map in lookup", json_err.Error())
 		return
 	}
-	// ensure its as array
+
+	// no match is an empty list, not null: items[0] and length(items) must work on a miss
+	state_with_filter.Items = []*dsModelEventCorrelationPolicySetScreen{} // ensure its as array
 	for _, item := range response.Items {
 		// create json from item
 		item_json, item_err := json.Marshal(item)

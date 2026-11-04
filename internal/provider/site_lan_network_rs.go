@@ -1079,7 +1079,7 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 		// copy_from_plan_or_state: body=body.Ipv4Config prefix=rsModel state=state.Ipv4Config plan=plan.Ipv4Config properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config prefix=rsModel state=state.Ipv4Config plan=plan.Ipv4Config")
 		// property: name=default_routers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.Ipv4Config != nil && plan.Ipv4Config.DefaultRouters.IsUnknown() {
+		if state != nil && state.Ipv4Config != nil && plan.Ipv4Config.DefaultRouters.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.Ipv4Config.DefaultRouters = ListStringValueOrNil(ctx, state.Ipv4Config.DefaultRouters)
 		} else {
@@ -1093,7 +1093,7 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 			// copy_from_plan_or_state: body=body.Ipv4Config.DhcpRelay prefix=rsModel state=state.Ipv4Config.DhcpRelay plan=plan.Ipv4Config.DhcpRelay properties=4
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DhcpRelay prefix=rsModel state=state.Ipv4Config.DhcpRelay plan=plan.Ipv4Config.DhcpRelay")
 			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpRelay != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil {
 				body.Ipv4Config.DhcpRelay.Enabled = ValueBoolPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.Enabled, state.Ipv4Config.DhcpRelay.Enabled)
 			} else {
 				body.Ipv4Config.DhcpRelay.Enabled = BoolValueOrNil(plan.Ipv4Config.DhcpRelay.Enabled)
@@ -1106,39 +1106,39 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 				// copy_from_plan_or_state: body=body.Ipv4Config.DhcpRelay.Option82 prefix=rsModel state=state.Ipv4Config.DhcpRelay.Option82 plan=plan.Ipv4Config.DhcpRelay.Option82 properties=4
 				tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DhcpRelay.Option82 prefix=rsModel state=state.Ipv4Config.DhcpRelay.Option82 plan=plan.Ipv4Config.DhcpRelay.Option82")
 				// property: name=circuit_id, type=STRING macro=copy_from_plan_or_state
-				if state.Ipv4Config.DhcpRelay.Option82 != nil {
+				if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil && state.Ipv4Config.DhcpRelay.Option82 != nil {
 					body.Ipv4Config.DhcpRelay.Option82.CircuitId = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.Option82.CircuitId, state.Ipv4Config.DhcpRelay.Option82.CircuitId)
 				} else {
 					body.Ipv4Config.DhcpRelay.Option82.CircuitId = StringValueOrNil(plan.Ipv4Config.DhcpRelay.Option82.CircuitId)
 				}
 				// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-				if state.Ipv4Config.DhcpRelay.Option82 != nil {
+				if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil && state.Ipv4Config.DhcpRelay.Option82 != nil {
 					body.Ipv4Config.DhcpRelay.Option82.Enabled = ValueBoolPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.Option82.Enabled, state.Ipv4Config.DhcpRelay.Option82.Enabled)
 				} else {
 					body.Ipv4Config.DhcpRelay.Option82.Enabled = BoolValueOrNil(plan.Ipv4Config.DhcpRelay.Option82.Enabled)
 				}
 				// property: name=reforwarding_policy, type=STRING macro=copy_from_plan_or_state
-				if state.Ipv4Config.DhcpRelay.Option82 != nil {
+				if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil && state.Ipv4Config.DhcpRelay.Option82 != nil {
 					body.Ipv4Config.DhcpRelay.Option82.ReforwardingPolicy = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.Option82.ReforwardingPolicy, state.Ipv4Config.DhcpRelay.Option82.ReforwardingPolicy)
 				} else {
 					body.Ipv4Config.DhcpRelay.Option82.ReforwardingPolicy = StringValueOrNil(plan.Ipv4Config.DhcpRelay.Option82.ReforwardingPolicy)
 				}
 				// property: name=remote_id, type=STRING macro=copy_from_plan_or_state
-				if state.Ipv4Config.DhcpRelay.Option82 != nil {
+				if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil && state.Ipv4Config.DhcpRelay.Option82 != nil {
 					body.Ipv4Config.DhcpRelay.Option82.RemoteId = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.Option82.RemoteId, state.Ipv4Config.DhcpRelay.Option82.RemoteId)
 				} else {
 					body.Ipv4Config.DhcpRelay.Option82.RemoteId = StringValueOrNil(plan.Ipv4Config.DhcpRelay.Option82.RemoteId)
 				}
 			}
 			// property: name=server_ips, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpRelay != nil && plan.Ipv4Config.DhcpRelay.ServerIps.IsUnknown() {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil && plan.Ipv4Config.DhcpRelay.ServerIps.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.Ipv4Config.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, state.Ipv4Config.DhcpRelay.ServerIps)
 			} else {
 				body.Ipv4Config.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, plan.Ipv4Config.DhcpRelay.ServerIps)
 			}
 			// property: name=source_interface, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpRelay != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpRelay != nil {
 				body.Ipv4Config.DhcpRelay.SourceInterface = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpRelay.SourceInterface, state.Ipv4Config.DhcpRelay.SourceInterface)
 			} else {
 				body.Ipv4Config.DhcpRelay.SourceInterface = StringValueOrNil(plan.Ipv4Config.DhcpRelay.SourceInterface)
@@ -1152,24 +1152,24 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 			// copy_from_plan_or_state: body=body.Ipv4Config.DhcpServer prefix=rsModel state=state.Ipv4Config.DhcpServer plan=plan.Ipv4Config.DhcpServer properties=5
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DhcpServer prefix=rsModel state=state.Ipv4Config.DhcpServer plan=plan.Ipv4Config.DhcpServer")
 			// property: name=domain_name, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpServer != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil {
 				body.Ipv4Config.DhcpServer.DomainName = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpServer.DomainName, state.Ipv4Config.DhcpServer.DomainName)
 			} else {
 				body.Ipv4Config.DhcpServer.DomainName = StringValueOrNil(plan.Ipv4Config.DhcpServer.DomainName)
 			}
 			// property: name=domain_name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpServer != nil && plan.Ipv4Config.DhcpServer.DomainNameServers.IsUnknown() {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil && plan.Ipv4Config.DhcpServer.DomainNameServers.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.Ipv4Config.DhcpServer.DomainNameServers = ListStringValueOrNil(ctx, state.Ipv4Config.DhcpServer.DomainNameServers)
 			} else {
 				body.Ipv4Config.DhcpServer.DomainNameServers = ListStringValueOrNil(ctx, plan.Ipv4Config.DhcpServer.DomainNameServers)
 			}
 			// property: name=ip_address_pool, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-			if plan.Ipv4Config.DhcpServer.IpAddressPool == nil && (state.Ipv4Config.DhcpServer == nil || state.Ipv4Config.DhcpServer.IpAddressPool == nil) {
+			if plan.Ipv4Config.DhcpServer.IpAddressPool == nil && (!(state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil) || state.Ipv4Config.DhcpServer.IpAddressPool == nil) {
 				body.Ipv4Config.DhcpServer.IpAddressPool = nil
-			} else if len(plan.Ipv4Config.DhcpServer.IpAddressPool) == 0 && (state.Ipv4Config.DhcpServer == nil || len(state.Ipv4Config.DhcpServer.IpAddressPool) == 0) {
+			} else if len(plan.Ipv4Config.DhcpServer.IpAddressPool) == 0 && (!(state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil) || len(state.Ipv4Config.DhcpServer.IpAddressPool) == 0) {
 				body.Ipv4Config.DhcpServer.IpAddressPool = []sdwan_schema.IPAddressPool{}
-			} else if len(plan.Ipv4Config.DhcpServer.IpAddressPool) != 0 || (state.Ipv4Config.DhcpServer != nil && len(state.Ipv4Config.DhcpServer.IpAddressPool) != 0) {
+			} else if len(plan.Ipv4Config.DhcpServer.IpAddressPool) != 0 || (state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil && len(state.Ipv4Config.DhcpServer.IpAddressPool) != 0) {
 				IpAddressPoolToUse := plan.Ipv4Config.DhcpServer.IpAddressPool
 				if len(plan.Ipv4Config.DhcpServer.IpAddressPool) == 0 {
 					IpAddressPoolToUse = state.Ipv4Config.DhcpServer.IpAddressPool
@@ -1188,20 +1188,20 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 				}
 			}
 			// property: name=lease_expiry_time, type=INTEGER macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpServer != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil {
 				body.Ipv4Config.DhcpServer.LeaseExpiryTime = ValueInt64PointerFromPlanOrState(plan.Ipv4Config.DhcpServer.LeaseExpiryTime, state.Ipv4Config.DhcpServer.LeaseExpiryTime)
 			} else {
 				body.Ipv4Config.DhcpServer.LeaseExpiryTime = Int64ValueOrNil(plan.Ipv4Config.DhcpServer.LeaseExpiryTime)
 			}
 			// property: name=lease_renew_time, type=INTEGER macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpServer != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpServer != nil {
 				body.Ipv4Config.DhcpServer.LeaseRenewTime = ValueInt64PointerFromPlanOrState(plan.Ipv4Config.DhcpServer.LeaseRenewTime, state.Ipv4Config.DhcpServer.LeaseRenewTime)
 			} else {
 				body.Ipv4Config.DhcpServer.LeaseRenewTime = Int64ValueOrNil(plan.Ipv4Config.DhcpServer.LeaseRenewTime)
 			}
 		}
 		// property: name=prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.Ipv4Config != nil && plan.Ipv4Config.Prefixes.IsUnknown() {
+		if state != nil && state.Ipv4Config != nil && plan.Ipv4Config.Prefixes.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.Ipv4Config.Prefixes = ListStringValueOrNil(ctx, state.Ipv4Config.Prefixes)
 		} else {
@@ -1216,14 +1216,14 @@ func (r *siteLanNetworkResource) doPut(ctx context.Context, plan *rsModelLANNetw
 		// copy_from_plan_or_state: body=body.Ipv6Config prefix=rsModel state=state.Ipv6Config plan=plan.Ipv6Config properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config prefix=rsModel state=state.Ipv6Config plan=plan.Ipv6Config")
 		// property: name=default_routers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.Ipv6Config != nil && plan.Ipv6Config.DefaultRouters.IsUnknown() {
+		if state != nil && state.Ipv6Config != nil && plan.Ipv6Config.DefaultRouters.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.Ipv6Config.DefaultRouters = ListStringValueOrNil(ctx, state.Ipv6Config.DefaultRouters)
 		} else {
 			body.Ipv6Config.DefaultRouters = ListStringValueOrNil(ctx, plan.Ipv6Config.DefaultRouters)
 		}
 		// property: name=prefixes, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.Ipv6Config != nil && plan.Ipv6Config.Prefixes.IsUnknown() {
+		if state != nil && state.Ipv6Config != nil && plan.Ipv6Config.Prefixes.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.Ipv6Config.Prefixes = ListStringValueOrNil(ctx, state.Ipv6Config.Prefixes)
 		} else {

@@ -614,9 +614,9 @@ func (r *siteIotSnmpStartNodeResource) doPut(ctx context.Context, plan *rsModelD
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=scope, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Scope == nil && (state == nil || state.Scope == nil) {
+	if plan.Scope == nil && (!(state != nil) || state.Scope == nil) {
 		body.Scope = nil
-	} else if len(plan.Scope) == 0 && (state == nil || len(state.Scope) == 0) {
+	} else if len(plan.Scope) == 0 && (!(state != nil) || len(state.Scope) == 0) {
 		body.Scope = []sdwan_schema.StartNodeScopeConfig{}
 	} else if len(plan.Scope) != 0 || (state != nil && len(state.Scope) != 0) {
 		ScopeToUse := plan.Scope

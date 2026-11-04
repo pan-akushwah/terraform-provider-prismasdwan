@@ -723,9 +723,9 @@ func (r *vrfContextProfileResource) doPut(ctx context.Context, plan *rsModelVRFC
 		body.VrfContextIds = SetStringValueOrNil(ctx, plan.VrfContextIds)
 	}
 	// property: name=vrf_context_route_leak_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.VrfContextRouteLeakRules == nil && (state == nil || state.VrfContextRouteLeakRules == nil) {
+	if plan.VrfContextRouteLeakRules == nil && (!(state != nil) || state.VrfContextRouteLeakRules == nil) {
 		body.VrfContextRouteLeakRules = nil
-	} else if len(plan.VrfContextRouteLeakRules) == 0 && (state == nil || len(state.VrfContextRouteLeakRules) == 0) {
+	} else if len(plan.VrfContextRouteLeakRules) == 0 && (!(state != nil) || len(state.VrfContextRouteLeakRules) == 0) {
 		// api does not accept empty list as missing value
 		body.VrfContextRouteLeakRules = nil
 	} else if len(plan.VrfContextRouteLeakRules) != 0 || (state != nil && len(state.VrfContextRouteLeakRules) != 0) {

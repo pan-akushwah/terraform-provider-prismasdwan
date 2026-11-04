@@ -4053,78 +4053,78 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 		// copy_from_plan_or_state: body=body.DefaultrulePolicyset prefix=rsModel state=state.DefaultrulePolicyset plan=plan.DefaultrulePolicyset properties=17
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DefaultrulePolicyset prefix=rsModel state=state.DefaultrulePolicyset plan=plan.DefaultrulePolicyset")
 		// property: name=_etag, type=INTEGER macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Etag = ValueInt64PointerFromPlanOrState(plan.DefaultrulePolicyset.Etag, state.DefaultrulePolicyset.Etag)
 		} else {
 			body.DefaultrulePolicyset.Etag = Int64ValueOrNil(plan.DefaultrulePolicyset.Etag)
 		}
 		// property: name=_schema, type=INTEGER macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Schema = ValueInt64PointerFromPlanOrState(plan.DefaultrulePolicyset.Schema, state.DefaultrulePolicyset.Schema)
 		} else {
 			body.DefaultrulePolicyset.Schema = Int64ValueOrNil(plan.DefaultrulePolicyset.Schema)
 		}
 		// property: name=clone_from, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.CloneFrom = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.CloneFrom, state.DefaultrulePolicyset.CloneFrom)
 		} else {
 			body.DefaultrulePolicyset.CloneFrom = StringValueOrNil(plan.DefaultrulePolicyset.CloneFrom)
 		}
 		// property: name=defaultrule_policyset, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.DefaultrulePolicyset = ValueBoolPointerFromPlanOrState(plan.DefaultrulePolicyset.DefaultrulePolicyset, state.DefaultrulePolicyset.DefaultrulePolicyset)
 		} else {
 			body.DefaultrulePolicyset.DefaultrulePolicyset = BoolValueOrNil(plan.DefaultrulePolicyset.DefaultrulePolicyset)
 		}
 		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Description = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.Description, state.DefaultrulePolicyset.Description)
 		} else {
 			body.DefaultrulePolicyset.Description = StringValueOrNil(plan.DefaultrulePolicyset.Description)
 		}
 		// property: name=disabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Disabled = ValueBoolPointerFromPlanOrState(plan.DefaultrulePolicyset.Disabled, state.DefaultrulePolicyset.Disabled)
 		} else {
 			body.DefaultrulePolicyset.Disabled = BoolValueOrNil(plan.DefaultrulePolicyset.Disabled)
 		}
 		// property: name=disabled_reason, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.DisabledReason = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.DisabledReason, state.DefaultrulePolicyset.DisabledReason)
 		} else {
 			body.DefaultrulePolicyset.DisabledReason = StringValueOrNil(plan.DefaultrulePolicyset.DisabledReason)
 		}
 		// property: name=id, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Id = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.Id, state.DefaultrulePolicyset.Id)
 		} else {
 			body.DefaultrulePolicyset.Id = StringValueOrNil(plan.DefaultrulePolicyset.Id)
 		}
 		// property: name=inactive, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Inactive = ValueBoolPointerFromPlanOrState(plan.DefaultrulePolicyset.Inactive, state.DefaultrulePolicyset.Inactive)
 		} else {
 			body.DefaultrulePolicyset.Inactive = BoolValueOrNil(plan.DefaultrulePolicyset.Inactive)
 		}
 		// property: name=inactive_reason, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.InactiveReason = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.InactiveReason, state.DefaultrulePolicyset.InactiveReason)
 		} else {
 			body.DefaultrulePolicyset.InactiveReason = StringValueOrNil(plan.DefaultrulePolicyset.InactiveReason)
 		}
 		// property: name=link_health_policyrule_order, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil && plan.DefaultrulePolicyset.LinkHealthPolicyruleOrder.IsUnknown() {
+		if state != nil && state.DefaultrulePolicyset != nil && plan.DefaultrulePolicyset.LinkHealthPolicyruleOrder.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.DefaultrulePolicyset.LinkHealthPolicyruleOrder = ListStringValueOrNil(ctx, state.DefaultrulePolicyset.LinkHealthPolicyruleOrder)
 		} else {
 			body.DefaultrulePolicyset.LinkHealthPolicyruleOrder = ListStringValueOrNil(ctx, plan.DefaultrulePolicyset.LinkHealthPolicyruleOrder)
 		}
 		// property: name=link_health_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DefaultrulePolicyset.LinkHealthRules == nil && (state.DefaultrulePolicyset == nil || state.DefaultrulePolicyset.LinkHealthRules == nil) {
+		if plan.DefaultrulePolicyset.LinkHealthRules == nil && (!(state != nil && state.DefaultrulePolicyset != nil) || state.DefaultrulePolicyset.LinkHealthRules == nil) {
 			body.DefaultrulePolicyset.LinkHealthRules = nil
-		} else if len(plan.DefaultrulePolicyset.LinkHealthRules) == 0 && (state.DefaultrulePolicyset == nil || len(state.DefaultrulePolicyset.LinkHealthRules) == 0) {
+		} else if len(plan.DefaultrulePolicyset.LinkHealthRules) == 0 && (!(state != nil && state.DefaultrulePolicyset != nil) || len(state.DefaultrulePolicyset.LinkHealthRules) == 0) {
 			body.DefaultrulePolicyset.LinkHealthRules = []sdwan_schema.PerfMgmtPolicyRule{}
-		} else if len(plan.DefaultrulePolicyset.LinkHealthRules) != 0 || (state.DefaultrulePolicyset != nil && len(state.DefaultrulePolicyset.LinkHealthRules) != 0) {
+		} else if len(plan.DefaultrulePolicyset.LinkHealthRules) != 0 || (state != nil && state.DefaultrulePolicyset != nil && len(state.DefaultrulePolicyset.LinkHealthRules) != 0) {
 			LinkHealthRulesToUse := plan.DefaultrulePolicyset.LinkHealthRules
 			if len(plan.DefaultrulePolicyset.LinkHealthRules) == 0 {
 				LinkHealthRulesToUse = state.DefaultrulePolicyset.LinkHealthRules
@@ -4467,17 +4467,17 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 			}
 		}
 		// property: name=name, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Name = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.Name, state.DefaultrulePolicyset.Name)
 		} else {
 			body.DefaultrulePolicyset.Name = StringValueOrNil(plan.DefaultrulePolicyset.Name)
 		}
 		// property: name=policy_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.DefaultrulePolicyset.PolicyRules == nil && (state.DefaultrulePolicyset == nil || state.DefaultrulePolicyset.PolicyRules == nil) {
+		if plan.DefaultrulePolicyset.PolicyRules == nil && (!(state != nil && state.DefaultrulePolicyset != nil) || state.DefaultrulePolicyset.PolicyRules == nil) {
 			body.DefaultrulePolicyset.PolicyRules = nil
-		} else if len(plan.DefaultrulePolicyset.PolicyRules) == 0 && (state.DefaultrulePolicyset == nil || len(state.DefaultrulePolicyset.PolicyRules) == 0) {
+		} else if len(plan.DefaultrulePolicyset.PolicyRules) == 0 && (!(state != nil && state.DefaultrulePolicyset != nil) || len(state.DefaultrulePolicyset.PolicyRules) == 0) {
 			body.DefaultrulePolicyset.PolicyRules = []sdwan_schema.BasePolicyRule{}
-		} else if len(plan.DefaultrulePolicyset.PolicyRules) != 0 || (state.DefaultrulePolicyset != nil && len(state.DefaultrulePolicyset.PolicyRules) != 0) {
+		} else if len(plan.DefaultrulePolicyset.PolicyRules) != 0 || (state != nil && state.DefaultrulePolicyset != nil && len(state.DefaultrulePolicyset.PolicyRules) != 0) {
 			PolicyRulesToUse := plan.DefaultrulePolicyset.PolicyRules
 			if len(plan.DefaultrulePolicyset.PolicyRules) == 0 {
 				PolicyRulesToUse = state.DefaultrulePolicyset.PolicyRules
@@ -4516,19 +4516,19 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 			}
 		}
 		// property: name=region, type=STRING macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.Region = ValueStringPointerFromPlanOrState(plan.DefaultrulePolicyset.Region, state.DefaultrulePolicyset.Region)
 		} else {
 			body.DefaultrulePolicyset.Region = StringValueOrNil(plan.DefaultrulePolicyset.Region)
 		}
 		// property: name=send_to_element, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil {
+		if state != nil && state.DefaultrulePolicyset != nil {
 			body.DefaultrulePolicyset.SendToElement = ValueBoolPointerFromPlanOrState(plan.DefaultrulePolicyset.SendToElement, state.DefaultrulePolicyset.SendToElement)
 		} else {
 			body.DefaultrulePolicyset.SendToElement = BoolValueOrNil(plan.DefaultrulePolicyset.SendToElement)
 		}
 		// property: name=tags, type=SET_PRIMITIVE macro=copy_from_plan_or_state
-		if state.DefaultrulePolicyset != nil && plan.DefaultrulePolicyset.Tags.IsUnknown() {
+		if state != nil && state.DefaultrulePolicyset != nil && plan.DefaultrulePolicyset.Tags.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.DefaultrulePolicyset.Tags = SetStringValueOrNil(ctx, state.DefaultrulePolicyset.Tags)
 		} else {
@@ -4597,9 +4597,9 @@ func (r *performancePolicyStackResource) doPut(ctx context.Context, plan *rsMode
 		body.PolicysetIdsUpdate = BoolValueOrNil(plan.PolicysetIdsUpdate)
 	}
 	// property: name=policysets, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Policysets == nil && (state == nil || state.Policysets == nil) {
+	if plan.Policysets == nil && (!(state != nil) || state.Policysets == nil) {
 		body.Policysets = nil
-	} else if len(plan.Policysets) == 0 && (state == nil || len(state.Policysets) == 0) {
+	} else if len(plan.Policysets) == 0 && (!(state != nil) || len(state.Policysets) == 0) {
 		body.Policysets = []sdwan_schema.BasePolicySet{}
 	} else if len(plan.Policysets) != 0 || (state != nil && len(state.Policysets) != 0) {
 		PolicysetsToUse := plan.Policysets

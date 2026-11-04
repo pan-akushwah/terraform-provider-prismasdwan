@@ -843,8 +843,18 @@ func (r *serviceEndpointResource) doPost(ctx context.Context, plan *rsModelServi
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
 		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Latitude = Float64KeepPlanWhenNear(ans.Location.Latitude, plan.Location.Latitude)
+		}
 		// property: name=longitude, type=NUMBER macro=copy_to_state
 		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Longitude = Float64KeepPlanWhenNear(ans.Location.Longitude, plan.Location.Longitude)
+		}
 	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
@@ -1096,8 +1106,18 @@ func (r *serviceEndpointResource) doGet(ctx context.Context, state *rsModelServi
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
 		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if savestate.Location != nil {
+			state.Location.Latitude = Float64KeepPlanWhenNear(ans.Location.Latitude, savestate.Location.Latitude)
+		}
 		// property: name=longitude, type=NUMBER macro=copy_to_state
 		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if savestate.Location != nil {
+			state.Location.Longitude = Float64KeepPlanWhenNear(ans.Location.Longitude, savestate.Location.Longitude)
+		}
 	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)
@@ -1221,37 +1241,37 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		// copy_from_plan_or_state: body=body.Address prefix=rsModel state=state.Address plan=plan.Address properties=6
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Address prefix=rsModel state=state.Address plan=plan.Address")
 		// property: name=city, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.City = ValueStringPointerFromPlanOrState(plan.Address.City, state.Address.City)
 		} else {
 			body.Address.City = StringValueOrNil(plan.Address.City)
 		}
 		// property: name=country, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.Country = ValueStringPointerFromPlanOrState(plan.Address.Country, state.Address.Country)
 		} else {
 			body.Address.Country = StringValueOrNil(plan.Address.Country)
 		}
 		// property: name=post_code, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.PostCode = ValueStringPointerFromPlanOrState(plan.Address.PostCode, state.Address.PostCode)
 		} else {
 			body.Address.PostCode = StringValueOrNil(plan.Address.PostCode)
 		}
 		// property: name=state, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.State = ValueStringPointerFromPlanOrState(plan.Address.State, state.Address.State)
 		} else {
 			body.Address.State = StringValueOrNil(plan.Address.State)
 		}
 		// property: name=street, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.Street = ValueStringPointerFromPlanOrState(plan.Address.Street, state.Address.Street)
 		} else {
 			body.Address.Street = StringValueOrNil(plan.Address.Street)
 		}
 		// property: name=street2, type=STRING macro=copy_from_plan_or_state
-		if state.Address != nil {
+		if state != nil && state.Address != nil {
 			body.Address.Street2 = ValueStringPointerFromPlanOrState(plan.Address.Street2, state.Address.Street2)
 		} else {
 			body.Address.Street2 = StringValueOrNil(plan.Address.Street2)
@@ -1301,11 +1321,11 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		// copy_from_plan_or_state: body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LivelinessProbe prefix=rsModel state=state.LivelinessProbe plan=plan.LivelinessProbe")
 		// property: name=http, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.LivelinessProbe.Http == nil && (state.LivelinessProbe == nil || state.LivelinessProbe.Http == nil) {
+		if plan.LivelinessProbe.Http == nil && (!(state != nil && state.LivelinessProbe != nil) || state.LivelinessProbe.Http == nil) {
 			body.LivelinessProbe.Http = nil
-		} else if len(plan.LivelinessProbe.Http) == 0 && (state.LivelinessProbe == nil || len(state.LivelinessProbe.Http) == 0) {
+		} else if len(plan.LivelinessProbe.Http) == 0 && (!(state != nil && state.LivelinessProbe != nil) || len(state.LivelinessProbe.Http) == 0) {
 			body.LivelinessProbe.Http = []sdwan_schema.HttpProbe{}
-		} else if len(plan.LivelinessProbe.Http) != 0 || (state.LivelinessProbe != nil && len(state.LivelinessProbe.Http) != 0) {
+		} else if len(plan.LivelinessProbe.Http) != 0 || (state != nil && state.LivelinessProbe != nil && len(state.LivelinessProbe.Http) != 0) {
 			HttpToUse := plan.LivelinessProbe.Http
 			if len(plan.LivelinessProbe.Http) == 0 {
 				HttpToUse = state.LivelinessProbe.Http
@@ -1328,11 +1348,11 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 			}
 		}
 		// property: name=icmp_ping, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.LivelinessProbe.IcmpPing == nil && (state.LivelinessProbe == nil || state.LivelinessProbe.IcmpPing == nil) {
+		if plan.LivelinessProbe.IcmpPing == nil && (!(state != nil && state.LivelinessProbe != nil) || state.LivelinessProbe.IcmpPing == nil) {
 			body.LivelinessProbe.IcmpPing = nil
-		} else if len(plan.LivelinessProbe.IcmpPing) == 0 && (state.LivelinessProbe == nil || len(state.LivelinessProbe.IcmpPing) == 0) {
+		} else if len(plan.LivelinessProbe.IcmpPing) == 0 && (!(state != nil && state.LivelinessProbe != nil) || len(state.LivelinessProbe.IcmpPing) == 0) {
 			body.LivelinessProbe.IcmpPing = []sdwan_schema.IcmpPingProbe{}
-		} else if len(plan.LivelinessProbe.IcmpPing) != 0 || (state.LivelinessProbe != nil && len(state.LivelinessProbe.IcmpPing) != 0) {
+		} else if len(plan.LivelinessProbe.IcmpPing) != 0 || (state != nil && state.LivelinessProbe != nil && len(state.LivelinessProbe.IcmpPing) != 0) {
 			IcmpPingToUse := plan.LivelinessProbe.IcmpPing
 			if len(plan.LivelinessProbe.IcmpPing) == 0 {
 				IcmpPingToUse = state.LivelinessProbe.IcmpPing
@@ -1353,7 +1373,7 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 			}
 		}
 		// property: name=use_tunnel_for_url_dns_resolution, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.LivelinessProbe != nil {
+		if state != nil && state.LivelinessProbe != nil {
 			body.LivelinessProbe.UseTunnelForUrlDnsResolution = ValueBoolPointerFromPlanOrState(plan.LivelinessProbe.UseTunnelForUrlDnsResolution, state.LivelinessProbe.UseTunnelForUrlDnsResolution)
 		} else {
 			body.LivelinessProbe.UseTunnelForUrlDnsResolution = BoolValueOrNil(plan.LivelinessProbe.UseTunnelForUrlDnsResolution)
@@ -1367,19 +1387,19 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		// copy_from_plan_or_state: body=body.Location prefix=rsModel state=state.Location plan=plan.Location properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Location prefix=rsModel state=state.Location plan=plan.Location")
 		// property: name=description, type=STRING macro=copy_from_plan_or_state
-		if state.Location != nil {
+		if state != nil && state.Location != nil {
 			body.Location.Description = ValueStringPointerFromPlanOrState(plan.Location.Description, state.Location.Description)
 		} else {
 			body.Location.Description = StringValueOrNil(plan.Location.Description)
 		}
 		// property: name=latitude, type=NUMBER macro=copy_from_plan_or_state
-		if state.Location != nil {
+		if state != nil && state.Location != nil {
 			body.Location.Latitude = ValueFloat64PointerFromPlanOrState(plan.Location.Latitude, state.Location.Latitude)
 		} else {
 			body.Location.Latitude = Float64ValueOrNil(plan.Location.Latitude)
 		}
 		// property: name=longitude, type=NUMBER macro=copy_from_plan_or_state
-		if state.Location != nil {
+		if state != nil && state.Location != nil {
 			body.Location.Longitude = ValueFloat64PointerFromPlanOrState(plan.Location.Longitude, state.Location.Longitude)
 		} else {
 			body.Location.Longitude = Float64ValueOrNil(plan.Location.Longitude)
@@ -1399,13 +1419,13 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		// copy_from_plan_or_state: body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties")
 		// property: name=active, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SaseProperties != nil {
+		if state != nil && state.SaseProperties != nil {
 			body.SaseProperties.Active = ValueBoolPointerFromPlanOrState(plan.SaseProperties.Active, state.SaseProperties.Active)
 		} else {
 			body.SaseProperties.Active = BoolValueOrNil(plan.SaseProperties.Active)
 		}
 		// property: name=lqm_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SaseProperties != nil {
+		if state != nil && state.SaseProperties != nil {
 			body.SaseProperties.LqmEnabled = ValueBoolPointerFromPlanOrState(plan.SaseProperties.LqmEnabled, state.SaseProperties.LqmEnabled)
 		} else {
 			body.SaseProperties.LqmEnabled = BoolValueOrNil(plan.SaseProperties.LqmEnabled)
@@ -1419,14 +1439,14 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		// copy_from_plan_or_state: body=body.ServiceLinkPeers prefix=rsModel state=state.ServiceLinkPeers plan=plan.ServiceLinkPeers properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkPeers prefix=rsModel state=state.ServiceLinkPeers plan=plan.ServiceLinkPeers")
 		// property: name=hostnames, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.ServiceLinkPeers != nil && plan.ServiceLinkPeers.Hostnames.IsUnknown() {
+		if state != nil && state.ServiceLinkPeers != nil && plan.ServiceLinkPeers.Hostnames.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.ServiceLinkPeers.Hostnames = ListStringValueOrNil(ctx, state.ServiceLinkPeers.Hostnames)
 		} else {
 			body.ServiceLinkPeers.Hostnames = ListStringValueOrNil(ctx, plan.ServiceLinkPeers.Hostnames)
 		}
 		// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.ServiceLinkPeers != nil && plan.ServiceLinkPeers.IpAddresses.IsUnknown() {
+		if state != nil && state.ServiceLinkPeers != nil && plan.ServiceLinkPeers.IpAddresses.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.ServiceLinkPeers.IpAddresses = ListStringValueOrNil(ctx, state.ServiceLinkPeers.IpAddresses)
 		} else {
@@ -1613,8 +1633,18 @@ func (r *serviceEndpointResource) doPut(ctx context.Context, plan *rsModelServic
 		state.Location.Description = types.StringPointerValue(ans.Location.Description)
 		// property: name=latitude, type=NUMBER macro=copy_to_state
 		state.Location.Latitude = types.Float64PointerValue(ans.Location.Latitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Latitude = Float64KeepPlanWhenNear(ans.Location.Latitude, plan.Location.Latitude)
+		}
 		// property: name=longitude, type=NUMBER macro=copy_to_state
 		state.Location.Longitude = types.Float64PointerValue(ans.Location.Longitude)
+		// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+		// value when the answer is the same number to six decimals
+		if plan.Location != nil {
+			state.Location.Longitude = Float64KeepPlanWhenNear(ans.Location.Longitude, plan.Location.Longitude)
+		}
 	}
 	// property: name=name, type=STRING macro=copy_to_state
 	state.Name = types.StringPointerValue(ans.Name)

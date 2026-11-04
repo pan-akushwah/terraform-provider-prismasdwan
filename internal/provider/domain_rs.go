@@ -642,9 +642,9 @@ func (r *domainResource) doPut(ctx context.Context, plan *rsModelServiceBindingM
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=service_bindings, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.ServiceBindings == nil && (state == nil || state.ServiceBindings == nil) {
+	if plan.ServiceBindings == nil && (!(state != nil) || state.ServiceBindings == nil) {
 		body.ServiceBindings = nil
-	} else if len(plan.ServiceBindings) == 0 && (state == nil || len(state.ServiceBindings) == 0) {
+	} else if len(plan.ServiceBindings) == 0 && (!(state != nil) || len(state.ServiceBindings) == 0) {
 		body.ServiceBindings = []sdwan_schema.ServiceBinding{}
 	} else if len(plan.ServiceBindings) != 0 || (state != nil && len(state.ServiceBindings) != 0) {
 		ServiceBindingsToUse := plan.ServiceBindings

@@ -592,7 +592,7 @@ func (r *serviceGroupResource) doPut(ctx context.Context, plan *rsModelServiceLa
 		// copy_from_plan_or_state: body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SaseProperties prefix=rsModel state=state.SaseProperties plan=plan.SaseProperties")
 		// property: name=active_sase_label, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SaseProperties != nil {
+		if state != nil && state.SaseProperties != nil {
 			body.SaseProperties.ActiveSaseLabel = ValueBoolPointerFromPlanOrState(plan.SaseProperties.ActiveSaseLabel, state.SaseProperties.ActiveSaseLabel)
 		} else {
 			body.SaseProperties.ActiveSaseLabel = BoolValueOrNil(plan.SaseProperties.ActiveSaseLabel)

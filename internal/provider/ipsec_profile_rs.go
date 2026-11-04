@@ -2649,19 +2649,19 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		// copy_from_plan_or_state: body=body.Authentication prefix=rsModel state=state.Authentication plan=plan.Authentication properties=23
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.Authentication prefix=rsModel state=state.Authentication plan=plan.Authentication")
 		// property: name=certificate, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.Certificate = ValueStringPointerFromPlanOrState(plan.Authentication.Certificate, state.Authentication.Certificate)
 		} else {
 			body.Authentication.Certificate = StringValueOrNil(plan.Authentication.Certificate)
 		}
 		// property: name=certificate_profile_id, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.CertificateProfileId = ValueStringPointerFromPlanOrState(plan.Authentication.CertificateProfileId, state.Authentication.CertificateProfileId)
 		} else {
 			body.Authentication.CertificateProfileId = StringValueOrNil(plan.Authentication.CertificateProfileId)
 		}
 		// property: name=comment, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.Comment = ValueStringPointerFromPlanOrState(plan.Authentication.Comment, state.Authentication.Comment)
 		} else {
 			body.Authentication.Comment = StringValueOrNil(plan.Authentication.Comment)
@@ -2674,86 +2674,86 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			// copy_from_plan_or_state: body=body.Authentication.Ikev1Params prefix=rsModel state=state.Authentication.Ikev1Params plan=plan.Authentication.Ikev1Params properties=5
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Authentication.Ikev1Params prefix=rsModel state=state.Authentication.Ikev1Params plan=plan.Authentication.Ikev1Params")
 			// property: name=xauth_id, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.Ikev1Params != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.Ikev1Params != nil {
 				body.Authentication.Ikev1Params.XauthId = ValueStringPointerFromPlanOrState(plan.Authentication.Ikev1Params.XauthId, state.Authentication.Ikev1Params.XauthId)
 			} else {
 				body.Authentication.Ikev1Params.XauthId = StringValueOrNil(plan.Authentication.Ikev1Params.XauthId)
 			}
 			// property: name=xauth_secret, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.Ikev1Params != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.Ikev1Params != nil {
 				body.Authentication.Ikev1Params.XauthSecret = ValueStringPointerFromPlanOrState(plan.Authentication.Ikev1Params.XauthSecret, state.Authentication.Ikev1Params.XauthSecret)
 			} else {
 				body.Authentication.Ikev1Params.XauthSecret = StringValueOrNil(plan.Authentication.Ikev1Params.XauthSecret)
 			}
 			// property: name=xauth_secret_encrypted, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.Ikev1Params != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.Ikev1Params != nil {
 				body.Authentication.Ikev1Params.XauthSecretEncrypted = ValueStringPointerFromPlanOrState(plan.Authentication.Ikev1Params.XauthSecretEncrypted, state.Authentication.Ikev1Params.XauthSecretEncrypted)
 			} else {
 				body.Authentication.Ikev1Params.XauthSecretEncrypted = StringValueOrNil(plan.Authentication.Ikev1Params.XauthSecretEncrypted)
 			}
 			// property: name=xauth_secret_hash, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.Ikev1Params != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.Ikev1Params != nil {
 				body.Authentication.Ikev1Params.XauthSecretHash = ValueStringPointerFromPlanOrState(plan.Authentication.Ikev1Params.XauthSecretHash, state.Authentication.Ikev1Params.XauthSecretHash)
 			} else {
 				body.Authentication.Ikev1Params.XauthSecretHash = StringValueOrNil(plan.Authentication.Ikev1Params.XauthSecretHash)
 			}
 			// property: name=xauth_type, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.Ikev1Params != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.Ikev1Params != nil {
 				body.Authentication.Ikev1Params.XauthType = ValueStringPointerFromPlanOrState(plan.Authentication.Ikev1Params.XauthType, state.Authentication.Ikev1Params.XauthType)
 			} else {
 				body.Authentication.Ikev1Params.XauthType = StringValueOrNil(plan.Authentication.Ikev1Params.XauthType)
 			}
 		}
 		// property: name=local_ca_certificate, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.LocalCaCertificate = ValueStringPointerFromPlanOrState(plan.Authentication.LocalCaCertificate, state.Authentication.LocalCaCertificate)
 		} else {
 			body.Authentication.LocalCaCertificate = StringValueOrNil(plan.Authentication.LocalCaCertificate)
 		}
 		// property: name=local_id, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.LocalId = ValueStringPointerFromPlanOrState(plan.Authentication.LocalId, state.Authentication.LocalId)
 		} else {
 			body.Authentication.LocalId = StringValueOrNil(plan.Authentication.LocalId)
 		}
 		// property: name=local_id_custom, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.LocalIdCustom = ValueStringPointerFromPlanOrState(plan.Authentication.LocalIdCustom, state.Authentication.LocalIdCustom)
 		} else {
 			body.Authentication.LocalIdCustom = StringValueOrNil(plan.Authentication.LocalIdCustom)
 		}
 		// property: name=local_pa_certificate_id, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.LocalPaCertificateId = ValueStringPointerFromPlanOrState(plan.Authentication.LocalPaCertificateId, state.Authentication.LocalPaCertificateId)
 		} else {
 			body.Authentication.LocalPaCertificateId = StringValueOrNil(plan.Authentication.LocalPaCertificateId)
 		}
 		// property: name=pa_master_key_id, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.PaMasterKeyId = ValueStringPointerFromPlanOrState(plan.Authentication.PaMasterKeyId, state.Authentication.PaMasterKeyId)
 		} else {
 			body.Authentication.PaMasterKeyId = StringValueOrNil(plan.Authentication.PaMasterKeyId)
 		}
 		// property: name=passphrase, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.Passphrase = ValueStringPointerFromPlanOrState(plan.Authentication.Passphrase, state.Authentication.Passphrase)
 		} else {
 			body.Authentication.Passphrase = StringValueOrNil(plan.Authentication.Passphrase)
 		}
 		// property: name=passphrase_encrypted, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.PassphraseEncrypted = ValueStringPointerFromPlanOrState(plan.Authentication.PassphraseEncrypted, state.Authentication.PassphraseEncrypted)
 		} else {
 			body.Authentication.PassphraseEncrypted = StringValueOrNil(plan.Authentication.PassphraseEncrypted)
 		}
 		// property: name=peer_id_check, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.PeerIdCheck = ValueStringPointerFromPlanOrState(plan.Authentication.PeerIdCheck, state.Authentication.PeerIdCheck)
 		} else {
 			body.Authentication.PeerIdCheck = StringValueOrNil(plan.Authentication.PeerIdCheck)
 		}
 		// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.PermitPeerIdMismatch = ValueBoolPointerFromPlanOrState(plan.Authentication.PermitPeerIdMismatch, state.Authentication.PermitPeerIdMismatch)
 		} else {
 			body.Authentication.PermitPeerIdMismatch = BoolValueOrNil(plan.Authentication.PermitPeerIdMismatch)
@@ -2766,104 +2766,104 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			// copy_from_plan_or_state: body=body.Authentication.PpkConfig prefix=rsModel state=state.Authentication.PpkConfig plan=plan.Authentication.PpkConfig properties=8
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Authentication.PpkConfig prefix=rsModel state=state.Authentication.PpkConfig plan=plan.Authentication.PpkConfig")
 			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.Authentication.PpkConfig.Enabled, state.Authentication.PpkConfig.Enabled)
 			} else {
 				body.Authentication.PpkConfig.Enabled = BoolValueOrNil(plan.Authentication.PpkConfig.Enabled)
 			}
 			// property: name=key_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.KeyEnabled = ValueBoolPointerFromPlanOrState(plan.Authentication.PpkConfig.KeyEnabled, state.Authentication.PpkConfig.KeyEnabled)
 			} else {
 				body.Authentication.PpkConfig.KeyEnabled = BoolValueOrNil(plan.Authentication.PpkConfig.KeyEnabled)
 			}
 			// property: name=mode, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.Mode = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.Mode, state.Authentication.PpkConfig.Mode)
 			} else {
 				body.Authentication.PpkConfig.Mode = StringValueOrNil(plan.Authentication.PpkConfig.Mode)
 			}
 			// property: name=ppk_key_id, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.PpkKeyId = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkKeyId, state.Authentication.PpkConfig.PpkKeyId)
 			} else {
 				body.Authentication.PpkConfig.PpkKeyId = StringValueOrNil(plan.Authentication.PpkConfig.PpkKeyId)
 			}
 			// property: name=ppk_secret, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.PpkSecret = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecret, state.Authentication.PpkConfig.PpkSecret)
 			} else {
 				body.Authentication.PpkConfig.PpkSecret = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecret)
 			}
 			// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.PpkSecretConfigured = ValueBoolPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecretConfigured, state.Authentication.PpkConfig.PpkSecretConfigured)
 			} else {
 				body.Authentication.PpkConfig.PpkSecretConfigured = BoolValueOrNil(plan.Authentication.PpkConfig.PpkSecretConfigured)
 			}
 			// property: name=ppk_secret_encrypted, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.PpkSecretEncrypted = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecretEncrypted, state.Authentication.PpkConfig.PpkSecretEncrypted)
 			} else {
 				body.Authentication.PpkConfig.PpkSecretEncrypted = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecretEncrypted)
 			}
 			// property: name=ppk_secret_hash, type=STRING macro=copy_from_plan_or_state
-			if state.Authentication.PpkConfig != nil {
+			if state != nil && state.Authentication != nil && state.Authentication.PpkConfig != nil {
 				body.Authentication.PpkConfig.PpkSecretHash = ValueStringPointerFromPlanOrState(plan.Authentication.PpkConfig.PpkSecretHash, state.Authentication.PpkConfig.PpkSecretHash)
 			} else {
 				body.Authentication.PpkConfig.PpkSecretHash = StringValueOrNil(plan.Authentication.PpkConfig.PpkSecretHash)
 			}
 		}
 		// property: name=private_key, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.PrivateKey = ValueStringPointerFromPlanOrState(plan.Authentication.PrivateKey, state.Authentication.PrivateKey)
 		} else {
 			body.Authentication.PrivateKey = StringValueOrNil(plan.Authentication.PrivateKey)
 		}
 		// property: name=private_key_encrypted, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.PrivateKeyEncrypted = ValueStringPointerFromPlanOrState(plan.Authentication.PrivateKeyEncrypted, state.Authentication.PrivateKeyEncrypted)
 		} else {
 			body.Authentication.PrivateKeyEncrypted = StringValueOrNil(plan.Authentication.PrivateKeyEncrypted)
 		}
 		// property: name=remote_ca_certificate, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.RemoteCaCertificate = ValueStringPointerFromPlanOrState(plan.Authentication.RemoteCaCertificate, state.Authentication.RemoteCaCertificate)
 		} else {
 			body.Authentication.RemoteCaCertificate = StringValueOrNil(plan.Authentication.RemoteCaCertificate)
 		}
 		// property: name=remote_id, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.RemoteId = ValueStringPointerFromPlanOrState(plan.Authentication.RemoteId, state.Authentication.RemoteId)
 		} else {
 			body.Authentication.RemoteId = StringValueOrNil(plan.Authentication.RemoteId)
 		}
 		// property: name=secret, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.Secret = ValueStringPointerFromPlanOrState(plan.Authentication.Secret, state.Authentication.Secret)
 		} else {
 			body.Authentication.Secret = StringValueOrNil(plan.Authentication.Secret)
 		}
 		// property: name=secret_encrypted, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.SecretEncrypted = ValueStringPointerFromPlanOrState(plan.Authentication.SecretEncrypted, state.Authentication.SecretEncrypted)
 		} else {
 			body.Authentication.SecretEncrypted = StringValueOrNil(plan.Authentication.SecretEncrypted)
 		}
 		// property: name=secret_hash, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.SecretHash = ValueStringPointerFromPlanOrState(plan.Authentication.SecretHash, state.Authentication.SecretHash)
 		} else {
 			body.Authentication.SecretHash = StringValueOrNil(plan.Authentication.SecretHash)
 		}
 		// property: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.StrictValidationPeerExtendedKeyUse = ValueBoolPointerFromPlanOrState(plan.Authentication.StrictValidationPeerExtendedKeyUse, state.Authentication.StrictValidationPeerExtendedKeyUse)
 		} else {
 			body.Authentication.StrictValidationPeerExtendedKeyUse = BoolValueOrNil(plan.Authentication.StrictValidationPeerExtendedKeyUse)
 		}
 		// property: name=type, type=STRING macro=copy_from_plan_or_state
-		if state.Authentication != nil {
+		if state != nil && state.Authentication != nil {
 			body.Authentication.Type = ValueStringPointerFromPlanOrState(plan.Authentication.Type, state.Authentication.Type)
 		} else {
 			body.Authentication.Type = StringValueOrNil(plan.Authentication.Type)
@@ -2901,7 +2901,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		// copy_from_plan_or_state: body=body.EspGroup prefix=rsModel state=state.EspGroup plan=plan.EspGroup properties=8
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.EspGroup prefix=rsModel state=state.EspGroup plan=plan.EspGroup")
 		// property: name=force_encapsulation, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.EspGroup != nil {
+		if state != nil && state.EspGroup != nil {
 			body.EspGroup.ForceEncapsulation = ValueBoolPointerFromPlanOrState(plan.EspGroup.ForceEncapsulation, state.EspGroup.ForceEncapsulation)
 		} else {
 			body.EspGroup.ForceEncapsulation = BoolValueOrNil(plan.EspGroup.ForceEncapsulation)
@@ -2914,32 +2914,32 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			// copy_from_plan_or_state: body=body.EspGroup.Lifesize prefix=rsModel state=state.EspGroup.Lifesize plan=plan.EspGroup.Lifesize properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EspGroup.Lifesize prefix=rsModel state=state.EspGroup.Lifesize plan=plan.EspGroup.Lifesize")
 			// property: name=units, type=STRING macro=copy_from_plan_or_state
-			if state.EspGroup.Lifesize != nil {
+			if state != nil && state.EspGroup != nil && state.EspGroup.Lifesize != nil {
 				body.EspGroup.Lifesize.Units = ValueStringPointerFromPlanOrState(plan.EspGroup.Lifesize.Units, state.EspGroup.Lifesize.Units)
 			} else {
 				body.EspGroup.Lifesize.Units = StringValueOrNil(plan.EspGroup.Lifesize.Units)
 			}
 			// property: name=value, type=INTEGER macro=copy_from_plan_or_state
-			if state.EspGroup.Lifesize != nil {
+			if state != nil && state.EspGroup != nil && state.EspGroup.Lifesize != nil {
 				body.EspGroup.Lifesize.Value = ValueInt64PointerFromPlanOrState(plan.EspGroup.Lifesize.Value, state.EspGroup.Lifesize.Value)
 			} else {
 				body.EspGroup.Lifesize.Value = Int64ValueOrNil(plan.EspGroup.Lifesize.Value)
 			}
 		}
 		// property: name=lifetime, type=INTEGER macro=copy_from_plan_or_state
-		if state.EspGroup != nil {
+		if state != nil && state.EspGroup != nil {
 			body.EspGroup.Lifetime = ValueInt64PointerFromPlanOrState(plan.EspGroup.Lifetime, state.EspGroup.Lifetime)
 		} else {
 			body.EspGroup.Lifetime = Int64ValueOrNil(plan.EspGroup.Lifetime)
 		}
 		// property: name=lifetime_units, type=STRING macro=copy_from_plan_or_state
-		if state.EspGroup != nil {
+		if state != nil && state.EspGroup != nil {
 			body.EspGroup.LifetimeUnits = ValueStringPointerFromPlanOrState(plan.EspGroup.LifetimeUnits, state.EspGroup.LifetimeUnits)
 		} else {
 			body.EspGroup.LifetimeUnits = StringValueOrNil(plan.EspGroup.LifetimeUnits)
 		}
 		// property: name=mode, type=STRING macro=copy_from_plan_or_state
-		if state.EspGroup != nil {
+		if state != nil && state.EspGroup != nil {
 			body.EspGroup.Mode = ValueStringPointerFromPlanOrState(plan.EspGroup.Mode, state.EspGroup.Mode)
 		} else {
 			body.EspGroup.Mode = StringValueOrNil(plan.EspGroup.Mode)
@@ -2952,61 +2952,61 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			// copy_from_plan_or_state: body=body.EspGroup.PqcKemConfig prefix=rsModel state=state.EspGroup.PqcKemConfig plan=plan.EspGroup.PqcKemConfig properties=9
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EspGroup.PqcKemConfig prefix=rsModel state=state.EspGroup.PqcKemConfig plan=plan.EspGroup.PqcKemConfig")
 			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil {
 				body.EspGroup.PqcKemConfig.BlockVulnerableCipher = ValueBoolPointerFromPlanOrState(plan.EspGroup.PqcKemConfig.BlockVulnerableCipher, state.EspGroup.PqcKemConfig.BlockVulnerableCipher)
 			} else {
 				body.EspGroup.PqcKemConfig.BlockVulnerableCipher = BoolValueOrNil(plan.EspGroup.PqcKemConfig.BlockVulnerableCipher)
 			}
 			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil {
 				body.EspGroup.PqcKemConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.EspGroup.PqcKemConfig.Enabled, state.EspGroup.PqcKemConfig.Enabled)
 			} else {
 				body.EspGroup.PqcKemConfig.Enabled = BoolValueOrNil(plan.EspGroup.PqcKemConfig.Enabled)
 			}
 			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round1Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round1Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round1Algorithms)
 			} else {
 				body.EspGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round1Algorithms)
 			}
 			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round2Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round2Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round2Algorithms)
 			} else {
 				body.EspGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round2Algorithms)
 			}
 			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round3Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round3Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round3Algorithms)
 			} else {
 				body.EspGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round3Algorithms)
 			}
 			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round4Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round4Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round4Algorithms)
 			} else {
 				body.EspGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round4Algorithms)
 			}
 			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round5Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round5Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round5Algorithms)
 			} else {
 				body.EspGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round5Algorithms)
 			}
 			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round6Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round6Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round6Algorithms)
 			} else {
 				body.EspGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, plan.EspGroup.PqcKemConfig.Round6Algorithms)
 			}
 			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round7Algorithms.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.PqcKemConfig != nil && plan.EspGroup.PqcKemConfig.Round7Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.PqcKemConfig.Round7Algorithms = ListStringValueOrNil(ctx, state.EspGroup.PqcKemConfig.Round7Algorithms)
 			} else {
@@ -3014,11 +3014,11 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			}
 		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.EspGroup.Proposals == nil && (state.EspGroup == nil || state.EspGroup.Proposals == nil) {
+		if plan.EspGroup.Proposals == nil && (!(state != nil && state.EspGroup != nil) || state.EspGroup.Proposals == nil) {
 			body.EspGroup.Proposals = nil
-		} else if len(plan.EspGroup.Proposals) == 0 && (state.EspGroup == nil || len(state.EspGroup.Proposals) == 0) {
+		} else if len(plan.EspGroup.Proposals) == 0 && (!(state != nil && state.EspGroup != nil) || len(state.EspGroup.Proposals) == 0) {
 			body.EspGroup.Proposals = []sdwan_schema.Proposals{}
-		} else if len(plan.EspGroup.Proposals) != 0 || (state.EspGroup != nil && len(state.EspGroup.Proposals) != 0) {
+		} else if len(plan.EspGroup.Proposals) != 0 || (state != nil && state.EspGroup != nil && len(state.EspGroup.Proposals) != 0) {
 			ProposalsToUse := plan.EspGroup.Proposals
 			if len(plan.EspGroup.Proposals) == 0 {
 				ProposalsToUse = state.EspGroup.Proposals
@@ -3048,21 +3048,21 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			// copy_from_plan_or_state: body=body.EspGroup.ResponderSaseProposals prefix=rsModel state=state.EspGroup.ResponderSaseProposals plan=plan.EspGroup.ResponderSaseProposals properties=3
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.EspGroup.ResponderSaseProposals prefix=rsModel state=state.EspGroup.ResponderSaseProposals plan=plan.EspGroup.ResponderSaseProposals")
 			// property: name=dh_group, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.ResponderSaseProposals != nil && plan.EspGroup.ResponderSaseProposals.DhGroup.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.ResponderSaseProposals != nil && plan.EspGroup.ResponderSaseProposals.DhGroup.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.ResponderSaseProposals.DhGroup = ListStringValueOrNil(ctx, state.EspGroup.ResponderSaseProposals.DhGroup)
 			} else {
 				body.EspGroup.ResponderSaseProposals.DhGroup = ListStringValueOrNil(ctx, plan.EspGroup.ResponderSaseProposals.DhGroup)
 			}
 			// property: name=encryption, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.ResponderSaseProposals != nil && plan.EspGroup.ResponderSaseProposals.Encryption.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.ResponderSaseProposals != nil && plan.EspGroup.ResponderSaseProposals.Encryption.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.ResponderSaseProposals.Encryption = ListStringValueOrNil(ctx, state.EspGroup.ResponderSaseProposals.Encryption)
 			} else {
 				body.EspGroup.ResponderSaseProposals.Encryption = ListStringValueOrNil(ctx, plan.EspGroup.ResponderSaseProposals.Encryption)
 			}
 			// property: name=hash, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.EspGroup.ResponderSaseProposals != nil && plan.EspGroup.ResponderSaseProposals.Hash.IsUnknown() {
+			if state != nil && state.EspGroup != nil && state.EspGroup.ResponderSaseProposals != nil && plan.EspGroup.ResponderSaseProposals.Hash.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.EspGroup.ResponderSaseProposals.Hash = ListStringValueOrNil(ctx, state.EspGroup.ResponderSaseProposals.Hash)
 			} else {
@@ -3084,37 +3084,37 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 		// copy_from_plan_or_state: body=body.IkeGroup prefix=rsModel state=state.IkeGroup plan=plan.IkeGroup properties=9
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.IkeGroup prefix=rsModel state=state.IkeGroup plan=plan.IkeGroup")
 		// property: name=aggressive, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.Aggressive = ValueBoolPointerFromPlanOrState(plan.IkeGroup.Aggressive, state.IkeGroup.Aggressive)
 		} else {
 			body.IkeGroup.Aggressive = BoolValueOrNil(plan.IkeGroup.Aggressive)
 		}
 		// property: name=authentication_multiple, type=INTEGER macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.AuthenticationMultiple = ValueInt64PointerFromPlanOrState(plan.IkeGroup.AuthenticationMultiple, state.IkeGroup.AuthenticationMultiple)
 		} else {
 			body.IkeGroup.AuthenticationMultiple = Int64ValueOrNil(plan.IkeGroup.AuthenticationMultiple)
 		}
 		// property: name=key_exchange, type=STRING macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.KeyExchange = ValueStringPointerFromPlanOrState(plan.IkeGroup.KeyExchange, state.IkeGroup.KeyExchange)
 		} else {
 			body.IkeGroup.KeyExchange = StringValueOrNil(plan.IkeGroup.KeyExchange)
 		}
 		// property: name=lifetime, type=INTEGER macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.Lifetime = ValueInt64PointerFromPlanOrState(plan.IkeGroup.Lifetime, state.IkeGroup.Lifetime)
 		} else {
 			body.IkeGroup.Lifetime = Int64ValueOrNil(plan.IkeGroup.Lifetime)
 		}
 		// property: name=lifetime_units, type=STRING macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.LifetimeUnits = ValueStringPointerFromPlanOrState(plan.IkeGroup.LifetimeUnits, state.IkeGroup.LifetimeUnits)
 		} else {
 			body.IkeGroup.LifetimeUnits = StringValueOrNil(plan.IkeGroup.LifetimeUnits)
 		}
 		// property: name=port, type=INTEGER macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.Port = ValueInt64PointerFromPlanOrState(plan.IkeGroup.Port, state.IkeGroup.Port)
 		} else {
 			body.IkeGroup.Port = Int64ValueOrNil(plan.IkeGroup.Port)
@@ -3127,61 +3127,61 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			// copy_from_plan_or_state: body=body.IkeGroup.PqcKemConfig prefix=rsModel state=state.IkeGroup.PqcKemConfig plan=plan.IkeGroup.PqcKemConfig properties=9
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.IkeGroup.PqcKemConfig prefix=rsModel state=state.IkeGroup.PqcKemConfig plan=plan.IkeGroup.PqcKemConfig")
 			// property: name=block_vulnerable_cipher, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil {
 				body.IkeGroup.PqcKemConfig.BlockVulnerableCipher = ValueBoolPointerFromPlanOrState(plan.IkeGroup.PqcKemConfig.BlockVulnerableCipher, state.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
 			} else {
 				body.IkeGroup.PqcKemConfig.BlockVulnerableCipher = BoolValueOrNil(plan.IkeGroup.PqcKemConfig.BlockVulnerableCipher)
 			}
 			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil {
 				body.IkeGroup.PqcKemConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.IkeGroup.PqcKemConfig.Enabled, state.IkeGroup.PqcKemConfig.Enabled)
 			} else {
 				body.IkeGroup.PqcKemConfig.Enabled = BoolValueOrNil(plan.IkeGroup.PqcKemConfig.Enabled)
 			}
 			// property: name=round_1_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round1Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round1Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round1Algorithms)
 			} else {
 				body.IkeGroup.PqcKemConfig.Round1Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round1Algorithms)
 			}
 			// property: name=round_2_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round2Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round2Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round2Algorithms)
 			} else {
 				body.IkeGroup.PqcKemConfig.Round2Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round2Algorithms)
 			}
 			// property: name=round_3_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round3Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round3Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round3Algorithms)
 			} else {
 				body.IkeGroup.PqcKemConfig.Round3Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round3Algorithms)
 			}
 			// property: name=round_4_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round4Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round4Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round4Algorithms)
 			} else {
 				body.IkeGroup.PqcKemConfig.Round4Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round4Algorithms)
 			}
 			// property: name=round_5_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round5Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round5Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round5Algorithms)
 			} else {
 				body.IkeGroup.PqcKemConfig.Round5Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round5Algorithms)
 			}
 			// property: name=round_6_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round6Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round6Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round6Algorithms)
 			} else {
 				body.IkeGroup.PqcKemConfig.Round6Algorithms = ListStringValueOrNil(ctx, plan.IkeGroup.PqcKemConfig.Round6Algorithms)
 			}
 			// property: name=round_7_algorithms, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round7Algorithms.IsUnknown() {
+			if state != nil && state.IkeGroup != nil && state.IkeGroup.PqcKemConfig != nil && plan.IkeGroup.PqcKemConfig.Round7Algorithms.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.IkeGroup.PqcKemConfig.Round7Algorithms = ListStringValueOrNil(ctx, state.IkeGroup.PqcKemConfig.Round7Algorithms)
 			} else {
@@ -3189,11 +3189,11 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			}
 		}
 		// property: name=proposals, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.IkeGroup.Proposals == nil && (state.IkeGroup == nil || state.IkeGroup.Proposals == nil) {
+		if plan.IkeGroup.Proposals == nil && (!(state != nil && state.IkeGroup != nil) || state.IkeGroup.Proposals == nil) {
 			body.IkeGroup.Proposals = nil
-		} else if len(plan.IkeGroup.Proposals) == 0 && (state.IkeGroup == nil || len(state.IkeGroup.Proposals) == 0) {
+		} else if len(plan.IkeGroup.Proposals) == 0 && (!(state != nil && state.IkeGroup != nil) || len(state.IkeGroup.Proposals) == 0) {
 			body.IkeGroup.Proposals = []sdwan_schema.Proposals{}
-		} else if len(plan.IkeGroup.Proposals) != 0 || (state.IkeGroup != nil && len(state.IkeGroup.Proposals) != 0) {
+		} else if len(plan.IkeGroup.Proposals) != 0 || (state != nil && state.IkeGroup != nil && len(state.IkeGroup.Proposals) != 0) {
 			ProposalsToUse := plan.IkeGroup.Proposals
 			if len(plan.IkeGroup.Proposals) == 0 {
 				ProposalsToUse = state.IkeGroup.Proposals
@@ -3216,7 +3216,7 @@ func (r *ipsecProfileResource) doPut(ctx context.Context, plan *rsModelIPSECProf
 			}
 		}
 		// property: name=reauth, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.IkeGroup != nil {
+		if state != nil && state.IkeGroup != nil {
 			body.IkeGroup.Reauth = ValueBoolPointerFromPlanOrState(plan.IkeGroup.Reauth, state.IkeGroup.Reauth)
 		} else {
 			body.IkeGroup.Reauth = BoolValueOrNil(plan.IkeGroup.Reauth)

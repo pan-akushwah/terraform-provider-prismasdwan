@@ -981,9 +981,9 @@ func (r *elementRoutingRoutemapResource) doPut(ctx context.Context, plan *rsMode
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=route_map_entries, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.RouteMapEntries == nil && (state == nil || state.RouteMapEntries == nil) {
+	if plan.RouteMapEntries == nil && (!(state != nil) || state.RouteMapEntries == nil) {
 		body.RouteMapEntries = nil
-	} else if len(plan.RouteMapEntries) == 0 && (state == nil || len(state.RouteMapEntries) == 0) {
+	} else if len(plan.RouteMapEntries) == 0 && (!(state != nil) || len(state.RouteMapEntries) == 0) {
 		body.RouteMapEntries = []sdwan_schema.RoutingRouteMapEntryV2N4{}
 	} else if len(plan.RouteMapEntries) != 0 || (state != nil && len(state.RouteMapEntries) != 0) {
 		RouteMapEntriesToUse := plan.RouteMapEntries

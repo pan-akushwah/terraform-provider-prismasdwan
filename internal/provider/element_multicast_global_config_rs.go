@@ -489,25 +489,25 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 		// copy_from_plan_or_state: body=body.IgmpProtocolParameters prefix=rsModel state=state.IgmpProtocolParameters plan=plan.IgmpProtocolParameters properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.IgmpProtocolParameters prefix=rsModel state=state.IgmpProtocolParameters plan=plan.IgmpProtocolParameters")
 		// property: name=last_member_query_count, type=INTEGER macro=copy_from_plan_or_state
-		if state.IgmpProtocolParameters != nil {
+		if state != nil && state.IgmpProtocolParameters != nil {
 			body.IgmpProtocolParameters.LastMemberQueryCount = ValueInt64PointerFromPlanOrState(plan.IgmpProtocolParameters.LastMemberQueryCount, state.IgmpProtocolParameters.LastMemberQueryCount)
 		} else {
 			body.IgmpProtocolParameters.LastMemberQueryCount = Int64ValueOrNil(plan.IgmpProtocolParameters.LastMemberQueryCount)
 		}
 		// property: name=last_member_query_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.IgmpProtocolParameters != nil {
+		if state != nil && state.IgmpProtocolParameters != nil {
 			body.IgmpProtocolParameters.LastMemberQueryInterval = ValueInt64PointerFromPlanOrState(plan.IgmpProtocolParameters.LastMemberQueryInterval, state.IgmpProtocolParameters.LastMemberQueryInterval)
 		} else {
 			body.IgmpProtocolParameters.LastMemberQueryInterval = Int64ValueOrNil(plan.IgmpProtocolParameters.LastMemberQueryInterval)
 		}
 		// property: name=query_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.IgmpProtocolParameters != nil {
+		if state != nil && state.IgmpProtocolParameters != nil {
 			body.IgmpProtocolParameters.QueryInterval = ValueInt64PointerFromPlanOrState(plan.IgmpProtocolParameters.QueryInterval, state.IgmpProtocolParameters.QueryInterval)
 		} else {
 			body.IgmpProtocolParameters.QueryInterval = Int64ValueOrNil(plan.IgmpProtocolParameters.QueryInterval)
 		}
 		// property: name=query_max_response_time, type=INTEGER macro=copy_from_plan_or_state
-		if state.IgmpProtocolParameters != nil {
+		if state != nil && state.IgmpProtocolParameters != nil {
 			body.IgmpProtocolParameters.QueryMaxResponseTime = ValueInt64PointerFromPlanOrState(plan.IgmpProtocolParameters.QueryMaxResponseTime, state.IgmpProtocolParameters.QueryMaxResponseTime)
 		} else {
 			body.IgmpProtocolParameters.QueryMaxResponseTime = Int64ValueOrNil(plan.IgmpProtocolParameters.QueryMaxResponseTime)
@@ -521,19 +521,19 @@ func (r *elementMulticastGlobalConfigResource) doPut(ctx context.Context, plan *
 		// copy_from_plan_or_state: body=body.PimProtocolParameters prefix=rsModel state=state.PimProtocolParameters plan=plan.PimProtocolParameters properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PimProtocolParameters prefix=rsModel state=state.PimProtocolParameters plan=plan.PimProtocolParameters")
 		// property: name=hello_hold_time, type=INTEGER macro=copy_from_plan_or_state
-		if state.PimProtocolParameters != nil {
+		if state != nil && state.PimProtocolParameters != nil {
 			body.PimProtocolParameters.HelloHoldTime = ValueInt64PointerFromPlanOrState(plan.PimProtocolParameters.HelloHoldTime, state.PimProtocolParameters.HelloHoldTime)
 		} else {
 			body.PimProtocolParameters.HelloHoldTime = Int64ValueOrNil(plan.PimProtocolParameters.HelloHoldTime)
 		}
 		// property: name=hello_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.PimProtocolParameters != nil {
+		if state != nil && state.PimProtocolParameters != nil {
 			body.PimProtocolParameters.HelloInterval = ValueInt64PointerFromPlanOrState(plan.PimProtocolParameters.HelloInterval, state.PimProtocolParameters.HelloInterval)
 		} else {
 			body.PimProtocolParameters.HelloInterval = Int64ValueOrNil(plan.PimProtocolParameters.HelloInterval)
 		}
 		// property: name=join_prune_interval, type=INTEGER macro=copy_from_plan_or_state
-		if state.PimProtocolParameters != nil {
+		if state != nil && state.PimProtocolParameters != nil {
 			body.PimProtocolParameters.JoinPruneInterval = ValueInt64PointerFromPlanOrState(plan.PimProtocolParameters.JoinPruneInterval, state.PimProtocolParameters.JoinPruneInterval)
 		} else {
 			body.PimProtocolParameters.JoinPruneInterval = Int64ValueOrNil(plan.PimProtocolParameters.JoinPruneInterval)

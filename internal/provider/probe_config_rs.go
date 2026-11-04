@@ -766,9 +766,9 @@ func (r *probeConfigResource) doPut(ctx context.Context, plan *rsModelProbeConfi
 		body.Enabled = BoolValueOrNil(plan.Enabled)
 	}
 	// property: name=endpoints, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Endpoints == nil && (state == nil || state.Endpoints == nil) {
+	if plan.Endpoints == nil && (!(state != nil) || state.Endpoints == nil) {
 		body.Endpoints = nil
-	} else if len(plan.Endpoints) == 0 && (state == nil || len(state.Endpoints) == 0) {
+	} else if len(plan.Endpoints) == 0 && (!(state != nil) || len(state.Endpoints) == 0) {
 		body.Endpoints = []sdwan_schema.ProbeEndpointV2N1{}
 	} else if len(plan.Endpoints) != 0 || (state != nil && len(state.Endpoints) != 0) {
 		EndpointsToUse := plan.Endpoints

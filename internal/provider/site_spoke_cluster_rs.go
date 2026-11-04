@@ -317,6 +317,11 @@ func (r *siteSpokeClusterResource) doPost(ctx context.Context, plan *rsModelSpok
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=advertisement_interval, type=NUMBER macro=copy_to_state
 	state.AdvertisementInterval = types.Float64PointerValue(ans.AdvertisementInterval)
+	// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+	// value when the answer is the same number to six decimals
+	if true {
+		state.AdvertisementInterval = Float64KeepPlanWhenNear(ans.AdvertisementInterval, plan.AdvertisementInterval)
+	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -444,6 +449,11 @@ func (r *siteSpokeClusterResource) doGet(ctx context.Context, state *rsModelSpok
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=advertisement_interval, type=NUMBER macro=copy_to_state
 	state.AdvertisementInterval = types.Float64PointerValue(ans.AdvertisementInterval)
+	// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+	// value when the answer is the same number to six decimals
+	if true {
+		state.AdvertisementInterval = Float64KeepPlanWhenNear(ans.AdvertisementInterval, savestate.AdvertisementInterval)
+	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state
@@ -633,6 +643,11 @@ func (r *siteSpokeClusterResource) doPut(ctx context.Context, plan *rsModelSpoke
 	state.Schema = types.Int64PointerValue(ans.Schema)
 	// property: name=advertisement_interval, type=NUMBER macro=copy_to_state
 	state.AdvertisementInterval = types.Float64PointerValue(ans.AdvertisementInterval)
+	// the api rounds floating point values (a longitude of -98.497408 comes back as -98.497406): keep the configured
+	// value when the answer is the same number to six decimals
+	if true {
+		state.AdvertisementInterval = Float64KeepPlanWhenNear(ans.AdvertisementInterval, plan.AdvertisementInterval)
+	}
 	// property: name=description, type=STRING macro=copy_to_state
 	state.Description = types.StringPointerValue(ans.Description)
 	// property: name=id, type=STRING macro=copy_to_state

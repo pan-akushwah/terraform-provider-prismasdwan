@@ -4932,9 +4932,9 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		body.AdminUp = BoolValueOrNil(plan.AdminUp)
 	}
 	// property: name=attached_lan_networks, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.AttachedLanNetworks == nil && (state == nil || state.AttachedLanNetworks == nil) {
+	if plan.AttachedLanNetworks == nil && (!(state != nil) || state.AttachedLanNetworks == nil) {
 		body.AttachedLanNetworks = nil
-	} else if len(plan.AttachedLanNetworks) == 0 && (state == nil || len(state.AttachedLanNetworks) == 0) {
+	} else if len(plan.AttachedLanNetworks) == 0 && (!(state != nil) || len(state.AttachedLanNetworks) == 0) {
 		body.AttachedLanNetworks = []sdwan_schema.LanNetworkVlanMapping{}
 	} else if len(plan.AttachedLanNetworks) != 0 || (state != nil && len(state.AttachedLanNetworks) != 0) {
 		AttachedLanNetworksToUse := plan.AttachedLanNetworks
@@ -4962,19 +4962,19 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.AuthenticationConfig prefix=rsModel state=state.AuthenticationConfig plan=plan.AuthenticationConfig properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.AuthenticationConfig prefix=rsModel state=state.AuthenticationConfig plan=plan.AuthenticationConfig")
 		// property: name=fallback_retry_count, type=INTEGER macro=copy_from_plan_or_state
-		if state.AuthenticationConfig != nil {
+		if state != nil && state.AuthenticationConfig != nil {
 			body.AuthenticationConfig.FallbackRetryCount = ValueInt64PointerFromPlanOrState(plan.AuthenticationConfig.FallbackRetryCount, state.AuthenticationConfig.FallbackRetryCount)
 		} else {
 			body.AuthenticationConfig.FallbackRetryCount = Int64ValueOrNil(plan.AuthenticationConfig.FallbackRetryCount)
 		}
 		// property: name=mode, type=STRING macro=copy_from_plan_or_state
-		if state.AuthenticationConfig != nil {
+		if state != nil && state.AuthenticationConfig != nil {
 			body.AuthenticationConfig.Mode = ValueStringPointerFromPlanOrState(plan.AuthenticationConfig.Mode, state.AuthenticationConfig.Mode)
 		} else {
 			body.AuthenticationConfig.Mode = StringValueOrNil(plan.AuthenticationConfig.Mode)
 		}
 		// property: name=reauthentication_timeout, type=INTEGER macro=copy_from_plan_or_state
-		if state.AuthenticationConfig != nil {
+		if state != nil && state.AuthenticationConfig != nil {
 			body.AuthenticationConfig.ReauthenticationTimeout = ValueInt64PointerFromPlanOrState(plan.AuthenticationConfig.ReauthenticationTimeout, state.AuthenticationConfig.ReauthenticationTimeout)
 		} else {
 			body.AuthenticationConfig.ReauthenticationTimeout = Int64ValueOrNil(plan.AuthenticationConfig.ReauthenticationTimeout)
@@ -4995,25 +4995,25 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.BypassPair prefix=rsModel state=state.BypassPair plan=plan.BypassPair properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.BypassPair prefix=rsModel state=state.BypassPair plan=plan.BypassPair")
 		// property: name=lan, type=STRING macro=copy_from_plan_or_state
-		if state.BypassPair != nil {
+		if state != nil && state.BypassPair != nil {
 			body.BypassPair.Lan = ValueStringPointerFromPlanOrState(plan.BypassPair.Lan, state.BypassPair.Lan)
 		} else {
 			body.BypassPair.Lan = StringValueOrNil(plan.BypassPair.Lan)
 		}
 		// property: name=lan_state_propagation, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.BypassPair != nil {
+		if state != nil && state.BypassPair != nil {
 			body.BypassPair.LanStatePropagation = ValueBoolPointerFromPlanOrState(plan.BypassPair.LanStatePropagation, state.BypassPair.LanStatePropagation)
 		} else {
 			body.BypassPair.LanStatePropagation = BoolValueOrNil(plan.BypassPair.LanStatePropagation)
 		}
 		// property: name=use_relay, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.BypassPair != nil {
+		if state != nil && state.BypassPair != nil {
 			body.BypassPair.UseRelay = ValueBoolPointerFromPlanOrState(plan.BypassPair.UseRelay, state.BypassPair.UseRelay)
 		} else {
 			body.BypassPair.UseRelay = BoolValueOrNil(plan.BypassPair.UseRelay)
 		}
 		// property: name=wan, type=STRING macro=copy_from_plan_or_state
-		if state.BypassPair != nil {
+		if state != nil && state.BypassPair != nil {
 			body.BypassPair.Wan = ValueStringPointerFromPlanOrState(plan.BypassPair.Wan, state.BypassPair.Wan)
 		} else {
 			body.BypassPair.Wan = StringValueOrNil(plan.BypassPair.Wan)
@@ -5034,68 +5034,68 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.CellularConfig.ApnConfig prefix=rsModel state=state.CellularConfig.ApnConfig plan=plan.CellularConfig.ApnConfig properties=6
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.CellularConfig.ApnConfig prefix=rsModel state=state.CellularConfig.ApnConfig plan=plan.CellularConfig.ApnConfig")
 			// property: name=apn, type=STRING macro=copy_from_plan_or_state
-			if state.CellularConfig.ApnConfig != nil {
+			if state != nil && state.CellularConfig != nil && state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.Apn = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnConfig.Apn, state.CellularConfig.ApnConfig.Apn)
 			} else {
 				body.CellularConfig.ApnConfig.Apn = StringValueOrNil(plan.CellularConfig.ApnConfig.Apn)
 			}
 			// property: name=authentication, type=STRING macro=copy_from_plan_or_state
-			if state.CellularConfig.ApnConfig != nil {
+			if state != nil && state.CellularConfig != nil && state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.Authentication = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnConfig.Authentication, state.CellularConfig.ApnConfig.Authentication)
 			} else {
 				body.CellularConfig.ApnConfig.Authentication = StringValueOrNil(plan.CellularConfig.ApnConfig.Authentication)
 			}
 			// property: name=clear_password, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.CellularConfig.ApnConfig != nil {
+			if state != nil && state.CellularConfig != nil && state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.ClearPassword = ValueBoolPointerFromPlanOrState(plan.CellularConfig.ApnConfig.ClearPassword, state.CellularConfig.ApnConfig.ClearPassword)
 			} else {
 				body.CellularConfig.ApnConfig.ClearPassword = BoolValueOrNil(plan.CellularConfig.ApnConfig.ClearPassword)
 			}
 			// property: name=password, type=STRING macro=copy_from_plan_or_state
-			if state.CellularConfig.ApnConfig != nil {
+			if state != nil && state.CellularConfig != nil && state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.Password = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnConfig.Password, state.CellularConfig.ApnConfig.Password)
 			} else {
 				body.CellularConfig.ApnConfig.Password = StringValueOrNil(plan.CellularConfig.ApnConfig.Password)
 			}
 			// property: name=password_encrypted, type=STRING macro=copy_from_plan_or_state
-			if state.CellularConfig.ApnConfig != nil {
+			if state != nil && state.CellularConfig != nil && state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.PasswordEncrypted = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnConfig.PasswordEncrypted, state.CellularConfig.ApnConfig.PasswordEncrypted)
 			} else {
 				body.CellularConfig.ApnConfig.PasswordEncrypted = StringValueOrNil(plan.CellularConfig.ApnConfig.PasswordEncrypted)
 			}
 			// property: name=user_name, type=STRING macro=copy_from_plan_or_state
-			if state.CellularConfig.ApnConfig != nil {
+			if state != nil && state.CellularConfig != nil && state.CellularConfig.ApnConfig != nil {
 				body.CellularConfig.ApnConfig.UserName = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnConfig.UserName, state.CellularConfig.ApnConfig.UserName)
 			} else {
 				body.CellularConfig.ApnConfig.UserName = StringValueOrNil(plan.CellularConfig.ApnConfig.UserName)
 			}
 		}
 		// property: name=apnprofile_id, type=STRING macro=copy_from_plan_or_state
-		if state.CellularConfig != nil {
+		if state != nil && state.CellularConfig != nil {
 			body.CellularConfig.ApnprofileId = ValueStringPointerFromPlanOrState(plan.CellularConfig.ApnprofileId, state.CellularConfig.ApnprofileId)
 		} else {
 			body.CellularConfig.ApnprofileId = StringValueOrNil(plan.CellularConfig.ApnprofileId)
 		}
 		// property: name=auto_apn, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.CellularConfig != nil {
+		if state != nil && state.CellularConfig != nil {
 			body.CellularConfig.AutoApn = ValueBoolPointerFromPlanOrState(plan.CellularConfig.AutoApn, state.CellularConfig.AutoApn)
 		} else {
 			body.CellularConfig.AutoApn = BoolValueOrNil(plan.CellularConfig.AutoApn)
 		}
 		// property: name=ip_address_type, type=STRING macro=copy_from_plan_or_state
-		if state.CellularConfig != nil {
+		if state != nil && state.CellularConfig != nil {
 			body.CellularConfig.IpAddressType = ValueStringPointerFromPlanOrState(plan.CellularConfig.IpAddressType, state.CellularConfig.IpAddressType)
 		} else {
 			body.CellularConfig.IpAddressType = StringValueOrNil(plan.CellularConfig.IpAddressType)
 		}
 		// property: name=parent_module_id, type=STRING macro=copy_from_plan_or_state
-		if state.CellularConfig != nil {
+		if state != nil && state.CellularConfig != nil {
 			body.CellularConfig.ParentModuleId = ValueStringPointerFromPlanOrState(plan.CellularConfig.ParentModuleId, state.CellularConfig.ParentModuleId)
 		} else {
 			body.CellularConfig.ParentModuleId = StringValueOrNil(plan.CellularConfig.ParentModuleId)
 		}
 		// property: name=parent_sim_slot_number, type=INTEGER macro=copy_from_plan_or_state
-		if state.CellularConfig != nil {
+		if state != nil && state.CellularConfig != nil {
 			body.CellularConfig.ParentSimSlotNumber = ValueInt64PointerFromPlanOrState(plan.CellularConfig.ParentSimSlotNumber, state.CellularConfig.ParentSimSlotNumber)
 		} else {
 			body.CellularConfig.ParentSimSlotNumber = Int64ValueOrNil(plan.CellularConfig.ParentSimSlotNumber)
@@ -5121,7 +5121,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.DhcpRelay prefix=rsModel state=state.DhcpRelay plan=plan.DhcpRelay properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.DhcpRelay prefix=rsModel state=state.DhcpRelay plan=plan.DhcpRelay")
 		// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.DhcpRelay != nil {
+		if state != nil && state.DhcpRelay != nil {
 			body.DhcpRelay.Enabled = ValueBoolPointerFromPlanOrState(plan.DhcpRelay.Enabled, state.DhcpRelay.Enabled)
 		} else {
 			body.DhcpRelay.Enabled = BoolValueOrNil(plan.DhcpRelay.Enabled)
@@ -5134,39 +5134,39 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.DhcpRelay.Option82 prefix=rsModel state=state.DhcpRelay.Option82 plan=plan.DhcpRelay.Option82 properties=4
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.DhcpRelay.Option82 prefix=rsModel state=state.DhcpRelay.Option82 plan=plan.DhcpRelay.Option82")
 			// property: name=circuit_id, type=STRING macro=copy_from_plan_or_state
-			if state.DhcpRelay.Option82 != nil {
+			if state != nil && state.DhcpRelay != nil && state.DhcpRelay.Option82 != nil {
 				body.DhcpRelay.Option82.CircuitId = ValueStringPointerFromPlanOrState(plan.DhcpRelay.Option82.CircuitId, state.DhcpRelay.Option82.CircuitId)
 			} else {
 				body.DhcpRelay.Option82.CircuitId = StringValueOrNil(plan.DhcpRelay.Option82.CircuitId)
 			}
 			// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.DhcpRelay.Option82 != nil {
+			if state != nil && state.DhcpRelay != nil && state.DhcpRelay.Option82 != nil {
 				body.DhcpRelay.Option82.Enabled = ValueBoolPointerFromPlanOrState(plan.DhcpRelay.Option82.Enabled, state.DhcpRelay.Option82.Enabled)
 			} else {
 				body.DhcpRelay.Option82.Enabled = BoolValueOrNil(plan.DhcpRelay.Option82.Enabled)
 			}
 			// property: name=reforwarding_policy, type=STRING macro=copy_from_plan_or_state
-			if state.DhcpRelay.Option82 != nil {
+			if state != nil && state.DhcpRelay != nil && state.DhcpRelay.Option82 != nil {
 				body.DhcpRelay.Option82.ReforwardingPolicy = ValueStringPointerFromPlanOrState(plan.DhcpRelay.Option82.ReforwardingPolicy, state.DhcpRelay.Option82.ReforwardingPolicy)
 			} else {
 				body.DhcpRelay.Option82.ReforwardingPolicy = StringValueOrNil(plan.DhcpRelay.Option82.ReforwardingPolicy)
 			}
 			// property: name=remote_id, type=STRING macro=copy_from_plan_or_state
-			if state.DhcpRelay.Option82 != nil {
+			if state != nil && state.DhcpRelay != nil && state.DhcpRelay.Option82 != nil {
 				body.DhcpRelay.Option82.RemoteId = ValueStringPointerFromPlanOrState(plan.DhcpRelay.Option82.RemoteId, state.DhcpRelay.Option82.RemoteId)
 			} else {
 				body.DhcpRelay.Option82.RemoteId = StringValueOrNil(plan.DhcpRelay.Option82.RemoteId)
 			}
 		}
 		// property: name=server_ips, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.DhcpRelay != nil && plan.DhcpRelay.ServerIps.IsUnknown() {
+		if state != nil && state.DhcpRelay != nil && plan.DhcpRelay.ServerIps.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, state.DhcpRelay.ServerIps)
 		} else {
 			body.DhcpRelay.ServerIps = ListStringValueOrNil(ctx, plan.DhcpRelay.ServerIps)
 		}
 		// property: name=source_interface, type=STRING macro=copy_from_plan_or_state
-		if state.DhcpRelay != nil {
+		if state != nil && state.DhcpRelay != nil {
 			body.DhcpRelay.SourceInterface = ValueStringPointerFromPlanOrState(plan.DhcpRelay.SourceInterface, state.DhcpRelay.SourceInterface)
 		} else {
 			body.DhcpRelay.SourceInterface = StringValueOrNil(plan.DhcpRelay.SourceInterface)
@@ -5186,13 +5186,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.EthernetPort prefix=rsModel state=state.EthernetPort plan=plan.EthernetPort")
 		// property: name=full_duplex, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.EthernetPort != nil {
+		if state != nil && state.EthernetPort != nil {
 			body.EthernetPort.FullDuplex = ValueBoolPointerFromPlanOrState(plan.EthernetPort.FullDuplex, state.EthernetPort.FullDuplex)
 		} else {
 			body.EthernetPort.FullDuplex = BoolValueOrNil(plan.EthernetPort.FullDuplex)
 		}
 		// property: name=speed, type=INTEGER macro=copy_from_plan_or_state
-		if state.EthernetPort != nil {
+		if state != nil && state.EthernetPort != nil {
 			body.EthernetPort.Speed = ValueInt64PointerFromPlanOrState(plan.EthernetPort.Speed, state.EthernetPort.Speed)
 		} else {
 			body.EthernetPort.Speed = Int64ValueOrNil(plan.EthernetPort.Speed)
@@ -5243,13 +5243,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.Ipv4Config.DhcpConfig prefix=rsModel state=state.Ipv4Config.DhcpConfig plan=plan.Ipv4Config.DhcpConfig properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DhcpConfig prefix=rsModel state=state.Ipv4Config.DhcpConfig plan=plan.Ipv4Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpConfig != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpConfig != nil {
 				body.Ipv4Config.DhcpConfig.ClientId = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpConfig.ClientId, state.Ipv4Config.DhcpConfig.ClientId)
 			} else {
 				body.Ipv4Config.DhcpConfig.ClientId = StringValueOrNil(plan.Ipv4Config.DhcpConfig.ClientId)
 			}
 			// property: name=hostname, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv4Config.DhcpConfig != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DhcpConfig != nil {
 				body.Ipv4Config.DhcpConfig.Hostname = ValueStringPointerFromPlanOrState(plan.Ipv4Config.DhcpConfig.Hostname, state.Ipv4Config.DhcpConfig.Hostname)
 			} else {
 				body.Ipv4Config.DhcpConfig.Hostname = StringValueOrNil(plan.Ipv4Config.DhcpConfig.Hostname)
@@ -5263,14 +5263,14 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.Ipv4Config.DnsV4Config prefix=rsModel state=state.Ipv4Config.DnsV4Config plan=plan.Ipv4Config.DnsV4Config properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.DnsV4Config prefix=rsModel state=state.Ipv4Config.DnsV4Config plan=plan.Ipv4Config.DnsV4Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.Ipv4Config.DnsV4Config != nil && plan.Ipv4Config.DnsV4Config.NameServers.IsUnknown() {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DnsV4Config != nil && plan.Ipv4Config.DnsV4Config.NameServers.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.Ipv4Config.DnsV4Config.NameServers = ListStringValueOrNil(ctx, state.Ipv4Config.DnsV4Config.NameServers)
 			} else {
 				body.Ipv4Config.DnsV4Config.NameServers = ListStringValueOrNil(ctx, plan.Ipv4Config.DnsV4Config.NameServers)
 			}
 			// property: name=search, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.Ipv4Config.DnsV4Config != nil && plan.Ipv4Config.DnsV4Config.Search.IsUnknown() {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.DnsV4Config != nil && plan.Ipv4Config.DnsV4Config.Search.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.Ipv4Config.DnsV4Config.Search = ListStringValueOrNil(ctx, state.Ipv4Config.DnsV4Config.Search)
 			} else {
@@ -5278,11 +5278,11 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			}
 		}
 		// property: name=routes, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.Ipv4Config.Routes == nil && (state.Ipv4Config == nil || state.Ipv4Config.Routes == nil) {
+		if plan.Ipv4Config.Routes == nil && (!(state != nil && state.Ipv4Config != nil) || state.Ipv4Config.Routes == nil) {
 			body.Ipv4Config.Routes = nil
-		} else if len(plan.Ipv4Config.Routes) == 0 && (state.Ipv4Config == nil || len(state.Ipv4Config.Routes) == 0) {
+		} else if len(plan.Ipv4Config.Routes) == 0 && (!(state != nil && state.Ipv4Config != nil) || len(state.Ipv4Config.Routes) == 0) {
 			body.Ipv4Config.Routes = []sdwan_schema.Route{}
-		} else if len(plan.Ipv4Config.Routes) != 0 || (state.Ipv4Config != nil && len(state.Ipv4Config.Routes) != 0) {
+		} else if len(plan.Ipv4Config.Routes) != 0 || (state != nil && state.Ipv4Config != nil && len(state.Ipv4Config.Routes) != 0) {
 			RoutesToUse := plan.Ipv4Config.Routes
 			if len(plan.Ipv4Config.Routes) == 0 {
 				RoutesToUse = state.Ipv4Config.Routes
@@ -5308,14 +5308,14 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.Ipv4Config.StaticConfig prefix=rsModel state=state.Ipv4Config.StaticConfig plan=plan.Ipv4Config.StaticConfig properties=1
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv4Config.StaticConfig prefix=rsModel state=state.Ipv4Config.StaticConfig plan=plan.Ipv4Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv4Config.StaticConfig != nil {
+			if state != nil && state.Ipv4Config != nil && state.Ipv4Config.StaticConfig != nil {
 				body.Ipv4Config.StaticConfig.Address = ValueStringPointerFromPlanOrState(plan.Ipv4Config.StaticConfig.Address, state.Ipv4Config.StaticConfig.Address)
 			} else {
 				body.Ipv4Config.StaticConfig.Address = StringValueOrNil(plan.Ipv4Config.StaticConfig.Address)
 			}
 		}
 		// property: name=type, type=STRING macro=copy_from_plan_or_state
-		if state.Ipv4Config != nil {
+		if state != nil && state.Ipv4Config != nil {
 			body.Ipv4Config.Type = ValueStringPointerFromPlanOrState(plan.Ipv4Config.Type, state.Ipv4Config.Type)
 		} else {
 			body.Ipv4Config.Type = StringValueOrNil(plan.Ipv4Config.Type)
@@ -5336,13 +5336,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.Ipv6Config.DhcpConfig prefix=rsModel state=state.Ipv6Config.DhcpConfig plan=plan.Ipv6Config.DhcpConfig properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config.DhcpConfig prefix=rsModel state=state.Ipv6Config.DhcpConfig plan=plan.Ipv6Config.DhcpConfig")
 			// property: name=client_id, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv6Config.DhcpConfig != nil {
+			if state != nil && state.Ipv6Config != nil && state.Ipv6Config.DhcpConfig != nil {
 				body.Ipv6Config.DhcpConfig.ClientId = ValueStringPointerFromPlanOrState(plan.Ipv6Config.DhcpConfig.ClientId, state.Ipv6Config.DhcpConfig.ClientId)
 			} else {
 				body.Ipv6Config.DhcpConfig.ClientId = StringValueOrNil(plan.Ipv6Config.DhcpConfig.ClientId)
 			}
 			// property: name=hostname, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv6Config.DhcpConfig != nil {
+			if state != nil && state.Ipv6Config != nil && state.Ipv6Config.DhcpConfig != nil {
 				body.Ipv6Config.DhcpConfig.Hostname = ValueStringPointerFromPlanOrState(plan.Ipv6Config.DhcpConfig.Hostname, state.Ipv6Config.DhcpConfig.Hostname)
 			} else {
 				body.Ipv6Config.DhcpConfig.Hostname = StringValueOrNil(plan.Ipv6Config.DhcpConfig.Hostname)
@@ -5356,14 +5356,14 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.Ipv6Config.DnsV6Config prefix=rsModel state=state.Ipv6Config.DnsV6Config plan=plan.Ipv6Config.DnsV6Config properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config.DnsV6Config prefix=rsModel state=state.Ipv6Config.DnsV6Config plan=plan.Ipv6Config.DnsV6Config")
 			// property: name=name_servers, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.Ipv6Config.DnsV6Config != nil && plan.Ipv6Config.DnsV6Config.NameServers.IsUnknown() {
+			if state != nil && state.Ipv6Config != nil && state.Ipv6Config.DnsV6Config != nil && plan.Ipv6Config.DnsV6Config.NameServers.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.Ipv6Config.DnsV6Config.NameServers = ListStringValueOrNil(ctx, state.Ipv6Config.DnsV6Config.NameServers)
 			} else {
 				body.Ipv6Config.DnsV6Config.NameServers = ListStringValueOrNil(ctx, plan.Ipv6Config.DnsV6Config.NameServers)
 			}
 			// property: name=search, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.Ipv6Config.DnsV6Config != nil && plan.Ipv6Config.DnsV6Config.Search.IsUnknown() {
+			if state != nil && state.Ipv6Config != nil && state.Ipv6Config.DnsV6Config != nil && plan.Ipv6Config.DnsV6Config.Search.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.Ipv6Config.DnsV6Config.Search = ListStringValueOrNil(ctx, state.Ipv6Config.DnsV6Config.Search)
 			} else {
@@ -5371,11 +5371,11 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			}
 		}
 		// property: name=routes, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.Ipv6Config.Routes == nil && (state.Ipv6Config == nil || state.Ipv6Config.Routes == nil) {
+		if plan.Ipv6Config.Routes == nil && (!(state != nil && state.Ipv6Config != nil) || state.Ipv6Config.Routes == nil) {
 			body.Ipv6Config.Routes = nil
-		} else if len(plan.Ipv6Config.Routes) == 0 && (state.Ipv6Config == nil || len(state.Ipv6Config.Routes) == 0) {
+		} else if len(plan.Ipv6Config.Routes) == 0 && (!(state != nil && state.Ipv6Config != nil) || len(state.Ipv6Config.Routes) == 0) {
 			body.Ipv6Config.Routes = []sdwan_schema.Route{}
-		} else if len(plan.Ipv6Config.Routes) != 0 || (state.Ipv6Config != nil && len(state.Ipv6Config.Routes) != 0) {
+		} else if len(plan.Ipv6Config.Routes) != 0 || (state != nil && state.Ipv6Config != nil && len(state.Ipv6Config.Routes) != 0) {
 			RoutesToUse := plan.Ipv6Config.Routes
 			if len(plan.Ipv6Config.Routes) == 0 {
 				RoutesToUse = state.Ipv6Config.Routes
@@ -5401,20 +5401,20 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.Ipv6Config.StaticConfig prefix=rsModel state=state.Ipv6Config.StaticConfig plan=plan.Ipv6Config.StaticConfig properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.Ipv6Config.StaticConfig prefix=rsModel state=state.Ipv6Config.StaticConfig plan=plan.Ipv6Config.StaticConfig")
 			// property: name=address, type=STRING macro=copy_from_plan_or_state
-			if state.Ipv6Config.StaticConfig != nil {
+			if state != nil && state.Ipv6Config != nil && state.Ipv6Config.StaticConfig != nil {
 				body.Ipv6Config.StaticConfig.Address = ValueStringPointerFromPlanOrState(plan.Ipv6Config.StaticConfig.Address, state.Ipv6Config.StaticConfig.Address)
 			} else {
 				body.Ipv6Config.StaticConfig.Address = StringValueOrNil(plan.Ipv6Config.StaticConfig.Address)
 			}
 			// property: name=enable_prefix_distribution, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.Ipv6Config.StaticConfig != nil {
+			if state != nil && state.Ipv6Config != nil && state.Ipv6Config.StaticConfig != nil {
 				body.Ipv6Config.StaticConfig.EnablePrefixDistribution = ValueBoolPointerFromPlanOrState(plan.Ipv6Config.StaticConfig.EnablePrefixDistribution, state.Ipv6Config.StaticConfig.EnablePrefixDistribution)
 			} else {
 				body.Ipv6Config.StaticConfig.EnablePrefixDistribution = BoolValueOrNil(plan.Ipv6Config.StaticConfig.EnablePrefixDistribution)
 			}
 		}
 		// property: name=type, type=STRING macro=copy_from_plan_or_state
-		if state.Ipv6Config != nil {
+		if state != nil && state.Ipv6Config != nil {
 			body.Ipv6Config.Type = ValueStringPointerFromPlanOrState(plan.Ipv6Config.Type, state.Ipv6Config.Type)
 		} else {
 			body.Ipv6Config.Type = StringValueOrNil(plan.Ipv6Config.Type)
@@ -5434,7 +5434,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.LoopbackConfig prefix=rsModel state=state.LoopbackConfig plan=plan.LoopbackConfig properties=1
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.LoopbackConfig prefix=rsModel state=state.LoopbackConfig plan=plan.LoopbackConfig")
 		// property: name=binding_interface_id, type=STRING macro=copy_from_plan_or_state
-		if state.LoopbackConfig != nil {
+		if state != nil && state.LoopbackConfig != nil {
 			body.LoopbackConfig.BindingInterfaceId = ValueStringPointerFromPlanOrState(plan.LoopbackConfig.BindingInterfaceId, state.LoopbackConfig.BindingInterfaceId)
 		} else {
 			body.LoopbackConfig.BindingInterfaceId = StringValueOrNil(plan.LoopbackConfig.BindingInterfaceId)
@@ -5460,17 +5460,17 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.MulticastConfig prefix=rsModel state=state.MulticastConfig plan=plan.MulticastConfig properties=4
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.MulticastConfig prefix=rsModel state=state.MulticastConfig plan=plan.MulticastConfig")
 		// property: name=dr_priority, type=INTEGER macro=copy_from_plan_or_state
-		if state.MulticastConfig != nil {
+		if state != nil && state.MulticastConfig != nil {
 			body.MulticastConfig.DrPriority = ValueInt64PointerFromPlanOrState(plan.MulticastConfig.DrPriority, state.MulticastConfig.DrPriority)
 		} else {
 			body.MulticastConfig.DrPriority = Int64ValueOrNil(plan.MulticastConfig.DrPriority)
 		}
 		// property: name=igmp_static_joins, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-		if plan.MulticastConfig.IgmpStaticJoins == nil && (state.MulticastConfig == nil || state.MulticastConfig.IgmpStaticJoins == nil) {
+		if plan.MulticastConfig.IgmpStaticJoins == nil && (!(state != nil && state.MulticastConfig != nil) || state.MulticastConfig.IgmpStaticJoins == nil) {
 			body.MulticastConfig.IgmpStaticJoins = nil
-		} else if len(plan.MulticastConfig.IgmpStaticJoins) == 0 && (state.MulticastConfig == nil || len(state.MulticastConfig.IgmpStaticJoins) == 0) {
+		} else if len(plan.MulticastConfig.IgmpStaticJoins) == 0 && (!(state != nil && state.MulticastConfig != nil) || len(state.MulticastConfig.IgmpStaticJoins) == 0) {
 			body.MulticastConfig.IgmpStaticJoins = []sdwan_schema.MulticastIgmpStaticJoin{}
-		} else if len(plan.MulticastConfig.IgmpStaticJoins) != 0 || (state.MulticastConfig != nil && len(state.MulticastConfig.IgmpStaticJoins) != 0) {
+		} else if len(plan.MulticastConfig.IgmpStaticJoins) != 0 || (state != nil && state.MulticastConfig != nil && len(state.MulticastConfig.IgmpStaticJoins) != 0) {
 			IgmpStaticJoinsToUse := plan.MulticastConfig.IgmpStaticJoins
 			if len(plan.MulticastConfig.IgmpStaticJoins) == 0 {
 				IgmpStaticJoinsToUse = state.MulticastConfig.IgmpStaticJoins
@@ -5489,13 +5489,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			}
 		}
 		// property: name=igmp_version, type=STRING macro=copy_from_plan_or_state
-		if state.MulticastConfig != nil {
+		if state != nil && state.MulticastConfig != nil {
 			body.MulticastConfig.IgmpVersion = ValueStringPointerFromPlanOrState(plan.MulticastConfig.IgmpVersion, state.MulticastConfig.IgmpVersion)
 		} else {
 			body.MulticastConfig.IgmpVersion = StringValueOrNil(plan.MulticastConfig.IgmpVersion)
 		}
 		// property: name=multicast_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.MulticastConfig != nil {
+		if state != nil && state.MulticastConfig != nil {
 			body.MulticastConfig.MulticastEnabled = ValueBoolPointerFromPlanOrState(plan.MulticastConfig.MulticastEnabled, state.MulticastConfig.MulticastEnabled)
 		} else {
 			body.MulticastConfig.MulticastEnabled = BoolValueOrNil(plan.MulticastConfig.MulticastEnabled)
@@ -5520,9 +5520,9 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		body.NatAddressV6 = StringValueOrNil(plan.NatAddressV6)
 	}
 	// property: name=nat_pools, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.NatPools == nil && (state == nil || state.NatPools == nil) {
+	if plan.NatPools == nil && (!(state != nil) || state.NatPools == nil) {
 		body.NatPools = nil
-	} else if len(plan.NatPools) == 0 && (state == nil || len(state.NatPools) == 0) {
+	} else if len(plan.NatPools) == 0 && (!(state != nil) || len(state.NatPools) == 0) {
 		body.NatPools = []sdwan_schema.NatPool{}
 	} else if len(plan.NatPools) != 0 || (state != nil && len(state.NatPools) != 0) {
 		NatPoolsToUse := plan.NatPools
@@ -5608,13 +5608,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.PortChannelConfig prefix=rsModel state=state.PortChannelConfig plan=plan.PortChannelConfig properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PortChannelConfig prefix=rsModel state=state.PortChannelConfig plan=plan.PortChannelConfig")
 		// property: name=lacp_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.PortChannelConfig != nil {
+		if state != nil && state.PortChannelConfig != nil {
 			body.PortChannelConfig.LacpEnabled = ValueBoolPointerFromPlanOrState(plan.PortChannelConfig.LacpEnabled, state.PortChannelConfig.LacpEnabled)
 		} else {
 			body.PortChannelConfig.LacpEnabled = BoolValueOrNil(plan.PortChannelConfig.LacpEnabled)
 		}
 		// property: name=transmission_mode, type=STRING macro=copy_from_plan_or_state
-		if state.PortChannelConfig != nil {
+		if state != nil && state.PortChannelConfig != nil {
 			body.PortChannelConfig.TransmissionMode = ValueStringPointerFromPlanOrState(plan.PortChannelConfig.TransmissionMode, state.PortChannelConfig.TransmissionMode)
 		} else {
 			body.PortChannelConfig.TransmissionMode = StringValueOrNil(plan.PortChannelConfig.TransmissionMode)
@@ -5634,37 +5634,37 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.PppoeConfig prefix=rsModel state=state.PppoeConfig plan=plan.PppoeConfig properties=6
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.PppoeConfig prefix=rsModel state=state.PppoeConfig plan=plan.PppoeConfig")
 		// property: name=host_uniq, type=STRING macro=copy_from_plan_or_state
-		if state.PppoeConfig != nil {
+		if state != nil && state.PppoeConfig != nil {
 			body.PppoeConfig.HostUniq = ValueStringPointerFromPlanOrState(plan.PppoeConfig.HostUniq, state.PppoeConfig.HostUniq)
 		} else {
 			body.PppoeConfig.HostUniq = StringValueOrNil(plan.PppoeConfig.HostUniq)
 		}
 		// property: name=ip_address_type, type=STRING macro=copy_from_plan_or_state
-		if state.PppoeConfig != nil {
+		if state != nil && state.PppoeConfig != nil {
 			body.PppoeConfig.IpAddressType = ValueStringPointerFromPlanOrState(plan.PppoeConfig.IpAddressType, state.PppoeConfig.IpAddressType)
 		} else {
 			body.PppoeConfig.IpAddressType = StringValueOrNil(plan.PppoeConfig.IpAddressType)
 		}
 		// property: name=password, type=STRING macro=copy_from_plan_or_state
-		if state.PppoeConfig != nil {
+		if state != nil && state.PppoeConfig != nil {
 			body.PppoeConfig.Password = ValueStringPointerFromPlanOrState(plan.PppoeConfig.Password, state.PppoeConfig.Password)
 		} else {
 			body.PppoeConfig.Password = StringValueOrNil(plan.PppoeConfig.Password)
 		}
 		// property: name=reconnection_delay, type=INTEGER macro=copy_from_plan_or_state
-		if state.PppoeConfig != nil {
+		if state != nil && state.PppoeConfig != nil {
 			body.PppoeConfig.ReconnectionDelay = ValueInt64PointerFromPlanOrState(plan.PppoeConfig.ReconnectionDelay, state.PppoeConfig.ReconnectionDelay)
 		} else {
 			body.PppoeConfig.ReconnectionDelay = Int64ValueOrNil(plan.PppoeConfig.ReconnectionDelay)
 		}
 		// property: name=service_name, type=STRING macro=copy_from_plan_or_state
-		if state.PppoeConfig != nil {
+		if state != nil && state.PppoeConfig != nil {
 			body.PppoeConfig.ServiceName = ValueStringPointerFromPlanOrState(plan.PppoeConfig.ServiceName, state.PppoeConfig.ServiceName)
 		} else {
 			body.PppoeConfig.ServiceName = StringValueOrNil(plan.PppoeConfig.ServiceName)
 		}
 		// property: name=username, type=STRING macro=copy_from_plan_or_state
-		if state.PppoeConfig != nil {
+		if state != nil && state.PppoeConfig != nil {
 			body.PppoeConfig.Username = ValueStringPointerFromPlanOrState(plan.PppoeConfig.Username, state.PppoeConfig.Username)
 		} else {
 			body.PppoeConfig.Username = StringValueOrNil(plan.PppoeConfig.Username)
@@ -5677,9 +5677,9 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		body.Scope = StringValueOrNil(plan.Scope)
 	}
 	// property: name=secondary_ip_configs, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.SecondaryIpConfigs == nil && (state == nil || state.SecondaryIpConfigs == nil) {
+	if plan.SecondaryIpConfigs == nil && (!(state != nil) || state.SecondaryIpConfigs == nil) {
 		body.SecondaryIpConfigs = nil
-	} else if len(plan.SecondaryIpConfigs) == 0 && (state == nil || len(state.SecondaryIpConfigs) == 0) {
+	} else if len(plan.SecondaryIpConfigs) == 0 && (!(state != nil) || len(state.SecondaryIpConfigs) == 0) {
 		body.SecondaryIpConfigs = []sdwan_schema.SecondaryIPConfig{}
 	} else if len(plan.SecondaryIpConfigs) != 0 || (state != nil && len(state.SecondaryIpConfigs) != 0) {
 		SecondaryIpConfigsToUse := plan.SecondaryIpConfigs
@@ -5714,25 +5714,25 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.GreConfig prefix=rsModel state=state.ServiceLinkConfig.GreConfig plan=plan.ServiceLinkConfig.GreConfig properties=4
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.GreConfig prefix=rsModel state=state.ServiceLinkConfig.GreConfig plan=plan.ServiceLinkConfig.GreConfig")
 			// property: name=csum, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.GreConfig != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.GreConfig != nil {
 				body.ServiceLinkConfig.GreConfig.Csum = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.GreConfig.Csum, state.ServiceLinkConfig.GreConfig.Csum)
 			} else {
 				body.ServiceLinkConfig.GreConfig.Csum = BoolValueOrNil(plan.ServiceLinkConfig.GreConfig.Csum)
 			}
 			// property: name=keepalive_enable, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.GreConfig != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.GreConfig != nil {
 				body.ServiceLinkConfig.GreConfig.KeepaliveEnable = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.GreConfig.KeepaliveEnable, state.ServiceLinkConfig.GreConfig.KeepaliveEnable)
 			} else {
 				body.ServiceLinkConfig.GreConfig.KeepaliveEnable = BoolValueOrNil(plan.ServiceLinkConfig.GreConfig.KeepaliveEnable)
 			}
 			// property: name=keepalive_fail_count, type=INTEGER macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.GreConfig != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.GreConfig != nil {
 				body.ServiceLinkConfig.GreConfig.KeepaliveFailCount = ValueInt64PointerFromPlanOrState(plan.ServiceLinkConfig.GreConfig.KeepaliveFailCount, state.ServiceLinkConfig.GreConfig.KeepaliveFailCount)
 			} else {
 				body.ServiceLinkConfig.GreConfig.KeepaliveFailCount = Int64ValueOrNil(plan.ServiceLinkConfig.GreConfig.KeepaliveFailCount)
 			}
 			// property: name=keepalive_interval, type=INTEGER macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.GreConfig != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.GreConfig != nil {
 				body.ServiceLinkConfig.GreConfig.KeepaliveInterval = ValueInt64PointerFromPlanOrState(plan.ServiceLinkConfig.GreConfig.KeepaliveInterval, state.ServiceLinkConfig.GreConfig.KeepaliveInterval)
 			} else {
 				body.ServiceLinkConfig.GreConfig.KeepaliveInterval = Int64ValueOrNil(plan.ServiceLinkConfig.GreConfig.KeepaliveInterval)
@@ -5753,19 +5753,19 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 				// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication properties=23
 				tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication plan=plan.ServiceLinkConfig.IpsecConfig.Authentication")
 				// property: name=certificate, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate, state.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Certificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Certificate)
 				}
 				// property: name=certificate_profile_id, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.CertificateProfileId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.CertificateProfileId, state.ServiceLinkConfig.IpsecConfig.Authentication.CertificateProfileId)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.CertificateProfileId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.CertificateProfileId)
 				}
 				// property: name=comment, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Comment = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Comment, state.ServiceLinkConfig.IpsecConfig.Authentication.Comment)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Comment = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Comment)
@@ -5778,86 +5778,86 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 					// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params properties=5
 					tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params")
 					// property: name=xauth_id, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId, state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthId)
 					}
 					// property: name=xauth_secret, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecret = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecret, state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecret)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecret = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecret)
 					}
 					// property: name=xauth_secret_encrypted, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretEncrypted = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretEncrypted, state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretEncrypted)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretEncrypted)
 					}
 					// property: name=xauth_secret_hash, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretHash = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretHash, state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretHash)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretHash = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthSecretHash)
 					}
 					// property: name=xauth_type, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthType = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthType, state.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthType)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthType = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Ikev1Params.XauthType)
 					}
 				}
 				// property: name=local_ca_certificate, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalCaCertificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalCaCertificate, state.ServiceLinkConfig.IpsecConfig.Authentication.LocalCaCertificate)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalCaCertificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalCaCertificate)
 				}
 				// property: name=local_id, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalId, state.ServiceLinkConfig.IpsecConfig.Authentication.LocalId)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalId)
 				}
 				// property: name=local_id_custom, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalIdCustom = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalIdCustom, state.ServiceLinkConfig.IpsecConfig.Authentication.LocalIdCustom)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalIdCustom = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalIdCustom)
 				}
 				// property: name=local_pa_certificate_id, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId, state.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.LocalPaCertificateId)
 				}
 				// property: name=pa_master_key_id, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId, state.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PaMasterKeyId)
 				}
 				// property: name=passphrase, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase, state.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Passphrase)
 				}
 				// property: name=passphrase_encrypted, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PassphraseEncrypted = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PassphraseEncrypted, state.ServiceLinkConfig.IpsecConfig.Authentication.PassphraseEncrypted)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PassphraseEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PassphraseEncrypted)
 				}
 				// property: name=peer_id_check, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck, state.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PeerIdCheck)
 				}
 				// property: name=permit_peer_id_mismatch, type=BOOLEAN macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch, state.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PermitPeerIdMismatch)
@@ -5870,124 +5870,124 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 					// copy_from_plan_or_state: body=body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig properties=8
 					tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig prefix=rsModel state=state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig plan=plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig")
 					// property: name=enabled, type=BOOLEAN macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Enabled)
 					}
 					// property: name=key_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.KeyEnabled)
 					}
 					// property: name=mode, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.Mode)
 					}
 					// property: name=ppk_key_id, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkKeyId)
 					}
 					// property: name=ppk_secret, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecret)
 					}
 					// property: name=ppk_secret_configured, type=BOOLEAN macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretConfigured)
 					}
 					// property: name=ppk_secret_encrypted, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretEncrypted)
 					}
 					// property: name=ppk_secret_hash, type=STRING macro=copy_from_plan_or_state
-					if state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
+					if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil && state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig != nil {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash, state.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
 					} else {
 						body.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PpkConfig.PpkSecretHash)
 					}
 				}
 				// property: name=private_key, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey, state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKey)
 				}
 				// property: name=private_key_encrypted, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted, state.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.PrivateKeyEncrypted)
 				}
 				// property: name=remote_ca_certificate, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate, state.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.RemoteCaCertificate)
 				}
 				// property: name=remote_id, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.RemoteId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.RemoteId, state.ServiceLinkConfig.IpsecConfig.Authentication.RemoteId)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.RemoteId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.RemoteId)
 				}
 				// property: name=secret, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Secret = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Secret, state.ServiceLinkConfig.IpsecConfig.Authentication.Secret)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Secret = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Secret)
 				}
 				// property: name=secret_encrypted, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.SecretEncrypted = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.SecretEncrypted, state.ServiceLinkConfig.IpsecConfig.Authentication.SecretEncrypted)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.SecretEncrypted = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.SecretEncrypted)
 				}
 				// property: name=secret_hash, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.SecretHash = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.SecretHash, state.ServiceLinkConfig.IpsecConfig.Authentication.SecretHash)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.SecretHash = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.SecretHash)
 				}
 				// property: name=strict_validation_peer_extended_key_use, type=BOOLEAN macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse, state.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse = BoolValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.StrictValidationPeerExtendedKeyUse)
 				}
 				// property: name=type, type=STRING macro=copy_from_plan_or_state
-				if state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
+				if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil && state.ServiceLinkConfig.IpsecConfig.Authentication != nil {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Type = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.Authentication.Type, state.ServiceLinkConfig.IpsecConfig.Authentication.Type)
 				} else {
 					body.ServiceLinkConfig.IpsecConfig.Authentication.Type = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.Authentication.Type)
 				}
 			}
 			// property: name=ipsec_profile_id, type=STRING macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.IpsecConfig != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.IpsecConfig != nil {
 				body.ServiceLinkConfig.IpsecConfig.IpsecProfileId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.IpsecConfig.IpsecProfileId, state.ServiceLinkConfig.IpsecConfig.IpsecProfileId)
 			} else {
 				body.ServiceLinkConfig.IpsecConfig.IpsecProfileId = StringValueOrNil(plan.ServiceLinkConfig.IpsecConfig.IpsecProfileId)
 			}
 		}
 		// property: name=last_parent, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceLinkConfig != nil {
+		if state != nil && state.ServiceLinkConfig != nil {
 			body.ServiceLinkConfig.LastParent = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.LastParent, state.ServiceLinkConfig.LastParent)
 		} else {
 			body.ServiceLinkConfig.LastParent = StringValueOrNil(plan.ServiceLinkConfig.LastParent)
 		}
 		// property: name=parent, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceLinkConfig != nil {
+		if state != nil && state.ServiceLinkConfig != nil {
 			body.ServiceLinkConfig.Parent = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.Parent, state.ServiceLinkConfig.Parent)
 		} else {
 			body.ServiceLinkConfig.Parent = StringValueOrNil(plan.ServiceLinkConfig.Parent)
@@ -6000,7 +6000,7 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.PassiveMode prefix=rsModel state=state.ServiceLinkConfig.PassiveMode plan=plan.ServiceLinkConfig.PassiveMode properties=1
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.PassiveMode prefix=rsModel state=state.ServiceLinkConfig.PassiveMode plan=plan.ServiceLinkConfig.PassiveMode")
 			// property: name=enable, type=BOOLEAN macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.PassiveMode != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.PassiveMode != nil {
 				body.ServiceLinkConfig.PassiveMode.Enable = ValueBoolPointerFromPlanOrState(plan.ServiceLinkConfig.PassiveMode.Enable, state.ServiceLinkConfig.PassiveMode.Enable)
 			} else {
 				body.ServiceLinkConfig.PassiveMode.Enable = BoolValueOrNil(plan.ServiceLinkConfig.PassiveMode.Enable)
@@ -6014,13 +6014,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.ServiceLinkConfig.Peer prefix=rsModel state=state.ServiceLinkConfig.Peer plan=plan.ServiceLinkConfig.Peer properties=2
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.ServiceLinkConfig.Peer prefix=rsModel state=state.ServiceLinkConfig.Peer plan=plan.ServiceLinkConfig.Peer")
 			// property: name=hostname, type=STRING macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.Peer != nil {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.Peer != nil {
 				body.ServiceLinkConfig.Peer.Hostname = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.Peer.Hostname, state.ServiceLinkConfig.Peer.Hostname)
 			} else {
 				body.ServiceLinkConfig.Peer.Hostname = StringValueOrNil(plan.ServiceLinkConfig.Peer.Hostname)
 			}
 			// property: name=ip_addresses, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-			if state.ServiceLinkConfig.Peer != nil && plan.ServiceLinkConfig.Peer.IpAddresses.IsUnknown() {
+			if state != nil && state.ServiceLinkConfig != nil && state.ServiceLinkConfig.Peer != nil && plan.ServiceLinkConfig.Peer.IpAddresses.IsUnknown() {
 				// computed and not configured: send what the server has, not an empty list the api may read as a change
 				body.ServiceLinkConfig.Peer.IpAddresses = ListStringValueOrNil(ctx, state.ServiceLinkConfig.Peer.IpAddresses)
 			} else {
@@ -6028,13 +6028,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			}
 		}
 		// property: name=service_endpoint_id, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceLinkConfig != nil {
+		if state != nil && state.ServiceLinkConfig != nil {
 			body.ServiceLinkConfig.ServiceEndpointId = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.ServiceEndpointId, state.ServiceLinkConfig.ServiceEndpointId)
 		} else {
 			body.ServiceLinkConfig.ServiceEndpointId = StringValueOrNil(plan.ServiceLinkConfig.ServiceEndpointId)
 		}
 		// property: name=type, type=STRING macro=copy_from_plan_or_state
-		if state.ServiceLinkConfig != nil {
+		if state != nil && state.ServiceLinkConfig != nil {
 			body.ServiceLinkConfig.Type = ValueStringPointerFromPlanOrState(plan.ServiceLinkConfig.Type, state.ServiceLinkConfig.Type)
 		} else {
 			body.ServiceLinkConfig.Type = StringValueOrNil(plan.ServiceLinkConfig.Type)
@@ -6054,9 +6054,9 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		body.SiteWanInterfaceIds = ListStringValueOrNil(ctx, plan.SiteWanInterfaceIds)
 	}
 	// property: name=static_arp_configs, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.StaticArpConfigs == nil && (state == nil || state.StaticArpConfigs == nil) {
+	if plan.StaticArpConfigs == nil && (!(state != nil) || state.StaticArpConfigs == nil) {
 		body.StaticArpConfigs = nil
-	} else if len(plan.StaticArpConfigs) == 0 && (state == nil || len(state.StaticArpConfigs) == 0) {
+	} else if len(plan.StaticArpConfigs) == 0 && (!(state != nil) || len(state.StaticArpConfigs) == 0) {
 		body.StaticArpConfigs = []sdwan_schema.StaticARPConfig{}
 	} else if len(plan.StaticArpConfigs) != 0 || (state != nil && len(state.StaticArpConfigs) != 0) {
 		StaticArpConfigsToUse := plan.StaticArpConfigs
@@ -6084,13 +6084,13 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.SubInterface prefix=rsModel state=state.SubInterface plan=plan.SubInterface properties=2
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SubInterface prefix=rsModel state=state.SubInterface plan=plan.SubInterface")
 		// property: name=native_vlan, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SubInterface != nil {
+		if state != nil && state.SubInterface != nil {
 			body.SubInterface.NativeVlan = ValueBoolPointerFromPlanOrState(plan.SubInterface.NativeVlan, state.SubInterface.NativeVlan)
 		} else {
 			body.SubInterface.NativeVlan = BoolValueOrNil(plan.SubInterface.NativeVlan)
 		}
 		// property: name=vlan_id, type=INTEGER macro=copy_from_plan_or_state
-		if state.SubInterface != nil {
+		if state != nil && state.SubInterface != nil {
 			body.SubInterface.VlanId = ValueInt64PointerFromPlanOrState(plan.SubInterface.VlanId, state.SubInterface.VlanId)
 		} else {
 			body.SubInterface.VlanId = Int64ValueOrNil(plan.SubInterface.VlanId)
@@ -6104,31 +6104,31 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.SwitchPortConfig prefix=rsModel state=state.SwitchPortConfig plan=plan.SwitchPortConfig properties=12
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwitchPortConfig prefix=rsModel state=state.SwitchPortConfig plan=plan.SwitchPortConfig")
 		// property: name=access_vlan_id, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.AccessVlanId = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.AccessVlanId, state.SwitchPortConfig.AccessVlanId)
 		} else {
 			body.SwitchPortConfig.AccessVlanId = Int64ValueOrNil(plan.SwitchPortConfig.AccessVlanId)
 		}
 		// property: name=bpdu_guard_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.BpduGuardEnabled = ValueBoolPointerFromPlanOrState(plan.SwitchPortConfig.BpduGuardEnabled, state.SwitchPortConfig.BpduGuardEnabled)
 		} else {
 			body.SwitchPortConfig.BpduGuardEnabled = BoolValueOrNil(plan.SwitchPortConfig.BpduGuardEnabled)
 		}
 		// property: name=forward_fast_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.ForwardFastEnabled = ValueBoolPointerFromPlanOrState(plan.SwitchPortConfig.ForwardFastEnabled, state.SwitchPortConfig.ForwardFastEnabled)
 		} else {
 			body.SwitchPortConfig.ForwardFastEnabled = BoolValueOrNil(plan.SwitchPortConfig.ForwardFastEnabled)
 		}
 		// property: name=native_vlan_id, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.NativeVlanId = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.NativeVlanId, state.SwitchPortConfig.NativeVlanId)
 		} else {
 			body.SwitchPortConfig.NativeVlanId = Int64ValueOrNil(plan.SwitchPortConfig.NativeVlanId)
 		}
 		// property: name=root_guard_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.RootGuardEnabled = ValueBoolPointerFromPlanOrState(plan.SwitchPortConfig.RootGuardEnabled, state.SwitchPortConfig.RootGuardEnabled)
 		} else {
 			body.SwitchPortConfig.RootGuardEnabled = BoolValueOrNil(plan.SwitchPortConfig.RootGuardEnabled)
@@ -6141,57 +6141,57 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 			// copy_from_plan_or_state: body=body.SwitchPortConfig.StormControlConfig prefix=rsModel state=state.SwitchPortConfig.StormControlConfig plan=plan.SwitchPortConfig.StormControlConfig properties=3
 			tflog.Debug(ctx, "copy_from_plan_or_state body=body.SwitchPortConfig.StormControlConfig prefix=rsModel state=state.SwitchPortConfig.StormControlConfig plan=plan.SwitchPortConfig.StormControlConfig")
 			// property: name=broadcast_threshold, type=INTEGER macro=copy_from_plan_or_state
-			if state.SwitchPortConfig.StormControlConfig != nil {
+			if state != nil && state.SwitchPortConfig != nil && state.SwitchPortConfig.StormControlConfig != nil {
 				body.SwitchPortConfig.StormControlConfig.BroadcastThreshold = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.StormControlConfig.BroadcastThreshold, state.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			} else {
 				body.SwitchPortConfig.StormControlConfig.BroadcastThreshold = Int64ValueOrNil(plan.SwitchPortConfig.StormControlConfig.BroadcastThreshold)
 			}
 			// property: name=multicast_threshold, type=INTEGER macro=copy_from_plan_or_state
-			if state.SwitchPortConfig.StormControlConfig != nil {
+			if state != nil && state.SwitchPortConfig != nil && state.SwitchPortConfig.StormControlConfig != nil {
 				body.SwitchPortConfig.StormControlConfig.MulticastThreshold = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.StormControlConfig.MulticastThreshold, state.SwitchPortConfig.StormControlConfig.MulticastThreshold)
 			} else {
 				body.SwitchPortConfig.StormControlConfig.MulticastThreshold = Int64ValueOrNil(plan.SwitchPortConfig.StormControlConfig.MulticastThreshold)
 			}
 			// property: name=unicast_threshold, type=INTEGER macro=copy_from_plan_or_state
-			if state.SwitchPortConfig.StormControlConfig != nil {
+			if state != nil && state.SwitchPortConfig != nil && state.SwitchPortConfig.StormControlConfig != nil {
 				body.SwitchPortConfig.StormControlConfig.UnicastThreshold = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.StormControlConfig.UnicastThreshold, state.SwitchPortConfig.StormControlConfig.UnicastThreshold)
 			} else {
 				body.SwitchPortConfig.StormControlConfig.UnicastThreshold = Int64ValueOrNil(plan.SwitchPortConfig.StormControlConfig.UnicastThreshold)
 			}
 		}
 		// property: name=stp_port_cost, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.StpPortCost = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.StpPortCost, state.SwitchPortConfig.StpPortCost)
 		} else {
 			body.SwitchPortConfig.StpPortCost = Int64ValueOrNil(plan.SwitchPortConfig.StpPortCost)
 		}
 		// property: name=stp_port_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.StpPortEnabled = ValueBoolPointerFromPlanOrState(plan.SwitchPortConfig.StpPortEnabled, state.SwitchPortConfig.StpPortEnabled)
 		} else {
 			body.SwitchPortConfig.StpPortEnabled = BoolValueOrNil(plan.SwitchPortConfig.StpPortEnabled)
 		}
 		// property: name=stp_port_priority, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.StpPortPriority = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.StpPortPriority, state.SwitchPortConfig.StpPortPriority)
 		} else {
 			body.SwitchPortConfig.StpPortPriority = Int64ValueOrNil(plan.SwitchPortConfig.StpPortPriority)
 		}
 		// property: name=trunk_vlans, type=ARRAY_PRIMITIVE macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil && plan.SwitchPortConfig.TrunkVlans.IsUnknown() {
+		if state != nil && state.SwitchPortConfig != nil && plan.SwitchPortConfig.TrunkVlans.IsUnknown() {
 			// computed and not configured: send what the server has, not an empty list the api may read as a change
 			body.SwitchPortConfig.TrunkVlans = ListStringValueOrNil(ctx, state.SwitchPortConfig.TrunkVlans)
 		} else {
 			body.SwitchPortConfig.TrunkVlans = ListStringValueOrNil(ctx, plan.SwitchPortConfig.TrunkVlans)
 		}
 		// property: name=vlan_mode, type=STRING macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.VlanMode = ValueStringPointerFromPlanOrState(plan.SwitchPortConfig.VlanMode, state.SwitchPortConfig.VlanMode)
 		} else {
 			body.SwitchPortConfig.VlanMode = StringValueOrNil(plan.SwitchPortConfig.VlanMode)
 		}
 		// property: name=voice_vlan_id, type=INTEGER macro=copy_from_plan_or_state
-		if state.SwitchPortConfig != nil {
+		if state != nil && state.SwitchPortConfig != nil {
 			body.SwitchPortConfig.VoiceVlanId = ValueInt64PointerFromPlanOrState(plan.SwitchPortConfig.VoiceVlanId, state.SwitchPortConfig.VoiceVlanId)
 		} else {
 			body.SwitchPortConfig.VoiceVlanId = Int64ValueOrNil(plan.SwitchPortConfig.VoiceVlanId)
@@ -6224,19 +6224,19 @@ func (r *elementShellInterfaceResource) doPut(ctx context.Context, plan *rsModel
 		// copy_from_plan_or_state: body=body.VlanConfig prefix=rsModel state=state.VlanConfig plan=plan.VlanConfig properties=3
 		tflog.Debug(ctx, "copy_from_plan_or_state body=body.VlanConfig prefix=rsModel state=state.VlanConfig plan=plan.VlanConfig")
 		// property: name=mstp_instance, type=INTEGER macro=copy_from_plan_or_state
-		if state.VlanConfig != nil {
+		if state != nil && state.VlanConfig != nil {
 			body.VlanConfig.MstpInstance = ValueInt64PointerFromPlanOrState(plan.VlanConfig.MstpInstance, state.VlanConfig.MstpInstance)
 		} else {
 			body.VlanConfig.MstpInstance = Int64ValueOrNil(plan.VlanConfig.MstpInstance)
 		}
 		// property: name=vlan_id, type=INTEGER macro=copy_from_plan_or_state
-		if state.VlanConfig != nil {
+		if state != nil && state.VlanConfig != nil {
 			body.VlanConfig.VlanId = ValueInt64PointerFromPlanOrState(plan.VlanConfig.VlanId, state.VlanConfig.VlanId)
 		} else {
 			body.VlanConfig.VlanId = Int64ValueOrNil(plan.VlanConfig.VlanId)
 		}
 		// property: name=voice_enabled, type=BOOLEAN macro=copy_from_plan_or_state
-		if state.VlanConfig != nil {
+		if state != nil && state.VlanConfig != nil {
 			body.VlanConfig.VoiceEnabled = ValueBoolPointerFromPlanOrState(plan.VlanConfig.VoiceEnabled, state.VlanConfig.VoiceEnabled)
 		} else {
 			body.VlanConfig.VoiceEnabled = BoolValueOrNil(plan.VlanConfig.VoiceEnabled)
@@ -7325,9 +7325,13 @@ func (r *elementShellInterfaceResource) Create(ctx context.Context, req resource
 			if r.doPut(ctx, &plan, &state, &resp.State, put_resp) {
 				tflog.Info(ctx, "put on the shell interface succeeded, state will be updated by it")
 				resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
+			} else {
+				// without the errors of doPut, Create ends with "Missing Resource State After Create" and no reason
+				resp.Diagnostics = put_resp.Diagnostics
 			}
 		} else {
 			tflog.Error(ctx, "failed to set the state from the response from sdwan")
+			resp.Diagnostics = r_resp.Diagnostics
 		}
 	} else {
 		tflog.Info(ctx, "trying to execute get on the element interface, as id was given")

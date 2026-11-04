@@ -570,9 +570,9 @@ func (r *pathGroupResource) doPut(ctx context.Context, plan *rsModelPathGroupScr
 		body.Name = StringValueOrNil(plan.Name)
 	}
 	// property: name=paths, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.Paths == nil && (state == nil || state.Paths == nil) {
+	if plan.Paths == nil && (!(state != nil) || state.Paths == nil) {
 		body.Paths = nil
-	} else if len(plan.Paths) == 0 && (state == nil || len(state.Paths) == 0) {
+	} else if len(plan.Paths) == 0 && (!(state != nil) || len(state.Paths) == 0) {
 		body.Paths = []sdwan_schema.WANPath{}
 	} else if len(plan.Paths) != 0 || (state != nil && len(state.Paths) != 0) {
 		PathsToUse := plan.Paths

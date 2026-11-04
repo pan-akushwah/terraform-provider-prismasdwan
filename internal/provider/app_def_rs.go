@@ -1721,9 +1721,9 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 		body.IngressTrafficPct = Int64ValueOrNil(plan.IngressTrafficPct)
 	}
 	// property: name=ip_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.IpRules == nil && (state == nil || state.IpRules == nil) {
+	if plan.IpRules == nil && (!(state != nil) || state.IpRules == nil) {
 		body.IpRules = nil
-	} else if len(plan.IpRules) == 0 && (state == nil || len(state.IpRules) == 0) {
+	} else if len(plan.IpRules) == 0 && (!(state != nil) || len(state.IpRules) == 0) {
 		body.IpRules = []sdwan_schema.IPRuleV2{}
 	} else if len(plan.IpRules) != 0 || (state != nil && len(state.IpRules) != 0) {
 		IpRulesToUse := plan.IpRules
@@ -1843,9 +1843,9 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 		body.Tags = SetStringValueOrNil(ctx, plan.Tags)
 	}
 	// property: name=tcp_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.TcpRules == nil && (state == nil || state.TcpRules == nil) {
+	if plan.TcpRules == nil && (!(state != nil) || state.TcpRules == nil) {
 		body.TcpRules = nil
-	} else if len(plan.TcpRules) == 0 && (state == nil || len(state.TcpRules) == 0) {
+	} else if len(plan.TcpRules) == 0 && (!(state != nil) || len(state.TcpRules) == 0) {
 		body.TcpRules = []sdwan_schema.TcpRuleV2{}
 	} else if len(plan.TcpRules) != 0 || (state != nil && len(state.TcpRules) != 0) {
 		TcpRulesToUse := plan.TcpRules
@@ -1904,9 +1904,9 @@ func (r *appDefResource) doPut(ctx context.Context, plan *rsModelAppDefScreenV2N
 		body.TransferType = StringValueOrNil(plan.TransferType)
 	}
 	// property: name=udp_rules, type=ARRAY_REFERENCE macro=copy_from_plan_or_state
-	if plan.UdpRules == nil && (state == nil || state.UdpRules == nil) {
+	if plan.UdpRules == nil && (!(state != nil) || state.UdpRules == nil) {
 		body.UdpRules = nil
-	} else if len(plan.UdpRules) == 0 && (state == nil || len(state.UdpRules) == 0) {
+	} else if len(plan.UdpRules) == 0 && (!(state != nil) || len(state.UdpRules) == 0) {
 		body.UdpRules = []sdwan_schema.UdpRuleV2{}
 	} else if len(plan.UdpRules) != 0 || (state != nil && len(state.UdpRules) != 0) {
 		UdpRulesToUse := plan.UdpRules
