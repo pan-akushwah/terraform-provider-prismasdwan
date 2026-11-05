@@ -24,15 +24,14 @@
 resource "prismasdwan_path_policy_stack" "example" {
   default_policysetstack = false
   defaultrule_policyset = {
-    clone_from            = "example_clone_from"
-    defaultrule_policyset = false
-    description           = "Managed by Terraform"
-    disabled              = false
-    disabled_reason       = "example_disabled_reason"
-    inactive              = false
-    inactive_reason       = "example_inactive_reason"
-    name                  = "example_name"
-    policy_req_version    = "example_policy_req_version"
+    clone_from         = "example_clone_from"
+    description        = "Managed by Terraform"
+    disabled           = false
+    disabled_reason    = "example_disabled_reason"
+    inactive           = false
+    inactive_reason    = "example_inactive_reason"
+    name               = "example_name"
+    policy_req_version = "example_policy_req_version"
     policy_rules = [{
       app_def_ids = ["<app_def_id>"]
       best_path_config = {

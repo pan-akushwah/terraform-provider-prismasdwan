@@ -110,10 +110,10 @@ func (r *siteHubClusterResource) Schema(_ context.Context, _ resource.SchemaRequ
 			// property: name=default_cluster, type=BOOLEAN macro=rss_schema
 			"default_cluster": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Default cluster.",
+				Description: "Default cluster. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=default_cluster, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema

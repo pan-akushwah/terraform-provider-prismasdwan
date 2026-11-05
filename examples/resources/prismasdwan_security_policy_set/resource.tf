@@ -22,9 +22,8 @@
 #   }
 
 resource "prismasdwan_security_policy_set" "example" {
-  clone_from            = "example_clone_from"
-  defaultrule_policyset = false
-  description           = "Managed by Terraform"
-  name                  = "example_name"
-  tags                  = ["terraform"]
+  clone_from  = "example_clone_from"
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

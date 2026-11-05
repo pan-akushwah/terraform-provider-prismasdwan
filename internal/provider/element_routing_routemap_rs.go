@@ -112,10 +112,10 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 			// property: name=auto_generated, type=BOOLEAN macro=rss_schema
 			"auto_generated": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Auto generated.",
+				Description: "Auto generated. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=auto_generated, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -374,10 +374,10 @@ func (r *elementRoutingRoutemapResource) Schema(_ context.Context, _ resource.Sc
 			// property: name=used_for, type=STRING macro=rss_schema
 			"used_for": rsschema.StringAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Used for. Value: one of bgp, ospf.",
+				Description: "Used for. Value: one of bgp, ospf. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=used_for, type=STRING macro=rss_schema
 		},

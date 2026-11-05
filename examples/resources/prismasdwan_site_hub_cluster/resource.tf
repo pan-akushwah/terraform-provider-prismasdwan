@@ -22,8 +22,7 @@
 #   }
 
 resource "prismasdwan_site_hub_cluster" "example" {
-  default_cluster = false
-  description     = "Managed by Terraform"
+  description = "Managed by Terraform"
   elements = [{
     hub_element_id = "<hub_element_id>"
     locked         = false

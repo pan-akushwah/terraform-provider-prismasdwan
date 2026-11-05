@@ -110,10 +110,10 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 			// property: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
 			"default_vrf_context_profile": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Default vrf context profile.",
+				Description: "Default vrf context profile. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -157,10 +157,10 @@ func (r *vrfContextProfileResource) Schema(_ context.Context, _ resource.SchemaR
 			// property: name=vrf_context_ids, type=SET_PRIMITIVE macro=rss_schema
 			"vrf_context_ids": rsschema.SetAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Vrf context ids.",
+				Description: "Vrf context ids. Filled in by the server when it is not set.",
 				ElementType: types.StringType,
 			},
 			// key name holder for attribute: name=vrf_context_ids, type=SET_PRIMITIVE macro=rss_schema

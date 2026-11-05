@@ -109,10 +109,10 @@ func (r *natPolicySetStackResource) Schema(_ context.Context, _ resource.SchemaR
 			// property: name=default_policysetstack, type=BOOLEAN macro=rss_schema
 			"default_policysetstack": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Default policysetstack.",
+				Description: "Default policysetstack. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=default_policysetstack, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema

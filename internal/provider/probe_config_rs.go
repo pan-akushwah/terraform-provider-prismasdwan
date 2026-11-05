@@ -119,10 +119,10 @@ func (r *probeConfigResource) Schema(_ context.Context, _ resource.SchemaRequest
 			// property: name=enabled, type=BOOLEAN macro=rss_schema
 			"enabled": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Enabled.",
+				Description: "Enabled. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 			// property: name=endpoints, type=ARRAY_REFERENCE macro=rss_schema

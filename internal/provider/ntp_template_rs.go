@@ -110,10 +110,10 @@ func (r *ntpTemplateResource) Schema(_ context.Context, _ resource.SchemaRequest
 			// property: name=default_template, type=BOOLEAN macro=rss_schema
 			"default_template": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Default template.",
+				Description: "Default template. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=default_template, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema

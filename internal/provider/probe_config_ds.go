@@ -140,7 +140,7 @@ func (d *probeConfigDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Enabled.",
+							Description: "Enabled. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=enabled, type=BOOLEAN macro=rss_schema
 						// property: name=endpoints, type=ARRAY_REFERENCE macro=rss_schema

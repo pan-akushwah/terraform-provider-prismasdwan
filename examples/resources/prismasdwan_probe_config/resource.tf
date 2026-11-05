@@ -23,7 +23,6 @@
 
 resource "prismasdwan_probe_config" "example" {
   description = "Managed by Terraform"
-  enabled     = true
   endpoints = [{
     allow_insecure_https_connection = false
     dns_server_ip                   = "10.0.0.1"

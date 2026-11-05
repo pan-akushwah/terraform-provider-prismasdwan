@@ -131,7 +131,7 @@ func (d *vrfContextProfileDataSource) Schema(_ context.Context, _ datasource.Sch
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Default vrf context profile.",
+							Description: "Default vrf context profile. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=default_vrf_context_profile, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
@@ -177,7 +177,7 @@ func (d *vrfContextProfileDataSource) Schema(_ context.Context, _ datasource.Sch
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Vrf context ids.",
+							Description: "Vrf context ids. Filled in by the server when it is not set.",
 							ElementType: types.StringType,
 						},
 						// key name holder for attribute: name=vrf_context_ids, type=SET_PRIMITIVE macro=rss_schema

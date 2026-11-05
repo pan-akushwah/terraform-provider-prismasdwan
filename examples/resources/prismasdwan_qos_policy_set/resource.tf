@@ -48,9 +48,7 @@ resource "prismasdwan_qos_policy_set" "example" {
     priority_number = 1
     transfer_type   = "rt-audio"
   }]
-  defaultrule_policyset = false
-  description           = "Managed by Terraform"
-  name                  = "example_name"
-  tags                  = ["terraform"]
-  template              = false
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
 }

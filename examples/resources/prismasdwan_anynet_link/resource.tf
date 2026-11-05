@@ -22,18 +22,11 @@
 #   }
 
 resource "prismasdwan_anynet_link" "example" {
-  admin_up             = true
-  description          = "Managed by Terraform"
-  ep1_hub_cluster_id   = "<ep1_hub_cluster_id>"
-  ep1_site_id          = "<ep1_site_id>"
-  ep1_wan_interface_id = "<ep1_wan_interface_id>"
-  ep2_hub_cluster_id   = "<ep2_hub_cluster_id>"
-  ep2_site_id          = "<ep2_site_id>"
-  ep2_wan_interface_id = "<ep2_wan_interface_id>"
-  forced               = false
-  name                 = "example_name"
-  tags                 = ["terraform"]
-  type                 = "AUTO-PUBLIC"
+  description        = "Managed by Terraform"
+  ep1_hub_cluster_id = "<ep1_hub_cluster_id>"
+  ep2_hub_cluster_id = "<ep2_hub_cluster_id>"
+  name               = "example_name"
+  tags               = ["terraform"]
   vpnlink_configuration = {
     keep_alive_failure_count = 3
     keep_alive_interval      = 100

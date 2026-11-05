@@ -319,10 +319,10 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 			"defaultrule_policyset": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Defaultrule policyset.",
+				Description: "Defaultrule policyset. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 			// property: name=description, type=STRING macro=rss_schema
@@ -366,10 +366,10 @@ func (r *qosPolicySetResource) Schema(_ context.Context, _ resource.SchemaReques
 			// property: name=template, type=BOOLEAN macro=rss_schema
 			"template": rsschema.BoolAttribute{
 				Required:    false,
-				Computed:    false,
+				Computed:    true,
 				Optional:    true,
 				Sensitive:   false,
-				Description: "Template.",
+				Description: "Template. Filled in by the server when it is not set.",
 			},
 			// key name holder for attribute: name=template, type=BOOLEAN macro=rss_schema
 		},

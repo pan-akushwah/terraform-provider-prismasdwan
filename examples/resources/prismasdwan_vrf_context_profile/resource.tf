@@ -22,11 +22,9 @@
 #   }
 
 resource "prismasdwan_vrf_context_profile" "example" {
-  default_vrf_context_profile = false
-  description                 = "Managed by Terraform"
-  name                        = "example_name"
-  tags                        = ["terraform"]
-  vrf_context_ids             = ["<vrf_context_id>"]
+  description = "Managed by Terraform"
+  name        = "example_name"
+  tags        = ["terraform"]
   vrf_context_route_leak_rules = [{
     description         = "Managed by Terraform"
     dest_vrf_context_id = "<dest_vrf_context_id>"

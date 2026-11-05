@@ -22,9 +22,8 @@
 #   }
 
 resource "prismasdwan_ntp_template" "example" {
-  default_template = false
-  description      = "Managed by Terraform"
-  name             = "example_name"
+  description = "Managed by Terraform"
+  name        = "example_name"
   ntp_servers = [{
     host     = "server.example.com"
     max_poll = 10

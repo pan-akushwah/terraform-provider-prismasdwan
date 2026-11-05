@@ -22,9 +22,8 @@
 #   }
 
 resource "prismasdwan_element_routing_routemap" "example" {
-  auto_generated = false
-  description    = "Managed by Terraform"
-  name           = "example_name"
+  description = "Managed by Terraform"
+  name        = "example_name"
   route_map_entries = [{
     continue_entry = "example_continue_entry"
     match = {
@@ -34,6 +33,5 @@ resource "prismasdwan_element_routing_routemap" "example" {
     set = {
     }
   }]
-  tags     = ["terraform"]
-  used_for = "bgp"
+  tags = ["terraform"]
 }

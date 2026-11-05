@@ -22,9 +22,8 @@
 #   }
 
 resource "prismasdwan_nat_policy_set_stack" "example" {
-  default_policysetstack = false
-  description            = "Managed by Terraform"
-  name                   = "example_name"
-  policyset_ids          = ["<policyset_id>"]
-  tags                   = ["terraform"]
+  description   = "Managed by Terraform"
+  name          = "example_name"
+  policyset_ids = ["<policyset_id>"]
+  tags          = ["terraform"]
 }

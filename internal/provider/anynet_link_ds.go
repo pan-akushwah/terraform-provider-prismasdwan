@@ -131,7 +131,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Admin up.",
+							Description: "Admin up. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=admin_up, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
@@ -158,7 +158,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Ep1 site id.",
+							Description: "Ep1 site id. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=ep1_site_id, type=STRING macro=rss_schema
 						// property: name=ep1_wan_interface_id, type=STRING macro=rss_schema
@@ -167,7 +167,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Ep1 wan interface id.",
+							Description: "Ep1 wan interface id. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=ep1_wan_interface_id, type=STRING macro=rss_schema
 						// property: name=ep2_hub_cluster_id, type=STRING macro=rss_schema
@@ -185,7 +185,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Ep2 site id.",
+							Description: "Ep2 site id. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=ep2_site_id, type=STRING macro=rss_schema
 						// property: name=ep2_wan_interface_id, type=STRING macro=rss_schema
@@ -194,7 +194,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Ep2 wan interface id.",
+							Description: "Ep2 wan interface id. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=ep2_wan_interface_id, type=STRING macro=rss_schema
 						// property: name=forced, type=BOOLEAN macro=rss_schema
@@ -203,7 +203,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Forced.",
+							Description: "Forced. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=forced, type=BOOLEAN macro=rss_schema
 						// property: name=id, type=STRING macro=rss_schema
@@ -249,7 +249,7 @@ func (d *anynetLinkDataSource) Schema(_ context.Context, _ datasource.SchemaRequ
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Type. Value: one of AUTO-PUBLIC, MANUAL-PUBLIC, AUTO-PRIVATE, MANUAL-PRIVATE, AUTO-SASE, DCI-MANUAL-PUBLIC, DCI-MANUAL-PRIVATE.",
+							Description: "Type. Value: one of AUTO-PUBLIC, MANUAL-PUBLIC, AUTO-PRIVATE, MANUAL-PRIVATE, AUTO-SASE, DCI-MANUAL-PUBLIC, DCI-MANUAL-PRIVATE. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=type, type=STRING macro=rss_schema
 						// property: name=vpnlink_configuration, type=REFERENCE macro=rss_schema

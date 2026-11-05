@@ -139,7 +139,7 @@ func (d *securityPolicySetDataSource) Schema(_ context.Context, _ datasource.Sch
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Defaultrule policyset.",
+							Description: "Defaultrule policyset. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=defaultrule_policyset, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema

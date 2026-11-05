@@ -130,7 +130,7 @@ func (d *natPolicySetStackDataSource) Schema(_ context.Context, _ datasource.Sch
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Default policysetstack.",
+							Description: "Default policysetstack. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=default_policysetstack, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema

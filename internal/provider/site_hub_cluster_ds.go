@@ -131,7 +131,7 @@ func (d *siteHubClusterDataSource) Schema(_ context.Context, _ datasource.Schema
 							Computed:    true,
 							Optional:    false,
 							Sensitive:   false,
-							Description: "Default cluster.",
+							Description: "Default cluster. Filled in by the server when it is not set.",
 						},
 						// key name holder for attribute: name=default_cluster, type=BOOLEAN macro=rss_schema
 						// property: name=description, type=STRING macro=rss_schema
