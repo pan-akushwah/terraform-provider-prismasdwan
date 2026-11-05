@@ -578,7 +578,9 @@ func (r *elementTacacsPlusServerResource) doGet(ctx context.Context, state *rsMo
 		// after an import the id (<object id>:key=value:...) is all there is: rebuild x_parameters from its key=value
 		// tokens so that the state matches the configuration and the first plan has nothing to change
 		idParameters := map[string]string{}
-		for _, token := range tokens[1:] {
+		// the id of an object created by POST starts with the object id (no "="); the id of a resource that only updates
+		// an existing object (GET, then PUT) is key=value tokens only: take every token that has a key
+		for _, token := range tokens {
 			if param := strings.SplitN(token, "=", 2); len(param) == 2 && param[0] != "" {
 				idParameters[param[0]] = param[1]
 			}
