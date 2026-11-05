@@ -1,0 +1,245 @@
+internal/provider/anynet_link_rs.go
+  s_a281bc52404319::t_2f4b53811a5217 572-574
+internal/provider/apn_profile_rs.go
+  s_a281bc52404319::t_6f5e60201e7bb6 470-472
+internal/provider/app_def_override_rs.go
+  s_a281bc52404319::t_1fe98da85fba54 1182-1184
+internal/provider/app_def_rs.go
+  s_a281bc52404319::t_60242291561cbe 1310-1312
+internal/provider/dns_service_profile_rs.go
+  s_a281bc52404319::t_3f9fc855da59a8 2843-2845
+internal/provider/dns_service_role_rs.go
+  s_a281bc52404319::t_bc0c1186e1afae 498-500
+internal/provider/domain_rs.go
+  s_a281bc52404319::t_17d639f404447c 481-483
+internal/provider/element_application_probe_rs.go
+  s_a281bc52404319::t_9aab55c7345d46 261-263
+internal/provider/element_bgp_config_rs.go
+  s_a281bc52404319::t_247ffdb129f821 441-443
+internal/provider/element_bgp_peer_rs.go
+  s_a281bc52404319::t_3480fdb2fb4719 872-874
+internal/provider/element_cellular_module_rs.go
+  s_a281bc52404319::t_794907aa022574 271-273
+internal/provider/element_cellular_module_sim_security_rs.go
+  s_a281bc52404319::t_dbd93f90fbac38 271-273
+internal/provider/element_dns_service_rs.go
+  s_a281bc52404319::t_c52750b05b8b09 930-932
+internal/provider/element_interface_rs.go
+  s_a281bc52404319::t_8848b8e5b47c28 3963-3965
+internal/provider/element_iot_device_id_config_rs.go
+  s_a281bc52404319::t_2314423d613573 401-403
+internal/provider/element_ipfix_rs.go
+  s_a281bc52404319::t_a5d8c716b88189 894-896
+internal/provider/element_multicast_global_config_rs.go
+  s_a281bc52404319::t_828b11a38d400e 329-331
+internal/provider/element_multicast_rp_rs.go
+  s_a281bc52404319::t_6a0e14a0fde954 470-472
+internal/provider/element_ntp_rs.go
+  s_a281bc52404319::t_66b81b0a5ee2da 305-307
+internal/provider/element_ospf_config_rs.go
+  s_a281bc52404319::t_ad670f5bd048a8 791-793
+internal/provider/element_ospf_global_config_rs.go
+  s_a281bc52404319::t_12fefe72025be7 303-305
+internal/provider/element_radius_rs.go
+  s_a281bc52404319::t_17e7de7cb0f9f1 624-626
+internal/provider/element_routing_aspathaccesslist_rs.go
+  s_a281bc52404319::t_3dbab3078d1cc4 482-484
+internal/provider/element_routing_ipcommunitylist_rs.go
+  s_a281bc52404319::t_b1fda718e49af3 469-471
+internal/provider/element_routing_prefixlist_rs.go
+  s_a281bc52404319::t_74962c85ac55f6 521-523
+internal/provider/element_routing_routemap_rs.go
+  s_a281bc52404319::t_953d430e51a76b 768-770
+internal/provider/element_rs.go
+  s_a281bc52404319::t_c317f51165d01b 789-791
+internal/provider/element_security_zone_rs.go
+  s_a281bc52404319::t_8cd347952b46ed 443-445
+internal/provider/element_shell_interface_rs.go
+  s_a281bc52404319::t_f0193f3b2bea75 3955-3957
+internal/provider/element_shell_rs.go
+  s_a281bc52404319::t_2958f3895abc19 1154-1156
+internal/provider/element_snmp_agent_rs.go
+  s_a281bc52404319::t_f1f40bf6cbfa9d 685-687
+internal/provider/element_snmp_trap_rs.go
+  s_a281bc52404319::t_afa7ba050adacc 669-671
+internal/provider/element_static_route_rs.go
+  s_a281bc52404319::t_34eab157b6f093 560-562
+internal/provider/element_syslog_server_rs.go
+  s_a281bc52404319::t_8f555eef8070f4 557-559
+internal/provider/element_tacacs_plus_server_rs.go
+  s_a281bc52404319::t_e69ca2ed731b94 581-583
+internal/provider/element_toolkit_rs.go
+  s_a281bc52404319::t_300531aed2f558 269-271
+internal/provider/event_correlation_policy_rule_rs.go
+  s_a281bc52404319::t_ca03a3ce996f3c 655-657
+internal/provider/event_correlation_policy_set_rs.go
+  s_a281bc52404319::t_f46006227ee536 499-501
+internal/provider/external_ca_config_rs.go
+  s_a281bc52404319::t_40cef12c113a60 539-541
+internal/provider/global_prefix_filter_rs.go
+  s_a281bc52404319::t_a217bd45ea8c0c 434-436
+internal/provider/iot_profile_rs.go
+  s_a281bc52404319::t_a29749e5754857 798-800
+internal/provider/ipfix_collector_context_rs.go
+  s_a281bc52404319::t_77328cf50eedc8 363-365
+internal/provider/ipfix_filter_context_rs.go
+  s_a281bc52404319::t_2cc6720a5d011c 363-365
+internal/provider/ipfix_global_prefix_rs.go
+  s_a281bc52404319::t_26f62a6d0acd91 406-408
+internal/provider/ipfix_local_prefix_rs.go
+  s_a281bc52404319::t_a849194d4b0985 390-392
+internal/provider/ipfix_profile_rs.go
+  s_a281bc52404319::t_da576528b558fc 887-889
+internal/provider/ipfix_template_rs.go
+  s_a281bc52404319::t_71f2e0597c779b 462-464
+internal/provider/ipsec_profile_rs.go
+  s_a281bc52404319::t_2d4c8b83631b23 2103-2105
+internal/provider/local_prefix_filter_rs.go
+  s_a281bc52404319::t_626d14cd403bb3 363-365
+internal/provider/multicast_peer_group_profile_rs.go
+  s_a281bc52404319::t_6efa7e5e916b80 456-458
+internal/provider/nat_global_prefix_rs.go
+  s_a281bc52404319::t_50c643334d1028 404-406
+internal/provider/nat_local_prefix_rs.go
+  s_a281bc52404319::t_780044f82509fa 390-392
+internal/provider/nat_policy_pool_rs.go
+  s_a281bc52404319::t_4e347e686c8afd 388-390
+internal/provider/nat_policy_rule_rs.go
+  s_a281bc52404319::t_79b3f7cbb7cd6b 735-737
+internal/provider/nat_policy_set_rs.go
+  s_a281bc52404319::t_dc0c0da13d941f 1019-1021
+internal/provider/nat_policy_set_stack_rs.go
+  s_a281bc52404319::t_bf75f8e568f04b 420-422
+internal/provider/nat_zone_rs.go
+  s_a281bc52404319::t_98f4313a7722f5 477-479
+internal/provider/network_context_rs.go
+  s_a281bc52404319::t_bf6a0cacacdadd 363-365
+internal/provider/ntp_template_rs.go
+  s_a281bc52404319::t_bee47036409856 495-497
+internal/provider/path_global_prefix_rs.go
+  s_a281bc52404319::t_742fb1e6215f4c 422-424
+internal/provider/path_group_rs.go
+  s_a281bc52404319::t_7fdfafcab4ee38 431-433
+internal/provider/path_local_prefix_rs.go
+  s_a281bc52404319::t_6663f54f626623 390-392
+internal/provider/path_policy_rule_rs.go
+  s_a281bc52404319::t_082fd119bf1a9d 946-948
+internal/provider/path_policy_set_rs.go
+  s_a281bc52404319::t_4699739b991e34 1635-1637
+internal/provider/path_policy_stack_rs.go
+  s_a281bc52404319::t_50d7ff12d2984c 2382-2384
+internal/provider/performance_policy_rule_rs.go
+  s_a281bc52404319::t_45ee8b9fdff42c 1104-1106
+internal/provider/performance_policy_set_rs.go
+  s_a281bc52404319::t_f350753a0008b0 2578-2580
+internal/provider/performance_policy_stack_rs.go
+  s_a281bc52404319::t_ea7536308bc0c0 3282-3284
+internal/provider/performance_profile_rs.go
+  s_a281bc52404319::t_4b29127cbdc75f 1033-1035
+internal/provider/probe_config_rs.go
+  s_a281bc52404319::t_d3942a8fe66250 591-593
+internal/provider/probe_profile_rs.go
+  s_a281bc52404319::t_e3fd73da849c46 405-407
+internal/provider/qos_policy_global_prefix_rs.go
+  s_a281bc52404319::t_8b19f00b8ab970 422-424
+internal/provider/qos_policy_local_prefix_rs.go
+  s_a281bc52404319::t_e184e685008439 390-392
+internal/provider/qos_policy_rule_rs.go
+  s_a281bc52404319::t_618060c42cade6 616-618
+internal/provider/qos_policy_set_rs.go
+  s_a281bc52404319::t_b0f5d7261bd750 859-861
+internal/provider/qos_policy_stack_rs.go
+  s_a281bc52404319::t_681cca22264c21 433-435
+internal/provider/sdwanapps_config_rs.go
+  s_a281bc52404319::t_1b84cf6800c083 381-383
+internal/provider/security_policy_global_prefix_rs.go
+  s_a281bc52404319::t_1e3bd2e798118d 434-436
+internal/provider/security_policy_local_prefix_rs.go
+  s_a281bc52404319::t_0e9a6c7df92963 390-392
+internal/provider/security_policy_rule_rs.go
+  s_a281bc52404319::t_64d07ab7a70500 862-864
+internal/provider/security_policy_set_rs.go
+  s_a281bc52404319::t_7937474ba70e4f 432-434
+internal/provider/security_policy_stack_rs.go
+  s_a281bc52404319::t_a75f7aec7da60d 420-422
+internal/provider/security_zone_rs.go
+  s_a281bc52404319::t_a114d1240d3701 389-391
+internal/provider/service_endpoint_rs.go
+  s_a281bc52404319::t_fc16e87bd437fb 979-981
+internal/provider/service_group_rs.go
+  s_a281bc52404319::t_d6b6e9761fba35 440-442
+internal/provider/site_ciphers_rs.go
+  s_a281bc52404319::t_737b5ccba688ee 262-264
+internal/provider/site_dhcp_server_rs.go
+  s_a281bc52404319::t_f44a3340c2460e 765-767
+internal/provider/site_hub_cluster_rs.go
+  s_a281bc52404319::t_bbbc38a18a70a4 499-501
+internal/provider/site_hub_distribution_fabric_rs.go
+  s_a281bc52404319::t_9c91ff78405f09 403-405
+internal/provider/site_hub_prefix_filter_association_rs.go
+  s_a281bc52404319::t_39a7fc28eeca97 416-418
+internal/provider/site_hub_prefix_filter_profile_rs.go
+  s_a281bc52404319::t_139698e638a0db 536-538
+internal/provider/site_hub_prefix_filter_rs.go
+  s_a281bc52404319::t_9ae0ca0dde019c 492-494
+internal/provider/site_iot_device_id_config_rs.go
+  s_a281bc52404319::t_ed73d4dee715f4 385-387
+internal/provider/site_iot_snmp_start_node_rs.go
+  s_a281bc52404319::t_a78d39b2c45ac8 457-459
+internal/provider/site_ipfix_local_prefix_rs.go
+  s_a281bc52404319::t_5d6f11ed5a1041 391-393
+internal/provider/site_lan_network_rs.go
+  s_a281bc52404319::t_e4a59842d4b359 839-841
+internal/provider/site_nat_local_prefix_rs.go
+  s_a281bc52404319::t_1eae34685de003 391-393
+internal/provider/site_path_policy_local_prefix_rs.go
+  s_a281bc52404319::t_c517d423801ec8 407-409
+internal/provider/site_prisma_access_config_rs.go
+  s_a281bc52404319::t_b3b9d3191d461b 474-476
+internal/provider/site_prisma_sase_connection_rs.go
+  s_a281bc52404319::t_1618ccdd5e3082 1114-1116
+internal/provider/site_qos_policy_local_prefix_rs.go
+  s_a281bc52404319::t_6e9fd19f48671f 407-409
+internal/provider/site_rs.go
+  s_a281bc52404319::t_f3a7087b8abd0f 909-911
+internal/provider/site_security_policy_local_prefix_rs.go
+  s_a281bc52404319::t_2ee3b70566d093 407-409
+internal/provider/site_security_zone_rs.go
+  s_a281bc52404319::t_e063db7a9e5e3d 489-491
+internal/provider/site_spoke_cluster_rs.go
+  s_a281bc52404319::t_a8dc3cc5c1a951 419-421
+internal/provider/site_wan_interface_rs.go
+  s_a281bc52404319::t_7e1f5e71cd7c5e 794-796
+internal/provider/site_wan_multicast_configuration_rs.go
+  s_a281bc52404319::t_ed8b6219e25338 406-408
+internal/provider/syslog_profile_rs.go
+  s_a281bc52404319::t_ce9d4d23863300 518-520
+internal/provider/tacacs_plus_profile_rs.go
+  s_a281bc52404319::t_1a16c47d1077b3 542-544
+internal/provider/vrf_context_profile_rs.go
+  s_a281bc52404319::t_40b6af3d1761cb 533-535
+internal/provider/vrf_context_rs.go
+  s_a281bc52404319::t_4bf92b8dc2bdad 388-390
+internal/provider/wan_interface_label_rs.go
+  s_a281bc52404319::t_aa3bff049d09f5 377-379
+internal/provider/wan_network_rs.go
+  s_a281bc52404319::t_16258e2b826886 417-419
+internal/provider/wan_overlay_rs.go
+  s_a281bc52404319::t_710660cb97fe45 376-378
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "573679c0f9259e0ff71ce3b21083562d9ead8118",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
