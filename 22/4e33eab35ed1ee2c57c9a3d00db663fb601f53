@@ -1,0 +1,81 @@
+examples/resources/prismasdwan_anynet_link/resource.tf
+  s_a281bc52404319::t_a280b69fc9c08f 25-29
+examples/resources/prismasdwan_element_routing_routemap/resource.tf
+  s_a281bc52404319::t_465840b24ed5f9 25-26,36
+examples/resources/prismasdwan_nat_policy_set_stack/resource.tf
+  s_a281bc52404319::t_a64ba1f0178da4 25-28
+examples/resources/prismasdwan_ntp_template/resource.tf
+  s_a281bc52404319::t_cceca1bce21b63 25-26
+examples/resources/prismasdwan_path_policy_set/resource.tf
+  s_a281bc52404319::t_91f2d7a672fc8d 25-32
+examples/resources/prismasdwan_path_policy_stack/resource.tf
+  s_a281bc52404319::t_17dfc62dbf4603 27-34
+examples/resources/prismasdwan_qos_policy_set/resource.tf
+  s_a281bc52404319::t_607f4a6f672306 51-53
+examples/resources/prismasdwan_security_policy_set/resource.tf
+  s_a281bc52404319::t_c5f56ec127348d 25-28
+examples/resources/prismasdwan_site_hub_cluster/resource.tf
+  s_a281bc52404319::t_f97c42181ec93b 25
+examples/resources/prismasdwan_vrf_context_profile/resource.tf
+  s_a281bc52404319::t_fae9fee08724fd 25-27
+internal/provider/anynet_link_ds.go
+  s_a281bc52404319::t_0479aa338d33a2 134,161,170,188,197,206,252
+internal/provider/anynet_link_rs.go
+  s_a281bc52404319::t_5d845d8b325db9 113,116,140,143,149,152,167,170,176,179,185,188,231,234
+internal/provider/element_routing_routemap_ds.go
+  s_a281bc52404319::t_481a5835784129 136,397
+internal/provider/element_routing_routemap_rs.go
+  s_a281bc52404319::t_b26f63306417a9 115,118,377,380
+internal/provider/nat_policy_set_stack_ds.go
+  s_a281bc52404319::t_d444fedc060d40 133
+internal/provider/nat_policy_set_stack_rs.go
+  s_a281bc52404319::t_d1b4ff9ee11c8d 112,115
+internal/provider/ntp_template_ds.go
+  s_a281bc52404319::t_cc2881faabfc1b 134
+internal/provider/ntp_template_rs.go
+  s_a281bc52404319::t_36a5039f925927 113,116
+internal/provider/path_policy_set_ds.go
+  s_a281bc52404319::t_b8c2953fb79e00 149
+internal/provider/path_policy_set_rs.go
+  s_a281bc52404319::t_1208007f758de7 128,131
+internal/provider/path_policy_stack_ds.go
+  s_a281bc52404319::t_7979a0b98abe0f 187
+internal/provider/path_policy_stack_rs.go
+  s_a281bc52404319::t_17272c51b7c9ef 179,182
+internal/provider/probe_config_ds.go
+  s_a281bc52404319::t_dfd54a7e3df770 143
+internal/provider/probe_config_rs.go
+  s_a281bc52404319::t_1f65a1fddb78a7 122,125
+internal/provider/qos_policy_set_ds.go
+  s_a281bc52404319::t_b4cc9e76a990f7 340,386
+internal/provider/qos_policy_set_rs.go
+  s_a281bc52404319::t_3ab6121fe6a371 322,325,369,372
+internal/provider/security_policy_set_ds.go
+  s_a281bc52404319::t_d0d29f8b805c3a 142
+internal/provider/security_policy_set_rs.go
+  s_a281bc52404319::t_4804d06f12700b 121,124
+internal/provider/site_hub_cluster_ds.go
+  s_a281bc52404319::t_5a126370ec2ba0 134
+internal/provider/site_hub_cluster_rs.go
+  s_a281bc52404319::t_054612bb11c3bd 113,116
+internal/provider/vrf_context_profile_ds.go
+  s_a281bc52404319::t_2088a309fe6387 134,180
+internal/provider/vrf_context_profile_rs.go
+  s_a281bc52404319::t_825d97bb186b94 113,116,160,163
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "224e33eab35ed1ee2c57c9a3d00db663fb601f53",
+  "prompts": {},
+  "sessions": {
+    "s_a281bc52404319": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4d0cc9c-9f81-4364-9986-fe1f2857a0c0",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Anirudh Kushwah <akushwah@paloaltonetworks.com>"
+    }
+  }
+}
