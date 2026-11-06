@@ -51,7 +51,7 @@ type Client struct {
 	AuthUrl      string            `json:"auth_url"`
 	Host         string            `json:"host"`
 	Port         int               `json:"port"`
-	Timeout      int64             `json:"timeout`
+	Timeout      int64             `json:"timeout"`
 	ClientId     string            `json:"client_id"`
 	ClientSecret string            `json:"client_secret"`
 	Scope        string            `json:"scope"`
@@ -311,7 +311,8 @@ func (c *Client) RefreshJwt(ctx context.Context) error {
 		uv.Set("scope", c.Scope)
 		uv.Set("grant_type", "client_credentials")
 
-		req, err := http.NewRequestWithContext(ctx, http.MethodPost, c.AuthUrl, strings.NewReader(uv.Encode()))
+		var req *http.Request
+		req, err = http.NewRequestWithContext(ctx, http.MethodPost, c.AuthUrl, strings.NewReader(uv.Encode()))
 
 		if err != nil {
 			return err
@@ -327,10 +328,10 @@ func (c *Client) RefreshJwt(ctx context.Context) error {
 		resp, err = authClient.Do(req)
 	}
 
-	if resp == nil {
-		return fmt.Errorf("no response")
-	} else if err != nil {
+	if err != nil {
 		return err
+	} else if resp == nil {
+		return fmt.Errorf("no response")
 	}
 
 	defer resp.Body.Close()
@@ -420,7 +421,8 @@ func (c *Client) Do(ctx context.Context, method string, path string, queryParams
 		resp = c.testData[c.testIndex%len(c.testData)]
 		c.testIndex++
 	} else {
-		req, err := http.NewRequestWithContext(ctx, method, uri, strings.NewReader(*input))
+		var req *http.Request
+		req, err = http.NewRequestWithContext(ctx, method, uri, strings.NewReader(*input))
 		if err != nil {
 			return nil, 0, err
 		}
