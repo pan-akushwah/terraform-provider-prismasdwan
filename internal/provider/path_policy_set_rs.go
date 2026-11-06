@@ -210,6 +210,7 @@ func (r *pathPolicySetResource) Schema(_ context.Context, _ resource.SchemaReque
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Policy rules.",
+				Validators:  NotSettable("policy_rules"),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// generic x_parameters is added to accomodate path parameters

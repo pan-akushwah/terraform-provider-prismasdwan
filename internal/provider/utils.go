@@ -448,6 +448,30 @@ func ListMaxItems(limit int) []validator.List {
 	return []validator.List{listvalidator.SizeAtMost(limit)}
 }
 
+// NotSettable rejects a configured value of a list attribute that the provider never sends to the API.
+func NotSettable(name string) []validator.List {
+	return []validator.List{notSettableValidator{name: name}}
+}
+
+type notSettableValidator struct{ name string }
+
+func (v notSettableValidator) Description(context.Context) string {
+	return v.name + " cannot be set here; manage it with its own resource"
+}
+
+func (v notSettableValidator) MarkdownDescription(ctx context.Context) string {
+	return v.Description(ctx)
+}
+
+func (v notSettableValidator) ValidateList(_ context.Context, req validator.ListRequest, resp *validator.ListResponse) {
+	if req.ConfigValue.IsNull() || req.ConfigValue.IsUnknown() {
+		return
+	}
+	resp.Diagnostics.AddAttributeError(req.Path, "Attribute cannot be set",
+		v.name+" is not sent to the API: the rules are separate objects. Remove this attribute and create the rules "+
+			"with the matching prismasdwan_*_policy_rule resources.")
+}
+
 // SetMaxItems is the same for a set attribute.
 func SetMaxItems(limit int) []validator.Set {
 	return []validator.Set{setvalidator.SizeAtMost(limit)}

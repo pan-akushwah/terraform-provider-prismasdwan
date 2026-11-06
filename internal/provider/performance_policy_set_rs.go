@@ -210,6 +210,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Link health rules.",
+				Validators:  NotSettable("link_health_rules"),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// generic x_parameters is added to accomodate path parameters
@@ -1262,6 +1263,7 @@ func (r *performancePolicySetResource) Schema(_ context.Context, _ resource.Sche
 				Optional:    true,
 				Sensitive:   false,
 				Description: "Policy rules.",
+				Validators:  NotSettable("policy_rules"),
 				NestedObject: rsschema.NestedAttributeObject{
 					Attributes: map[string]rsschema.Attribute{
 						// generic x_parameters is added to accomodate path parameters
